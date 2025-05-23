@@ -1,3 +1,4 @@
+import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -33,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      _counter++;
+      _counter = Calculator().addOne(_counter);
     });
   }
 
