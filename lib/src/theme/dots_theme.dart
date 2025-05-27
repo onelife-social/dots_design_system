@@ -1,7 +1,4 @@
-import 'package:dots_design_system/theme/colors/dots_colors.dart';
-import 'package:dots_design_system/theme/colors/dots_colors_model.dart';
-import 'package:dots_design_system/theme/typography/dots_typo.dart';
-import 'package:dots_design_system/theme/typography/dots_typo_models.dart';
+import 'package:dots_design_system/src/theme/dots_theme_lib.dart';
 import 'package:flutter/material.dart';
 
 ThemeData dotsThemeDataLight = ThemeData(extensions: <ThemeExtension<dynamic>>[
