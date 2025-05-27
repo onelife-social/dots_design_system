@@ -21,13 +21,13 @@ lib
 3. Test on example project
 4. Test on Dots App (see test on Dots App Project below)
 5. Make PR to develop
-6. One all the components for the task/major are done make a new version of the design system (see create new version below)
+6. Once all the components for the task/major are done make a new version of the design system (see create new version below)
 7. Change the pubspec.yaml to reference the version
 
 # Imports
 To export all the need whe use .dart files with the name of the folder followed by '_lib'. e.g. For the folder components we have all exports on 'components_lib.dart' file.
 
-Is important all the needed can be import from the main file 'dots_design_system.dart' otherwise cannot be access from outside the package
+It is important so everything can be imported from the main file 'dots_design_system.dart' otherwise it cannot be accessed from outside the package
 
 # Test on Dots App Project
 To test locally you need to change the dependency on pubspec.yaml
@@ -48,7 +48,7 @@ To this. Note: the path may differ on each computer
 ```
 
 # Create new version of Design system
-We use branches as versions of the design system. This is to avoid break develop on main Dots project
+We use branches as versions of the design system. This is to avoid breaking develop on main Dots project
 The naming of the version is by the changes. If there are no breakable changes, only add to the minor version. e.g. 1.3->1.4. If there are breakable changes add to major version. e.g. 1.3->2.0
 
 Simply create a branch from develop with the name 'vX.X' where X.X is the version. e.g. for the version 1.4 the name of the branch would be 'v1.4'
