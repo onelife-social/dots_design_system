@@ -17,3 +17,133 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 flutter:
+  assets:
+    - assets/fonts/inter/Inter_28pt-Thin.ttf
+  # Fonts
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter/Inter_28pt-Thin.ttf
+          weight: 100
+          style: normal
+        - asset: assets/fonts/inter/Inter_28pt-ThinItalic.ttf
+          weight: 100
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-ExtraLight.ttf
+          weight: 200
+          style: normal
+        - asset: assets/fonts/inter/Inter_28pt-ExtraLightItalic.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-Light.ttf
+          weight: 300
+          style: normal
+        - asset: assets/fonts/inter/Inter_28pt-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-Regular.ttf
+          weight: 400
+          style: normal
+        - asset: assets/fonts/inter/Inter_28pt-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-Medium.ttf
+          weight: 500
+          style: normal
+        - asset: assets/fonts/inter/Inter_28pt-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-SemiBold.ttf
+          weight: 600
+          style: normal
+        - asset: assets/fonts/inter/Inter_28pt-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-Bold.ttf
+          weight: 700
+          style: normal
+        - asset: assets/fonts/inter/Inter_28pt-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-ExtraBold.ttf
+          weight: 800
+          style: normal
+        - asset: assets/fonts/inter/Inter_28pt-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/inter/Inter_28pt-Black.ttf
+          weight: 900
+          style: normal
+        - asset: assets/fonts/inter/Inter_28pt-BlackItalic.ttf
+          weight: 900
+          style: italic
+    - family: P22 Mackinac
+      fonts:
+        - asset: assets/fonts/p22_mackinac/P22Mackinac-ExtraBold_9.otf
+          weight: 800
+          style: normal
+        - asset: assets/fonts/p22_mackinac/P22Mackinac-ExtraBoldItalic_4.otf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/p22_mackinac/P22Mackinac-Bold_23.otf
+          weight: 700
+          style: normal
+        - asset: assets/fonts/p22_mackinac/P22Mackinac-BoldItalic_7.otf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/p22_mackinac/P22Mackinac-Medium_6.otf
+          weight: 500
+          style: normal
+        - asset: assets/fonts/p22_mackinac/P22Mackinac-MedItalic_22.otf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/p22_mackinac/P22Mackinac-Book_13.otf
+          weight: 400
+          style: normal
+        - asset: assets/fonts/p22_mackinac/P22Mackinac-BookItalic_5.otf
+          weight: 400
+          style: italic
+    - family: Proxima Soft
+      fonts:
+        - asset: assets/fonts/proxima_soft/ProximaSoft-Black.ttf
+          weight: 900
+          style: normal
+        - asset: assets/fonts/proxima_soft/ProximaSoft-BlackIt.ttf
+          weight: 900
+          style: italic
+        - asset: assets/fonts/proxima_soft/ProximaSoft-ExtraBoldIt.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/proxima_soft/ProximaSoft-Bold.ttf
+          weight: 700
+          style: normal
+        - asset: assets/fonts/proxima_soft/ProximaSoft-BoldIt.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/proxima_soft/ProximaSoft-SemiBold.ttf
+          weight: 600
+          style: normal
+        - asset: assets/fonts/proxima_soft/ProximaSoft-SemiBoldIt.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/proxima_soft/ProximaSoft-Medium.ttf
+          weight: 500
+          style: normal
+        - asset: assets/fonts/proxima_soft/ProximaSoft-MediumIt.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/proxima_soft/ProximaSoft-Regular.ttf
+          weight: 400
+          style: normal
+        - asset: assets/fonts/proxima_soft/ProximaSoft-RegularIt.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/proxima_soft/ProximaSoft-Light.ttf
+          weight: 300
+          style: normal
+        - asset: assets/fonts/proxima_soft/ProximaSoft-LightIt.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/proxima_soft/ProximaSoft-Thin.ttf
+          weight: 100
+          style: normal

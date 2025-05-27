@@ -1,5 +1,8 @@
-import 'package:dots_design_system/dots_design_system.dart';
+import 'package:example/theme/colors_demo_page.dart';
+import 'package:example/theme/typography_demo_page.dart';
 import 'package:flutter/material.dart';
+import 'package:storybook_flutter/storybook_flutter.dart';
+import 'package:dots_design_system/dots_design_system.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,61 +12,51 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter = Calculator().addOne(_counter);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+  Widget build(BuildContext context) => Storybook(
+        wrapperBuilder: (BuildContext _, Widget? child) => MaterialApp(
+          theme: dotsThemeDataLight,
+          darkTheme: dotsThemeDataDark,
+          home: Builder(builder: (context) {
+            return Scaffold(
+                backgroundColor: context.dotsTheme.colors.bgBase, body: Center(child: child));
+          }),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
+        stories: [
+          Story(
+            name: 'Theme/Typo',
+            description: 'Demo page for all typography',
+            builder: (context) => TypographyDemoPage(),
+          ),
+          Story(
+            name: 'Theme/colors',
+            description: 'Demo page for all colors',
+            builder: (context) => ColorsDemoPage(),
+          ),
+          Story(
+            name: 'button',
+            description: 'Demo page for button',
+            builder: (context) => Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: DotsButton(
+                content: context.knobs.text(label: 'Content', initial: 'Button text'),
+                details: context.knobs.nullable.text(label: 'Details', initial: 'Details'),
+                enabled: context.knobs.boolean(label: 'Enabled', initial: true),
+                size: context.knobs.options<DotsButtonSize>(
+                    label: 'Size',
+                    initial: DotsButtonSize.large,
+                    options: DotsButtonSize.values
+                        .map((item) => Option(label: item.name, value: item))
+                        .toList()),
+                variant: context.knobs.options<DotsButtonVariant>(
+                    label: 'Variant',
+                    initial: DotsButtonVariant.main,
+                    options: DotsButtonVariant.values
+                        .map((item) => Option(label: item.name, value: item))
+                        .toList()),
+                onTap: () {},
+              ),
+            ),
+          ),
+        ],
+      );
 }
