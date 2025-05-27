@@ -1,4 +1,4 @@
-import 'package:dots_design_system/theme/dots_theme.dart';
+import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 /// Conventional progress but divided in parts
