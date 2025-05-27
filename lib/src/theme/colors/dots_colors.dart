@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:dots_design_system/theme/colors/dots_colors_model.dart';
+import 'package:dots_design_system/dots_design_system.dart';
 
 class DotsColors {
   static final light = DotsColorsModel(

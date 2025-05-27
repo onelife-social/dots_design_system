@@ -1,8 +1,8 @@
+import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/theme/colors_demo_page.dart';
 import 'package:example/theme/typography_demo_page.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
-import 'package:dots_design_system/dots_design_system.dart';
 
 void main() {
   runApp(const MyApp());
