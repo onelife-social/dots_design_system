@@ -1,5 +1,5 @@
-import 'package:dots_design_system/core/constants.dart';
-import 'package:dots_design_system/theme/typography/dots_typo_models.dart';
+import 'package:dots_design_system/src/core/constants.dart';
+import 'package:dots_design_system/src/theme/dots_theme_lib.dart';
 import 'package:flutter/widgets.dart';
 
 class DotsTypo {
