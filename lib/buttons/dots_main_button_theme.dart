@@ -1,7 +1,9 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/widgets.dart';
 
-class DotsButtonTheme {
+import 'dots_main_button_enums.dart';
+
+class DotsMainButtonTheme {
   final Color? backgroundColor;
   final Color foregroundColor;
   final Color foregroundSecondaryColor;
@@ -9,7 +11,7 @@ class DotsButtonTheme {
 
   final double? blur;
 
-  const DotsButtonTheme({
+  const DotsMainButtonTheme({
     this.backgroundColor,
     required this.foregroundColor,
     required this.foregroundSecondaryColor,
@@ -18,51 +20,51 @@ class DotsButtonTheme {
   });
 }
 
-DotsButtonTheme getButtonThemeByButtonVariant(DotsTheme theme, DotsButtonVariant variant) {
+DotsMainButtonTheme getButtonThemeByButtonVariant(DotsTheme theme, DotsMainButtonVariant variant) {
   switch (variant) {
-    case DotsButtonVariant.main:
-      return DotsButtonTheme(
+    case DotsMainButtonVariant.main:
+      return DotsMainButtonTheme(
         backgroundColor: theme.colors.labelHighlight,
         foregroundColor: theme.colors.labelAlwaysWhite,
         foregroundSecondaryColor: theme.colors.labelAlwaysWhite.dotsWithOpacity(0.6),
       );
-    case DotsButtonVariant.secondary:
-      return DotsButtonTheme(
+    case DotsMainButtonVariant.secondary:
+      return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgSecondaryBtn,
         foregroundColor: theme.colors.textSecondary,
         foregroundSecondaryColor: theme.colors.textSecondary.dotsWithOpacity(0.6),
       );
-    case DotsButtonVariant.secondaryLight:
-      return DotsButtonTheme(
+    case DotsMainButtonVariant.secondaryLight:
+      return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgSecondaryBtnMaterialLight,
         foregroundColor: theme.colors.labelAlwaysWhite,
         foregroundSecondaryColor: theme.colors.labelAlwaysWhite.dotsWithOpacity(0.6),
       );
-    case DotsButtonVariant.secondaryDark:
-      return DotsButtonTheme(
+    case DotsMainButtonVariant.secondaryDark:
+      return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgSecondaryBtnMaterialDark,
         foregroundColor: theme.colors.textSecondary,
         foregroundSecondaryColor: theme.colors.textSecondary.dotsWithOpacity(0.6),
       );
-    case DotsButtonVariant.destructive:
-      return DotsButtonTheme(
+    case DotsMainButtonVariant.destructive:
+      return DotsMainButtonTheme(
         backgroundColor: theme.colors.labelDestructive,
         foregroundColor: theme.colors.labelAlwaysWhite,
         foregroundSecondaryColor: theme.colors.labelAlwaysWhite.dotsWithOpacity(0.6),
       );
-    case DotsButtonVariant.disabled:
-      return DotsButtonTheme(
+    case DotsMainButtonVariant.disabled:
+      return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgBtnDisabled,
         foregroundColor: theme.colors.textQuarternary,
         foregroundSecondaryColor: theme.colors.textQuarternary.dotsWithOpacity(0.6),
       );
-    case DotsButtonVariant.ghost:
-      return DotsButtonTheme(
+    case DotsMainButtonVariant.ghost:
+      return DotsMainButtonTheme(
         foregroundColor: theme.colors.labelHighlight,
         foregroundSecondaryColor: theme.colors.labelHighlight.dotsWithOpacity(0.6),
       );
-    case DotsButtonVariant.premium:
-      return DotsButtonTheme(
+    case DotsMainButtonVariant.premium:
+      return DotsMainButtonTheme(
         // TODO add background
         foregroundColor: theme.colors.labelAlwaysWhite,
         foregroundSecondaryColor: theme.colors.labelAlwaysWhite.dotsWithOpacity(0.6),

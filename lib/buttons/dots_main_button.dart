@@ -1,16 +1,16 @@
-import 'package:dots_design_system/buttons/dots_button_theme.dart';
 import 'package:dots_design_system/theme/dots_theme.dart';
 import 'package:flutter/material.dart';
 
-import 'dots_button_enums.dart';
+import 'dots_main_button_enums.dart';
+import 'dots_main_button_theme.dart';
 
-class DotsButton extends StatelessWidget {
-  const DotsButton({
+class DotsMainButton extends StatelessWidget {
+  const DotsMainButton({
     super.key,
     required this.content,
     this.details,
-    this.size = DotsButtonSize.large,
-    this.variant = DotsButtonVariant.main,
+    this.size = DotsMainButtonSize.large,
+    this.variant = DotsMainButtonVariant.main,
     this.enabled = true,
     this.onTap,
   });
@@ -19,8 +19,8 @@ class DotsButton extends StatelessWidget {
   final String content;
   final String? details;
 
-  final DotsButtonSize size;
-  final DotsButtonVariant variant;
+  final DotsMainButtonSize size;
+  final DotsMainButtonVariant variant;
   final bool enabled;
   final Function()? onTap;
 
@@ -29,7 +29,7 @@ class DotsButton extends StatelessWidget {
     final theme = context.dotsTheme;
     final buttonTheme = getButtonThemeByButtonVariant(
       theme,
-      enabled ? variant : DotsButtonVariant.disabled,
+      enabled ? variant : DotsMainButtonVariant.disabled,
     );
     final borderRadius = BorderRadius.circular(size.height);
 

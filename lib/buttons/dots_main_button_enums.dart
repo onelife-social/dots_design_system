@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-enum DotsButtonSize {
+enum DotsMainButtonSize {
   mainAction(
     padding: EdgeInsets.symmetric(horizontal: 24, vertical: 18),
     height: 52,
@@ -26,10 +26,10 @@ enum DotsButtonSize {
   final double height;
   final double spacing;
 
-  const DotsButtonSize({required this.padding, required this.height, required this.spacing});
+  const DotsMainButtonSize({required this.padding, required this.height, required this.spacing});
 }
 
-enum DotsButtonVariant {
+enum DotsMainButtonVariant {
   main,
   secondary,
   secondaryLight,

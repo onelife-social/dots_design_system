@@ -37,20 +37,20 @@ class MyApp extends StatelessWidget {
             description: 'Demo page for button',
             builder: (context) => Padding(
               padding: const EdgeInsets.all(16.0),
-              child: DotsButton(
+              child: DotsMainButton(
                 content: context.knobs.text(label: 'Content', initial: 'Button text'),
                 details: context.knobs.nullable.text(label: 'Details', initial: 'Details'),
                 enabled: context.knobs.boolean(label: 'Enabled', initial: true),
-                size: context.knobs.options<DotsButtonSize>(
+                size: context.knobs.options<DotsMainButtonSize>(
                     label: 'Size',
-                    initial: DotsButtonSize.large,
-                    options: DotsButtonSize.values
+                    initial: DotsMainButtonSize.large,
+                    options: DotsMainButtonSize.values
                         .map((item) => Option(label: item.name, value: item))
                         .toList()),
-                variant: context.knobs.options<DotsButtonVariant>(
+                variant: context.knobs.options<DotsMainButtonVariant>(
                     label: 'Variant',
-                    initial: DotsButtonVariant.main,
-                    options: DotsButtonVariant.values
+                    initial: DotsMainButtonVariant.main,
+                    options: DotsMainButtonVariant.values
                         .map((item) => Option(label: item.name, value: item))
                         .toList()),
                 onTap: () {},
