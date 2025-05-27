@@ -1,39 +1,56 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
 ## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Project with all components on Figma for Dots Memories App.
 
 ## Getting started
+All components have the same organization with Figma. Divided by folders.
+The structure is this:
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+lib
+├── dots_design_system.dart (Exports of all libs)
+└── src
+     ├── components (Where all components are)
+     │     ├── buttons
+     │     └── components_lib.dart (Exports of all the components)
+     ├── core (All core features)
+     └── theme  (Colors and typo)
 
 ## Usage
+# Develop
+1. Create a branch from develop to work on it
+2. Develop the component or components at this branch
+3. Test on example project
+4. Test on Dots App (see test on Dots App Project below)
+5. Make PR to develop
+6. One all the components for the task/major are done make a new version of the design system (see create new version below)
+7. Change the pubspec.yaml to reference the version
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+# Imports
+To export all the need whe use .dart files with the name of the folder followed by '_lib'. e.g. For the folder components we have all exports on 'components_lib.dart' file.
 
-```dart
-const like = 'sample';
+Is important all the needed can be import from the main file 'dots_design_system.dart' otherwise cannot be access from outside the package
+
+# Test on Dots App Project
+To test locally you need to change the dependency on pubspec.yaml
+ From this:
+```yaml
+  dots_design_system:
+    git:
+      url: https://github.com/onelife-social/dots_design_system.git
+      ref: v1.0
+      
 ```
 
-## Additional information
+To this. Note: the path may differ on each computer
+```yaml
+  dots_design_system:
+    path: ../dots_design_system
+      
+```
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+# Create new version of Design system
+We use branches as versions of the design system. This is to avoid break develop on main Dots project
+The naming of the version is by the changes. If there are no breakable changes, only add to the minor version. e.g. 1.3->1.4. If there are breakable changes add to major version. e.g. 1.3->2.0
+
+Simply create a branch from develop with the name 'vX.X' where X.X is the version. e.g. for the version 1.4 the name of the branch would be 'v1.4'
+
+
