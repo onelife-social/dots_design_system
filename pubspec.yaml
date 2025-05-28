@@ -12,9 +12,6 @@ dependencies:
     sdk: flutter
   flutter_svg: ^2.1.0
 
-  flutter_svg: ^2.0.16
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
