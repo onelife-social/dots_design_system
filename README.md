@@ -5,6 +5,7 @@ Project with all components on Figma for Dots Memories App.
 All components have the same organization with Figma. Divided by folders.
 The structure is this:
 
+```
 lib
 ├── dots_design_system.dart (Exports of all libs)
 └── src
@@ -13,6 +14,7 @@ lib
      │     └── components_lib.dart (Exports of all the components)
      ├── core (All core features)
      └── theme  (Colors and typo)
+```
 
 ## Usage
 # Develop
