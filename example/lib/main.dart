@@ -1,4 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:example/components/icons_demo_page.dart';
 import 'package:example/theme/colors_demo_page.dart';
 import 'package:example/theme/typography_demo_page.dart';
 import 'package:flutter/material.dart';
@@ -76,6 +77,12 @@ class MyApp extends StatelessWidget {
                 content: context.knobs.text(label: 'Content', initial: 'Button text'),
                 details: context.knobs.nullable.text(label: 'Details', initial: 'Details'),
                 enabled: context.knobs.boolean(label: 'Enabled', initial: true),
+                icon: context.knobs.nullable.options<DotsIconData>(
+                    label: 'Icon',
+                    initial: DotsIconData.trash,
+                    options: DotsIconData.values
+                        .map((item) => Option(label: item.name, value: item))
+                        .toList()),
                 size: context.knobs.options<DotsMainButtonSize>(
                     label: 'Size',
                     initial: DotsMainButtonSize.large,
@@ -164,6 +171,12 @@ class MyApp extends StatelessWidget {
                 initial: true,
               ),
               scrollController: ScrollController(),
+            name: 'icons',
+            description: 'Demo page for icons',
+            builder: (context) => IconsDemoPage(
+              color: Color(
+                  context.knobs.sliderInt(label: 'Color', max: 4294967295, initial: 4080218930)),
+              size: context.knobs.slider(label: 'Size', max: 100, initial: 100),
             ),
           ),
         ],

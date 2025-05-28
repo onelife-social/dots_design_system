@@ -1,8 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/widgets.dart';
 
-import 'dots_main_button_enums.dart';
-
 class DotsMainButtonTheme {
   final Color? backgroundColor;
   final Color foregroundColor;

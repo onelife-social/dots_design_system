@@ -1,3 +1,7 @@
-## 0.0.1
+## X.X.X Pending
+* Container component.
+* Icon component.
 
-* TODO: Describe initial release.
+## 1.0.0
+* Theme colors and typography.
+* Button component.
