@@ -1,7 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-import 'dots_main_button_enums.dart';
 import 'dots_main_button_theme.dart';
 
 class DotsMainButton extends StatelessWidget {
@@ -16,13 +15,33 @@ class DotsMainButton extends StatelessWidget {
     this.onTap,
   });
 
+  /// The text to display on the button.
   final String content;
+
+  /// The icon to display on the button.
+  ///
+  /// If not provided, no icon will be displayed.
   final DotsIconData? icon;
+
+  /// Additional details to display on the button.
+  ///
+  /// If not provided, no details will be displayed.
   final String? details;
 
+  /// The size of the button.
+  ///
+  /// Defaults to [DotsMainButtonSize.large].
   final DotsMainButtonSize size;
+
+  /// The visual variant of the button.
+  ///
+  /// Defaults to [DotsMainButtonVariant.main].
   final DotsMainButtonVariant variant;
+
+  /// Whether the button is enabled.
   final bool enabled;
+
+  /// Callback when the button is tapped.
   final Function()? onTap;
 
   @override
