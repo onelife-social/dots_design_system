@@ -73,17 +73,23 @@ class DotsMainButton extends StatelessWidget {
                   size: 20,
                   color: buttonTheme.foregroundColor,
                 ),
-              Text(
-                content,
-                style: theme.typo.main.bodyDefaultMedium.copyWith(
-                  color: buttonTheme.foregroundColor,
+              Flexible(
+                child: Text(
+                  content,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.typo.main.bodyDefaultMedium.copyWith(
+                    color: buttonTheme.foregroundColor,
+                  ),
                 ),
               ),
               if (details != null)
-                Text(
-                  details ?? '',
-                  style: theme.typo.main.bodyDefaultMedium.copyWith(
-                    color: buttonTheme.foregroundSecondaryColor,
+                Flexible(
+                  child: Text(
+                    details ?? '',
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.typo.main.bodyDefaultMedium.copyWith(
+                      color: buttonTheme.foregroundSecondaryColor,
+                    ),
                   ),
                 ),
             ],
