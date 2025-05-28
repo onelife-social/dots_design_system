@@ -4,19 +4,58 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class DotsActionSheet extends StatelessWidget {
+  /// The title of the Action Sheet.
   final String title;
+
+  /// A short description displayed below the title.
   final String description;
+
+  /// A widget displayed at the top of the Action Sheet (e.g., an icon, image, or header).
   final Widget topWidget;
+
+  /// An optional widget displayed at the bottom of the Action Sheet (e.g., extra content or footer).
   final Widget? bottomWidget;
+
+  /// Callback triggered when the Action Sheet is closed.
   final VoidCallback onClose;
+
+  /// The vertical distance from the bottom of the screen to the Action Sheet.
+  ///
+  /// Defaults to 56.
   final double bottomPosition;
+
+  /// Horizontal padding applied to the content inside the Action Sheet.
+  ///
+  /// Defaults to 16.
   final double horizontalPadding;
+
+  /// Optional maximum height of the Action Sheet. If null, uses default sizing.
   final double? maxHeight;
+
+  /// A value between 0 and 1 indicating the step progress (e.g., for onboarding).
+  ///
+  /// Defaults to 0.
   final double stepProgress;
+
+  /// Whether to use a larger aspect ratio for the layout.
+  ///
+  /// Defaults to true.
   final bool bigAspectRatio;
+
+  /// Optional scroll controller to manage scroll behavior inside the Action Sheet.
   final ScrollController? scrollController;
+
+  /// The main action button displayed in the Action Sheet (e.g., "Continue", "Confirm").
+  ///
+  /// Required.
   final Widget primaryButton;
+
+  /// An optional secondary button (e.g., "Cancel", "Back").
   final Widget? secondaryButton;
+
+  /// Whether to show a semi-transparent backdrop behind the Action Sheet.
+  ///
+  /// Defaults to true.
   final bool showBackdrop;
 
   const DotsActionSheet({
