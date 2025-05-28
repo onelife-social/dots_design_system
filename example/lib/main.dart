@@ -89,11 +89,16 @@ class MyApp extends StatelessWidget {
             builder: (context) => DotsActionSheet(
               title: context.knobs.text(label: 'title', initial: 'Title'),
               description: context.knobs.text(label: 'description', initial: 'Description'),
-              primaryButtonText:
-                  context.knobs.text(label: 'primaryButtonText', initial: 'Button text'),
-              secondaryButtonText: context.knobs.nullable.text(
-                label: 'secondaryButtonText',
-                initial: 'Secondary button text',
+              primaryButton: DotsMainButton(
+                content: context.knobs.text(label: 'Primary button text', initial: 'Primary'),
+                details: context.knobs.nullable.text(
+                  label: 'Primary button details',
+                  initial: 'Details',
+                ),
+                enabled: context.knobs.boolean(label: 'Primary button enabled', initial: true),
+                variant: DotsMainButtonVariant.main,
+                size: DotsMainButtonSize.mainAction,
+                onTap: () {},
               ),
               topWidget: Container(
                 height: context.knobs.slider(
