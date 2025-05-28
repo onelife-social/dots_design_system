@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
         wrapperBuilder: (BuildContext _, Widget? child) => MaterialApp(
           theme: dotsThemeDataLight,
           darkTheme: dotsThemeDataDark,
-          themeMode: ThemeMode.light,
           home: Builder(builder: (context) {
             return Scaffold(
                 backgroundColor: context.dotsTheme.colors.bgBase, body: Center(child: child));
