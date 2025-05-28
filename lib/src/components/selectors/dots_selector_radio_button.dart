@@ -1,13 +1,12 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class DotsSelectorRadioButton extends StatelessWidget {
   final bool isSelected;
   final String title;
-  final SvgPicture icon1;
+  final DotsIcon icon1;
   final String details1;
-  final SvgPicture icon2;
+  final DotsIcon icon2;
   final String details2;
   final Function()? onTap;
 

@@ -1,6 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class DotsRadioButton extends StatelessWidget {
   const DotsRadioButton({
@@ -28,16 +27,11 @@ class DotsRadioButton extends StatelessWidget {
       ),
       child: isSelected
           ? Center(
-              child: SvgPicture.asset(
-                'assets/svg/selector.svg',
-                width: 15,
-                height: 15,
-                colorFilter: ColorFilter.mode(
-                  theme.colors.labelHighlight,
-                  BlendMode.srcIn,
-                ),
-              ),
-            )
+              child: DotsIcon(
+              iconData: DotsIconData.selector,
+              size: 15,
+              color: theme.colors.labelHighlight,
+            ))
           : null,
     );
   }
