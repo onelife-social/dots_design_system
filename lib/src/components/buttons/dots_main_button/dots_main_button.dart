@@ -8,6 +8,7 @@ class DotsMainButton extends StatelessWidget {
   const DotsMainButton({
     super.key,
     required this.content,
+    this.icon,
     this.details,
     this.size = DotsMainButtonSize.large,
     this.variant = DotsMainButtonVariant.main,
@@ -15,8 +16,8 @@ class DotsMainButton extends StatelessWidget {
     this.onTap,
   });
 
-  //TODO add icon
   final String content;
+  final DotsIconData? icon;
   final String? details;
 
   final DotsMainButtonSize size;
@@ -47,6 +48,12 @@ class DotsMainButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: size.spacing,
             children: [
+              if (icon != null)
+                DotsIcon(
+                  iconData: icon ?? DotsIconData.values.first,
+                  size: 20,
+                  color: buttonTheme.foregroundColor,
+                ),
               Text(
                 content,
                 style: theme.typo.main.bodyDefaultMedium.copyWith(
