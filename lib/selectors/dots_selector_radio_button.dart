@@ -59,7 +59,10 @@ class DotsSelectorRadioButton extends StatelessWidget {
                     Row(
                       spacing: 4,
                       children: [
-                        icon1,
+                        Padding(
+                          padding: const EdgeInsets.all(2),
+                          child: icon1,
+                        ),
                         Text(details1,
                             style: theme.typo.main.labelDefaultRegular
                                 .copyWith(color: theme.colors.textTertiary)),
@@ -68,7 +71,10 @@ class DotsSelectorRadioButton extends StatelessWidget {
                     Row(
                       spacing: 4,
                       children: [
-                        icon2,
+                        Padding(
+                          padding: const EdgeInsets.all(2),
+                          child: icon2,
+                        ),
                         Text(details2,
                             style: theme.typo.main.labelDefaultRegular
                                 .copyWith(color: theme.colors.textTertiary)),
