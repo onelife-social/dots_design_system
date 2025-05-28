@@ -100,6 +100,15 @@ class MyApp extends StatelessWidget {
             ),
           ),
           Story(
+            name: 'icons',
+            description: 'Demo page for icons',
+            builder: (context) => IconsDemoPage(
+              color: Color(
+                  context.knobs.sliderInt(label: 'Color', max: 4294967295, initial: 4080218930)),
+              size: context.knobs.slider(label: 'Size', max: 100, initial: 100),
+            ),
+          ),
+          Story(
             name: 'Progress Bar',
             builder: (context) => DotsProgressBar(
               percentage: context.knobs.slider(
@@ -171,12 +180,6 @@ class MyApp extends StatelessWidget {
                 initial: true,
               ),
               scrollController: ScrollController(),
-            name: 'icons',
-            description: 'Demo page for icons',
-            builder: (context) => IconsDemoPage(
-              color: Color(
-                  context.knobs.sliderInt(label: 'Color', max: 4294967295, initial: 4080218930)),
-              size: context.knobs.slider(label: 'Size', max: 100, initial: 100),
             ),
           ),
         ],
