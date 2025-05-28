@@ -5,9 +5,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 class DotsIcon extends StatelessWidget {
   const DotsIcon({super.key, required this.iconData, this.color, this.size = 32});
 
+  /// Icon data to display.
   final DotsIconData iconData;
+
+  /// Color to apply to the icon.
+  ///
+  /// If not provided, the icon will use its default color.
   final Color? color;
 
+  /// Size of the icon.
+  ///
+  /// Defaults to `32.0`.
   final double size;
 
   @override
