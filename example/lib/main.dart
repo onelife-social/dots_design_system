@@ -107,6 +107,80 @@ class MyApp extends StatelessWidget {
               size: context.knobs.slider(label: 'Size', max: 100, initial: 100),
             ),
           ),
+          Story(
+            name: 'Progress Bar',
+            builder: (context) => DotsProgressBar(
+              percentage: context.knobs.slider(
+                label: 'Percentage',
+                initial: 0.5,
+                min: 0,
+                max: 1,
+              ),
+              parts: context.knobs
+                  .slider(
+                    label: 'Parts',
+                    initial: 2,
+                    min: 1,
+                    max: 3,
+                  )
+                  .toInt(),
+              width: context.knobs.slider(
+                label: 'Width',
+                initial: 110,
+                min: 50,
+                max: 300,
+              ),
+            ),
+          ),
+          Story(
+            name: 'Action Sheet',
+            description: 'Demo page for action sheet',
+            builder: (context) => DotsActionSheet(
+              title: context.knobs.text(label: 'title', initial: 'Title'),
+              description: context.knobs.text(label: 'description', initial: 'Description'),
+              primaryButton: DotsMainButton(
+                content: context.knobs.text(label: 'Primary button text', initial: 'Primary'),
+                details: context.knobs.nullable.text(
+                  label: 'Primary button details',
+                  initial: 'Details',
+                ),
+                enabled: context.knobs.boolean(label: 'Primary button enabled', initial: true),
+                variant: DotsMainButtonVariant.main,
+                size: DotsMainButtonSize.mainAction,
+                onTap: () {},
+              ),
+              topWidget: Container(
+                height: context.knobs.slider(
+                  label: 'Top widget height',
+                  initial: 100,
+                  min: 0,
+                  max: 500,
+                ),
+                color: context.dotsTheme.colors.bgContainerTertiary,
+              ),
+              onClose: () {},
+              bottomWidget: Container(
+                height: context.knobs.slider(
+                  label: 'Bottom widget height',
+                  initial: 100,
+                  min: 0,
+                  max: 800,
+                ),
+                color: context.dotsTheme.colors.bgContainerTertiary,
+              ),
+              stepProgress: context.knobs.slider(
+                label: 'Step progress',
+                initial: 0.5,
+                min: 0,
+                max: 1,
+              ),
+              bigAspectRatio: context.knobs.boolean(
+                label: 'Big aspect ratio',
+                initial: true,
+              ),
+              scrollController: ScrollController(),
+            ),
+          ),
         ],
       );
 }
