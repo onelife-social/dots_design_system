@@ -1,0 +1,215 @@
+import 'dart:ui';
+
+import 'package:dots_design_system/dots_design_system.dart';
+import 'package:flutter/material.dart';
+
+class DotsActionSheet extends StatelessWidget {
+  /// The title of the Action Sheet.
+  final String title;
+
+  /// A short description displayed below the title.
+  final String description;
+
+  /// A widget displayed at the top of the Action Sheet (e.g., an icon, image, or header).
+  final Widget topWidget;
+
+  /// An optional widget displayed at the bottom of the Action Sheet (e.g., extra content or footer).
+  final Widget? bottomWidget;
+
+  /// Callback triggered when the Action Sheet is closed.
+  final VoidCallback onClose;
+
+  /// The vertical distance from the bottom of the screen to the Action Sheet.
+  ///
+  /// Defaults to 56.
+  final double bottomPosition;
+
+  /// Horizontal padding applied to the content inside the Action Sheet.
+  ///
+  /// Defaults to 16.
+  final double horizontalPadding;
+
+  /// Optional maximum height of the Action Sheet. If null, uses default sizing.
+  final double? maxHeight;
+
+  /// A value between 0 and 1 indicating the step progress (e.g., for onboarding).
+  ///
+  /// Defaults to 0.
+  final double stepProgress;
+
+  /// Whether to use a larger aspect ratio for the layout.
+  ///
+  /// Defaults to true.
+  final bool bigAspectRatio;
+
+  /// Optional scroll controller to manage scroll behavior inside the Action Sheet.
+  final ScrollController? scrollController;
+
+  /// The main action button displayed in the Action Sheet (e.g., "Continue", "Confirm").
+  ///
+  /// Required.
+  final Widget primaryButton;
+
+  /// An optional secondary button (e.g., "Cancel", "Back").
+  final Widget? secondaryButton;
+
+  /// Whether to show a semi-transparent backdrop behind the Action Sheet.
+  ///
+  /// Defaults to true.
+  final bool showBackdrop;
+
+  const DotsActionSheet({
+    super.key,
+    required this.title,
+    required this.description,
+    required this.primaryButton,
+    this.secondaryButton,
+    required this.topWidget,
+    this.bottomWidget,
+    required this.onClose,
+    this.bottomPosition = 56,
+    this.horizontalPadding = 16,
+    this.maxHeight,
+    this.stepProgress = 0,
+    this.bigAspectRatio = true,
+    this.scrollController,
+    this.showBackdrop = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+
+    final double spacing = bigAspectRatio ? 20 : 16;
+
+    return Stack(
+      children: [
+        GestureDetector(
+          onTap: onClose,
+          child: (showBackdrop)
+              ? BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                  child: Container(
+                    color: Color(0xFF000000).dotsWithOpacity(0.3),
+                  ),
+                )
+              : null,
+        ),
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: bottomPosition,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: maxHeight ?? MediaQuery.of(context).size.height * 0.8,
+              ),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                clipBehavior: Clip.antiAlias,
+                decoration: ShapeDecoration(
+                  color: theme.colors.bgBaseContrast,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32),
+                  ),
+                ),
+                child: Stack(
+                  children: [
+                    SingleChildScrollView(
+                      controller: scrollController,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        spacing: spacing,
+                        children: [
+                          Container(
+                            width: 36,
+                            height: 4,
+                            decoration: ShapeDecoration(
+                              color: theme.colors.bgSecondaryBtn,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(2.50),
+                              ),
+                            ),
+                          ),
+                          topWidget,
+                          Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              spacing: bigAspectRatio ? 22 : 16,
+                              children: [
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: Text(title,
+                                      textAlign: TextAlign.center,
+                                      style: bigAspectRatio
+                                          ? theme.typo.main.titleH6
+                                          : theme.typo.main.bodyLargeBold),
+                                ),
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: Text(description,
+                                      textAlign: TextAlign.center,
+                                      style: theme.typo.main.labelDefaultRegular),
+                                ),
+                              ],
+                            ),
+                          ),
+                          if (bottomWidget != null) bottomWidget!,
+                          if (stepProgress > 0) DotsProgressBar(percentage: stepProgress),
+                          SizedBox(
+                            height: DotsMainButtonSize.mainAction.height,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      child: DotsActionSheetButtons(
+                        primaryButton: primaryButton,
+                        secondaryButton: secondaryButton,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class DotsActionSheetButtons extends StatelessWidget {
+  final Widget primaryButton;
+  final Widget? secondaryButton;
+
+  const DotsActionSheetButtons({super.key, required this.primaryButton, this.secondaryButton});
+
+  @override
+  Widget build(BuildContext context) {
+    return secondaryButton != null
+        ? Row(
+            children: [
+              Expanded(
+                child: secondaryButton!,
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              Expanded(child: primaryButton),
+            ],
+          )
+        : primaryButton;
+  }
+}
