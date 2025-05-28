@@ -29,10 +29,12 @@ class DotsSelectorRadioButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        decoration: isSelected ? BoxDecoration(
-          border: Border.all(color: theme.colors.labelHighlight, width: 1.5),
-          borderRadius: BorderRadius.circular(26),
-        ) : null,
+        decoration: isSelected
+            ? BoxDecoration(
+                border: Border.all(color: theme.colors.labelHighlight, width: 1.5),
+                borderRadius: BorderRadius.circular(26),
+              )
+            : null,
         child: Container(
           height: 94,
           width: double.infinity,
@@ -51,19 +53,25 @@ class DotsSelectorRadioButton extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   spacing: 10,
                   children: [
-                    Text(title, style: theme.typo.main.bodyDefaultBold.copyWith(color: theme.colors.textPrimary)),
+                    Text(title,
+                        style: theme.typo.main.bodyDefaultBold
+                            .copyWith(color: theme.colors.textPrimary)),
                     Row(
                       spacing: 4,
                       children: [
                         icon1,
-                        Text(details1, style: theme.typo.main.labelDefaultRegular.copyWith(color: theme.colors.textTertiary)),
+                        Text(details1,
+                            style: theme.typo.main.labelDefaultRegular
+                                .copyWith(color: theme.colors.textTertiary)),
                       ],
                     ),
                     Row(
                       spacing: 4,
                       children: [
                         icon2,
-                        Text(details2, style: theme.typo.main.labelDefaultRegular.copyWith(color: theme.colors.textTertiary)),
+                        Text(details2,
+                            style: theme.typo.main.labelDefaultRegular
+                                .copyWith(color: theme.colors.textTertiary)),
                       ],
                     ),
                   ],

@@ -17,24 +17,28 @@ class DotsRadioButton extends StatelessWidget {
     final theme = context.dotsTheme;
 
     return Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(
-            color: isSelected ? theme.colors.labelHighlight : theme.colors.labelSecondary,
-            width: 2,
-          ),
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: isSelected ? theme.colors.labelHighlight : theme.colors.labelSecondary,
+          width: 2,
         ),
-        child: isSelected
-            ? Center(
-                child: SvgPicture.asset(
-                  'assets/svg/selector.svg',
-                  width: 15,
-                  height: 15,
+      ),
+      child: isSelected
+          ? Center(
+              child: SvgPicture.asset(
+                'assets/svg/selector.svg',
+                width: 15,
+                height: 15,
+                colorFilter: ColorFilter.mode(
+                  theme.colors.labelHighlight,
+                  BlendMode.srcIn,
                 ),
-              )
-            : null,
-      );
+              ),
+            )
+          : null,
+    );
   }
 }

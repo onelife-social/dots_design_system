@@ -11,6 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_svg: ^2.0.16
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -19,6 +22,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/fonts/inter/Inter_28pt-Thin.ttf
+    - assets/svg/
   # Fonts
   fonts:
     - family: Inter
