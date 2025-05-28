@@ -38,6 +38,7 @@ class DotsTheme extends ThemeExtension<DotsTheme> {
     return DotsTheme._(colors.lerp(other?.colors, t), typo.lerp(other?.typo, t));
   }
 
+  @override
   DotsTheme copyWith({
     DotsColorsModel? colors,
     DotsTypoModel? typo,

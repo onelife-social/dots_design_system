@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 class DotsSelectorRadioButton extends StatelessWidget {
   final bool isSelected;
   final String title;
-  final DotsIcon icon1;
+  final DotsIconData icon1;
+  final double icon1Size;
   final String details1;
-  final DotsIcon icon2;
+  final DotsIconData icon2;
+  final double icon2Size;
   final String details2;
   final Function()? onTap;
 
@@ -14,8 +16,10 @@ class DotsSelectorRadioButton extends StatelessWidget {
     super.key,
     required this.isSelected,
     required this.title,
-    required this.icon1,
-    required this.icon2,
+    this.icon1 = DotsIconData.clockFilled,
+    this.icon2 = DotsIconData.calendar,
+    this.icon1Size = 12,
+    this.icon2Size = 12,
     required this.details1,
     required this.details2,
     this.onTap,
@@ -60,7 +64,11 @@ class DotsSelectorRadioButton extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(2),
-                          child: icon1,
+                          child: DotsIcon(
+                            iconData: icon1,
+                            size: icon1Size,
+                            color: theme.colors.textTertiary,
+                          ),
                         ),
                         Text(details1,
                             style: theme.typo.main.labelDefaultRegular
@@ -72,7 +80,11 @@ class DotsSelectorRadioButton extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(2),
-                          child: icon2,
+                          child: DotsIcon(
+                            iconData: icon2,
+                            size: icon2Size,
+                            color: theme.colors.textTertiary,
+                          ),
                         ),
                         Text(details2,
                             style: theme.typo.main.labelDefaultRegular
