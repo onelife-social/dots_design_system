@@ -38,6 +38,8 @@ class DotsColors {
     misc900: Color(0xFFB0729E),
     misc1000: Color(0xFF6770D6),
     misc1100: Color(0xFF6276D7),
+    gradientInitialLineal: Color(0x00F8F7F5),
+    gradientFinalLineal: const Color(0xD8F8F7F5),
   );
   static final dark = DotsColorsModel(
     bgBase: Color(0xFF191919),
@@ -74,5 +76,7 @@ class DotsColors {
     misc900: Color(0xFF6770D6),
     misc1000: Color(0xFF6276D7),
     misc1100: Color(0xFF5E7CD9),
+    gradientInitialLineal: Color(0x00191919),
+    gradientFinalLineal: Color(0xD8191919),
   );
 }
