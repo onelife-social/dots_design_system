@@ -179,7 +179,8 @@ enum DotsIconData {
   radioOff('ic-radio--off.svg', DotsIconGroup.system),
   radioOn('ic-radio--on.svg', DotsIconGroup.system),
   search('ic-search.svg', DotsIconGroup.system),
-  settings('ic-settings.svg', DotsIconGroup.system);
+  settings('ic-settings.svg', DotsIconGroup.system),
+  selector('ic-selector.svg', DotsIconGroup.system);
 
   const DotsIconData(this.asset, this.iconGroup);
   final String asset;
