@@ -18,8 +18,8 @@ class DotsSelectorRadioButton extends StatelessWidget {
     required this.title,
     this.icon1 = DotsIconData.clockFilled,
     this.icon2 = DotsIconData.calendar,
-    this.icon1Size = 12,
-    this.icon2Size = 12,
+    this.icon1Size = 16,
+    this.icon2Size = 16,
     required this.details1,
     required this.details2,
     this.onTap,
@@ -61,13 +61,10 @@ class DotsSelectorRadioButton extends StatelessWidget {
                     const SizedBox(height: 10),
                     Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(2),
-                          child: DotsIcon(
-                            iconData: icon1,
-                            size: icon1Size,
-                            color: theme.colors.textTertiary,
-                          ),
+                        DotsIcon(
+                          iconData: icon1,
+                          size: icon1Size,
+                          color: theme.colors.textTertiary,
                         ),
                         const SizedBox(width: 4),
                         Text(details1,
@@ -78,13 +75,10 @@ class DotsSelectorRadioButton extends StatelessWidget {
                     const SizedBox(height: 10),
                     Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(2),
-                          child: DotsIcon(
-                            iconData: icon2,
-                            size: icon2Size,
-                            color: theme.colors.textTertiary,
-                          ),
+                        DotsIcon(
+                          iconData: icon2,
+                          size: icon2Size,
+                          color: theme.colors.textTertiary,
                         ),
                         const SizedBox(width: 4),
                         Text(details2,
