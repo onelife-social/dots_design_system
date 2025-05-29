@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
           theme: dotsThemeDataLight,
           darkTheme: dotsThemeDataDark,
           home: Builder(builder: (context) {
+            context.dotsTheme.typo;
+
             return Scaffold(
                 backgroundColor: context.dotsTheme.colors.bgBase, body: Center(child: child));
           }),
@@ -105,6 +107,38 @@ class MyApp extends StatelessWidget {
               color: Color(
                   context.knobs.sliderInt(label: 'Color', max: 4294967295, initial: 4080218930)),
               size: context.knobs.slider(label: 'Size', max: 100, initial: 100),
+            ),
+          ),
+          Story(
+            name: 'icons button',
+            description: 'Demo page for icon button',
+            builder: (context) => Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Center(
+                child: DotsIconButton(
+                  icon: context.knobs.options<DotsIconData>(
+                      label: 'Icon',
+                      initial: DotsIconData.trash,
+                      options: DotsIconData.values
+                          .map((item) => Option(label: item.name, value: item))
+                          .toList()),
+                  label: context.knobs.nullable
+                      .text(label: 'Label', initial: 'Details', enabled: false),
+                  size: context.knobs.options<DotsIconButtonSize>(
+                      label: 'Size',
+                      initial: DotsIconButtonSize.large,
+                      options: DotsIconButtonSize.values
+                          .map((item) => Option(label: item.name, value: item))
+                          .toList()),
+                  variant: context.knobs.options<DotsIconButtonVariant>(
+                      label: 'Variant',
+                      initial: DotsIconButtonVariant.solid,
+                      options: DotsIconButtonVariant.values
+                          .map((item) => Option(label: item.name, value: item))
+                          .toList()),
+                  onTap: () {},
+                ),
+              ),
             ),
           ),
           Story(
