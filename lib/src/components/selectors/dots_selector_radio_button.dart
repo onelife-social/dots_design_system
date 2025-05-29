@@ -41,8 +41,8 @@ class DotsSelectorRadioButton extends StatelessWidget {
         child: Container(
           height: 94,
           width: double.infinity,
+          margin: const EdgeInsets.all(1),
           padding: const EdgeInsets.all(16),
-          margin: const EdgeInsets.all(3),
           decoration: BoxDecoration(
             color: theme.colors.bgContainerSecondary,
             borderRadius: BorderRadius.circular(24),
@@ -53,13 +53,13 @@ class DotsSelectorRadioButton extends StatelessWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(title,
                         style: theme.typo.main.bodyDefaultBold
                             .copyWith(color: theme.colors.textPrimary)),
-                    const SizedBox(height: 10),
                     Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         DotsIcon(
                           iconData: icon1,
@@ -72,8 +72,8 @@ class DotsSelectorRadioButton extends StatelessWidget {
                                 .copyWith(color: theme.colors.textTertiary)),
                       ],
                     ),
-                    const SizedBox(height: 10),
                     Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         DotsIcon(
                           iconData: icon2,
