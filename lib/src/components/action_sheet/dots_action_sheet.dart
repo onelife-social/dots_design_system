@@ -58,6 +58,11 @@ class DotsActionSheet extends StatelessWidget {
   /// Defaults to true.
   final bool showBackdrop;
 
+  /// Whether to apply a shader mask to the back button.
+  ///
+  ///   Defaults to false.
+  final bool backButtonShaderMask;
+
   const DotsActionSheet({
     super.key,
     required this.title,
@@ -74,6 +79,7 @@ class DotsActionSheet extends StatelessWidget {
     this.bigAspectRatio = true,
     this.scrollController,
     this.showBackdrop = true,
+    this.backButtonShaderMask = false,
   });
 
   @override
@@ -107,7 +113,7 @@ class DotsActionSheet extends StatelessWidget {
               ),
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 clipBehavior: Clip.antiAlias,
                 decoration: ShapeDecoration(
                   color: theme.colors.bgBaseContrast,
@@ -125,13 +131,16 @@ class DotsActionSheet extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         spacing: spacing,
                         children: [
-                          Container(
-                            width: 36,
-                            height: 4,
-                            decoration: ShapeDecoration(
-                              color: theme.colors.bgSecondaryBtn,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(2.50),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: Container(
+                              width: 36,
+                              height: 4,
+                              decoration: ShapeDecoration(
+                                color: theme.colors.bgSecondaryBtn,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(2.50),
+                                ),
                               ),
                             ),
                           ),
@@ -165,23 +174,28 @@ class DotsActionSheet extends StatelessWidget {
                           if (bottomWidget != null) bottomWidget!,
                           if (stepProgress > 0) DotsProgressBar(percentage: stepProgress),
                           SizedBox(
-                            height: DotsMainButtonSize.mainAction.height,
+                            height: DotsMainButtonSize.mainAction.height + 16,
                           ),
                         ],
-                      ),
-                    ),
-                    Positioned(
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      child: DotsActionSheetButtons(
-                        primaryButton: primaryButton,
-                        secondaryButton: secondaryButton,
                       ),
                     ),
                   ],
                 ),
               ),
+            ),
+          ),
+        ),
+        if (backButtonShaderMask) _BackdropFilterMask(bottomPosition: bottomPosition),
+        if (backButtonShaderMask) _LinearBlurMask(bottomPosition: bottomPosition),
+        Positioned(
+          left: 16,
+          right: 16,
+          bottom: bottomPosition + 16,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: DotsActionSheetButtons(
+              primaryButton: primaryButton,
+              secondaryButton: secondaryButton,
             ),
           ),
         ),
@@ -211,5 +225,62 @@ class DotsActionSheetButtons extends StatelessWidget {
             ],
           )
         : primaryButton;
+  }
+}
+
+class _LinearBlurMask extends StatelessWidget {
+  final double bottomPosition;
+
+  const _LinearBlurMask({required this.bottomPosition});
+
+  @override
+  Widget build(BuildContext context) {
+    final totalHeight = DotsMainButtonSize.mainAction.height + 26;
+    final theme = context.dotsTheme;
+
+    return Positioned(
+      left: 16,
+      right: 16,
+      bottom: bottomPosition,
+      child: ClipRRect(
+        borderRadius: DotsBorderRadius.bottom32,
+        child: SizedBox(
+          height: totalHeight,
+          child: CustomPaint(
+            size: Size(double.infinity, totalHeight),
+            painter: LinearBlurPainter(
+              topColor: theme.colors.gradientInitialLineal,
+              bottomColor: theme.colors.gradientFinalLineal,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _BackdropFilterMask extends StatelessWidget {
+  final double bottomPosition;
+
+  const _BackdropFilterMask({required this.bottomPosition});
+
+  @override
+  Widget build(BuildContext context) {
+    final totalHeight = DotsMainButtonSize.mainAction.height + 26;
+    return Positioned(
+      left: 16,
+      right: 16,
+      bottom: bottomPosition,
+      child: ClipRRect(
+        borderRadius: DotsBorderRadius.bottom32,
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 2, sigmaY: 12),
+          child: Container(
+            height: totalHeight / 2,
+            color: context.dotsTheme.colors.transparent,
+          ),
+        ),
+      ),
+    );
   }
 }
