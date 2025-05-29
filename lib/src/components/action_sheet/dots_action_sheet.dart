@@ -186,7 +186,7 @@ class DotsActionSheet extends StatelessWidget {
           ),
         ),
         if (backButtonShaderMask) _BackdropFilterMask(bottomPosition: bottomPosition),
-        if (backButtonShaderMask) _LinealCustomPainterMask(bottomPosition: bottomPosition),
+        if (backButtonShaderMask) _LinearBlurMask(bottomPosition: bottomPosition),
         Positioned(
           left: 16,
           right: 16,
@@ -228,14 +228,14 @@ class DotsActionSheetButtons extends StatelessWidget {
   }
 }
 
-class _LinealCustomPainterMask extends StatelessWidget {
+class _LinearBlurMask extends StatelessWidget {
   final double bottomPosition;
 
-  const _LinealCustomPainterMask({required this.bottomPosition});
+  const _LinearBlurMask({required this.bottomPosition});
 
   @override
   Widget build(BuildContext context) {
-    final totalHeight = DotsMainButtonSize.mainAction.height + 10 + 16;
+    final totalHeight = DotsMainButtonSize.mainAction.height + 26;
     final theme = context.dotsTheme;
 
     return Positioned(
@@ -243,17 +243,14 @@ class _LinealCustomPainterMask extends StatelessWidget {
       right: 16,
       bottom: bottomPosition,
       child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(32),
-          bottomRight: Radius.circular(32),
-        ),
+        borderRadius: DotsBorderRadius.bottom32,
         child: SizedBox(
           height: totalHeight,
           child: CustomPaint(
             size: Size(double.infinity, totalHeight),
-            painter: _GradientBlurPainter(
-              gradientInitialLineal: theme.colors.gradientInitialLineal,
-              gradientFinalLineal: theme.colors.gradientFinalLineal,
+            painter: LinearBlurPainter(
+              topColor: theme.colors.gradientInitialLineal,
+              bottomColor: theme.colors.gradientFinalLineal,
             ),
           ),
         ),
@@ -269,56 +266,21 @@ class _BackdropFilterMask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final totalHeight = DotsMainButtonSize.mainAction.height + 10 + 16;
+    final totalHeight = DotsMainButtonSize.mainAction.height + 26;
     return Positioned(
       left: 16,
       right: 16,
       bottom: bottomPosition,
       child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(32),
-          bottomRight: Radius.circular(32),
-        ),
+        borderRadius: DotsBorderRadius.bottom32,
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 2, sigmaY: 12),
           child: Container(
             height: totalHeight / 2,
-            color: Colors.transparent,
+            color: context.dotsTheme.colors.transparent,
           ),
         ),
       ),
     );
   }
-}
-
-class _GradientBlurPainter extends CustomPainter {
-  final Color gradientInitialLineal;
-  final Color gradientFinalLineal;
-
-  _GradientBlurPainter({required this.gradientInitialLineal, required this.gradientFinalLineal});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final rect = Offset.zero & size;
-
-    final paint = Paint()
-      ..shader = LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          gradientInitialLineal,
-          gradientFinalLineal,
-        ],
-      ).createShader(rect);
-
-    paint.maskFilter = MaskFilter.blur(
-      BlurStyle.solid,
-      100,
-    );
-
-    canvas.drawRect(rect, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

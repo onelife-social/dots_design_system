@@ -56,6 +56,9 @@ class DotsColorsModel {
   final Color gradientInitialLineal;
   final Color gradientFinalLineal;
 
+  //generics
+  final Color transparent;
+
   const DotsColorsModel({
     required this.bgBase,
     required this.bgBaseContrast,
@@ -93,6 +96,7 @@ class DotsColorsModel {
     required this.misc1100,
     required this.gradientInitialLineal,
     required this.gradientFinalLineal,
+    required this.transparent,
   });
 
   DotsColorsModel lerp(DotsColorsModel? other, double t) {
@@ -144,6 +148,7 @@ class DotsColorsModel {
           gradientInitialLineal,
       gradientFinalLineal:
           Color.lerp(gradientFinalLineal, other?.gradientFinalLineal, t) ?? gradientFinalLineal,
+      transparent: Color.lerp(transparent, other?.transparent, t) ?? transparent,
     );
   }
 }
