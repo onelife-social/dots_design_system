@@ -25,7 +25,7 @@ DotsIconButtonTheme getIconButtonThemeByVariant(DotsTheme theme, DotsIconButtonV
       );
     case DotsIconButtonVariant.noBackground:
       return DotsIconButtonTheme(
-        foregroundColor: theme.colors.labelAlwaysWhite,
+        foregroundColor: theme.colors.textPrimary,
       );
   }
 }

@@ -5,4 +5,4 @@ export 'containers/containers_lib.dart';
 export 'icons/icons_lib.dart';
 export 'selectors/selectors_lib.dart';
 export 'segmented_control/segmented_control.dart';
-export 'navigation/top_bar.dart';
+export 'navigation/navigation_lib.dart';

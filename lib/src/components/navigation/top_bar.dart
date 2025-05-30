@@ -1,7 +1,10 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class TopBar extends StatelessWidget implements PreferredSizeWidget {
+class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
+  static double kNormalHeight = 50.0;
+  static double kBigHeight = 98.0;
+
   /// Title of the top bar.
   ///
   /// If not provided, the top bar will not display a title.
@@ -34,11 +37,16 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
   /// Cannot be used with [leftIcon].
   final Function()? onTapBack;
 
+  /// Whether to hide the background of the top bar.
+  final bool hideBackground;
+
   final bool _bigStatusBar;
 
   /// Only status bar, no title or segmented control.
-  const TopBar.onlyStatusBar({super.key})
-      : title = null,
+  const DotsTopBar.onlyStatusBar({
+    super.key,
+    this.hideBackground = false,
+  })  : title = null,
         subtitle = null,
         segmentedControl = null,
         leftIcon = null,
@@ -47,8 +55,9 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
         _bigStatusBar = false;
 
   /// Bar with title and optional subtitle, left and right icons, and back button.
-  const TopBar.title({
+  const DotsTopBar.title({
     super.key,
+    this.hideBackground = false,
     required String this.title,
     this.subtitle,
     this.leftIcon,
@@ -62,8 +71,9 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
         _bigStatusBar = true;
 
   /// Bar with segmented control, left and right icons, and back button.
-  const TopBar.segmentedBar({
+  const DotsTopBar.segmentedBar({
     super.key,
+    this.hideBackground = false,
     this.segmentedControl,
     this.leftIcon,
     this.rightIcon,
@@ -79,9 +89,9 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize {
     if (_bigStatusBar) {
-      return Size.fromHeight(98);
+      return Size.fromHeight(kBigHeight);
     } else {
-      return Size.fromHeight(50);
+      return Size.fromHeight(kNormalHeight);
     }
   }
 
@@ -89,7 +99,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     return ColoredBox(
-      color: theme.colors.bgContainerPrimary,
+      color: hideBackground ? Colors.transparent : theme.colors.bgContainerPrimary,
       child: ConstrainedBox(
         constraints: BoxConstraints.tightFor(height: preferredSize.height),
         child: Column(

@@ -51,7 +51,7 @@ class TopBarDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (variant) {
       case TobBarVariant.title:
-        return TopBar.title(
+        return DotsTopBar.title(
           title: title,
           subtitle: subtitle,
           leftIcon: leftIcon,
@@ -59,7 +59,7 @@ class TopBarDemo extends StatelessWidget {
           onTapBack: onTapBack,
         );
       case TobBarVariant.segmentedControl:
-        return TopBar.segmentedBar(
+        return DotsTopBar.segmentedBar(
           segmentedControl: SegmentedControl(
             leftOptionName: 'Option 1',
             rightOptionName: 'Option 2',
@@ -71,7 +71,7 @@ class TopBarDemo extends StatelessWidget {
           onTapBack: onTapBack,
         );
       default:
-        return TopBar.onlyStatusBar();
+        return DotsTopBar.onlyStatusBar();
     }
   }
 }

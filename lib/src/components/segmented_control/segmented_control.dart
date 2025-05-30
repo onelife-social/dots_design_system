@@ -74,7 +74,7 @@ class _BackSegmented extends StatelessWidget {
       decoration: ShapeDecoration(
         color: theme.colors.bgContainerSecondary,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(1000),
+          borderRadius: DotsBorderRadius.r1000,
         ),
       ),
       child: Row(
@@ -130,7 +130,7 @@ class _SelectedSegment extends StatelessWidget {
         decoration: ShapeDecoration(
           color: theme.colors.bgSecondaryBtn,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(1000),
+            borderRadius: DotsBorderRadius.r1000,
           ),
         ),
         child: Center(
