@@ -1,5 +1,3 @@
-import 'package:flutter/widgets.dart';
-
 enum DotsIconButtonSize {
   extraLarge(
     size: 56,

@@ -1,5 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/components/icons_demo_page.dart';
+import 'package:example/components/segmented_control_handle.dart';
+import 'package:example/components/top_bar_demo.dart';
 import 'package:example/theme/colors_demo_page.dart';
 import 'package:example/theme/typography_demo_page.dart';
 import 'package:flutter/material.dart';
@@ -213,6 +215,42 @@ class MyApp extends StatelessWidget {
                 initial: true,
               ),
               scrollController: ScrollController(),
+            ),
+          ),
+          Story(
+            name: 'Segmented control bar',
+            description: 'Demo page for Segmented control bar',
+            builder: (context) => Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SegmentedControlHandle(
+                key: ValueKey('SegmentedControlHandle'),
+                leftOptionName: context.knobs.text(label: 'Option 1', initial: 'Option 1'),
+                rightOptionName: context.knobs.text(label: 'Option 2', initial: 'Option 2'),
+              ),
+            ),
+          ),
+          Story(
+            name: 'Top bar',
+            description: 'Demo page for Top bar',
+            builder: (context) => ColoredBox(
+              color: context.dotsTheme.colors.bgContainerSecondary,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: TopBarDemo(
+                  variant: context.knobs.options<TobBarVariant>(
+                    label: 'Variant',
+                    initial: TobBarVariant.title,
+                    options: TobBarVariant.values
+                        .map((item) => Option(label: item.name, value: item))
+                        .toList(),
+                  ),
+                  title: context.knobs.text(label: 'Title', initial: 'Title'),
+                  subtitle: context.knobs.nullable.text(label: 'Subtitle', initial: 'Subtitle'),
+                  showLeftIcon: context.knobs.boolean(label: 'Show left icon', initial: false),
+                  showRightIcon: context.knobs.boolean(label: 'Show right icon', initial: false),
+                  showBackButton: context.knobs.boolean(label: 'Show back button', initial: false),
+                ),
+              ),
             ),
           ),
         ],
