@@ -17,6 +17,7 @@ class DotsBorderRadius {
   static const BorderRadius r50 = BorderRadius.all(Radius.circular(50));
   static const BorderRadius r65 = BorderRadius.all(Radius.circular(65));
   static const BorderRadius r100 = BorderRadius.all(Radius.circular(100));
+  static const BorderRadius r1000 = BorderRadius.all(Radius.circular(1000));
 
   static const BorderRadius top10 =
       BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10));
