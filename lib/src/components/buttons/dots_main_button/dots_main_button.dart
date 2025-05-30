@@ -13,6 +13,7 @@ class DotsMainButton extends StatelessWidget {
     this.variant = DotsMainButtonVariant.main,
     this.enabled = true,
     this.onTap,
+    this.expand = true,
   });
 
   /// The text to display on the button.
@@ -44,6 +45,9 @@ class DotsMainButton extends StatelessWidget {
   /// Callback when the button is tapped.
   final Function()? onTap;
 
+  /// Whether the button should expand to fill available space.
+  final bool expand;
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -66,6 +70,7 @@ class DotsMainButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: size.spacing,
+            mainAxisSize: expand ? MainAxisSize.max : MainAxisSize.min,
             children: [
               if (icon != null)
                 DotsIcon(

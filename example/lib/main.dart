@@ -99,6 +99,7 @@ class MyApp extends StatelessWidget {
                         .map((item) => Option(label: item.name, value: item))
                         .toList()),
                 onTap: () {},
+                expand: context.knobs.boolean(label: 'Expand', initial: true),
               ),
             ),
           ),
@@ -215,6 +216,10 @@ class MyApp extends StatelessWidget {
                 initial: true,
               ),
               scrollController: ScrollController(),
+              backButtonShaderMask: context.knobs.boolean(
+                label: 'Back button shader mask',
+                initial: true,
+              ),
             ),
           ),
           Story(

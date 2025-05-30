@@ -52,6 +52,13 @@ class DotsColorsModel {
   final Color misc1000;
   final Color misc1100;
 
+  // Gradient
+  final Color gradientInitialLineal;
+  final Color gradientFinalLineal;
+
+  //generics
+  final Color transparent;
+
   const DotsColorsModel({
     required this.bgBase,
     required this.bgBaseContrast,
@@ -87,6 +94,9 @@ class DotsColorsModel {
     required this.misc900,
     required this.misc1000,
     required this.misc1100,
+    required this.gradientInitialLineal,
+    required this.gradientFinalLineal,
+    required this.transparent,
   });
 
   DotsColorsModel lerp(DotsColorsModel? other, double t) {
@@ -134,6 +144,11 @@ class DotsColorsModel {
       misc900: Color.lerp(misc900, other?.misc900, t) ?? misc900,
       misc1000: Color.lerp(misc1000, other?.misc1000, t) ?? misc1000,
       misc1100: Color.lerp(misc1100, other?.misc1100, t) ?? misc1100,
+      gradientInitialLineal: Color.lerp(gradientInitialLineal, other?.gradientInitialLineal, t) ??
+          gradientInitialLineal,
+      gradientFinalLineal:
+          Color.lerp(gradientFinalLineal, other?.gradientFinalLineal, t) ?? gradientFinalLineal,
+      transparent: Color.lerp(transparent, other?.transparent, t) ?? transparent,
     );
   }
 }
