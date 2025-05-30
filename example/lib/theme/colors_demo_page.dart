@@ -46,6 +46,7 @@ class ColorsDemoPage extends StatelessWidget {
         'labelDestructive': colors.labelDestructive,
         'bgDestructive': colors.bgDestructive,
         'labelActive': colors.labelActive,
+        'labelInactive': colors.labelInactive,
         'bgActive': colors.bgActive,
       },
       'Miscellaneous': {

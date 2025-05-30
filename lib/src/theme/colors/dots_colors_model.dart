@@ -36,6 +36,7 @@ class DotsColorsModel {
   final Color labelDestructive;
   final Color bgDestructive;
   final Color labelActive;
+  final Color labelInactive;
   final Color bgActive;
 
   // Miscellaneous
@@ -82,6 +83,7 @@ class DotsColorsModel {
     required this.labelDestructive,
     required this.bgDestructive,
     required this.labelActive,
+    required this.labelInactive,
     required this.bgActive,
     required this.misc100,
     required this.misc200,
@@ -132,6 +134,7 @@ class DotsColorsModel {
           Color.lerp(labelDestructive, other?.labelDestructive, t) ?? labelDestructive,
       bgDestructive: Color.lerp(bgDestructive, other?.bgDestructive, t) ?? bgDestructive,
       labelActive: Color.lerp(labelActive, other?.labelActive, t) ?? labelActive,
+            labelInactive: Color.lerp(labelInactive, other?.labelInactive, t) ?? labelInactive,
       bgActive: Color.lerp(bgActive, other?.bgActive, t) ?? bgActive,
       misc100: Color.lerp(misc100, other?.misc100, t) ?? misc100,
       misc200: Color.lerp(misc200, other?.misc200, t) ?? misc200,
