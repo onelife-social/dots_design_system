@@ -48,7 +48,7 @@ class DotsActionSheet extends StatelessWidget {
   /// The main action button displayed in the Action Sheet (e.g., "Continue", "Confirm").
   ///
   /// Required.
-  final Widget primaryButton;
+  final Widget? primaryButton;
 
   /// An optional secondary button (e.g., "Cancel", "Back").
   final Widget? secondaryButton;
@@ -67,7 +67,7 @@ class DotsActionSheet extends StatelessWidget {
     super.key,
     required this.title,
     required this.description,
-    required this.primaryButton,
+    this.primaryButton,
     this.secondaryButton,
     required this.topWidget,
     this.bottomWidget,
@@ -174,7 +174,9 @@ class DotsActionSheet extends StatelessWidget {
                           if (bottomWidget != null) bottomWidget!,
                           if (stepProgress > 0) DotsProgressBar(percentage: stepProgress),
                           SizedBox(
-                            height: DotsMainButtonSize.mainAction.height + 16,
+                            height: (primaryButton != null)
+                                ? DotsMainButtonSize.mainAction.height + 16
+                                : 16,
                           ),
                         ],
                       ),
@@ -187,18 +189,19 @@ class DotsActionSheet extends StatelessWidget {
         ),
         if (backButtonShaderMask) _BackdropFilterMask(bottomPosition: bottomPosition),
         if (backButtonShaderMask) _LinearBlurMask(bottomPosition: bottomPosition),
-        Positioned(
-          left: 16,
-          right: 16,
-          bottom: bottomPosition + 16,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: DotsActionSheetButtons(
-              primaryButton: primaryButton,
-              secondaryButton: secondaryButton,
+        if (primaryButton != null)
+          Positioned(
+            left: 16,
+            right: 16,
+            bottom: bottomPosition + 16,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: DotsActionSheetButtons(
+                primaryButton: primaryButton!,
+                secondaryButton: secondaryButton,
+              ),
             ),
           ),
-        ),
       ],
     );
   }
