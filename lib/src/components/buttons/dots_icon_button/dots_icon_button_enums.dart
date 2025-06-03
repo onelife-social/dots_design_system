@@ -29,5 +29,6 @@ enum DotsIconButtonSize {
 enum DotsIconButtonVariant {
   solid,
   photo,
+  active,
   noBackground,
 }

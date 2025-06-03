@@ -2,7 +2,7 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class DotsMenuDemoPage extends StatefulWidget {
-  const DotsMenuDemoPage({Key? key}) : super(key: key);
+  const DotsMenuDemoPage({super.key});
 
   @override
   State<DotsMenuDemoPage> createState() => _DotsMenuDemoPageState();
