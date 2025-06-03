@@ -57,6 +57,10 @@ class MyApp extends StatelessWidget {
                     context.knobs.nullable.slider(label: 'Width', initial: 300, min: 50, max: 500),
                 height:
                     context.knobs.nullable.slider(label: 'Height', initial: 200, min: 50, max: 400),
+                forceHeight: context.knobs.boolean(
+                  label: 'Force height',
+                  initial: true,
+                ),
                 backgroundImage: showBgImage
                     ? DecorationImage(
                         image: NetworkImage(
@@ -175,17 +179,35 @@ class MyApp extends StatelessWidget {
             builder: (context) => DotsActionSheet(
               title: context.knobs.text(label: 'title', initial: 'Title'),
               description: context.knobs.text(label: 'description', initial: 'Description'),
-              primaryButton: DotsMainButton(
-                content: context.knobs.text(label: 'Primary button text', initial: 'Primary'),
-                details: context.knobs.nullable.text(
-                  label: 'Primary button details',
-                  initial: 'Details',
-                ),
-                enabled: context.knobs.boolean(label: 'Primary button enabled', initial: true),
-                variant: DotsMainButtonVariant.main,
-                size: DotsMainButtonSize.mainAction,
-                onTap: () {},
-              ),
+              primaryButton: context.knobs.boolean(label: 'Show primary button', initial: true)
+                  ? DotsMainButton(
+                      content: context.knobs.text(label: 'Primary button text', initial: 'Primary'),
+                      details: context.knobs.nullable.text(
+                        label: 'Primary button details',
+                        initial: 'Details',
+                      ),
+                      enabled:
+                          context.knobs.boolean(label: 'Primary button enabled', initial: true),
+                      variant: DotsMainButtonVariant.main,
+                      size: DotsMainButtonSize.mainAction,
+                      onTap: () {},
+                    )
+                  : null,
+              secondaryButton: context.knobs.boolean(label: 'Show secondary button', initial: true)
+                  ? DotsMainButton(
+                      content:
+                          context.knobs.text(label: 'Secondary button text', initial: 'Secondary'),
+                      details: context.knobs.nullable.text(
+                        label: 'Secondary button details',
+                        initial: 'Details',
+                      ),
+                      enabled:
+                          context.knobs.boolean(label: 'Secondary button enabled', initial: true),
+                      variant: DotsMainButtonVariant.secondary,
+                      size: DotsMainButtonSize.mainAction,
+                      onTap: () {},
+                    )
+                  : null,
               topWidget: Container(
                 height: context.knobs.slider(
                   label: 'Top widget height',
@@ -218,7 +240,7 @@ class MyApp extends StatelessWidget {
               scrollController: ScrollController(),
               backButtonShaderMask: context.knobs.boolean(
                 label: 'Back button shader mask',
-                initial: true,
+                initial: false,
               ),
             ),
           ),
