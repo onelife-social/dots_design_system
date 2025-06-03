@@ -6,3 +6,4 @@ export 'icons/icons_lib.dart';
 export 'selectors/selectors_lib.dart';
 export 'segmented_control/segmented_control.dart';
 export 'navigation/navigation_lib.dart';
+export 'menu/menu_lib.dart';
