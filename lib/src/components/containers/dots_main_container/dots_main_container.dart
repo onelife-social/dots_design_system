@@ -41,6 +41,9 @@ class DotsMainContainer extends StatelessWidget {
   /// Widget inside the container.
   final Widget? child;
 
+  /// Whether to force the height of the container.
+  final bool forceHeight;
+
   const DotsMainContainer({
     super.key,
     this.variant = DotsMainContainerVariant.main,
@@ -52,6 +55,7 @@ class DotsMainContainer extends StatelessWidget {
     this.backgroundImage,
     this.onTap,
     this.child,
+    this.forceHeight = true,
   });
 
   @override
@@ -63,7 +67,7 @@ class DotsMainContainer extends StatelessWidget {
 
     Widget container = Container(
       width: containerWidth,
-      height: containerHeight,
+      height: forceHeight ? containerHeight : null,
       decoration: BoxDecoration(
         color: containerBackgroundColor,
         borderRadius: BorderRadius.all(Radius.circular(containerRadius)),
