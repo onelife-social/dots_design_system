@@ -3,6 +3,14 @@ import 'dart:ui';
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
+enum DotsActionSheetButtonPositioning {
+  /// Show both buttons side by side.
+  row,
+
+  /// Show the primary button on top of the secondary button.
+  column,
+}
+
 class DotsActionSheet extends StatelessWidget {
   /// The title of the Action Sheet.
   final String title;
@@ -53,6 +61,11 @@ class DotsActionSheet extends StatelessWidget {
   /// An optional secondary button (e.g., "Cancel", "Back").
   final Widget? secondaryButton;
 
+  /// The position of the buttons in the Action Sheet.
+  ///
+  /// By deafault, it is set to [DotsActionSheetButtonPositioning.row]
+  final DotsActionSheetButtonPositioning? buttonPositioning;
+
   /// Whether to show a semi-transparent backdrop behind the Action Sheet.
   ///
   /// Defaults to true.
@@ -69,6 +82,7 @@ class DotsActionSheet extends StatelessWidget {
     required this.description,
     this.primaryButton,
     this.secondaryButton,
+    this.buttonPositioning = DotsActionSheetButtonPositioning.row,
     required this.topWidget,
     this.bottomWidget,
     required this.onClose,
@@ -174,9 +188,11 @@ class DotsActionSheet extends StatelessWidget {
                           if (bottomWidget != null) bottomWidget!,
                           if (stepProgress > 0) DotsProgressBar(percentage: stepProgress),
                           SizedBox(
-                            height: (primaryButton != null)
-                                ? DotsMainButtonSize.mainAction.height + 16
-                                : 16,
+                            height: _calculateButtonAreaHeight(
+                              buttonPositioning: buttonPositioning,
+                              primaryButton: primaryButton,
+                              secondaryButton: secondaryButton,
+                            ),
                           ),
                         ],
                       ),
@@ -197,6 +213,7 @@ class DotsActionSheet extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: DotsActionSheetButtons(
+                buttonPositioning: buttonPositioning!,
                 primaryButton: primaryButton!,
                 secondaryButton: secondaryButton,
               ),
@@ -207,27 +224,67 @@ class DotsActionSheet extends StatelessWidget {
   }
 }
 
+double _calculateButtonAreaHeight({
+  required DotsActionSheetButtonPositioning? buttonPositioning,
+  required Widget? primaryButton,
+  required Widget? secondaryButton,
+}) {
+  final double noButtons = 16;
+  final double oneButton = DotsMainButtonSize.mainAction.height + 16;
+  final double twoButtons = DotsMainButtonSize.mainAction.height * 2 + 32;
+
+  if (buttonPositioning == DotsActionSheetButtonPositioning.column) {
+    if (primaryButton != null && secondaryButton != null) {
+      return twoButtons;
+    } else if (primaryButton == null && secondaryButton == null) {
+      return noButtons;
+    } else {
+      return oneButton;
+    }
+  } else {
+    if (primaryButton != null) {
+      return oneButton;
+    } else {
+      return noButtons;
+    }
+  }
+}
+
 class DotsActionSheetButtons extends StatelessWidget {
+  final DotsActionSheetButtonPositioning buttonPositioning;
   final Widget primaryButton;
   final Widget? secondaryButton;
 
-  const DotsActionSheetButtons({super.key, required this.primaryButton, this.secondaryButton});
+  const DotsActionSheetButtons({
+    super.key,
+    required this.buttonPositioning,
+    required this.primaryButton,
+    this.secondaryButton,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return secondaryButton != null
-        ? Row(
+    return buttonPositioning == DotsActionSheetButtonPositioning.column
+        ? Column(
             children: [
-              Expanded(
-                child: secondaryButton!,
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              Expanded(child: primaryButton),
+              primaryButton,
+              if (secondaryButton != null) const SizedBox(height: 15),
+              if (secondaryButton != null) secondaryButton!,
             ],
           )
-        : primaryButton;
+        : secondaryButton != null
+            ? Row(
+                children: [
+                  Expanded(
+                    child: secondaryButton!,
+                  ),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Expanded(child: primaryButton),
+                ],
+              )
+            : primaryButton;
   }
 }
 
