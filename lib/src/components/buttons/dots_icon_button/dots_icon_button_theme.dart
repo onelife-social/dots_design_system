@@ -23,6 +23,11 @@ DotsIconButtonTheme getIconButtonThemeByVariant(DotsTheme theme, DotsIconButtonV
         backgroundColor: theme.colors.bgSecondaryBtnMaterialLight,
         foregroundColor: theme.colors.labelAlwaysWhite,
       );
+    case DotsIconButtonVariant.active:
+      return DotsIconButtonTheme(
+        backgroundColor: theme.colors.labelHighlight,
+        foregroundColor: theme.colors.labelAlwaysWhite,
+      );
     case DotsIconButtonVariant.noBackground:
       return DotsIconButtonTheme(
         foregroundColor: theme.colors.textPrimary,

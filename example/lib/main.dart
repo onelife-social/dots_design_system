@@ -1,4 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:example/components/dots_menu_demo_page.dart';
 import 'package:example/components/icons_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
 import 'package:example/components/top_bar_demo.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
                 backgroundColor: context.dotsTheme.colors.bgBase, body: Center(child: child));
           }),
         ),
+        initialStory: 'Menu',
         stories: [
           Story(
             name: 'Theme/Typo',
@@ -278,6 +280,14 @@ class MyApp extends StatelessWidget {
                   showBackButton: context.knobs.boolean(label: 'Show back button', initial: false),
                 ),
               ),
+            ),
+          ),
+          Story(
+            name: 'Menu',
+            description: 'Demo page for Menu',
+            builder: (context) => Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: DotsMenuDemoPage(),
             ),
           ),
         ],

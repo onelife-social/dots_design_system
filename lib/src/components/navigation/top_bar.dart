@@ -15,10 +15,10 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// If not provided, the top bar will not display a subtitle.
   final String? subtitle;
 
-  /// Segmented control for the top bar.
+  /// Custom widget to display in the top bar.
   ///
-  /// If not provided, the top bar will not display a segmented control.
-  final SegmentedControl? segmentedControl;
+  /// If not provided, the top bar will not display a custom widget.
+  final Widget? child;
 
   /// Icon button on the left side of the top bar.
   ///
@@ -48,7 +48,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.hideBackground = false,
   })  : title = null,
         subtitle = null,
-        segmentedControl = null,
+        child = null,
         leftIcon = null,
         rightIcon = null,
         onTapBack = null,
@@ -67,14 +67,14 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
           (leftIcon == null || onTapBack == null),
           'leftIcon cannot be used with onTapBack',
         ),
-        segmentedControl = null,
+        child = null,
         _bigStatusBar = true;
 
-  /// Bar with segmented control, left and right icons, and back button.
-  const DotsTopBar.segmentedBar({
+  /// Bar with widget, left and right icons, and back button.
+  const DotsTopBar.widget({
     super.key,
     this.hideBackground = false,
-    this.segmentedControl,
+    this.child,
     this.leftIcon,
     this.rightIcon,
     this.onTapBack,
@@ -115,7 +115,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
                   children: [
                     Positioned.fill(
                         child: Center(
-                      child: segmentedControl ??
+                      child: child ??
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

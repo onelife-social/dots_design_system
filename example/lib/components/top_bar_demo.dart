@@ -59,16 +59,16 @@ class TopBarDemo extends StatelessWidget {
           onTapBack: onTapBack,
         );
       case TobBarVariant.segmentedControl:
-        return DotsTopBar.segmentedBar(
-          segmentedControl: SegmentedControl(
+        return DotsTopBar.widget(
+          leftIcon: leftIcon,
+          rightIcon: rightIcon,
+          onTapBack: onTapBack,
+          child: SegmentedControl(
             leftOptionName: 'Option 1',
             rightOptionName: 'Option 2',
             onTapOption: (_) {},
             selectedOption: SegmentedControlOption.right,
           ),
-          leftIcon: leftIcon,
-          rightIcon: rightIcon,
-          onTapBack: onTapBack,
         );
       default:
         return DotsTopBar.onlyStatusBar();
