@@ -226,7 +226,7 @@ class _MenuItem extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: DotsBorderRadius.r12,
         highlightColor: theme.colors.bgContainerSecondary,
         splashColor: theme.colors.bgContainerSecondary,
         focusColor: theme.colors.bgContainerSecondary,
@@ -236,7 +236,7 @@ class _MenuItem extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: DotsBorderRadius.r12,
           ),
           padding: EdgeInsets.all(8.0)
               .add(item.details != null ? EdgeInsets.only(bottom: 2) : EdgeInsets.zero),
