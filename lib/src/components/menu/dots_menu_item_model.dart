@@ -29,6 +29,7 @@ class DotsMenuItemModel<T> {
     bool? selected,
     bool? isDelete,
     List<DotsMenuItemModel>? subItems,
+    Function()? onTap,
   }) {
     return DotsMenuItemModel(
       id: id ?? this.id,
@@ -38,6 +39,7 @@ class DotsMenuItemModel<T> {
       selected: selected ?? this.selected,
       isDelete: isDelete ?? this.isDelete,
       subItems: subItems ?? this.subItems,
+      onTap: onTap ?? this.onTap,
     );
   }
 }

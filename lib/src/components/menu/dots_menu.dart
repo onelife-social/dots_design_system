@@ -13,6 +13,7 @@ class DotsMenu extends StatefulWidget {
 
   /// List of subitems that will be displayed in the menu.
   final List<DotsMenuItemModel> subitems;
+
   @override
   State<DotsMenu> createState() {
     return _DotsMenuState();
@@ -98,8 +99,8 @@ class _DotsMenuContainer extends StatelessWidget {
     return Container(
       width: 204,
       padding: EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-          color: theme.colors.bgContainerPrimary, borderRadius: BorderRadius.circular(20)),
+      decoration:
+          BoxDecoration(color: theme.colors.bgBaseContrast, borderRadius: DotsBorderRadius.r20),
       child: _MenuContainerScrollable(
           isScrollable: mainItem.subItems.length > 7,
           header: Column(
