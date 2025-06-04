@@ -210,6 +210,13 @@ class MyApp extends StatelessWidget {
                       onTap: () {},
                     )
                   : null,
+              buttonPositioning: context.knobs.options<DotsActionSheetButtonPositioning>(
+                label: 'Button positioning',
+                initial: DotsActionSheetButtonPositioning.row,
+                options: DotsActionSheetButtonPositioning.values
+                    .map((item) => Option(label: item.name, value: item))
+                    .toList(),
+              ),
               topWidget: Container(
                 height: context.knobs.slider(
                   label: 'Top widget height',
