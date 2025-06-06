@@ -1,4 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:dots_design_system/src/theme/blur/bg_blur_component.dart';
 import 'package:flutter/material.dart';
 
 import 'dots_main_button_theme.dart';
@@ -26,7 +27,8 @@ class DotsMainButton extends StatelessWidget {
 
   /// Additional details to display on the button.
   ///
-  /// If not provided, no details will be displayed.
+  /// If not provided, no details will be displayed
+  /// only show if [size] is [DotsMainButtonSize.mainAction] or [DotsMainButtonSize.large].
   final String? details;
 
   /// The size of the button.
@@ -57,7 +59,7 @@ class DotsMainButton extends StatelessWidget {
     );
     final borderRadius = BorderRadius.circular(size.height);
 
-    return Material(
+    final button = Material(
       color: buttonTheme.backgroundColor,
       borderRadius: borderRadius,
       child: InkWell(
@@ -82,12 +84,13 @@ class DotsMainButton extends StatelessWidget {
                 child: Text(
                   content,
                   overflow: TextOverflow.ellipsis,
-                  style: theme.typo.main.bodyDefaultMedium.copyWith(
-                    color: buttonTheme.foregroundColor,
-                  ),
+                  style: size.getTextStyle(theme).copyWith(
+                        color: buttonTheme.foregroundColor,
+                      ),
                 ),
               ),
-              if (details != null)
+              if (details != null &&
+                  (size == DotsMainButtonSize.mainAction || size == DotsMainButtonSize.large))
                 Flexible(
                   child: Text(
                     details ?? '',
@@ -102,5 +105,13 @@ class DotsMainButton extends StatelessWidget {
         ),
       ),
     );
+    if (buttonTheme.blur) {
+      return BgBlurComponent(
+        borderRadius: borderRadius,
+        child: button,
+      );
+    } else {
+      return button;
+    }
   }
 }

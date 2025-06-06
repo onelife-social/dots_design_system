@@ -1,3 +1,4 @@
+import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/widgets.dart';
 
 enum DotsMainButtonSize {
@@ -27,6 +28,18 @@ enum DotsMainButtonSize {
   final double spacing;
 
   const DotsMainButtonSize({required this.padding, required this.height, required this.spacing});
+
+  TextStyle getTextStyle(DotsTheme theme) {
+    switch (this) {
+      case DotsMainButtonSize.mainAction:
+      case DotsMainButtonSize.large:
+        return theme.typo.main.bodyDefaultMedium;
+      case DotsMainButtonSize.medium:
+        return theme.typo.main.labelDefaultBold;
+      case DotsMainButtonSize.small:
+        return theme.typo.main.labelSmallMedium;
+    }
+  }
 }
 
 enum DotsMainButtonVariant {
