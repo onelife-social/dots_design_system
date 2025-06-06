@@ -23,7 +23,7 @@ class DotsIconButton extends StatelessWidget {
 
   /// The size of the button.
   ///
-  /// Defaults to [DotsMainButtonSize.large].
+  /// Defaults to [DotsIconButtonSize.large].
   final DotsIconButtonSize size;
 
   /// The visual variant of the button.

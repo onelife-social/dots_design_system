@@ -7,14 +7,14 @@ class DotsMainButtonTheme {
   final Color foregroundSecondaryColor;
   final Gradient? gradient;
 
-  final double? blur;
+  final bool blur;
 
   const DotsMainButtonTheme({
     this.backgroundColor,
     required this.foregroundColor,
     required this.foregroundSecondaryColor,
     this.gradient,
-    this.blur,
+    this.blur = false,
   });
 }
 
@@ -31,18 +31,21 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(DotsTheme theme, DotsMainButto
         backgroundColor: theme.colors.bgSecondaryBtn,
         foregroundColor: theme.colors.textSecondary,
         foregroundSecondaryColor: theme.colors.textSecondary.dotsWithOpacity(0.6),
+        blur: true,
       );
     case DotsMainButtonVariant.secondaryLight:
       return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgSecondaryBtnMaterialLight,
         foregroundColor: theme.colors.labelAlwaysWhite,
         foregroundSecondaryColor: theme.colors.labelAlwaysWhite.dotsWithOpacity(0.6),
+        blur: true,
       );
     case DotsMainButtonVariant.secondaryDark:
       return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgSecondaryBtnMaterialDark,
         foregroundColor: theme.colors.textSecondary,
         foregroundSecondaryColor: theme.colors.textSecondary.dotsWithOpacity(0.6),
+        blur: true,
       );
     case DotsMainButtonVariant.destructive:
       return DotsMainButtonTheme(
@@ -55,6 +58,7 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(DotsTheme theme, DotsMainButto
         backgroundColor: theme.colors.bgBtnDisabled,
         foregroundColor: theme.colors.textQuarternary,
         foregroundSecondaryColor: theme.colors.textQuarternary.dotsWithOpacity(0.6),
+        blur: true,
       );
     case DotsMainButtonVariant.ghost:
       return DotsMainButtonTheme(
@@ -66,6 +70,7 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(DotsTheme theme, DotsMainButto
         // TODO add background
         foregroundColor: theme.colors.labelAlwaysWhite,
         foregroundSecondaryColor: theme.colors.labelAlwaysWhite.dotsWithOpacity(0.6),
+        blur: true,
       );
   }
 }

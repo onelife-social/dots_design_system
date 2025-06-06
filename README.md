@@ -1,5 +1,6 @@
 ## Features
-Project with all components on Figma for Dots Memories App.
+Project with all components on [Figma for Dots Memories App](https://www.figma.com/design/lWkvQH6SyihJ810gHw18WY/Chronicle-Design-System).
+
 
 ## Getting started
 All components have the same organization with Figma. Divided by folders.
@@ -55,4 +56,10 @@ The naming of the version is by the changes. If there are no breakable changes, 
 
 Simply create a branch from develop with the name 'vX.X' where X.X is the version. e.g. for the version 1.4 the name of the branch would be 'v1.4'
 
+## Common issues with solutions
+# Names conflict
+If you have a name conflict with a component, you can use the 'hide' keyword to hide the class. For example for the conflict with method 'dotsWithOpacity':
+```dart
+import 'package:onelife/app/core/core.dart' hide ColorExtensions;
+```
 
