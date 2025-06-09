@@ -2,6 +2,7 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
 import 'package:example/components/top_bar_demo.dart';
+import 'package:example/components/home_top_bar_demo.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:flutter/widgets.dart';
@@ -178,6 +179,41 @@ List<Story> get allStories => [
               showLeftIcon: context.knobs.boolean(label: 'Show left icon', initial: false),
               showRightIcon: context.knobs.boolean(label: 'Show right icon', initial: false),
               showBackButton: context.knobs.boolean(label: 'Show back button', initial: false),
+            ),
+          ),
+        ),
+      ),
+      Story(
+        name: 'Home Top bar',
+        description: 'Demo page for Home Top bar',
+        builder: (context) => ColoredBox(
+          color: context.dotsTheme.colors.bgContainerSecondary,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: HomeTopBarDemo(
+              variant: context.knobs.options<HomeTopBarVariant>(
+                label: 'Variant',
+                initial: HomeTopBarVariant.icons,
+                options: HomeTopBarVariant.values
+                    .map((item) => Option(label: item.name, value: item))
+                    .toList(),
+              ),
+              title: context.knobs.text(label: 'Title', initial: 'Dots.Memories'),
+              showTag: context.knobs.boolean(label: 'Show tag', initial: false),
+              showImageUrl: context.knobs.text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+            ),
+          ),
+        ),
+      ),
+      Story(
+        name: 'Image Profile',
+        description: 'Demo page for Image Profile',
+        builder: (context) => ColoredBox(
+          color: context.dotsTheme.colors.bgContainerSecondary,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: DotsProfilePhoto(
+              imageUrl: context.knobs.text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
             ),
           ),
         ),
