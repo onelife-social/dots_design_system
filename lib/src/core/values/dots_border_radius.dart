@@ -12,6 +12,7 @@ class DotsBorderRadius {
   static const BorderRadius r18 = BorderRadius.all(Radius.circular(18));
   static const BorderRadius r20 = BorderRadius.all(Radius.circular(20));
   static const BorderRadius r22 = BorderRadius.all(Radius.circular(22));
+  static const BorderRadius r24 = BorderRadius.all(Radius.circular(24));
   static const BorderRadius r25 = BorderRadius.all(Radius.circular(25));
   static const BorderRadius r30 = BorderRadius.all(Radius.circular(30));
   static const BorderRadius r32 = BorderRadius.all(Radius.circular(32));
