@@ -3,22 +3,22 @@ import 'package:flutter/widgets.dart';
 
 enum DotsMainButtonSize {
   mainAction(
-    padding: EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+    padding: EdgeInsets.symmetric(horizontal: 24),
     height: 52,
     spacing: 6,
   ),
   large(
-    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+    padding: EdgeInsets.symmetric(horizontal: 32),
     height: 44,
     spacing: 4,
   ),
   medium(
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+    padding: EdgeInsets.symmetric(horizontal: 20),
     height: 36,
     spacing: 4,
   ),
   small(
-    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 7),
+    padding: EdgeInsets.symmetric(horizontal: 16),
     height: 28,
     spacing: 4,
   );
