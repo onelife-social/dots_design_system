@@ -1,10 +1,9 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:dots_design_system/values/constants.dart';
 
 class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
-  static double kNormalHeight = 50.0;
-  static double kBigHeight = 98.0;
-
+  
   /// Title of the top bar.
   ///
   /// If not provided, the top bar will not display a title.

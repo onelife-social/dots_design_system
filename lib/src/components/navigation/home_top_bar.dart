@@ -1,10 +1,9 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:dots_design_system/extensions/media_query_data_extensions.dart';
+import 'package:dots_design_system/values/constants.dart';
 
 class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
-  static double kNormalHeight = 50.0;
-  static double kBigHeight = 98.0;
 
   /// Title of the top bar.
   ///
@@ -28,7 +27,6 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// List of icon buttons on the right side of the top bar.
   final DotsIconButton? secondRightIcon;
 
-
   /// Whether to hide the background of the top bar.
   final bool hideBackground;
 
@@ -45,7 +43,7 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
         secondRightIcon = null,
         _bigStatusBar = false;
 
-  /// Bar with title , left image profile and right icons.
+  /// Bar with title,left image profile and right icons.
   const DotsHomeTopBar.title({
     super.key,
     this.hideBackground = false,
@@ -77,14 +75,13 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
       return Size.fromHeight(kNormalHeight);
     }
   }
-  
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    final  aspectRatio = MediaQuery.of(context).aspectRatio;
+    final aspectRatio = MediaQuery.of(context).aspectRatio;
     return ColoredBox(
-      color: hideBackground ? const Color.fromARGB(0, 255, 0, 0) : theme.colors.bgContainerPrimary,
+      color: hideBackground ? Colors.transparent : theme.colors.bgContainerPrimary,
       child: ConstrainedBox(
         constraints: BoxConstraints.tightFor(height: preferredSize.height),
         child: Column(
@@ -101,17 +98,19 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
                     Positioned.fill(
                         child: Center(
                       child: child ??
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                title ?? '',
-                                style: theme.typo.main.labelDefaultBold.copyWith(
-                                  color: theme.colors.textTertiary,
-                                ),
-                              ),
-                            ],
-                          ),
+                          (title != null
+                              ? Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      title!,
+                                      style: theme.typo.main.labelDefaultBold.copyWith(
+                                        color: theme.colors.textTertiary,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : null),
                     )),
                     Positioned.fill(
                       child: Row(
