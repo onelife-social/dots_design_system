@@ -65,33 +65,30 @@ class DotsIconButton extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(borderRadius: borderRadius),
                 child: Center(
-                  child: DotsIconTag(
-                    tag: tag,
-                    child: DotsIcon(
-                      iconData: icon,
-                      size: size.iconSize,
-                      color: color ?? buttonTheme.foregroundColor,
-                    ),
-                  ),
+                  child: tag != null
+                      ? DotsIconTag(
+                          tag: tag!,
+                          child: DotsIcon(
+                            iconData: icon,
+                            size: size.iconSize,
+                            color: color ?? buttonTheme.foregroundColor,
+                          ),
+                        )
+                      : DotsIcon(
+                          iconData: icon,
+                          size: size.iconSize,
+                          color: color ?? buttonTheme.foregroundColor,
+                        ),
                 ),
               ),
             ),
           ),
         ),
         if (label != null)
-          Padding(
-            padding: const EdgeInsets.only(top: 4),
-            child: Text(
-              label ?? '',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-              style: theme.typo.main.labelDefaultRegular.copyWith(
-                fontSize: 12,
-                color: theme.colors.textPrimary,
-              ),
-            ),
-          ),
+          Text(
+            label ?? '',
+            style: theme.typo.main.labelDefaultRegular,
+          )
       ],
     );
   }

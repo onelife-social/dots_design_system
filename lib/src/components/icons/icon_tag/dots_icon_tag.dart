@@ -5,7 +5,7 @@ class DotsIconTag extends StatelessWidget {
   const DotsIconTag({
     super.key,
     required this.child,
-    this.tag,
+    required this.tag,
   });
 
   /// The main content
@@ -13,7 +13,7 @@ class DotsIconTag extends StatelessWidget {
 
   /// Text to display on the tag .
   /// If null, nothing is displayed.
-  final String? tag;
+  final String tag;
 
   @override
   Widget build(BuildContext context) {
@@ -22,38 +22,37 @@ class DotsIconTag extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         child,
-        if (tag != null)
-          Positioned(
-            bottom: 9,
-            left: 9,
-            child: Container(
-              constraints: const BoxConstraints(
-                minWidth:10,
-                minHeight: 10,
+        Positioned(
+          bottom: 9,
+          left: 9,
+          child: Container(
+            constraints: const BoxConstraints(
+              minWidth: 10,
+              minHeight: 10,
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+            clipBehavior: Clip.antiAlias,
+            decoration: ShapeDecoration(
+              color: theme.colors.labelDestructive,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(22),
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-              clipBehavior: Clip.antiAlias,
-              decoration: ShapeDecoration(
-                color: theme.colors.labelDestructive,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(22),
-                ),
-              ),
-              alignment: Alignment.center,
-              child: Center(
-                child: Text(
-                  tag!,
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: theme.colors.labelAlwaysWhite,
-                    fontSize: 11,
-                    fontWeight: FontWeight.w500,
-                  ),
+            ),
+            alignment: Alignment.center,
+            child: Center(
+              child: Text(
+                tag,
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: theme.colors.labelAlwaysWhite,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),
           ),
+        ),
       ],
     );
   }

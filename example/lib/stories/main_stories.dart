@@ -200,20 +200,21 @@ List<Story> get allStories => [
               ),
               title: context.knobs.text(label: 'Title', initial: 'Dots.Memories'),
               showTag: context.knobs.boolean(label: 'Show tag', initial: false),
-              showImageUrl: context.knobs.text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+              showImageUrl: context.knobs.boolean(label: 'Show image', initial: false),
+              imageUrl: context.knobs.text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
             ),
           ),
         ),
       ),
       Story(
-        name: 'Image Profile',
-        description: 'Demo page for Image Profile',
+        name: 'Profile photo',
+        description: 'Demo page for Profile photo',
         builder: (context) => ColoredBox(
           color: context.dotsTheme.colors.bgContainerSecondary,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: DotsProfilePhoto(
-              imageUrl: context.knobs.text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+              imageProvider: NetworkImage(context.knobs.text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9')),
             ),
           ),
         ),

@@ -13,20 +13,19 @@ class HomeTopBarDemo extends StatelessWidget {
     required this.title,
     this.showTag = false,
     this.showImageUrl = false,
+    this.imageUrl,
 
   });
 
   final HomeTopBarVariant variant;
   final String title;
   final bool showTag;
-  
-  
-  final dynamic showImageUrl;
+  final bool? showImageUrl;
+  final String? imageUrl;
 
-  get tag => showTag
-      ? '5'
-      : null;
-  get imageUrl => showImageUrl ?? 'https://picsum.photos/200/300';
+  String? get tag => showTag == true ? '5' : null;
+
+  String? get demoImageUrl => showImageUrl == true ? imageUrl : null;
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +34,12 @@ class HomeTopBarDemo extends StatelessWidget {
       case HomeTopBarVariant.icons:
         return DotsHomeTopBar.title(
           title: title,
-          imgProfile: DotsProfilePhoto(
-            imageUrl: imageUrl,
-            onTap: () {},
-          ),
+          imgProfile: demoImageUrl != null
+              ? DotsProfilePhoto(
+                  imageProvider: NetworkImage(demoImageUrl!),
+                  onTap: () {},
+                )
+              : null,
           rightIcon: DotsIconButton(
               icon: DotsIconData.heart,
               size: DotsIconButtonSize.extraSmall,

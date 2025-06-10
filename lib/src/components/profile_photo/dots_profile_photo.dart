@@ -4,29 +4,43 @@ class DotsProfilePhoto extends StatelessWidget {
 
   const DotsProfilePhoto({
     super.key,
-    required this.imageUrl,
+    required this.imageProvider,
     this.onTap,
+    this.width = 32,
+    this.height = 32, 
+    this.onError,
   });
 
-  /// The URL of the image to display.
-  ///
-  /// This image will be shown inside a circular frame.
-  final String imageUrl;
+  /// The image provider to display (NetworkImage, AssetImage, etc).
+  final ImageProvider imageProvider;
   
   /// Callback when the profile image is tapped.
   final Function()? onTap;
+
+  /// Width of the profile photo. Defaults to 32.
+  final double width;
+
+  /// Height of the profile photo. Defaults to 32.
+  final double height;
+
+  /// Callback for image load error.
+  /// Called when the image fails to load.
+  final void Function(Object exception, StackTrace? stackTrace)? onError;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 32,
-        height: 32,
+        width: width,
+        height: height,
         decoration: ShapeDecoration(
           image: DecorationImage(
-            image: NetworkImage(imageUrl),
+            image: imageProvider,
             fit: BoxFit.cover,
+            onError: (exception, stackTrace) {
+              onError?.call(exception, stackTrace);
+            },
           ),
           shape: const OvalBorder(),
         ),
