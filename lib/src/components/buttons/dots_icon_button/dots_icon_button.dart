@@ -8,9 +8,11 @@ class DotsIconButton extends StatelessWidget {
     super.key,
     required this.icon,
     this.label,
+    this.tag,
     this.size = DotsIconButtonSize.large,
     this.variant = DotsIconButtonVariant.solid,
     this.onTap,
+    this.color,
   });
 
   /// The icon to display on the button.
@@ -20,6 +22,9 @@ class DotsIconButton extends StatelessWidget {
   ///
   /// If not provided, no label will be displayed.
   final String? label;
+
+  /// Optional notification badge text.
+  final String? tag;
 
   /// The size of the button.
   ///
@@ -33,14 +38,16 @@ class DotsIconButton extends StatelessWidget {
 
   /// Callback when the button is tapped.
   final Function()? onTap;
+  
+  /// Optional color for the icon.
+  ///
+  /// If not provided, the icon will use the default color from the theme.
+  final dynamic color;
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    final buttonTheme = getIconButtonThemeByVariant(
-      theme,
-      variant,
-    );
+    final buttonTheme = getIconButtonThemeByVariant(theme, variant);
     final borderRadius = BorderRadius.circular(size.size);
 
     return Column(
@@ -57,14 +64,21 @@ class DotsIconButton extends StatelessWidget {
               borderRadius: borderRadius,
               child: Container(
                 decoration: BoxDecoration(borderRadius: borderRadius),
-                height: size.size,
-                width: size.size,
                 child: Center(
-                  child: DotsIcon(
-                    iconData: icon,
-                    size: size.iconSize,
-                    color: buttonTheme.foregroundColor,
-                  ),
+                  child: tag != null
+                      ? DotsIconTag(
+                          tag: tag!,
+                          child: DotsIcon(
+                            iconData: icon,
+                            size: size.iconSize,
+                            color: color ?? buttonTheme.foregroundColor,
+                          ),
+                        )
+                      : DotsIcon(
+                          iconData: icon,
+                          size: size.iconSize,
+                          color: color ?? buttonTheme.foregroundColor,
+                        ),
                 ),
               ),
             ),

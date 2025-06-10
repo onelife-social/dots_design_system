@@ -6,4 +6,6 @@ export 'icons/icons_lib.dart';
 export 'selectors/selectors_lib.dart';
 export 'segmented_control/segmented_control.dart';
 export 'navigation/navigation_lib.dart';
+export 'profile_photo/profile_photo.dart';
+export 'navigation/home_top_bar.dart';
 export 'menu/menu_lib.dart';
