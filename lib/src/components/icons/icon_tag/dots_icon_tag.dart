@@ -1,5 +1,5 @@
+import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:dots_design_system/src/theme/dots_theme.dart';
 
 class DotsIconTag extends StatelessWidget {
   const DotsIconTag({
@@ -35,7 +35,7 @@ class DotsIconTag extends StatelessWidget {
             decoration: ShapeDecoration(
               color: theme.colors.labelDestructive,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22),
+                borderRadius: DotsBorderRadius.r22,
               ),
             ),
             alignment: Alignment.center,

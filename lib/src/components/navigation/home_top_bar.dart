@@ -24,6 +24,7 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
   ///
   /// If not provided, the top bar will not display a right icon button.
   final DotsIconButton? rightIcon;
+  
   /// List of icon buttons on the right side of the top bar.
   final DotsIconButton? secondRightIcon;
 
@@ -55,7 +56,7 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
         child = null,
         _bigStatusBar = true;
 
-  /// Bar with widget,  left image profile and right icons.
+  /// Bar with widget, left image profile and right icons.
   const DotsHomeTopBar.widget({
     super.key,
     this.hideBackground = false,
