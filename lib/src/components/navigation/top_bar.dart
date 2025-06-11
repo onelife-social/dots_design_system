@@ -104,14 +104,14 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.onTapBack,
     this.ctaLabel,
     this.onCtaTap,
-  })  : /*  assert(
-          (ctaTitle == null && onCtaTap == null),
-          'ctaTitle is required when onCtaTap is provided',
-        ), */
-        /*  assert(
-          (onTapBack == null),
+  })  : assert(
+          onCtaTap == null || ctaLabel != null,
+          'ctaLabel is required when onCtaTap is provided',
+        ),
+        assert(
+          (onTapBack != null),
           'onTapBack cannot be null',
-        ), */
+        ),
         child = null,
         subtitle = null,
         _bigStatusBar = true,
