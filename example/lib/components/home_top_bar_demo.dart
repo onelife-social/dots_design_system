@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 
 enum HomeTopBarVariant {
   icons,
-  button,
+  button;
+
+  bool get isIcons => this == HomeTopBarVariant.icons;
+  bool get isButton => this == HomeTopBarVariant.button;
 }
 
 class HomeTopBarDemo extends StatelessWidget {
@@ -14,7 +17,6 @@ class HomeTopBarDemo extends StatelessWidget {
     this.showTag = false,
     this.showImageUrl = false,
     this.imageUrl,
-
   });
 
   final HomeTopBarVariant variant;
@@ -41,20 +43,20 @@ class HomeTopBarDemo extends StatelessWidget {
                 )
               : null,
           rightIcon: DotsIconButton(
-              icon: DotsIconData.heart,
-              size: DotsIconButtonSize.extraSmall,
-              onTap: () {},
-              color: theme.colors.textTertiary,
-              variant: DotsIconButtonVariant.noBackground,
-            ),
+            icon: DotsIconData.heart,
+            size: DotsIconButtonSize.extraSmall,
+            onTap: () {},
+            color: theme.colors.textTertiary,
+            variant: DotsIconButtonVariant.noBackground,
+          ),
           secondRightIcon: DotsIconButton(
-              icon: DotsIconData.chat,
-              size: DotsIconButtonSize.extraSmall,
-              tag: tag,
-              color: theme.colors.textTertiary,
-              onTap: () {},
-              variant: DotsIconButtonVariant.noBackground,
-            ),
+            icon: DotsIconData.chat,
+            size: DotsIconButtonSize.extraSmall,
+            tag: tag,
+            color: theme.colors.textTertiary,
+            onTap: () {},
+            variant: DotsIconButtonVariant.noBackground,
+          ),
         );
       case HomeTopBarVariant.button:
         return DotsHomeTopBar.widget(
