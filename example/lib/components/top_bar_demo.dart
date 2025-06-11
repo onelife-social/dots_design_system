@@ -5,18 +5,19 @@ enum TobBarVariant {
   onlyStatusBar,
   title,
   segmentedControl,
+  cta,
 }
 
 class TopBarDemo extends StatelessWidget {
-  const TopBarDemo({
-    super.key,
-    required this.variant,
-    required this.title,
-    this.subtitle,
-    required this.showLeftIcon,
-    required this.showRightIcon,
-    required this.showBackButton,
-  });
+  const TopBarDemo(
+      {super.key,
+      required this.variant,
+      required this.title,
+      this.subtitle,
+      required this.showLeftIcon,
+      required this.showRightIcon,
+      required this.showBackButton,
+      this.ctaLabel});
 
   final TobBarVariant variant;
   final String title;
@@ -24,6 +25,7 @@ class TopBarDemo extends StatelessWidget {
   final bool showLeftIcon;
   final bool showRightIcon;
   final bool showBackButton;
+  final String? ctaLabel;
 
   DotsIconButton? get leftIcon => showLeftIcon
       ? DotsIconButton(
@@ -70,6 +72,14 @@ class TopBarDemo extends StatelessWidget {
             selectedOption: SegmentedControlOption.right,
           ),
         );
+      case TobBarVariant.cta:
+        return DotsTopBar.cta(
+          onTapBack: () {},
+          title: title,
+          ctaLabel: ctaLabel ?? 'Call to Action',
+          onCtaTap: () {},
+        );
+
       default:
         return DotsTopBar.onlyStatusBar();
     }
