@@ -27,6 +27,11 @@ enum DotsMainButtonSize {
   final double height;
   final double spacing;
 
+  bool get isMainAction => this == DotsMainButtonSize.mainAction;
+  bool get isLarge => this == DotsMainButtonSize.large;
+  bool get isMedium => this == DotsMainButtonSize.medium;
+  bool get isSmall => this == DotsMainButtonSize.small;
+
   const DotsMainButtonSize({required this.padding, required this.height, required this.spacing});
 
   TextStyle getTextStyle(DotsTheme theme) {
@@ -50,5 +55,14 @@ enum DotsMainButtonVariant {
   destructive,
   disabled,
   ghost,
-  premium,
+  premium;
+
+  bool get isMain => this == DotsMainButtonVariant.main;
+  bool get isSecondary => this == DotsMainButtonVariant.secondary;
+  bool get isSecondaryLight => this == DotsMainButtonVariant.secondaryLight;
+  bool get isSecondaryDark => this == DotsMainButtonVariant.secondaryDark;
+  bool get isDestructive => this == DotsMainButtonVariant.destructive;
+  bool get isDisabled => this == DotsMainButtonVariant.disabled;
+  bool get isGhost => this == DotsMainButtonVariant.ghost;
+  bool get isPremium => this == DotsMainButtonVariant.premium;
 }

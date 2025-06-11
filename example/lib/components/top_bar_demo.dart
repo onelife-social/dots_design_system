@@ -5,7 +5,12 @@ enum TobBarVariant {
   onlyStatusBar,
   title,
   segmentedControl,
-  cta,
+  cta;
+
+  bool get isOnlyStatusBar => this == TobBarVariant.onlyStatusBar;
+  bool get isTitle => this == TobBarVariant.title;
+  bool get isSegmentedControl => this == TobBarVariant.segmentedControl;
+  bool get isCta => this == TobBarVariant.cta;
 }
 
 class TopBarDemo extends StatelessWidget {

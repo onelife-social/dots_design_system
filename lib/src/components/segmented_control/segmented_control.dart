@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 
 enum SegmentedControlOption {
   left,
-  right,
+  right;
+
+  bool get isLeft => this == SegmentedControlOption.left;
+  bool get isRight => this == SegmentedControlOption.right;
 }
 
 const _textPadding = EdgeInsets.symmetric(horizontal: 15);
@@ -35,8 +38,8 @@ class SegmentedControl extends StatelessWidget {
           onTapOption: (SegmentedControlOption optionTaped) => onTapOption(optionTaped),
         ),
         Positioned(
-            left: selectedOption == SegmentedControlOption.left ? 0 : null,
-            right: selectedOption == SegmentedControlOption.right ? 0 : null,
+            left: selectedOption.isLeft ? 0 : null,
+            right: selectedOption.isRight ? 0 : null,
             child: Padding(
               padding: _itemPadding,
               child: _SelectedSegment(
