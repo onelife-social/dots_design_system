@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:dots_design_system/values/constants.dart';
 
 class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
-  
   /// Title of the top bar.
   ///
   /// If not provided, the top bar will not display a title.
@@ -41,6 +40,12 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
 
   final bool _bigStatusBar;
 
+  /// Call to action title for the top bar.
+  final String? ctaLabel;
+
+  /// Callback when the call to action is tapped.
+  final Function()? onCtaTap;
+
   /// Only status bar, no title or segmented control.
   const DotsTopBar.onlyStatusBar({
     super.key,
@@ -51,7 +56,9 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
         leftIcon = null,
         rightIcon = null,
         onTapBack = null,
-        _bigStatusBar = false;
+        _bigStatusBar = false,
+        ctaLabel = null,
+        onCtaTap = null;
 
   /// Bar with title and optional subtitle, left and right icons, and back button.
   const DotsTopBar.title({
@@ -67,7 +74,9 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
           'leftIcon cannot be used with onTapBack',
         ),
         child = null,
-        _bigStatusBar = true;
+        _bigStatusBar = true,
+        ctaLabel = null,
+        onCtaTap = null;
 
   /// Bar with widget, left and right icons, and back button.
   const DotsTopBar.widget({
@@ -83,7 +92,31 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         title = null,
         subtitle = null,
-        _bigStatusBar = true;
+        _bigStatusBar = true,
+        ctaLabel = null,
+        onCtaTap = null;
+
+  /// Bar with call to action and back button.
+  const DotsTopBar.cta({
+    super.key,
+    this.hideBackground = false,
+    this.title,
+    this.onTapBack,
+    this.ctaLabel,
+    this.onCtaTap,
+  })  : /*  assert(
+          (ctaTitle == null && onCtaTap == null),
+          'ctaTitle is required when onCtaTap is provided',
+        ), */
+        /*  assert(
+          (onTapBack == null),
+          'onTapBack cannot be null',
+        ), */
+        child = null,
+        subtitle = null,
+        _bigStatusBar = true,
+        leftIcon = null,
+        rightIcon = null;
 
   @override
   Size get preferredSize {
@@ -152,6 +185,16 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
                           Spacer(),
                           if (rightIcon != null) ...[
                             rightIcon ?? SizedBox(),
+                            SizedBox(width: 16),
+                          ],
+                          if (ctaLabel != null && onCtaTap != null) ...[
+                            DotsMainButton(
+                              content: ctaLabel!,
+                              onTap: onCtaTap,
+                              variant: DotsMainButtonVariant.main,
+                              size: DotsMainButtonSize.small,
+                              expand: false,
+                            ),
                             SizedBox(width: 16),
                           ],
                         ],
