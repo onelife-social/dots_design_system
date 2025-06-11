@@ -30,7 +30,7 @@ class DotsIconTag extends StatelessWidget {
               minWidth: 10,
               minHeight: 10,
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
             clipBehavior: Clip.antiAlias,
             decoration: ShapeDecoration(
               color: theme.colors.labelDestructive,
@@ -44,10 +44,8 @@ class DotsIconTag extends StatelessWidget {
                 tag,
                 maxLines: 1,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: theme.typo.main.labelSmallMedium.copyWith(
                   color: theme.colors.labelAlwaysWhite,
-                  fontSize: 11,
-                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),

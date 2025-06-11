@@ -62,6 +62,7 @@ List<Story> get buttonStories => [
                   options: DotsIconButtonVariant.values
                       .map((item) => Option(label: item.name, value: item))
                       .toList()),
+              tag: context.knobs.nullable.text(label: 'Tag', initial: '5', enabled: false),
               onTap: () {},
             ),
           ),

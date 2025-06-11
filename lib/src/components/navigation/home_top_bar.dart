@@ -18,15 +18,15 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// Icon button on the left side of the top bar.
   ///
   /// If not provided, the top bar will not display a left icon button.
-  final DotsProfilePhoto? imgProfile;
+  final Widget? imgProfile;
 
   /// Icon button on the right side of the top bar.
   ///
   /// If not provided, the top bar will not display a right icon button.
-  final DotsIconButton? rightIcon;
-  
+  final Widget? rightIcon;
+
   /// List of icon buttons on the right side of the top bar.
-  final DotsIconButton? secondRightIcon;
+  final Widget? secondRightIcon;
 
   /// Whether to hide the background of the top bar.
   final bool hideBackground;
