@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 enum HomeTopBarVariant {
   icons,
   button,
+  buscador,
 }
 
 class HomeTopBarDemo extends StatelessWidget {
@@ -57,15 +58,32 @@ class HomeTopBarDemo extends StatelessWidget {
             ),
         );
       case HomeTopBarVariant.button:
+        return DotsHomeTopBar.title(
+          title: title,
+          imgProfile: demoImageUrl != null
+              ? DotsProfilePhoto(
+                  imageProvider: NetworkImage(demoImageUrl!),
+                  onTap: () {},
+                )
+              : null,
+          rightIcon: DotsMainButton(
+            content: 'Action',
+            size: DotsMainButtonSize.small,
+            variant: DotsMainButtonVariant.main,
+            expand: false,
+            onTap: () {},
+          ),
+        );
+      case HomeTopBarVariant.buscador:
         return DotsHomeTopBar.widget(
+          hideBackground: true,
           imgProfile: null,
           rightIcon: null,
           secondRightIcon: null,
-          child: DotsMainButton(
-            content: 'Button Content',
-            size: DotsMainButtonSize.large,
-            variant: DotsMainButtonVariant.secondary,
-            expand: false,
+          child: DotsFloatingButton(
+            content: 'Buscar',
+            icon: DotsIconData.search,
+            blur: true,
             onTap: () {},
           ),
         );
