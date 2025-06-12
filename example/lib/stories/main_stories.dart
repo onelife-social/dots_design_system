@@ -188,7 +188,7 @@ List<Story> get allStories => [
         name: 'Home Top bar',
         description: 'Demo page for Home Top bar',
         builder: (context) => ColoredBox(
-          color: context.dotsTheme.colors.bgContainerSecondary,
+          color: Color.fromARGB(0, 255, 255, 255),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: HomeTopBarDemo(
