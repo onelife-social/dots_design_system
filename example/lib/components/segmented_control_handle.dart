@@ -21,18 +21,9 @@ class _SegmentedControlHandleState extends State<SegmentedControlHandle> {
         rightOptionName: widget.rightOptionName,
         selectedOption: selectedOption,
         onTapOption: (option) {
-          switch (option) {
-            case SegmentedControlOption.left:
-              setState(() {
-                selectedOption = SegmentedControlOption.left;
-              });
-              break;
-            case SegmentedControlOption.right:
-              setState(() {
-                selectedOption = SegmentedControlOption.right;
-              });
-              break;
-          }
+          setState(() {
+            selectedOption = option;
+          });
         });
   }
 }

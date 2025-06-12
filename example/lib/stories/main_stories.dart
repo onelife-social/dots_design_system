@@ -179,6 +179,7 @@ List<Story> get allStories => [
               showLeftIcon: context.knobs.boolean(label: 'Show left icon', initial: false),
               showRightIcon: context.knobs.boolean(label: 'Show right icon', initial: false),
               showBackButton: context.knobs.boolean(label: 'Show back button', initial: false),
+              ctaLabel: context.knobs.nullable.text(label: 'CTA title', initial: 'Call to Action'),
             ),
           ),
         ),
@@ -201,7 +202,8 @@ List<Story> get allStories => [
               title: context.knobs.text(label: 'Title', initial: 'Dots.Memories'),
               showTag: context.knobs.boolean(label: 'Show tag', initial: false),
               showImageUrl: context.knobs.boolean(label: 'Show image', initial: false),
-              imageUrl: context.knobs.text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+              imageUrl: context.knobs
+                  .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
             ),
           ),
         ),
@@ -214,7 +216,8 @@ List<Story> get allStories => [
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: DotsProfilePhoto(
-              imageProvider: NetworkImage(context.knobs.text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9')),
+              imageProvider: NetworkImage(context.knobs
+                  .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9')),
             ),
           ),
         ),

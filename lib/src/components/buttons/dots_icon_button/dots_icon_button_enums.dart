@@ -23,6 +23,12 @@ enum DotsIconButtonSize {
   final double size;
   final double iconSize;
 
+  bool get isExtraLarge => this == DotsIconButtonSize.extraLarge;
+  bool get isLarge => this == DotsIconButtonSize.large;
+  bool get isMedium => this == DotsIconButtonSize.medium;
+  bool get isSmall => this == DotsIconButtonSize.small;
+  bool get isExtraSmall => this == DotsIconButtonSize.extraSmall;
+
   const DotsIconButtonSize({required this.size, required this.iconSize});
 }
 
@@ -30,5 +36,10 @@ enum DotsIconButtonVariant {
   solid,
   photo,
   active,
-  noBackground,
+  noBackground;
+
+  bool get isSolid => this == DotsIconButtonVariant.solid;
+  bool get isPhoto => this == DotsIconButtonVariant.photo;
+  bool get isActive => this == DotsIconButtonVariant.active;
+  bool get isNoBackground => this == DotsIconButtonVariant.noBackground;
 }

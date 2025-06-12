@@ -8,7 +8,10 @@ enum DotsActionSheetButtonPositioning {
   row,
 
   /// Show the primary button on top of the secondary button.
-  column,
+  column;
+
+  bool get isRow => this == DotsActionSheetButtonPositioning.row;
+  bool get isColumn => this == DotsActionSheetButtonPositioning.column;
 }
 
 class DotsActionSheet extends StatelessWidget {
