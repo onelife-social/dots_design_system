@@ -68,4 +68,24 @@ List<Story> get buttonStories => [
           ),
         ),
       ),
+      Story(
+        name: 'Buttons/Floating button',
+        description: 'Demo page for floating button',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Center(
+            child: DotsFloatingButton(
+              content: context.knobs.text(label: 'Content', initial: 'Buscar'),
+              icon: context.knobs.nullable.options<DotsIconData>(
+                  label: 'Icon',
+                  initial: DotsIconData.search,
+                  options: DotsIconData.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList()),
+              blur: context.knobs.boolean(label: 'Blur', initial: true),
+              onTap: () {},
+            ),
+          ),
+        ),
+      ),
     ];
