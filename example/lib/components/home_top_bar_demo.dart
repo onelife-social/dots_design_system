@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 enum HomeTopBarVariant {
   icons,
-  button;
+  button,
+  buscador;
 
   bool get isIcons => this == HomeTopBarVariant.icons;
   bool get isButton => this == HomeTopBarVariant.button;
-  button,
-  buscador,
+  bool get isBuscador => this == HomeTopBarVariant.buscador;
 }
 
 class HomeTopBarDemo extends StatelessWidget {
