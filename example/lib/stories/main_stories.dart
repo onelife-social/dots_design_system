@@ -1,5 +1,8 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:example/components/carrousel_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
+import 'package:example/components/memory_demo_page.dart';
+import 'package:example/components/memory_header_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
 import 'package:example/components/top_bar_demo.dart';
 import 'package:example/components/home_top_bar_demo.dart';
@@ -228,6 +231,221 @@ List<Story> get allStories => [
         builder: (context) => Padding(
           padding: const EdgeInsets.all(16.0),
           child: DotsMenuDemoPage(),
+        ),
+      ),
+      Story(
+        name: 'Memory',
+        description: 'Demo page for Memory',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: MemoryDemoPage(
+            image: DecorationImage(
+              image: NetworkImage(
+                context.knobs.text(
+                  label: 'Container background image',
+                  initial: 'https://picsum.photos/250?image=9',
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+      Story(
+        name: 'Carrousel',
+        description: 'Demo page for Carrousel',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: CarrouselDemoPage(
+            memories: [
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: 'Boda',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: 'Pescado',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: 'Amigos',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: 'Vacaciones en Islandia',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: '15 Cumpleaños',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: 'Trabajo',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: 'De tranquis',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: 'De risas',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+            ],
+          ),
+        ),
+      ),
+      Story(
+        name: 'MemoryHeader',
+        description: 'Demo page for Memory Header',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: MemoryHeaderDemoPage(
+            memories: [
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: 'Boda',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: 'Pescado',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: 'Amigos',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: 'Vacaciones en Islandia',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: '15 Cumpleaños',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: 'Trabajo',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: 'De tranquis',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+              Memory(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                albumName: 'De risas',
+                isGeneratedMemory: false,
+                onTap: () {},
+              ),
+            ],
+          ),
         ),
       ),
     ];
