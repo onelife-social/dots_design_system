@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 enum HomeTopBarVariant {
   icons,
   button,
-  buscador;
+  search;
 
   bool get isIcons => this == HomeTopBarVariant.icons;
   bool get isButton => this == HomeTopBarVariant.button;
-  bool get isBuscador => this == HomeTopBarVariant.buscador;
+  bool get isSearch => this == HomeTopBarVariant.search;
 }
 
 class HomeTopBarDemo extends StatelessWidget {
@@ -77,7 +77,7 @@ class HomeTopBarDemo extends StatelessWidget {
             onTap: () {},
           ),
         );
-      case HomeTopBarVariant.buscador:
+      case HomeTopBarVariant.search:
         return DotsHomeTopBar.widget(
           showGradient: true,
           imgProfile: null,

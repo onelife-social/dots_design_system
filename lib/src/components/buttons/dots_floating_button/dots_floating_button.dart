@@ -27,13 +27,11 @@ class DotsFloatingButton extends StatelessWidget {
   /// Whether to apply a blur effect to the button background.
   final bool blur;
 
-  
-
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
    
-    final borderRadius = BorderRadius.circular(36);
+    final borderRadius = DotsBorderRadius.r36;
 
     final button = Material(
       color: theme.colors.bgSecondaryBtn,

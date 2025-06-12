@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:dots_design_system/extensions/media_query_data_extensions.dart';
 import 'package:dots_design_system/values/constants.dart';
-import 'dart:ui'; // para ImageFilter si quieres usar blur también
+import 'dart:ui';
 
 class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
 
@@ -83,7 +83,7 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
     final theme = context.dotsTheme;
     final aspectRatio = MediaQuery.of(context).aspectRatio;
 
-    final content = _buildTopBarContent(context, theme, aspectRatio);
+    final content = _TopBarContent(context, theme, aspectRatio);
 
     return ClipRRect(
       borderRadius: BorderRadius.zero,
@@ -125,7 +125,7 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Widget _buildTopBarContent(BuildContext context, DotsTheme theme, double aspectRatio) {
+  Widget _TopBarContent(BuildContext context, DotsTheme theme, double aspectRatio) {
     return ConstrainedBox(
       constraints: BoxConstraints.tightFor(height: preferredSize.height),
       child: Column(
