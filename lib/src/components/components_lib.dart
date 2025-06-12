@@ -9,6 +9,6 @@ export 'navigation/navigation_lib.dart';
 export 'profile_photo/profile_photo.dart';
 export 'navigation/home_top_bar.dart';
 export 'menu/menu_lib.dart';
-export 'headers/memory_header_lib.dart';
-export 'cards/memory_lib.dart';
+export 'headers/greetings_home_header_lib.dart';
+export 'cards/memory_card_lib.dart';
 export 'carrousels/carrousel_lib.dart';

@@ -1,18 +1,20 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class Memory extends StatelessWidget {
+class MemoryCard extends StatelessWidget {
   final ImageProvider image;
-  final String albumName;
+  final String groupName;
   final bool isGeneratedMemory;
   final VoidCallback onTap;
+  final void Function(Object exception, StackTrace? stackTrace)? onError;
 
-  const Memory({
+  const MemoryCard({
     super.key,
     required this.image,
-    required this.albumName,
+    required this.groupName,
     required this.isGeneratedMemory,
     required this.onTap,
+    required this.onError,
   });
 
   @override
@@ -28,11 +30,11 @@ class Memory extends StatelessWidget {
             Stack(
               alignment: Alignment.center,
               children: [
-                _Card(image: image),
+                _Card(image: image, onError: onError),
                 !isGeneratedMemory ? const _BorderPendingMemory() : _BorderGeneratedMemory(),
               ],
             ),
-            _NameAlbum(albumName: albumName),
+            _GroupName(albumName: groupName),
           ],
         ),
       ),
@@ -42,7 +44,12 @@ class Memory extends StatelessWidget {
 
 class _Card extends StatelessWidget {
   final ImageProvider image;
-  const _Card({required this.image});
+  final void Function(Object exception, StackTrace? stackTrace)? onError;
+
+  const _Card({
+    required this.image,
+    required this.onError,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +59,13 @@ class _Card extends StatelessWidget {
         width: 58,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: DotsBorderRadius.r16,
             image: DecorationImage(
               image: image,
               fit: BoxFit.cover,
+              onError: (exception, stackTrace) {
+                onError?.call(exception, stackTrace);
+              },
             ),
           ),
         ),
@@ -64,9 +74,9 @@ class _Card extends StatelessWidget {
   }
 }
 
-class _NameAlbum extends StatelessWidget {
+class _GroupName extends StatelessWidget {
   final String albumName;
-  const _NameAlbum({required this.albumName});
+  const _GroupName({required this.albumName});
 
   @override
   Widget build(BuildContext context) {
@@ -91,10 +101,22 @@ class _BorderPendingMemory extends StatelessWidget {
       width: 64.53,
       height: 83.36,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          width: 1.5,
-          color: Colors.green,
+        borderRadius: DotsBorderRadius.r16,
+        gradient: LinearGradient(
+          colors: [
+            DotsColors.light.gradientInitialLinealGreen,
+            DotsColors.light.gradientFinalLinealGreen,
+          ],
+          stops: const [0.0, 1.0],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
+      child: Container(
+        margin: const EdgeInsets.all(1.5),
+        decoration: BoxDecoration(
+          borderRadius: DotsBorderRadius.r14h,
+          color: Colors.white,
         ),
       ),
     );

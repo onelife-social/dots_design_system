@@ -1,21 +1,22 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/widgets.dart';
 
-class MemoryDemoPage extends StatelessWidget {
+class MemoryCardDemoPage extends StatelessWidget {
   final DecorationImage image;
 
-  const MemoryDemoPage({super.key, required this.image});
+  const MemoryCardDemoPage({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Memory(
+        MemoryCard(
           image: image.image,
-          albumName: 'Boda',
+          groupName: 'Boda',
           isGeneratedMemory: false,
           onTap: () {},
+          onError: null,
         ),
       ],
     );

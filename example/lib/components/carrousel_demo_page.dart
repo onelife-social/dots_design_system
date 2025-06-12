@@ -2,7 +2,7 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/widgets.dart';
 
 class CarrouselDemoPage extends StatelessWidget {
-  final List<Memory> memories;
+  final List<MemoryCard> memories;
 
   const CarrouselDemoPage({super.key, required this.memories});
 

@@ -56,6 +56,8 @@ class DotsColorsModel {
   // Gradient
   final Color gradientInitialLineal;
   final Color gradientFinalLineal;
+  final Color gradientInitialLinealGreen;
+  final Color gradientFinalLinealGreen;
 
   //generics
   final Color transparent;
@@ -98,6 +100,8 @@ class DotsColorsModel {
     required this.misc1100,
     required this.gradientInitialLineal,
     required this.gradientFinalLineal,
+    required this.gradientInitialLinealGreen,
+    required this.gradientFinalLinealGreen,
     required this.transparent,
   });
 
@@ -134,7 +138,7 @@ class DotsColorsModel {
           Color.lerp(labelDestructive, other?.labelDestructive, t) ?? labelDestructive,
       bgDestructive: Color.lerp(bgDestructive, other?.bgDestructive, t) ?? bgDestructive,
       labelActive: Color.lerp(labelActive, other?.labelActive, t) ?? labelActive,
-            labelInactive: Color.lerp(labelInactive, other?.labelInactive, t) ?? labelInactive,
+      labelInactive: Color.lerp(labelInactive, other?.labelInactive, t) ?? labelInactive,
       bgActive: Color.lerp(bgActive, other?.bgActive, t) ?? bgActive,
       misc100: Color.lerp(misc100, other?.misc100, t) ?? misc100,
       misc200: Color.lerp(misc200, other?.misc200, t) ?? misc200,
@@ -151,6 +155,12 @@ class DotsColorsModel {
           gradientInitialLineal,
       gradientFinalLineal:
           Color.lerp(gradientFinalLineal, other?.gradientFinalLineal, t) ?? gradientFinalLineal,
+      gradientInitialLinealGreen:
+          Color.lerp(gradientInitialLinealGreen, other?.gradientInitialLinealGreen, t) ??
+              gradientInitialLinealGreen,
+      gradientFinalLinealGreen:
+          Color.lerp(gradientFinalLinealGreen, other?.gradientFinalLinealGreen, t) ??
+              gradientFinalLinealGreen,
       transparent: Color.lerp(transparent, other?.transparent, t) ?? transparent,
     );
   }

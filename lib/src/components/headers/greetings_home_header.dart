@@ -1,17 +1,14 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class MemoryHeader extends StatelessWidget {
+class GreetingsHomeHeader extends StatelessWidget {
   final String titleText;
   final String subtitleText;
-  final List<Memory> memories;
-  //final GroupPendingMemoriesModel groupPendingMemoriesModel; TODO: Change memories for this
 
-  const MemoryHeader({
+  const GreetingsHomeHeader({
     super.key,
     required this.titleText,
     required this.subtitleText,
-    required this.memories,
   });
 
   @override
@@ -33,7 +30,6 @@ class MemoryHeader extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 27),
-        Carrousel(memories: memories),
       ],
     );
   }
