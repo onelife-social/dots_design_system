@@ -1,4 +1,3 @@
-import 'package:dots_design_system/src/theme/blur/bg_blur_component.dart';
 import 'package:flutter/material.dart';
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:dots_design_system/extensions/media_query_data_extensions.dart';
@@ -31,14 +30,14 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? secondRightIcon;
 
   /// Whether to hide the background of the top bar.
-  final bool hideBackground;
+  final bool showGradient;
 
   final bool _bigStatusBar;
 
   /// Only status bar, no title or segmented control.
   const DotsHomeTopBar.onlyStatusBar({
     super.key,
-    this.hideBackground = false,
+    this.showGradient = false,
   })  : title = null,
         child = null,
         imgProfile = null,
@@ -49,7 +48,7 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// Bar with title,left image profile and right icons.
   const DotsHomeTopBar.title({
     super.key,
-    this.hideBackground = false,
+    this.showGradient = false,
     required String this.title,
     this.imgProfile,
     this.rightIcon,
@@ -61,7 +60,7 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// Bar with widget, left image profile and right icons.
   const DotsHomeTopBar.widget({
     super.key,
-    this.hideBackground = false,
+    this.showGradient = false,
     this.child,
     this.imgProfile,
     this.rightIcon,
@@ -93,7 +92,7 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            hideBackground
+            showGradient
                 ? ShaderMask(
                     shaderCallback: (Rect bounds) {
                       return LinearGradient(

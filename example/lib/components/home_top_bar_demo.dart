@@ -79,7 +79,7 @@ class HomeTopBarDemo extends StatelessWidget {
         );
       case HomeTopBarVariant.buscador:
         return DotsHomeTopBar.widget(
-          hideBackground: true,
+          showGradient: true,
           imgProfile: null,
           rightIcon: null,
           secondRightIcon: null,
