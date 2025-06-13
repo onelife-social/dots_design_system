@@ -180,6 +180,7 @@ List<Story> get allStories => [
               showRightIcon: context.knobs.boolean(label: 'Show right icon', initial: false),
               showBackButton: context.knobs.boolean(label: 'Show back button', initial: false),
               ctaLabel: context.knobs.nullable.text(label: 'CTA title', initial: 'Call to Action'),
+              ctaEnabled: context.knobs.boolean(label: 'CTA enabled', initial: true),
             ),
           ),
         ),
