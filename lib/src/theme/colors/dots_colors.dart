@@ -41,6 +41,8 @@ class DotsColors {
     misc1100: Color(0xFF6276D7),
     gradientInitialLineal: Color(0x00F8F7F5),
     gradientFinalLineal: const Color(0xD8F8F7F5),
+    gradientInitialLinealGreen: Color(0xFF77D98A),
+    gradientFinalLinealGreen: const Color(0xFF28AB87),
     transparent: Color(0x00000000),
   );
   static final dark = DotsColorsModel(
@@ -81,6 +83,8 @@ class DotsColors {
     misc1100: Color(0xFF5E7CD9),
     gradientInitialLineal: Color(0x00191919),
     gradientFinalLineal: Color(0xD8191919),
+    gradientInitialLinealGreen: Color(0xFF77D98A),
+    gradientFinalLinealGreen: const Color(0xFF28AB87),
     transparent: Color(0x00000000),
   );
 }

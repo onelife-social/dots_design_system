@@ -1,5 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:example/components/carrousel_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
+import 'package:example/components/memory_card_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
 import 'package:example/components/top_bar_demo.dart';
 import 'package:example/components/home_top_bar_demo.dart';
@@ -228,6 +230,130 @@ List<Story> get allStories => [
         builder: (context) => Padding(
           padding: const EdgeInsets.all(16.0),
           child: DotsMenuDemoPage(),
+        ),
+      ),
+      Story(
+        name: 'Memory Card',
+        description: 'Demo page for Memory Card',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: MemoryCardDemoPage(
+            groupName: context.knobs.text(label: 'Boda', initial: 'Boda'),
+            variant: MemoryCardVariant.update,
+            image: DecorationImage(
+              image: NetworkImage(
+                context.knobs
+                    .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+              ),
+            ),
+          ),
+        ),
+      ),
+      Story(
+        name: 'Carrousel',
+        description: 'Demo page for Carrousel',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: CarrouselDemoPage(
+            memories: [
+              MemoryCard(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                groupName: 'Boda',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+              MemoryCard(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                groupName: 'Pescado',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+              MemoryCard(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                groupName: 'Amigos',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+              MemoryCard(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                groupName: 'Vacaciones en Islandia',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+              MemoryCard(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                groupName: '15 Cumpleaños',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+              MemoryCard(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                groupName: 'Trabajo',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+              MemoryCard(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                groupName: 'De tranquis',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+              MemoryCard(
+                image: NetworkImage(
+                  context.knobs.text(
+                    label: 'Container background image',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ),
+                ),
+                groupName: 'De risas',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+            ],
+          ),
         ),
       ),
     ];
