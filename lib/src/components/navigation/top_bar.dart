@@ -46,6 +46,9 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// Callback when the call to action is tapped.
   final Function()? onCtaTap;
 
+  /// Whether the call to action is enabled.
+  final bool ctaEnabled;
+
   /// Only status bar, no title or segmented control.
   const DotsTopBar.onlyStatusBar({
     super.key,
@@ -58,7 +61,8 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
         onTapBack = null,
         _bigStatusBar = false,
         ctaLabel = null,
-        onCtaTap = null;
+        onCtaTap = null,
+        ctaEnabled = false;
 
   /// Bar with title and optional subtitle, left and right icons, and back button.
   const DotsTopBar.title({
@@ -76,7 +80,8 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
         child = null,
         _bigStatusBar = true,
         ctaLabel = null,
-        onCtaTap = null;
+        onCtaTap = null,
+        ctaEnabled = false;
 
   /// Bar with widget, left and right icons, and back button.
   const DotsTopBar.widget({
@@ -94,6 +99,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
         subtitle = null,
         _bigStatusBar = true,
         ctaLabel = null,
+        ctaEnabled = false,
         onCtaTap = null;
 
   /// Bar with call to action and back button.
@@ -104,6 +110,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.onTapBack,
     this.ctaLabel,
     this.onCtaTap,
+    this.ctaEnabled = true,
   })  : assert(
           onCtaTap == null || ctaLabel != null,
           'ctaLabel is required when onCtaTap is provided',
@@ -194,6 +201,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
                               variant: DotsMainButtonVariant.main,
                               size: DotsMainButtonSize.small,
                               expand: false,
+                              enabled: ctaEnabled,
                             ),
                             SizedBox(width: 16),
                           ],
