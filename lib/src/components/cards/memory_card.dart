@@ -1,10 +1,18 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
+enum MemoryCardVariant {
+  update,
+  dotsIntelligence;
+
+  bool get isIcons => this == MemoryCardVariant.update;
+  bool get isButton => this == MemoryCardVariant.dotsIntelligence;
+}
+
 class MemoryCard extends StatelessWidget {
   final ImageProvider image;
   final String groupName;
-  final bool isGeneratedMemory;
+  final MemoryCardVariant variant;
   final VoidCallback onTap;
   final void Function(Object exception, StackTrace? stackTrace)? onError;
 
@@ -12,7 +20,7 @@ class MemoryCard extends StatelessWidget {
     super.key,
     required this.image,
     required this.groupName,
-    required this.isGeneratedMemory,
+    required this.variant,
     required this.onTap,
     required this.onError,
   });
@@ -31,7 +39,9 @@ class MemoryCard extends StatelessWidget {
               alignment: Alignment.center,
               children: [
                 _Card(image: image, onError: onError),
-                !isGeneratedMemory ? const _BorderPendingMemory() : _BorderGeneratedMemory(),
+                variant == MemoryCardVariant.update
+                    ? const _BorderPendingMemory()
+                    : _BorderGeneratedMemory(),
               ],
             ),
             _GroupName(albumName: groupName),

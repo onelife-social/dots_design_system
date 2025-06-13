@@ -3,8 +3,15 @@ import 'package:flutter/widgets.dart';
 
 class MemoryCardDemoPage extends StatelessWidget {
   final DecorationImage image;
+  final String groupName;
+  final MemoryCardVariant variant;
 
-  const MemoryCardDemoPage({super.key, required this.image});
+  const MemoryCardDemoPage({
+    super.key,
+    required this.image,
+    required this.variant,
+    required this.groupName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +20,8 @@ class MemoryCardDemoPage extends StatelessWidget {
       children: [
         MemoryCard(
           image: image.image,
-          groupName: 'Boda',
-          isGeneratedMemory: false,
+          groupName: groupName,
+          variant: variant,
           onTap: () {},
           onError: null,
         ),
