@@ -180,6 +180,7 @@ List<Story> get allStories => [
               showRightIcon: context.knobs.boolean(label: 'Show right icon', initial: false),
               showBackButton: context.knobs.boolean(label: 'Show back button', initial: false),
               ctaLabel: context.knobs.nullable.text(label: 'CTA title', initial: 'Call to Action'),
+              ctaEnabled: context.knobs.boolean(label: 'CTA enabled', initial: true),
             ),
           ),
         ),
@@ -188,7 +189,7 @@ List<Story> get allStories => [
         name: 'Home Top bar',
         description: 'Demo page for Home Top bar',
         builder: (context) => ColoredBox(
-          color: context.dotsTheme.colors.bgContainerSecondary,
+          color: Color.fromARGB(0, 255, 255, 255),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: HomeTopBarDemo(
@@ -227,7 +228,15 @@ List<Story> get allStories => [
         description: 'Demo page for Menu',
         builder: (context) => Padding(
           padding: const EdgeInsets.all(16.0),
-          child: DotsMenuDemoPage(),
+          child: DotsMenuDemoPage(
+            itemSelected: context.knobs.options<DotsMenuDemoPageItem>(
+              label: 'Default Selection',
+              initial: DotsMenuDemoPageItem.none,
+              options: DotsMenuDemoPageItem.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
+          ),
         ),
       ),
     ];

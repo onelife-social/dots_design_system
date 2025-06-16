@@ -7,7 +7,7 @@ class DotsMenuItemModel<T> {
   final DotsIconData? icon;
   final bool selected;
   final bool isDelete;
-  final List<DotsMenuItemModel> subItems;
+  final List<DotsMenuItemModel<T>> subItems;
   final Function()? onTap;
 
   DotsMenuItemModel({
@@ -21,14 +21,14 @@ class DotsMenuItemModel<T> {
     this.onTap,
   });
 
-  DotsMenuItemModel copyWith({
+  DotsMenuItemModel<T> copyWith({
     T? id,
     String? label,
     String? details,
     DotsIconData? icon,
     bool? selected,
     bool? isDelete,
-    List<DotsMenuItemModel>? subItems,
+    List<DotsMenuItemModel<T>>? subItems,
     Function()? onTap,
   }) {
     return DotsMenuItemModel(
