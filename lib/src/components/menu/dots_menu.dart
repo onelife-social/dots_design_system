@@ -1,34 +1,64 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class DotsMenu extends StatefulWidget {
+class DotsMenu<T> extends StatefulWidget {
   const DotsMenu({
     super.key,
     required this.mainItem,
     required this.subitems,
+    this.defaultSelectedItemId,
   });
 
   /// Main item that will be displayed at the top of the menu.
-  final DotsMenuItemModel mainItem;
+  final DotsMenuItemModel<T> mainItem;
 
   /// List of subitems that will be displayed in the menu.
-  final List<DotsMenuItemModel> subitems;
+  final List<DotsMenuItemModel<T>> subitems;
+
+  final T? defaultSelectedItemId;
 
   @override
   State<DotsMenu> createState() {
-    return _DotsMenuState();
+    return _DotsMenuState<T>();
   }
 }
 
-class _DotsMenuState extends State<DotsMenu> {
-  List<DotsMenuItemModel> stack = [];
+class _DotsMenuState<T> extends State<DotsMenu<T>> {
+  List<DotsMenuItemModel<T>> stack = [];
 
-  late DotsMenuItemModel selectedItem;
+  late DotsMenuItemModel<T> selectedItem;
 
   @override
   void initState() {
     selectedItem = widget.mainItem.copyWith(subItems: widget.subitems);
+    selectDefaultItem();
     super.initState();
+  }
+
+  void selectDefaultItem() {
+    final defaultItemId = widget.defaultSelectedItemId;
+    final initialSelectedItem = selectedItem;
+    if (defaultItemId == null || initialSelectedItem.id == defaultItemId) return;
+    final stack = getStackByDefaultItemBySubitems(initialSelectedItem.subItems);
+    if (stack.isNotEmpty) {
+      selectedItem = stack.removeLast();
+      this.stack = [initialSelectedItem, ...stack];
+    }
+  }
+
+  List<DotsMenuItemModel<T>> getStackByDefaultItemBySubitems(List<DotsMenuItemModel<T>> subItems) {
+    final defaultItemId = widget.defaultSelectedItemId;
+    for (final item in subItems) {
+      if (item.id == defaultItemId) {
+        return [item];
+      } else if (item.subItems.isNotEmpty) {
+        final stack = getStackByDefaultItemBySubitems(item.subItems);
+        if (stack.isNotEmpty) {
+          return [item, ...stack];
+        }
+      }
+    }
+    return [];
   }
 
   @override
@@ -67,7 +97,7 @@ class _DotsMenuState extends State<DotsMenu> {
             });
           }
         },
-        onTapItem: (DotsMenuItemModel item) {
+        onTapItem: (DotsMenuItemModel<T> item) {
           if (item.subItems.isNotEmpty) {
             setState(() {
               stack.add(selectedItem);
@@ -80,7 +110,7 @@ class _DotsMenuState extends State<DotsMenu> {
   }
 }
 
-class _DotsMenuContainer extends StatelessWidget {
+class _DotsMenuContainer<T> extends StatelessWidget {
   const _DotsMenuContainer({
     super.key,
     required this.isInitialItem,
@@ -89,10 +119,10 @@ class _DotsMenuContainer extends StatelessWidget {
     required this.onTapMainItem,
   });
   final bool isInitialItem;
-  final DotsMenuItemModel mainItem;
+  final DotsMenuItemModel<T> mainItem;
 
   final Function() onTapMainItem;
-  final Function(DotsMenuItemModel item) onTapItem;
+  final Function(DotsMenuItemModel<T> item) onTapItem;
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
