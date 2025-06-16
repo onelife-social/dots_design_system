@@ -1,9 +1,18 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class DotsMenuDemoPage extends StatefulWidget {
-  const DotsMenuDemoPage({super.key});
+enum DotsMenuDemoPageItem {
+  none(null),
+  sort('sort_photos'),
+  filter('filter_photos');
 
+  final String? id;
+  const DotsMenuDemoPageItem(this.id);
+}
+
+class DotsMenuDemoPage extends StatefulWidget {
+  final DotsMenuDemoPageItem itemSelected;
+  const DotsMenuDemoPage({super.key, required this.itemSelected});
   @override
   State<DotsMenuDemoPage> createState() => _DotsMenuDemoPageState();
 }
@@ -15,11 +24,17 @@ class _DotsMenuDemoPageState extends State<DotsMenuDemoPage> {
     menuToShow = Positioned(
       left: 80,
       top: 80,
-      child: DotsMenu(
+      child: DotsMenu<String>(
         mainItem: item,
         subitems: subItems,
+        defaultSelectedItemId: widget.itemSelected.id,
       ),
     );
+    setState(() {});
+  }
+
+  void _hideDotsMenu() {
+    menuToShow = null;
     setState(() {});
   }
 
@@ -35,9 +50,13 @@ class _DotsMenuDemoPageState extends State<DotsMenuDemoPage> {
               child: Center(
                 child: DotsMainButton(
                   expand: false,
-                  content: 'Show menu',
+                  content: menuToShow == null ? 'Show menu' : 'Hide menu',
                   onTap: () {
-                    _showDotsMenu();
+                    if (menuToShow == null) {
+                      _showDotsMenu();
+                    } else {
+                      _hideDotsMenu();
+                    }
                   },
                 ),
               )),
@@ -48,13 +67,13 @@ class _DotsMenuDemoPageState extends State<DotsMenuDemoPage> {
   }
 }
 
-DotsMenuItemModel item = DotsMenuItemModel(
+DotsMenuItemModel<String> item = DotsMenuItemModel(
   id: 'hide_photos',
   label: 'Ocultar fotos con las que no he interactuado',
   icon: DotsIconData.eyeOff,
 );
 
-List<DotsMenuItemModel> subItems = [
+List<DotsMenuItemModel<String>> subItems = [
   DotsMenuItemModel(id: 'sort_photos', label: 'Ordenar por', icon: DotsIconData.sort, subItems: [
     DotsMenuItemModel(
       id: 'sort_by_date',
