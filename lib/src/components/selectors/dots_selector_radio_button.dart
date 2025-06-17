@@ -31,7 +31,7 @@ class DotsSelectorRadioButton extends StatelessWidget {
 
     BoxDecoration decoration = BoxDecoration(
       color: theme.colors.bgContainerSecondary,
-      borderRadius: BorderRadius.circular(24),
+      borderRadius: DotsBorderRadius.r24,
     );
     if (isSelected) {
       decoration = decoration.copyWith(
@@ -39,7 +39,7 @@ class DotsSelectorRadioButton extends StatelessWidget {
             color: theme.colors.labelHighlight,
             width: 1.5,
             strokeAlign: BorderSide.strokeAlignOutside),
-        borderRadius: BorderRadius.circular(26),
+        borderRadius: DotsBorderRadius.r26,
       );
     }
 
