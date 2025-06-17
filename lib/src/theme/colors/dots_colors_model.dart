@@ -8,12 +8,13 @@ class DotsColorsModel {
   // Container
   final Color bgContainerPrimary;
   final Color bgContainerSecondary;
+  final Color bgContainerSecondaryOnBackground;
   final Color bgContainerTertiary;
 
   // Buttons
   final Color bgSecondaryBtn;
-  final Color bgSecondaryBtnMaterialLight;
-  final Color bgSecondaryBtnMaterialDark;
+  final Color bgFloatingBtn;
+  final Color bgBtnImage;
   final Color bgBtnDisabled;
 
   // Components
@@ -67,10 +68,11 @@ class DotsColorsModel {
     required this.bgBaseContrast,
     required this.bgContainerPrimary,
     required this.bgContainerSecondary,
+    required this.bgContainerSecondaryOnBackground,
     required this.bgContainerTertiary,
     required this.bgSecondaryBtn,
-    required this.bgSecondaryBtnMaterialLight,
-    required this.bgSecondaryBtnMaterialDark,
+    required this.bgFloatingBtn,
+    required this.bgBtnImage,
     required this.bgBtnDisabled,
     required this.bgChip,
     required this.textPrimary,
@@ -113,15 +115,14 @@ class DotsColorsModel {
           Color.lerp(bgContainerPrimary, other?.bgContainerPrimary, t) ?? bgContainerPrimary,
       bgContainerSecondary:
           Color.lerp(bgContainerSecondary, other?.bgContainerSecondary, t) ?? bgContainerSecondary,
+      bgContainerSecondaryOnBackground: Color.lerp(
+              bgContainerSecondaryOnBackground, other?.bgContainerSecondaryOnBackground, t) ??
+          bgContainerSecondaryOnBackground,
       bgContainerTertiary:
           Color.lerp(bgContainerTertiary, other?.bgContainerTertiary, t) ?? bgContainerTertiary,
       bgSecondaryBtn: Color.lerp(bgSecondaryBtn, other?.bgSecondaryBtn, t) ?? bgSecondaryBtn,
-      bgSecondaryBtnMaterialLight:
-          Color.lerp(bgSecondaryBtnMaterialLight, other?.bgSecondaryBtnMaterialLight, t) ??
-              bgSecondaryBtnMaterialLight,
-      bgSecondaryBtnMaterialDark:
-          Color.lerp(bgSecondaryBtnMaterialDark, other?.bgSecondaryBtnMaterialDark, t) ??
-              bgSecondaryBtnMaterialDark,
+      bgFloatingBtn: Color.lerp(bgFloatingBtn, other?.bgFloatingBtn, t) ?? bgFloatingBtn,
+      bgBtnImage: Color.lerp(bgBtnImage, other?.bgBtnImage, t) ?? bgBtnImage,
       bgBtnDisabled: Color.lerp(bgBtnDisabled, other?.bgBtnDisabled, t) ?? bgBtnDisabled,
       bgChip: Color.lerp(bgChip, other?.bgChip, t) ?? bgChip,
       textPrimary: Color.lerp(textPrimary, other?.textPrimary, t) ?? textPrimary,
