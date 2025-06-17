@@ -86,27 +86,39 @@ class _BackSegmented extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 4,
         children: [
-          GestureDetector(
-            onTap: () => onTapOption(SegmentedControlOption.left),
-            child: Padding(
-              padding: _textPadding,
-              child: Text(
-                leftOptionName,
-                textAlign: TextAlign.center,
-                style:
-                    theme.typo.main.labelSmallMedium.copyWith(color: theme.colors.labelSecondary),
+          ConstrainedBox(
+            constraints: BoxConstraints(minHeight: double.infinity),
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () => onTapOption(SegmentedControlOption.left),
+              child: Padding(
+                padding: _textPadding,
+                child: Center(
+                  child: Text(
+                    leftOptionName,
+                    textAlign: TextAlign.center,
+                    style: theme.typo.main.labelSmallMedium
+                        .copyWith(color: theme.colors.labelSecondary),
+                  ),
+                ),
               ),
             ),
           ),
-          GestureDetector(
-            onTap: () => onTapOption(SegmentedControlOption.right),
-            child: Padding(
-              padding: _textPadding,
-              child: Text(
-                rightOptionName,
-                textAlign: TextAlign.center,
-                style:
-                    theme.typo.main.labelSmallMedium.copyWith(color: theme.colors.labelSecondary),
+          ConstrainedBox(
+            constraints: BoxConstraints(minHeight: double.infinity),
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () => onTapOption(SegmentedControlOption.right),
+              child: Padding(
+                padding: _textPadding,
+                child: Center(
+                  child: Text(
+                    rightOptionName,
+                    textAlign: TextAlign.center,
+                    style: theme.typo.main.labelSmallMedium
+                        .copyWith(color: theme.colors.labelSecondary),
+                  ),
+                ),
               ),
             ),
           ),
@@ -126,6 +138,7 @@ class _SelectedSegment extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: onTap,
       child: Container(
         height: 28,
