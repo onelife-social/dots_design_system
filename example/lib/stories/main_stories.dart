@@ -349,42 +349,42 @@ List<Story> get allStories => [
           ),
         ),
       ),
-  Story(
-    name: 'DotsSelectorRadioButton',
-    description: 'Demo page for DotsSelectorRadioButton',
-    builder: (context) => Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: DotsSelectorRadioButton(
-        isSelected: context.knobs.boolean(label: 'Is Selected', initial: false),
-        title: context.knobs.text(label: 'Title', initial: 'Title'),
-        icon1: context.knobs.options<DotsIconData>(
-          label: 'Icon 1',
-          initial: DotsIconData.clockFilled,
-          options:
-          DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+      Story(
+        name: 'DotsSelectorRadioButton',
+        description: 'Demo page for DotsSelectorRadioButton',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: DotsSelectorRadioButton(
+            isSelected: context.knobs.boolean(label: 'Is Selected', initial: false),
+            title: context.knobs.text(label: 'Title', initial: 'Title'),
+            icon1: context.knobs.options<DotsIconData>(
+              label: 'Icon 1',
+              initial: DotsIconData.clockFilled,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+            icon1Size: context.knobs.slider(
+              label: 'Icon 1 Size',
+              initial: 16,
+              min: 8,
+              max: 32,
+            ),
+            details1: context.knobs.text(label: 'Details 1', initial: 'Details 1'),
+            icon2: context.knobs.options<DotsIconData>(
+              label: 'Icon 2',
+              initial: DotsIconData.calendar,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+            icon2Size: context.knobs.slider(
+              label: 'Icon 2 Size',
+              initial: 16,
+              min: 8,
+              max: 32,
+            ),
+            details2: context.knobs.text(label: 'Details 2', initial: 'Details 2'),
+            onTap: () {},
+          ),
         ),
-        icon1Size: context.knobs.slider(
-          label: 'Icon 1 Size',
-          initial: 16,
-          min: 8,
-          max: 32,
-        ),
-        details1: context.knobs.text(label: 'Details 1', initial: 'Details 1'),
-        icon2: context.knobs.options<DotsIconData>(
-          label: 'Icon 2',
-          initial: DotsIconData.calendar,
-          options:
-          DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
-        ),
-        icon2Size: context.knobs.slider(
-          label: 'Icon 2 Size',
-          initial: 16,
-          min: 8,
-          max: 32,
-        ),
-        details2: context.knobs.text(label: 'Details 2', initial: 'Details 2'),
-        onTap: () {},
       ),
-    ),
-  ),
     ];
