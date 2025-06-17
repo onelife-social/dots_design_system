@@ -80,9 +80,6 @@ class HomeTopBarDemo extends StatelessWidget {
       case HomeTopBarVariant.search:
         return DotsHomeTopBar.widget(
           showGradient: true,
-          imgProfile: null,
-          rightIcon: null,
-          secondRightIcon: null,
           child: DotsFloatingButton(
             content: 'Buscar',
             icon: DotsIconData.search,
