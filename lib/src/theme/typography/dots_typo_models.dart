@@ -39,6 +39,7 @@ class DotsTypoMainModel {
 
   // Label
   final TextStyle labelDefaultRegular;
+  final TextStyle labelDefaultMedium;
   final TextStyle labelDefaultBold;
   final TextStyle labelSmallRegular;
   final TextStyle labelSmallMedium;
@@ -57,6 +58,7 @@ class DotsTypoMainModel {
     required this.bodyDefaultMedium,
     required this.bodyDefaultBold,
     required this.labelDefaultRegular,
+    required this.labelDefaultMedium,
     required this.labelDefaultBold,
     required this.labelSmallRegular,
     required this.labelSmallMedium,
@@ -83,6 +85,8 @@ class DotsTypoMainModel {
           TextStyle.lerp(bodyDefaultBold, other?.bodyDefaultBold, t) ?? bodyDefaultBold,
       labelDefaultRegular:
           TextStyle.lerp(labelDefaultRegular, other?.labelDefaultRegular, t) ?? labelDefaultRegular,
+      labelDefaultMedium:
+          TextStyle.lerp(labelDefaultMedium, other?.labelDefaultMedium, t) ?? labelDefaultMedium,
       labelDefaultBold:
           TextStyle.lerp(labelDefaultBold, other?.labelDefaultBold, t) ?? labelDefaultBold,
       labelSmallRegular:
