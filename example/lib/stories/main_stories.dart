@@ -9,6 +9,7 @@ import 'package:example/stories/stories_by_folder/button_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:flutter/widgets.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 List<Story> get allStories => [
       ...themeStories,
@@ -240,11 +241,9 @@ List<Story> get allStories => [
           child: MemoryCardDemoPage(
             groupName: context.knobs.text(label: 'Boda', initial: 'Boda'),
             variant: MemoryCardVariant.update,
-            image: DecorationImage(
-              image: NetworkImage(
-                context.knobs
-                    .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
-              ),
+            image: CachedNetworkImage(
+              imageUrl: context.knobs
+                  .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
             ),
           ),
         ),
@@ -257,11 +256,9 @@ List<Story> get allStories => [
           child: CarrouselDemoPage(
             memories: [
               MemoryCard(
-                image: NetworkImage(
-                  context.knobs.text(
-                    label: 'Container background image',
-                    initial: 'https://picsum.photos/250?image=9',
-                  ),
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
                 ),
                 groupName: 'Boda',
                 variant: MemoryCardVariant.update,
@@ -269,11 +266,9 @@ List<Story> get allStories => [
                 onError: null,
               ),
               MemoryCard(
-                image: NetworkImage(
-                  context.knobs.text(
-                    label: 'Container background image',
-                    initial: 'https://picsum.photos/250?image=9',
-                  ),
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
                 ),
                 groupName: 'Pescado',
                 variant: MemoryCardVariant.update,
@@ -281,11 +276,9 @@ List<Story> get allStories => [
                 onError: null,
               ),
               MemoryCard(
-                image: NetworkImage(
-                  context.knobs.text(
-                    label: 'Container background image',
-                    initial: 'https://picsum.photos/250?image=9',
-                  ),
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
                 ),
                 groupName: 'Amigos',
                 variant: MemoryCardVariant.update,
@@ -293,11 +286,9 @@ List<Story> get allStories => [
                 onError: null,
               ),
               MemoryCard(
-                image: NetworkImage(
-                  context.knobs.text(
-                    label: 'Container background image',
-                    initial: 'https://picsum.photos/250?image=9',
-                  ),
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
                 ),
                 groupName: 'Vacaciones en Islandia',
                 variant: MemoryCardVariant.update,
@@ -305,11 +296,9 @@ List<Story> get allStories => [
                 onError: null,
               ),
               MemoryCard(
-                image: NetworkImage(
-                  context.knobs.text(
-                    label: 'Container background image',
-                    initial: 'https://picsum.photos/250?image=9',
-                  ),
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
                 ),
                 groupName: '15 Cumpleaños',
                 variant: MemoryCardVariant.update,
@@ -317,11 +306,9 @@ List<Story> get allStories => [
                 onError: null,
               ),
               MemoryCard(
-                image: NetworkImage(
-                  context.knobs.text(
-                    label: 'Container background image',
-                    initial: 'https://picsum.photos/250?image=9',
-                  ),
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
                 ),
                 groupName: 'Trabajo',
                 variant: MemoryCardVariant.update,
@@ -329,11 +316,9 @@ List<Story> get allStories => [
                 onError: null,
               ),
               MemoryCard(
-                image: NetworkImage(
-                  context.knobs.text(
-                    label: 'Container background image',
-                    initial: 'https://picsum.photos/250?image=9',
-                  ),
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
                 ),
                 groupName: 'De tranquis',
                 variant: MemoryCardVariant.update,
@@ -341,11 +326,9 @@ List<Story> get allStories => [
                 onError: null,
               ),
               MemoryCard(
-                image: NetworkImage(
-                  context.knobs.text(
-                    label: 'Container background image',
-                    initial: 'https://picsum.photos/250?image=9',
-                  ),
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
                 ),
                 groupName: 'De risas',
                 variant: MemoryCardVariant.update,

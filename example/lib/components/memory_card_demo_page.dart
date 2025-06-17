@@ -2,7 +2,7 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/widgets.dart';
 
 class MemoryCardDemoPage extends StatelessWidget {
-  final DecorationImage image;
+  final Widget image;
   final String groupName;
   final MemoryCardVariant variant;
 
@@ -19,7 +19,7 @@ class MemoryCardDemoPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         MemoryCard(
-          image: image.image,
+          image: image,
           groupName: groupName,
           variant: variant,
           onTap: () {},

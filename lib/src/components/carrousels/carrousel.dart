@@ -34,20 +34,26 @@ class Carrousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 99.5,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        physics: const BouncingScrollPhysics(),
-        itemCount: memories.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 24),
-        itemBuilder: (_, index) {
-          final double rotationAngle = rotationPattern[index % rotationPattern.length];
+      child: Center(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(memories.length, (index) {
+              final double rotationAngle = rotationPattern[index % rotationPattern.length];
 
-          return Transform.rotate(
-            angle: rotationAngle * (pi / 180),
-            child: memories[index],
-          );
-        },
+              return Padding(
+                padding: EdgeInsets.only(right: index < memories.length - 1 ? 24 : 0),
+                child: Transform.rotate(
+                  angle: -rotationAngle * (pi / 180),
+                  child: memories[index],
+                ),
+              );
+            }),
+          ),
+        ),
       ),
     );
   }

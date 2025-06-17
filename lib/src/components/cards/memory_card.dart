@@ -10,7 +10,7 @@ enum MemoryCardVariant {
 }
 
 class MemoryCard extends StatelessWidget {
-  final ImageProvider image;
+  final Widget image;
   final String groupName;
   final MemoryCardVariant variant;
   final VoidCallback onTap;
@@ -53,7 +53,7 @@ class MemoryCard extends StatelessWidget {
 }
 
 class _Card extends StatelessWidget {
-  final ImageProvider image;
+  final Widget image;
   final void Function(Object exception, StackTrace? stackTrace)? onError;
 
   const _Card({
@@ -67,17 +67,9 @@ class _Card extends StatelessWidget {
       child: SizedBox(
         height: 77,
         width: 58,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: DotsBorderRadius.r16,
-            image: DecorationImage(
-              image: image,
-              fit: BoxFit.cover,
-              onError: (exception, stackTrace) {
-                onError?.call(exception, stackTrace);
-              },
-            ),
-          ),
+        child: ClipRRect(
+          borderRadius: DotsBorderRadius.r16,
+          child: image,
         ),
       ),
     );
