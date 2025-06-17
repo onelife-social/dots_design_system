@@ -1,4 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class SegmentedControlHandle extends StatefulWidget {
@@ -21,6 +22,9 @@ class _SegmentedControlHandleState extends State<SegmentedControlHandle> {
         rightOptionName: widget.rightOptionName,
         selectedOption: selectedOption,
         onTapOption: (option) {
+          if (kDebugMode) {
+            print('Selected option: $option');
+          }
           setState(() {
             selectedOption = option;
           });
