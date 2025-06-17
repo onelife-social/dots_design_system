@@ -5,8 +5,8 @@ enum MemoryCardVariant {
   update,
   dotsIntelligence;
 
-  bool get isIcons => this == MemoryCardVariant.update;
-  bool get isButton => this == MemoryCardVariant.dotsIntelligence;
+  bool get isUpdate => this == MemoryCardVariant.update;
+  bool get isDotsIntelligence => this == MemoryCardVariant.dotsIntelligence;
 }
 
 class MemoryCard extends StatelessWidget {
