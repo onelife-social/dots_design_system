@@ -127,7 +127,7 @@ class _DotsMenuContainer<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     return Container(
-      width: 204,
+      width: 250,
       padding: EdgeInsets.all(8.0),
       decoration:
           BoxDecoration(color: theme.colors.bgBaseContrast, borderRadius: DotsBorderRadius.r20),
@@ -286,13 +286,13 @@ class _MenuItem extends StatelessWidget {
                   children: [
                     Text(
                       item.label,
-                      style: theme.typo.main.labelSmallMedium
+                      style: theme.typo.main.bodyDefaultMedium
                           .copyWith(color: textColorOverride(theme)),
                     ),
                     if (item.details != null)
                       Text(
                         item.details!,
-                        style: theme.typo.main.labelSmallRegular
+                        style: theme.typo.main.labelDefaultRegular
                             .copyWith(color: textColorOverride(theme) ?? theme.colors.textTertiary),
                       ),
                   ],
