@@ -1,5 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:example/components/carrousel_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
+import 'package:example/components/memory_card_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
 import 'package:example/components/top_bar_demo.dart';
 import 'package:example/components/home_top_bar_demo.dart';
@@ -8,6 +10,7 @@ import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 List<Story> get allStories => [
       ...themeStories,
@@ -241,41 +244,147 @@ List<Story> get allStories => [
         ),
       ),
       Story(
-        name: 'DotsSelectorRadioButton',
-        description: 'Demo page for DotsSelectorRadioButton',
+        name: 'Memory Card',
+        description: 'Demo page for Memory Card',
         builder: (context) => Padding(
           padding: const EdgeInsets.all(16.0),
-          child: DotsSelectorRadioButton(
-            isSelected: context.knobs.boolean(label: 'Is Selected', initial: false),
-            title: context.knobs.text(label: 'Title', initial: 'Title'),
-            icon1: context.knobs.options<DotsIconData>(
-              label: 'Icon 1',
-              initial: DotsIconData.clockFilled,
-              options:
-                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+          child: MemoryCardDemoPage(
+            groupName: context.knobs.text(label: 'Boda', initial: 'Boda'),
+            variant: MemoryCardVariant.update,
+            image: CachedNetworkImage(
+              imageUrl: context.knobs
+                  .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
             ),
-            icon1Size: context.knobs.slider(
-              label: 'Icon 1 Size',
-              initial: 16,
-              min: 8,
-              max: 32,
-            ),
-            details1: context.knobs.text(label: 'Details 1', initial: 'Details 1'),
-            icon2: context.knobs.options<DotsIconData>(
-              label: 'Icon 2',
-              initial: DotsIconData.calendar,
-              options:
-                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
-            ),
-            icon2Size: context.knobs.slider(
-              label: 'Icon 2 Size',
-              initial: 16,
-              min: 8,
-              max: 32,
-            ),
-            details2: context.knobs.text(label: 'Details 2', initial: 'Details 2'),
-            onTap: () {},
           ),
         ),
       ),
+      Story(
+        name: 'Carrousel',
+        description: 'Demo page for Carrousel',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: CarrouselDemoPage(
+            memories: [
+              MemoryCard(
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+                ),
+                groupName: 'Boda',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+              MemoryCard(
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+                ),
+                groupName: 'Pescado',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+              MemoryCard(
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+                ),
+                groupName: 'Amigos',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+              MemoryCard(
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+                ),
+                groupName: 'Vacaciones en Islandia',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+              MemoryCard(
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+                ),
+                groupName: '15 Cumpleaños',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+              MemoryCard(
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+                ),
+                groupName: 'Trabajo',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+              MemoryCard(
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+                ),
+                groupName: 'De tranquis',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+              MemoryCard(
+                image: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+                ),
+                groupName: 'De risas',
+                variant: MemoryCardVariant.update,
+                onTap: () {},
+                onError: null,
+              ),
+            ],
+          ),
+        ),
+      ),
+  Story(
+    name: 'DotsSelectorRadioButton',
+    description: 'Demo page for DotsSelectorRadioButton',
+    builder: (context) => Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: DotsSelectorRadioButton(
+        isSelected: context.knobs.boolean(label: 'Is Selected', initial: false),
+        title: context.knobs.text(label: 'Title', initial: 'Title'),
+        icon1: context.knobs.options<DotsIconData>(
+          label: 'Icon 1',
+          initial: DotsIconData.clockFilled,
+          options:
+          DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+        ),
+        icon1Size: context.knobs.slider(
+          label: 'Icon 1 Size',
+          initial: 16,
+          min: 8,
+          max: 32,
+        ),
+        details1: context.knobs.text(label: 'Details 1', initial: 'Details 1'),
+        icon2: context.knobs.options<DotsIconData>(
+          label: 'Icon 2',
+          initial: DotsIconData.calendar,
+          options:
+          DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+        ),
+        icon2Size: context.knobs.slider(
+          label: 'Icon 2 Size',
+          initial: 16,
+          min: 8,
+          max: 32,
+        ),
+        details2: context.knobs.text(label: 'Details 2', initial: 'Details 2'),
+        onTap: () {},
+      ),
+    ),
+  ),
     ];

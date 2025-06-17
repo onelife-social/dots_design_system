@@ -27,6 +27,7 @@ flutter:
     - assets/icons/premium/
     - assets/icons/social/
     - assets/icons/system/
+    - assets/images/
   # Fonts
   fonts:
     - family: Inter
