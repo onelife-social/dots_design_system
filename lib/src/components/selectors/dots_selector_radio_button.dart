@@ -46,7 +46,6 @@ class DotsSelectorRadioButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 94,
         width: double.infinity,
         margin: EdgeInsets.all(1.5),
         padding: const EdgeInsets.all(16),
@@ -57,7 +56,8 @@ class DotsSelectorRadioButton extends StatelessWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
+                spacing: 10,
                 children: [
                   Text(title,
                       style: theme.typo.main.bodyDefaultBold
