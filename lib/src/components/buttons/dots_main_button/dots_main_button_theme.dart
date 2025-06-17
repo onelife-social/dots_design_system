@@ -35,14 +35,14 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(DotsTheme theme, DotsMainButto
       );
     case DotsMainButtonVariant.secondaryLight:
       return DotsMainButtonTheme(
-        backgroundColor: theme.colors.bgSecondaryBtnMaterialLight,
+        backgroundColor: theme.colors.bgFloatingBtn,
         foregroundColor: theme.colors.labelAlwaysWhite,
         foregroundSecondaryColor: theme.colors.labelAlwaysWhite.dotsWithOpacity(0.6),
         blur: true,
       );
     case DotsMainButtonVariant.secondaryDark:
       return DotsMainButtonTheme(
-        backgroundColor: theme.colors.bgSecondaryBtnMaterialDark,
+        backgroundColor: theme.colors.bgBtnImage,
         foregroundColor: theme.colors.textSecondary,
         foregroundSecondaryColor: theme.colors.textSecondary.dotsWithOpacity(0.6),
         blur: true,
