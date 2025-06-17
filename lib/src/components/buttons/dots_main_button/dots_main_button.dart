@@ -60,7 +60,7 @@ class DotsMainButton extends StatelessWidget {
     final borderRadius = BorderRadius.circular(size.height);
 
     final button = Material(
-      color: buttonTheme.backgroundColor,
+      color: buttonTheme.backgroundColor ?? Colors.transparent,
       borderRadius: borderRadius,
       child: InkWell(
         onTap: enabled ? onTap : null,

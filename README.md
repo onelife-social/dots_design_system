@@ -51,10 +51,14 @@ To this. Note: the path may differ on each computer
 ```
 
 # Create new version of Design system
-We use branches as versions of the design system. This is to avoid breaking develop on main Dots project
-The naming of the version is by the changes. If there are no breakable changes, only add to the minor version. e.g. 1.3->1.4. If there are breakable changes add to major version. e.g. 1.3->2.0
+We use tags for the versions of the design system. This is to avoid breaking develop on main Dots project
+The naming of the version is by the type of the changes.
+We follow the next logic:
+If there are **breaking changes** we add to the first number. e.g. 1.3.1->2.0.0
+When we **add new components** the number to add is the middle. e.g. 1.3.1->1.4.0
+And if we **fix bugs** we add to the last number. e.g. 1.3.1->1.3.2
 
-Simply create a branch from develop with the name 'vX.X' where X.X is the version. e.g. for the version 1.4 the name of the branch would be 'v1.4'
+Simply create a tag and a new version in GitLab from develop with the name 'vX.X' where X.X is the version. e.g. for the version 1.4 the name of the branch would be 'v1.4'
 
 ## Common issues with solutions
 # Names conflict

@@ -14,15 +14,17 @@ enum TobBarVariant {
 }
 
 class TopBarDemo extends StatelessWidget {
-  const TopBarDemo(
-      {super.key,
-      required this.variant,
-      required this.title,
-      this.subtitle,
-      required this.showLeftIcon,
-      required this.showRightIcon,
-      required this.showBackButton,
-      this.ctaLabel});
+  const TopBarDemo({
+    super.key,
+    required this.variant,
+    required this.title,
+    this.subtitle,
+    required this.showLeftIcon,
+    required this.showRightIcon,
+    required this.showBackButton,
+    this.ctaLabel,
+    this.ctaEnabled = true,
+  });
 
   final TobBarVariant variant;
   final String title;
@@ -31,6 +33,7 @@ class TopBarDemo extends StatelessWidget {
   final bool showRightIcon;
   final bool showBackButton;
   final String? ctaLabel;
+  final bool ctaEnabled;
 
   DotsIconButton? get leftIcon => showLeftIcon
       ? DotsIconButton(
@@ -83,6 +86,7 @@ class TopBarDemo extends StatelessWidget {
           title: title,
           ctaLabel: ctaLabel ?? 'Call to Action',
           onCtaTap: () {},
+          ctaEnabled: ctaEnabled,
         );
 
       default:
