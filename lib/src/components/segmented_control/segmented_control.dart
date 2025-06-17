@@ -97,7 +97,7 @@ class _BackSegmented extends StatelessWidget {
                   child: Text(
                     leftOptionName,
                     textAlign: TextAlign.center,
-                    style: theme.typo.main.labelSmallMedium
+                    style: theme.typo.main.labelDefaultMedium
                         .copyWith(color: theme.colors.labelSecondary),
                   ),
                 ),
@@ -115,7 +115,7 @@ class _BackSegmented extends StatelessWidget {
                   child: Text(
                     rightOptionName,
                     textAlign: TextAlign.center,
-                    style: theme.typo.main.labelSmallMedium
+                    style: theme.typo.main.labelDefaultMedium
                         .copyWith(color: theme.colors.labelSecondary),
                   ),
                 ),
@@ -153,7 +153,7 @@ class _SelectedSegment extends StatelessWidget {
           child: Text(
             optionName,
             textAlign: TextAlign.center,
-            style: theme.typo.main.labelSmallMedium.copyWith(color: theme.colors.labelPrimary),
+            style: theme.typo.main.labelDefaultMedium.copyWith(color: theme.colors.labelPrimary),
           ),
         ),
       ),

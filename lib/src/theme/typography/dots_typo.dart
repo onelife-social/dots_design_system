@@ -128,6 +128,15 @@ class DotsTypo {
         height: 1.31,
         letterSpacing: -0.01,
       ),
+      labelDefaultMedium: TextStyle(
+        color: color,
+        package: dotsDesignSystemPackage,
+        fontSize: 13,
+        fontFamily: 'Inter',
+        fontWeight: FontWeight.w500,
+        height: 1.31,
+        letterSpacing: -0.01,
+      ),
       labelDefaultBold: TextStyle(
         color: color,
         package: dotsDesignSystemPackage,
