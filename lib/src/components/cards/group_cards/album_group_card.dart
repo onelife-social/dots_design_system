@@ -42,77 +42,79 @@ class AlbumGroupCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        clipBehavior: Clip.antiAlias,
-        constraints: BoxConstraints(
-          maxHeight: variant.isSmall ? 160 : 340,
-          maxWidth: variant.isSmall ? 160 : 340,
-        ),
-        decoration: ShapeDecoration(
-          image: DecorationImage(
-            image: imageProvider,
-            fit: BoxFit.cover,
-            onError: onError,
+    return Center(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          clipBehavior: Clip.antiAlias,
+          constraints: BoxConstraints(
+            maxHeight: variant.isSmall ? 160 : 340,
+            maxWidth: variant.isSmall ? 160 : 340,
           ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(variant.isLarge ? 52 : 32),
+          decoration: ShapeDecoration(
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.cover,
+              onError: onError,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(variant.isLarge ? 52 : 32),
+            ),
           ),
-        ),
-        child: Stack(
-          children: [
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: variant.isLarge ? 94 : 43,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                      Color(0x803c3c3c),
-                      Colors.transparent,
-                    ],
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  height: variant.isLarge ? 94 : 43,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        Color(0x803c3c3c),
+                        Colors.transparent,
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(variant.isSmall ? 16 : 24),
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: Text(
-                        title,
-                        textAlign: TextAlign.center,
-                        style: (variant.isSmall
-                                ? theme.typo.main.labelDefaultMedium
-                                : theme.typo.main.bodyLargeMedium)
-                            .copyWith(color: theme.colors.labelAlwaysWhite),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
+              Padding(
+                padding: EdgeInsets.all(variant.isSmall ? 16 : 24),
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: Text(
+                          title,
+                          textAlign: TextAlign.center,
+                          style: (variant.isSmall
+                                  ? theme.typo.main.labelDefaultMedium
+                                  : theme.typo.main.bodyLargeMedium)
+                              .copyWith(color: theme.colors.labelAlwaysWhite),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
                       ),
                     ),
-                  ),
-                  if (tagIconData != null)
-                    Positioned(
-                      left: 0,
-                      top: 0,
-                      child: CardTag(
-                        iconData: tagIconData!,
-                        size: variant.isSmall ? 24 : 28,
-                        iconSize: variant.isSmall ? 16 : 20,
+                    if (tagIconData != null)
+                      Positioned(
+                        left: 0,
+                        top: 0,
+                        child: CardTag(
+                          iconData: tagIconData!,
+                          size: variant.isSmall ? 24 : 28,
+                          iconSize: variant.isSmall ? 16 : 20,
+                        ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

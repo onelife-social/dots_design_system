@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:dots_design_system/dots_design_system.dart';
@@ -60,123 +61,126 @@ class EventGroupCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        clipBehavior: Clip.antiAlias,
-        constraints: BoxConstraints(
-          maxHeight: variant.isSmall ? 160 : 340,
-          maxWidth: variant.isSmall ? 160 : 340,
-        ),
-        decoration: ShapeDecoration(
-          image: DecorationImage(
-            image: imageProvider,
-            fit: BoxFit.cover,
-            onError: onError,
+    return Center(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          clipBehavior: Clip.antiAlias,
+          constraints: BoxConstraints(
+            maxHeight: variant.isSmall ? 160 : 340,
+            maxWidth: variant.isSmall ? 160 : 340,
           ),
-          shape: RoundedRectangleBorder(
-            borderRadius: variant.isSmall ? DotsBorderRadius.r32 : DotsBorderRadius.r52,
+          decoration: ShapeDecoration(
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.cover,
+              onError: onError,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: variant.isSmall ? DotsBorderRadius.r32 : DotsBorderRadius.r52,
+            ),
           ),
-        ),
-        child: Stack(
-          children: [
-            Align(
-              alignment: variant.isSmall ? Alignment.bottomCenter : Alignment.topCenter,
-              child: Container(
-                height: variant.isSmall ? 43 : 94,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: variant.isSmall ? Alignment.bottomCenter : Alignment.topCenter,
-                    end: variant.isSmall ? Alignment.topCenter : Alignment.bottomCenter,
-                    colors: [
-                      Color(0x803c3c3c),
-                      Colors.transparent,
-                    ],
+          child: Stack(
+            children: [
+              Align(
+                alignment: variant.isSmall ? Alignment.bottomCenter : Alignment.topCenter,
+                child: Container(
+                  height: variant.isSmall ? 43 : 94,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: variant.isSmall ? Alignment.bottomCenter : Alignment.topCenter,
+                      end: variant.isSmall ? Alignment.topCenter : Alignment.bottomCenter,
+                      colors: [
+                        Color(0x803c3c3c),
+                        Colors.transparent,
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(variant.isSmall ? 16 : 24),
-              child: Stack(
-                children: [
-                  if (variant.isSmall)
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: _Title(title: title, variant: variant),
+              Padding(
+                padding: EdgeInsets.all(variant.isSmall ? 16 : 24),
+                child: Stack(
+                  children: [
+                    if (variant.isSmall)
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: _Title(title: title, variant: variant),
+                        ),
                       ),
-                    ),
-                  if (tagIconData != null)
-                    Positioned(
-                      left: 0,
-                      top: 0,
-                      child: CardTag(
-                        iconData: tagIconData!,
-                        size: 28,
-                        iconSize: 20,
+                    if (tagIconData != null)
+                      Positioned(
+                        left: 0,
+                        top: 0,
+                        child: CardTag(
+                          iconData: tagIconData!,
+                          size: 28,
+                          iconSize: 20,
+                        ),
                       ),
-                    ),
-                  if (!variant.isSmall) ...[
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 28),
-                            child: _Title(title: title, variant: variant),
-                          ),
-                          SizedBox(height: variant.isActive ? 4 : 5),
-                          variant.isActive
-                              ? GestureDetector(
-                                  onTap: onSecondaryTap,
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Container(
-                                        width: 3,
-                                        height: 3,
-                                        decoration: ShapeDecoration(
-                                          color: theme.colors.labelAlwaysWhite.dotsWithOpacity(0.7),
-                                          shape: OvalBorder(),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 3),
-                                      Text(
-                                        secondaryText,
-                                        style: theme.typo.main.labelSmallRegular.copyWith(
+                    if (!variant.isSmall) ...[
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 28),
+                              child: _Title(title: title, variant: variant),
+                            ),
+                            SizedBox(height: variant.isActive ? 4 : 5),
+                            variant.isActive
+                                ? GestureDetector(
+                                    onTap: onSecondaryTap,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Container(
+                                          width: 3,
+                                          height: 3,
+                                          decoration: ShapeDecoration(
                                             color:
-                                                theme.colors.labelAlwaysWhite.dotsWithOpacity(0.7)),
-                                      ),
-                                    ],
+                                                theme.colors.labelAlwaysWhite.dotsWithOpacity(0.7),
+                                            shape: OvalBorder(),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 3),
+                                        Text(
+                                          secondaryText,
+                                          style: theme.typo.main.labelSmallRegular.copyWith(
+                                              color: theme.colors.labelAlwaysWhite
+                                                  .dotsWithOpacity(0.7)),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : DotsMainButton(
+                                    content: secondaryText,
+                                    icon: DotsIconData.exitFullscreen,
+                                    variant: DotsMainButtonVariant.secondary,
+                                    iconSize: 14,
+                                    expand: false,
+                                    size: DotsMainButtonSize.small,
+                                    onTap: onSecondaryTap,
                                   ),
-                                )
-                              : DotsMainButton(
-                                  content: secondaryText,
-                                  icon: DotsIconData.exitFullscreen,
-                                  variant: DotsMainButtonVariant.secondary,
-                                  iconSize: 14,
-                                  expand: false,
-                                  size: DotsMainButtonSize.small,
-                                  onTap: onSecondaryTap,
-                                ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: _MenuEvent(
-                        actions: actions,
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: _MenuEvent(
+                          actions: actions,
+                        ),
                       ),
-                    ),
-                  ]
-                ],
+                    ]
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -229,7 +233,7 @@ class _MenuEvent extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: List.generate(actions.length * 2 - 1, (i) {
+            children: List.generate(max(0, actions.length * 2 - 1), (i) {
               if (i.isOdd) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 6),
