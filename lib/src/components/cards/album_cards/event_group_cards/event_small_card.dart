@@ -1,18 +1,8 @@
+
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-enum MemoriesAlbumCardsVariant {
-  small,
-  large;
-
-  bool get isSmall => this == MemoriesAlbumCardsVariant.small;
-  bool get isLarge => this == MemoriesAlbumCardsVariant.large;
-}
-
-class MemoriesAlbumCards extends StatelessWidget {
-  /// The variant of the album card.
-  final MemoriesAlbumCardsVariant variant;
-
+class EventAlbumCardSmall extends StatelessWidget {
   /// The image provider to display (NetworkImage, AssetImage, etc).
   final ImageProvider imageProvider;
 
@@ -28,12 +18,10 @@ class MemoriesAlbumCards extends StatelessWidget {
   /// Callback when an error occurs while loading the image.
   final void Function(Object exception, StackTrace? stackTrace)? onError;
 
-  const MemoriesAlbumCards({
-    super.key,
+  EventAlbumCardSmall({
     required this.imageProvider,
     required this.albumName,
-    this.variant = MemoriesAlbumCardsVariant.small,
-    this.isPrime = false,
+    required this.isPrime,
     this.onTap,
     this.onError,
   });
@@ -45,8 +33,8 @@ class MemoriesAlbumCards extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: variant.isSmall ? 160 : 340,
-        height: variant.isSmall ? 160 : 340,
+        width: 160,
+        height: 160,
         clipBehavior: Clip.antiAlias,
         decoration: ShapeDecoration(
           image: DecorationImage(
@@ -55,7 +43,7 @@ class MemoriesAlbumCards extends StatelessWidget {
             onError: onError,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(variant.isLarge ? 52 : 32),
+            borderRadius: BorderRadius.circular(32),
           ),
         ),
         child: Stack(
@@ -63,7 +51,7 @@ class MemoriesAlbumCards extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                height: variant.isLarge ? 94 : 43,
+                height: 43,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -78,7 +66,7 @@ class MemoriesAlbumCards extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(variant.isSmall ? 16 : 24),
+              padding: EdgeInsets.all(16),
               child: Stack(
                 children: [
                   Align(
@@ -88,23 +76,21 @@ class MemoriesAlbumCards extends StatelessWidget {
                       child: Text(
                         albumName,
                         textAlign: TextAlign.center,
-                        style: variant.isSmall
-                            ? theme.typo.main.labelDefaultMedium.copyWith(color: theme.colors.textPrimary)
-                            : theme.typo.main.bodyLargeMedium.copyWith(color: theme.colors.textPrimary),
+                        style:theme.typo.main.labelDefaultMedium.copyWith(color: theme.colors.textPrimary),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
                     ),
                   ),
-                  if (isPrime)
-                    Positioned(
-                      left: 0,
-                      top: 0,
-                      child: PrimeTag(
-                        size: variant.isSmall ? 24 : 28,
-                        iconSize: variant.isSmall ? 16 : 20,
+                  if(isPrime)
+                     Positioned(
+                    left: 0,
+                    top: 0,
+                    child: PrimeTag(
+                        size: 24,
+                        iconSize: 16,
                       ),
-                    ),
+                  ),
                 ],
               ),
             ),
