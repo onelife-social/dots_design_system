@@ -18,12 +18,12 @@ class ColorsDemoPage extends StatelessWidget {
       'Container': {
         'bgContainerPrimary': colors.bgContainerPrimary,
         'bgContainerSecondary': colors.bgContainerSecondary,
+        'bgContainerSecondaryOnBackground': colors.bgContainerSecondaryOnBackground,
         'bgContainerTertiary': colors.bgContainerTertiary,
       },
       'Buttons': {
         'bgSecondaryBtn': colors.bgSecondaryBtn,
-        'bgSecondaryBtnMaterialLight': colors.bgSecondaryBtnMaterialLight,
-        'bgSecondaryBtnMaterialDark': colors.bgSecondaryBtnMaterialDark,
+        'bgFloatingBtn': colors.bgFloatingBtn,
         'bgBtnDisabled': colors.bgBtnDisabled,
       },
       'Components': {

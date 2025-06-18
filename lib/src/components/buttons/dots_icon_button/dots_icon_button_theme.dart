@@ -15,12 +15,12 @@ DotsIconButtonTheme getIconButtonThemeByVariant(DotsTheme theme, DotsIconButtonV
   switch (variant) {
     case DotsIconButtonVariant.solid:
       return DotsIconButtonTheme(
-        backgroundColor: theme.colors.bgContainerSecondary,
+        backgroundColor: theme.colors.bgContainerSecondaryOnBackground,
         foregroundColor: theme.colors.textPrimary,
       );
     case DotsIconButtonVariant.photo:
       return DotsIconButtonTheme(
-        backgroundColor: theme.colors.bgSecondaryBtnMaterialLight,
+        backgroundColor: theme.colors.bgFloatingBtn,
         foregroundColor: theme.colors.labelAlwaysWhite,
       );
     case DotsIconButtonVariant.active:
