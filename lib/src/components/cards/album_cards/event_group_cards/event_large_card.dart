@@ -4,25 +4,28 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 
-class EventAlbumCardLarge extends StatelessWidget {
-  /// The variant of the album card.
+class GroupEventCardLarge extends StatelessWidget {
+  /// The variant of the group card.
   /// 
-  /// Defaults to [EventAlbumCardsVariant.active].
-  final EventAlbumCardsVariant variant;
+  /// Defaults to [GroupEventCardsVariant.active].
+  final GroupEventCardsVariant variant;
 
   /// The image provider to display (NetworkImage, AssetImage, etc).
   final ImageProvider imageProvider;
 
-  /// Whether the album is a prime album.
+  /// Whether the group is a prime group.
   final bool isPrime;
 
-  /// The name of the album to display on the card.
-  final String albumName;
+  /// The icon data for the Card tag.
+  final DotsIconData iconDataTag;
 
-  /// The text to display when the album is active.
+  /// The name of the group to display on the card.
+  final String groupName;
+
+  /// The text to display when the group is active.
   final String activeText;
 
-  /// The text to display on the button when the album is not active.
+  /// The text to display on the button when the group is not active.
   final String btnText;
 
   /// Callback when the profile image is tapped.
@@ -32,13 +35,14 @@ class EventAlbumCardLarge extends StatelessWidget {
   final void Function(Object exception, StackTrace? stackTrace)? onError;
 
   /// The actions to display in the card menu.
-  final List<EventGroupCardModel> actions;
+  final List<GroupEventCardModel> actions;
 
-  const EventAlbumCardLarge({
+  const GroupEventCardLarge({
     required this.variant,
     required this.imageProvider,
-    required this.albumName,
+    required this.groupName,
     required this.isPrime,
+    required this.iconDataTag,
     this.onTap,
     this.onError,
     required this.actions,
@@ -64,7 +68,7 @@ class EventAlbumCardLarge extends StatelessWidget {
             onError: onError,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(52),
+            borderRadius: DotsBorderRadius.r52,
           ),
         ),
         child: Stack(
@@ -94,7 +98,8 @@ class EventAlbumCardLarge extends StatelessWidget {
                      Positioned(
                     left: 0,
                     top: 0,
-                    child: PrimeTag(
+                    child: CardTag(
+                        iconData: iconDataTag,
                         size: 28,
                         iconSize: 20,
                       ),
@@ -105,7 +110,7 @@ class EventAlbumCardLarge extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          albumName,
+                          groupName,
                           textAlign: TextAlign.center,
                           style: theme.typo.main.bodyLargeBold.copyWith(color: theme.colors.textPrimary),
                           overflow: TextOverflow.ellipsis,
@@ -145,7 +150,7 @@ class EventAlbumCardLarge extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: _MenuEventAlbumCard(
+                    child: _MenuEvent(
                       actions: actions,
                     ),
                   ),
@@ -160,10 +165,10 @@ class EventAlbumCardLarge extends StatelessWidget {
 }
 
 
-class _MenuEventAlbumCard extends StatelessWidget {
-  final List<EventGroupCardModel> actions;
+class _MenuEvent extends StatelessWidget {
+  final List<GroupEventCardModel> actions;
 
-  const _MenuEventAlbumCard({
+  const _MenuEvent({
     super.key,
     required this.actions,
   });
@@ -173,7 +178,7 @@ class _MenuEventAlbumCard extends StatelessWidget {
     final theme = context.dotsTheme;
 
     return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: DotsBorderRadius.r20,
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
         child: Container(
@@ -181,7 +186,7 @@ class _MenuEventAlbumCard extends StatelessWidget {
           decoration: ShapeDecoration(
             color: theme.colors.bgBtnDisabled,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: DotsBorderRadius.r20,
             ),
           ),
           child: Row(

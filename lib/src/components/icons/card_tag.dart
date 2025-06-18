@@ -3,18 +3,22 @@ import 'dart:ui';
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class PrimeTag extends StatelessWidget {
+class CardTag extends StatelessWidget {
 
-  /// Creates a PrimeTag widget.
+  /// Size of the tag.
   final double size;
 
-  /// Optional child widget to display inside the tag.
+  /// Icon to display inside the tag.
+  final DotsIconData iconData;
+
+  /// Size of the icon inside the tag.
   final double iconSize;
 
-  const PrimeTag({
+  const CardTag({
     Key? key,
     this.size = 24,
     this.iconSize = 16,
+    required this.iconData,
   }) : super(key: key);
 
   @override
@@ -52,7 +56,7 @@ class PrimeTag extends StatelessWidget {
                   ).createShader(bounds);
                 },
                 child: DotsIcon(
-                  iconData: DotsIconData.prime1,
+                  iconData: iconData,
                   color: Colors.white,
                   size: iconSize,
                 ),

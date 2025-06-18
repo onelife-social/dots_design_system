@@ -1,54 +1,58 @@
-import 'package:dots_design_system/src/components/models/group_card_model.dart';
+import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 import 'event_small_card.dart';
 import 'event_large_card.dart';
 
-enum EventAlbumCardsVariant {
+enum GroupEventCardsVariant {
   small,
   active,
   passed;
 
-  bool get isSmall => this == EventAlbumCardsVariant.small;
-  bool get isActive => this == EventAlbumCardsVariant.active;
-  bool get isPassed => this == EventAlbumCardsVariant.passed;
+  bool get isSmall => this == GroupEventCardsVariant.small;
+  bool get isActive => this == GroupEventCardsVariant.active;
+  bool get isPassed => this == GroupEventCardsVariant.passed;
 }
 
 
-class EventAlbumCards extends StatelessWidget {
-  /// The variant of the album card.
-  final EventAlbumCardsVariant variant;
+class GroupEventCards extends StatelessWidget {
+  /// The variant of the group card.
+  final GroupEventCardsVariant variant;
 
   /// The image provider to display (NetworkImage, AssetImage, etc).
   final ImageProvider imageProvider;
 
-  /// The name of the album to display on the card.
-  final String albumName;
+  /// The name of the group to display on the card.
+  final String groupName;
 
-  /// Whether the album is a prime album.
+  /// Whether the group is a prime group.
   final bool isPrime;
+
+  /// The icon data for the Card tag.
+  final DotsIconData iconDataTag;
 
   /// Callback when the profile image is tapped.
   final Function()? onTap;
 
-  /// The text to display when the album is active.
+  /// The text to display when the group is active.
   final String activeText;
 
-  /// The text to display on the button when the album is not active.
+  /// The text to display on the button when the group is not active.
   final String btnText;
 
   /// Callback when an error occurs while loading the image.
   final void Function(Object exception, StackTrace? stackTrace)? onError;
 
   /// The actions to display in the card menu.
-  final List<EventGroupCardModel> actions;
+  final List<GroupEventCardModel> actions;
 
 
-  const EventAlbumCards._internal({
+  const GroupEventCards._internal({
     super.key,
     required this.variant,
     required this.imageProvider,
-    required this.albumName,
+    required this.groupName,
     required this.isPrime,
+    required this.iconDataTag,
     required this.activeText,
     required this.btnText,
     this.onTap,
@@ -56,20 +60,22 @@ class EventAlbumCards extends StatelessWidget {
     this.actions = const [],
   });
 
-  factory EventAlbumCards.small({
+  factory GroupEventCards.small({
     Key? key,
     required ImageProvider imageProvider,
-    required String albumName,
+    required String groupName,
     required bool isPrime,
+    required DotsIconData iconDataTag,
     Function()? onTap,
     void Function(Object, StackTrace?)? onError,
   }) {
-    return EventAlbumCards._internal(
+    return GroupEventCards._internal(
       key: key,
-      variant: EventAlbumCardsVariant.small,
+      variant: GroupEventCardsVariant.small,
       imageProvider: imageProvider,
-      albumName: albumName,
+      groupName: groupName,
       isPrime: isPrime,
+      iconDataTag: iconDataTag,
       activeText: '',
       btnText: '',
       onTap: onTap,
@@ -78,24 +84,26 @@ class EventAlbumCards extends StatelessWidget {
     );
   }
 
-  factory EventAlbumCards.large({
+  factory GroupEventCards.large({
     Key? key,
-    required EventAlbumCardsVariant variant,
+    required GroupEventCardsVariant variant,
     required ImageProvider imageProvider,
-    required String albumName,
+    required String groupName,
     required bool isPrime,
+    required DotsIconData iconDataTag,
     required String activeText,
     required String btnText,
     Function()? onTap,
     void Function(Object, StackTrace?)? onError,
-    required List<EventGroupCardModel> actions,
+    required List<GroupEventCardModel> actions,
   }) {
-    return EventAlbumCards._internal(
+    return GroupEventCards._internal(
       key: key,
       variant: variant,
       imageProvider: imageProvider,
-      albumName: albumName,
+      groupName: groupName,
       isPrime: isPrime,
+      iconDataTag: iconDataTag,
       onTap: onTap,
       onError: onError,
       actions: actions,
@@ -107,18 +115,20 @@ class EventAlbumCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return variant.isSmall
-        ? EventAlbumCardSmall(
+        ? GroupEventCardSmall(
             isPrime: isPrime,
+            iconDataTag: iconDataTag,
             imageProvider: imageProvider,
-            albumName: albumName,
+            groupName: groupName,
             onTap: onTap,
             onError: onError,
           )
-        : EventAlbumCardLarge(
+        : GroupEventCardLarge(
             variant: variant,
             isPrime: isPrime,
+            iconDataTag: iconDataTag,
             imageProvider: imageProvider,
-            albumName: albumName,
+            groupName: groupName,
             onTap: onTap,
             onError: onError,
             actions: actions,

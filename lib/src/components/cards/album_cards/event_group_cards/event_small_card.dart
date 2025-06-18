@@ -2,15 +2,18 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class EventAlbumCardSmall extends StatelessWidget {
+class GroupEventCardSmall extends StatelessWidget {
   /// The image provider to display (NetworkImage, AssetImage, etc).
   final ImageProvider imageProvider;
 
-  /// The name of the album to display on the card.
-  final String albumName;
+  /// The name of the group to display on the card.
+  final String groupName;
 
-  /// Whether the album is a prime album.
+  /// Whether the group is a prime group.
   final bool isPrime;
+
+  /// The icon data for the Card tag.
+  final DotsIconData iconDataTag;
 
   /// Callback when the profile image is tapped.
   final Function()? onTap;
@@ -18,10 +21,11 @@ class EventAlbumCardSmall extends StatelessWidget {
   /// Callback when an error occurs while loading the image.
   final void Function(Object exception, StackTrace? stackTrace)? onError;
 
-  EventAlbumCardSmall({
+  GroupEventCardSmall({
     required this.imageProvider,
-    required this.albumName,
+    required this.groupName,
     required this.isPrime,
+    required this.iconDataTag,
     this.onTap,
     this.onError,
   });
@@ -43,7 +47,7 @@ class EventAlbumCardSmall extends StatelessWidget {
             onError: onError,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(32),
+            borderRadius: DotsBorderRadius.r32,
           ),
         ),
         child: Stack(
@@ -74,7 +78,7 @@ class EventAlbumCardSmall extends StatelessWidget {
                     child: SizedBox(
                       width: double.infinity,
                       child: Text(
-                        albumName,
+                        groupName,
                         textAlign: TextAlign.center,
                         style:theme.typo.main.labelDefaultMedium.copyWith(color: theme.colors.textPrimary),
                         overflow: TextOverflow.ellipsis,
@@ -86,7 +90,8 @@ class EventAlbumCardSmall extends StatelessWidget {
                      Positioned(
                     left: 0,
                     top: 0,
-                    child: PrimeTag(
+                    child: CardTag(
+                        iconData: iconDataTag,
                         size: 24,
                         iconSize: 16,
                       ),

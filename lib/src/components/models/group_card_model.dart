@@ -1,11 +1,11 @@
 import 'package:dots_design_system/dots_design_system.dart';
 
-class EventGroupCardModel {
+class GroupEventCardModel {
   final String text;
   final DotsIconData icon;
   final Function()? onTap;
 
-  const EventGroupCardModel({
+  const GroupEventCardModel({
     required this.text,
     required this.icon,
     this.onTap,

@@ -45,7 +45,7 @@ class MemoryCard extends StatelessWidget {
                 _Card(image: image, onError: onError),
               ],
             ),
-            _GroupName(albumName: groupName),
+            _GroupName(groupName: groupName),
           ],
         ),
       ),
@@ -78,14 +78,14 @@ class _Card extends StatelessWidget {
 }
 
 class _GroupName extends StatelessWidget {
-  final String albumName;
-  const _GroupName({required this.albumName});
+  final String groupName;
+  const _GroupName({required this.groupName});
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     return Text(
-      albumName,
+      groupName,
       style: theme.typo.main.labelSmallRegular
           .copyWith(fontWeight: FontWeight.w500, color: theme.colors.textTertiary),
       overflow: TextOverflow.ellipsis,

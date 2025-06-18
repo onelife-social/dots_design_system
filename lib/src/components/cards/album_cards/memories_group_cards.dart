@@ -1,26 +1,29 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-enum MemoriesAlbumCardsVariant {
+enum AlbumGroupCardsVariant {
   small,
   large;
 
-  bool get isSmall => this == MemoriesAlbumCardsVariant.small;
-  bool get isLarge => this == MemoriesAlbumCardsVariant.large;
+  bool get isSmall => this == AlbumGroupCardsVariant.small;
+  bool get isLarge => this == AlbumGroupCardsVariant.large;
 }
 
-class MemoriesAlbumCards extends StatelessWidget {
-  /// The variant of the album card.
-  final MemoriesAlbumCardsVariant variant;
+class MemoriesGroupCards extends StatelessWidget {
+  /// The variant of the group card.
+  final AlbumGroupCardsVariant variant;
 
   /// The image provider to display (NetworkImage, AssetImage, etc).
   final ImageProvider imageProvider;
 
-  /// The name of the album to display on the card.
-  final String albumName;
+  /// The name of the group to display on the card.
+  final String groupName;
 
-  /// Whether the album is a prime album.
+  /// Whether the group is a prime group.
   final bool isPrime;
+
+  /// The icon data for the Card tag.
+  final DotsIconData iconDataTag;
 
   /// Callback when the profile image is tapped.
   final Function()? onTap;
@@ -28,12 +31,13 @@ class MemoriesAlbumCards extends StatelessWidget {
   /// Callback when an error occurs while loading the image.
   final void Function(Object exception, StackTrace? stackTrace)? onError;
 
-  const MemoriesAlbumCards({
+  const MemoriesGroupCards({
     super.key,
     required this.imageProvider,
-    required this.albumName,
-    this.variant = MemoriesAlbumCardsVariant.small,
+    required this.groupName,
+    this.variant = AlbumGroupCardsVariant.small,
     this.isPrime = false,
+    required this.iconDataTag,
     this.onTap,
     this.onError,
   });
@@ -86,7 +90,7 @@ class MemoriesAlbumCards extends StatelessWidget {
                     child: SizedBox(
                       width: double.infinity,
                       child: Text(
-                        albumName,
+                        groupName,
                         textAlign: TextAlign.center,
                         style: variant.isSmall
                             ? theme.typo.main.labelDefaultMedium.copyWith(color: theme.colors.textPrimary)
@@ -100,7 +104,8 @@ class MemoriesAlbumCards extends StatelessWidget {
                     Positioned(
                       left: 0,
                       top: 0,
-                      child: PrimeTag(
+                      child: CardTag(
+                        iconData: iconDataTag,
                         size: variant.isSmall ? 24 : 28,
                         iconSize: variant.isSmall ? 16 : 20,
                       ),

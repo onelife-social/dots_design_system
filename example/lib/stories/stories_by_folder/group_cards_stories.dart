@@ -3,28 +3,35 @@ import 'package:flutter/widgets.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 
-List<Story> get albumCards => [
+List<Story> get groupCards => [
       Story(
-        name: 'Cards/Memories Album Cards',
-        description: 'Demo page for memories album cards',
+        name: 'Cards/Memories Group Cards',
+        description: 'Demo page for memories group cards',
         builder: (context) => Padding(
           padding: const EdgeInsets.all(16.0),
-          child: MemoriesAlbumCards(
+          child: MemoriesGroupCards(
             imageProvider: NetworkImage(
                       context.knobs.text(
                         label: 'Container background image',
                         initial: 'https://picsum.photos/250?image=9',
                       ),
                     ),
-            albumName: context.knobs.text(label: 'Album Name', initial: 'My Album'),
-            variant: context.knobs.options<MemoriesAlbumCardsVariant>(
+            groupName: context.knobs.text(label: 'Group Name', initial: 'My Group'),
+            variant: context.knobs.options<AlbumGroupCardsVariant>(
               label: 'Variant',
-              initial: MemoriesAlbumCardsVariant.small,
-              options: MemoriesAlbumCardsVariant.values
+              initial: AlbumGroupCardsVariant.small,
+              options: AlbumGroupCardsVariant.values
                   .map((item) => Option(label: item.name, value: item))
                   .toList(),
             ),
             isPrime: context.knobs.boolean(label: 'Is Prime', initial: false),
+            iconDataTag: context.knobs.options<DotsIconData>(
+              label: 'Icon Data Tag',
+              initial: DotsIconData.prime1,
+              options: DotsIconData.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
             onTap: () {},
             onError: (exception, stackTrace) {
             },
@@ -32,13 +39,13 @@ List<Story> get albumCards => [
         ),
       ),
       Story(
-        name: 'Cards/Event Album Cards',
-        description: 'Demo page for event album cards',
+        name: 'Cards/Event Group Cards',
+        description: 'Demo page for event group cards',
         builder: (context) {
-          final variant = context.knobs.options<EventAlbumCardsVariant>(
+          final variant = context.knobs.options<GroupEventCardsVariant>(
             label: 'Variant',
-            initial: EventAlbumCardsVariant.small,
-            options: EventAlbumCardsVariant.values
+            initial: GroupEventCardsVariant.small,
+            options: GroupEventCardsVariant.values
                 .map((item) => Option(label: item.name, value: item))
                 .toList(),
           );
@@ -46,20 +53,27 @@ List<Story> get albumCards => [
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Center(
-              child: variant == EventAlbumCardsVariant.small
-                  ? EventAlbumCards.small(
+              child: variant == GroupEventCardsVariant.small
+                  ? GroupEventCards.small(
                       imageProvider: NetworkImage(
                         context.knobs.text(
                           label: 'Container background image',
                           initial: 'https://picsum.photos/250?image=9',
                         ),
                       ),
-                      albumName: context.knobs.text(label: 'Album Name', initial: 'My Album'),
+                      groupName: context.knobs.text(label: 'Group Name', initial: 'My Group'),
                       isPrime: context.knobs.boolean(label: 'Is Prime', initial: false),
+                      iconDataTag: context.knobs.options<DotsIconData>(
+                        label: 'Icon Data Tag',
+                        initial: DotsIconData.prime1,
+                        options: DotsIconData.values
+                            .map((item) => Option(label: item.name, value: item))
+                            .toList(),
+                      ),
                       onTap: () {},
                       onError: (exception, stackTrace) {},
                     )
-                  : EventAlbumCards.large(
+                  : GroupEventCards.large(
                       variant: variant,
                       imageProvider: NetworkImage(
                         context.knobs.text(
@@ -67,22 +81,29 @@ List<Story> get albumCards => [
                           initial: 'https://picsum.photos/250?image=9',
                         ),
                       ),
-                      albumName: context.knobs.text(label: 'Album Name', initial: 'My Album'),
+                      groupName: context.knobs.text(label: 'Group Name', initial: 'My Group'),
                       isPrime: context.knobs.boolean(label: 'Is Prime', initial: false),
+                      iconDataTag: context.knobs.options<DotsIconData>(
+                        label: 'Icon Data Tag',
+                        initial: DotsIconData.prime1,
+                        options: DotsIconData.values
+                            .map((item) => Option(label: item.name, value: item))
+                            .toList(),
+                      ),
                       onTap: () {},
                       onError: (exception, stackTrace) {},
                       actions: [
-                        EventGroupCardModel(
+                        GroupEventCardModel(
                           text: 'Chat',
                           icon: DotsIconData.chat,
                           onTap: () {},
                         ),
-                        EventGroupCardModel(
+                        GroupEventCardModel(
                           text: 'Subir',
                           icon: DotsIconData.camera,
                           onTap: () {},
                         ),
-                        EventGroupCardModel(
+                        GroupEventCardModel(
                           text: 'Planning',
                           icon: DotsIconData.planner,
                           onTap: () {},
