@@ -10,6 +10,7 @@ class DotsMainButton extends StatelessWidget {
     required this.content,
     this.icon,
     this.details,
+    this.iconSize = 20,
     this.size = DotsMainButtonSize.large,
     this.variant = DotsMainButtonVariant.main,
     this.enabled = true,
@@ -35,6 +36,11 @@ class DotsMainButton extends StatelessWidget {
   ///
   /// Defaults to [DotsMainButtonSize.large].
   final DotsMainButtonSize size;
+
+  /// The size of the icon in the button.
+  ///
+  /// Defaults to 20.
+  final double iconSize;
 
   /// The visual variant of the button.
   ///
@@ -77,7 +83,7 @@ class DotsMainButton extends StatelessWidget {
               if (icon != null)
                 DotsIcon(
                   iconData: icon ?? DotsIconData.values.first,
-                  size: 20,
+                  size: iconSize,
                   color: buttonTheme.foregroundColor,
                 ),
               Flexible(
