@@ -221,11 +221,10 @@ List<Story> get allStories => [
           child: CarrouselDemoPage(
             memories: [
               MemoryCard(
-                image: Container(color: Colors.red),
-                /* CachedNetworkImage(
+                image: CachedNetworkImage(
                   imageUrl: context.knobs
                       .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
-                ),*/
+                ),
                 groupName: 'Boda',
                 variant: MemoryCardVariant.update,
                 onTap: () {},
