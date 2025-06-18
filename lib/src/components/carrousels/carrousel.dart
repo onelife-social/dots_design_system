@@ -1,10 +1,9 @@
 import 'dart:math';
 
-import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class Carrousel extends StatelessWidget {
-  final List<MemoryCard> memories;
+  final List<Widget> memories;
   const Carrousel({super.key, required this.memories});
 
   static const List<double> rotationPattern = [
