@@ -3,18 +3,17 @@ import 'package:example/components/carrousel_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
 import 'package:example/components/memory_card_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
-import 'package:example/components/top_bar_demo.dart';
-import 'package:example/components/home_top_bar_demo.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
+import 'package:example/stories/stories_by_folder/top_bar_stories.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 List<Story> get allStories => [
       ...themeStories,
       ...buttonStories,
+      ...topBarStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
@@ -164,56 +163,6 @@ List<Story> get allStories => [
         ),
       ),
       Story(
-        name: 'Top bar',
-        description: 'Demo page for Top bar',
-        builder: (context) => ColoredBox(
-          color: context.dotsTheme.colors.bgContainerSecondary,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TopBarDemo(
-              variant: context.knobs.options<TobBarVariant>(
-                label: 'Variant',
-                initial: TobBarVariant.title,
-                options: TobBarVariant.values
-                    .map((item) => Option(label: item.name, value: item))
-                    .toList(),
-              ),
-              title: context.knobs.text(label: 'Title', initial: 'Title'),
-              subtitle: context.knobs.nullable.text(label: 'Subtitle', initial: 'Subtitle'),
-              showLeftIcon: context.knobs.boolean(label: 'Show left icon', initial: false),
-              showRightIcon: context.knobs.boolean(label: 'Show right icon', initial: false),
-              showBackButton: context.knobs.boolean(label: 'Show back button', initial: false),
-              ctaLabel: context.knobs.nullable.text(label: 'CTA title', initial: 'Call to Action'),
-              ctaEnabled: context.knobs.boolean(label: 'CTA enabled', initial: true),
-            ),
-          ),
-        ),
-      ),
-      Story(
-        name: 'Home Top bar',
-        description: 'Demo page for Home Top bar',
-        builder: (context) => ColoredBox(
-          color: Color.fromARGB(0, 255, 255, 255),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: HomeTopBarDemo(
-              variant: context.knobs.options<HomeTopBarVariant>(
-                label: 'Variant',
-                initial: HomeTopBarVariant.icons,
-                options: HomeTopBarVariant.values
-                    .map((item) => Option(label: item.name, value: item))
-                    .toList(),
-              ),
-              title: context.knobs.text(label: 'Title', initial: 'Dots.Memories'),
-              showTag: context.knobs.boolean(label: 'Show tag', initial: false),
-              showImageUrl: context.knobs.boolean(label: 'Show image', initial: false),
-              imageUrl: context.knobs
-                  .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
-            ),
-          ),
-        ),
-      ),
-      Story(
         name: 'Profile photo',
         description: 'Demo page for Profile photo',
         builder: (context) => ColoredBox(
@@ -250,7 +199,13 @@ List<Story> get allStories => [
           padding: const EdgeInsets.all(16.0),
           child: MemoryCardDemoPage(
             groupName: context.knobs.text(label: 'Boda', initial: 'Boda'),
-            variant: MemoryCardVariant.update,
+            variant: context.knobs.options<MemoryCardVariant>(
+              label: 'Variant',
+              initial: MemoryCardVariant.update,
+              options: MemoryCardVariant.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
             image: CachedNetworkImage(
               imageUrl: context.knobs
                   .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
@@ -291,7 +246,7 @@ List<Story> get allStories => [
                       .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
                 ),
                 groupName: 'Amigos',
-                variant: MemoryCardVariant.update,
+                variant: MemoryCardVariant.dotsIntelligence,
                 onTap: () {},
                 onError: null,
               ),
@@ -301,7 +256,7 @@ List<Story> get allStories => [
                       .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
                 ),
                 groupName: 'Vacaciones en Islandia',
-                variant: MemoryCardVariant.update,
+                variant: MemoryCardVariant.dotsIntelligence,
                 onTap: () {},
                 onError: null,
               ),
