@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
@@ -22,34 +24,39 @@ class PrimeTag extends StatelessWidget {
     return Positioned(
       left: 0,
       top: 0,
-      child: Container(
-        width: size,
-        height: size,
-        clipBehavior: Clip.antiAlias,
-        decoration: ShapeDecoration(
-          color: theme.colors.bgToastLight,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(size),
-          ),
-        ),
-        child: Center(
-          child: ShaderMask(
-            shaderCallback: (Rect bounds) {
-              return  LinearGradient(
-                  colors: [
-                    DotsColors.light.gradientInitialLinealPurple,
-                    DotsColors.light.gradientFinalLinealPurple,
-                  ],
-                  stops: const [0.0, 1.0],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                )
-                    .createShader(bounds);
-            },
-            child: DotsIcon(
-              iconData: DotsIconData.prime1,
-              color: Colors.white, 
-              size: iconSize,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(size),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 60, sigmaY: 60),
+          child: Container(
+            width: size,
+            height: size,
+            clipBehavior: Clip.antiAlias,
+            decoration: ShapeDecoration(
+              color: theme.colors.bgToastLight,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(size),
+              ),
+            ),
+            child: Center(
+              child: ShaderMask(
+                shaderCallback: (Rect bounds) {
+                  return LinearGradient(
+                    colors: [
+                      DotsColors.light.gradientInitialLinealPurple,
+                      DotsColors.light.gradientFinalLinealPurple,
+                    ],
+                    stops: const [0.0, 1.0],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ).createShader(bounds);
+                },
+                child: DotsIcon(
+                  iconData: DotsIconData.prime1,
+                  color: Colors.white,
+                  size: iconSize,
+                ),
+              ),
             ),
           ),
         ),
