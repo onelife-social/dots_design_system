@@ -6,6 +6,7 @@ import 'package:example/components/segmented_control_handle.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:example/stories/stories_by_folder/top_bar_stories.dart';
+import 'package:example/stories/stories_by_folder/group_cards_stories.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -14,6 +15,7 @@ List<Story> get allStories => [
       ...themeStories,
       ...buttonStories,
       ...topBarStories,
+      ...groupCards,
       Story(
         name: 'Container',
         description: 'Demo page for container',

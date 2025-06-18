@@ -9,5 +9,6 @@ export 'navigation/navigation_lib.dart';
 export 'profile_photo/profile_photo.dart';
 export 'navigation/home_top_bar.dart';
 export 'menu/menu_lib.dart';
-export 'cards/memory_card_lib.dart';
+export 'cards/cards_lib.dart';
 export 'carrousels/carrousel_lib.dart';
+export 'models/models_lib.dart';
