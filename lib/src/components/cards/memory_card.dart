@@ -1,4 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:dots_design_system/src/core/borders/gradient_box_border.dart';
 import 'package:flutter/material.dart';
 
 enum MemoryCardVariant {
@@ -38,10 +39,10 @@ class MemoryCard extends StatelessWidget {
             Stack(
               alignment: Alignment.center,
               children: [
-                _Card(image: image, onError: onError),
                 variant == MemoryCardVariant.update
-                    ? const _BorderPendingMemory()
-                    : _BorderGeneratedMemory(),
+                    ? const _UpdatedBorder()
+                    : _DotsIntelligenceBorder(),
+                _Card(image: image, onError: onError),
               ],
             ),
             _GroupName(albumName: groupName),
@@ -65,8 +66,8 @@ class _Card extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        height: 77,
-        width: 58,
+        height: 77.4,
+        width: 57.7,
         child: ClipRRect(
           borderRadius: DotsBorderRadius.r16,
           child: image,
@@ -94,45 +95,47 @@ class _GroupName extends StatelessWidget {
   }
 }
 
-class _BorderPendingMemory extends StatelessWidget {
-  const _BorderPendingMemory();
+class _UpdatedBorder extends StatelessWidget {
+  const _UpdatedBorder();
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 64.53,
-      height: 83.36,
+      height: 83.5,
       decoration: BoxDecoration(
         borderRadius: DotsBorderRadius.r16,
-        gradient: LinearGradient(
-          colors: [
-            DotsColors.light.gradientInitialLinealGreen,
-            DotsColors.light.gradientFinalLinealGreen,
-          ],
-          stops: const [0.0, 1.0],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+        border: GradientBoxBorder(
+          width: 1.45,
+          gradient: LinearGradient(
+            colors: [
+              DotsColors.light.gradientInitialLinealGreen,
+              DotsColors.light.gradientFinalLinealGreen,
+            ],
+            stops: const [0.0, 1.0],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
         ),
       ),
       child: Container(
         margin: const EdgeInsets.all(1.5),
         decoration: BoxDecoration(
           borderRadius: DotsBorderRadius.r14h,
-          color: Colors.white,
         ),
       ),
     );
   }
 }
 
-class _BorderGeneratedMemory extends StatelessWidget {
-  const _BorderGeneratedMemory();
+class _DotsIntelligenceBorder extends StatelessWidget {
+  const _DotsIntelligenceBorder();
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 77,
-      width: 58,
+      height: 77.4,
+      width: 57.7,
       child: Image.asset(
         'assets/images/filter_generated_memory.png',
         fit: BoxFit.cover,
