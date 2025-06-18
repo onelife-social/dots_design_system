@@ -63,9 +63,11 @@ class EventGroupCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: variant.isSmall ? 160 : 340,
-        height: variant.isSmall ? 160 : 340,
         clipBehavior: Clip.antiAlias,
+        constraints: BoxConstraints(
+          maxHeight: variant.isSmall ? 160 : 340,
+          maxWidth: variant.isSmall ? 160 : 340,
+        ),
         decoration: ShapeDecoration(
           image: DecorationImage(
             image: imageProvider,
