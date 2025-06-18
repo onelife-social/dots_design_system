@@ -1,29 +1,26 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-enum AlbumGroupCardsVariant {
+enum AlbumGroupCardVariant {
   small,
   large;
 
-  bool get isSmall => this == AlbumGroupCardsVariant.small;
-  bool get isLarge => this == AlbumGroupCardsVariant.large;
+  bool get isSmall => this == AlbumGroupCardVariant.small;
+  bool get isLarge => this == AlbumGroupCardVariant.large;
 }
 
-class MemoriesGroupCards extends StatelessWidget {
+class AlbumGroupCard extends StatelessWidget {
   /// The variant of the group card.
-  final AlbumGroupCardsVariant variant;
+  final AlbumGroupCardVariant variant;
 
-  /// The image provider to display (NetworkImage, AssetImage, etc).
+  /// The image provider for the background image
   final ImageProvider imageProvider;
 
-  /// The name of the group to display on the card.
-  final String groupName;
-
-  /// Whether the group is a prime group.
-  final bool isPrime;
+  /// Title that will be displayed at the bottom of the card.
+  final String title;
 
   /// The icon data for the Card tag.
-  final DotsIconData iconDataTag;
+  final DotsIconData? tagIconData;
 
   /// Callback when the profile image is tapped.
   final Function()? onTap;
@@ -31,13 +28,12 @@ class MemoriesGroupCards extends StatelessWidget {
   /// Callback when an error occurs while loading the image.
   final void Function(Object exception, StackTrace? stackTrace)? onError;
 
-  const MemoriesGroupCards({
+  const AlbumGroupCard({
     super.key,
     required this.imageProvider,
-    required this.groupName,
-    this.variant = AlbumGroupCardsVariant.small,
-    this.isPrime = false,
-    required this.iconDataTag,
+    required this.title,
+    this.variant = AlbumGroupCardVariant.small,
+    this.tagIconData,
     this.onTap,
     this.onError,
   });
@@ -49,9 +45,11 @@ class MemoriesGroupCards extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: variant.isSmall ? 160 : 340,
-        height: variant.isSmall ? 160 : 340,
         clipBehavior: Clip.antiAlias,
+        constraints: BoxConstraints(
+          maxHeight: variant.isSmall ? 160 : 340,
+          maxWidth: variant.isSmall ? 160 : 340,
+        ),
         decoration: ShapeDecoration(
           image: DecorationImage(
             image: imageProvider,
@@ -74,7 +72,7 @@ class MemoriesGroupCards extends StatelessWidget {
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [
-                      theme.colors.bgContainerPrimary,
+                      Color(0x803c3c3c),
                       Colors.transparent,
                     ],
                   ),
@@ -90,22 +88,23 @@ class MemoriesGroupCards extends StatelessWidget {
                     child: SizedBox(
                       width: double.infinity,
                       child: Text(
-                        groupName,
+                        title,
                         textAlign: TextAlign.center,
-                        style: variant.isSmall
-                            ? theme.typo.main.labelDefaultMedium.copyWith(color: theme.colors.textPrimary)
-                            : theme.typo.main.bodyLargeMedium.copyWith(color: theme.colors.textPrimary),
+                        style: (variant.isSmall
+                                ? theme.typo.main.labelDefaultMedium
+                                : theme.typo.main.bodyLargeMedium)
+                            .copyWith(color: theme.colors.labelAlwaysWhite),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
                     ),
                   ),
-                  if (isPrime)
+                  if (tagIconData != null)
                     Positioned(
                       left: 0,
                       top: 0,
                       child: CardTag(
-                        iconData: iconDataTag,
+                        iconData: tagIconData!,
                         size: variant.isSmall ? 24 : 28,
                         iconSize: variant.isSmall ? 16 : 20,
                       ),
