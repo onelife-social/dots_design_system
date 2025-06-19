@@ -23,14 +23,14 @@ class DotsIconTag extends StatelessWidget {
       children: [
         child,
         Positioned(
-          bottom: 9,
-          left: 9,
+          bottom: 13,
+          left: 13,
           child: Container(
             constraints: const BoxConstraints(
-              minWidth: 10,
-              minHeight: 10,
+              minWidth: 6,
+              minHeight: 6,
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
             clipBehavior: Clip.antiAlias,
             decoration: ShapeDecoration(
               color: theme.colors.labelDestructive,
