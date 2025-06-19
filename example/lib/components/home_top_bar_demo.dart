@@ -46,14 +46,14 @@ class HomeTopBarDemo extends StatelessWidget {
               : null,
           rightIcon: DotsIconButton(
             icon: DotsIconData.heart,
-            size: DotsIconButtonSize.extraSmall,
+            size: DotsIconButtonSize.large,
             onTap: () {},
             color: theme.colors.textTertiary,
             variant: DotsIconButtonVariant.noBackground,
           ),
           secondRightIcon: DotsIconButton(
             icon: DotsIconData.chat,
-            size: DotsIconButtonSize.extraSmall,
+            size: DotsIconButtonSize.large,
             tag: tag,
             color: theme.colors.textTertiary,
             onTap: () {},
