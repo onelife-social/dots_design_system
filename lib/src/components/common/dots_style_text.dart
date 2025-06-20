@@ -10,9 +10,20 @@ class DotsStyleText extends StatelessWidget {
     this.textAlign,
   });
 
+  /// Creates a text widget with optional style type and text alignment.
   final DotsStyleType? styleType;
+
+  /// The style type for the text, which can be used to apply specific styles.
   final String text;
+
+  /// The text to display.
+  ///
+  /// If null, the default text style will be used.
   final TextStyle? style;
+
+  /// The text alignment for the text.
+  ///
+  /// If null, the default text alignment will be used.
   final TextAlign? textAlign;
   @override
   Widget build(BuildContext context) {

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'dots_style_type.dart';
 
+/// Creates a style that applies a blur effect with the specified [blur] value.
 class DotsStyleBlur implements DotsStyleType {
   final double blur;
 

@@ -2,6 +2,8 @@ import 'package:flutter/widgets.dart';
 
 import 'dots_style_type.dart';
 
+/// Creates a style that applies a color gradient effect with [startColor] and [endColor].
+/// The [beginAlignment] and [endAlignment] parameters control the direction of the gradient.
 class DotsStyleColorGradient implements DotsStyleType {
   final Color startColor;
   final Color endColor;
