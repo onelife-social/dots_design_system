@@ -11,9 +11,23 @@ class DotsDecoratedBox extends StatelessWidget {
       this.decoration = const BoxDecoration(),
       this.squircleClip = false});
 
+  /// Creates a decorated box with optional squircle clipping and style type.
   final bool squircleClip;
+
+  /// The style type for the decorated box, which can be used to apply specific styles.
+  ///
+  /// If null, the default decoration will be used.
+  ///
+  /// Supported style types include:
+  /// - [DotsStyleColorDodge]: Applies a color dodge effect with a blur.
+  /// - [DotsStyleColorGradient]: Applies a linear gradient.
+  /// - [DotsStyleBlur]: Applies a blur effect.
   final DotsStyleType? styleType;
+
+  /// The child widget to be decorated.
   final Widget child;
+
+  /// The decoration to apply to the box.
   final BoxDecoration decoration;
 
   @override
