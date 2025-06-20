@@ -223,9 +223,6 @@ class TopBarContent extends StatelessWidget {
                         const Spacer(),
                         if (rightIcon != null) ...[
                           rightIcon!,
-                          SizedBox(width: secondRightIcon != null
-                            ? (aspectRatio > (19.5 / 9) ? 12 : 4)
-                            : 16),
                         ],
                         if (secondRightIcon != null) ...[
                           secondRightIcon!,

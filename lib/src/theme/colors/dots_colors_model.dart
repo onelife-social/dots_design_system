@@ -11,6 +11,9 @@ class DotsColorsModel {
   final Color bgContainerSecondaryOnBackground;
   final Color bgContainerTertiary;
 
+  // Prime Tag
+  final Color bgToastLight;
+
   // Buttons
   final Color bgSecondaryBtn;
   final Color bgFloatingBtn;
@@ -59,6 +62,8 @@ class DotsColorsModel {
   final Color gradientFinalLineal;
   final Color gradientInitialLinealGreen;
   final Color gradientFinalLinealGreen;
+  final Color gradientInitialLinealPurple;
+  final Color gradientFinalLinealPurple;
 
   //generics
   final Color transparent;
@@ -78,6 +83,7 @@ class DotsColorsModel {
     required this.bgFloatingBtn,
     required this.bgBtnImage,
     required this.bgBtnDisabled,
+    required this.bgToastLight,
     required this.bgChip,
     required this.textPrimary,
     required this.textSecondary,
@@ -108,6 +114,8 @@ class DotsColorsModel {
     required this.gradientFinalLineal,
     required this.gradientInitialLinealGreen,
     required this.gradientFinalLinealGreen,
+    required this.gradientInitialLinealPurple,
+    required this.gradientFinalLinealPurple,
     required this.transparent,
     required this.borderAlert,
     required this.borderLabel,
@@ -127,6 +135,7 @@ class DotsColorsModel {
       bgContainerTertiary:
           Color.lerp(bgContainerTertiary, other?.bgContainerTertiary, t) ?? bgContainerTertiary,
       bgSecondaryBtn: Color.lerp(bgSecondaryBtn, other?.bgSecondaryBtn, t) ?? bgSecondaryBtn,
+      bgToastLight: Color.lerp(bgToastLight, other?.bgToastLight, t) ?? bgToastLight,
       bgFloatingBtn: Color.lerp(bgFloatingBtn, other?.bgFloatingBtn, t) ?? bgFloatingBtn,
       bgBtnImage: Color.lerp(bgBtnImage, other?.bgBtnImage, t) ?? bgBtnImage,
       bgBtnDisabled: Color.lerp(bgBtnDisabled, other?.bgBtnDisabled, t) ?? bgBtnDisabled,
@@ -168,6 +177,12 @@ class DotsColorsModel {
       gradientFinalLinealGreen:
           Color.lerp(gradientFinalLinealGreen, other?.gradientFinalLinealGreen, t) ??
               gradientFinalLinealGreen,
+      gradientInitialLinealPurple:
+          Color.lerp(gradientInitialLinealPurple, other?.gradientInitialLinealPurple, t) ??
+              gradientInitialLinealPurple,
+      gradientFinalLinealPurple:
+          Color.lerp(gradientFinalLinealPurple, other?.gradientFinalLinealPurple, t) ??
+              gradientFinalLinealPurple,
       transparent: Color.lerp(transparent, other?.transparent, t) ?? transparent,
       borderAlert: Color.lerp(borderAlert, other?.borderAlert, t) ?? borderAlert,
       borderLabel: Color.lerp(borderLabel, other?.borderLabel, t) ?? borderLabel,
