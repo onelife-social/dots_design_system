@@ -68,6 +68,10 @@ class DotsColorsModel {
   //generics
   final Color transparent;
 
+  //border
+  final Color borderAlert;
+  final Color borderLabel;
+
   const DotsColorsModel({
     required this.bgBase,
     required this.bgBaseContrast,
@@ -113,6 +117,8 @@ class DotsColorsModel {
     required this.gradientInitialLinealPurple,
     required this.gradientFinalLinealPurple,
     required this.transparent,
+    required this.borderAlert,
+    required this.borderLabel,
   });
 
   DotsColorsModel lerp(DotsColorsModel? other, double t) {
@@ -178,6 +184,8 @@ class DotsColorsModel {
           Color.lerp(gradientFinalLinealPurple, other?.gradientFinalLinealPurple, t) ??
               gradientFinalLinealPurple,
       transparent: Color.lerp(transparent, other?.transparent, t) ?? transparent,
+      borderAlert: Color.lerp(borderAlert, other?.borderAlert, t) ?? borderAlert,
+      borderLabel: Color.lerp(borderLabel, other?.borderLabel, t) ?? borderLabel,
     );
   }
 }
