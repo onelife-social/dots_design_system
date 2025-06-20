@@ -11,3 +11,4 @@ export 'navigation/home_top_bar.dart';
 export 'menu/menu_lib.dart';
 export 'cards/memory_card_lib.dart';
 export 'carrousels/carrousel_lib.dart';
+export 'common/common_lib.dart';

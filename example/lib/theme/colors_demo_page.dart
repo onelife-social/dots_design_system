@@ -62,6 +62,10 @@ class ColorsDemoPage extends StatelessWidget {
         'misc1000': colors.misc1000,
         'misc1100': colors.misc1100,
       },
+      'Border': {
+        'borderAlert': colors.borderAlert,
+        'borderLabel': colors.borderLabel,
+      },
     };
 
     return Scaffold(

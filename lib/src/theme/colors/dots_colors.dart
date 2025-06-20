@@ -45,6 +45,8 @@ class DotsColors {
     gradientInitialLinealGreen: Color(0xFF77D98A),
     gradientFinalLinealGreen: const Color(0xFF28AB87),
     transparent: Color(0x00000000),
+    borderAlert: Color(0x4DFFFFFF),
+    borderLabel: Color(0xFFEAECF0),
   );
   static final dark = DotsColorsModel(
     bgBase: Color(0xFF191919),
@@ -88,5 +90,7 @@ class DotsColors {
     gradientInitialLinealGreen: Color(0xFF77D98A),
     gradientFinalLinealGreen: const Color(0xFF28AB87),
     transparent: Color(0x00000000),
+    borderAlert: Color(0x4D6E6E6E),
+    borderLabel: Color(0xFFEAECF0),
   );
 }
