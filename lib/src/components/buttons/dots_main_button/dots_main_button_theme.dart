@@ -55,7 +55,7 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(DotsTheme theme, DotsMainButto
       );
     case DotsMainButtonVariant.disabled:
       return DotsMainButtonTheme(
-        backgroundColor: theme.colors.bgBtnDisabled,
+        backgroundColor: theme.colors.bgContainerSecondaryOnBackground,
         foregroundColor: theme.colors.textQuarternary,
         foregroundSecondaryColor: theme.colors.textQuarternary.dotsWithOpacity(0.6),
         blur: true,

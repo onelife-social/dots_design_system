@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
             context.dotsTheme.typo;
             final imageUrl = context.knobs.nullable.text(
               label: 'Background image',
-              initial: 'https://picsum.photos/250?image=9',
+              initial: 'https://picsum.photos/250?image=12',
               enabled: false,
             );
             return Scaffold(

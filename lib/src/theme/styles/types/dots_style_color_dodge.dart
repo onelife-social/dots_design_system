@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'dots_style_type.dart';
 
+/// Creates a style that applies a color dodge effect with [colorToDodge] and [mainColor].
+/// /// The [blur] parameter controls the amount of blur applied to the effect.
 class DotsStyleColorDodge implements DotsStyleType {
   final Color colorToDodge;
   final Color mainColor;

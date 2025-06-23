@@ -16,15 +16,12 @@ List<Story> get themeStories => [
         name: 'Theme/Styles/Decorated box',
         description: 'Demo page for styles with decoratedBox',
         builder: (context) => DotsDecoratedBoxDemoScreen(
-            showSquircleClip: context.knobs.boolean(
-              label: 'showSquircleClip',
-            ),
             radius: context.knobs.slider(
-              label: 'Radius',
-              initial: 16,
-              max: 100,
-              min: 0,
-            )),
+          label: 'Radius',
+          initial: 16,
+          max: 100,
+          min: 0,
+        )),
       ),
       Story(
         name: 'Theme/Styles/Text style',
