@@ -40,16 +40,31 @@ class DotsStyles {
     bgBlur: DotsStyleBlur(
       blur: 50,
     ),
+    floatingBtnShadow: DotsStyleShadow(
+      color: Color(0x26000000),
+      blurRadius: 15,
+      offset: Offset(0, 4),
+    ),
+    toastShadow: DotsStyleShadow(
+      color: Color(0x33000000),
+      blurRadius: 20,
+      blurStyle: BlurStyle.outer,
+    ),
+    defaultShadow: DotsStyleShadow(
+      color: Color(0x1A000000),
+      blurRadius: 20,
+      offset: Offset(0, 6),
+    ),
   );
 
   static final dark = DotsStylesModel(
     bgAlert: DotsStyleColorDodge(
-      colorToDodge: Color(0xFF8C8C8C),
+      colorToDodge: Color(0xE68C8C8C),
       mainColor: Color(0xD1252525),
       blur: 50,
     ),
     bgToast: DotsStyleColorDodge(
-      colorToDodge: Color(0xFF8C8C8C),
+      colorToDodge: Color(0xA68C8C8C),
       mainColor: Color(0xD12E2E2E),
       blur: 50,
     ),
@@ -79,6 +94,21 @@ class DotsStyles {
     ),
     bgBlur: DotsStyleBlur(
       blur: 50,
+    ),
+    floatingBtnShadow: DotsStyleShadow(
+      color: Color(0x26000000),
+      blurRadius: 15,
+      offset: Offset(0, 4),
+    ),
+    toastShadow: DotsStyleShadow(
+      color: Color(0x33000000),
+      blurRadius: 20,
+      blurStyle: BlurStyle.outer,
+    ),
+    defaultShadow: DotsStyleShadow(
+      color: Color(0x1A000000),
+      blurRadius: 20,
+      offset: Offset(0, 6),
     ),
   );
 }

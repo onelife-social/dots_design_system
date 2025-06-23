@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
+@Deprecated(('Use context.dotsTheme.styles.bgBlur instead'))
 class BgBlurComponent extends StatelessWidget {
   const BgBlurComponent(
       {super.key, required this.child, this.borderRadius = DotsBorderRadius.r100});

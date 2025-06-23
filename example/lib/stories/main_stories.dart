@@ -5,6 +5,7 @@ import 'package:example/components/memory_card_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
+import 'package:example/stories/stories_by_folder/toast_stories.dart';
 import 'package:example/stories/stories_by_folder/top_bar_stories.dart';
 import 'package:example/stories/stories_by_folder/group_cards_stories.dart';
 import 'package:flutter/material.dart';
@@ -344,4 +345,5 @@ List<Story> get allStories => [
           ),
         ),
       ),
+      ...toastStories
     ];

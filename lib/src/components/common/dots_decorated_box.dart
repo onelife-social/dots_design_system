@@ -5,14 +5,7 @@ import 'package:flutter/material.dart';
 
 class DotsDecoratedBox extends StatelessWidget {
   const DotsDecoratedBox(
-      {super.key,
-      this.styleType,
-      required this.child,
-      this.decoration = const BoxDecoration(),
-      this.squircleClip = false});
-
-  /// Creates a decorated box with optional squircle clipping and style type.
-  final bool squircleClip;
+      {super.key, this.styleType, required this.child, this.decoration = const BoxDecoration()});
 
   /// The style type for the decorated box, which can be used to apply specific styles.
   ///
@@ -28,16 +21,23 @@ class DotsDecoratedBox extends StatelessWidget {
   final Widget child;
 
   /// The decoration to apply to the box.
-  final BoxDecoration decoration;
+  final Decoration decoration;
 
   @override
   Widget build(BuildContext context) {
     final styleType = this.styleType;
-    final borderRadius = decoration.borderRadius ?? BorderRadius.zero;
+    Decoration decoration = this.decoration;
+    if (decoration is BoxDecoration) {
+      decoration = ShapeDecoration.fromBoxDecoration(decoration);
+    }
+
+    if (decoration is! ShapeDecoration) {
+      throw Exception('Decoration must be a ShapeDecoration or BoxDecoration');
+    }
+
     if (styleType is DotsStyleColorDodge) {
-      return _DotsDecoratedBoxClipperSelector(
-        squircleClip: squircleClip,
-        borderRadius: borderRadius,
+      return _DotsDecoratedBoxClipper(
+        shape: decoration.shape,
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: styleType.blur, sigmaY: styleType.blur),
           child: ColorFiltered(
@@ -45,12 +45,12 @@ class DotsDecoratedBox extends StatelessWidget {
               styleType.colorToDodge,
               BlendMode.colorDodge,
             ),
-            child: DecoratedBox(
-              decoration: decoration.copyWith(
-                color: styleType.mainColor,
-                borderRadius: BorderRadius.zero,
+            child: ColoredBox(
+              color: styleType.mainColor,
+              child: DecoratedBox(
+                decoration: decoration,
+                child: child,
               ),
-              child: child,
             ),
           ),
         ),
@@ -58,31 +58,47 @@ class DotsDecoratedBox extends StatelessWidget {
     }
 
     if (styleType is DotsStyleColorGradient) {
-      return _DotsDecoratedBoxClipperSelector(
-        squircleClip: squircleClip,
-        borderRadius: borderRadius,
-        child: DecoratedBox(
-          decoration: decoration.copyWith(
-            borderRadius: BorderRadius.zero,
+      return DecoratedBox(
+        decoration: ShapeDecoration(
+            shape: decoration.shape,
+            color: decoration.color,
+            image: decoration.image,
+            shadows: decoration.shadows,
             gradient: LinearGradient(
               colors: [styleType.startColor, styleType.endColor],
               begin: styleType.beginAlignment,
               end: styleType.endAlignment,
-            ),
-          ),
-          child: child,
-        ),
+            )),
+        child: child,
       );
     }
 
     if (styleType is DotsStyleBlur) {
-      return _DotsDecoratedBoxClipperSelector(
-        squircleClip: squircleClip,
-        borderRadius: borderRadius,
+      return _DotsDecoratedBoxClipper(
+        shape: decoration.shape,
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: styleType.blur, sigmaY: styleType.blur),
           child: child,
         ),
+      );
+    }
+    if (styleType is DotsStyleShadow) {
+      return DecoratedBox(
+        decoration: ShapeDecoration(
+          shape: decoration.shape,
+          color: decoration.color,
+          image: decoration.image,
+          shadows: [
+            BoxShadow(
+              color: styleType.color,
+              blurRadius: styleType.blurRadius,
+              offset: styleType.offset,
+              spreadRadius: styleType.spreadRadius,
+              blurStyle: styleType.blurStyle,
+            ),
+          ],
+        ),
+        child: child,
       );
     }
     return DecoratedBox(
@@ -91,28 +107,21 @@ class DotsDecoratedBox extends StatelessWidget {
   }
 }
 
-class _DotsDecoratedBoxClipperSelector extends StatelessWidget {
-  const _DotsDecoratedBoxClipperSelector({
-    required this.squircleClip,
-    required this.borderRadius,
+class _DotsDecoratedBoxClipper extends StatelessWidget {
+  const _DotsDecoratedBoxClipper({
+    required this.shape,
     required this.child,
   });
 
-  final bool squircleClip;
-  final BorderRadiusGeometry borderRadius;
+  final ShapeBorder shape;
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    if (squircleClip) {
-      return DotsSquircleClipper(
-        borderRadius: borderRadius,
-        child: child,
-      );
-    } else {
-      return ClipRRect(
-        borderRadius: borderRadius,
-        child: child,
-      );
-    }
+    return ClipPath(
+      clipper: ShapeBorderClipper(
+        shape: shape,
+      ),
+      child: child,
+    );
   }
 }
