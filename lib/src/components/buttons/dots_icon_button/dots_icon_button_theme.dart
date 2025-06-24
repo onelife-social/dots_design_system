@@ -32,5 +32,10 @@ DotsIconButtonTheme getIconButtonThemeByVariant(DotsTheme theme, DotsIconButtonV
       return DotsIconButtonTheme(
         foregroundColor: theme.colors.textPrimary,
       );
+    case DotsIconButtonVariant.photoDisable:
+      return DotsIconButtonTheme(
+        backgroundColor: theme.colors.bgContainerTertiary,
+        foregroundColor: theme.colors.labelAlwaysWhite,
+      );
   }
 }
