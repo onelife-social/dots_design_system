@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:dots_design_system/dots_design_system.dart';
-import 'package:dots_design_system/extensions/media_query_data_extensions.dart';
 import 'package:dots_design_system/values/constants.dart';
 import 'dart:ui';
 
@@ -93,7 +92,6 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    final aspectRatio = MediaQuery.of(context).aspectRatio;
 
     final content = TopBarContent(
       bigStatusBar: _bigStatusBar,
@@ -102,7 +100,6 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
       imgProfile: imgProfile,
       rightIcon: rightIcon,
       secondRightIcon: secondRightIcon,
-      aspectRatio: aspectRatio,
       child: child,
     );
 
@@ -166,7 +163,6 @@ class TopBarContent extends StatelessWidget {
   final Widget? imgProfile;
   final Widget? rightIcon;
   final Widget? secondRightIcon;
-  final double aspectRatio;
 
   const TopBarContent({
     Key? key,
@@ -177,7 +173,6 @@ class TopBarContent extends StatelessWidget {
     this.imgProfile,
     this.rightIcon,
     this.secondRightIcon,
-    required this.aspectRatio,
   }) : super(key: key);
 
   @override
