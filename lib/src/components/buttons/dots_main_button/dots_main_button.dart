@@ -1,5 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
-import 'package:dots_design_system/src/theme/blur/bg_blur_component.dart';
+import 'package:dots_design_system/src/components/common/dots_shader_mask.dart';
 import 'package:flutter/material.dart';
 
 import 'dots_main_button_theme.dart';
@@ -60,12 +60,12 @@ class DotsMainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     final buttonTheme = getButtonThemeByButtonVariant(
-      theme,
-      enabled ? variant : DotsMainButtonVariant.disabled,
-    );
+        theme, enabled ? variant : DotsMainButtonVariant.disabled, size);
     final borderRadius = BorderRadius.circular(size.height);
 
-    final button = Material(
+    final foregroundColor =
+        buttonTheme.foregroundGradient == null ? buttonTheme.foregroundColor : Colors.white;
+    Widget button = Material(
       color: buttonTheme.backgroundColor ?? Colors.transparent,
       borderRadius: borderRadius,
       child: InkWell(
@@ -75,49 +75,73 @@ class DotsMainButton extends StatelessWidget {
           decoration: BoxDecoration(borderRadius: borderRadius),
           height: size.height,
           padding: size.padding,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: size.spacing,
-            mainAxisSize: expand ? MainAxisSize.max : MainAxisSize.min,
-            children: [
-              if (icon != null)
-                DotsIcon(
-                  iconData: icon ?? DotsIconData.values.first,
-                  size: iconSize,
-                  color: buttonTheme.foregroundColor,
-                ),
-              Flexible(
-                child: Text(
-                  content,
-                  overflow: TextOverflow.ellipsis,
-                  style: size.getTextStyle(theme).copyWith(
-                        color: buttonTheme.foregroundColor,
-                      ),
-                ),
-              ),
-              if (details != null &&
-                  (size == DotsMainButtonSize.mainAction || size == DotsMainButtonSize.large))
+          child: DotsShaderMask(
+            styleType: buttonTheme.foregroundGradient,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: size.spacing,
+              mainAxisSize: expand ? MainAxisSize.max : MainAxisSize.min,
+              children: [
+                if (icon != null)
+                  DotsIcon(
+                    iconData: icon ?? DotsIconData.values.first,
+                    size: iconSize,
+                    color: foregroundColor,
+                  ),
                 Flexible(
                   child: Text(
-                    details ?? '',
+                    content,
                     overflow: TextOverflow.ellipsis,
-                    style: theme.typo.main.bodyDefaultMedium.copyWith(
-                      color: buttonTheme.foregroundSecondaryColor,
-                    ),
+                    style: size.getTextStyle(theme).copyWith(
+                          color: foregroundColor,
+                        ),
                   ),
                 ),
-            ],
+                if (details != null &&
+                    (size == DotsMainButtonSize.mainAction || size == DotsMainButtonSize.large))
+                  Flexible(
+                    child: Text(
+                      details ?? '',
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.typo.main.bodyDefaultMedium.copyWith(
+                        color: buttonTheme.foregroundSecondaryColor ?? foregroundColor,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
     );
-    if (buttonTheme.blur) {
-      return BgBlurComponent(
-        borderRadius: borderRadius,
+    if (buttonTheme.backgroundGradient != null) {
+      button = DotsDecoratedBox(
+        styleType: buttonTheme.backgroundGradient,
+        decoration: BoxDecoration(
+          borderRadius: borderRadius,
+        ),
         child: button,
       );
-    } else {
-      return button;
     }
+    if (buttonTheme.blur) {
+      button = DotsDecoratedBox(
+        styleType: theme.styles.bgBlur,
+        decoration: BoxDecoration(
+          borderRadius: borderRadius,
+        ),
+        child: button,
+      );
+    }
+    if (buttonTheme.shadow) {
+      button = DotsDecoratedBox(
+        styleType: theme.styles.defaultShadow,
+        decoration: BoxDecoration(
+          borderRadius: borderRadius,
+        ),
+        child: button,
+      );
+    }
+
+    return button;
   }
 }

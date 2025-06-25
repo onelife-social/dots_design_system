@@ -55,6 +55,7 @@ enum DotsMainButtonVariant {
   destructive,
   disabled,
   ghost,
+  premiumPlus,
   premium;
 
   bool get isMain => this == DotsMainButtonVariant.main;
@@ -65,4 +66,5 @@ enum DotsMainButtonVariant {
   bool get isDisabled => this == DotsMainButtonVariant.disabled;
   bool get isGhost => this == DotsMainButtonVariant.ghost;
   bool get isPremium => this == DotsMainButtonVariant.premium;
+  bool get isPremiumPlus => this == DotsMainButtonVariant.premiumPlus;
 }
