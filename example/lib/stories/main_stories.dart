@@ -349,6 +349,24 @@ List<Story> get allStories => [
         ),
       ),
       Story(
+        name: 'Tag',
+        description: 'Demo page for tag',
+        builder: (context) => DotsTag(
+          content: context.knobs.text(label: 'Content', initial: 'Tag text'),
+          size: context.knobs.options<DotsTagSize>(
+              label: 'Size',
+              initial: DotsTagSize.medium,
+              options:
+                  DotsTagSize.values.map((item) => Option(label: item.name, value: item)).toList()),
+          variant: context.knobs.options<DotsTagVariant>(
+              label: 'Variant',
+              initial: DotsTagVariant.main,
+              options: DotsTagVariant.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList()),
+        ),
+      ),
+      Story(
         name: 'Empty State Card',
         description: 'Demo page for Empty State Card',
         builder: (context) => EmptyStateCardDemo(
