@@ -353,5 +353,33 @@ List<Story> get allStories => [
           ),
         ),
       ),
+      Story(
+        name: 'PlanSelector',
+        description: 'Demo page for PlanSelector',
+        builder: (context) => Container(
+          width: 130,
+          height: 1000,
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              DotsPlanSelector(
+                title: context.knobs.text(label: 'Title', initial: 'Premium'),
+                description: context.knobs.nullable
+                    .text(label: 'Description', initial: 'Enjoy premium features!'),
+                variant: context.knobs.options<DotsPlanSelectorVariant>(
+                  label: 'Variant',
+                  initial: DotsPlanSelectorVariant.premium,
+                  options: DotsPlanSelectorVariant.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList(),
+                ),
+                selected: context.knobs.boolean(label: 'Selected', initial: false),
+                onTap: context.knobs.boolean(label: 'Has onTap', initial: true) ? () {} : null,
+              ),
+            ],
+          ),
+        ),
+      ),
       ...toastStories
     ];
