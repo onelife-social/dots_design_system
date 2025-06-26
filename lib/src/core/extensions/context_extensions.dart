@@ -15,7 +15,7 @@ extension ContextExtensions on BuildContext {
   double get screenHeight => MediaQuery.of(this).size.height;
 
   T getByRatio<T>(T big, T small) {
-    if (MediaQuery.of(this).aspectRatio < kBigRatio) {
+    if (MediaQuery.of(this).aspectRatio <= kBigRatio) {
       return small;
     } else {
       return big;
