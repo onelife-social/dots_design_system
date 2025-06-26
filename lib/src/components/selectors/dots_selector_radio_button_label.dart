@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 class DotsSelectorRadioButtonLabel extends StatelessWidget {
   final bool isSelected;
   final String title;
+  final String tagText;
 
   final String details1;
   final String details2;
+  final bool free;
   final Function()? onTap;
 
   const DotsSelectorRadioButtonLabel({
@@ -15,6 +17,8 @@ class DotsSelectorRadioButtonLabel extends StatelessWidget {
     required this.title,
     required this.details1,
     required this.details2,
+    required this.tagText,
+    required this.free,
     this.onTap,
   });
 
@@ -52,10 +56,9 @@ class DotsSelectorRadioButtonLabel extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 spacing: 8,
                 children: [
-                  Container(
-                    color: Colors.red,
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    child: Text('Gratis'),
+                  DotsTag(
+                    content: tagText,
+                    variant: free ? DotsTagVariant.main : DotsTagVariant.premiumPlus,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
