@@ -37,6 +37,12 @@ class DotsStyles {
       beginAlignment: Alignment(0.01, 0.51),
       endAlignment: Alignment(0.69, 0.51),
     ),
+    textBasic: DotsStyleColorGradient(
+      startColor: Color(0xFFA6C9E0),
+      endColor: Color(0xFF7AA8CE),
+      beginAlignment: Alignment(0.01, 0.51),
+      endAlignment: Alignment(0.69, 0.51),
+    ),
     bgBlur: DotsStyleBlur(
       blur: 50,
     ),
@@ -87,6 +93,12 @@ class DotsStyles {
       endAlignment: Alignment(0.60, 0.50),
     ),
     bgBasic: DotsStyleColorGradient(
+      startColor: Color(0xFF8CB4CF),
+      endColor: Color(0xFF508DBE),
+      beginAlignment: Alignment(0.01, 0.51),
+      endAlignment: Alignment(0.69, 0.51),
+    ),
+    textBasic: DotsStyleColorGradient(
       startColor: Color(0xFF8CB4CF),
       endColor: Color(0xFF508DBE),
       beginAlignment: Alignment(0.01, 0.51),
