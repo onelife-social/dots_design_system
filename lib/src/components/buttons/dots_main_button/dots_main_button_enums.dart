@@ -50,6 +50,7 @@ enum DotsMainButtonSize {
 enum DotsMainButtonVariant {
   main,
   secondary,
+  secondaryPremium,
   secondaryLight,
   secondaryDark,
   destructive,
