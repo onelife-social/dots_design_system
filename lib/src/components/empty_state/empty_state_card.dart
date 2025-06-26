@@ -1,5 +1,4 @@
 import 'package:dots_design_system/dots_design_system.dart';
-import 'package:dots_design_system/extensions/media_query_data_extensions.dart';
 import 'package:flutter/material.dart';
 
 class DotsEmptyStateCard extends StatelessWidget {
@@ -26,14 +25,10 @@ class DotsEmptyStateCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    final screenWidth = MediaQuery.of(context).size.width;
-    final aspectRatio = MediaQuery.of(context).aspectRatio;
 
     return Container(
-      width: aspectRatio > 16
-        ? screenWidth * 0.8205
-        : screenWidth * 0.9,
-      padding: EdgeInsets.symmetric(horizontal: aspectRatio > 16 ? 20 : 12),
+      width: context.screenWidth * context.getByRatio(0.8205, 0.9),
+      padding: EdgeInsets.symmetric(horizontal: context.getByRatio(20, 12)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -44,7 +39,7 @@ class DotsEmptyStateCard extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal: aspectRatio > 16 ? 20 : 12),
+            padding: EdgeInsets.symmetric(horizontal: context.getByRatio(20, 12)),
             child: Text(
               title,
               style: theme.typo.secondary.title02H6.copyWith(
@@ -63,7 +58,7 @@ class DotsEmptyStateCard extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           if (button != null) ...[
-            SizedBox(height: aspectRatio > 16 ? 16 : 10),
+            SizedBox(height: context.getByRatio(16, 10)),
             button!,
           ],
         ],

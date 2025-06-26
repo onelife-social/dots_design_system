@@ -38,6 +38,12 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
         foregroundSecondaryColor: theme.colors.textSecondary.dotsWithOpacity(0.6),
         blur: true,
       );
+    case DotsMainButtonVariant.secondaryPremium:
+      return DotsMainButtonTheme(
+        backgroundColor: theme.colors.bgSecondaryBtn,
+        foregroundGradient: theme.styles.textPremiumPlus,
+        blur: true,
+      );
     case DotsMainButtonVariant.secondaryLight:
       return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgFloatingBtn,

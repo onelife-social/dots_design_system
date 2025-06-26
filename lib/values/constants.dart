@@ -1,3 +1,7 @@
-// General
-const kNormalHeight = 50.0;
-const kBigHeight = 106.0;
+import 'package:dots_design_system/dots_design_system.dart' as ds;
+
+@Deprecated('Use kTopBarNormalHeight on dots_design_system')
+const kNormalHeight = ds.kTopBarNormalHeight;
+
+@Deprecated('Use kTopBarBigHeight on dots_design_system')
+const kBigHeight = ds.kTopBarBigHeight;
