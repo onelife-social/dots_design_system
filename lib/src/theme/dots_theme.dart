@@ -10,17 +10,6 @@ ThemeData dotsThemeDataDark = ThemeData(
   ],
 );
 
-extension DotsThemeOnContext on BuildContext {
-  DotsTheme get dotsTheme {
-    final theme = Theme.of(this).extension<DotsTheme>();
-
-    if (theme == null) {
-      throw Exception('No Dots theme on context');
-    }
-    return theme;
-  }
-}
-
 class DotsTheme extends ThemeExtension<DotsTheme> {
   final DotsColorsModel colors;
   final DotsStylesModel styles;

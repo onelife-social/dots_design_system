@@ -40,18 +40,18 @@ class DotsPlanSelector extends StatelessWidget {
     final textColor = selected ? theme.colors.labelAlwaysWhite : theme.colors.textPrimary;
     return Material(
       color: theme.colors.bgContainerSecondaryOnBackground,
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: DotsBorderRadius.r16,
       child: Ink(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          image: selected ? DecorationImage(image: AssetImage(imagePath)) : null,
+          borderRadius: DotsBorderRadius.r16,
+          image: selected ? DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover) : null,
         ),
         child: InkWell(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: DotsBorderRadius.r16,
           onTap: onTap,
           child: Container(
-            width: 114,
-            height: 80,
+            width: double.infinity,
+            height: context.screenHeight * context.getByRatio(0.095, 0.111),
             padding: const EdgeInsets.all(4),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

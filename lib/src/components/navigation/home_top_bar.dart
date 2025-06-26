@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dots_design_system/dots_design_system.dart';
-import 'package:dots_design_system/values/constants.dart';
 import 'dart:ui';
 
 class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
-
   /// Title of the top bar.
   ///
   /// If not provided, the top bar will not display a title.
@@ -61,8 +59,7 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.rightIcon,
     this.secondRightIcon,
     this.children,
-  })  : 
-        child = null,
+  })  : child = null,
         showGradient = false,
         _bigStatusBar = true;
 
@@ -72,8 +69,7 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.showGradient = false,
     this.backgroundBlur = false,
     this.child,
-  })  : 
-        children = null,
+  })  : children = null,
         title = null,
         imgProfile = null,
         rightIcon = null,
@@ -131,20 +127,20 @@ class DotsHomeTopBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                   )
                 : Positioned.fill(
-                      child: backgroundBlur
+                    child: backgroundBlur
                         ? BackdropFilter(
                             filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-                          child: Container(
-                            color: theme.colors.bgContainerPrimary,
+                            child: Container(
+                              color: theme.colors.bgContainerPrimary,
+                            ),
+                          )
+                        : Container(
+                            color: Colors.transparent,
                           ),
-                        )
-                      : Container(
-                          color: Colors.transparent,
-                        ),
                   ),
             Column(
               children: [
-                  content,
+                content,
                 if (children != null) ...children!,
               ],
             ),
@@ -165,7 +161,7 @@ class TopBarContent extends StatelessWidget {
   final Widget? secondRightIcon;
 
   const TopBarContent({
-    Key? key,
+    super.key,
     required this.bigStatusBar,
     required this.preferredSize,
     this.title,
@@ -173,7 +169,7 @@ class TopBarContent extends StatelessWidget {
     this.imgProfile,
     this.rightIcon,
     this.secondRightIcon,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
