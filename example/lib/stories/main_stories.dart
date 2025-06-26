@@ -365,8 +365,8 @@ List<Story> get allStories => [
             children: [
               DotsPlanSelector(
                 title: context.knobs.text(label: 'Title', initial: 'Premium'),
-                description:
-                    context.knobs.text(label: 'Description', initial: 'Enjoy premium features!'),
+                description: context.knobs.nullable
+                    .text(label: 'Description', initial: 'Enjoy premium features!'),
                 variant: context.knobs.options<DotsPlanSelectorVariant>(
                   label: 'Variant',
                   initial: DotsPlanSelectorVariant.premium,

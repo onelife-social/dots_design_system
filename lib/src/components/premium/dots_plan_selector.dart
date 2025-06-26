@@ -12,13 +12,13 @@ class DotsPlanSelector extends StatelessWidget {
   const DotsPlanSelector({
     super.key,
     required this.title,
-    required this.description,
+    this.description,
     required this.variant,
     required this.selected,
     this.onTap,
   });
   final String title;
-  final String description;
+  final String? description;
   final DotsPlanSelectorVariant variant;
   final bool selected;
   final Function()? onTap;
@@ -62,11 +62,12 @@ class DotsPlanSelector extends StatelessWidget {
                   style: theme.typo.main.bodyLargeBold.copyWith(color: textColor),
                   textAlign: TextAlign.center,
                 ),
-                Text(
-                  description,
-                  style: theme.typo.main.labelSmallRegular.copyWith(color: textColor),
-                  textAlign: TextAlign.center,
-                )
+                if (description?.isNotEmpty ?? false)
+                  Text(
+                    description ?? '',
+                    style: theme.typo.main.labelSmallRegular.copyWith(color: textColor),
+                    textAlign: TextAlign.center,
+                  )
               ],
             ),
           ),
