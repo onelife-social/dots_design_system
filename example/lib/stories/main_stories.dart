@@ -3,6 +3,7 @@ import 'package:example/components/carrousel_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
 import 'package:example/components/memory_card_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
+import 'package:example/components/empty_state_card_demo.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:example/stories/stories_by_folder/toast_stories.dart';
@@ -344,6 +345,28 @@ List<Story> get allStories => [
             onTap: () {},
           ),
         ),
+      ),
+      Story(
+        name: 'Empty State Card',
+        description: 'Demo page for Empty State Card',
+        builder: (context) =>
+          EmptyStateCardDemo(
+            imageProvider: NetworkImage(
+              context.knobs.text(
+                label: 'Container background image',
+                initial: 'https://picsum.photos/250?image=9',
+              ),
+            ),
+            title: context.knobs.text(label: 'Title', initial: '¿Quieres guardar la historia de tu familia?'),
+            description: context.knobs.text(label: 'Description', initial: 'Desde las risas en la cocina hasta la foto que siempre se repite en Navidad...'),
+            button: DotsMainButton(
+              size: DotsMainButtonSize.medium,
+              variant: DotsMainButtonVariant.main,
+              expand: false,
+              content: context.knobs.text(label: 'Button Text', initial: 'Crear álbum'),
+              onTap: () {},
+            ),
+          ),
       ),
       Story(
         name: 'PlanSelector',

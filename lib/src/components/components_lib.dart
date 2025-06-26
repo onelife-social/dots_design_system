@@ -14,4 +14,5 @@ export 'carrousels/carrousel_lib.dart';
 export 'models/models_lib.dart';
 export 'common/common_lib.dart';
 export 'toast/toast_lib.dart';
+export 'empty_state/empty_state_card.dart';
 export 'premium/premium_lib.dart';
