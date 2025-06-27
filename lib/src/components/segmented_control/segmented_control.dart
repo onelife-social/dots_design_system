@@ -17,7 +17,7 @@ class SegmentedControl extends StatelessWidget {
   final String leftOptionName;
   final String rightOptionName;
   final SegmentedControlOption selectedOption;
-
+  final Color? selectedColor;
   final void Function(SegmentedControlOption optionTaped) onTapOption;
 
   const SegmentedControl({
@@ -25,6 +25,7 @@ class SegmentedControl extends StatelessWidget {
     required this.leftOptionName,
     required this.rightOptionName,
     required this.selectedOption,
+    this.selectedColor,
     required this.onTapOption,
   });
 
@@ -45,6 +46,7 @@ class SegmentedControl extends StatelessWidget {
               padding: _itemPadding,
               child: _SelectedSegment(
                 optionName: selectedOptionName,
+                selectedColor: selectedColor,
                 onTap: () => onTapOption(selectedOption),
               ),
             ))
@@ -132,9 +134,10 @@ class _BackSegmented extends StatelessWidget {
 }
 
 class _SelectedSegment extends StatelessWidget {
-  const _SelectedSegment({required this.optionName, required this.onTap});
+  const _SelectedSegment({required this.optionName, required this.selectedColor, required this.onTap,});
 
   final String optionName;
+  final Color? selectedColor;
   final Function() onTap;
 
   @override
@@ -147,7 +150,7 @@ class _SelectedSegment extends StatelessWidget {
         height: 28,
         padding: _textPadding,
         decoration: ShapeDecoration(
-          color: theme.colors.bgSecondaryBtn,
+          color: selectedColor ?? theme.colors.bgSecondaryBtn,
           shape: RoundedRectangleBorder(
             borderRadius: DotsBorderRadius.r1000,
           ),
