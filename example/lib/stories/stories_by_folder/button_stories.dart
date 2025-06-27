@@ -88,4 +88,35 @@ List<Story> get buttonStories => [
           ),
         ),
       ),
-    ];
+      Story(
+        name: 'Buttons/Close button',
+        description: 'Demo page for close button',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Center(
+            child: DotsCloseButton(
+              icon: context.knobs.options<DotsIconData>(
+                  label: 'Icon',
+                  initial: DotsIconData.cross,
+                  options: DotsIconData.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList()),
+              size: context.knobs.options<DotsCloseButtonSize>(
+                  label: 'Size',
+                  initial: DotsCloseButtonSize.medium,
+                  options: DotsCloseButtonSize.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList()),
+              variant: context.knobs.options<DotsCloseButtonVariant>(
+                  label: 'Variant',
+                  initial: DotsCloseButtonVariant.softContrast,
+                  options: DotsCloseButtonVariant.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList()),
+              onTap: () {},
+            ),
+          ),
+        ),
+      ),
+];
+
