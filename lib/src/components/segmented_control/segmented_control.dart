@@ -18,6 +18,7 @@ class SegmentedControl extends StatelessWidget {
   final String rightOptionName;
   final SegmentedControlOption selectedOption;
   final Color? selectedColor;
+  final Color? backgroundColor;
   final void Function(SegmentedControlOption optionTaped) onTapOption;
 
   const SegmentedControl({
@@ -26,6 +27,7 @@ class SegmentedControl extends StatelessWidget {
     required this.rightOptionName,
     required this.selectedOption,
     this.selectedColor,
+    this.backgroundColor,
     required this.onTapOption,
   });
 
@@ -37,6 +39,7 @@ class SegmentedControl extends StatelessWidget {
         _BackSegmented(
           leftOptionName: leftOptionName,
           rightOptionName: rightOptionName,
+          backgroundColor: backgroundColor,
           onTapOption: (SegmentedControlOption optionTaped) => onTapOption(optionTaped),
         ),
         Positioned(
@@ -65,12 +68,18 @@ class SegmentedControl extends StatelessWidget {
 }
 
 class _BackSegmented extends StatelessWidget {
-  const _BackSegmented(
-      {required this.leftOptionName, required this.rightOptionName, required this.onTapOption});
+  const _BackSegmented({
+    required this.leftOptionName,
+    required this.rightOptionName,
+    required this.backgroundColor,
+    required this.onTapOption,
+  });
 
   final String leftOptionName;
   final String rightOptionName;
+  final Color? backgroundColor;
   final Function(SegmentedControlOption optionTaped) onTapOption;
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -79,7 +88,7 @@ class _BackSegmented extends StatelessWidget {
         height: 36,
         padding: _itemPadding,
         decoration: ShapeDecoration(
-          color: theme.colors.bgContainerSecondaryOnBackground,
+          color: backgroundColor ?? theme.colors.bgContainerSecondaryOnBackground,
           shape: RoundedRectangleBorder(
             borderRadius: DotsBorderRadius.r1000,
           ),
@@ -134,7 +143,11 @@ class _BackSegmented extends StatelessWidget {
 }
 
 class _SelectedSegment extends StatelessWidget {
-  const _SelectedSegment({required this.optionName, required this.selectedColor, required this.onTap,});
+  const _SelectedSegment({
+    required this.optionName,
+    required this.selectedColor,
+    required this.onTap,
+  });
 
   final String optionName;
   final Color? selectedColor;
