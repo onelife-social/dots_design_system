@@ -59,7 +59,7 @@ class DotsColors {
     bgContainerSecondary: Color(0xE6282828),
     bgContainerSecondaryOnBackground: Color(0x33757575),
     bgContainerTertiary: Color(0xE6414141),
-    bgSecondaryBtn: Color(0x4D8C8C8C),
+    bgSecondaryBtn: Color(0x4DC8C8C8),
     bgFloatingBtn: Color(0x66C8C8C8),
     bgBtnImage: Color(0x99747474),
     bgBtnDisabled: Color(0x66C8C8C8),
