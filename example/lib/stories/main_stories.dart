@@ -368,5 +368,45 @@ List<Story> get allStories => [
             ),
           ),
       ),
+      Story(
+        name: 'DotsTextFields',
+        description: 'Demo page for DotsTextFields',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: DotsTextFields(
+            iconData: context.knobs.options<DotsIconData>(
+              label: 'Icon Data',
+              initial: DotsIconData.search,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+            hintText: context.knobs.text(label: 'Hint Text', initial: 'Enter text'),
+            onChanged: (value) {},
+            isError: context.knobs.boolean(label: 'Is Error', initial: false),
+            errorText: context.knobs.text(label: 'Error Text', initial: 'Error message'),
+            iconDataButton: context.knobs.options<DotsIconData>(
+              label: 'Close Button Icon',
+              initial: DotsIconData.cross,
+              options: DotsIconData.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
+            buttonVariant: context.knobs.options<DotsCloseButtonVariant>(
+              label: 'Close Button Variant',
+              initial: DotsCloseButtonVariant.inverted,        
+              options: DotsCloseButtonVariant.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
+            buttonSize: context.knobs.options<DotsCloseButtonSize>(
+              label: 'Close Button Size',
+              initial: DotsCloseButtonSize.extraSmall,
+              options: DotsCloseButtonSize.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
+          ),
+        ),
+      ),
       ...toastStories
     ];
