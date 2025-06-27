@@ -13,6 +13,7 @@ import 'package:example/stories/stories_by_folder/group_cards_stories.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:example/stories/helpers/color_knob_options.dart';
 
 List<Story> get allStories => [
       ...themeStories,
@@ -159,14 +160,18 @@ List<Story> get allStories => [
       Story(
         name: 'Segmented control bar',
         description: 'Demo page for Segmented control bar',
-        builder: (context) => Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SegmentedControlHandle(
-            key: ValueKey('SegmentedControlHandle'),
-            leftOptionName: context.knobs.text(label: 'Option 1', initial: 'Option 1'),
-            rightOptionName: context.knobs.text(label: 'Option 2', initial: 'Option 2'),
-          ),
-        ),
+        builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SegmentedControlHandle(
+              key: ValueKey('SegmentedControlHandle'),
+              leftOptionName: context.knobs.text(label: 'Option 1', initial: 'Option 1'),
+              rightOptionName: context.knobs.text(label: 'Option 2', initial: 'Option 2'),
+              selectedColor: knobColorSelector(context, 'Selected color'),
+              backgroundColor: knobColorSelector(context, 'Background color'),
+            ),
+          );
+        },
       ),
       Story(
         name: 'Profile photo',

@@ -3,11 +3,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class SegmentedControlHandle extends StatefulWidget {
-  const SegmentedControlHandle(
-      {super.key, required this.leftOptionName, required this.rightOptionName});
+  const SegmentedControlHandle({
+    super.key,
+    required this.leftOptionName,
+    required this.rightOptionName,
+    this.selectedColor,
+    this.backgroundColor,
+  });
 
   final String leftOptionName;
   final String rightOptionName;
+  final Color? selectedColor;
+  final Color? backgroundColor;
+
   @override
   State<SegmentedControlHandle> createState() => _SegmentedControlHandleState();
 }
@@ -21,6 +29,8 @@ class _SegmentedControlHandleState extends State<SegmentedControlHandle> {
         leftOptionName: widget.leftOptionName,
         rightOptionName: widget.rightOptionName,
         selectedOption: selectedOption,
+        selectedColor: widget.selectedColor,
+        backgroundColor: widget.backgroundColor,
         onTapOption: (option) {
           if (kDebugMode) {
             print('Selected option: $option');
