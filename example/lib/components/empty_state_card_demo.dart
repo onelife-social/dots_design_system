@@ -18,7 +18,6 @@ class EmptyStateCardDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
     return DotsEmptyStateCard(
       imageProvider: imageProvider,
       title: title,
