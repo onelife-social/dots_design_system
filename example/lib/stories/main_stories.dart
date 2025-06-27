@@ -393,10 +393,10 @@ List<Story> get allStories => [
               options:
                   DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
             ),
-            hintText: context.knobs.text(label: 'Hint Text', initial: 'Enter text'),
+            hintText: context.knobs.nullable.text(label: 'Hint Text', initial: 'Enter text') ?? 'Enter text',
             onChanged: (value) {},
             isError: context.knobs.boolean(label: 'Is Error', initial: false),
-            errorText: context.knobs.text(label: 'Error Text', initial: 'Error message'),
+            errorText: context.knobs.nullable.text(label: 'Error Text', initial: 'Error message'),
             iconDataButton: context.knobs.options<DotsIconData>(
               label: 'Close Button Icon',
               initial: DotsIconData.cross,

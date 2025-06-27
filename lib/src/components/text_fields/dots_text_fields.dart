@@ -67,7 +67,7 @@ class _DotsTextFieldsState extends State<DotsTextFields> {
             decoration: ShapeDecoration(
               color: theme.colors.bgContainerSecondary,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(1000),
+                borderRadius: DotsBorderRadius.r1000,
               ),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -92,14 +92,14 @@ class _DotsTextFieldsState extends State<DotsTextFields> {
                       border: InputBorder.none,
                       hintText: widget.hintText,
                       hintStyle: TextStyle(
-                        color: theme.colors.textTertiary,
+                        color: widget.isError ? theme.colors.labelDestructive : theme.colors.textTertiary,
                       ),
                       isDense: true,
                       contentPadding: EdgeInsets.zero,
                     ),
                     onChanged: (value) {
-                      setState(() {});
-                      if (widget.onChanged != null) widget.onChanged!(value);
+                      if (mounted) setState(() {});
+                      widget.onChanged?.call(value);
                     },
                   ),
                 ),
@@ -110,9 +110,11 @@ class _DotsTextFieldsState extends State<DotsTextFields> {
                     variant: widget.buttonVariant,
                     size: widget.buttonSize,
                     onTap: () {
-                      _controller.clear();
-                      setState(() {});
-                      if (widget.onChanged != null) widget.onChanged!('');
+                      if (mounted) {
+                        _controller.clear();
+                        setState(() {});
+                      }
+                      widget.onChanged?.call('');
                     },
                   ),
                 ],
