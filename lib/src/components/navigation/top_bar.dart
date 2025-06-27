@@ -1,6 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:dots_design_system/values/constants.dart';
 
 class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// Title of the top bar.
@@ -128,9 +127,9 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize {
     if (_bigStatusBar) {
-      return Size.fromHeight(kBigHeight);
+      return Size.fromHeight(kTopBarBigHeight);
     } else {
-      return Size.fromHeight(kNormalHeight);
+      return Size.fromHeight(kTopBarNormalHeight);
     }
   }
 

@@ -2,8 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 extension MediaQueryDataExtensions on MediaQueryData {
-  @Deprecated('Use aspect ratio on src')
   double get aspectRatio {
+    
     final FlutterView view = WidgetsBinding.instance.platformDispatcher.views.first;
     final Size realSize = view.display.size;
 
@@ -15,3 +15,4 @@ extension MediaQueryDataExtensions on MediaQueryData {
     return physicalAspectRatioHeight;
   }
 }
+  

@@ -8,6 +8,7 @@ class DotsStylesModel {
   final DotsStyleColorGradient textPremiumPlus;
   final DotsStyleColorGradient textPremium;
   final DotsStyleColorGradient bgBasic;
+  final DotsStyleColorGradient textBasic;
   final DotsStyleBlur bgBlur;
   final DotsStyleShadow floatingBtnShadow;
   final DotsStyleShadow toastShadow;
@@ -21,6 +22,7 @@ class DotsStylesModel {
     required this.textPremiumPlus,
     required this.textPremium,
     required this.bgBasic,
+    required this.textBasic,
     required this.bgBlur,
     required this.floatingBtnShadow,
     required this.toastShadow,
@@ -38,6 +40,7 @@ class DotsStylesModel {
       textPremiumPlus: textPremiumPlus.lerp(other.textPremiumPlus, t) ?? textPremiumPlus,
       textPremium: textPremium.lerp(other.textPremium, t) ?? textPremium,
       bgBasic: bgBasic.lerp(other.bgBasic, t) ?? bgBasic,
+      textBasic: textBasic.lerp(other.textBasic, t) ?? textBasic,
       bgBlur: bgBlur.lerp(other.bgBlur, t) ?? bgBlur,
       floatingBtnShadow: floatingBtnShadow.lerp(other.floatingBtnShadow, t) ?? floatingBtnShadow,
       toastShadow: toastShadow.lerp(other.toastShadow, t) ?? toastShadow,

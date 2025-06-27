@@ -5,6 +5,7 @@ import 'package:example/components/memory_card_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
 import 'package:example/components/empty_state_card_demo.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
+import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:example/stories/stories_by_folder/toast_stories.dart';
 import 'package:example/stories/stories_by_folder/top_bar_stories.dart';
@@ -18,6 +19,7 @@ List<Story> get allStories => [
       ...buttonStories,
       ...topBarStories,
       ...groupCards,
+      ...selectorRadioButtonStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
@@ -309,64 +311,75 @@ List<Story> get allStories => [
         ),
       ),
       Story(
-        name: 'DotsSelectorRadioButton',
-        description: 'Demo page for DotsSelectorRadioButton',
-        builder: (context) => Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: DotsSelectorRadioButton(
-            isSelected: context.knobs.boolean(label: 'Is Selected', initial: false),
-            title: context.knobs.text(label: 'Title', initial: 'Title'),
-            icon1: context.knobs.options<DotsIconData>(
-              label: 'Icon 1',
-              initial: DotsIconData.clockFilled,
+        name: 'Tag',
+        description: 'Demo page for tag',
+        builder: (context) => DotsTag(
+          content: context.knobs.text(label: 'Content', initial: 'Tag text'),
+          size: context.knobs.options<DotsTagSize>(
+              label: 'Size',
+              initial: DotsTagSize.medium,
               options:
-                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
-            ),
-            icon1Size: context.knobs.slider(
-              label: 'Icon 1 Size',
-              initial: 16,
-              min: 8,
-              max: 32,
-            ),
-            details1: context.knobs.text(label: 'Details 1', initial: 'Details 1'),
-            icon2: context.knobs.options<DotsIconData>(
-              label: 'Icon 2',
-              initial: DotsIconData.calendar,
-              options:
-                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
-            ),
-            icon2Size: context.knobs.slider(
-              label: 'Icon 2 Size',
-              initial: 16,
-              min: 8,
-              max: 32,
-            ),
-            details2: context.knobs.text(label: 'Details 2', initial: 'Details 2'),
-            onTap: () {},
-          ),
+                  DotsTagSize.values.map((item) => Option(label: item.name, value: item)).toList()),
+          variant: context.knobs.options<DotsTagVariant>(
+              label: 'Variant',
+              initial: DotsTagVariant.main,
+              options: DotsTagVariant.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList()),
         ),
       ),
       Story(
         name: 'Empty State Card',
         description: 'Demo page for Empty State Card',
-        builder: (context) => 
-          EmptyStateCardDemo(
-            imageProvider: NetworkImage(
-              context.knobs.text(
-                label: 'Container background image',
-                initial: 'https://picsum.photos/250?image=9',
-              ),
-            ),
-            title: context.knobs.text(label: 'Title', initial: '¿Quieres guardar la historia de tu familia?'),
-            description: context.knobs.text(label: 'Description', initial: 'Desde las risas en la cocina hasta la foto que siempre se repite en Navidad...'),
-            button: DotsMainButton(
-              size: DotsMainButtonSize.medium,
-              variant: DotsMainButtonVariant.main,
-              expand: false,
-              content: context.knobs.text(label: 'Button Text', initial: 'Crear álbum'),
-              onTap: () {},
+        builder: (context) => EmptyStateCardDemo(
+          imageProvider: NetworkImage(
+            context.knobs.text(
+              label: 'Container background image',
+              initial: 'https://picsum.photos/250?image=9',
             ),
           ),
+          title: context.knobs
+              .text(label: 'Title', initial: '¿Quieres guardar la historia de tu familia?'),
+          description: context.knobs.text(
+              label: 'Description',
+              initial:
+                  'Desde las risas en la cocina hasta la foto que siempre se repite en Navidad...'),
+          button: DotsMainButton(
+            size: DotsMainButtonSize.medium,
+            variant: DotsMainButtonVariant.main,
+            expand: false,
+            content: context.knobs.text(label: 'Button Text', initial: 'Crear álbum'),
+            onTap: () {},
+          ),
+        ),
+      ),
+      Story(
+        name: 'PlanSelector',
+        description: 'Demo page for PlanSelector',
+        builder: (context) => Container(
+          width: 130,
+          height: 1000,
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              DotsPlanSelector(
+                title: context.knobs.text(label: 'Title', initial: 'Premium'),
+                description: context.knobs.nullable
+                    .text(label: 'Description', initial: 'Enjoy premium features!'),
+                variant: context.knobs.options<DotsPlanSelectorVariant>(
+                  label: 'Variant',
+                  initial: DotsPlanSelectorVariant.premium,
+                  options: DotsPlanSelectorVariant.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList(),
+                ),
+                selected: context.knobs.boolean(label: 'Selected', initial: false),
+                onTap: context.knobs.boolean(label: 'Has onTap', initial: true) ? () {} : null,
+              ),
+            ],
+          ),
+        ),
       ),
       Story(
         name: 'DotsTextFields',
