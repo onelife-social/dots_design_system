@@ -44,15 +44,11 @@ class DotsMainContainer extends StatelessWidget {
   /// Whether to force the height of the container.
   final bool forceHeight;
 
-  /// The border radius of the container.
-  final double borderRadius;
-
   const DotsMainContainer({
     super.key,
     this.variant = DotsMainContainerVariant.main,
     this.width,
     this.height,
-    this.borderRadius = 32,
     this.padding = 16.0,
     this.radius,
     this.backgroundColor,
@@ -66,7 +62,7 @@ class DotsMainContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final double containerWidth = width ?? MediaQuery.sizeOf(context).width;
     final double containerHeight = height ?? MediaQuery.sizeOf(context).height;
-    final double containerRadius = radius ?? (containerHeight > 100 ? borderRadius : 24);
+    final double containerRadius = radius ?? (containerHeight > 100 ? 32 : 24);
     final Color containerBackgroundColor = backgroundColor ?? _getContainerBackgroundColor(context);
 
     Widget container = Container(
