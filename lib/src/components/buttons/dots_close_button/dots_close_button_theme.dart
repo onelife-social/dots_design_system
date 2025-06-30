@@ -15,8 +15,8 @@ DotsCloseButtonTheme getCloseButtonThemeByVariant(DotsTheme theme, DotsCloseButt
   switch (variant) {
     case DotsCloseButtonVariant.softContrast:
       return DotsCloseButtonTheme(
-        backgroundColor: theme.colors.bgContainerSecondaryOnBackground,
-        foregroundColor: theme.colors.textQuarternary,
+        backgroundColor: theme.colors.bgBtnDisabled,
+        foregroundColor: theme.colors.labelPrimary,
       );
     case DotsCloseButtonVariant.highContrast:
       return DotsCloseButtonTheme(
