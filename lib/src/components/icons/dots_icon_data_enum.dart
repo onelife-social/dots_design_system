@@ -67,6 +67,7 @@ enum DotsIconData {
   refresh('ic-refresh.svg', DotsIconGroup.arrow),
   sort('ic-sort.svg', DotsIconGroup.arrow),
   upload('ic-upload.svg', DotsIconGroup.arrow),
+  uploadCircle('ic-upload-circle.svg', DotsIconGroup.arrow),
 
   // Editing Tools
   add('ic-add.svg', DotsIconGroup.editingTools),
