@@ -48,6 +48,8 @@ const List<String> dotsColorNames = [
   'gradientFinalLinealGreen',
   'gradientInitialLinealPurple',
   'gradientFinalLinealPurple',
+  'gradientInitialPremiumHeader',
+  'gradientMiddlePremiumHeader',
   'transparent',
   'borderAlert',
   'borderLabel',
@@ -144,6 +146,10 @@ Color? _getDotsColorByName(dynamic themeColors, String? name) {
       return themeColors.gradientInitialLinealPurple;
     case 'gradientFinalLinealPurple':
       return themeColors.gradientFinalLinealPurple;
+    case 'gradientInitialPremiumHeader':
+      return themeColors.gradientInitialPremiumHeader;
+    case 'gradientMiddlePremiumHeader':
+      return themeColors.gradientMiddlePremiumHeader;
     case 'transparent':
       return themeColors.transparent;
     case 'borderAlert':
