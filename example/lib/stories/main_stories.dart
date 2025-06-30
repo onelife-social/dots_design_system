@@ -1,6 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/components/carrousel_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
+import 'package:example/components/dots_text_animations_demo_page.dart';
 import 'package:example/components/memory_card_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
 import 'package:example/components/empty_state_card_demo.dart';
@@ -398,20 +399,20 @@ List<Story> get allStories => [
               options:
                   DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
             ),
-            hintText: context.knobs.nullable.text(label: 'Hint Text', initial: 'Enter text') ?? 'Enter text',
+            hintText: context.knobs.nullable.text(label: 'Hint Text', initial: 'Enter text') ??
+                'Enter text',
             onChanged: (value) {},
             isError: context.knobs.boolean(label: 'Is Error', initial: false),
             errorText: context.knobs.nullable.text(label: 'Error Text', initial: 'Error message'),
             iconDataButton: context.knobs.options<DotsIconData>(
               label: 'Close Button Icon',
               initial: DotsIconData.cross,
-              options: DotsIconData.values
-                  .map((item) => Option(label: item.name, value: item))
-                  .toList(),
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
             ),
             buttonVariant: context.knobs.options<DotsCloseButtonVariant>(
               label: 'Close Button Variant',
-              initial: DotsCloseButtonVariant.inverted,        
+              initial: DotsCloseButtonVariant.inverted,
               options: DotsCloseButtonVariant.values
                   .map((item) => Option(label: item.name, value: item))
                   .toList(),
@@ -425,6 +426,19 @@ List<Story> get allStories => [
             ),
           ),
         ),
+      ),
+      Story(
+        name: 'Dots text animations',
+        description: 'Demo page for Dots text animations',
+        builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: DotsTextAnimationsDemoPage(
+              text: 'Texto de prueba',
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          );
+        },
       ),
       ...toastStories
     ];
