@@ -337,46 +337,45 @@ List<Story> get allStories => [
       Story(
         name: 'Empty State Card',
         description: 'Demo page for Empty State Card',
-        builder: (context) =>
-          EmptyStateCardDemo(
-            variant: context.knobs.options<DotsEmptyStateCardVariant>(
-              label: 'Variant',
-              initial: DotsEmptyStateCardVariant.image,
-              options: DotsEmptyStateCardVariant.values
-                  .map((item) => Option(label: item.name, value: item))
-                  .toList(),
+        builder: (context) => EmptyStateCardDemo(
+          variant: context.knobs.options<DotsEmptyStateCardVariant>(
+            label: 'Variant',
+            initial: DotsEmptyStateCardVariant.image,
+            options: DotsEmptyStateCardVariant.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          ),
+          icon: DotsIcon(
+            iconData: context.knobs.options<DotsIconData>(
+              label: 'Icon',
+              initial: DotsIconData.search,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
             ),
-            icon: DotsIcon(
-              iconData: context.knobs.options<DotsIconData>(
-                label: 'Icon',
-                initial: DotsIconData.search,
-                options: DotsIconData.values
-                    .map((item) => Option(label: item.name, value: item))
-                    .toList(),
-              ),
-              size: 48,
-            ),
-            imageProvider: context.knobs.nullable.text(
-              label: 'Image URL',
-              initial: 'https://picsum.photos/250?image=9',
-            ) != null
-                ? NetworkImage(context.knobs.nullable.text(
+            size: 48,
+          ),
+          imageProvider: context.knobs.nullable.text(
                     label: 'Image URL',
                     initial: 'https://picsum.photos/250?image=9',
-                  )!)
-                : null,
-            title: context.knobs.text(label: 'Title', initial: 'No data available'),
-            description: context.knobs.text(label: 'Description', initial: 'Please try again later'),
-            button: context.knobs.boolean(label: 'Show Button', initial: true)
-                ? DotsMainButton(
+                  ) !=
+                  null
+              ? NetworkImage(context.knobs.nullable.text(
+                  label: 'Image URL',
+                  initial: 'https://picsum.photos/250?image=9',
+                )!)
+              : null,
+          title: context.knobs.text(label: 'Title', initial: 'No data available'),
+          description: context.knobs.text(label: 'Description', initial: 'Please try again later'),
+          button: context.knobs.boolean(label: 'Show Button', initial: true)
+              ? DotsMainButton(
                   size: DotsMainButtonSize.medium,
                   variant: DotsMainButtonVariant.main,
                   expand: false,
                   content: context.knobs.text(label: 'Button Text', initial: 'Crear álbum'),
                   onTap: () {},
                 )
-                : null,
-          ),
+              : null,
+        ),
       ),
       Story(
         name: 'PlanSelector',
