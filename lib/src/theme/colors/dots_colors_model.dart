@@ -65,6 +65,8 @@ class DotsColorsModel {
   final Color gradientFinalLinealGreen;
   final Color gradientInitialLinealPurple;
   final Color gradientFinalLinealPurple;
+  final Color gradientInitialPremiumHeader;
+  final Color gradientMiddlePremiumHeader;
 
   //generics
   final Color transparent;
@@ -118,6 +120,8 @@ class DotsColorsModel {
     required this.gradientFinalLinealGreen,
     required this.gradientInitialLinealPurple,
     required this.gradientFinalLinealPurple,
+    required this.gradientInitialPremiumHeader,
+    required this.gradientMiddlePremiumHeader,
     required this.transparent,
     required this.borderAlert,
     required this.borderLabel,
@@ -186,6 +190,12 @@ class DotsColorsModel {
       gradientFinalLinealPurple:
           Color.lerp(gradientFinalLinealPurple, other?.gradientFinalLinealPurple, t) ??
               gradientFinalLinealPurple,
+      gradientInitialPremiumHeader:
+          Color.lerp(gradientInitialPremiumHeader, other?.gradientInitialPremiumHeader, t) ??
+              gradientInitialPremiumHeader,
+      gradientMiddlePremiumHeader:
+          Color.lerp(gradientMiddlePremiumHeader, other?.gradientMiddlePremiumHeader, t) ??
+              gradientMiddlePremiumHeader,
       transparent: Color.lerp(transparent, other?.transparent, t) ?? transparent,
       borderAlert: Color.lerp(borderAlert, other?.borderAlert, t) ?? borderAlert,
       borderLabel: Color.lerp(borderLabel, other?.borderLabel, t) ?? borderLabel,
