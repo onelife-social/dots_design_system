@@ -1,7 +1,16 @@
-import 'dart:ui';
-
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
+
+enum DotsActionSheetVariant {
+  /// Default variant used in the gallery tutorial
+  standard,
+
+  /// Variant used for search popups
+  search;
+
+  bool get isStandard => this == DotsActionSheetVariant.standard;
+  bool get isSearch => this == DotsActionSheetVariant.search;
+}
 
 enum DotsActionSheetButtonPositioning {
   /// Show both buttons side by side.
@@ -23,6 +32,11 @@ class DotsActionSheet extends StatelessWidget {
 
   /// A widget displayed at the top of the Action Sheet (e.g., an icon, image, or header).
   final Widget topWidget;
+
+  /// The variant of the Action Sheet.
+  ///
+  /// Defaults to [DotsActionSheetVariant.standard].
+  final DotsActionSheetVariant variant;
 
   /// An optional widget displayed at the bottom of the Action Sheet (e.g., extra content or footer).
   final Widget? bottomWidget;
@@ -83,10 +97,8 @@ class DotsActionSheet extends StatelessWidget {
     super.key,
     required this.title,
     required this.description,
-    this.primaryButton,
-    this.secondaryButton,
-    this.buttonPositioning = DotsActionSheetButtonPositioning.row,
     required this.topWidget,
+    this.variant = DotsActionSheetVariant.standard,
     this.bottomWidget,
     required this.onClose,
     this.bottomPosition = 56,
@@ -95,255 +107,54 @@ class DotsActionSheet extends StatelessWidget {
     this.stepProgress = 0,
     this.bigAspectRatio = true,
     this.scrollController,
+    this.primaryButton,
+    this.secondaryButton,
+    this.buttonPositioning = DotsActionSheetButtonPositioning.row,
     this.showBackdrop = true,
     this.backButtonShaderMask = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-
-    final double spacing = bigAspectRatio ? 20 : 16;
-
-    return Stack(
-      children: [
-        GestureDetector(
-          onTap: onClose,
-          child: (showBackdrop)
-              ? BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                  child: Container(
-                    color: Color(0xFF000000).dotsWithOpacity(0.3),
-                  ),
-                )
-              : null,
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: bottomPosition,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                maxHeight: maxHeight ?? MediaQuery.of(context).size.height * 0.8,
-              ),
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                clipBehavior: Clip.antiAlias,
-                decoration: ShapeDecoration(
-                  color: theme.colors.bgBaseContrast,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32),
-                  ),
-                ),
-                child: Stack(
-                  children: [
-                    SingleChildScrollView(
-                      controller: scrollController,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        spacing: spacing,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16),
-                            child: Container(
-                              width: 36,
-                              height: 4,
-                              decoration: ShapeDecoration(
-                                color: theme.colors.bgSecondaryBtn,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(2.50),
-                                ),
-                              ),
-                            ),
-                          ),
-                          topWidget,
-                          Container(
-                            width: double.infinity,
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              spacing: bigAspectRatio ? 22 : 16,
-                              children: [
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: Text(title,
-                                      textAlign: TextAlign.center,
-                                      style: bigAspectRatio
-                                          ? theme.typo.main.titleH6
-                                          : theme.typo.main.bodyLargeBold),
-                                ),
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: Text(description,
-                                      textAlign: TextAlign.center,
-                                      style: theme.typo.main.labelDefaultRegular),
-                                ),
-                              ],
-                            ),
-                          ),
-                          if (bottomWidget != null) bottomWidget!,
-                          if (stepProgress > 0) DotsProgressBar(percentage: stepProgress),
-                          SizedBox(
-                            height: _calculateButtonAreaHeight(
-                              buttonPositioning: buttonPositioning,
-                              primaryButton: primaryButton,
-                              secondaryButton: secondaryButton,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-        if (backButtonShaderMask) _BackdropFilterMask(bottomPosition: bottomPosition),
-        if (backButtonShaderMask) _LinearBlurMask(bottomPosition: bottomPosition),
-        if (primaryButton != null)
-          Positioned(
-            left: 16,
-            right: 16,
-            bottom: bottomPosition + 16,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: DotsActionSheetButtons(
-                buttonPositioning: buttonPositioning!,
-                primaryButton: primaryButton!,
-                secondaryButton: secondaryButton,
-              ),
-            ),
-          ),
-      ],
-    );
-  }
-}
-
-double _calculateButtonAreaHeight({
-  required DotsActionSheetButtonPositioning? buttonPositioning,
-  required Widget? primaryButton,
-  required Widget? secondaryButton,
-}) {
-  final double noButtons = 16;
-  final double oneButton = DotsMainButtonSize.mainAction.height + 16;
-  final double twoButtons = DotsMainButtonSize.mainAction.height * 2 + 32;
-
-  if (buttonPositioning == DotsActionSheetButtonPositioning.column) {
-    if (primaryButton != null && secondaryButton != null) {
-      return twoButtons;
-    } else if (primaryButton == null && secondaryButton == null) {
-      return noButtons;
-    } else {
-      return oneButton;
+    switch (variant) {
+      case DotsActionSheetVariant.standard:
+        return DotsActionSheetStandard(
+          title: title,
+          description: description,
+          topWidget: topWidget,
+          bottomWidget: bottomWidget,
+          onClose: onClose,
+          bottomPosition: bottomPosition,
+          horizontalPadding: horizontalPadding,
+          maxHeight: maxHeight,
+          stepProgress: stepProgress,
+          bigAspectRatio: bigAspectRatio,
+          scrollController: scrollController,
+          primaryButton: primaryButton,
+          secondaryButton: secondaryButton,
+          buttonPositioning: buttonPositioning ?? DotsActionSheetButtonPositioning.row,
+          showBackdrop: showBackdrop,
+          backButtonShaderMask: backButtonShaderMask,
+        );
+      case DotsActionSheetVariant.search:
+        return DotsActionSheetSearch(
+          title: title,
+          description: description,
+          topWidget: topWidget,
+          bottomWidget: bottomWidget,
+          onClose: onClose,
+          bottomPosition: bottomPosition,
+          horizontalPadding: horizontalPadding,
+          maxHeight: maxHeight,
+          stepProgress: stepProgress,
+          bigAspectRatio: bigAspectRatio,
+          scrollController: scrollController,
+          primaryButton: primaryButton,
+          secondaryButton: secondaryButton,
+          buttonPositioning: buttonPositioning ?? DotsActionSheetButtonPositioning.row,
+          showBackdrop: showBackdrop,
+          backButtonShaderMask: backButtonShaderMask,
+        );
     }
-  } else {
-    if (primaryButton != null) {
-      return oneButton;
-    } else {
-      return noButtons;
-    }
-  }
-}
-
-class DotsActionSheetButtons extends StatelessWidget {
-  final DotsActionSheetButtonPositioning buttonPositioning;
-  final Widget primaryButton;
-  final Widget? secondaryButton;
-
-  const DotsActionSheetButtons({
-    super.key,
-    required this.buttonPositioning,
-    required this.primaryButton,
-    this.secondaryButton,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return buttonPositioning == DotsActionSheetButtonPositioning.column
-        ? Column(
-            children: [
-              primaryButton,
-              if (secondaryButton != null) const SizedBox(height: 15),
-              if (secondaryButton != null) secondaryButton!,
-            ],
-          )
-        : secondaryButton != null
-            ? Row(
-                children: [
-                  Expanded(
-                    child: secondaryButton!,
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(child: primaryButton),
-                ],
-              )
-            : primaryButton;
-  }
-}
-
-class _LinearBlurMask extends StatelessWidget {
-  final double bottomPosition;
-
-  const _LinearBlurMask({required this.bottomPosition});
-
-  @override
-  Widget build(BuildContext context) {
-    final totalHeight = DotsMainButtonSize.mainAction.height + 26;
-    final theme = context.dotsTheme;
-
-    return Positioned(
-      left: 16,
-      right: 16,
-      bottom: bottomPosition,
-      child: ClipRRect(
-        borderRadius: DotsBorderRadius.bottom32,
-        child: SizedBox(
-          height: totalHeight,
-          child: CustomPaint(
-            size: Size(double.infinity, totalHeight),
-            painter: LinearBlurPainter(
-              topColor: theme.colors.gradientInitialLineal,
-              bottomColor: theme.colors.gradientFinalLineal,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _BackdropFilterMask extends StatelessWidget {
-  final double bottomPosition;
-
-  const _BackdropFilterMask({required this.bottomPosition});
-
-  @override
-  Widget build(BuildContext context) {
-    final totalHeight = DotsMainButtonSize.mainAction.height + 26;
-    return Positioned(
-      left: 16,
-      right: 16,
-      bottom: bottomPosition,
-      child: ClipRRect(
-        borderRadius: DotsBorderRadius.bottom32,
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 2, sigmaY: 12),
-          child: Container(
-            height: totalHeight / 2,
-            color: context.dotsTheme.colors.transparent,
-          ),
-        ),
-      ),
-    );
   }
 }
