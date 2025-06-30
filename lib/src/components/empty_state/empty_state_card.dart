@@ -1,10 +1,21 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class DotsEmptyStateCard extends StatelessWidget {
-  /// The image provider to display (NetworkImage, AssetImage, etc).
-  final ImageProvider imageProvider;
+enum DotsEmptyStateCardVariant { 
+  image, 
+  icon 
+}
 
+class DotsEmptyStateCard extends StatelessWidget {
+
+  /// The variant of the empty state card.
+  final DotsEmptyStateCardVariant variant;
+
+  /// The image provider to display (NetworkImage, AssetImage, etc).
+  final ImageProvider? imageProvider;
+
+  /// The icon data to display (if variant is [DotsEmptyStateCardVariant.icon]).
+  final DotsIcon? icon;
   /// Title of the empty state card.
   final String title;
 
@@ -16,7 +27,9 @@ class DotsEmptyStateCard extends StatelessWidget {
 
   const DotsEmptyStateCard({
     super.key,
-    required this.imageProvider,
+    required this.variant,
+    this.imageProvider,
+    this.icon,
     required this.title,
     required this.description,
     this.button,
@@ -34,10 +47,11 @@ class DotsEmptyStateCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image(
-            image: imageProvider,
-          ),
-          const SizedBox(height: 4),
+          if (variant == DotsEmptyStateCardVariant.image && imageProvider != null)
+            Image(image: imageProvider!)
+          else if (variant == DotsEmptyStateCardVariant.icon && icon != null)
+            icon!,
+          SizedBox(height: variant == DotsEmptyStateCardVariant.image ? 4 : 16),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: context.getByRatio(20, 12)),
             child: Text(

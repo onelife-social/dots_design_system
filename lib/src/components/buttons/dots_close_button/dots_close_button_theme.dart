@@ -23,6 +23,11 @@ DotsCloseButtonTheme getCloseButtonThemeByVariant(DotsTheme theme, DotsCloseButt
         backgroundColor: theme.colors.bgSecondaryBtn,
         foregroundColor: theme.colors.textTertiary,
       );
+    case DotsCloseButtonVariant.onBackground:
+      return DotsCloseButtonTheme(
+        backgroundColor: theme.colors.bgContainerSecondaryOnBackground,
+        foregroundColor: theme.colors.labelPrimary,
+      );
     case DotsCloseButtonVariant.inverted:
       return DotsCloseButtonTheme(
         backgroundColor: theme.colors.textQuarternary,

@@ -30,10 +30,12 @@ enum DotsCloseButtonSize {
 enum DotsCloseButtonVariant {
   softContrast,
   highContrast,
+  onBackground,
   inverted;
 
   bool get isSoftContrast => this == DotsCloseButtonVariant.softContrast;
   bool get isHighContrast => this == DotsCloseButtonVariant.highContrast;
+  bool get isOnBackground => this == DotsCloseButtonVariant.onBackground;
   bool get isInverted => this == DotsCloseButtonVariant.inverted;
 
 }
