@@ -2,7 +2,7 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 
-class DotsTextFields extends StatefulWidget {
+class DotsTextField extends StatefulWidget {
 
   /// The icon data for the TextField.
   final DotsIconData iconData;
@@ -28,7 +28,7 @@ class DotsTextFields extends StatefulWidget {
   /// Creates a DotsTextFields widget.
   final String? errorText;
 
-  DotsTextFields({
+  DotsTextField({
     super.key,
     required this.iconData,
     required this.hintText,
@@ -41,10 +41,10 @@ class DotsTextFields extends StatefulWidget {
   });
 
 @override
-  State<DotsTextFields> createState() => _DotsTextFieldsState();
+  State<DotsTextField> createState() => _DotsTextFieldState();
 }
 
-class _DotsTextFieldsState extends State<DotsTextFields> {
+class _DotsTextFieldState extends State<DotsTextField> {
   final TextEditingController _controller = TextEditingController();
 
   @override

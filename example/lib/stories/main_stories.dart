@@ -386,7 +386,7 @@ List<Story> get allStories => [
         description: 'Demo page for DotsTextFields',
         builder: (context) => Padding(
           padding: const EdgeInsets.all(16.0),
-          child: DotsTextFields(
+          child: DotsTextField(
             iconData: context.knobs.options<DotsIconData>(
               label: 'Icon Data',
               initial: DotsIconData.search,
