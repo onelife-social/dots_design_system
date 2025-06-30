@@ -57,4 +57,17 @@ List<Story> get selectorRadioButtonStories => [
           ),
         ),
       ),
+      Story(
+        name: 'Selector/Settings Item Radio btn',
+        description: 'Demo page for Settings Item Radio btn',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: DotsSettingItemRadioBtn(
+            isSelected: context.knobs.boolean(label: 'Is Selected?', initial: false),
+            leadingLabel: context.knobs.text(label: 'Label', initial: 'Label'),
+            trailingLabel: context.knobs.text(label: '0,00€ al mes', initial: '0,00€ al mes'),
+            onTap: () {},
+          ),
+        ),
+      ),
     ];
