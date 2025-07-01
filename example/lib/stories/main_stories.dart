@@ -4,6 +4,7 @@ import 'package:example/components/dots_menu_demo_page.dart';
 import 'package:example/components/memory_card_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
 import 'package:example/components/empty_state_card_demo.dart';
+import 'package:example/stories/stories_by_folder/action_sheet_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
@@ -21,6 +22,7 @@ List<Story> get allStories => [
       ...topBarStories,
       ...groupCards,
       ...selectorRadioButtonStories,
+      ...actionSheetStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
@@ -79,81 +81,6 @@ List<Story> get allStories => [
             initial: 110,
             min: 50,
             max: 300,
-          ),
-        ),
-      ),
-      Story(
-        name: 'Action Sheet',
-        description: 'Demo page for action sheet',
-        builder: (context) => DotsActionSheet(
-          title: context.knobs.text(label: 'title', initial: 'Title'),
-          description: context.knobs.text(label: 'description', initial: 'Description'),
-          primaryButton: context.knobs.boolean(label: 'Show primary button', initial: true)
-              ? DotsMainButton(
-                  content: context.knobs.text(label: 'Primary button text', initial: 'Primary'),
-                  details: context.knobs.nullable.text(
-                    label: 'Primary button details',
-                    initial: 'Details',
-                  ),
-                  enabled: context.knobs.boolean(label: 'Primary button enabled', initial: true),
-                  variant: DotsMainButtonVariant.main,
-                  size: DotsMainButtonSize.mainAction,
-                  onTap: () {},
-                )
-              : null,
-          secondaryButton: context.knobs.boolean(label: 'Show secondary button', initial: true)
-              ? DotsMainButton(
-                  content: context.knobs.text(label: 'Secondary button text', initial: 'Secondary'),
-                  details: context.knobs.nullable.text(
-                    label: 'Secondary button details',
-                    initial: 'Details',
-                  ),
-                  enabled: context.knobs.boolean(label: 'Secondary button enabled', initial: true),
-                  variant: DotsMainButtonVariant.secondary,
-                  size: DotsMainButtonSize.mainAction,
-                  onTap: () {},
-                )
-              : null,
-          buttonPositioning: context.knobs.options<DotsActionSheetButtonPositioning>(
-            label: 'Button positioning',
-            initial: DotsActionSheetButtonPositioning.row,
-            options: DotsActionSheetButtonPositioning.values
-                .map((item) => Option(label: item.name, value: item))
-                .toList(),
-          ),
-          topWidget: Container(
-            height: context.knobs.slider(
-              label: 'Top widget height',
-              initial: 100,
-              min: 0,
-              max: 500,
-            ),
-            color: context.dotsTheme.colors.bgContainerTertiary,
-          ),
-          onClose: () {},
-          bottomWidget: Container(
-            height: context.knobs.slider(
-              label: 'Bottom widget height',
-              initial: 100,
-              min: 0,
-              max: 800,
-            ),
-            color: context.dotsTheme.colors.bgContainerTertiary,
-          ),
-          stepProgress: context.knobs.slider(
-            label: 'Step progress',
-            initial: 0.5,
-            min: 0,
-            max: 1,
-          ),
-          bigAspectRatio: context.knobs.boolean(
-            label: 'Big aspect ratio',
-            initial: true,
-          ),
-          scrollController: ScrollController(),
-          backButtonShaderMask: context.knobs.boolean(
-            label: 'Back button shader mask',
-            initial: false,
           ),
         ),
       ),
@@ -336,46 +263,45 @@ List<Story> get allStories => [
       Story(
         name: 'Empty State Card',
         description: 'Demo page for Empty State Card',
-        builder: (context) =>
-          EmptyStateCardDemo(
-            variant: context.knobs.options<DotsEmptyStateCardVariant>(
-              label: 'Variant',
-              initial: DotsEmptyStateCardVariant.image,
-              options: DotsEmptyStateCardVariant.values
-                  .map((item) => Option(label: item.name, value: item))
-                  .toList(),
+        builder: (context) => EmptyStateCardDemo(
+          variant: context.knobs.options<DotsEmptyStateCardVariant>(
+            label: 'Variant',
+            initial: DotsEmptyStateCardVariant.image,
+            options: DotsEmptyStateCardVariant.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          ),
+          icon: DotsIcon(
+            iconData: context.knobs.options<DotsIconData>(
+              label: 'Icon',
+              initial: DotsIconData.search,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
             ),
-            icon: DotsIcon(
-              iconData: context.knobs.options<DotsIconData>(
-                label: 'Icon',
-                initial: DotsIconData.search,
-                options: DotsIconData.values
-                    .map((item) => Option(label: item.name, value: item))
-                    .toList(),
-              ),
-              size: 48,
-            ),
-            imageProvider: context.knobs.nullable.text(
-              label: 'Image URL',
-              initial: 'https://picsum.photos/250?image=9',
-            ) != null
-                ? NetworkImage(context.knobs.nullable.text(
+            size: 48,
+          ),
+          imageProvider: context.knobs.nullable.text(
                     label: 'Image URL',
                     initial: 'https://picsum.photos/250?image=9',
-                  )!)
-                : null,
-            title: context.knobs.text(label: 'Title', initial: 'No data available'),
-            description: context.knobs.text(label: 'Description', initial: 'Please try again later'),
-            button: context.knobs.boolean(label: 'Show Button', initial: true)
-                ? DotsMainButton(
+                  ) !=
+                  null
+              ? NetworkImage(context.knobs.nullable.text(
+                  label: 'Image URL',
+                  initial: 'https://picsum.photos/250?image=9',
+                )!)
+              : null,
+          title: context.knobs.text(label: 'Title', initial: 'No data available'),
+          description: context.knobs.text(label: 'Description', initial: 'Please try again later'),
+          button: context.knobs.boolean(label: 'Show Button', initial: true)
+              ? DotsMainButton(
                   size: DotsMainButtonSize.medium,
                   variant: DotsMainButtonVariant.main,
                   expand: false,
                   content: context.knobs.text(label: 'Button Text', initial: 'Crear álbum'),
                   onTap: () {},
                 )
-                : null,
-          ),
+              : null,
+        ),
       ),
       Story(
         name: 'PlanSelector',
@@ -417,20 +343,20 @@ List<Story> get allStories => [
               options:
                   DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
             ),
-            hintText: context.knobs.nullable.text(label: 'Hint Text', initial: 'Enter text') ?? 'Enter text',
+            hintText: context.knobs.nullable.text(label: 'Hint Text', initial: 'Enter text') ??
+                'Enter text',
             onChanged: (value) {},
             isError: context.knobs.boolean(label: 'Is Error', initial: false),
             errorText: context.knobs.nullable.text(label: 'Error Text', initial: 'Error message'),
             iconDataButton: context.knobs.options<DotsIconData>(
               label: 'Close Button Icon',
               initial: DotsIconData.cross,
-              options: DotsIconData.values
-                  .map((item) => Option(label: item.name, value: item))
-                  .toList(),
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
             ),
             buttonVariant: context.knobs.options<DotsCloseButtonVariant>(
               label: 'Close Button Variant',
-              initial: DotsCloseButtonVariant.inverted,        
+              initial: DotsCloseButtonVariant.inverted,
               options: DotsCloseButtonVariant.values
                   .map((item) => Option(label: item.name, value: item))
                   .toList(),

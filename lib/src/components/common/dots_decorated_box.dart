@@ -78,6 +78,7 @@ class DotsDecoratedBox extends StatelessWidget {
         shape: decoration.shape,
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: styleType.blur, sigmaY: styleType.blur),
+          blendMode: BlendMode.src,
           child: child,
         ),
       );
