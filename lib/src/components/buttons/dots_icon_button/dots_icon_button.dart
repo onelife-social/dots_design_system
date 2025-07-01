@@ -66,41 +66,40 @@ class DotsIconButton extends StatelessWidget {
         ? Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _IconButton(
-                icon: icon,
-                size: size,
-                buttonTheme: buttonTheme,
-                borderRadius: borderRadius,
-                onTap: onTap,
-                tag: tag,
-                color: color,
-              ),
-              if (label != null)
-                _Label(
-                  label: label,
-                  style: labelStyle ?? theme.typo.main.labelDefaultRegular,
-                )
+              ..._getChildren(buttonTheme, borderRadius, context),
             ],
           )
         : Row(
             spacing: 8,
             children: [
-              _IconButton(
-                icon: icon,
-                size: size,
-                buttonTheme: buttonTheme,
-                borderRadius: borderRadius,
-                onTap: onTap,
-                tag: tag,
-                color: color,
-              ),
-              if (label != null)
-                _Label(
-                  label: label,
-                  style: labelStyle ?? theme.typo.main.labelDefaultRegular,
-                )
+              ..._getChildren(buttonTheme, borderRadius, context),
             ],
           );
+  }
+
+  List<Widget> _getChildren(
+    DotsIconButtonTheme buttonTheme,
+    BorderRadius borderRadius,
+    BuildContext context,
+  ) {
+    final theme = context.dotsTheme;
+
+    return [
+      _IconButton(
+        icon: icon,
+        size: size,
+        buttonTheme: buttonTheme,
+        borderRadius: borderRadius,
+        onTap: onTap,
+        tag: tag,
+        color: color,
+      ),
+      if (label != null)
+        _Label(
+          label: label,
+          style: labelStyle ?? theme.typo.main.labelDefaultRegular,
+        )
+    ];
   }
 }
 
