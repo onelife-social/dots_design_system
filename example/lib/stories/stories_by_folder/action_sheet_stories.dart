@@ -86,6 +86,81 @@ List<Story> get actionSheetStories => [
         ),
       ),
       Story(
+        name: 'Action Sheet/DotsActionSheetSearch',
+        description: 'Demo page for action sheet search',
+        builder: (context) => DotsActionSheetSearch(
+          title: context.knobs.text(label: 'title', initial: 'Title'),
+          description: context.knobs.text(label: 'description', initial: 'Description'),
+          primaryButton: context.knobs.boolean(label: 'Show primary button', initial: true)
+              ? DotsMainButton(
+                  content: context.knobs.text(label: 'Primary button text', initial: 'Primary'),
+                  details: context.knobs.nullable.text(
+                    label: 'Primary button details',
+                    initial: 'Details',
+                  ),
+                  enabled: context.knobs.boolean(label: 'Primary button enabled', initial: true),
+                  variant: DotsMainButtonVariant.main,
+                  size: DotsMainButtonSize.mainAction,
+                  onTap: () {},
+                )
+              : null,
+          secondaryButton: context.knobs.boolean(label: 'Show secondary button', initial: true)
+              ? DotsMainButton(
+                  content: context.knobs.text(label: 'Secondary button text', initial: 'Secondary'),
+                  details: context.knobs.nullable.text(
+                    label: 'Secondary button details',
+                    initial: 'Details',
+                  ),
+                  enabled: context.knobs.boolean(label: 'Secondary button enabled', initial: true),
+                  variant: DotsMainButtonVariant.secondary,
+                  size: DotsMainButtonSize.mainAction,
+                  onTap: () {},
+                )
+              : null,
+          buttonPositioning: context.knobs.options<DotsActionSheetButtonPositioning>(
+            label: 'Button positioning',
+            initial: DotsActionSheetButtonPositioning.row,
+            options: DotsActionSheetButtonPositioning.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          ),
+          topWidget: Container(
+            height: context.knobs.slider(
+              label: 'Top widget height',
+              initial: 100,
+              min: 0,
+              max: 500,
+            ),
+            color: context.dotsTheme.colors.bgContainerTertiary,
+          ),
+          onClose: () {},
+          bottomWidget: Container(
+            height: context.knobs.slider(
+              label: 'Bottom widget height',
+              initial: 100,
+              min: 0,
+              max: 800,
+            ),
+            color: context.dotsTheme.colors.bgContainerTertiary,
+          ),
+          stepProgress: context.knobs.slider(
+            label: 'Step progress',
+            initial: 0.5,
+            min: 0,
+            max: 1,
+          ),
+          bigAspectRatio: context.knobs.boolean(
+            label: 'Big aspect ratio',
+            initial: true,
+          ),
+          scrollController: ScrollController(),
+          backButtonShaderMask: context.knobs.boolean(
+            label: 'Back button shader mask',
+            initial: false,
+          ),
+        ),
+      ),
+      Story(
         name: 'Action Sheet/Base',
         description: 'Demo page for action sheet',
         builder: (context) => DotsActionSheetBase(
