@@ -26,32 +26,35 @@ class DotsSettingItemRadioBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            DotsRadioButton(
-              isSelected: isSelected,
-              size: 22,
-            ),
-            const SizedBox(width: 12),
-            Text(
-              leadingLabel,
-              style: context.dotsTheme.typo.main.bodyDefaultBold,
-            ),
-            const Spacer(),
-            const SizedBox(width: 12),
-            if (trailingLabel != null)
-              Text(
-                trailingLabel!,
-                style: context.dotsTheme.typo.main.bodyDefaultMedium.copyWith(
-                  color: context.dotsTheme.colors.textTertiary,
-                  fontWeight: FontWeight.w500,
-                ),
+      child: Container(
+        color: Colors.transparent,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              DotsRadioButton(
+                isSelected: isSelected,
+                size: 22,
               ),
-          ],
+              const SizedBox(width: 12),
+              Text(
+                leadingLabel,
+                style: context.dotsTheme.typo.main.bodyDefaultBold,
+              ),
+              const Spacer(),
+              const SizedBox(width: 12),
+              if (trailingLabel != null)
+                Text(
+                  trailingLabel!,
+                  style: context.dotsTheme.typo.main.bodyDefaultMedium.copyWith(
+                    color: context.dotsTheme.colors.textTertiary,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );
