@@ -338,7 +338,7 @@ List<Story> get allStories => [
         builder: (context) => Padding(
           padding: const EdgeInsets.all(16.0),
           child: DotsTextField(
-            iconData: context.knobs.options<DotsIconData>(
+            iconData: context.knobs.nullable.options<DotsIconData>(
               label: 'Icon Data',
               initial: DotsIconData.search,
               options:

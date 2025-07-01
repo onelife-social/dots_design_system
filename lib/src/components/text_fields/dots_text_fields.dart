@@ -1,11 +1,11 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-
 class DotsTextField extends StatefulWidget {
-
   /// The icon data for the TextField.
-  final DotsIconData iconData;
+  ///
+  /// If null, no icon will be displayed.
+  final DotsIconData? iconData;
 
   /// The icon data for the close button.
   final DotsIconData iconDataButton;
@@ -28,19 +28,19 @@ class DotsTextField extends StatefulWidget {
   /// Creates a DotsTextFields widget.
   final String? errorText;
 
-  DotsTextField({
+  const DotsTextField({
     super.key,
-    required this.iconData,
-    required this.hintText,
-    required this.iconDataButton,
-    required this.buttonVariant,
-    required this.buttonSize,
+    this.iconData,
+    this.hintText = '',
+    this.iconDataButton = DotsIconData.cross,
+    this.buttonVariant = DotsCloseButtonVariant.inverted,
+    this.buttonSize = DotsCloseButtonSize.extraSmall,
     this.onChanged,
     this.isError = false,
     this.errorText,
   });
 
-@override
+  @override
   State<DotsTextField> createState() => _DotsTextFieldState();
 }
 
@@ -56,6 +56,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    final icon = widget.iconData;
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,26 +74,29 @@ class _DotsTextFieldState extends State<DotsTextField> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               children: [
-                DotsIcon(
-                  iconData: widget.iconData,
-                  color: widget.isError
-                      ? theme.colors.labelDestructive
-                      : theme.colors.textTertiary,
-                  size: 20,
-                ),
+                if (icon != null)
+                  DotsIcon(
+                    iconData: icon,
+                    color:
+                        widget.isError ? theme.colors.labelDestructive : theme.colors.textTertiary,
+                    size: 20,
+                  ),
                 const SizedBox(width: 6),
                 Expanded(
                   child: TextField(
                     controller: _controller,
                     style: theme.typo.main.bodyDefaultMedium.copyWith(
-                      color: widget.isError ? theme.colors.labelDestructive : theme.colors.textPrimary,
+                      color:
+                          widget.isError ? theme.colors.labelDestructive : theme.colors.textPrimary,
                     ),
                     cursorColor: theme.colors.labelHighlight,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: widget.hintText,
                       hintStyle: TextStyle(
-                        color: widget.isError ? theme.colors.labelDestructive : theme.colors.textTertiary,
+                        color: widget.isError
+                            ? theme.colors.labelDestructive
+                            : theme.colors.textTertiary,
                       ),
                       isDense: true,
                       contentPadding: EdgeInsets.zero,
