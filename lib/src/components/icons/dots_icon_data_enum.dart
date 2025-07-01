@@ -61,6 +61,7 @@ enum DotsIconData {
   chevronUp('ic-chevron-up.svg', DotsIconGroup.arrow),
   download('ic-download.svg', DotsIconGroup.arrow),
   downloadCircle('ic-download-circle.svg', DotsIconGroup.arrow),
+  downloadCircleCrossed('ic-download-circle-crossed.svg', DotsIconGroup.arrow),
   exitFullscreen('ic-exit-fullscreen.svg', DotsIconGroup.arrow),
   fullscreen('ic-fullscreen.svg', DotsIconGroup.arrow),
   redo('ic-redo.svg', DotsIconGroup.arrow),
@@ -131,6 +132,7 @@ enum DotsIconData {
   prime1('ic-prime-1.svg', DotsIconGroup.premium),
   prime2('ic-prime-2.svg', DotsIconGroup.premium),
   volumeOff('ic-volume--off.svg', DotsIconGroup.premium),
+  volume('ic-volume--off.svg', DotsIconGroup.premium),
 
   // Social
   chat('ic-chat.svg', DotsIconGroup.social),
