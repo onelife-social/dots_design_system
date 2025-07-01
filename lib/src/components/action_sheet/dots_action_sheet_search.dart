@@ -83,6 +83,7 @@ class DotsActionSheetSearch extends StatelessWidget {
                     _DotsActionSheetSearchHeader(title: title),
                     Expanded(
                       child: SingleChildScrollView(
+                        physics: const ClampingScrollPhysics(),
                         child: topWidget,
                       ),
                     ),
