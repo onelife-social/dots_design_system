@@ -14,7 +14,18 @@ class DotsListItem extends StatelessWidget {
     return Row(
       spacing: 12,
       children: [
-        icon,
+        Container(
+          decoration: BoxDecoration(
+            color: theme.colors.bgBaseContrast,
+            borderRadius: DotsBorderRadius.r12,
+          ),
+          width: 40,
+          height: 40,
+          child: ClipRRect(
+            borderRadius: DotsBorderRadius.r12,
+            child: icon,
+          ),
+        ),
         Expanded(child: Text(text, style: theme.typo.main.bodyLargeBold)),
       ],
     );

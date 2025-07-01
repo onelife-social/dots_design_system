@@ -24,7 +24,7 @@ class DotsActionSheetStandard extends StatelessWidget {
   const DotsActionSheetStandard({
     super.key,
     required this.title,
-    required this.description,
+    this.description = '',
     required this.topWidget,
     this.bottomWidget,
     required this.onClose,
