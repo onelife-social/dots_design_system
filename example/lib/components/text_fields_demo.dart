@@ -44,7 +44,7 @@ class TextFieldsDemo extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        DotsTextFields(
+        DotsTextField(
           iconData: iconData,
           hintText: hintText,
           iconDataButton: iconDataButton,

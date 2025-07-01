@@ -1,6 +1,6 @@
 export 'buttons/buttons_lib.dart';
 export 'progress_bar/progress_bar.dart';
-export 'action_sheet/action_sheet.dart';
+export 'action_sheet/action_sheet_lib.dart';
 export 'containers/containers_lib.dart';
 export 'icons/icons_lib.dart';
 export 'selectors/selectors_lib.dart';
@@ -19,3 +19,4 @@ export 'empty_state/empty_state_card.dart';
 export 'feature_item/feature_item.dart';
 export 'premium/premium_lib.dart';
 export 'text_fields/text_fields_lib.dart';
+export 'text_animations/dots_text_animations_lib.dart';
