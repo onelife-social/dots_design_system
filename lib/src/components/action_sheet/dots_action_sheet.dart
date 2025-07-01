@@ -1,5 +1,6 @@
-import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
+
+import 'action_sheet.dart';
 
 enum DotsActionSheetVariant {
   /// Default variant used in the gallery tutorial
