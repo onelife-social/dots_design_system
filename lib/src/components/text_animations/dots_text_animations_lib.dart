@@ -1,1 +1,2 @@
-export 'dots_text_animations.dart';
+export 'typewriter_animation_text.dart';
+export 'fade_slide_animation_text.dart';
