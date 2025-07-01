@@ -2,6 +2,7 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/components/carrousel_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
 import 'package:example/components/dots_text_animations_demo_page.dart';
+import 'package:example/components/item_input_demo.dart';
 import 'package:example/components/memory_card_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
 import 'package:example/components/empty_state_card_demo.dart';
@@ -385,5 +386,32 @@ List<Story> get allStories => [
           );
         },
       ),
-      ...toastStories
+      ...toastStories,
+      Story(
+        name: 'Dots text Item input',
+        description: 'Demo page for Dots Item input',
+        builder: (context) {
+          return Container(
+            width: 400,
+            padding: const EdgeInsets.all(16.0),
+            child: ItemInputDemo(
+              label: context.knobs.text(label: 'Label', initial: 'Enter text'),
+              value: context.knobs.text(label: 'Value', initial: 'Sample'),
+              iconData: context.knobs.options<DotsIconData>(
+                label: 'Icon',
+                initial: DotsIconData.search,
+                options: DotsIconData.values
+                    .map((item) => Option(label: item.name, value: item))
+                    .toList(),
+              ),
+              count: context.knobs.sliderInt(
+                label: 'Count',
+                initial: 3,
+                min: 0,
+                max: 100,
+              ),
+            ),
+          );
+        },
+      ),
     ];
