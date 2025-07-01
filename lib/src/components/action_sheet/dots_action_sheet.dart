@@ -27,6 +27,11 @@ class DotsActionSheet extends StatelessWidget {
   /// The title of the Action Sheet.
   final String title;
 
+  /// The hint text for the search variant.
+  ///
+  /// Defaults to ''.
+  final String hintText;
+
   /// A short description displayed below the title.
   final String description;
 
@@ -99,6 +104,7 @@ class DotsActionSheet extends StatelessWidget {
   const DotsActionSheet({
     super.key,
     required this.title,
+    this.hintText = '',
     this.description = '',
     required this.topWidget,
     this.variant = DotsActionSheetVariant.standard,
@@ -144,6 +150,7 @@ class DotsActionSheet extends StatelessWidget {
         return DotsActionSheetSearch(
           title: title,
           description: description,
+          hintText: hintText,
           topWidget: topWidget,
           bottomWidget: bottomWidget,
           onClose: onClose,

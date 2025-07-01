@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class DotsActionSheetSearch extends StatelessWidget {
   final String title;
+  final String hintText;
   final String description;
   final Widget topWidget;
   final Widget? bottomWidget;
@@ -25,6 +26,7 @@ class DotsActionSheetSearch extends StatelessWidget {
   const DotsActionSheetSearch({
     super.key,
     required this.title,
+    required this.hintText,
     this.description = '',
     required this.topWidget,
     this.bottomWidget,
@@ -87,6 +89,7 @@ class DotsActionSheetSearch extends StatelessWidget {
                         _DotsActionSheetSearchHeader(
                           title: title,
                           onChanged: onChanged,
+                          hintText: hintText,
                         ),
                         Expanded(
                           child: SingleChildScrollView(
@@ -120,10 +123,12 @@ class DotsActionSheetSearch extends StatelessWidget {
 
 class _DotsActionSheetSearchHeader extends StatelessWidget {
   final String title;
+  final String hintText;
   final ValueChanged<String>? onChanged;
 
   const _DotsActionSheetSearchHeader({
     required this.title,
+    required this.hintText,
     this.onChanged,
   });
 
@@ -153,7 +158,7 @@ class _DotsActionSheetSearchHeader extends StatelessWidget {
               buttonVariant: DotsCloseButtonVariant.inverted,
               buttonSize: DotsCloseButtonSize.extraSmall,
               onChanged: onChanged,
-              hintText: 'Subir en',
+              hintText: hintText,
             ),
           ],
         ),
