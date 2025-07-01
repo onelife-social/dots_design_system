@@ -93,13 +93,17 @@ class DotsActionSheet extends StatelessWidget {
   ///   Defaults to false.
   final bool backButtonShaderMask;
 
+  /// Callback when the text changes for the search variant.
+  final ValueChanged<String>? onChanged;
+
   const DotsActionSheet({
     super.key,
     required this.title,
-    required this.description,
+    this.description = '',
     required this.topWidget,
     this.variant = DotsActionSheetVariant.standard,
     this.bottomWidget,
+    this.onChanged,
     required this.onClose,
     this.bottomPosition = 56,
     this.horizontalPadding = 16,
@@ -149,6 +153,7 @@ class DotsActionSheet extends StatelessWidget {
           stepProgress: stepProgress,
           bigAspectRatio: bigAspectRatio,
           scrollController: scrollController,
+          onChanged: onChanged,
           primaryButton: primaryButton,
           secondaryButton: secondaryButton,
           buttonPositioning: buttonPositioning ?? DotsActionSheetButtonPositioning.row,

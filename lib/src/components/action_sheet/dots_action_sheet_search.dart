@@ -11,6 +11,7 @@ class DotsActionSheetSearch extends StatelessWidget {
   final VoidCallback onClose;
   final double bottomPosition;
   final double horizontalPadding;
+  final ValueChanged<String>? onChanged;
   final double? maxHeight;
   final double stepProgress;
   final bool bigAspectRatio;
@@ -24,7 +25,7 @@ class DotsActionSheetSearch extends StatelessWidget {
   const DotsActionSheetSearch({
     super.key,
     required this.title,
-    required this.description,
+    this.description = '',
     required this.topWidget,
     this.bottomWidget,
     required this.onClose,
@@ -34,6 +35,7 @@ class DotsActionSheetSearch extends StatelessWidget {
     this.stepProgress = 0,
     this.bigAspectRatio = true,
     this.scrollController,
+    this.onChanged,
     this.primaryButton,
     this.secondaryButton,
     this.buttonPositioning = DotsActionSheetButtonPositioning.row,
@@ -77,17 +79,34 @@ class DotsActionSheetSearch extends StatelessWidget {
                     borderRadius: BorderRadius.circular(32),
                   ),
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                child: Stack(
                   children: [
-                    _DotsActionSheetSearchHeader(title: title),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        physics: const ClampingScrollPhysics(),
-                        child: topWidget,
-                      ),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _DotsActionSheetSearchHeader(
+                          title: title,
+                          onChanged: onChanged,
+                        ),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            physics: const ClampingScrollPhysics(),
+                            child: topWidget,
+                          ),
+                        ),
+                      ],
                     ),
-                    if (primaryButton != null) primaryButton!,
+                    if (primaryButton != null)
+                      Positioned.fill(
+                        top: null,
+                        bottom: 16,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            primaryButton!,
+                          ],
+                        ),
+                      ),
                   ],
                 ),
               ),
@@ -101,9 +120,11 @@ class DotsActionSheetSearch extends StatelessWidget {
 
 class _DotsActionSheetSearchHeader extends StatelessWidget {
   final String title;
+  final ValueChanged<String>? onChanged;
 
   const _DotsActionSheetSearchHeader({
     required this.title,
+    this.onChanged,
   });
 
   @override
@@ -131,6 +152,7 @@ class _DotsActionSheetSearchHeader extends StatelessWidget {
               iconDataButton: DotsIconData.cross,
               buttonVariant: DotsCloseButtonVariant.inverted,
               buttonSize: DotsCloseButtonSize.extraSmall,
+              onChanged: onChanged,
               hintText: 'Subir en',
             ),
           ],
