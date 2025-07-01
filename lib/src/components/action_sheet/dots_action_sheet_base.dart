@@ -68,10 +68,11 @@ class DotsActionSheetBase extends StatelessWidget {
                     SizedBox(
                       height: 16,
                     ),
-                    Padding(
+                    Expanded(
+                        child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: child,
-                    ),
+                    )),
                   ],
                 ),
               ),
