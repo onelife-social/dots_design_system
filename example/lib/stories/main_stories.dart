@@ -385,5 +385,33 @@ List<Story> get allStories => [
           );
         },
       ),
+      Story(
+        name: 'DotsNavBar',
+        description: 'Demo page for DotsNavBar',
+        builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: DotsNavBar(
+              items: [
+                DotsNavBarItem(
+                  label: context.knobs.text(label: 'Create', initial: 'Create'),
+                  iconData: DotsIconData.add,
+                  onTap: () {},
+                ),
+                DotsNavBarItem(
+                  label: context.knobs.text(label: 'Home', initial: 'Home'),
+                  iconData: DotsIconData.home,
+                  onTap: () {},
+                ),
+                DotsNavBarItem(
+                  label: context.knobs.text(label: 'Gallery', initial: 'Gallery'),
+                  iconData: DotsIconData.gallery,
+                  onTap: () {},
+                ),
+              ],
+            ),
+          );
+        },
+      ),
       ...toastStories
     ];

@@ -87,7 +87,7 @@ class DotsIconButton extends StatelessWidget {
         if (label != null)
           Text(
             label ?? '',
-            style: theme.typo.main.labelDefaultRegular,
+            style: theme.typo.main.labelDefaultRegular.copyWith(color: color ?? buttonTheme.foregroundColor),
           )
       ],
     );
