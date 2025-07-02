@@ -51,15 +51,18 @@ class DotsActionSheetSearch extends StatelessWidget {
 
     return Stack(
       children: [
-        Container(
-          child: showBackdrop
-              ? BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                  child: Container(
-                    color: Color(0xFF000000).dotsWithOpacity(0.3),
-                  ),
-                )
-              : null,
+        GestureDetector(
+          onTap: onClose,
+          child: Container(
+            child: showBackdrop
+                ? BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                    child: Container(
+                      color: Color(0xFF000000).dotsWithOpacity(0.3),
+                    ),
+                  )
+                : null,
+          ),
         ),
         Positioned(
           left: 0,
