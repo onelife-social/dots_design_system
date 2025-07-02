@@ -424,17 +424,33 @@ List<Story> get allStories => [
               items: [
                 DotsNavBarItem(
                   label: context.knobs.text(label: 'Create', initial: 'Create'),
-                  iconData: DotsIconData.add,
+                  iconData: context.knobs.options<DotsIconData>(
+                    label: 'First Icon',
+                    initial: DotsIconData.add,
+                    options: DotsIconData.values
+                        .map((item) => Option(label: item.name, value: item))
+                        .toList(),
+                  ),
                   onTap: () {},
                 ),
                 DotsNavBarItem(
                   label: context.knobs.text(label: 'Home', initial: 'Home'),
-                  iconData: DotsIconData.home,
+                  iconData: context.knobs.options<DotsIconData>(
+                    label: 'Second Icon',
+                    initial: DotsIconData.home,
+                    options:
+                        DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+                  ),
                   onTap: () {},
                 ),
                 DotsNavBarItem(
                   label: context.knobs.text(label: 'Gallery', initial: 'Gallery'),
-                  iconData: DotsIconData.gallery,
+                  iconData: context.knobs.options<DotsIconData>(
+                    label: 'Third Icon',
+                    initial: DotsIconData.gallery,
+                    options:
+                        DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+                  ),
                   onTap: () {},
                 ),
               ],

@@ -49,9 +49,9 @@ class _DotsNavBarState extends State<DotsNavBar> {
     final theme = context.dotsTheme;
 
     return ClipRRect(
-      borderRadius: BorderRadius.circular(36),
+      borderRadius: DotsBorderRadius.r36,
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 24, sigmaY: 24),
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: Container(
           padding: const EdgeInsets.all(5),
           clipBehavior: Clip.antiAlias,
@@ -62,7 +62,7 @@ class _DotsNavBarState extends State<DotsNavBar> {
                 width: 0.70,
                 color: theme.colors.borderGlass,
               ),
-              borderRadius: BorderRadius.circular(36),
+              borderRadius: DotsBorderRadius.r36,
             ),
           ),
           child: Stack(
@@ -79,7 +79,7 @@ class _DotsNavBarState extends State<DotsNavBar> {
                   height: 65,
                   decoration: BoxDecoration(
                     color: theme.colors.bgFloatingActive,
-                    borderRadius: BorderRadius.circular(32),
+                    borderRadius: DotsBorderRadius.r32,
                   ),
                 ),
               ),
@@ -101,7 +101,7 @@ class _DotsNavBarState extends State<DotsNavBar> {
                       clipBehavior: Clip.antiAlias,
                       decoration: const ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(32)),
+                          borderRadius: DotsBorderRadius.all32,
                         ),
                       ),
                       child: Column(
