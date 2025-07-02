@@ -12,6 +12,7 @@ class DotsActionSheetBase extends StatelessWidget {
   final double horizontalPadding;
   final double? maxHeight;
   final bool showBlurBackground;
+  final VoidCallback? onClose;
 
   const DotsActionSheetBase({
     super.key,
@@ -23,6 +24,7 @@ class DotsActionSheetBase extends StatelessWidget {
     this.horizontalPadding = 16,
     this.maxHeight,
     this.showBlurBackground = true,
+    required this.onClose,
   });
 
   @override
@@ -31,15 +33,18 @@ class DotsActionSheetBase extends StatelessWidget {
 
     return Stack(
       children: [
-        Container(
-          child: showBlurBackground
-              ? BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                  child: Container(
-                    color: Color(0xFF000000).dotsWithOpacity(0.3),
-                  ),
-                )
-              : null,
+        GestureDetector(
+          onTap: onClose,
+          child: Container(
+            child: showBlurBackground
+                ? BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                    child: Container(
+                      color: Color(0xFF000000).dotsWithOpacity(0.3),
+                    ),
+                  )
+                : null,
+          ),
         ),
         Positioned(
           left: 0,

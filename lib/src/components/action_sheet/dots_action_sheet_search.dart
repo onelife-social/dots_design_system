@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 
 class DotsActionSheetSearch extends StatelessWidget {
   final String title;
+  final String hintText;
   final String description;
   final Widget topWidget;
   final Widget? bottomWidget;
   final VoidCallback onClose;
   final double bottomPosition;
   final double horizontalPadding;
+  final ValueChanged<String>? onChanged;
   final double? maxHeight;
   final double stepProgress;
   final bool bigAspectRatio;
@@ -24,7 +26,8 @@ class DotsActionSheetSearch extends StatelessWidget {
   const DotsActionSheetSearch({
     super.key,
     required this.title,
-    required this.description,
+    required this.hintText,
+    this.description = '',
     required this.topWidget,
     this.bottomWidget,
     required this.onClose,
@@ -34,6 +37,7 @@ class DotsActionSheetSearch extends StatelessWidget {
     this.stepProgress = 0,
     this.bigAspectRatio = true,
     this.scrollController,
+    this.onChanged,
     this.primaryButton,
     this.secondaryButton,
     this.buttonPositioning = DotsActionSheetButtonPositioning.row,
@@ -47,15 +51,18 @@ class DotsActionSheetSearch extends StatelessWidget {
 
     return Stack(
       children: [
-        Container(
-          child: showBackdrop
-              ? BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                  child: Container(
-                    color: Color(0xFF000000).dotsWithOpacity(0.3),
-                  ),
-                )
-              : null,
+        GestureDetector(
+          onTap: onClose,
+          child: Container(
+            child: showBackdrop
+                ? BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                    child: Container(
+                      color: Color(0xFF000000).dotsWithOpacity(0.3),
+                    ),
+                  )
+                : null,
+          ),
         ),
         Positioned(
           left: 0,
@@ -77,16 +84,35 @@ class DotsActionSheetSearch extends StatelessWidget {
                     borderRadius: BorderRadius.circular(32),
                   ),
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                child: Stack(
                   children: [
-                    _DotsActionSheetSearchHeader(title: title),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: topWidget,
-                      ),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _DotsActionSheetSearchHeader(
+                          title: title,
+                          onChanged: onChanged,
+                          hintText: hintText,
+                        ),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            physics: const ClampingScrollPhysics(),
+                            child: topWidget,
+                          ),
+                        ),
+                      ],
                     ),
-                    if (primaryButton != null) primaryButton!,
+                    if (primaryButton != null)
+                      Positioned.fill(
+                        top: null,
+                        bottom: 16,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            primaryButton!,
+                          ],
+                        ),
+                      ),
                   ],
                 ),
               ),
@@ -100,9 +126,13 @@ class DotsActionSheetSearch extends StatelessWidget {
 
 class _DotsActionSheetSearchHeader extends StatelessWidget {
   final String title;
+  final String hintText;
+  final ValueChanged<String>? onChanged;
 
   const _DotsActionSheetSearchHeader({
     required this.title,
+    required this.hintText,
+    this.onChanged,
   });
 
   @override
@@ -130,7 +160,8 @@ class _DotsActionSheetSearchHeader extends StatelessWidget {
               iconDataButton: DotsIconData.cross,
               buttonVariant: DotsCloseButtonVariant.inverted,
               buttonSize: DotsCloseButtonSize.extraSmall,
-              hintText: 'Subir en',
+              onChanged: onChanged,
+              hintText: hintText,
             ),
           ],
         ),
