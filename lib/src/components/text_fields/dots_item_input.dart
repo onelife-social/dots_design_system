@@ -79,7 +79,7 @@ class DotsItemInput extends StatelessWidget {
             height: double.infinity,
             width: 120,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7),
+              borderRadius: DotsBorderRadius.r7,
               color: theme.colors.bgContainerSecondaryOnBackground,
             ),
             child: Center(
