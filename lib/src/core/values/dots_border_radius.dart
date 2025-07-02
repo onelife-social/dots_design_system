@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 class DotsBorderRadius {
   static const BorderRadius r4 = BorderRadius.all(Radius.circular(4));
   static const BorderRadius r5 = BorderRadius.all(Radius.circular(5));
+  static const BorderRadius r7 = BorderRadius.all(Radius.circular(7));
   static const BorderRadius r8 = BorderRadius.all(Radius.circular(8));
   static const BorderRadius r10 = BorderRadius.all(Radius.circular(10));
   static const BorderRadius r11 = BorderRadius.all(Radius.circular(11));
