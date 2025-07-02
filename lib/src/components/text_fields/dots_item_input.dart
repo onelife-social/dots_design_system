@@ -10,12 +10,11 @@ enum DotsItemInputPosition {
 
 class DotsItemInput extends StatelessWidget {
   const DotsItemInput(
-      {Key? key,
+      {super.key,
       required this.label,
       required this.value,
       required this.icon,
-      required this.position})
-      : super(key: key);
+      required this.position});
 
   final String label;
   final String value;
@@ -45,55 +44,52 @@ class DotsItemInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    return DotsDecoratedBox(
-      styleType: theme.styles.bgBlur,
+    return Container(
+      height: 42,
       decoration: BoxDecoration(
         color: theme.colors.bgContainerSecondary,
         borderRadius: borderRadius,
       ),
-      child: Container(
-        height: 42,
-        padding: EdgeInsets.only(
-          left: 12,
-          top: 8,
-          bottom: 8,
-          right: 8,
-        ),
-        child: Row(
-          children: [
-            DotsIcon(
-              iconData: icon,
-              color: theme.colors.textQuarternary,
-              size: 20,
+      padding: EdgeInsets.only(
+        left: 12,
+        top: 8,
+        bottom: 8,
+        right: 8,
+      ),
+      child: Row(
+        children: [
+          DotsIcon(
+            iconData: icon,
+            color: theme.colors.textQuarternary,
+            size: 20,
+          ),
+          SizedBox(
+            width: 6,
+          ),
+          Expanded(
+            child: Text(
+              label,
+              style: theme.typo.main.bodyDefaultMedium,
             ),
-            SizedBox(
-              width: 6,
+          ),
+          SizedBox(
+            width: 8,
+          ),
+          Container(
+            height: double.infinity,
+            width: 120,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7),
+              color: theme.colors.bgContainerSecondaryOnBackground,
             ),
-            Expanded(
+            child: Center(
               child: Text(
-                label,
-                style: theme.typo.main.bodyDefaultMedium,
+                value,
+                style: theme.typo.main.labelDefaultBold,
               ),
             ),
-            SizedBox(
-              width: 8,
-            ),
-            Container(
-              height: double.infinity,
-              width: 120,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                color: theme.colors.bgContainerSecondary,
-              ),
-              child: Center(
-                child: Text(
-                  value,
-                  style: theme.typo.main.labelDefaultBold,
-                ),
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
