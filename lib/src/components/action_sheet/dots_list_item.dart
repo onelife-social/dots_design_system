@@ -14,23 +14,26 @@ class DotsListItem extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
-      child: Row(
-        spacing: 12,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: theme.colors.bgBaseContrast,
-              borderRadius: DotsBorderRadius.r12,
+      child: Container(
+        color: Colors.transparent,
+        child: Row(
+          spacing: 12,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: theme.colors.bgBaseContrast,
+                borderRadius: DotsBorderRadius.r12,
+              ),
+              width: 40,
+              height: 40,
+              child: ClipRRect(
+                borderRadius: DotsBorderRadius.r12,
+                child: icon,
+              ),
             ),
-            width: 40,
-            height: 40,
-            child: ClipRRect(
-              borderRadius: DotsBorderRadius.r12,
-              child: icon,
-            ),
-          ),
-          Expanded(child: Text(text, style: theme.typo.main.bodyLargeBold)),
-        ],
+            Expanded(child: Text(text, style: theme.typo.main.bodyLargeBold)),
+          ],
+        ),
       ),
     );
   }
