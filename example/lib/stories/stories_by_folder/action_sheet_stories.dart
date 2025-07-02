@@ -89,6 +89,7 @@ List<Story> get actionSheetStories => [
         name: 'Action Sheet/DotsActionSheetSearch',
         description: 'Demo page for action sheet search',
         builder: (context) => DotsActionSheetSearch(
+          hintText: context.knobs.text(label: 'hintText', initial: 'Search...'),
           title: context.knobs.text(label: 'title', initial: 'Title'),
           description: context.knobs.text(label: 'description', initial: 'Description'),
           primaryButton: context.knobs.boolean(label: 'Show primary button', initial: true)
@@ -164,6 +165,7 @@ List<Story> get actionSheetStories => [
         name: 'Action Sheet/Base',
         description: 'Demo page for action sheet',
         builder: (context) => DotsActionSheetBase(
+          onClose: () {},
           title: context.knobs.text(label: 'title', initial: 'Title'),
           subtitle: context.knobs.nullable.text(label: 'subtitle', initial: 'subtitle'),
           onBackButtonTap:

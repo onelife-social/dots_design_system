@@ -31,6 +31,8 @@ class DotsColors {
     labelActive: Color(0xFF28CB55),
     labelInactive: Color(0x33000000),
     bgActive: Color(0x1A28CB55),
+    bgFloatingBase: Color(0x7F4B4B4B),
+    bgFloatingActive: Color(0x26000000),
     misc100: Color(0xFFFABA68),
     misc200: Color(0xFFFAA25E),
     misc300: Color(0xFFEB8B64),
@@ -53,6 +55,7 @@ class DotsColors {
     transparent: Color(0x00000000),
     borderAlert: Color(0x4DFFFFFF),
     borderLabel: Color(0xFFEAECF0),
+    borderGlass: Color(0xFFBCBCBC),
   );
   static final dark = DotsColorsModel(
     bgBase: Color(0xFF191919),
@@ -82,6 +85,8 @@ class DotsColors {
     labelActive: Color(0xFF3BD866),
     labelInactive: Color(0x33FFFFFF),
     bgActive: Color(0x1A28CB55),
+    bgFloatingBase: Color(0xFF1A1A1A),
+    bgFloatingActive: Color(0x1AC8C8C8),
     misc100: Color(0xFF52C7D4),
     misc200: Color(0xFF68C8DB),
     misc300: Color(0xFF82C8E5),
@@ -104,5 +109,6 @@ class DotsColors {
     transparent: Color(0x00000000),
     borderAlert: Color(0x4D6E6E6E),
     borderLabel: Color(0xFFEAECF0),
+    borderGlass: Color(0xFFBCBCBC),
   );
 }

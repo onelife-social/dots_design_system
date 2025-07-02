@@ -414,4 +414,49 @@ List<Story> get allStories => [
           );
         },
       ),
+      Story(
+        name: 'DotsNavBar',
+        description: 'Demo page for DotsNavBar',
+        builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: DotsNavBar(
+              items: [
+                DotsNavBarItem(
+                  label: context.knobs.text(label: 'Create', initial: 'Create'),
+                  iconData: context.knobs.options<DotsIconData>(
+                    label: 'First Icon',
+                    initial: DotsIconData.add,
+                    options: DotsIconData.values
+                        .map((item) => Option(label: item.name, value: item))
+                        .toList(),
+                  ),
+                  onTap: () {},
+                ),
+                DotsNavBarItem(
+                  label: context.knobs.text(label: 'Home', initial: 'Home'),
+                  iconData: context.knobs.options<DotsIconData>(
+                    label: 'Second Icon',
+                    initial: DotsIconData.home,
+                    options:
+                        DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+                  ),
+                  onTap: () {},
+                ),
+                DotsNavBarItem(
+                  label: context.knobs.text(label: 'Gallery', initial: 'Gallery'),
+                  iconData: context.knobs.options<DotsIconData>(
+                    label: 'Third Icon',
+                    initial: DotsIconData.gallery,
+                    options:
+                        DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+                  ),
+                  onTap: () {},
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+      ...toastStories
     ];
