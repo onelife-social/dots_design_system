@@ -46,6 +46,8 @@ enum DotsIconData {
   sportFootball('ic-sport-football.svg', DotsIconGroup.album),
   weddingRings('ic-wedding-rings.svg', DotsIconGroup.album),
   work('ic-work.svg', DotsIconGroup.album),
+  painting('ic-painting.svg', DotsIconGroup.album),
+  volleyball('ic-volleyball.svg', DotsIconGroup.album),
 
   // Arrow
   blank('ic-_.svg', DotsIconGroup.arrow),
@@ -99,7 +101,7 @@ enum DotsIconData {
 
   // Media
   archive('ic-archive.svg', DotsIconGroup.media),
-  book('ic-book.svg', DotsIconGroup.media),
+  album('ic-album.svg', DotsIconGroup.media),
   bookOpen('ic-book-open.svg', DotsIconGroup.media),
   bookOpenFilled('ic-book-open--filled.svg', DotsIconGroup.media),
   camera('ic-camera.svg', DotsIconGroup.media),
