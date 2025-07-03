@@ -22,6 +22,7 @@ class DotsActionSheetSearch extends StatelessWidget {
   final DotsActionSheetButtonPositioning buttonPositioning;
   final bool showBackdrop;
   final bool backButtonShaderMask;
+  final VoidCallback? onPrimaryButtonTap;
 
   const DotsActionSheetSearch({
     super.key,
@@ -43,6 +44,7 @@ class DotsActionSheetSearch extends StatelessWidget {
     this.buttonPositioning = DotsActionSheetButtonPositioning.row,
     this.showBackdrop = true,
     this.backButtonShaderMask = false,
+    this.onPrimaryButtonTap,
   });
 
   @override
@@ -106,11 +108,14 @@ class DotsActionSheetSearch extends StatelessWidget {
                       Positioned.fill(
                         top: null,
                         bottom: 16,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            primaryButton!,
-                          ],
+                        child: GestureDetector(
+                          onTap: onPrimaryButtonTap,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              primaryButton!,
+                            ],
+                          ),
                         ),
                       ),
                   ],
