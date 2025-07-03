@@ -10,20 +10,24 @@ List<Story> get badgeStories => [
           padding: const EdgeInsets.all(16.0),
           child: BadgeTag(
             tag: context.knobs.text(label: 'Badge tag text', initial: '1'),
+            size: context.knobs.options<Size>(
+              label: 'Distance from top right corner',
+              initial: const Size(-5.0, -5.0),
+              options: [
+                Option(label: 'Default', value: const Size(-5.0, -5.0)),
+                Option(label: 'Small', value: const Size(2.0, 2.0)),
+                Option(label: 'Medium', value: const Size(10.0, 10.0)),
+                Option(label: 'Large', value: const Size(20.0, 20.0)),
+              ],
+            ),
             child: Container(
-              color: Colors.white,
-              width: context.knobs.slider(
-                label: 'Width',
-                initial: 200,
-                min: 100,
-                max: 400,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(4),
+                border: Border.all(color: Colors.black, width: 1.5, style: BorderStyle.solid),
               ),
-              height: context.knobs.slider(
-                label: 'Height',
-                initial: 100,
-                min: 50,
-                max: 200,
-              ),
+              width: 30.0,
+              height: 30.0,
             ),
           ),
         ),
