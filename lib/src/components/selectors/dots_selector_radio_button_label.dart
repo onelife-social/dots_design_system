@@ -56,9 +56,9 @@ class DotsSelectorRadioButtonLabel extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 spacing: 8,
                 children: [
-                  DotsTag(
+                  BadgeLabel(
                     content: tagText,
-                    variant: free ? DotsTagVariant.main : DotsTagVariant.premiumPlus,
+                    variant: free ? BadgeLabelVariant.main : BadgeLabelVariant.premiumPlus,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

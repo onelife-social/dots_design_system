@@ -97,9 +97,10 @@ class DotsIconButton extends StatelessWidget {
       if (label != null)
         _Label(
           label: label,
-          style: labelStyle ?? theme.typo.main.labelDefaultRegular.copyWith(
-            color: color ?? buttonTheme.foregroundColor,
-          ),
+          style: labelStyle ??
+              theme.typo.main.labelDefaultRegular.copyWith(
+                color: color ?? buttonTheme.foregroundColor,
+              ),
         )
     ];
   }
@@ -139,7 +140,7 @@ class _IconButton extends StatelessWidget {
             decoration: BoxDecoration(borderRadius: borderRadius),
             child: Center(
               child: tag != null
-                  ? DotsIconTag(
+                  ? BadgeTag(
                       tag: tag!,
                       child: DotsIcon(
                         iconData: icon,

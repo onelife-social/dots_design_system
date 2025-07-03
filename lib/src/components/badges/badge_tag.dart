@@ -1,11 +1,12 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class DotsIconTag extends StatelessWidget {
-  const DotsIconTag({
+class BadgeTag extends StatelessWidget {
+  const BadgeTag({
     super.key,
     required this.child,
     required this.tag,
+    this.size,
   });
 
   /// The main content
@@ -15,6 +16,9 @@ class DotsIconTag extends StatelessWidget {
   /// If null, nothing is displayed.
   final String tag;
 
+  /// Optional distance from the top right corner
+  final Size? size;
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -23,8 +27,8 @@ class DotsIconTag extends StatelessWidget {
       children: [
         child,
         Positioned(
-          bottom: 13,
-          left: 13,
+          right: size?.width ?? -5.0,
+          top: size?.height ?? -5.0,
           child: Container(
             constraints: const BoxConstraints(
               minWidth: 6,

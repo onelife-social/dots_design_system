@@ -1,7 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/widgets.dart';
 
-class DotsTagTheme {
+class BadgeLabelTheme {
   final Color? backgroundColor;
   final Color? foregroundColor;
   final DotsStyleColorGradient? backgroundGradient;
@@ -9,7 +9,7 @@ class DotsTagTheme {
 
   final bool blur;
 
-  const DotsTagTheme({
+  const BadgeLabelTheme({
     this.backgroundColor,
     this.foregroundColor,
     this.backgroundGradient,
@@ -18,30 +18,30 @@ class DotsTagTheme {
   });
 }
 
-DotsTagTheme getTagThemeByTagVariant(DotsTheme theme, DotsTagVariant variant) {
+BadgeLabelTheme getBadgeLabelThemeByTagVariant(DotsTheme theme, BadgeLabelVariant variant) {
   switch (variant) {
-    case DotsTagVariant.main:
-      return DotsTagTheme(
+    case BadgeLabelVariant.main:
+      return BadgeLabelTheme(
         backgroundColor: theme.colors.labelHighlight,
         foregroundColor: theme.colors.labelAlwaysWhite,
       );
-    case DotsTagVariant.secondary:
-      return DotsTagTheme(
+    case BadgeLabelVariant.secondary:
+      return BadgeLabelTheme(
         backgroundColor: theme.colors.bgHighlight,
         foregroundColor: theme.colors.labelHighlight,
       );
-    case DotsTagVariant.green:
-      return DotsTagTheme(
+    case BadgeLabelVariant.green:
+      return BadgeLabelTheme(
         backgroundColor: theme.colors.bgActive,
         foregroundColor: theme.colors.labelActive,
       );
-    case DotsTagVariant.premiumPlus:
-      return DotsTagTheme(
+    case BadgeLabelVariant.premiumPlus:
+      return BadgeLabelTheme(
         foregroundColor: theme.colors.labelAlwaysWhite,
         backgroundGradient: theme.styles.bgPremiumPlus,
       );
-    case DotsTagVariant.premium:
-      return DotsTagTheme(
+    case BadgeLabelVariant.premium:
+      return BadgeLabelTheme(
         backgroundGradient: theme.styles.bgPremium,
         foregroundColor: theme.colors.labelAlwaysWhite,
       );
