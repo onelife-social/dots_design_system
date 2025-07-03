@@ -1,8 +1,8 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class DotsIconTag extends StatelessWidget {
-  const DotsIconTag({
+class BadgeTag extends StatelessWidget {
+  const BadgeTag({
     super.key,
     required this.child,
     required this.tag,

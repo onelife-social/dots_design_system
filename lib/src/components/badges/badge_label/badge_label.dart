@@ -1,48 +1,47 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:dots_design_system/src/components/common/dots_shader_mask.dart';
-import 'package:dots_design_system/src/components/tag/tags_lib.dart';
 import 'package:flutter/material.dart';
 
-import 'dots_tag_theme.dart';
+import 'badge_label_theme.dart';
 
-class DotsTag extends StatelessWidget {
-  const DotsTag({
+class BadgeLabel extends StatelessWidget {
+  const BadgeLabel({
     super.key,
     required this.content,
-    this.size = DotsTagSize.medium,
-    this.variant = DotsTagVariant.main,
+    this.size = BadgeLabelSize.medium,
+    this.variant = BadgeLabelVariant.main,
   });
 
-  /// The text to display on the tag.
+  /// The text to display on the badge label.
   final String content;
 
-  /// The size of the tag.
+  /// The size of the badge label.
   ///
-  /// Defaults to [DotsTagSize.medium].
-  final DotsTagSize size;
+  /// Defaults to [BadgeLabelSize.medium].
+  final BadgeLabelSize size;
 
-  /// The visual variant of the tag.
+  /// The visual variant of the badge label.
   ///
-  /// Defaults to [DotsTagVariant.main].
-  final DotsTagVariant variant;
+  /// Defaults to [BadgeLabelVariant.main].
+  final BadgeLabelVariant variant;
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    final tagTheme = getTagThemeByTagVariant(theme, variant);
+    final badgeLabelTheme = getBadgeLabelThemeByTagVariant(theme, variant);
     final borderRadius = BorderRadius.circular(size.height);
 
     final foregroundColor =
-        tagTheme.foregroundGradient == null ? tagTheme.foregroundColor : Colors.white;
-    Widget tag = Material(
-      color: tagTheme.backgroundColor ?? Colors.transparent,
+        badgeLabelTheme.foregroundGradient == null ? badgeLabelTheme.foregroundColor : Colors.white;
+    Widget badgeLabel = Material(
+      color: badgeLabelTheme.backgroundColor ?? Colors.transparent,
       borderRadius: borderRadius,
       child: Container(
         decoration: BoxDecoration(borderRadius: borderRadius),
         height: size.height,
         padding: size.padding,
         child: DotsShaderMask(
-          styleType: tagTheme.foregroundGradient,
+          styleType: badgeLabelTheme.foregroundGradient,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
@@ -61,25 +60,25 @@ class DotsTag extends StatelessWidget {
         ),
       ),
     );
-    if (tagTheme.backgroundGradient != null) {
-      tag = DotsDecoratedBox(
-        styleType: tagTheme.backgroundGradient,
+    if (badgeLabelTheme.backgroundGradient != null) {
+      badgeLabel = DotsDecoratedBox(
+        styleType: badgeLabelTheme.backgroundGradient,
         decoration: BoxDecoration(
           borderRadius: borderRadius,
         ),
-        child: tag,
+        child: badgeLabel,
       );
     }
-    if (tagTheme.blur) {
-      tag = DotsDecoratedBox(
+    if (badgeLabelTheme.blur) {
+      badgeLabel = DotsDecoratedBox(
         styleType: theme.styles.bgBlur,
         decoration: BoxDecoration(
           borderRadius: borderRadius,
         ),
-        child: tag,
+        child: badgeLabel,
       );
     }
 
-    return tag;
+    return badgeLabel;
   }
 }

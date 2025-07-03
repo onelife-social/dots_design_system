@@ -87,8 +87,6 @@ class HomeTopBarDemo extends StatelessWidget {
             onTap: () {},
           ),
         );
-      default:
-        return DotsHomeTopBar.onlyStatusBar();
     }
   }
 }
