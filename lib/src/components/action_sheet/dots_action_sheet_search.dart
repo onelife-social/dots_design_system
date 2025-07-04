@@ -110,11 +110,14 @@ class DotsActionSheetSearch extends StatelessWidget {
                         bottom: 16,
                         child: GestureDetector(
                           onTap: onPrimaryButtonTap,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              primaryButton!,
-                            ],
+                          child: Container(
+                            color: Colors.transparent,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                primaryButton!,
+                              ],
+                            ),
                           ),
                         ),
                       ),
