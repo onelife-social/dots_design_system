@@ -14,11 +14,11 @@ class CardTag extends StatelessWidget {
   final double iconSize;
 
   const CardTag({
-    Key? key,
+    super.key,
     this.size = 24,
     this.iconSize = 16,
     required this.iconData,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

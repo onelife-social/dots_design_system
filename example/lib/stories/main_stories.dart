@@ -7,6 +7,7 @@ import 'package:example/components/memory_card_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
 import 'package:example/components/empty_state_card_demo.dart';
 import 'package:example/stories/stories_by_folder/action_sheet_stories.dart';
+import 'package:example/stories/stories_by_folder/badge_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
@@ -20,6 +21,7 @@ import 'package:example/stories/helpers/color_knob_options.dart';
 
 List<Story> get allStories => [
       ...themeStories,
+      ...badgeStories,
       ...buttonStories,
       ...topBarStories,
       ...groupCards,
@@ -245,24 +247,6 @@ List<Story> get allStories => [
         ),
       ),
       Story(
-        name: 'Tag',
-        description: 'Demo page for tag',
-        builder: (context) => DotsTag(
-          content: context.knobs.text(label: 'Content', initial: 'Tag text'),
-          size: context.knobs.options<DotsTagSize>(
-              label: 'Size',
-              initial: DotsTagSize.medium,
-              options:
-                  DotsTagSize.values.map((item) => Option(label: item.name, value: item)).toList()),
-          variant: context.knobs.options<DotsTagVariant>(
-              label: 'Variant',
-              initial: DotsTagVariant.main,
-              options: DotsTagVariant.values
-                  .map((item) => Option(label: item.name, value: item))
-                  .toList()),
-        ),
-      ),
-      Story(
         name: 'Empty State Card',
         description: 'Demo page for Empty State Card',
         builder: (context) => EmptyStateCardDemo(
@@ -438,8 +422,9 @@ List<Story> get allStories => [
                   iconData: context.knobs.options<DotsIconData>(
                     label: 'Second Icon',
                     initial: DotsIconData.home,
-                    options:
-                        DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+                    options: DotsIconData.values
+                        .map((item) => Option(label: item.name, value: item))
+                        .toList(),
                   ),
                   onTap: () {},
                 ),
@@ -448,8 +433,9 @@ List<Story> get allStories => [
                   iconData: context.knobs.options<DotsIconData>(
                     label: 'Third Icon',
                     initial: DotsIconData.gallery,
-                    options:
-                        DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+                    options: DotsIconData.values
+                        .map((item) => Option(label: item.name, value: item))
+                        .toList(),
                   ),
                   onTap: () {},
                 ),
