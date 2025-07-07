@@ -43,16 +43,20 @@ class _BlurContainerState extends State<BlurContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return RepaintBoundary(
-      key: repaintBoundaryKey,
-      child: CustomPaint(
-        painter: BlurPainter(
-          image: _backgroundImage,
-          program: _program,
-          sigma: widget.sigma,
+    return Stack(
+      children: [
+        CustomPaint(
+          painter: BlurPainter(
+            image: _backgroundImage,
+            program: _program,
+            sigma: widget.sigma,
+          ),
         ),
-        child: widget.child,
-      ),
+        RepaintBoundary(
+          key: repaintBoundaryKey,
+          child: widget.child,
+        ),
+      ],
     );
   }
 }
