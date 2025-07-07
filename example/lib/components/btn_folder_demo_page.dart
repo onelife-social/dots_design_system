@@ -2,8 +2,17 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class BtnFolderDemoPage extends StatelessWidget {
+  final String text;
+  final Color? iconColor;
+  final DotsIcon icon;
+  final bool isSelected;
+
   const BtnFolderDemoPage({
     super.key,
+    required this.text,
+    required this.iconColor,
+    required this.icon,
+    required this.isSelected,
   });
 
   @override
@@ -12,24 +21,12 @@ class BtnFolderDemoPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text('Unselected button'),
-        const SizedBox(height: 10),
         BtnFolder(
-          icon: DotsIconData.heart,
-          text: 'Birthdays',
+          icon: icon.iconData,
+          text: text,
           onPressed: () {},
-          isSelected: false,
-          iconSelectedColor: DotsColors.light.gradientInitialLinealPurple,
-        ),
-        const SizedBox(height: 50),
-        Text('Selected button'),
-        const SizedBox(height: 10),
-        BtnFolder(
-          icon: DotsIconData.heart,
-          text: 'Birthdays',
-          onPressed: () {},
-          isSelected: true,
-          iconSelectedColor: DotsColors.light.gradientInitialLinealPurple,
+          isSelected: isSelected,
+          iconSelectedColor: iconColor ?? DotsColors.light.gradientInitialLinealPurple,
         ),
       ],
     );

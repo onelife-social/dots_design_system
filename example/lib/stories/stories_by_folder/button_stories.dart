@@ -1,5 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/components/btn_folder_demo_page.dart';
+import 'package:example/stories/helpers/color_knob_options.dart';
 import 'package:flutter/widgets.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
@@ -122,6 +123,18 @@ List<Story> get buttonStories => [
       Story(
         name: 'Btn Folder',
         description: 'Demo page for Btn Folder',
-        builder: (context) => BtnFolderDemoPage(),
+        builder: (context) => BtnFolderDemoPage(
+          text: context.knobs.text(label: 'Weddings', initial: 'Weddings'),
+          iconColor: knobColorSelector(context, 'Selected color'),
+          icon: DotsIcon(
+            iconData: context.knobs.options<DotsIconData>(
+              label: 'Icon',
+              initial: DotsIconData.search,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+          ),
+          isSelected: context.knobs.boolean(label: 'Selected', initial: true),
+        ),
       ),
     ];

@@ -29,13 +29,13 @@ class BtnFolder extends StatelessWidget {
                 onPressed: onPressed,
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 11),
-                  backgroundColor: DotsColors.light.bgContainerSecondaryOnBackground,
+                  backgroundColor: context.dotsTheme.colors.bgContainerSecondaryOnBackground,
                   elevation: 0,
                 ),
                 child: DotsIcon(
                   iconData: icon,
                   size: 20,
-                  color: DotsColors.light.textQuarternary,
+                  color: context.dotsTheme.colors.textQuarternary,
                 ),
               ),
             )
@@ -54,7 +54,7 @@ class BtnFolder extends StatelessWidget {
                 ),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 16),
-                  backgroundColor: DotsColors.light.bgStrong,
+                  backgroundColor: context.dotsTheme.colors.bgStrong,
                   elevation: 0,
                   side: BorderSide(
                     color: Colors.black.withOpacity(0.08),
