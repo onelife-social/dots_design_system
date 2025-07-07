@@ -1,4 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:example/components/btn_folder_demo_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
@@ -118,5 +119,9 @@ List<Story> get buttonStories => [
           ),
         ),
       ),
-];
-
+      Story(
+        name: 'Btn Folder',
+        description: 'Demo page for Btn Folder',
+        builder: (context) => BtnFolderDemoPage(),
+      ),
+    ];
