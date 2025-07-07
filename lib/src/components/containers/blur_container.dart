@@ -10,7 +10,7 @@ class BlurContainer extends StatefulWidget {
 
   const BlurContainer({required this.sigma, required this.child, super.key})
       : assert(
-          sigma >= 0 && sigma <= 5.0,
+          sigma < 0 || sigma > 5.0,
           'Sigma must be between 0 and 5',
         );
 

@@ -8,7 +8,7 @@ class BlurPainter extends CustomPainter {
   final double sigma;
 
   const BlurPainter({this.image, required this.program, required this.sigma})
-      : assert(sigma >= 0 && sigma <= 5.0, 'Sigma must be between 0 and 5');
+      : assert(sigma < 0 && sigma > 5.0, 'Sigma must be between 0 and 5');
 
   @override
   void paint(Canvas canvas, Size size) {
