@@ -24,7 +24,7 @@ class DotsActionSheetBase extends StatelessWidget {
     this.horizontalPadding = 16,
     this.maxHeight,
     this.showBlurBackground = true,
-    required this.onClose,
+    this.onClose,
   });
 
   @override

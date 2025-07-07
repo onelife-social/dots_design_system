@@ -101,6 +101,9 @@ class DotsActionSheet extends StatelessWidget {
   /// Callback when the text changes for the search variant.
   final ValueChanged<String>? onChanged;
 
+  /// Callback when the primary button is tapped.
+  final VoidCallback? onPrimaryButtonTap;
+
   const DotsActionSheet({
     super.key,
     required this.title,
@@ -122,6 +125,7 @@ class DotsActionSheet extends StatelessWidget {
     this.buttonPositioning = DotsActionSheetButtonPositioning.row,
     this.showBackdrop = true,
     this.backButtonShaderMask = false,
+    this.onPrimaryButtonTap,
   });
 
   @override
@@ -166,6 +170,7 @@ class DotsActionSheet extends StatelessWidget {
           buttonPositioning: buttonPositioning ?? DotsActionSheetButtonPositioning.row,
           showBackdrop: showBackdrop,
           backButtonShaderMask: backButtonShaderMask,
+          onPrimaryButtonTap: onPrimaryButtonTap,
         );
     }
   }
