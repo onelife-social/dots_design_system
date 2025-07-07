@@ -3,7 +3,12 @@ import 'package:example/stories/main_stories.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-void main() {
+void main() async {
+  try {
+    await ShadersLoader.preloadAll();
+  } catch (e) {
+    print('Error preloading shaders: $e');
+  }
   runApp(const MyApp());
 }
 
