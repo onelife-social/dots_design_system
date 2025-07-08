@@ -1,4 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:example/components/blur_container_demo_page.dart';
 import 'package:example/components/carrousel_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
 import 'package:example/components/dots_text_animations_demo_page.dart';
@@ -24,6 +25,7 @@ List<Story> get allStories => [
       ...themeStories,
       ...badgeStories,
       ...buttonStories,
+      ...toastStories,
       ...topBarStories,
       ...groupCards,
       ...selectorRadioButtonStories,
@@ -452,5 +454,23 @@ List<Story> get allStories => [
           return FolderCarrouselDemoPage();
         },
       ),
-      ...toastStories
+      Story(
+        name: 'Blur container',
+        description: 'Demo page for blur container',
+        builder: (context) {
+          return BlurContainerDemoPage(
+            text: context.knobs.text(label: 'Text', initial: 'Blurred Text'),
+            imageUrl: context.knobs.text(
+              label: 'Image URL',
+              initial: 'https://picsum.photos/250?image=9',
+            ),
+            sigma: context.knobs.slider(
+              label: 'Blur Sigma',
+              initial: 5.0,
+              min: 0.0,
+              max: 5.0,
+            ),
+          );
+        },
+      ),
     ];
