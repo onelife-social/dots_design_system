@@ -28,10 +28,6 @@ class BlurPainter extends CustomPainter {
     final rect = Offset.zero & size;
     canvas.saveLayer(rect, paint);
     canvas.drawRect(
-      /*image!,
-      rect, // Crop this part from full image
-      rect, // Draw to same size
-      paint,*/
       rect,
       paint,
     );
