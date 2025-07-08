@@ -2,10 +2,19 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class BtnFolder extends StatelessWidget {
+  // The icon to display in the button.
   final DotsIconData icon;
+
+  // The text to display in the button when selected.
   final String text;
+
+  // Callback function when the button is pressed.
   final VoidCallback? onPressed;
+
+  // Variable to determine if the button is selected.
   final bool isSelected;
+
+  // The color of the icon when the button is selected.
   final Color iconSelectedColor;
 
   const BtnFolder({
