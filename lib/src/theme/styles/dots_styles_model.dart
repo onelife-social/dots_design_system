@@ -13,6 +13,7 @@ class DotsStylesModel {
   final DotsStyleShadow floatingBtnShadow;
   final DotsStyleShadow toastShadow;
   final DotsStyleShadow defaultShadow;
+  final DotsStyleSquircle defaultSquircle;
 
   DotsStylesModel({
     required this.bgAlert,
@@ -27,6 +28,7 @@ class DotsStylesModel {
     required this.floatingBtnShadow,
     required this.toastShadow,
     required this.defaultShadow,
+    required this.defaultSquircle,
   });
 
   DotsStylesModel lerp(DotsStylesModel? other, double t) {
@@ -45,6 +47,7 @@ class DotsStylesModel {
       floatingBtnShadow: floatingBtnShadow.lerp(other.floatingBtnShadow, t) ?? floatingBtnShadow,
       toastShadow: toastShadow.lerp(other.toastShadow, t) ?? toastShadow,
       defaultShadow: defaultShadow.lerp(other.defaultShadow, t) ?? defaultShadow,
+      defaultSquircle: defaultSquircle.lerp(other.defaultSquircle, t) ?? defaultSquircle,
     );
   }
 }

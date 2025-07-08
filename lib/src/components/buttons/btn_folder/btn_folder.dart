@@ -66,7 +66,7 @@ class BtnFolder extends StatelessWidget {
                   backgroundColor: context.dotsTheme.colors.bgStrong,
                   elevation: 0,
                   side: BorderSide(
-                    color: Colors.black.withOpacity(0.08),
+                    color: Colors.black.dotsWithOpacity(0.08),
                     width: 1,
                   ),
                 ),

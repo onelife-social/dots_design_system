@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 
 class DotsDecoratedBox extends StatelessWidget {
@@ -98,6 +99,23 @@ class DotsDecoratedBox extends StatelessWidget {
               blurStyle: styleType.blurStyle,
             ),
           ],
+        ),
+        child: child,
+      );
+    }
+    if (styleType is DotsStyleSquircle) {
+      return DecoratedBox(
+        decoration: ShapeDecoration(
+          shape: SmoothRectangleBorder(
+            borderRadius: SmoothBorderRadius(
+              cornerRadius: styleType.radius,
+              cornerSmoothing: styleType.cornerSmoothing,
+            ),
+          ),
+          color: decoration.color,
+          image: decoration.image,
+          gradient: decoration.gradient,
+          shadows: decoration.shadows,
         ),
         child: child,
       );
