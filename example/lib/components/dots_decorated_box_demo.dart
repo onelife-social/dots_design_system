@@ -74,7 +74,7 @@ class DotsDecoratedBoxDemoScreen extends StatelessWidget {
               styleType: theme.styles.bgBlur,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(radius)),
               child: Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Text(
                   'Color Style on bgBlur',
                   style: theme.typo.main.bodyDefaultMedium,

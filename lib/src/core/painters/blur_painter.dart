@@ -1,0 +1,41 @@
+import 'dart:ui' as ui;
+
+import 'package:flutter/material.dart';
+
+class BlurPainter extends CustomPainter {
+  final ui.Image? image;
+  final ui.FragmentProgram program;
+
+  /// Value must be between 0.0 and 5.0
+  final double sigma;
+
+  const BlurPainter({this.image, required this.program, required this.sigma});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (image == null) return;
+
+    final shader = program.fragmentShader();
+    shader
+      ..setImageSampler(0, image!)
+      ..setFloat(0, sigma)
+      ..setFloat(1, size.width)
+      ..setFloat(2, size.height);
+
+    final paint = Paint()..shader = shader;
+
+    // Draw only the cropped part under this widget
+    final rect = Offset.zero & size;
+    canvas.saveLayer(rect, paint);
+    canvas.drawRect(
+      rect,
+      paint,
+    );
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(covariant BlurPainter oldDelegate) {
+    return image != oldDelegate.image || sigma != oldDelegate.sigma;
+  }
+}
