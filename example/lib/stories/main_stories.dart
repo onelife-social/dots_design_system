@@ -2,6 +2,7 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/components/carrousel_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
 import 'package:example/components/dots_text_animations_demo_page.dart';
+import 'package:example/components/folder_carrousel_demo_page.dart';
 import 'package:example/components/item_input_demo.dart';
 import 'package:example/components/memory_card_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
@@ -442,6 +443,13 @@ List<Story> get allStories => [
               ],
             ),
           );
+        },
+      ),
+      Story(
+        name: 'Folder Carrousel',
+        description: 'Demo page for Folder Carrousel',
+        builder: (context) {
+          return FolderCarrouselDemoPage();
         },
       ),
       ...toastStories

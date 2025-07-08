@@ -11,6 +11,7 @@ class DotsColorsModel {
   final Color bgContainerSecondaryOnBackground;
   final Color bgContainerTertiary;
   final Color bgAlert;
+  final Color bgStrong;
 
   // Prime Tag
   final Color bgToastLight;
@@ -78,7 +79,6 @@ class DotsColorsModel {
   final Color borderLabel;
   final Color borderGlass;
 
-
   const DotsColorsModel({
     required this.bgBase,
     required this.bgBaseContrast,
@@ -93,6 +93,7 @@ class DotsColorsModel {
     required this.bgToastLight,
     required this.bgChip,
     required this.bgAlert,
+    required this.bgStrong,
     required this.textPrimary,
     required this.textSecondary,
     required this.textTertiary,
@@ -154,6 +155,7 @@ class DotsColorsModel {
       bgBtnDisabled: Color.lerp(bgBtnDisabled, other?.bgBtnDisabled, t) ?? bgBtnDisabled,
       bgChip: Color.lerp(bgChip, other?.bgChip, t) ?? bgChip,
       bgAlert: Color.lerp(bgAlert, other?.bgAlert, t) ?? bgAlert,
+      bgStrong: Color.lerp(bgStrong, other?.bgStrong, t) ?? bgStrong,
       textPrimary: Color.lerp(textPrimary, other?.textPrimary, t) ?? textPrimary,
       textSecondary: Color.lerp(textSecondary, other?.textSecondary, t) ?? textSecondary,
       textTertiary: Color.lerp(textTertiary, other?.textTertiary, t) ?? textTertiary,
@@ -170,9 +172,9 @@ class DotsColorsModel {
       labelActive: Color.lerp(labelActive, other?.labelActive, t) ?? labelActive,
       labelInactive: Color.lerp(labelInactive, other?.labelInactive, t) ?? labelInactive,
       bgActive: Color.lerp(bgActive, other?.bgActive, t) ?? bgActive,
-      bgFloatingBase:
-          Color.lerp(bgFloatingBase, other?.bgFloatingBase, t) ?? bgFloatingBase,
-      bgFloatingActive: Color.lerp(bgFloatingActive, other?.bgFloatingActive, t) ?? bgFloatingActive,
+      bgFloatingBase: Color.lerp(bgFloatingBase, other?.bgFloatingBase, t) ?? bgFloatingBase,
+      bgFloatingActive:
+          Color.lerp(bgFloatingActive, other?.bgFloatingActive, t) ?? bgFloatingActive,
       misc100: Color.lerp(misc100, other?.misc100, t) ?? misc100,
       misc200: Color.lerp(misc200, other?.misc200, t) ?? misc200,
       misc300: Color.lerp(misc300, other?.misc300, t) ?? misc300,
