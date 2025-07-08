@@ -4,15 +4,17 @@ import 'package:dots_design_system/src/core/core_lib.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+/// A container that blurs its inner content
 class BlurContainer extends StatefulWidget {
+  /// The amount of blur to apply to the content.
+  /// Must be between 0.0 and 5.0.
   final double sigma;
+
+  /// The child widget to be blurred.
   final Widget child;
 
   const BlurContainer({required this.sigma, required this.child, super.key})
-      : assert(
-          sigma < 0 || sigma > 5.0,
-          'Sigma must be between 0 and 5',
-        );
+      : assert(sigma >= 0 && sigma <= 5.0, 'Sigma must be non-negative');
 
   @override
   State<BlurContainer> createState() => _BlurContainerState();
@@ -43,20 +45,16 @@ class _BlurContainerState extends State<BlurContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        CustomPaint(
-          painter: BlurPainter(
-            image: _backgroundImage,
-            program: _program,
-            sigma: widget.sigma,
-          ),
+    return RepaintBoundary(
+      key: repaintBoundaryKey,
+      child: CustomPaint(
+        painter: BlurPainter(
+          image: _backgroundImage,
+          program: _program,
+          sigma: widget.sigma,
         ),
-        RepaintBoundary(
-          key: repaintBoundaryKey,
-          child: widget.child,
-        ),
-      ],
+        child: widget.child,
+      ),
     );
   }
 }

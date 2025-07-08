@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 class BlurPainter extends CustomPainter {
   final ui.Image? image;
   final ui.FragmentProgram program;
+
+  /// Value must be between 0.0 and 5.0
   final double sigma;
 
-  const BlurPainter({this.image, required this.program, required this.sigma})
-      : assert(sigma < 0 && sigma > 5.0, 'Sigma must be between 0 and 5');
+  const BlurPainter({this.image, required this.program, required this.sigma});
 
   @override
   void paint(Canvas canvas, Size size) {

@@ -76,7 +76,11 @@ class DotsDecoratedBox extends StatelessWidget {
     if (styleType is DotsStyleBlur) {
       return _DotsDecoratedBoxClipper(
         shape: decoration.shape,
-        child: BlurContainer(sigma: styleType.blur, child: child),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: styleType.blur, sigmaY: styleType.blur),
+          blendMode: BlendMode.src,
+          child: child,
+        ),
       );
     }
     if (styleType is DotsStyleShadow) {
