@@ -79,7 +79,6 @@ class DotsColorsModel {
   final Color borderLabel;
   final Color borderGlass;
 
-
   const DotsColorsModel({
     required this.bgBase,
     required this.bgBaseContrast,
@@ -173,9 +172,9 @@ class DotsColorsModel {
       labelActive: Color.lerp(labelActive, other?.labelActive, t) ?? labelActive,
       labelInactive: Color.lerp(labelInactive, other?.labelInactive, t) ?? labelInactive,
       bgActive: Color.lerp(bgActive, other?.bgActive, t) ?? bgActive,
-      bgFloatingBase:
-          Color.lerp(bgFloatingBase, other?.bgFloatingBase, t) ?? bgFloatingBase,
-      bgFloatingActive: Color.lerp(bgFloatingActive, other?.bgFloatingActive, t) ?? bgFloatingActive,
+      bgFloatingBase: Color.lerp(bgFloatingBase, other?.bgFloatingBase, t) ?? bgFloatingBase,
+      bgFloatingActive:
+          Color.lerp(bgFloatingActive, other?.bgFloatingActive, t) ?? bgFloatingActive,
       misc100: Color.lerp(misc100, other?.misc100, t) ?? misc100,
       misc200: Color.lerp(misc200, other?.misc200, t) ?? misc200,
       misc300: Color.lerp(misc300, other?.misc300, t) ?? misc300,
