@@ -41,6 +41,7 @@ class DotsTheme extends ThemeExtension<DotsTheme> {
     );
   }
 
+  @override
   DotsTheme copyWith({
     DotsColorsModel? colors,
     DotsTypoModel? typo,

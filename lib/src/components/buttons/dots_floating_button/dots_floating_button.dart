@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-
 class DotsFloatingButton extends StatelessWidget {
   const DotsFloatingButton({
     super.key,
@@ -23,14 +22,14 @@ class DotsFloatingButton extends StatelessWidget {
 
   /// Callback when the button is tapped.
   final Function()? onTap;
-  
+
   /// Whether to apply a blur effect to the button background.
   final bool blur;
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-   
+
     final borderRadius = DotsBorderRadius.r36;
 
     final button = Material(
@@ -69,8 +68,8 @@ class DotsFloatingButton extends StatelessWidget {
                   content,
                   overflow: TextOverflow.ellipsis,
                   style: theme.typo.main.labelDefaultBold.copyWith(
-                        color: theme.colors.labelAlwaysWhite,
-                      ),
+                    color: theme.colors.labelAlwaysWhite,
+                  ),
                 ),
               ),
             ],
@@ -84,7 +83,7 @@ class DotsFloatingButton extends StatelessWidget {
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: Container(
-            color: theme.colors.labelAlwaysWhite.withOpacity(0.5),
+            color: theme.colors.labelAlwaysWhite.dotsWithOpacity(0.5),
             child: button,
           ),
         ),

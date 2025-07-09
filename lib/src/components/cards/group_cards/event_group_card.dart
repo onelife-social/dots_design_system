@@ -240,7 +240,7 @@ class _MenuEvent extends StatelessWidget {
                   child: Container(
                     width: 0.5,
                     height: 22.78,
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black.dotsWithOpacity(0.1),
                   ),
                 );
               }

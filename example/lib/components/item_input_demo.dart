@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 
 class ItemInputDemo extends StatelessWidget {
   const ItemInputDemo(
-      {Key? key,
+      {super.key,
       required this.count,
       required this.label,
       required this.value,
-      required this.iconData})
-      : super(key: key);
+      required this.iconData});
 
   final int count;
   final String label;
