@@ -53,7 +53,7 @@ class BtnFolder extends StatelessWidget {
               child: ElevatedButton.icon(
                 onPressed: onPressed,
                 label: Text(
-                  text,
+                  text.length > 20 ? '${text.substring(0, 20)}…' : text,
                   style: context.dotsTheme.typo.main.bodyDefaultMedium,
                 ),
                 icon: DotsIcon(
