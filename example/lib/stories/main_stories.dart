@@ -421,6 +421,12 @@ List<Story> get allStories => [
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: DotsNavBar(
+              selectedIndex: context.knobs.sliderInt(
+                label: 'Selected Index',
+                initial: 0,
+                min: 0,
+                max: 2,
+              ),
               items: [
                 DotsNavBarItem(
                   label: context.knobs.text(label: 'Create', initial: 'Create'),

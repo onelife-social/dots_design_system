@@ -16,33 +16,26 @@ class DotsNavBarItem {
   /// If not provided, the item will not respond to taps.
   final Function()? onTap;
 
+  /// Optional key for the item.
+  final Key? key;
+
   DotsNavBarItem({
+    this.key,
     required this.label,
     required this.iconData,
     this.onTap,
   });
 }
 
-class DotsNavBar extends StatefulWidget {
+class DotsNavBar extends StatelessWidget {
   final List<DotsNavBarItem> items;
+  final int selectedIndex;
 
   const DotsNavBar({
     super.key,
     required this.items,
+    required this.selectedIndex,
   }) : assert(items.length == 3);
-
-  @override
-  State<DotsNavBar> createState() => _DotsNavBarState();
-}
-
-class _DotsNavBarState extends State<DotsNavBar> {
-  late int selectedIndex;
-
-  @override
-  void initState() {
-    super.initState();
-    selectedIndex = 1;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,14 +62,14 @@ class _DotsNavBarState extends State<DotsNavBar> {
             alignment: Alignment.centerLeft,
             children: [
               AnimatedPositioned(
-                duration: const Duration(milliseconds: 250),
+                duration: const Duration(milliseconds: 200),
                 curve: Curves.ease,
-                left: selectedIndex * 80.0,
+                left: selectedIndex * 70.0,
                 top: 0,
                 bottom: 0,
                 child: Container(
-                  width: 80,
-                  height: 65,
+                  width: 70,
+                  height: 55,
                   decoration: BoxDecoration(
                     color: theme.colors.bgFloatingActive,
                     borderRadius: DotsBorderRadius.r32,
@@ -85,43 +78,56 @@ class _DotsNavBarState extends State<DotsNavBar> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.min,
-                children: List.generate(widget.items.length, (index) {
-                  final item = widget.items[index];
+                children: List.generate(items.length, (index) {
+                  final item = items[index];
                   final Color color = selectedIndex == index
                       ? theme.colors.labelHighlight
                       : theme.colors.textSecondary;
                   return GestureDetector(
-                    onTap: () {
-                      setState(() => selectedIndex = index);
+                    onTap: () { 
                       item.onTap?.call();
                     },
                     child: Container(
-                      width: 80,
-                      height: 65,
+                      width: 70,
+                      height: 55,
                       clipBehavior: Clip.antiAlias,
                       decoration: const ShapeDecoration(
                         shape: RoundedRectangleBorder(
                           borderRadius: DotsBorderRadius.all32,
                         ),
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      child: Stack(
+                        alignment: Alignment.center,
                         children: [
-                          AnimatedScale(
-                            scale: selectedIndex == index ? 1.2 : 1.0,
-                            duration: const Duration(milliseconds: 250),
-                            curve: Curves.ease,
-                            child: DotsIcon(
-                              iconData: item.iconData,
-                              color: color,
-                              size: 24,
+                          Container(
+                            key: item.key,
+                            width: 48,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: theme.colors.transparent,
                             ),
                           ),
-                          const SizedBox(height: 2),
-                          AnimatedDefaultTextStyle(
-                            duration: const Duration(milliseconds: 250),
-                            style: theme.typo.main.labelDefaultRegular.copyWith(color: color),
-                            child: Text(item.label),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              AnimatedScale(
+                                scale: selectedIndex == index ? 1.2 : 1.0,
+                                duration: const Duration(milliseconds: 250),
+                                curve: Curves.ease,
+                                child: DotsIcon(
+                                  iconData: item.iconData,
+                                  color: color,
+                                  size: 20,
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                              AnimatedDefaultTextStyle(
+                                duration: const Duration(milliseconds: 250),
+                                style: theme.typo.main.labelDefaultRegular.copyWith(color: color),
+                                child: Text(item.label),
+                              ),
+                            ],
                           ),
                         ],
                       ),
