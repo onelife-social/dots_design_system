@@ -1,0 +1,77 @@
+import 'package:dots_design_system/dots_design_system.dart';
+import 'package:flutter/material.dart';
+
+class BtnFolder extends StatelessWidget {
+  // The icon to display in the button.
+  final DotsIconData icon;
+
+  // The text to display in the button when selected.
+  final String text;
+
+  // Callback function when the button is pressed.
+  final VoidCallback? onPressed;
+
+  // Variable to determine if the button is selected.
+  final bool isSelected;
+
+  // The color of the icon when the button is selected.
+  final Color iconSelectedColor;
+
+  const BtnFolder({
+    super.key,
+    required this.icon,
+    required this.text,
+    required this.onPressed,
+    this.isSelected = false,
+    required this.iconSelectedColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      child: !isSelected
+          ? SizedBox(
+              width: 42,
+              height: 42,
+              child: ElevatedButton(
+                onPressed: onPressed,
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 11),
+                  backgroundColor: context.dotsTheme.colors.bgContainerSecondaryOnBackground,
+                  elevation: 0,
+                ),
+                child: DotsIcon(
+                  iconData: icon,
+                  size: 20,
+                  color: context.dotsTheme.colors.textQuarternary,
+                ),
+              ),
+            )
+          : SizedBox(
+              height: 42,
+              child: ElevatedButton.icon(
+                onPressed: onPressed,
+                label: Text(
+                  text,
+                  style: context.dotsTheme.typo.main.bodyDefaultMedium,
+                ),
+                icon: DotsIcon(
+                  iconData: icon,
+                  size: 20,
+                  color: iconSelectedColor,
+                ),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  backgroundColor: context.dotsTheme.colors.bgStrong,
+                  elevation: 0,
+                  side: BorderSide(
+                    color: Colors.black.dotsWithOpacity(0.08),
+                    width: 1,
+                  ),
+                ),
+              ),
+            ),
+    );
+  }
+}

@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   flutter_svg: ^2.1.0
   soft_edge_blur: ^0.1.3
+  figma_squircle: ^0.6.3
+  flutter_shaders: ^0.1.3
 
 dev_dependencies:
   flutter_test:
@@ -28,6 +30,9 @@ flutter:
     - assets/icons/social/
     - assets/icons/system/
     - assets/images/
+  # Shaders
+  shaders:
+    - assets/shaders/blur.frag
   # Fonts
   fonts:
     - family: Inter

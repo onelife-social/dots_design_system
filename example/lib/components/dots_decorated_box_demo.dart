@@ -74,7 +74,7 @@ class DotsDecoratedBoxDemoScreen extends StatelessWidget {
               styleType: theme.styles.bgBlur,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(radius)),
               child: Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Text(
                   'Color Style on bgBlur',
                   style: theme.typo.main.bodyDefaultMedium,
@@ -109,7 +109,20 @@ class DotsDecoratedBoxDemoScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(
-                  'Color Style on bgBlur',
+                  'Color Style on default shadow',
+                  style: theme.typo.main.bodyDefaultMedium,
+                ),
+              ),
+            ),
+            DotsDecoratedBox(
+              styleType: theme.styles.defaultSquircle,
+              decoration: BoxDecoration(
+                color: theme.colors.bgContainerPrimary,
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Color Style on default squircle',
                   style: theme.typo.main.bodyDefaultMedium,
                 ),
               ),
@@ -148,7 +161,7 @@ class BlendModeTestPage extends StatelessWidget {
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
                   blendMode: blendMode,
-                  child: Container(
+                  child: SizedBox(
                     height: 80,
                     width: 200,
                     child: Center(

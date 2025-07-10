@@ -1,5 +1,4 @@
 import 'package:dots_design_system/dots_design_system.dart';
-import 'package:dots_design_system/src/theme/blur/bg_blur_component.dart';
 import 'package:flutter/material.dart';
 
 enum SegmentedControlOption {
@@ -83,7 +82,8 @@ class _BackSegmented extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    return BgBlurComponent(
+    return DotsDecoratedBox(
+      styleType: theme.styles.bgBlur,
       child: Container(
         height: 36,
         padding: _itemPadding,

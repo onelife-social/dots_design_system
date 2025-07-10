@@ -1,0 +1,3 @@
+enum ShaderType {
+  blur,
+}

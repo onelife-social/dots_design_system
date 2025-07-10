@@ -1,12 +1,15 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:example/components/blur_container_demo_page.dart';
 import 'package:example/components/carrousel_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
 import 'package:example/components/dots_text_animations_demo_page.dart';
+import 'package:example/components/folder_carrousel_demo_page.dart';
 import 'package:example/components/item_input_demo.dart';
 import 'package:example/components/memory_card_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
 import 'package:example/components/empty_state_card_demo.dart';
 import 'package:example/stories/stories_by_folder/action_sheet_stories.dart';
+import 'package:example/stories/stories_by_folder/badge_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
@@ -20,7 +23,9 @@ import 'package:example/stories/helpers/color_knob_options.dart';
 
 List<Story> get allStories => [
       ...themeStories,
+      ...badgeStories,
       ...buttonStories,
+      ...toastStories,
       ...topBarStories,
       ...groupCards,
       ...selectorRadioButtonStories,
@@ -245,24 +250,6 @@ List<Story> get allStories => [
         ),
       ),
       Story(
-        name: 'Tag',
-        description: 'Demo page for tag',
-        builder: (context) => DotsTag(
-          content: context.knobs.text(label: 'Content', initial: 'Tag text'),
-          size: context.knobs.options<DotsTagSize>(
-              label: 'Size',
-              initial: DotsTagSize.medium,
-              options:
-                  DotsTagSize.values.map((item) => Option(label: item.name, value: item)).toList()),
-          variant: context.knobs.options<DotsTagVariant>(
-              label: 'Variant',
-              initial: DotsTagVariant.main,
-              options: DotsTagVariant.values
-                  .map((item) => Option(label: item.name, value: item))
-                  .toList()),
-        ),
-      ),
-      Story(
         name: 'Empty State Card',
         description: 'Demo page for Empty State Card',
         builder: (context) => EmptyStateCardDemo(
@@ -444,8 +431,9 @@ List<Story> get allStories => [
                   iconData: context.knobs.options<DotsIconData>(
                     label: 'Second Icon',
                     initial: DotsIconData.home,
-                    options:
-                        DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+                    options: DotsIconData.values
+                        .map((item) => Option(label: item.name, value: item))
+                        .toList(),
                   ),
                   onTap: () {},
                 ),
@@ -454,8 +442,9 @@ List<Story> get allStories => [
                   iconData: context.knobs.options<DotsIconData>(
                     label: 'Third Icon',
                     initial: DotsIconData.gallery,
-                    options:
-                        DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+                    options: DotsIconData.values
+                        .map((item) => Option(label: item.name, value: item))
+                        .toList(),
                   ),
                   onTap: () {},
                 ),
@@ -464,5 +453,30 @@ List<Story> get allStories => [
           );
         },
       ),
-      ...toastStories
+      Story(
+        name: 'Folder Carrousel',
+        description: 'Demo page for Folder Carrousel',
+        builder: (context) {
+          return FolderCarrouselDemoPage();
+        },
+      ),
+      Story(
+        name: 'Blur container',
+        description: 'Demo page for blur container',
+        builder: (context) {
+          return BlurContainerDemoPage(
+            text: context.knobs.text(label: 'Text', initial: 'Blurred Text'),
+            imageUrl: context.knobs.text(
+              label: 'Image URL',
+              initial: 'https://picsum.photos/250?image=9',
+            ),
+            sigma: context.knobs.slider(
+              label: 'Blur Sigma',
+              initial: 5.0,
+              min: 0.0,
+              max: 5.0,
+            ),
+          );
+        },
+      ),
     ];

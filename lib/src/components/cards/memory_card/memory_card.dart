@@ -104,7 +104,7 @@ class _UpdatedBorder extends StatelessWidget {
       width: 64.53,
       height: 83.5,
       decoration: BoxDecoration(
-        borderRadius: DotsBorderRadius.r16,
+        borderRadius: DotsBorderRadius.r18,
         border: GradientBoxBorder(
           width: 1.45,
           gradient: LinearGradient(

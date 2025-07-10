@@ -61,6 +61,10 @@ class DotsStyles {
       blurRadius: 20,
       offset: Offset(0, 6),
     ),
+    defaultSquircle: DotsStyleSquircle(
+      radius: 16,
+      cornerSmoothing: 0.5,
+    ),
   );
 
   static final dark = DotsStylesModel(
@@ -121,6 +125,10 @@ class DotsStyles {
       color: Color(0x1A000000),
       blurRadius: 20,
       offset: Offset(0, 6),
+    ),
+    defaultSquircle: DotsStyleSquircle(
+      radius: 16,
+      cornerSmoothing: 0.5,
     ),
   );
 }
