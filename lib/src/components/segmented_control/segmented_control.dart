@@ -84,6 +84,11 @@ class _BackSegmented extends StatelessWidget {
     final theme = context.dotsTheme;
     return DotsDecoratedBox(
       styleType: theme.styles.bgBlur,
+      decoration: ShapeDecoration(
+        shape: RoundedRectangleBorder(
+          borderRadius: DotsBorderRadius.r1000,
+        ),
+      ),
       child: Container(
         height: 36,
         padding: _itemPadding,
