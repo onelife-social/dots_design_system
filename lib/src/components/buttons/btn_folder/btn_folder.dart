@@ -6,7 +6,7 @@ class BtnFolder extends StatelessWidget {
   final DotsIconData icon;
 
   // The text to display in the button when selected.
-  final String text;
+  final String? text;
 
   // Callback function when the button is pressed.
   final VoidCallback? onPressed;
@@ -20,7 +20,7 @@ class BtnFolder extends StatelessWidget {
   const BtnFolder({
     super.key,
     required this.icon,
-    required this.text,
+    this.text,
     required this.onPressed,
     this.isSelected = false,
     required this.iconSelectedColor,
@@ -28,8 +28,9 @@ class BtnFolder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
+    return AnimatedSize(
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
       child: !isSelected
           ? SizedBox(
               width: 42,
@@ -52,10 +53,12 @@ class BtnFolder extends StatelessWidget {
               height: 42,
               child: ElevatedButton.icon(
                 onPressed: onPressed,
-                label: Text(
-                  text,
-                  style: context.dotsTheme.typo.main.bodyDefaultMedium,
-                ),
+                label: text != null
+                    ? Text(
+                        text!.length > 20 ? '${text!.substring(0, 20)}…' : text!,
+                        style: context.dotsTheme.typo.main.bodyDefaultMedium,
+                      )
+                    : SizedBox.shrink(),
                 icon: DotsIcon(
                   iconData: icon,
                   size: 20,
