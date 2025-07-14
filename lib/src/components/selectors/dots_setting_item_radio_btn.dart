@@ -39,11 +39,13 @@ class DotsSettingItemRadioBtn extends StatelessWidget {
                 size: 22,
               ),
               const SizedBox(width: 12),
-              Text(
-                leadingLabel,
-                style: context.dotsTheme.typo.main.bodyDefaultBold,
+              Expanded(
+                child: Text(
+                  leadingLabel,
+                  style: context.dotsTheme.typo.main.bodyDefaultBold,
+                  softWrap: true,
+                ),
               ),
-              const Spacer(),
               const SizedBox(width: 12),
               if (trailingLabel != null)
                 Text(
