@@ -17,7 +17,7 @@ class FeatureItem extends StatelessWidget {
       children: [
         DotsIcon(iconData: icon, size: 16, color: theme.colors.textQuarternary),
         Expanded(
-          flex: 7,
+          flex: 6,
           child: Text(
             feature,
             style: theme.typo.main.bodyDefaultRegular.copyWith(
@@ -27,7 +27,7 @@ class FeatureItem extends StatelessWidget {
           ),
         ),
         Expanded(
-          flex: 3,
+          flex: 4,
           child: Text(
             value,
             style: theme.typo.main.bodyDefaultMedium.copyWith(
