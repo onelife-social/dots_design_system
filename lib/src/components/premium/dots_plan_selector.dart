@@ -59,7 +59,7 @@ class DotsPlanSelector extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: theme.typo.main.bodyLargeBold.copyWith(color: textColor),
+                  style: theme.typo.main.bodyDefaultBold.copyWith(color: textColor),
                   textAlign: TextAlign.center,
                 ),
                 if (description?.isNotEmpty ?? false)
