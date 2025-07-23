@@ -48,7 +48,14 @@ List<Story> get selectorRadioButtonStories => [
           padding: const EdgeInsets.all(16.0),
           child: DotsSelectorRadioButtonLabel(
             isSelected: context.knobs.boolean(label: 'Is Selected', initial: false),
-            free: context.knobs.boolean(label: 'Free', initial: false),
+            variant: context.knobs.options<SelectorRadioButtonLabelVariant>(
+              label: 'Variant',
+              initial: SelectorRadioButtonLabelVariant.free,
+              options: SelectorRadioButtonLabelVariant.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
+            isSelectable: context.knobs.boolean(label: 'Is Selectable', initial: true),
             title: context.knobs.text(label: 'Title', initial: 'Title'),
             details1: context.knobs.text(label: 'Details 1', initial: 'Details 1'),
             details2: context.knobs.text(label: 'Details 2', initial: 'Details 2'),

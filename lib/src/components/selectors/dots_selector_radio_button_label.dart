@@ -8,7 +8,8 @@ class DotsSelectorRadioButtonLabel extends StatelessWidget {
 
   final String details1;
   final String details2;
-  final bool free;
+  final bool isSelectable;
+  final SelectorRadioButtonLabelVariant variant;
   final Function()? onTap;
 
   const DotsSelectorRadioButtonLabel({
@@ -18,7 +19,8 @@ class DotsSelectorRadioButtonLabel extends StatelessWidget {
     required this.details1,
     required this.details2,
     required this.tagText,
-    required this.free,
+    required this.isSelectable,
+    required this.variant,
     this.onTap,
   });
 
@@ -30,7 +32,7 @@ class DotsSelectorRadioButtonLabel extends StatelessWidget {
       color: theme.colors.bgContainerSecondary,
       borderRadius: DotsBorderRadius.r24,
     );
-    if (isSelected) {
+    if (isSelected && isSelectable) {
       decoration = decoration.copyWith(
         border: Border.all(
             color: theme.colors.labelHighlight,
@@ -41,7 +43,7 @@ class DotsSelectorRadioButtonLabel extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: isSelectable ? onTap : null,
       child: Container(
         width: double.infinity,
         margin: EdgeInsets.all(1.5),
@@ -58,7 +60,7 @@ class DotsSelectorRadioButtonLabel extends StatelessWidget {
                 children: [
                   BadgeLabel(
                     content: tagText,
-                    variant: free ? BadgeLabelVariant.main : BadgeLabelVariant.premiumPlus,
+                    variant: getBadgeLabelVariant(variant),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,13 +81,28 @@ class DotsSelectorRadioButtonLabel extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(width: 16),
-            DotsRadioButton(
-              isSelected: isSelected,
-            ),
+            if (isSelectable) ...[
+              const SizedBox(width: 16),
+              DotsRadioButton(
+                isSelected: isSelected,
+              ),
+            ]
           ],
         ),
       ),
     );
+  }
+
+  BadgeLabelVariant getBadgeLabelVariant(SelectorRadioButtonLabelVariant variant) {
+    switch (variant) {
+      case SelectorRadioButtonLabelVariant.free:
+        return BadgeLabelVariant.main;
+      case SelectorRadioButtonLabelVariant.acquired:
+        return BadgeLabelVariant.green;
+      case SelectorRadioButtonLabelVariant.premium:
+        return BadgeLabelVariant.premium;
+      case SelectorRadioButtonLabelVariant.premiumPlus:
+        return BadgeLabelVariant.premiumPlus;
+    }
   }
 }
