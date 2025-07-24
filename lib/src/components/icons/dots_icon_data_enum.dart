@@ -125,6 +125,7 @@ enum DotsIconData {
 
   // Premium
   creditCardAlert('ic-creditcard-alert.svg', DotsIconGroup.premium),
+  diamond('ic-diamond.svg', DotsIconGroup.premium),
   gift('ic-gift.svg', DotsIconGroup.premium),
   level('ic-level.svg', DotsIconGroup.premium),
   level2('ic-level-2.svg', DotsIconGroup.premium),
