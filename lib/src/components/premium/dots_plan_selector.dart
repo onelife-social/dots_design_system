@@ -16,11 +16,13 @@ class DotsPlanSelector extends StatelessWidget {
     required this.variant,
     required this.selected,
     this.onTap,
+    this.enabled = true,
   });
   final String title;
   final String? description;
   final DotsPlanSelectorVariant variant;
   final bool selected;
+  final bool enabled;
   final Function()? onTap;
 
   String get imagePath {
@@ -34,21 +36,35 @@ class DotsPlanSelector extends StatelessWidget {
     }
   }
 
+  Color getTextColor(DotsTheme theme) {
+    if (enabled) {
+      if (selected) {
+        return theme.colors.labelAlwaysWhite;
+      } else {
+        return theme.colors.textPrimary;
+      }
+    } else {
+      return theme.colors.textQuarternary;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    final textColor = selected ? theme.colors.labelAlwaysWhite : theme.colors.textPrimary;
+    final textColor = getTextColor(theme);
     return Material(
       color: theme.colors.bgContainerSecondaryOnBackground,
       borderRadius: DotsBorderRadius.r16,
       child: Ink(
         decoration: BoxDecoration(
           borderRadius: DotsBorderRadius.r16,
-          image: selected ? DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover) : null,
+          image: selected && enabled
+              ? DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover)
+              : null,
         ),
         child: InkWell(
           borderRadius: DotsBorderRadius.r16,
-          onTap: onTap,
+          onTap: enabled ? onTap : null,
           child: Container(
             width: double.infinity,
             height: context.screenHeight * context.getByRatio(0.095, 0.111),

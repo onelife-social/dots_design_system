@@ -313,6 +313,7 @@ List<Story> get allStories => [
                       .map((item) => Option(label: item.name, value: item))
                       .toList(),
                 ),
+                enabled: context.knobs.boolean(label: 'Enabled', initial: true),
                 selected: context.knobs.boolean(label: 'Selected', initial: false),
                 onTap: context.knobs.boolean(label: 'Has onTap', initial: true) ? () {} : null,
               ),
