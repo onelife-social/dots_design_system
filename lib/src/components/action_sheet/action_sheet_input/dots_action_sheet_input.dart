@@ -34,11 +34,11 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [showBlurBackground] parameter determines if the background should be blurred.
   final bool showBlurBackground;
 
-  /// The [folderIconData] is the icon for the folder.
-  final DotsIconData? folderIconData;
+  /// The [iconData] is the icon for the folder.
+  final DotsIconData? iconData;
 
-  /// The [folderIconTap] is a callback for the folder icon tap.
-  final Function()? folderIconTap;
+  /// The [iconTap] is a callback for the folder icon tap.
+  final Function()? iconTap;
 
   /// The [initialValue] is the initial value for the text field.
   final String? initialValue;
@@ -77,8 +77,8 @@ class DotsActionSheetInput extends StatelessWidget {
     this.onBackButtonTap,
     this.onClose,
     this.showBlurBackground = true,
-    this.folderIconData,
-    this.folderIconTap,
+    this.iconData,
+    this.iconTap,
     this.initialValue,
     this.colorController,
     this.selectedColor = DotsColorOption.grey,
@@ -126,8 +126,8 @@ class DotsActionSheetInput extends StatelessWidget {
                         return _Body(
                           variant: variant,
                           subtitle: subtitle,
-                          folderIconData: folderIconData,
-                          folderIconTap: folderIconTap,
+                          iconData: iconData,
+                          iconTap: iconTap,
                           initialValue: initialValue,
                           mainButtonOnTap: mainButtonOnTap,
                           actionButtonText: actionButtonText,
@@ -142,8 +142,8 @@ class DotsActionSheetInput extends StatelessWidget {
                     _Body(
                       variant: variant,
                       subtitle: subtitle,
-                      folderIconData: folderIconData,
-                      folderIconTap: folderIconTap,
+                      iconData: iconData,
+                      iconTap: iconTap,
                       initialValue: initialValue,
                       mainButtonOnTap: mainButtonOnTap,
                       actionButtonText: actionButtonText,
@@ -209,8 +209,8 @@ class _Header extends StatelessWidget {
 class _Body extends StatelessWidget {
   final String? subtitle;
   final ActionSheetInputVariant variant;
-  final DotsIconData? folderIconData;
-  final Function()? folderIconTap;
+  final DotsIconData? iconData;
+  final Function()? iconTap;
   final String? initialValue;
   final Function()? mainButtonOnTap;
   final String actionButtonText;
@@ -224,8 +224,8 @@ class _Body extends StatelessWidget {
   const _Body({
     this.subtitle,
     required this.variant,
-    this.folderIconData,
-    this.folderIconTap,
+    this.iconData,
+    this.iconTap,
     this.initialValue,
     required this.mainButtonOnTap,
     required this.actionButtonText,
@@ -262,10 +262,10 @@ class _Body extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: DotsIconButton(
-              icon: folderIconData ?? DotsIconData.add,
+              icon: iconData ?? DotsIconData.add,
               size: DotsIconButtonSize.extraLarge,
               variant: DotsIconButtonVariant.solid,
-              onTap: folderIconTap,
+              onTap: iconTap,
               color: selectedColor?.getColor(context) ?? theme.colors.textQuarternary,
             ),
           ),

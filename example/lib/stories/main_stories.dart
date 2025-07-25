@@ -510,14 +510,14 @@ List<Story> get allStories => [
                   onBackButtonTap: () {},
                   onClose: () {},
                   showBlurBackground: context.knobs.boolean(label: 'Show Blur Background', initial: true),
-                  folderIconData: context.knobs.options<DotsIconData>(
+                  iconData: context.knobs.options<DotsIconData>(
                     label: 'Folder Icon Data',
                     initial: DotsIconData.add,
                     options: DotsIconData.values
                         .map((item) => Option(label: item.name, value: item))
                         .toList(),
                   ),
-                  folderIconTap: () {},
+                  iconTap: () {},
                   initialValue: context.knobs.text(label: 'Initial Value', initial: 'Sample'),
                   mainButtonOnTap: () {},
                   actionButtonText: context.knobs.text(label: 'Action Button Text', initial: 'Confirm'),
