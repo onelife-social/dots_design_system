@@ -1,7 +1,11 @@
 enum DotsIconButtonSize {
-  extraLarge(
+  enormous(
     size: 56,
-    iconSize: 24,
+    iconSize: 32,
+  ),
+  extraLarge(
+    size: 52,
+    iconSize: 32,
   ),
   large(
     size: 48,
@@ -23,6 +27,7 @@ enum DotsIconButtonSize {
   final double size;
   final double iconSize;
 
+  bool get isXXLarge => this == DotsIconButtonSize.enormous;
   bool get isExtraLarge => this == DotsIconButtonSize.extraLarge;
   bool get isLarge => this == DotsIconButtonSize.large;
   bool get isMedium => this == DotsIconButtonSize.medium;

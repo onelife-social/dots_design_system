@@ -8,13 +8,21 @@ class DotsTextField extends StatefulWidget {
   final DotsIconData? iconData;
 
   /// The icon data for the close button.
+  /// If null, the default icon is a cross.
   final DotsIconData iconDataButton;
 
   /// The variant of the close button.
+  ///
+  /// - [DotsCloseButtonVariant.inverted]
   final DotsCloseButtonVariant buttonVariant;
 
   /// The size of the close button.
+  /// 
+  /// Defaults to [DotsCloseButtonSize.extraSmall].
   final DotsCloseButtonSize buttonSize;
+
+  /// The initial value of the TextField.
+  final String? initialValue;
 
   /// The hint text to display in the TextField.
   final String hintText;
@@ -28,9 +36,15 @@ class DotsTextField extends StatefulWidget {
   /// Creates a DotsTextFields widget.
   final String? errorText;
 
+  /// Whether to align the text in the center.
+  /// 
+  /// Defaults to false.
+  final bool alignCenter;
+
   const DotsTextField({
     super.key,
     this.iconData,
+    this.initialValue,
     this.hintText = '',
     this.iconDataButton = DotsIconData.cross,
     this.buttonVariant = DotsCloseButtonVariant.inverted,
@@ -38,6 +52,7 @@ class DotsTextField extends StatefulWidget {
     this.onChanged,
     this.isError = false,
     this.errorText,
+    this.alignCenter = false,
   });
 
 @override
@@ -45,18 +60,45 @@ class DotsTextField extends StatefulWidget {
 }
 
 class _DotsTextFieldState extends State<DotsTextField> {
-  final TextEditingController _controller = TextEditingController();
+  late final TextEditingController _controller;
+  late final FocusNode _focusNode;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.initialValue ?? '');
+    _controller.addListener(_onTextChanged);
+    _focusNode = FocusNode();
+    _focusNode.addListener(_onFocusChanged);
+  }
 
   @override
   void dispose() {
+    _controller.removeListener(_onTextChanged);
     _controller.dispose();
+     _focusNode.removeListener(_onFocusChanged);
+    _focusNode.dispose();
     super.dispose();
+  }
+
+  void _onTextChanged() {
+    setState(() {});
+  }
+
+   void _onFocusChanged() {
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     final icon = widget.iconData;
+
+    final bool isFocused = _focusNode.hasFocus;
+
+    final TextAlign textAlign = widget.alignCenter ? TextAlign.center : TextAlign.left;
+
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,7 +126,9 @@ class _DotsTextFieldState extends State<DotsTextField> {
                 const SizedBox(width: 6),
                 Expanded(
                   child: TextField(
+                    focusNode: _focusNode,
                     controller: _controller,
+                    textAlign: textAlign,
                     style: theme.typo.main.bodyDefaultMedium.copyWith(
                       color: widget.isError ? theme.colors.labelDestructive : theme.colors.textPrimary,
                     ),
@@ -104,7 +148,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
                     },
                   ),
                 ),
-                if (_controller.text.isNotEmpty) ...[
+                if (_controller.text.isNotEmpty && isFocused ) ...[
                   const SizedBox(width: 6),
                   DotsCloseButton(
                     icon: widget.iconDataButton,
