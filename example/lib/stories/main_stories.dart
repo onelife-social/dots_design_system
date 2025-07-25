@@ -488,7 +488,6 @@ List<Story> get allStories => [
         name: 'DotsActionSheetInput',
         description: 'Demo page for DotsActionSheetInput',
         builder: (context) {
-          // Crea el controlador fuera del StatefulBuilder
           final colorController = ValueNotifier<DotsColorOption>(DotsColorOption.grey);
 
           return StatefulBuilder(
