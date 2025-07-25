@@ -17,6 +17,8 @@ class DotsActionSheetInput extends StatelessWidget {
 
   /// The [variant] parameter determines the type of action sheet.
   /// - [ActionSheetInputVariant.main] is the default variant.
+  /// - [ActionSheetInputVariant.colors] is for color selection.
+  /// - [ActionSheetInputVariant.date] is for date selection.
   final ActionSheetInputVariant variant;
 
   /// The [title] parameter is the title of the action sheet.
@@ -37,14 +39,14 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [iconData] is the icon for the folder.
   final DotsIconData? iconData;
 
-  /// The [iconTap] is a callback for the folder icon tap.
-  final Function()? iconTap;
+  /// The [onIconTap] is a callback for the folder icon tap.
+  final Function()? onIconTap;
 
   /// The [initialValue] is the initial value for the text field.
   final String? initialValue;
 
-  /// The [mainButtonOnTap] is a callback for the main button tap.
-  final Function() mainButtonOnTap;
+  /// The [onMainButtonTap] is a callback for the main button tap.
+  final Function() onMainButtonTap;
 
   /// The [actionButtonText] is the text for the action button.
   final String actionButtonText;
@@ -72,13 +74,13 @@ class DotsActionSheetInput extends StatelessWidget {
     this.variant = ActionSheetInputVariant.main,
     required this.title,
     required this.subtitle,
-    required this.mainButtonOnTap,
+    required this.onMainButtonTap,
     required this.actionButtonText,
     this.onBackButtonTap,
     this.onClose,
     this.showBlurBackground = true,
     this.iconData,
-    this.iconTap,
+    this.onIconTap,
     this.initialValue,
     this.colorController,
     this.selectedColor = DotsColorOption.grey,
@@ -101,7 +103,7 @@ class DotsActionSheetInput extends StatelessWidget {
                 ? BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                     child: Container(
-                      color: const Color(0xFF000000).dotsWithOpacity(0.3),
+                      color: Colors.black.dotsWithOpacity(0.3),
                     ),
                   )
                 : null,
@@ -127,9 +129,9 @@ class DotsActionSheetInput extends StatelessWidget {
                           variant: variant,
                           subtitle: subtitle,
                           iconData: iconData,
-                          iconTap: iconTap,
+                          onIconTap: onIconTap,
                           initialValue: initialValue,
-                          mainButtonOnTap: mainButtonOnTap,
+                          onMainButtonTap: onMainButtonTap,
                           actionButtonText: actionButtonText,
                           selectedColor: selectedColor,
                           onColorSelected: (color) {
@@ -143,9 +145,9 @@ class DotsActionSheetInput extends StatelessWidget {
                       variant: variant,
                       subtitle: subtitle,
                       iconData: iconData,
-                      iconTap: iconTap,
+                      onIconTap: onIconTap,
                       initialValue: initialValue,
-                      mainButtonOnTap: mainButtonOnTap,
+                      onMainButtonTap: onMainButtonTap,
                       actionButtonText: actionButtonText,
                       selectedColor: selectedColor,
                       dateLabel: dateLabel,
@@ -210,9 +212,9 @@ class _Body extends StatelessWidget {
   final String? subtitle;
   final ActionSheetInputVariant variant;
   final DotsIconData? iconData;
-  final Function()? iconTap;
+  final Function()? onIconTap;
   final String? initialValue;
-  final Function()? mainButtonOnTap;
+  final Function()? onMainButtonTap;
   final String actionButtonText;
   final DotsColorOption? selectedColor;
   final ValueChanged<DotsColorOption>? onColorSelected;
@@ -225,9 +227,9 @@ class _Body extends StatelessWidget {
     this.subtitle,
     required this.variant,
     this.iconData,
-    this.iconTap,
+    this.onIconTap,
     this.initialValue,
-    required this.mainButtonOnTap,
+    required this.onMainButtonTap,
     required this.actionButtonText,
     this.selectedColor,
     this.onColorSelected,
@@ -265,7 +267,7 @@ class _Body extends StatelessWidget {
               icon: iconData ?? DotsIconData.add,
               size: DotsIconButtonSize.extraLarge,
               variant: DotsIconButtonVariant.solid,
-              onTap: iconTap,
+              onTap: onIconTap,
               color: selectedColor?.getColor(context) ?? theme.colors.textQuarternary,
             ),
           ),
@@ -315,7 +317,7 @@ class _Body extends StatelessWidget {
                   expand: true,
                   variant: DotsMainButtonVariant.main,
                   size: DotsMainButtonSize.mainAction,
-                  onTap: mainButtonOnTap,
+                  onTap: onMainButtonTap,
                   content: actionButtonText,
                 ),
               ),

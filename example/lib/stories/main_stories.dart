@@ -517,9 +517,9 @@ List<Story> get allStories => [
                         .map((item) => Option(label: item.name, value: item))
                         .toList(),
                   ),
-                  iconTap: () {},
+                  onIconTap: () {},
                   initialValue: context.knobs.text(label: 'Initial Value', initial: 'Sample'),
-                  mainButtonOnTap: () {},
+                  onMainButtonTap: () {},
                   actionButtonText: context.knobs.text(label: 'Action Button Text', initial: 'Confirm'),
                   colorController: colorController,
                   selectedColor: selectedColor,
