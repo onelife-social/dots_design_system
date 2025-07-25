@@ -11,16 +11,19 @@ enum DotsItemInputPosition {
 class DotsItemInput extends StatelessWidget {
   const DotsItemInput(
       {super.key,
-      required this.label,
-      required this.value,
-      required this.icon,
-      required this.position});
+      this.label,
+      this.value,
+      this.icon,
+      this.position,
+      this.onTap,
+      });
 
-  final String label;
-  final String value;
-  final DotsIconData icon;
+  final String? label;
+  final String? value;
+  final DotsIconData? icon;
 
-  final DotsItemInputPosition position;
+  final DotsItemInputPosition? position;
+  final Function()? onTap;
 
   BorderRadiusGeometry get borderRadius {
     switch (position) {
@@ -38,58 +41,63 @@ class DotsItemInput extends StatelessWidget {
           bottomLeft: Radius.circular(16),
           bottomRight: Radius.circular(16),
         );
+      default:
+        return const BorderRadius.all(Radius.circular(16));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    return Container(
-      height: 42,
-      decoration: BoxDecoration(
-        color: theme.colors.bgContainerSecondary,
-        borderRadius: borderRadius,
-      ),
-      padding: EdgeInsets.only(
-        left: 12,
-        top: 8,
-        bottom: 8,
-        right: 8,
-      ),
-      child: Row(
-        children: [
-          DotsIcon(
-            iconData: icon,
-            color: theme.colors.textQuarternary,
-            size: 20,
-          ),
-          SizedBox(
-            width: 6,
-          ),
-          Expanded(
-            child: Text(
-              label,
-              style: theme.typo.main.bodyDefaultMedium,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 42,
+        decoration: BoxDecoration(
+          color: theme.colors.bgContainerSecondary,
+          borderRadius: borderRadius,
+        ),
+        padding: EdgeInsets.only(
+          left: 12,
+          top: 8,
+          bottom: 8,
+          right: 8,
+        ),
+        child: Row(
+          children: [
+            DotsIcon(
+              iconData: icon ?? DotsIconData.calendar,
+              color: theme.colors.textQuarternary,
+              size: 20,
             ),
-          ),
-          SizedBox(
-            width: 8,
-          ),
-          Container(
-            height: double.infinity,
-            width: 120,
-            decoration: BoxDecoration(
-              borderRadius: DotsBorderRadius.r7,
-              color: theme.colors.bgContainerSecondaryOnBackground,
+            SizedBox(
+              width: 6,
             ),
-            child: Center(
+            Expanded(
               child: Text(
-                value,
-                style: theme.typo.main.labelDefaultBold,
+                label ?? '',
+                style: theme.typo.main.bodyDefaultMedium,
               ),
             ),
-          )
-        ],
+            SizedBox(
+              width: 8,
+            ),
+            Container(
+              height: double.infinity,
+              width: 120,
+              decoration: BoxDecoration(
+                borderRadius: DotsBorderRadius.r7,
+                color: theme.colors.bgContainerSecondaryOnBackground,
+              ),
+              child: Center(
+                child: Text(
+                  value ?? '',
+                  style: theme.typo.main.labelDefaultBold,
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
