@@ -72,7 +72,9 @@ class DotsMainButton extends StatelessWidget {
         onTap: enabled ? onTap : null,
         borderRadius: borderRadius,
         child: Container(
-          decoration: BoxDecoration(borderRadius: borderRadius),
+          decoration: BoxDecoration(
+            borderRadius: borderRadius,
+          ),
           height: size.height,
           padding: size.padding,
           child: DotsShaderMask(
@@ -88,24 +90,20 @@ class DotsMainButton extends StatelessWidget {
                     size: iconSize,
                     color: foregroundColor,
                   ),
-                Flexible(
-                  child: Text(
-                    content,
-                    overflow: TextOverflow.ellipsis,
-                    style: size.getTextStyle(theme).copyWith(
-                          color: foregroundColor,
-                        ),
-                  ),
+                Text(
+                  content,
+                  overflow: TextOverflow.ellipsis,
+                  style: size.getTextStyle(theme).copyWith(
+                        color: foregroundColor,
+                      ),
                 ),
                 if (details != null &&
                     (size == DotsMainButtonSize.mainAction || size == DotsMainButtonSize.large))
-                  Flexible(
-                    child: Text(
-                      details ?? '',
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.typo.main.bodyDefaultMedium.copyWith(
-                        color: buttonTheme.foregroundSecondaryColor ?? foregroundColor,
-                      ),
+                  Text(
+                    details ?? '',
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.typo.main.bodyDefaultMedium.copyWith(
+                      color: buttonTheme.foregroundSecondaryColor ?? foregroundColor,
                     ),
                   ),
               ],
