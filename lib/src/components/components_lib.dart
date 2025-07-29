@@ -22,3 +22,4 @@ export 'text_fields/text_fields_lib.dart';
 export 'text_animations/dots_text_animations_lib.dart';
 export 'nav_bar/nav_bar.dart';
 export 'color_options/color_options.dart';
+export 'notifications/notifications_lib.dart';
