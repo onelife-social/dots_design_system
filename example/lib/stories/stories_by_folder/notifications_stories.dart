@@ -52,34 +52,39 @@ List<Story> get notificationsStories => [
       Story(
         name: 'Notifications/Banner',
         description: 'Demo page for Notification Banner',
-        builder: (context) => NotificationBanner(
-          title: context.knobs.text(
-            label: 'Title',
-            initial: 'Formato de notificación fija',
+        builder: (context) => ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: 358,
           ),
-          body: context.knobs.text(
-            label: 'Body',
-            initial:
-                'Este texto sirve para que una notificación importante que se tiene que quedar fija.',
+          child: NotificationBanner(
+            title: context.knobs.text(
+              label: 'Title',
+              initial: 'Formato de notificación fija',
+            ),
+            body: context.knobs.text(
+              label: 'Body',
+              initial:
+                  'Este texto sirve para que una notificación importante que se tiene que quedar fija.',
+            ),
+            actionButtonText: context.knobs.text(
+              label: 'Action Button Text',
+              initial: 'Botón acción',
+            ),
+            onActionTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Action button tapped!'),
+                ),
+              );
+            },
+            onClose: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Close button tapped!'),
+                ),
+              );
+            },
           ),
-          actionButtonText: context.knobs.text(
-            label: 'Action Button Text',
-            initial: 'Botón acción',
-          ),
-          onActionTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Action button tapped!'),
-              ),
-            );
-          },
-          onClose: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Close button tapped!'),
-              ),
-            );
-          },
         ),
       ),
     ];

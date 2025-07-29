@@ -173,9 +173,9 @@ class ActivityOverviewItem extends StatelessWidget {
                 // User images
                 if (userImageUrls.isNotEmpty)
                   SizedBox(
-                    width: (userImageUrls.take(maxUserImages).length * 16.0) +
-                        8.0, // Calculate width based on number of images
-                    height: 24,
+                    width: (userImageUrls.take(maxUserImages).length * 10.0) +
+                        5.0, // Calculate width based on number of images
+                    height: 17,
                     child: Stack(
                       alignment: Alignment.centerLeft,
                       children: userImageUrls
@@ -187,19 +187,20 @@ class ActivityOverviewItem extends StatelessWidget {
                         final index = entry.key;
                         final imageUrl = entry.value;
                         final leftOffset =
-                            index * 16.0; // 24 - 8 = 16 for overlap
+                            index * 10.0; // 17 - 7 = 10 for overlap
 
                         return Positioned(
                           left: leftOffset,
                           child: SizedBox(
-                            width: 24,
-                            height: 24,
+                            width: 17,
+                            height: 17,
                             child: Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
+                                color: theme.colors.bgBase,
                                 border: Border.all(
                                   color: theme.colors.bgBase,
-                                  width: 1.5,
+                                  width: 1,
                                 ),
                               ),
                               child: ClipRRect(
