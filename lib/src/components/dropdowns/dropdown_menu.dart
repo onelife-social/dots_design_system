@@ -14,6 +14,7 @@ class DropdownMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 250,
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24), color: context.dotsTheme.colors.bgBaseContrast),
       child: Column(

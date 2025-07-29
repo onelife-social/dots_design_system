@@ -30,15 +30,20 @@ class DropdownItem extends StatelessWidget {
     return GestureDetector(
       onTap: () => onTap(),
       child: Container(
+        width: 234,
         padding: const EdgeInsets.all(8),
-        color: theme.colors.bgBaseContrast,
         child: Row(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(text,
+            Flexible(
+              child: Text(
+                text,
                 style: theme.typo.main.bodyDefaultMedium.copyWith(
                   color: color,
-                )),
+                ),
+              ),
+            ),
             if (icon != null) ...[
               const SizedBox(width: 6),
               DotsIcon(
