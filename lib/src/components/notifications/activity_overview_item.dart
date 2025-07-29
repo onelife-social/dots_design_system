@@ -12,7 +12,7 @@ class ActivityOverviewItem extends StatelessWidget {
     required this.count,
     required this.title,
     required this.reactionsCount,
-    required this.userImageUrls,
+    required this.userImages,
     this.width = 53,
     this.height = 68,
     this.borderRadius = 12.0,
@@ -36,8 +36,8 @@ class ActivityOverviewItem extends StatelessWidget {
   /// The reactions count to display at the bottom
   final int reactionsCount;
 
-  /// List of user image URLs to display at the bottom right
-  final List<String> userImageUrls;
+  /// List of user images to display at the bottom right
+  final List<ImageProvider> userImages;
 
   /// Width of the widget
   final double width;
@@ -85,6 +85,22 @@ class ActivityOverviewItem extends StatelessWidget {
                   placeholder: MemoryImage(kTransparentImage),
                   image: NetworkImage(imageUrl),
                   fit: BoxFit.cover,
+                ),
+              ),
+              Positioned.fill(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: imageBorderRadius,
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      stops: const [0.0, 0.5],
+                      colors: [
+                        Colors.black26,
+                        Colors.transparent,
+                      ],
+                    ),
+                  ),
                 ),
               ),
               // Semi-transparent white border overlay
@@ -171,21 +187,21 @@ class ActivityOverviewItem extends StatelessWidget {
                 const SizedBox(width: 4),
 
                 // User images
-                if (userImageUrls.isNotEmpty)
+                if (userImages.isNotEmpty)
                   SizedBox(
-                    width: (userImageUrls.take(maxUserImages).length * 10.0) +
+                    width: (userImages.take(maxUserImages).length * 10.0) +
                         5.0, // Calculate width based on number of images
                     height: 17,
                     child: Stack(
                       alignment: Alignment.centerLeft,
-                      children: userImageUrls
+                      children: userImages
                           .take(maxUserImages)
                           .toList()
                           .asMap()
                           .entries
                           .map((entry) {
                         final index = entry.key;
-                        final imageUrl = entry.value;
+                        final image = entry.value;
                         final leftOffset =
                             index * 10.0; // 17 - 7 = 10 for overlap
 
@@ -207,7 +223,7 @@ class ActivityOverviewItem extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(12),
                                 child: FadeInImage(
                                   placeholder: MemoryImage(kTransparentImage),
-                                  image: NetworkImage(imageUrl),
+                                  image: image,
                                   fit: BoxFit.cover,
                                   imageErrorBuilder:
                                       (context, error, stackTrace) {

@@ -41,9 +41,9 @@ List<Story> get notificationsStories => [
                       initial: '20',
                     ),
                   ),
-                  userImageUrls: [
-                    'https://picsum.photos/250?image=1',
-                    'https://picsum.photos/250?image=2'
+                  userImages: [
+                    NetworkImage('https://picsum.photos/250?image=1'),
+                    NetworkImage('https://picsum.photos/250?image=2')
                   ])
             ],
           ),

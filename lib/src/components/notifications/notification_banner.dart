@@ -37,6 +37,7 @@ class NotificationBanner extends StatelessWidget {
     final theme = context.dotsTheme;
 
     return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16.0),
       decoration: BoxDecoration(
         color: theme.colors.bgContainerSecondary,
         borderRadius: BorderRadius.circular(24),
@@ -51,11 +52,14 @@ class NotificationBanner extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 // Header with title and close button
-                Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: theme.typo.main.labelDefaultBold.copyWith(
-                    color: theme.colors.textPrimary,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: theme.typo.main.labelDefaultBold.copyWith(
+                      color: theme.colors.textPrimary,
+                    ),
                   ),
                 ),
 
