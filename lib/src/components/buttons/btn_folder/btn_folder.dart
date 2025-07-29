@@ -153,3 +153,21 @@ class _EditIcon extends StatelessWidget {
     );
   }
 }
+
+class BtnFolderData {
+  final DotsIconData icon;
+  final String? text;
+  final VoidCallback? onPressed;
+  final bool isSelected;
+  final Color iconSelectedColor;
+  final bool isEditable;
+
+  const BtnFolderData({
+    required this.icon,
+    this.text,
+    this.onPressed,
+    this.isSelected = false,
+    required this.iconSelectedColor,
+    this.isEditable = false,
+  });
+}
