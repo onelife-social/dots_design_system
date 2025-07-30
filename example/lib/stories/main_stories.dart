@@ -21,8 +21,10 @@ import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:example/stories/helpers/color_knob_options.dart';
+import 'package:example/stories/stories_by_folder/notifications_stories.dart';
 
 List<Story> get allStories => [
+      ...notificationsStories,
       ...themeStories,
       ...badgeStories,
       ...buttonStories,
