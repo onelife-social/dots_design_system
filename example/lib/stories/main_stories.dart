@@ -3,8 +3,6 @@ import 'package:example/components/blur_container_demo_page.dart';
 import 'package:example/components/carrousel_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
 import 'package:example/components/dots_text_animations_demo_page.dart';
-import 'package:example/components/dropdown_item_demo_page.dart';
-import 'package:example/components/dropdown_menu_demo_page.dart';
 import 'package:example/components/folder_carrousel_demo_page.dart';
 import 'package:example/components/item_input_demo.dart';
 import 'package:example/components/memory_card_demo_page.dart';
@@ -13,6 +11,7 @@ import 'package:example/components/empty_state_card_demo.dart';
 import 'package:example/stories/stories_by_folder/action_sheet_stories.dart';
 import 'package:example/stories/stories_by_folder/badge_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
+import 'package:example/stories/stories_by_folder/dropdown_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:example/stories/stories_by_folder/toast_stories.dart';
@@ -32,6 +31,7 @@ List<Story> get allStories => [
       ...groupCards,
       ...selectorRadioButtonStories,
       ...actionSheetStories,
+      ...dropdownStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
@@ -542,55 +542,6 @@ List<Story> get allStories => [
               );
             },
           );
-        },
-      ),
-      Story(
-        name: 'Dropdown Item',
-        description: 'Demo page for Dropdown Item',
-        builder: (context) {
-          return DropdownItemDemoPage(
-            text: context.knobs.text(label: 'Title', initial: 'Dropdown Item'),
-            onTap: () {},
-            icon: context.knobs.options<DotsIconData>(
-              label: 'Item icon',
-              initial: DotsIconData.home,
-              options:
-                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
-            ),
-            itemColor:
-                knobColorSelector(context, 'Item Color') ?? context.dotsTheme.colors.textPrimary,
-          );
-        },
-      ),
-      Story(
-        name: 'Dropdown Menu',
-        description: 'Demo page for Dropdown Menu',
-        builder: (context) {
-          final itemCount =
-              context.knobs.sliderInt(label: 'Item count', initial: 3, min: 1, max: 5);
-
-          final iconOptions = DotsIconData.values.map((item) {
-            return Option<DotsIconData>(label: item.name, value: item);
-          }).toList();
-
-          final items = List.generate(
-            itemCount,
-            (index) {
-              return DropdownItem(
-                text: 'Item ${index + 1}',
-                icon: context.knobs.options<DotsIconData>(
-                  label: 'Icon for item ${index + 1}',
-                  initial: DotsIconData.home,
-                  options: iconOptions,
-                ),
-                onTap: () {},
-                itemColor: knobColorSelector(context, 'Item Color') ??
-                    context.dotsTheme.colors.textPrimary,
-              );
-            },
-          );
-
-          return DropdownMenuDemoPage(items: items);
         },
       ),
     ];

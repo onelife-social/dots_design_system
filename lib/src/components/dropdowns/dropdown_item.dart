@@ -8,7 +8,7 @@ class DropdownItem extends StatelessWidget {
   //Dropdown item icon.
   final DotsIconData? icon;
 
-  //Dropdown item id.
+  //Dropdown onTap item.
   final VoidCallback onTap;
 
   // Optional color override for text and icon.
@@ -28,7 +28,7 @@ class DropdownItem extends StatelessWidget {
     final Color color = itemColor ?? theme.colors.textPrimary;
 
     return GestureDetector(
-      onTap: () => onTap(),
+      onTap: onTap,
       child: Container(
         width: 234,
         padding: const EdgeInsets.all(8),
