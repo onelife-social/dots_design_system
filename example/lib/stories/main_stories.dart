@@ -11,6 +11,7 @@ import 'package:example/components/empty_state_card_demo.dart';
 import 'package:example/stories/stories_by_folder/action_sheet_stories.dart';
 import 'package:example/stories/stories_by_folder/badge_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
+import 'package:example/stories/stories_by_folder/dropdown_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:example/stories/stories_by_folder/toast_stories.dart';
@@ -32,6 +33,7 @@ List<Story> get allStories => [
       ...groupCards,
       ...selectorRadioButtonStories,
       ...actionSheetStories,
+      ...dropdownStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
@@ -333,7 +335,8 @@ List<Story> get allStories => [
               label: 'Align Center',
               initial: false,
             ),
-            initialValue: context.knobs.nullable.text(label: 'Initial Value', initial: 'Sample text'),
+            initialValue:
+                context.knobs.nullable.text(label: 'Initial Value', initial: 'Sample text'),
             iconData: context.knobs.nullable.options<DotsIconData>(
               label: 'Icon Data',
               initial: DotsIconData.search,
@@ -495,7 +498,6 @@ List<Story> get allStories => [
 
           return StatefulBuilder(
             builder: (context, setState) {
-
               final selectedColor = colorController.value;
 
               return Padding(
@@ -512,7 +514,8 @@ List<Story> get allStories => [
                   subtitle: context.knobs.text(label: 'Subtitle', initial: 'Select an option'),
                   onBackButtonTap: () {},
                   onClose: () {},
-                  showBlurBackground: context.knobs.boolean(label: 'Show Blur Background', initial: true),
+                  showBlurBackground:
+                      context.knobs.boolean(label: 'Show Blur Background', initial: true),
                   iconData: context.knobs.options<DotsIconData>(
                     label: 'Folder Icon Data',
                     initial: DotsIconData.add,
@@ -523,7 +526,8 @@ List<Story> get allStories => [
                   onIconTap: () {},
                   initialValue: context.knobs.text(label: 'Initial Value', initial: 'Sample'),
                   onMainButtonTap: () {},
-                  actionButtonText: context.knobs.text(label: 'Action Button Text', initial: 'Confirm'),
+                  actionButtonText:
+                      context.knobs.text(label: 'Action Button Text', initial: 'Confirm'),
                   colorController: colorController,
                   selectedColor: selectedColor,
                   dateLabel: context.knobs.text(label: 'Date Label', initial: 'Select a date'),
