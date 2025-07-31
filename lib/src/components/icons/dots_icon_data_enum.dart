@@ -161,6 +161,7 @@ enum DotsIconData {
   // System
   alertCircle('ic-alert-circle.svg', DotsIconGroup.system),
   check('ic-check.svg', DotsIconGroup.system),
+  checkThick('ic-check-thick.svg', DotsIconGroup.system),
   checkCircle('ic-check-circle.svg', DotsIconGroup.system),
   checkCircleOutline('ic-check-circle-outline.svg', DotsIconGroup.system),
   cross('ic-cross.svg', DotsIconGroup.system),

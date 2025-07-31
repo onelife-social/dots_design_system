@@ -11,6 +11,7 @@ import 'package:example/components/empty_state_card_demo.dart';
 import 'package:example/stories/stories_by_folder/action_sheet_stories.dart';
 import 'package:example/stories/stories_by_folder/badge_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
+import 'package:example/stories/stories_by_folder/dropdown_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:example/stories/stories_by_folder/toast_stories.dart';
@@ -20,8 +21,10 @@ import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:example/stories/helpers/color_knob_options.dart';
+import 'package:example/stories/stories_by_folder/notifications_stories.dart';
 
 List<Story> get allStories => [
+      ...notificationsStories,
       ...themeStories,
       ...badgeStories,
       ...buttonStories,
@@ -30,6 +33,7 @@ List<Story> get allStories => [
       ...groupCards,
       ...selectorRadioButtonStories,
       ...actionSheetStories,
+      ...dropdownStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
@@ -327,6 +331,12 @@ List<Story> get allStories => [
         builder: (context) => Padding(
           padding: const EdgeInsets.all(16.0),
           child: DotsTextField(
+            alignCenter: context.knobs.boolean(
+              label: 'Align Center',
+              initial: false,
+            ),
+            initialValue:
+                context.knobs.nullable.text(label: 'Initial Value', initial: 'Sample text'),
             iconData: context.knobs.nullable.options<DotsIconData>(
               label: 'Icon Data',
               initial: DotsIconData.search,
@@ -476,6 +486,40 @@ List<Story> get allStories => [
               initial: 5.0,
               min: 0.0,
               max: 5.0,
+            ),
+          );
+        },
+      ),
+      Story(
+        name: 'DotsListsItem',
+        description: 'Demo page for DotsListsItem',
+        builder: (context) {
+          final variant = context.knobs.options<DotsListsItemVariant>(
+            label: 'Variant',
+            initial: DotsListsItemVariant.main,
+            options: DotsListsItemVariant.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          );
+          final iconData = context.knobs.options<DotsIconData>(
+            label: 'Icon',
+            initial: DotsIconData.home,
+            options: DotsIconData.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          );
+          return Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.5,
+              height: MediaQuery.of(context).size.height * 0.5,
+              alignment: Alignment.center,
+              child: DotsListsItem(
+                image: NetworkImage('https://picsum.photos/250?image=9'),
+                label: context.knobs.text(label: 'Label', initial: 'Sample Label'),
+                onTap: () {},
+                variant: variant,
+                iconData: iconData,
+              ),
             ),
           );
         },

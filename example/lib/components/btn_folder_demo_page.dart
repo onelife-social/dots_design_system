@@ -6,6 +6,8 @@ class BtnFolderDemoPage extends StatelessWidget {
   final Color? iconColor;
   final DotsIcon icon;
   final bool isSelected;
+  final bool showEditIcon;
+  final bool isEditable;
 
   const BtnFolderDemoPage({
     super.key,
@@ -13,6 +15,8 @@ class BtnFolderDemoPage extends StatelessWidget {
     required this.iconColor,
     required this.icon,
     required this.isSelected,
+    required this.showEditIcon,
+    required this.isEditable,
   });
 
   @override
@@ -27,6 +31,8 @@ class BtnFolderDemoPage extends StatelessWidget {
           onPressed: () {},
           isSelected: isSelected,
           iconSelectedColor: iconColor ?? DotsColors.light.gradientInitialLinealPurple,
+          showEditIcon: showEditIcon,
+          isEditable: isEditable,
         ),
       ],
     );
