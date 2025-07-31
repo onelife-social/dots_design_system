@@ -1,5 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:storybook_flutter/storybook_flutter.dart';
 
 class FolderCarrouselDemoPage extends StatelessWidget {
   const FolderCarrouselDemoPage({
@@ -9,51 +10,55 @@ class FolderCarrouselDemoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FolderCarrousel(
-      buttons: [
-        BtnFolder(
+      showEditIcon: context.knobs.boolean(
+        label: 'Show edit icon in buttons?',
+        initial: false,
+      ),
+      buttonsData: [
+        BtnFolderData(
           text: 'Search',
           icon: DotsIconData.search,
           onPressed: () {},
           iconSelectedColor: DotsColors.light.gradientInitialLinealGreen,
           isSelected: true,
         ),
-        BtnFolder(
+        BtnFolderData(
           text: 'All',
           icon: DotsIconData.archive,
           onPressed: () {},
           iconSelectedColor: DotsColors.light.gradientInitialLinealGreen,
         ),
-        BtnFolder(
+        BtnFolderData(
           text: 'Favorites',
           icon: DotsIconData.cake,
           onPressed: () {},
           iconSelectedColor: DotsColors.light.gradientInitialLinealGreen,
         ),
-        BtnFolder(
+        BtnFolderData(
           text: 'Work',
           icon: DotsIconData.weddingRings,
           onPressed: () {},
           iconSelectedColor: DotsColors.light.gradientInitialLinealGreen,
         ),
-        BtnFolder(
+        BtnFolderData(
           text: 'Personal',
           icon: DotsIconData.heart,
           onPressed: () {},
           iconSelectedColor: DotsColors.light.gradientInitialLinealGreen,
         ),
-        BtnFolder(
+        BtnFolderData(
           text: 'Weddings',
           icon: DotsIconData.star,
           onPressed: () {},
           iconSelectedColor: DotsColors.light.gradientInitialLinealGreen,
         ),
-        BtnFolder(
+        BtnFolderData(
           text: 'Trips',
           icon: DotsIconData.album,
           onPressed: () {},
           iconSelectedColor: DotsColors.light.gradientInitialLinealGreen,
         ),
-        BtnFolder(
+        BtnFolderData(
           text: 'Friends',
           icon: DotsIconData.friends,
           onPressed: () {},

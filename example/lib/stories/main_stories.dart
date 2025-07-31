@@ -11,6 +11,7 @@ import 'package:example/components/empty_state_card_demo.dart';
 import 'package:example/stories/stories_by_folder/action_sheet_stories.dart';
 import 'package:example/stories/stories_by_folder/badge_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
+import 'package:example/stories/stories_by_folder/dropdown_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:example/stories/stories_by_folder/toast_stories.dart';
@@ -32,6 +33,7 @@ List<Story> get allStories => [
       ...groupCards,
       ...selectorRadioButtonStories,
       ...actionSheetStories,
+      ...dropdownStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
@@ -333,7 +335,8 @@ List<Story> get allStories => [
               label: 'Align Center',
               initial: false,
             ),
-            initialValue: context.knobs.nullable.text(label: 'Initial Value', initial: 'Sample text'),
+            initialValue:
+                context.knobs.nullable.text(label: 'Initial Value', initial: 'Sample text'),
             iconData: context.knobs.nullable.options<DotsIconData>(
               label: 'Icon Data',
               initial: DotsIconData.search,

@@ -135,6 +135,8 @@ List<Story> get buttonStories => [
             ),
           ),
           isSelected: context.knobs.boolean(label: 'Selected', initial: true),
+          isEditable: context.knobs.boolean(label: 'Editable', initial: false),
+          showEditIcon: context.knobs.boolean(label: 'ShowEditIcon', initial: false),
         ),
       ),
     ];

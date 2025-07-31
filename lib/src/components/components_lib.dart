@@ -24,4 +24,5 @@ export 'nav_bar/nav_bar.dart';
 export 'color_options/color_options.dart';
 export 'dots_filter_chip/dots_filter_chip.dart';
 export 'dots_list_items/dots_list_items.dart';
+export 'dropdowns/dropdowns_lib.dart';
 export 'notifications/notifications_lib.dart';
