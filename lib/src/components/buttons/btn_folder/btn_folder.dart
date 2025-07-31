@@ -36,26 +36,29 @@ class BtnFolder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedSize(
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.easeInOut,
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          _FolderButton(
-            isSelected: isSelected,
-            onPressed: onPressed,
-            icon: icon,
-            iconSelectedColor: iconSelectedColor,
-            text: text,
-          ),
-          if (showEditIcon && isEditable)
-            Positioned(
-              right: -5,
-              top: -5,
-              child: _EditIcon(onPressed: onPressed),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(21),
+      child: AnimatedSize(
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.easeInOut,
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            _FolderButton(
+              isSelected: isSelected,
+              onPressed: onPressed,
+              icon: icon,
+              iconSelectedColor: iconSelectedColor,
+              text: text,
             ),
-        ],
+            if (showEditIcon && isEditable)
+              Positioned(
+                right: -5,
+                top: -5,
+                child: _EditIcon(onPressed: onPressed),
+              ),
+          ],
+        ),
       ),
     );
   }
