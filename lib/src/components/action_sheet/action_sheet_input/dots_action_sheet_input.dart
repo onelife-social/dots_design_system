@@ -22,16 +22,19 @@ class DotsActionSheetInput extends StatelessWidget {
   final ActionSheetInputVariant variant;
 
   /// The [title] parameter is the title of the action sheet.
-  final String title;
+  final String? title;
 
   /// The [subtitle] parameter is the subtitle of the action sheet.
-  final String subtitle;
+  final String? subtitle;
 
   /// The [onBackButtonTap] is a callback for the back button.
   final Function()? onBackButtonTap;
 
   /// The [onClose] is a callback for closing the action sheet tapping outside.
   final VoidCallback? onClose;
+
+  /// The [bottomPosition] is the position of the action sheet from the bottom.
+  final double bottomPosition;
 
   /// The [showBlurBackground] parameter determines if the background should be blurred.
   final bool showBlurBackground;
@@ -46,10 +49,10 @@ class DotsActionSheetInput extends StatelessWidget {
   final String? initialValue;
 
   /// The [onMainButtonTap] is a callback for the main button tap.
-  final Function() onMainButtonTap;
+  final Function()? onMainButtonTap;
 
   /// The [actionButtonText] is the text for the action button.
-  final String actionButtonText;
+  final String? actionButtonText;
 
   /// The [colorController] is a ValueNotifier for the selected color.
   final ValueNotifier<DotsColorOption>? colorController;
@@ -72,12 +75,13 @@ class DotsActionSheetInput extends StatelessWidget {
   const DotsActionSheetInput({
     super.key,
     this.variant = ActionSheetInputVariant.main,
-    required this.title,
-    required this.subtitle,
-    required this.onMainButtonTap,
-    required this.actionButtonText,
+    this.title,
+    this.subtitle,
+    this.onMainButtonTap,
+    this.actionButtonText,
     this.onBackButtonTap,
     this.onClose,
+    this.bottomPosition = 56,
     this.showBlurBackground = true,
     this.iconData,
     this.onIconTap,
@@ -109,53 +113,59 @@ class DotsActionSheetInput extends StatelessWidget {
                 : null,
           ),
         ),
-        Center(
-          child: Container(
-            decoration: BoxDecoration(
-              color: theme.colors.bgBaseContrast,
-              borderRadius: DotsBorderRadius.r32,
-            ),
-            width: context.getByRatio(358, 288),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _Header(title: title, onBackButtonTap: onBackButtonTap),
-                SizedBox(height: context.getByRatio(16, 10)),
-                if (variant.isColors && colorController != null)
-                    ValueListenableBuilder<DotsColorOption>(
-                      valueListenable: colorController!,
-                      builder: (context, selectedColor, _) {
-                        return _Body(
-                          variant: variant,
-                          subtitle: subtitle,
-                          iconData: iconData,
-                          onIconTap: onIconTap,
-                          initialValue: initialValue,
-                          onMainButtonTap: onMainButtonTap,
-                          actionButtonText: actionButtonText,
-                          selectedColor: selectedColor,
-                          onColorSelected: (color) {
-                            colorController!.value = color;
-                          },
-                        );
-                      },
-                    )
-                  else
-                    _Body(
-                      variant: variant,
-                      subtitle: subtitle,
-                      iconData: iconData,
-                      onIconTap: onIconTap,
-                      initialValue: initialValue,
-                      onMainButtonTap: onMainButtonTap,
-                      actionButtonText: actionButtonText,
-                      selectedColor: selectedColor,
-                      dateLabel: dateLabel,
-                      dateValue: dateValue,
-                      onDateTap: onDateTap,
-                      dateIconData: dateIconData,
-                    ),
-              ],
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: bottomPosition,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Container(
+              decoration: BoxDecoration(
+                color: theme.colors.bgBaseContrast,
+                borderRadius: DotsBorderRadius.r32,
+              ),
+              width: context.getByRatio(358, 288),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _Header(title: title, onBackButtonTap: onBackButtonTap),
+                  SizedBox(height: context.getByRatio(16, 10)),
+                  if (variant.isColors && colorController != null)
+                      ValueListenableBuilder<DotsColorOption>(
+                        valueListenable: colorController!,
+                        builder: (context, selectedColor, _) {
+                          return _Body(
+                            variant: variant,
+                            subtitle: subtitle,
+                            iconData: iconData,
+                            onIconTap: onIconTap,
+                            initialValue: initialValue,
+                            onMainButtonTap: onMainButtonTap,
+                            actionButtonText: actionButtonText,
+                            selectedColor: selectedColor,
+                            onColorSelected: (color) {
+                              colorController!.value = color;
+                            },
+                          );
+                        },
+                      )
+                    else
+                      _Body(
+                        variant: variant,
+                        subtitle: subtitle,
+                        iconData: iconData,
+                        onIconTap: onIconTap,
+                        initialValue: initialValue,
+                        onMainButtonTap: onMainButtonTap,
+                        actionButtonText: actionButtonText,
+                        selectedColor: selectedColor,
+                        dateLabel: dateLabel,
+                        dateValue: dateValue,
+                        onDateTap: onDateTap,
+                        dateIconData: dateIconData,
+                      ),
+                ],
+              ),
             ),
           ),
         ),
@@ -165,11 +175,11 @@ class DotsActionSheetInput extends StatelessWidget {
 }
 
 class _Header extends StatelessWidget {
-  final String title;
+  final String? title;
   final Function()? onBackButtonTap;
 
   const _Header({
-    required this.title,
+    this.title,
     this.onBackButtonTap,
   });
 
@@ -194,7 +204,7 @@ class _Header extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Text(
-                  title,
+                  title ?? '',
                   style: theme.typo.secondary.title02H6,
                   textAlign: TextAlign.center,
                 ),
@@ -215,7 +225,7 @@ class _Body extends StatelessWidget {
   final Function()? onIconTap;
   final String? initialValue;
   final Function()? onMainButtonTap;
-  final String actionButtonText;
+  final String? actionButtonText;
   final DotsColorOption? selectedColor;
   final ValueChanged<DotsColorOption>? onColorSelected;
   final String? dateLabel;
@@ -229,8 +239,8 @@ class _Body extends StatelessWidget {
     this.iconData,
     this.onIconTap,
     this.initialValue,
-    required this.onMainButtonTap,
-    required this.actionButtonText,
+    this.onMainButtonTap,
+    this.actionButtonText,
     this.selectedColor,
     this.onColorSelected,
     this.dateLabel,
@@ -318,7 +328,7 @@ class _Body extends StatelessWidget {
                   variant: DotsMainButtonVariant.main,
                   size: DotsMainButtonSize.mainAction,
                   onTap: onMainButtonTap,
-                  content: actionButtonText,
+                  content: actionButtonText ?? '',
                 ),
               ),
             ],
