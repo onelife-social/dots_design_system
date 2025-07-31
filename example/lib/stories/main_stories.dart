@@ -488,57 +488,36 @@ List<Story> get allStories => [
         },
       ),
       Story(
-        name: 'DotsActionSheetInput',
-        description: 'Demo page for DotsActionSheetInput',
+        name: 'DotsListsItem',
+        description: 'Demo page for DotsListsItem',
         builder: (context) {
-          final colorController = ValueNotifier<DotsColorOption>(DotsColorOption.grey);
-
-          return StatefulBuilder(
-            builder: (context, setState) {
-
-              final selectedColor = colorController.value;
-
-              return Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: DotsActionSheetInput(
-                  variant: context.knobs.options<ActionSheetInputVariant>(
-                    label: 'Variant',
-                    initial: ActionSheetInputVariant.main,
-                    options: ActionSheetInputVariant.values
-                        .map((item) => Option(label: item.name, value: item))
-                        .toList(),
-                  ),
-                  title: context.knobs.text(label: 'Title', initial: 'Action Sheet'),
-                  subtitle: context.knobs.text(label: 'Subtitle', initial: 'Select an option'),
-                  onBackButtonTap: () {},
-                  onClose: () {},
-                  showBlurBackground: context.knobs.boolean(label: 'Show Blur Background', initial: true),
-                  iconData: context.knobs.options<DotsIconData>(
-                    label: 'Folder Icon Data',
-                    initial: DotsIconData.add,
-                    options: DotsIconData.values
-                        .map((item) => Option(label: item.name, value: item))
-                        .toList(),
-                  ),
-                  onIconTap: () {},
-                  initialValue: context.knobs.text(label: 'Initial Value', initial: 'Sample'),
-                  onMainButtonTap: () {},
-                  actionButtonText: context.knobs.text(label: 'Action Button Text', initial: 'Confirm'),
-                  colorController: colorController,
-                  selectedColor: selectedColor,
-                  dateLabel: context.knobs.text(label: 'Date Label', initial: 'Select a date'),
-                  dateValue: context.knobs.text(label: 'Date Value', initial: '2023-01-01'),
-                  dateIconData: context.knobs.options<DotsIconData>(
-                    label: 'Date Icon Data',
-                    initial: DotsIconData.calendar,
-                    options: DotsIconData.values
-                        .map((item) => Option(label: item.name, value: item))
-                        .toList(),
-                  ),
-                  onDateTap: () {},
-                ),
-              );
-            },
+          final variant = context.knobs.options<DotsListsItemVariant>(
+            label: 'Variant',
+            initial: DotsListsItemVariant.main,
+            options: DotsListsItemVariant.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          );
+          final iconData = context.knobs.options<DotsIconData>(
+            label: 'Icon',
+            initial: DotsIconData.home,
+            options: DotsIconData.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          );
+          return Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.5,
+              height: MediaQuery.of(context).size.height * 0.5,
+              alignment: Alignment.center,
+              child: DotsListsItem(
+                image: NetworkImage('https://picsum.photos/250?image=9'),
+                label: 'Sample Item',
+                onTap: () {},
+                variant: variant,
+                iconData: iconData,
+              ),
+            ),
           );
         },
       ),

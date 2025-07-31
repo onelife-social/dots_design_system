@@ -22,4 +22,6 @@ export 'text_fields/text_fields_lib.dart';
 export 'text_animations/dots_text_animations_lib.dart';
 export 'nav_bar/nav_bar.dart';
 export 'color_options/color_options.dart';
+export 'dots_filter_chip/dots_filter_chip.dart';
+export 'dots_list_items/dots_list_items.dart';
 export 'notifications/notifications_lib.dart';
