@@ -515,7 +515,7 @@ List<Story> get allStories => [
               alignment: Alignment.center,
               child: DotsListsItem(
                 image: NetworkImage('https://picsum.photos/250?image=9'),
-                label: 'Sample Item',
+                label: context.knobs.text(label: 'Label', initial: 'Sample Label'),
                 onTap: () {},
                 variant: variant,
                 iconData: iconData,

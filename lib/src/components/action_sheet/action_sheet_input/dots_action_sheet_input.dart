@@ -22,10 +22,10 @@ class DotsActionSheetInput extends StatelessWidget {
   final ActionSheetInputVariant variant;
 
   /// The [title] parameter is the title of the action sheet.
-  final String title;
+  final String? title;
 
   /// The [subtitle] parameter is the subtitle of the action sheet.
-  final String subtitle;
+  final String? subtitle;
 
   /// The [onBackButtonTap] is a callback for the back button.
   final Function()? onBackButtonTap;
@@ -49,10 +49,10 @@ class DotsActionSheetInput extends StatelessWidget {
   final String? initialValue;
 
   /// The [onMainButtonTap] is a callback for the main button tap.
-  final Function() onMainButtonTap;
+  final Function()? onMainButtonTap;
 
   /// The [actionButtonText] is the text for the action button.
-  final String actionButtonText;
+  final String? actionButtonText;
 
   /// The [colorController] is a ValueNotifier for the selected color.
   final ValueNotifier<DotsColorOption>? colorController;
@@ -75,10 +75,10 @@ class DotsActionSheetInput extends StatelessWidget {
   const DotsActionSheetInput({
     super.key,
     this.variant = ActionSheetInputVariant.main,
-    required this.title,
-    required this.subtitle,
-    required this.onMainButtonTap,
-    required this.actionButtonText,
+    this.title,
+    this.subtitle,
+    this.onMainButtonTap,
+    this.actionButtonText,
     this.onBackButtonTap,
     this.onClose,
     this.bottomPosition = 56,
@@ -175,11 +175,11 @@ class DotsActionSheetInput extends StatelessWidget {
 }
 
 class _Header extends StatelessWidget {
-  final String title;
+  final String? title;
   final Function()? onBackButtonTap;
 
   const _Header({
-    required this.title,
+    this.title,
     this.onBackButtonTap,
   });
 
@@ -204,7 +204,7 @@ class _Header extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Text(
-                  title,
+                  title ?? '',
                   style: theme.typo.secondary.title02H6,
                   textAlign: TextAlign.center,
                 ),
@@ -225,7 +225,7 @@ class _Body extends StatelessWidget {
   final Function()? onIconTap;
   final String? initialValue;
   final Function()? onMainButtonTap;
-  final String actionButtonText;
+  final String? actionButtonText;
   final DotsColorOption? selectedColor;
   final ValueChanged<DotsColorOption>? onColorSelected;
   final String? dateLabel;
@@ -239,8 +239,8 @@ class _Body extends StatelessWidget {
     this.iconData,
     this.onIconTap,
     this.initialValue,
-    required this.onMainButtonTap,
-    required this.actionButtonText,
+    this.onMainButtonTap,
+    this.actionButtonText,
     this.selectedColor,
     this.onColorSelected,
     this.dateLabel,
@@ -328,7 +328,7 @@ class _Body extends StatelessWidget {
                   variant: DotsMainButtonVariant.main,
                   size: DotsMainButtonSize.mainAction,
                   onTap: onMainButtonTap,
-                  content: actionButtonText,
+                  content: actionButtonText ?? '',
                 ),
               ),
             ],

@@ -75,8 +75,8 @@ class DotsActionSheetList extends StatelessWidget {
   /// The [isScrolled] is a boolean to determine if the list is scrolled.
   final bool isScrolled;
 
-  /// The [isAvailable] is a boolean to determine the label button is available.
-  final bool isAvailable;
+  /// The [isLabelButtonAvailable] is a boolean to determine the label button is available.
+  final bool isLabelButtonAvailable;
 
   /// The [listTitle] is the title for the list of items in the action sheet.
   final String? listTitle;
@@ -123,7 +123,7 @@ class DotsActionSheetList extends StatelessWidget {
     this.selectedAlbumNames,
     this.onBtnChipTap,
     this.isScrolled = false,
-    this.isAvailable = false,
+    this.isLabelButtonAvailable = false,
     this.listTitle,
     this.listItems,
     this.emptyListTitle,
@@ -189,7 +189,7 @@ class DotsActionSheetList extends StatelessWidget {
                       isScrolled: isScrolled,
                       selectedAlbumNames: selectedAlbumNames,
                       onBtnChipTap: onBtnChipTap,
-                      isAvailable: isAvailable,
+                      isLabelButtonAvailable: isLabelButtonAvailable,
                       searchBtnHide: searchBtnHide,
                       searchBtnIcon: searchBtnIcon,
                       onSearchBtnTap: onSearchBtnTap,
@@ -223,8 +223,8 @@ class DotsActionSheetList extends StatelessWidget {
                                     stops: [0.0, 0.2, 1.0],
                                     colors: [
                                       theme.colors.bgBaseContrast,
-                                      theme.colors.bgBaseContrast.withOpacity(0.7),
-                                      theme.colors.bgBaseContrast.withOpacity(0.0),
+                                      theme.colors.bgBaseContrast.dotsWithOpacity(0.7),
+                                      theme.colors.bgBaseContrast.dotsWithOpacity(0.0),
                                     ],
                                   ),
                                 ),
@@ -263,7 +263,7 @@ class _Header extends StatelessWidget {
   final List<String>? selectedAlbumNames;
   final Function(int)? onBtnChipTap;
   final bool isScrolled;
-  final bool isAvailable;
+  final bool isLabelButtonAvailable;
   final bool searchBtnHide;
   final DotsIconData searchBtnIcon;
   final Function()? onSearchBtnTap;
@@ -280,7 +280,7 @@ class _Header extends StatelessWidget {
     this.selectedAlbumNames,
     this.onBtnChipTap,
     this.isScrolled = false,
-    this.isAvailable = false,
+    this.isLabelButtonAvailable = false,
     this.searchBtnHide = true,
     this.searchBtnIcon = DotsIconData.search,
     this.onSearchBtnTap,
@@ -343,7 +343,7 @@ class _Header extends StatelessWidget {
                         content: labelButtonText ?? '',
                         variant: DotsMainButtonVariant.main,
                         size: DotsMainButtonSize.small,
-                        enabled: isAvailable,
+                        enabled: isLabelButtonAvailable,
                         onTap: onLabelButtonTap,
                         expand: false,
                       ),
