@@ -65,6 +65,7 @@ class DotsListsItem extends StatelessWidget {
     final theme = context.dotsTheme;
 
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: onTap,
       child: Row(
         mainAxisSize: MainAxisSize.max,
