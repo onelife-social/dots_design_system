@@ -1,2 +1,3 @@
 export 'activity_overview_item.dart';
 export 'notification_banner.dart';
+export 'notification_item/notification_item.dart';
