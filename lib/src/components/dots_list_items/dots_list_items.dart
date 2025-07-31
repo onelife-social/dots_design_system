@@ -70,34 +70,19 @@ class DotsListsItem extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: variant.isIcon
-                  ? theme.colors.bgContainerSecondaryOnBackground
-                  : theme.colors.transparent,
-              borderRadius: BorderRadius.circular(12),
-              image: (image != null && !variant.isIcon)
-                  ? DecorationImage(
-                      image: image!,
-                      fit: BoxFit.cover,
-                      onError: (exception, stackTrace) {
-                        onError?.call(exception, stackTrace);
-                      },
-                    )
-                  : null,
+          if (image != null && !variant.isIcon)
+            DotsImageThumbnail(
+              variant: DotsImageThumbnailVariant.image,
+              image: image,
+              onError: onError,
+            )
+          else
+            DotsImageThumbnail(
+              variant: DotsImageThumbnailVariant.icon,
+              iconData: iconData,
+              iconColor: theme.colors.textPrimary,
+              iconSize: 20,
             ),
-            child: Center(
-              child: variant.isIcon
-                  ? DotsIcon(
-                      iconData: iconData,
-                      color: Colors.white,
-                      size: 20,
-                    )
-                  : null,
-            ),
-          ),
           const SizedBox(width: 12),
           if (label != null)
             Expanded(
