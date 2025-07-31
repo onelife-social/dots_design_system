@@ -40,9 +40,8 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
       );
     case DotsMainButtonVariant.secondaryPremium:
       return DotsMainButtonTheme(
-        backgroundColor: theme.colors.bgSecondaryBtn,
+        backgroundColor: theme.colors.bgContainerSecondaryOnBackground,
         foregroundGradient: theme.styles.textPremium,
-        blur: true,
       );
     case DotsMainButtonVariant.secondaryLight:
       return DotsMainButtonTheme(
