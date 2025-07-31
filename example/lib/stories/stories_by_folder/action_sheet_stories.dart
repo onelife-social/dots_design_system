@@ -308,7 +308,7 @@ List<Story> get actionSheetStories => [
                         .map((item) => Option(label: item.name, value: item))
                         .toList(),
                   ),
-                  isAvailable: context.knobs.boolean(label: 'Is Available', initial: false),
+                  isLabelButtonAvailable: context.knobs.boolean(label: 'Is Available', initial: false),
                   title: context.knobs.text(label: 'Title', initial: 'Select an album'),
                   onClose: () {},
                   onBackButtonTap: () {},
