@@ -25,7 +25,7 @@ class DotsTextField extends StatefulWidget {
   final String? initialValue;
 
   /// The hint text to display in the TextField.
-  final String hintText;
+  final String? hintText;
 
   /// Callback when the text changes.
   final ValueChanged<String>? onChanged;
