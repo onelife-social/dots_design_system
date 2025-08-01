@@ -1,7 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class DotsTextSeparator extends StatelessWidget {
+class DotsActivityGroupHeader extends StatelessWidget {
 
   /// The text to display in the separator.
   final String text;
@@ -10,7 +10,7 @@ class DotsTextSeparator extends StatelessWidget {
   /// Defaults to false.
   final bool topLineSeparator;
 
-  const DotsTextSeparator({
+  const DotsActivityGroupHeader({
     super.key,
     required this.text,
     this.topLineSeparator = false,
