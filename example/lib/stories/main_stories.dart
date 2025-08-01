@@ -13,7 +13,6 @@ import 'package:example/stories/stories_by_folder/badge_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
 import 'package:example/stories/stories_by_folder/dropdown_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
-import 'package:example/stories/stories_by_folder/separators_demo.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:example/stories/stories_by_folder/toast_stories.dart';
 import 'package:example/stories/stories_by_folder/top_bar_stories.dart';
@@ -23,7 +22,6 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:example/stories/helpers/color_knob_options.dart';
 import 'package:example/stories/stories_by_folder/notifications_stories.dart';
-
 
 List<Story> get allStories => [
       ...notificationsStories,
@@ -36,7 +34,6 @@ List<Story> get allStories => [
       ...selectorRadioButtonStories,
       ...actionSheetStories,
       ...dropdownStories,
-      ...separatorStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
