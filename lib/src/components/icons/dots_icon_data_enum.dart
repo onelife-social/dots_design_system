@@ -5,7 +5,8 @@ enum DotsIconGroup {
   media('media'),
   premium('premium'),
   social('social'),
-  system('system');
+  system('system'),
+  home('home');
 
   const DotsIconGroup(this.folderName);
   final String folderName;
@@ -189,7 +190,10 @@ enum DotsIconData {
   radioOn('ic-radio--on.svg', DotsIconGroup.system),
   search('ic-search.svg', DotsIconGroup.system),
   settings('ic-settings.svg', DotsIconGroup.system),
-  selector('ic-selector.svg', DotsIconGroup.system);
+  selector('ic-selector.svg', DotsIconGroup.system),
+
+  // Home
+  editField('ic-add-field.svg', DotsIconGroup.home);
 
   const DotsIconData(this.asset, this.iconGroup);
   final String asset;
