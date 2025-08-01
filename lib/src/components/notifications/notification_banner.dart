@@ -37,7 +37,6 @@ class NotificationBanner extends StatelessWidget {
     final theme = context.dotsTheme;
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16.0),
       decoration: BoxDecoration(
         color: theme.colors.bgContainerSecondary,
         borderRadius: BorderRadius.circular(24),
@@ -51,7 +50,6 @@ class NotificationBanner extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Header with title and close button
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
@@ -62,10 +60,7 @@ class NotificationBanner extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 8),
-
-                // Body text
                 if (body != null) ...[
                   Text(
                     body!,
@@ -75,8 +70,6 @@ class NotificationBanner extends StatelessWidget {
                     ),
                   ),
                 ],
-
-                // Action button
                 if (actionButtonText != null) ...[
                   const SizedBox(height: 16),
                   Center(

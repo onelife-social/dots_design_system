@@ -14,19 +14,19 @@ class DotsStyles {
       blur: 50,
     ),
     bgPremiumPlus: DotsStyleColorGradient(
-      startColor: Color(0xFFEDC987),
-      endColor: Color(0xFFDCB056),
+      startColor: Color(0xFFE9C058),
+      endColor: Color(0xFFB48D2D),
     ),
     bgPremium: DotsStyleColorGradient(
       startColor: Color(0xFFC88EFF),
       endColor: Color(0xFF8B84F7),
     ),
     textPremiumPlus: DotsStyleColorGradient(
-      startColor: Color(0xFFD2AD6A),
-      endColor: Color(0xFFD29C2D),
+      startColor: Color(0xFFDDA61C),
+      endColor: Color(0xFFA37F28),
     ),
     textPremium: DotsStyleColorGradient(
-      startColor: Color(0xFFC381FE),
+      startColor: Color(0xFFC07FFA),
       endColor: Color(0xFF8C84F7),
       beginAlignment: Alignment(0.00, 0.50),
       endAlignment: Alignment(0.60, 0.50),
@@ -79,20 +79,20 @@ class DotsStyles {
       blur: 50,
     ),
     bgPremiumPlus: DotsStyleColorGradient(
-      startColor: Color(0xFFF6CD79),
-      endColor: Color(0xFFD4AA54),
+      startColor: Color(0xFFE9C058),
+      endColor: Color(0xFFB48D2D),
     ),
     bgPremium: DotsStyleColorGradient(
-      startColor: Color(0xFFB28CFF),
-      endColor: Color(0xFF7F7FFF),
+      startColor: Color(0xFFC88EFF),
+      endColor: Color(0xFF8B84F7),
     ),
     textPremiumPlus: DotsStyleColorGradient(
-      startColor: Color(0xFFE7C992),
-      endColor: Color(0xFFE4B24B),
+      startColor: Color(0xFFE9C058),
+      endColor: Color(0xFFB48D2D),
     ),
     textPremium: DotsStyleColorGradient(
-      startColor: Color(0xFFD9AEFE),
-      endColor: Color(0xFF9D96F8),
+      startColor: Color(0xFFC07FFA),
+      endColor: Color(0xFF8C84F7),
       beginAlignment: Alignment(0.00, 0.50),
       endAlignment: Alignment(0.60, 0.50),
     ),
