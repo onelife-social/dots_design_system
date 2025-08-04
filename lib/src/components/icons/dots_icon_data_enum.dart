@@ -142,6 +142,7 @@ enum DotsIconData {
   // Social
   chat('ic-chat.svg', DotsIconGroup.social),
   chatLock('ic-chat-lock.svg', DotsIconGroup.social),
+  emojiLove('ic-emoji-love.svg', DotsIconGroup.social),
   fire('ic-fire.svg', DotsIconGroup.social),
   group('ic-group.svg', DotsIconGroup.social),
   link('ic-link.svg', DotsIconGroup.social),
