@@ -189,8 +189,8 @@ class ActivityOverviewItem extends StatelessWidget {
                 // User images
                 if (userImages.isNotEmpty)
                   SizedBox(
-                    width: (userImages.take(maxUserImages).length * 10.0) +
-                        5.0, // Calculate width based on number of images
+                    width: _calculateUserImagesWidth(
+                        userImages.take(maxUserImages).length),
                     height: 17,
                     child: Stack(
                       alignment: Alignment.centerLeft,
@@ -202,8 +202,7 @@ class ActivityOverviewItem extends StatelessWidget {
                           .map((entry) {
                         final index = entry.key;
                         final image = entry.value;
-                        final leftOffset =
-                            index * 10.0; // 17 - 7 = 10 for overlap
+                        final leftOffset = index * 10.0;
 
                         return Positioned(
                           left: leftOffset,
@@ -261,5 +260,13 @@ class ActivityOverviewItem extends StatelessWidget {
       return '${(count / 1000).toStringAsFixed(1)}k';
     }
     return count.toString();
+  }
+
+  /// Calculates the total width needed for the user images stack
+  /// Each image is 17px wide, and they overlap by 7px
+  /// So: first image = 17px, each additional image = +10px
+  double _calculateUserImagesWidth(int imageCount) {
+    if (imageCount <= 0) return 0;
+    return 17.0 + ((imageCount - 1) * 10.0);
   }
 }
