@@ -4,8 +4,8 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 List<Story> get notificationsStories => [
       Story(
-        name: 'Notifications/Activity Overview Item',
-        description: 'Demo page for Activity Overview Item',
+        name: 'Notifications/Activity Preview Item',
+        description: 'Demo page for Activity Preview Item',
         builder: (context) => Container(
           width: 300,
           height: 1000,
@@ -14,7 +14,12 @@ List<Story> get notificationsStories => [
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ActivityOverviewItem(
-                  imageUrl: 'https://picsum.photos/250?image=9',
+                  image: NetworkImage(
+                    context.knobs.text(
+                      label: 'Main Image',
+                      initial: 'https://picsum.photos/250?image=9',
+                    ),
+                  ),
                   icon: DotsIcon(
                     iconData: context.knobs.options<DotsIconData>(
                       label: 'Icon',
@@ -42,8 +47,16 @@ List<Story> get notificationsStories => [
                     ),
                   ),
                   userImages: [
-                    NetworkImage('https://picsum.photos/250?image=1'),
-                    NetworkImage('https://picsum.photos/250?image=2')
+                    NetworkImage(context.knobs.text(
+                        label: 'User Image 1',
+                        initial: 'https://picsum.photos/250?image=24',
+                      ),
+                    ),
+                    NetworkImage(context.knobs.text(
+                        label: 'User Image 2',
+                        initial: 'https://picsum.photos/250?image=66',
+                      ),
+                    )
                   ])
             ],
           ),
@@ -86,5 +99,145 @@ List<Story> get notificationsStories => [
             },
           ),
         ),
+      ),
+      Story(
+        name: 'Notifications/Activity Preview Grid',
+        description: 'Demo grid for Activity Preview',
+        builder: (context) {
+          final screenHeight = MediaQuery.of(context).size.height;
+          final cellHeight = screenHeight * 0.256;
+
+          return Padding(
+            padding: const EdgeInsets.all(26),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: cellHeight,
+                    child: ActivityPreview(
+                      variant: context.knobs.options<ActivityPreviewVariant>(
+                        label: 'Variant 1',
+                        initial: ActivityPreviewVariant.reactions,
+                        options: ActivityPreviewVariant.values
+                            .map((item) => Option(label: item.name, value: item))
+                            .toList(),
+                      ),
+                      image: NetworkImage(
+                        context.knobs.text(
+                          label: 'Image 1',
+                          initial: 'https://picsum.photos/250?image=9',
+                        ),
+                      ),
+                      reactions: [
+                        context.knobs.options<String>(
+                          label: 'Emoji 1-1',
+                          initial: '😍',
+                          options: [
+                            Option(label: 'Enamorado', value: '😍'),
+                            Option(label: 'Fuego', value: '🔥'),
+                            Option(label: 'Risa', value: '😂'),
+                            Option(label: 'Aplausos', value: '👏'),
+                            Option(label: 'Corazón', value: '❤️'),
+                            Option(label: 'Like', value: '👍'),
+                          ],
+                        ),
+                        context.knobs.options<String>(
+                          label: 'Emoji 1-2',
+                          initial: '🔥',
+                          options: [
+                            Option(label: 'Enamorado', value: '😍'),
+                            Option(label: 'Fuego', value: '🔥'),
+                            Option(label: 'Risa', value: '😂'),
+                            Option(label: 'Aplausos', value: '👏'),
+                            Option(label: 'Corazón', value: '❤️'),
+                            Option(label: 'Like', value: '👍'),
+                          ],
+                        ),
+                        context.knobs.options<String>(
+                          label: 'Emoji 1-3',
+                          initial: '😂',
+                          options: [
+                            Option(label: 'Enamorado', value: '😍'),
+                            Option(label: 'Fuego', value: '🔥'),
+                            Option(label: 'Risa', value: '😂'),
+                            Option(label: 'Aplausos', value: '👏'),
+                            Option(label: 'Corazón', value: '❤️'),
+                            Option(label: 'Like', value: '👍'),
+                          ],
+                        ),
+                        context.knobs.options<String>(
+                          label: 'Emoji 1-4',
+                          initial: '👏',
+                          options: [
+                            Option(label: 'Enamorado', value: '😍'),
+                            Option(label: 'Fuego', value: '🔥'),
+                            Option(label: 'Risa', value: '😂'),
+                            Option(label: 'Aplausos', value: '👏'),
+                            Option(label: 'Corazón', value: '❤️'),
+                            Option(label: 'Like', value: '👍'),
+                          ],
+                        ),
+                      ],
+                      number: context.knobs.text(
+                        label: 'Number 1',
+                        initial: '123',
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 20), 
+                  SizedBox(
+                    height: cellHeight,
+                    child: ActivityPreview(
+                      variant: context.knobs.options<ActivityPreviewVariant>(
+                        label: 'Variant 2',
+                        initial: ActivityPreviewVariant.reactions,
+                        options: ActivityPreviewVariant.values
+                            .map((item) => Option(label: item.name, value: item))
+                            .toList(),
+                      ),
+                      image: NetworkImage(
+                        context.knobs.text(
+                          label: 'Image 2',
+                          initial: 'https://picsum.photos/250?image=10',
+                        ),
+                      ),
+                      reactions: [
+                        context.knobs.options<String>(
+                          label: 'Emoji 2-1',
+                          initial: '😂',
+                          options: [
+                            Option(label: 'Enamorado', value: '😍'),
+                            Option(label: 'Fuego', value: '🔥'),
+                            Option(label: 'Risa', value: '😂'),
+                            Option(label: 'Aplausos', value: '👏'),
+                            Option(label: 'Corazón', value: '❤️'),
+                            Option(label: 'Like', value: '👍'),
+                          ],
+                        ),
+                        context.knobs.options<String>(
+                          label: 'Emoji 2-2',
+                          initial: '👏',
+                          options: [
+                            Option(label: 'Enamorado', value: '😍'),
+                            Option(label: 'Fuego', value: '🔥'),
+                            Option(label: 'Risa', value: '😂'),
+                            Option(label: 'Aplausos', value: '👏'),
+                            Option(label: 'Corazón', value: '❤️'),
+                            Option(label: 'Like', value: '👍'),
+                          ],
+                        ),
+                      ],
+                      number: context.knobs.text(
+                        label: 'Number 2',
+                        initial: '456',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     ];
