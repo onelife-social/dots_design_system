@@ -1,4 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
@@ -54,6 +55,21 @@ const List<String> dotsColorNames = [
   'borderAlert',
   'borderLabel',
 ];
+
+const List<String> basicColorNames = [
+  'red',
+  'green',
+  'blue',
+  'yellow',
+  'orange',
+  'purple',
+  'pink',
+  'brown',
+  'grey',
+  'black',
+  'white',
+];
+
 
 Color? _getDotsColorByName(dynamic themeColors, String? name) {
   if (name == null || name == 'null') return null;
@@ -169,5 +185,46 @@ Color? knobColorSelector(BuildContext context, String label) {
     options: dotsColorNames.map((name) => Option(label: name, value: name)).toList(),
   );
 
+
   return _getDotsColorByName(themeColors, selectedColorName);
 }
+
+Color _getBasicColorByName(String name) {
+  switch (name) {
+    case 'red':
+      return Colors.red;
+    case 'green':
+      return Colors.green;
+    case 'blue':
+      return Colors.blue;
+    case 'yellow':
+      return Colors.yellow;
+    case 'orange':
+      return Colors.orange;
+    case 'purple':
+      return Colors.purple;
+    case 'pink':
+      return Colors.pink;
+    case 'brown':
+      return Colors.brown;
+    case 'grey':
+      return Colors.grey;
+    case 'black':
+      return Colors.black;
+    case 'white':
+      return Colors.white;
+    default:
+      return Colors.transparent;
+  }
+}
+
+Color basicColorSelector(BuildContext context, String label) {
+  final selectedColorName = context.knobs.options<String>(
+    label: label,
+    initial: basicColorNames.first,
+    options: basicColorNames.map((name) => Option(label: name, value: name)).toList(),
+  );
+  return _getBasicColorByName(selectedColorName);
+}
+
+
