@@ -11,13 +11,25 @@ class DotsSlider extends StatelessWidget {
       this.leftIcon = DotsIconData.user,
       this.rightIcon = DotsIconData.group});
 
+  /// Left icon to display before the slider.
   final DotsIconData leftIcon;
+
+  /// Right icon to display after the slider.
   final DotsIconData rightIcon;
+
+  /// Current value of the slider.
   final double value;
+
+  /// Number of discrete divisions in the slider.
+  ///
+  /// If null, the slider will be continuous.
   final int? divisions;
 
+  /// Maximum value of the slider.
   final double max;
 
+  /// Callback function that is called when the slider value changes.
+  /// The function receives the new value as a parameter.
   final ValueChanged<double>? onChanged;
 
   @override

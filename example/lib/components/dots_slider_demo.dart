@@ -6,7 +6,7 @@ class DotsSliderDemo extends StatefulWidget {
   final int divisions;
 
   @override
-  _DotsSliderDemoState createState() => _DotsSliderDemoState();
+  State<DotsSliderDemo> createState() => _DotsSliderDemoState();
 }
 
 class _DotsSliderDemoState extends State<DotsSliderDemo> {
@@ -20,9 +20,11 @@ class _DotsSliderDemoState extends State<DotsSliderDemo> {
         divisions: widget.divisions,
         max: widget.divisions.toDouble() + 1,
         onChanged: (newValue) {
-          setState(() {
-            value = newValue.round();
-          });
+          if (context.mounted) {
+            setState(() {
+              value = newValue.round();
+            });
+          }
         },
       ),
     );
