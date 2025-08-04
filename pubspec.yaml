@@ -30,6 +30,7 @@ flutter:
     - assets/icons/premium/
     - assets/icons/social/
     - assets/icons/system/
+    - assets/icons/home/
     - assets/images/
   # Shaders
   shaders:

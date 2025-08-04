@@ -18,7 +18,7 @@ List<Story> get notificationsStories => [
                   icon: DotsIcon(
                     iconData: context.knobs.options<DotsIconData>(
                       label: 'Icon',
-                      initial: DotsIconData.eye,
+                      initial: DotsIconData.emojiLove,
                       options: DotsIconData.values
                           .map((item) => Option(label: item.name, value: item))
                           .toList(),
