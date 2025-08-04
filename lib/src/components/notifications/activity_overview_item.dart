@@ -7,7 +7,8 @@ import 'package:transparent_image/transparent_image.dart';
 class ActivityOverviewItem extends StatelessWidget {
   const ActivityOverviewItem({
     super.key,
-    required this.imageUrl,
+    this.image,
+    this.onError,
     required this.icon,
     required this.count,
     required this.title,
@@ -21,8 +22,12 @@ class ActivityOverviewItem extends StatelessWidget {
     this.maxUserImages = 2,
   });
 
-  /// URL of the main image to display
-  final String imageUrl;
+  /// Image provider for the main image to display
+  final ImageProvider? image;
+
+  /// Callback for image load error.
+  /// Called when the image fails to load.
+  final void Function(Object exception, StackTrace? stackTrace)? onError;
 
   /// Icon widget to display in the top-right corner
   final Widget icon;
@@ -66,25 +71,27 @@ class ActivityOverviewItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // Main image section with icon overlay
         Card(
           elevation: elevation,
           child: Stack(
             clipBehavior: Clip.none,
             alignment: Alignment.center,
             children: [
-              // Main image
               Container(
                 width: width,
                 height: height,
                 clipBehavior: Clip.hardEdge,
                 decoration: BoxDecoration(
                   borderRadius: imageBorderRadius,
-                ),
-                child: FadeInImage(
-                  placeholder: MemoryImage(kTransparentImage),
-                  image: NetworkImage(imageUrl),
-                  fit: BoxFit.cover,
+                  image: (image != null)
+                    ? DecorationImage(
+                        image: image!,
+                        fit: BoxFit.cover,
+                        onError: (exception, stackTrace) {
+                          onError?.call(exception, stackTrace);
+                        },
+                      )
+                    : null,
                 ),
               ),
               Positioned.fill(
@@ -103,7 +110,6 @@ class ActivityOverviewItem extends StatelessWidget {
                   ),
                 ),
               ),
-              // Semi-transparent white border overlay
               Container(
                 width: width,
                 height: height,
@@ -117,7 +123,6 @@ class ActivityOverviewItem extends StatelessWidget {
                   ),
                 ),
               ),
-              // Icon overlay in top-right corner
               Positioned(
                 top: -8,
                 right: -8,
@@ -146,12 +151,9 @@ class ActivityOverviewItem extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-
-        // Content section
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Count
             Text(
               formatCount(count),
               maxLines: 1,
@@ -159,8 +161,6 @@ class ActivityOverviewItem extends StatelessWidget {
                 color: theme.colors.textSecondary,
               ),
             ),
-
-            // Title
             Text(
               title,
               maxLines: 1,
@@ -169,24 +169,17 @@ class ActivityOverviewItem extends StatelessWidget {
                 color: theme.colors.textSecondary,
               ),
             ),
-
             const SizedBox(height: 2),
-
-            // Bottom section with reactions and user images
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Reactions count
                 Text(
                   '+${formatCount(reactionsCount)}',
                   style: theme.typo.main.bodyDefaultMedium.copyWith(
                     color: theme.colors.labelHighlight,
                   ),
                 ),
-
                 const SizedBox(width: 4),
-
-                // User images
                 if (userImages.isNotEmpty)
                   SizedBox(
                     width: _calculateUserImagesWidth(
