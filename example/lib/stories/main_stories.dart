@@ -2,6 +2,7 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/components/blur_container_demo_page.dart';
 import 'package:example/components/carrousel_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
+import 'package:example/components/dots_slider_demo.dart';
 import 'package:example/components/dots_text_animations_demo_page.dart';
 import 'package:example/components/folder_carrousel_demo_page.dart';
 import 'package:example/components/item_input_demo.dart';
@@ -504,9 +505,8 @@ List<Story> get allStories => [
           final iconData = context.knobs.options<DotsIconData>(
             label: 'Icon',
             initial: DotsIconData.home,
-            options: DotsIconData.values
-                .map((item) => Option(label: item.name, value: item))
-                .toList(),
+            options:
+                DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
           );
           return Center(
             child: Container(
@@ -522,6 +522,14 @@ List<Story> get allStories => [
               ),
             ),
           );
+        },
+      ),
+      Story(
+        name: 'Slider',
+        description: 'Demo page for Slider',
+        builder: (context) {
+          return DotsSliderDemo(
+              divisions: context.knobs.sliderInt(label: 'Divisions', initial: 7, min: 1, max: 10));
         },
       ),
     ];
