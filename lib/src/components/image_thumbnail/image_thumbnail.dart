@@ -52,7 +52,7 @@ class DotsImageThumbnail extends StatelessWidget {
         color: variant.isIcon
           ? theme.colors.bgContainerSecondaryOnBackground
           : theme.colors.transparent,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: DotsBorderRadius.r12,
         image: (image != null && !variant.isIcon)
           ? DecorationImage(
               image: image!,
