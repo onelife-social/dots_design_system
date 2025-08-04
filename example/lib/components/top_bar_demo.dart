@@ -24,6 +24,7 @@ class TopBarDemo extends StatelessWidget {
     required this.showBackButton,
     this.ctaLabel,
     this.ctaEnabled = true,
+    this.hideBackground = false,
   });
 
   final TobBarVariant variant;
@@ -34,6 +35,7 @@ class TopBarDemo extends StatelessWidget {
   final bool showBackButton;
   final String? ctaLabel;
   final bool ctaEnabled;
+  final bool hideBackground;
 
   DotsIconButton? get leftIcon => showLeftIcon
       ? DotsIconButton(
@@ -67,9 +69,11 @@ class TopBarDemo extends StatelessWidget {
           leftIcon: leftIcon,
           rightIcon: rightIcon,
           onTapBack: onTapBack,
+          hideBackground: hideBackground,
         );
       case TobBarVariant.segmentedControl:
         return DotsTopBar.widget(
+          hideBackground: hideBackground,
           leftIcon: leftIcon,
           rightIcon: rightIcon,
           onTapBack: onTapBack,
@@ -78,10 +82,12 @@ class TopBarDemo extends StatelessWidget {
             rightOptionName: 'Option 2',
             onTapOption: (_) {},
             selectedOption: SegmentedControlOption.right,
+            
           ),
         );
       case TobBarVariant.cta:
         return DotsTopBar.cta(
+          hideBackground: hideBackground,
           onTapBack: () {},
           title: title,
           ctaLabel: ctaLabel ?? 'Call to Action',
