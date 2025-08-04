@@ -28,3 +28,4 @@ export 'dropdowns/dropdowns_lib.dart';
 export 'notifications/notifications_lib.dart';
 export 'image_thumbnail/image_thumbnail.dart';
 export 'separators/separators_lib.dart';
+export 'slider/slider_lib.dart';
