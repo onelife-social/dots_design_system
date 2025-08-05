@@ -1,8 +1,53 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:example/stories/helpers/color_knob_options.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 List<Story> get notificationsStories => [
+      Story(
+        name: 'Notifications/ DotsNotificationItem',
+        description: 'Demo page for DotsNotificationItem',
+        builder: (context) {
+          final variant = context.knobs.options<DotsNotificationItemVariant>(
+            label: 'Variant',
+            initial: DotsNotificationItemVariant.main,
+            options: DotsNotificationItemVariant.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          );
+          return Center(
+            child: Container(
+              padding: const EdgeInsets.all(16.0),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              alignment: Alignment.center,
+              child: DotsNotificationItem(
+                variant: variant,
+                mainBtnText: context.knobs.text(label: 'Main Button Text', initial: 'Ver'),
+                onMainBtnTap: () {},
+                iconColor: basicColorSelector(context, 'Icon Color'),
+                iconData: context.knobs.options<DotsIconData>(
+                  label: 'Icon',
+                  initial: DotsIconData.cake,
+                  options: DotsIconData.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList(),
+                ),
+                profileImage: NetworkImage(
+                  context.knobs.text(label: 'Profile Image URL', initial: 'https://picsum.photos/250?image=15'),
+                ),
+                actionImage: NetworkImage(
+                  context.knobs.text(label: 'Action Image URL', initial: 'https://picsum.photos/250?image=9'),
+                ),
+                title: context.knobs.text(label: 'Title', initial: '¡Recupera todas las fotos!'),
+                description: context.knobs.text(label: 'Description', initial: 'Sigue estos sencillos pasos para recuperar todos los Memories en tu álbum. '),
+                date: context.knobs.text(label: 'Date', initial: '13:45'),
+                onTap: () {},
+              ),
+            ),
+          );
+        },
+      ),
       Story(
         name: 'Notifications/Activity Preview Item',
         description: 'Demo page for Activity Preview Item',

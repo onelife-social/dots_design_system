@@ -70,7 +70,7 @@ class ActivityPreview extends StatelessWidget {
             : null,
           boxShadow: [
             BoxShadow(
-              color: const Color(0x26000000),
+              color: theme.colors.shadowPrimary,
               blurRadius: 10,
               offset: const Offset(0, 4),
               spreadRadius: 0,
