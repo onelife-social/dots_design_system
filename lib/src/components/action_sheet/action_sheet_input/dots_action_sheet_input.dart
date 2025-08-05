@@ -87,7 +87,7 @@ class DotsActionSheetInput extends StatelessWidget {
     this.onIconTap,
     this.initialValue,
     this.colorController,
-    this.selectedColor = DotsColorOption.grey,
+    this.selectedColor = DotsColorOption.textQuarternary,
     this.dateLabel,
     this.dateValue,
     this.onDateTap,

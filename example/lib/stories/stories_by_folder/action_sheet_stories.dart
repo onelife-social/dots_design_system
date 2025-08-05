@@ -207,7 +207,7 @@ List<Story> get actionSheetStories => [
         name: 'Action Sheet/DotsActionSheetInput',
         description: 'Demo page for DotsActionSheetInput',
         builder: (context) {
-          final colorController = ValueNotifier<DotsColorOption>(DotsColorOption.grey);
+          final colorController = ValueNotifier<DotsColorOption>(DotsColorOption.textQuarternary);
 
           return StatefulBuilder(
             builder: (context, setState) {
