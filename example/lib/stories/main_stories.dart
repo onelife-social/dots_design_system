@@ -11,6 +11,7 @@ import 'package:example/components/empty_state_card_demo.dart';
 import 'package:example/stories/stories_by_folder/action_sheet_stories.dart';
 import 'package:example/stories/stories_by_folder/badge_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
+import 'package:example/stories/stories_by_folder/chat_stories.dart';
 import 'package:example/stories/stories_by_folder/dropdown_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/separators_demo.dart';
@@ -24,7 +25,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:example/stories/helpers/color_knob_options.dart';
 import 'package:example/stories/stories_by_folder/notifications_stories.dart';
 
-
 List<Story> get allStories => [
       ...notificationsStories,
       ...themeStories,
@@ -37,6 +37,7 @@ List<Story> get allStories => [
       ...actionSheetStories,
       ...dropdownStories,
       ...separatorStories,
+      ...chatStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
@@ -507,9 +508,8 @@ List<Story> get allStories => [
           final iconData = context.knobs.options<DotsIconData>(
             label: 'Icon',
             initial: DotsIconData.home,
-            options: DotsIconData.values
-                .map((item) => Option(label: item.name, value: item))
-                .toList(),
+            options:
+                DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
           );
           return Center(
             child: Container(
@@ -557,13 +557,18 @@ List<Story> get allStories => [
                       .toList(),
                 ),
                 profileImage: NetworkImage(
-                  context.knobs.text(label: 'Profile Image URL', initial: 'https://picsum.photos/250?image=15'),
+                  context.knobs.text(
+                      label: 'Profile Image URL', initial: 'https://picsum.photos/250?image=15'),
                 ),
                 actionImage: NetworkImage(
-                  context.knobs.text(label: 'Action Image URL', initial: 'https://picsum.photos/250?image=9'),
+                  context.knobs.text(
+                      label: 'Action Image URL', initial: 'https://picsum.photos/250?image=9'),
                 ),
                 title: context.knobs.text(label: 'Title', initial: '¡Recupera todas las fotos!'),
-                description: context.knobs.text(label: 'Description', initial: 'Sigue estos sencillos pasos para recuperar todos los Memories en tu álbum. '),
+                description: context.knobs.text(
+                    label: 'Description',
+                    initial:
+                        'Sigue estos sencillos pasos para recuperar todos los Memories en tu álbum. '),
                 date: context.knobs.text(label: 'Date', initial: '13:45'),
                 onTap: () {},
               ),
@@ -586,7 +591,8 @@ List<Story> get allStories => [
             child: DotsImageThumbnail(
               variant: variant,
               image: NetworkImage(
-                context.knobs.text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+                context.knobs
+                    .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
               ),
               iconColor: basicColorSelector(context, 'Icon Color'),
               iconData: context.knobs.options<DotsIconData>(
