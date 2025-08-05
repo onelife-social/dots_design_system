@@ -203,7 +203,7 @@ class _Info extends StatelessWidget {
             ),
             if (date != null)
               TextSpan(
-                text: date,
+                text: ' $date',
                 style: theme.typo.number.numLabelDefault.copyWith(
                   color: theme.colors.textQuarternary,
                 ),

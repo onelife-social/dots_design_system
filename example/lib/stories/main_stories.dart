@@ -2,6 +2,7 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/components/blur_container_demo_page.dart';
 import 'package:example/components/carrousel_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
+import 'package:example/components/dots_slider_demo.dart';
 import 'package:example/components/dots_text_animations_demo_page.dart';
 import 'package:example/components/folder_carrousel_demo_page.dart';
 import 'package:example/components/item_input_demo.dart';
@@ -24,6 +25,8 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:example/stories/helpers/color_knob_options.dart';
 import 'package:example/stories/stories_by_folder/notifications_stories.dart';
+import 'package:example/stories/stories_by_folder/profile_photo_stories.dart';
+import 'package:example/stories/stories_by_folder/memory_details.dart';
 
 List<Story> get allStories => [
       ...notificationsStories,
@@ -38,6 +41,8 @@ List<Story> get allStories => [
       ...dropdownStories,
       ...separatorStories,
       ...chatStories,
+      ...profilePhotoStories,
+      ...memoryDetailsStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
@@ -114,20 +119,6 @@ List<Story> get allStories => [
             ),
           );
         },
-      ),
-      Story(
-        name: 'Profile photo',
-        description: 'Demo page for Profile photo',
-        builder: (context) => ColoredBox(
-          color: context.dotsTheme.colors.bgContainerSecondary,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: DotsProfilePhoto(
-              imageProvider: NetworkImage(context.knobs
-                  .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9')),
-            ),
-          ),
-        ),
       ),
       Story(
         name: 'Menu',
@@ -610,6 +601,14 @@ List<Story> get allStories => [
               ),
             ),
           );
+        },
+      ),
+      Story(
+        name: 'Slider',
+        description: 'Demo page for Slider',
+        builder: (context) {
+          return DotsSliderDemo(
+              divisions: context.knobs.sliderInt(label: 'Divisions', initial: 7, min: 1, max: 10));
         },
       ),
     ];

@@ -2,57 +2,57 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 enum DotsColorOption {
-  grey,
-  red,
-  lightRed,
-  orange,
-  lightOrange,
-  yellow,
-  yellowLight,
-  darkGreen,
-  lightGreen,
-  darkBlue,
-  navy,
-  darkPurple,
-  purple,
-  lightPurple,
-  rose,
+  textQuarternary,
+  couple007,
+  friends002,
+  friends010,
+  friends005,
+  class005,
+  wedding002,
+  family006,
+  family004,
+  child006,
+  child002,
+  celebration002,
+  hobby009,
+  hobby004,
+  couple005;
 }
 
 extension DotsColorOptionExtension on DotsColorOption {
   Color getColor(BuildContext context) {
     final theme = context.dotsTheme;
     switch (this) {
-      case DotsColorOption.grey:
+      case DotsColorOption.textQuarternary:
         return theme.colors.textQuarternary;
-      case DotsColorOption.red:
-        return const Color(0xFFE55451);
-      case DotsColorOption.lightRed:
-        return const Color(0xFFEE7668);
-      case DotsColorOption.orange:
-        return const Color(0xFFF37C20);
-      case DotsColorOption.lightOrange:
-        return const Color(0xFFF7954A);
-      case DotsColorOption.yellow:
-        return const Color(0xFFF4BC24);
-      case DotsColorOption.yellowLight:
-        return const Color(0xFFE2C567);
-      case DotsColorOption.darkGreen:
-        return const Color(0xFF8E9778);
-      case DotsColorOption.lightGreen:
-        return const Color(0xFF9BC283);
-      case DotsColorOption.darkBlue:
-        return const Color(0xFF3D99CB);
-      case DotsColorOption.navy:
-        return const Color(0xFF6898F7);
-      case DotsColorOption.darkPurple:
-        return const Color(0xFF6C7FCC);
-      case DotsColorOption.purple:
-        return const Color(0xFFB175B1);
-      case DotsColorOption.lightPurple:
-        return const Color(0xFFC998C5);
-      case DotsColorOption.rose:
-        return const Color(0xFFB66678);
+      case DotsColorOption.couple007:
+        return theme.colors.couple007;
+      case DotsColorOption.friends002:
+        return theme.colors.friends002;
+      case DotsColorOption.friends010:
+        return theme.colors.friends010;
+      case DotsColorOption.friends005:
+        return theme.colors.friends005;
+      case DotsColorOption.class005:
+        return theme.colors.class005;
+      case DotsColorOption.wedding002:
+        return theme.colors.wedding002;
+      case DotsColorOption.family006:
+        return theme.colors.family006;
+      case DotsColorOption.family004:
+        return theme.colors.family004;
+      case DotsColorOption.child006:
+        return theme.colors.child006;
+      case DotsColorOption.child002:
+        return theme.colors.child002;
+      case DotsColorOption.celebration002:
+        return theme.colors.celebration002;
+      case DotsColorOption.hobby009:
+        return theme.colors.hobby009;
+      case DotsColorOption.hobby004:
+        return theme.colors.hobby004;
+      case DotsColorOption.couple005:
+        return theme.colors.couple005;
     }
   }
 }
@@ -80,21 +80,21 @@ class DotsColorOptionsRow extends StatelessWidget {
   });
 
   static const List<DotsColorOption> colorOptions = [
-    DotsColorOption.grey,
-    DotsColorOption.red,
-    DotsColorOption.lightRed,
-    DotsColorOption.orange,
-    DotsColorOption.lightOrange,
-    DotsColorOption.yellow,
-    DotsColorOption.yellowLight,
-    DotsColorOption.darkGreen,
-    DotsColorOption.lightGreen,
-    DotsColorOption.darkBlue,
-    DotsColorOption.navy,
-    DotsColorOption.darkPurple,
-    DotsColorOption.purple,
-    DotsColorOption.lightPurple,
-    DotsColorOption.rose,
+    DotsColorOption.textQuarternary,
+    DotsColorOption.couple007,
+    DotsColorOption.friends002,
+    DotsColorOption.friends010,
+    DotsColorOption.friends005,
+    DotsColorOption.class005,
+    DotsColorOption.wedding002,
+    DotsColorOption.family006,
+    DotsColorOption.family004,
+    DotsColorOption.child006,
+    DotsColorOption.child002,
+    DotsColorOption.celebration002,
+    DotsColorOption.hobby009,
+    DotsColorOption.hobby004,
+    DotsColorOption.couple005,
   ];
 
   @override
