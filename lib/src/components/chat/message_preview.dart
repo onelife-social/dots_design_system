@@ -80,7 +80,7 @@ class _ChatHeaderInfo extends StatelessWidget {
       children: [
         Expanded(child: Text(album, style: theme.typo.main.bodyDefaultBold)),
         const SizedBox(height: 4),
-        Text(time, style: context.dotsTheme.typo.main.labelDefaultRegular),
+        Text(time, style: theme.typo.main.labelDefaultRegular),
       ],
     );
   }
