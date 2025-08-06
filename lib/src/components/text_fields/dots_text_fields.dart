@@ -17,7 +17,7 @@ class DotsTextField extends StatefulWidget {
   final DotsCloseButtonVariant buttonVariant;
 
   /// The size of the close button.
-  /// 
+  ///
   /// Defaults to [DotsCloseButtonSize.extraSmall].
   final DotsCloseButtonSize buttonSize;
 
@@ -37,7 +37,7 @@ class DotsTextField extends StatefulWidget {
   final String? errorText;
 
   /// Whether to align the text in the center.
-  /// 
+  ///
   /// Defaults to false.
   final bool alignCenter;
 
@@ -55,14 +55,13 @@ class DotsTextField extends StatefulWidget {
     this.alignCenter = false,
   });
 
-@override
+  @override
   State<DotsTextField> createState() => _DotsTextFieldState();
 }
 
 class _DotsTextFieldState extends State<DotsTextField> {
   late final TextEditingController _controller;
   late final FocusNode _focusNode;
-
 
   @override
   void initState() {
@@ -77,7 +76,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
   void dispose() {
     _controller.removeListener(_onTextChanged);
     _controller.dispose();
-     _focusNode.removeListener(_onFocusChanged);
+    _focusNode.removeListener(_onFocusChanged);
     _focusNode.dispose();
     super.dispose();
   }
@@ -86,7 +85,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
     setState(() {});
   }
 
-   void _onFocusChanged() {
+  void _onFocusChanged() {
     setState(() {});
   }
 
@@ -108,7 +107,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
             height: 44,
             clipBehavior: Clip.antiAlias,
             decoration: ShapeDecoration(
-              color: theme.colors.bgContainerSecondary,
+              color: theme.colors.bgContainerSecondaryOnBackground,
               shape: RoundedRectangleBorder(
                 borderRadius: DotsBorderRadius.r1000,
               ),
@@ -130,14 +129,17 @@ class _DotsTextFieldState extends State<DotsTextField> {
                     controller: _controller,
                     textAlign: textAlign,
                     style: theme.typo.main.bodyDefaultMedium.copyWith(
-                      color: widget.isError ? theme.colors.labelDestructive : theme.colors.textPrimary,
+                      color:
+                          widget.isError ? theme.colors.labelDestructive : theme.colors.textPrimary,
                     ),
                     cursorColor: theme.colors.labelHighlight,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: widget.hintText,
                       hintStyle: TextStyle(
-                        color: widget.isError ? theme.colors.labelDestructive : theme.colors.textTertiary,
+                        color: widget.isError
+                            ? theme.colors.labelDestructive
+                            : theme.colors.textTertiary,
                       ),
                       isDense: true,
                       contentPadding: EdgeInsets.zero,
@@ -148,7 +150,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
                     },
                   ),
                 ),
-                if (_controller.text.isNotEmpty && isFocused ) ...[
+                if (_controller.text.isNotEmpty && isFocused) ...[
                   const SizedBox(width: 6),
                   DotsCloseButton(
                     icon: widget.iconDataButton,
