@@ -12,6 +12,7 @@ import 'package:example/components/empty_state_card_demo.dart';
 import 'package:example/stories/stories_by_folder/action_sheet_stories.dart';
 import 'package:example/stories/stories_by_folder/badge_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
+import 'package:example/stories/stories_by_folder/chat_stories.dart';
 import 'package:example/stories/stories_by_folder/dropdown_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/separators_demo.dart';
@@ -27,7 +28,6 @@ import 'package:example/stories/stories_by_folder/notifications_stories.dart';
 import 'package:example/stories/stories_by_folder/profile_photo_stories.dart';
 import 'package:example/stories/stories_by_folder/memory_details.dart';
 
-
 List<Story> get allStories => [
       ...notificationsStories,
       ...themeStories,
@@ -40,6 +40,7 @@ List<Story> get allStories => [
       ...actionSheetStories,
       ...dropdownStories,
       ...separatorStories,
+      ...chatStories,
       ...profilePhotoStories,
       ...memoryDetailsStories,
       Story(
@@ -532,7 +533,8 @@ List<Story> get allStories => [
             child: DotsImageThumbnail(
               variant: variant,
               image: NetworkImage(
-                context.knobs.text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+                context.knobs
+                    .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
               ),
               iconColor: basicColorSelector(context, 'Icon Color'),
               iconData: context.knobs.options<DotsIconData>(
