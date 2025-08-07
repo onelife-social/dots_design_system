@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class DotsAlert extends StatelessWidget {
   /// The alert variant (e.g., no buttons, one button, input, etc.).
   ///
-  /// Defaults to [DotsAlertVariant.noButtons].
+  /// Defaults to `DotsAlertVariant.noButtons`.
   final DotsAlertVariant variant;
 
   /// The icon to display in the alert.
@@ -20,6 +20,11 @@ class DotsAlert extends StatelessWidget {
 
   /// Callback when the close button is tapped.
   final VoidCallback? onClose;
+
+  /// Whether tapping outside the alert closes it (`onClose` is executed).
+  ///
+  /// Defaults to `true`.
+  final bool enableCloseOnTapOutside;
 
   /// *(Only for input variant)* Callback for input field value changes.
   final Function(String)? onInputChanged;
@@ -49,6 +54,7 @@ class DotsAlert extends StatelessWidget {
     required this.title,
     this.message,
     this.onClose,
+    this.enableCloseOnTapOutside = true,
     this.onInputChanged,
     this.inputHint,
     this.selectorItemList,
@@ -64,6 +70,7 @@ class DotsAlert extends StatelessWidget {
     required String title,
     required String message,
     VoidCallback? onClose,
+    bool enableCloseOnTapOutside = true,
   }) =>
       DotsAlert._(
         key: key,
@@ -72,6 +79,7 @@ class DotsAlert extends StatelessWidget {
         title: title,
         message: message,
         onClose: onClose,
+        enableCloseOnTapOutside: enableCloseOnTapOutside,
       );
 
   factory DotsAlert.oneButton({
@@ -80,6 +88,7 @@ class DotsAlert extends StatelessWidget {
     required String title,
     required String message,
     VoidCallback? onClose,
+    bool enableCloseOnTapOutside = true,
     required String mainButtonText,
     required VoidCallback mainButtonOnTap,
   }) =>
@@ -90,6 +99,7 @@ class DotsAlert extends StatelessWidget {
         title: title,
         message: message,
         onClose: onClose,
+        enableCloseOnTapOutside: enableCloseOnTapOutside,
         mainButtonText: mainButtonText,
         mainButtonOnTap: mainButtonOnTap,
       );
@@ -100,6 +110,7 @@ class DotsAlert extends StatelessWidget {
     required String title,
     required String message,
     VoidCallback? onClose,
+    bool enableCloseOnTapOutside = true,
     required String mainButtonText,
     required VoidCallback mainButtonOnTap,
     required String secondaryButtonText,
@@ -112,6 +123,7 @@ class DotsAlert extends StatelessWidget {
         title: title,
         message: message,
         onClose: onClose,
+        enableCloseOnTapOutside: enableCloseOnTapOutside,
         mainButtonText: mainButtonText,
         mainButtonOnTap: mainButtonOnTap,
         secondaryButtonText: secondaryButtonText,
@@ -124,6 +136,7 @@ class DotsAlert extends StatelessWidget {
     required String title,
     required String message,
     VoidCallback? onClose,
+    bool enableCloseOnTapOutside = true,
     required String mainButtonText,
     required VoidCallback mainButtonOnTap,
     required String secondaryButtonText,
@@ -136,6 +149,7 @@ class DotsAlert extends StatelessWidget {
         title: title,
         message: message,
         onClose: onClose,
+        enableCloseOnTapOutside: enableCloseOnTapOutside,
         mainButtonText: mainButtonText,
         mainButtonOnTap: mainButtonOnTap,
         secondaryButtonText: secondaryButtonText,
@@ -147,6 +161,7 @@ class DotsAlert extends StatelessWidget {
     required DotsIconData iconData,
     required String title,
     VoidCallback? onClose,
+    bool enableCloseOnTapOutside = true,
     required Function(String)? onInputChanged,
     required String? inputHint,
     required String mainButtonText,
@@ -160,6 +175,7 @@ class DotsAlert extends StatelessWidget {
         iconData: iconData,
         title: title,
         onClose: onClose,
+        enableCloseOnTapOutside: enableCloseOnTapOutside,
         onInputChanged: onInputChanged,
         inputHint: inputHint,
         mainButtonText: mainButtonText,
@@ -174,6 +190,7 @@ class DotsAlert extends StatelessWidget {
     required String title,
     required String message,
     VoidCallback? onClose,
+    bool enableCloseOnTapOutside = true,
     required List<DotsListItemModel> selectorItemList,
     required String mainButtonText,
     required VoidCallback mainButtonOnTap,
@@ -187,6 +204,7 @@ class DotsAlert extends StatelessWidget {
         title: title,
         message: message,
         onClose: onClose,
+        enableCloseOnTapOutside: enableCloseOnTapOutside,
         selectorItemList: selectorItemList,
         mainButtonText: mainButtonText,
         mainButtonOnTap: mainButtonOnTap,
@@ -198,84 +216,92 @@ class DotsAlert extends StatelessWidget {
   Widget build(BuildContext context) {
     final DotsTheme theme = context.dotsTheme;
 
-    return Container(
-      color: Colors.black.dotsWithOpacity(0.5),
-      height: MediaQuery.sizeOf(context).height,
-      width: MediaQuery.sizeOf(context).width,
-      child: AlertDialog(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        insetPadding: EdgeInsets.zero,
-        content: IntrinsicHeight(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(32),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-              child: Container(
-                width: 320,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: theme.colors.bgContainerSecondary,
-                  borderRadius: BorderRadius.circular(32),
-                  border: Border.all(
-                    color: theme.colors.borderAlert,
-                    width: 1.4,
-                  ),
-                ),
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          _icon(theme),
-                          Padding(
-                            padding: variant.isInput
-                                ? const EdgeInsets.symmetric(vertical: 16)
-                                : variant.isSelector
-                                    ? const EdgeInsets.only(top: 16)
-                                    : const EdgeInsets.all(16),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  title,
-                                  textAlign: TextAlign.center,
-                                  style: theme.typo.main.bodyLargeBold,
-                                ),
-                                const SizedBox(height: 8),
-                                _description(theme),
-                              ],
-                            ),
-                          ),
-                          if (!variant.isNoButtons) ...[
-                            SizedBox(height: variant.isSelector ? 16 : 8),
-                            _actions(),
-                          ]
-                        ],
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            onTap: enableCloseOnTapOutside == true ? onClose : null,
+            child: Container(color: Colors.black.dotsWithOpacity(0.5)),
+          ),
+        ),
+        Center(
+          child: AlertDialog(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            insetPadding: EdgeInsets.zero,
+            content: IntrinsicHeight(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(32),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+                  child: Container(
+                    width: 320,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: theme.colors.bgContainerSecondary,
+                      borderRadius: BorderRadius.circular(32),
+                      border: Border.all(
+                        color: theme.colors.borderAlert,
+                        width: 1.4,
                       ),
                     ),
-                    if (!variant.isTwoHorizontalButtons)
-                      Positioned(
-                        top: 16,
-                        right: 16,
-                        child: DotsCloseButton(
-                          icon: DotsIconData.cross,
-                          size: DotsCloseButtonSize.small,
-                          variant: DotsCloseButtonVariant.softContrast,
-                          onTap: onClose,
+                    child: Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              _icon(theme),
+                              Padding(
+                                padding: variant.isInput
+                                    ? const EdgeInsets.symmetric(vertical: 16)
+                                    : variant.isSelector
+                                        ? const EdgeInsets.only(top: 16)
+                                        : const EdgeInsets.all(16),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      title,
+                                      textAlign: TextAlign.center,
+                                      style: theme.typo.main.bodyLargeBold,
+                                    ),
+                                    const SizedBox(height: 8),
+                                    _description(theme),
+                                  ],
+                                ),
+                              ),
+                              if (!variant.isNoButtons) ...[
+                                SizedBox(height: variant.isSelector ? 16 : 8),
+                                _actions(),
+                              ]
+                            ],
+                          ),
                         ),
-                      ),
-                  ],
+                        if (!variant.isTwoHorizontalButtons)
+                          Positioned(
+                            top: 16,
+                            right: 16,
+                            child: DotsCloseButton(
+                              icon: DotsIconData.cross,
+                              size: DotsCloseButtonSize.small,
+                              variant: DotsCloseButtonVariant.softContrast,
+                              onTap: onClose,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 
