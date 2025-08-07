@@ -230,64 +230,66 @@ class DotsAlert extends StatelessWidget {
             borderRadius: BorderRadius.circular(32),
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-              child: Container(
-                width: 320,
-                decoration: BoxDecoration(
-                  color: theme.colors.bgContainerSecondary,
-                  borderRadius: BorderRadius.circular(32),
-                  border: Border.all(
-                    color: theme.colors.borderAlert,
-                    width: 1.4,
+              child: Material(
+                child: Container(
+                  width: 320,
+                  decoration: BoxDecoration(
+                    color: theme.colors.bgContainerSecondary,
+                    borderRadius: BorderRadius.circular(32),
+                    border: Border.all(
+                      color: theme.colors.borderAlert,
+                      width: 1.4,
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(width: 24),
-                          Expanded(
-                            child: Center(child: _icon(theme)),
-                          ),
-                          if (!variant.isTwoHorizontalButtons)
-                            DotsCloseButton(
-                              icon: DotsIconData.cross,
-                              size: DotsCloseButtonSize.small,
-                              variant: DotsCloseButtonVariant.softContrast,
-                              onTap: onClose,
-                            )
-                          else
-                            SizedBox(width: 24),
-                        ],
-                      ),
-                      Padding(
-                        padding: variant.isInput
-                            ? const EdgeInsets.symmetric(vertical: 16)
-                            : variant.isSelector
-                                ? const EdgeInsets.only(top: 16)
-                                : const EdgeInsets.all(16),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              title,
-                              textAlign: TextAlign.center,
-                              style: theme.typo.main.bodyLargeBold,
+                            SizedBox(width: 24),
+                            Expanded(
+                              child: Center(child: _icon(theme)),
                             ),
-                            const SizedBox(height: 8),
-                            _description(theme),
+                            if (!variant.isTwoHorizontalButtons)
+                              DotsCloseButton(
+                                icon: DotsIconData.cross,
+                                size: DotsCloseButtonSize.small,
+                                variant: DotsCloseButtonVariant.softContrast,
+                                onTap: onClose,
+                              )
+                            else
+                              SizedBox(width: 24),
                           ],
                         ),
-                      ),
-                      if (!variant.isNoButtons) ...[
-                        SizedBox(height: variant.isSelector ? 16 : 8),
-                        _actions(),
-                      ]
-                    ],
+                        Padding(
+                          padding: variant.isInput
+                              ? const EdgeInsets.symmetric(vertical: 16)
+                              : variant.isSelector
+                                  ? const EdgeInsets.only(top: 16)
+                                  : const EdgeInsets.all(16),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                title,
+                                textAlign: TextAlign.center,
+                                style: theme.typo.main.bodyLargeBold,
+                              ),
+                              const SizedBox(height: 8),
+                              _description(theme),
+                            ],
+                          ),
+                        ),
+                        if (!variant.isNoButtons) ...[
+                          SizedBox(height: variant.isSelector ? 16 : 8),
+                          _actions(),
+                        ]
+                      ],
+                    ),
                   ),
                 ),
               ),
