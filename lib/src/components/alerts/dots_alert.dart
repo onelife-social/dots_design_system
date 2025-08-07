@@ -2,20 +2,42 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class DotsAlert extends StatelessWidget {
+  /// The alert variant (e.g., no buttons, one button, input, etc.).
+  ///
+  /// Defaults to [DotsAlertVariant.noButtons].
   final DotsAlertVariant variant;
+
+  /// The icon to display in the alert.
   final DotsIconData iconData;
+
+  /// The title text of the alert.
   final String title;
+
+  /// The optional message or description text of the alert.
   final String? message;
+
+  /// Callback when the close button is tapped.
   final VoidCallback? onClose;
 
+  /// *(Only for input variant)* Callback for input field value changes.
   final Function(String)? onInputChanged;
+
+  /// *(Only for input variant)* Hint text for the input field.
   final String? inputHint;
 
+  /// *(Only for selector variant)* List of selector items.
   final List<DotsListItemModel>? selectorItemList;
 
+  /// Text for the main button.
   final String? mainButtonText;
+
+  /// Callback when the main button is tapped.
   final VoidCallback? mainButtonOnTap;
+
+  /// Text for the secondary button.
   final String? secondaryButtonText;
+
+  /// Callback when the secondary button is tapped.
   final VoidCallback? secondaryButtonOnTap;
 
   const DotsAlert._({
