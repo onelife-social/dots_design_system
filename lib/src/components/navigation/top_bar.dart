@@ -48,6 +48,9 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// Whether the call to action is enabled.
   final bool ctaEnabled;
 
+  /// Whether to show the back button inside a gray circular background.
+  final bool showCircleBackButton;
+
   /// Only status bar, no title or segmented control.
   const DotsTopBar.onlyStatusBar({
     super.key,
@@ -61,7 +64,8 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
         _bigStatusBar = false,
         ctaLabel = null,
         onCtaTap = null,
-        ctaEnabled = false;
+        ctaEnabled = false,
+        showCircleBackButton = false;
 
   /// Bar with title and optional subtitle, left and right icons, and back button.
   const DotsTopBar.title({
@@ -72,6 +76,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.leftIcon,
     this.rightIcon,
     this.onTapBack,
+    this.showCircleBackButton = false,
   })  : assert(
           (leftIcon == null || onTapBack == null),
           'leftIcon cannot be used with onTapBack',
@@ -90,6 +95,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.leftIcon,
     this.rightIcon,
     this.onTapBack,
+    this.showCircleBackButton = false,
   })  : assert(
           (leftIcon == null || onTapBack == null),
           'leftIcon cannot be used with onTapBack',
@@ -110,6 +116,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.ctaLabel,
     this.onCtaTap,
     this.ctaEnabled = true,
+    this.showCircleBackButton = false,
   })  : assert(
           onCtaTap == null || ctaLabel != null,
           'ctaLabel is required when onCtaTap is provided',
@@ -180,7 +187,9 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
                             DotsIconButton(
                               icon: DotsIconData.chevronLeft,
                               size: DotsIconButtonSize.medium,
-                              variant: DotsIconButtonVariant.noBackground,
+                              variant: !showCircleBackButton
+                                  ? DotsIconButtonVariant.noBackground
+                                  : DotsIconButtonVariant.solid,
                               onTap: onTapBack,
                             ),
                           ],
