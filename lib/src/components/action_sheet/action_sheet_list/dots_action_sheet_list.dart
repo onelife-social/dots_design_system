@@ -102,7 +102,15 @@ class DotsActionSheetList extends StatelessWidget {
 
   /// The [scrollController] is the controller for the scroll view.
   final ScrollController? scrollController;
-  
+
+  /// The [textFieldController] is the controller for the text field.
+  final TextEditingController? textFieldController;
+
+  /// The [isFocused] is a boolean to determine if the text field is focused.
+  final FocusNode? isFocused;
+
+  /// The [onTapTextFieldBtn] is a callback for the text field button tap.
+  final VoidCallback? onTapTextFieldBtn;
 
   const DotsActionSheetList({
     super.key,
@@ -110,6 +118,9 @@ class DotsActionSheetList extends StatelessWidget {
     required this.title,
     required this.onMainButtonTap,
     required this.mainButtonText,
+    this.textFieldController,
+    this.isFocused,
+    this.onTapTextFieldBtn,
     this.bottomPosition = 56,
     this.mainButtonIcon = DotsIconData.add,
     this.onLabelButtonTap,
@@ -193,6 +204,9 @@ class DotsActionSheetList extends StatelessWidget {
                       searchBtnHide: searchBtnHide,
                       searchBtnIcon: searchBtnIcon,
                       onSearchBtnTap: onSearchBtnTap,
+                      textFieldController: textFieldController,
+                      isFocused: isFocused,
+                      onTapTextFieldBtn: onTapTextFieldBtn,
                     ),
                     Expanded(
                       child: Stack(
@@ -267,6 +281,9 @@ class _Header extends StatelessWidget {
   final bool searchBtnHide;
   final DotsIconData searchBtnIcon;
   final Function()? onSearchBtnTap;
+  final TextEditingController? textFieldController;
+  final FocusNode? isFocused;
+  final VoidCallback? onTapTextFieldBtn;
 
   const _Header({
     required this.variant,
@@ -284,6 +301,9 @@ class _Header extends StatelessWidget {
     this.searchBtnHide = true,
     this.searchBtnIcon = DotsIconData.search,
     this.onSearchBtnTap,
+    this.textFieldController,
+    this.isFocused,
+    this.onTapTextFieldBtn,
   });
 
   @override
@@ -385,15 +405,13 @@ class _Header extends StatelessWidget {
                               right: 16,
                               bottom: context.getByRatio(16, 10),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                DotsTextField(
-                                  iconData: inputIcon,
-                                  hintText: hintInputText,
-                                  onChanged: onInputChanged,
-                                ),
-                              ],
+                            child: DotsTextField(
+                              controller: textFieldController,
+                              focusNode: isFocused,
+                              onTapBtn: onTapTextFieldBtn,
+                              iconData: inputIcon,
+                              hintText: hintInputText,
+                              onChanged: onInputChanged,
                             ),
                           )
                         : const SizedBox(

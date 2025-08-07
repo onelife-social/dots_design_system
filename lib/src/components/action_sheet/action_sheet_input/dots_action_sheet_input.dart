@@ -45,9 +45,6 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [onIconTap] is a callback for the folder icon tap.
   final Function()? onIconTap;
 
-  /// The [initialValue] is the initial value for the text field.
-  final String? initialValue;
-
   /// The [onMainButtonTap] is a callback for the main button tap.
   final Function()? onMainButtonTap;
 
@@ -72,6 +69,20 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [dateIconData] is the icon for the date input.
   final DotsIconData? dateIconData;
 
+  /// The [textFieldController] is the controller for the text field.
+  /// the controller has to have a initial value set thats the name of the folder.
+  final TextEditingController textFieldController;
+
+  /// The [isFocused] is a FocusNode to manage focus state of the text field.
+  final FocusNode? isFocused;
+
+  /// The [onChanged] is a callback for the text field value changes.
+  final ValueChanged<String>? onChanged;
+
+  /// The [onTapTextFieldBtn] is a callback for the text field button tap.
+  final VoidCallback? onTapTextFieldBtn;
+
+
   const DotsActionSheetInput({
     super.key,
     this.variant = ActionSheetInputVariant.main,
@@ -85,13 +96,16 @@ class DotsActionSheetInput extends StatelessWidget {
     this.showBlurBackground = true,
     this.iconData,
     this.onIconTap,
-    this.initialValue,
     this.colorController,
     this.selectedColor = DotsColorOption.textQuarternary,
     this.dateLabel,
     this.dateValue,
     this.onDateTap,
-    this.dateIconData
+    this.dateIconData,
+    this.onTapTextFieldBtn,
+    required this.textFieldController,
+    this.isFocused,
+    this.onChanged,
   });
 
   @override
@@ -139,9 +153,12 @@ class DotsActionSheetInput extends StatelessWidget {
                             subtitle: subtitle,
                             iconData: iconData,
                             onIconTap: onIconTap,
-                            initialValue: initialValue,
                             onMainButtonTap: onMainButtonTap,
                             actionButtonText: actionButtonText,
+                            textFieldController: textFieldController,
+                            isFocused: isFocused,
+                            onChanged: onChanged,
+                            onTapTextFieldBtn: onTapTextFieldBtn,
                             selectedColor: selectedColor,
                             onColorSelected: (color) {
                               colorController!.value = color;
@@ -155,7 +172,6 @@ class DotsActionSheetInput extends StatelessWidget {
                         subtitle: subtitle,
                         iconData: iconData,
                         onIconTap: onIconTap,
-                        initialValue: initialValue,
                         onMainButtonTap: onMainButtonTap,
                         actionButtonText: actionButtonText,
                         selectedColor: selectedColor,
@@ -163,6 +179,9 @@ class DotsActionSheetInput extends StatelessWidget {
                         dateValue: dateValue,
                         onDateTap: onDateTap,
                         dateIconData: dateIconData,
+                        textFieldController: textFieldController,
+                        isFocused: isFocused,
+                        onTapTextFieldBtn: onTapTextFieldBtn,
                       ),
                 ],
               ),
@@ -223,7 +242,6 @@ class _Body extends StatelessWidget {
   final ActionSheetInputVariant variant;
   final DotsIconData? iconData;
   final Function()? onIconTap;
-  final String? initialValue;
   final Function()? onMainButtonTap;
   final String? actionButtonText;
   final DotsColorOption? selectedColor;
@@ -232,13 +250,16 @@ class _Body extends StatelessWidget {
   final String? dateValue;
   final Function()? onDateTap;
   final DotsIconData? dateIconData;
+  final TextEditingController? textFieldController;
+  final FocusNode? isFocused;
+  final VoidCallback? onTapTextFieldBtn;
+  final ValueChanged<String>? onChanged;
 
   const _Body({
     this.subtitle,
     required this.variant,
     this.iconData,
     this.onIconTap,
-    this.initialValue,
     this.onMainButtonTap,
     this.actionButtonText,
     this.selectedColor,
@@ -247,6 +268,10 @@ class _Body extends StatelessWidget {
     this.dateValue,
     this.onDateTap,
     this.dateIconData = DotsIconData.calendar,
+    this.textFieldController,
+    this.isFocused,
+    this.onTapTextFieldBtn,
+    this.onChanged,
   });
 
   @override
@@ -285,14 +310,12 @@ class _Body extends StatelessWidget {
         ],
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DotsTextField(
-                initialValue: initialValue,
-                alignCenter: true,
-              ),
-            ],
+          child: DotsTextField(
+            controller: textFieldController,
+            focusNode: isFocused,
+            alignCenter: true,
+            onTapBtn: onTapTextFieldBtn,
+            onChanged: onChanged,
           ),
         ),
         if (variant.isDate) ...[

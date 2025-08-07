@@ -23,6 +23,9 @@ class DotsActionSheetSearch extends StatelessWidget {
   final bool showBackdrop;
   final bool backButtonShaderMask;
   final VoidCallback? onPrimaryButtonTap;
+  final TextEditingController? textFieldController;
+  final FocusNode? isFocused;
+  final VoidCallback? onTapTextFieldBtn;
 
   const DotsActionSheetSearch({
     super.key,
@@ -45,6 +48,9 @@ class DotsActionSheetSearch extends StatelessWidget {
     this.showBackdrop = true,
     this.backButtonShaderMask = false,
     this.onPrimaryButtonTap,
+    this.textFieldController,
+    this.isFocused,
+    this.onTapTextFieldBtn,
   });
 
   @override
@@ -95,6 +101,9 @@ class DotsActionSheetSearch extends StatelessWidget {
                           title: title,
                           onChanged: onChanged,
                           hintText: hintText,
+                          textFieldController: textFieldController,
+                          isFocused: isFocused,
+                          onTapTextFieldBtn: onTapTextFieldBtn,
                         ),
                         Expanded(
                           child: SingleChildScrollView(
@@ -136,11 +145,17 @@ class _DotsActionSheetSearchHeader extends StatelessWidget {
   final String title;
   final String hintText;
   final ValueChanged<String>? onChanged;
+  final TextEditingController? textFieldController;
+  final FocusNode? isFocused;
+  final VoidCallback? onTapTextFieldBtn;
 
   const _DotsActionSheetSearchHeader({
     required this.title,
     required this.hintText,
     this.onChanged,
+    this.textFieldController,
+    this.isFocused,
+    this.onTapTextFieldBtn,
   });
 
   @override
@@ -164,12 +179,15 @@ class _DotsActionSheetSearchHeader extends StatelessWidget {
               ),
             ),
             DotsTextField(
+              controller: textFieldController,
+              focusNode: isFocused,
               iconData: DotsIconData.search,
               iconDataButton: DotsIconData.cross,
               buttonVariant: DotsCloseButtonVariant.inverted,
               buttonSize: DotsCloseButtonSize.extraSmall,
               onChanged: onChanged,
               hintText: hintText,
+              onTapBtn: onTapTextFieldBtn,
             ),
           ],
         ),

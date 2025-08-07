@@ -104,6 +104,15 @@ class DotsActionSheet extends StatelessWidget {
   /// Callback when the primary button is tapped.
   final VoidCallback? onPrimaryButtonTap;
 
+  /// The controller for the text field in the search variant.
+  final TextEditingController? textFieldController;
+
+  /// The focus node for the text field in the search variant.
+  final FocusNode? isFocused;
+
+  /// Callback when the text field button is tapped in the search variant.
+  final VoidCallback? onTapTextFieldBtn;
+
   const DotsActionSheet({
     super.key,
     required this.title,
@@ -126,6 +135,9 @@ class DotsActionSheet extends StatelessWidget {
     this.showBackdrop = true,
     this.backButtonShaderMask = false,
     this.onPrimaryButtonTap,
+    this.textFieldController,
+    this.isFocused,
+    this.onTapTextFieldBtn,
   });
 
   @override
@@ -171,6 +183,9 @@ class DotsActionSheet extends StatelessWidget {
           showBackdrop: showBackdrop,
           backButtonShaderMask: backButtonShaderMask,
           onPrimaryButtonTap: onPrimaryButtonTap,
+          textFieldController: textFieldController,
+          isFocused: isFocused,
+          onTapTextFieldBtn: onTapTextFieldBtn,
         );
     }
   }
