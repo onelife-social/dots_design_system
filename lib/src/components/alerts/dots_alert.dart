@@ -175,63 +175,80 @@ class DotsAlert extends StatelessWidget {
     final DotsTheme theme = context.dotsTheme;
 
     return Container(
-      width: 320,
-      decoration: BoxDecoration(
-        color: theme.colors.bgContainerSecondary,
-        borderRadius: BorderRadius.circular(32),
-        border: Border.all(
-          color: theme.colors.borderAlert,
-          width: 1.4,
-        ),
-      ),
-      child: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _icon(theme),
-                Padding(
-                  padding: variant.isInput
-                      ? const EdgeInsets.symmetric(vertical: 16)
-                      : variant.isSelector
-                          ? const EdgeInsets.only(top: 16)
-                          : const EdgeInsets.all(16),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        title,
-                        textAlign: TextAlign.center,
-                        style: theme.typo.main.bodyLargeBold,
-                      ),
-                      const SizedBox(height: 8),
-                      _description(theme),
-                    ],
+      color: Colors.black.dotsWithOpacity(0.5),
+      height: MediaQuery.sizeOf(context).height,
+      width: MediaQuery.sizeOf(context).width,
+      child: AlertDialog(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        insetPadding: EdgeInsets.zero,
+        content: IntrinsicHeight(
+          child: Stack(
+            children: [
+              Container(
+                width: 320,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: theme.colors.bgContainerSecondary,
+                  borderRadius: BorderRadius.circular(32),
+                  border: Border.all(
+                    color: theme.colors.borderAlert,
+                    width: 1.4,
                   ),
                 ),
-                if (!variant.isNoButtons) ...[
-                  SizedBox(height: variant.isSelector ? 16 : 8),
-                  _actions(),
-                ]
-              ],
-            ),
-          ),
-          if (!variant.isTwoHorizontalButtons)
-            Positioned(
-              top: 16,
-              right: 16,
-              child: DotsCloseButton(
-                icon: DotsIconData.cross,
-                size: DotsCloseButtonSize.small,
-                variant: DotsCloseButtonVariant.softContrast,
-                onTap: onClose,
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          _icon(theme),
+                          Padding(
+                            padding: variant.isInput
+                                ? const EdgeInsets.symmetric(vertical: 16)
+                                : variant.isSelector
+                                    ? const EdgeInsets.only(top: 16)
+                                    : const EdgeInsets.all(16),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  title,
+                                  textAlign: TextAlign.center,
+                                  style: theme.typo.main.bodyLargeBold,
+                                ),
+                                const SizedBox(height: 8),
+                                _description(theme),
+                              ],
+                            ),
+                          ),
+                          if (!variant.isNoButtons) ...[
+                            SizedBox(height: variant.isSelector ? 16 : 8),
+                            _actions(),
+                          ]
+                        ],
+                      ),
+                    ),
+                    if (!variant.isTwoHorizontalButtons)
+                      Positioned(
+                        top: 16,
+                        right: 16,
+                        child: DotsCloseButton(
+                          icon: DotsIconData.cross,
+                          size: DotsCloseButtonSize.small,
+                          variant: DotsCloseButtonVariant.softContrast,
+                          onTap: onClose,
+                        ),
+                      ),
+                  ],
+                ),
               ),
-            ),
-        ],
+            ],
+          ),
+        ),
       ),
     );
   }
