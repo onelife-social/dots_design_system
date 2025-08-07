@@ -2,14 +2,18 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class DotsTextField extends StatefulWidget {
+  
   /// The icon data for the TextField.
   ///
   /// If null, no icon will be displayed.
   final DotsIconData? iconData;
 
   /// The icon data for the close button.
-  /// If null, the default icon is a cross.
   final DotsIconData iconDataButton;
+
+  /// Callback when the close button is tapped.
+  /// This is typically used to clear the text field.
+  final Function()? onTapBtn;
 
   /// The variant of the close button.
   ///
@@ -21,13 +25,10 @@ class DotsTextField extends StatefulWidget {
   /// Defaults to [DotsCloseButtonSize.extraSmall].
   final DotsCloseButtonSize buttonSize;
 
-  /// The initial value of the TextField.
-  final String? initialValue;
-
   /// The hint text to display in the TextField.
   final String? hintText;
 
-  /// Callback when the text changes.
+  /// Callback when the text in the TextField changes.
   final ValueChanged<String>? onChanged;
 
   /// Whether the TextField is in an error state.
@@ -41,10 +42,18 @@ class DotsTextField extends StatefulWidget {
   /// Defaults to false.
   final bool alignCenter;
 
+  /// The controller for the TextField.
+  /// Used to manage the text input. A default one is provided if non is passed as a parameter
+  final TextEditingController? controller;
+
+  /// The focus node for the TextField.
+  /// Used to manage the focus. A default one is provided if non is passed as a parameter
+  final FocusNode? focusNode;
+
   const DotsTextField({
     super.key,
     this.iconData,
-    this.initialValue,
+    this.onTapBtn,
     this.hintText = '',
     this.iconDataButton = DotsIconData.cross,
     this.buttonVariant = DotsCloseButtonVariant.inverted,
@@ -53,133 +62,132 @@ class DotsTextField extends StatefulWidget {
     this.isError = false,
     this.errorText,
     this.alignCenter = false,
+    this.controller,
+    this.focusNode,
   });
 
-@override
+  @override
   State<DotsTextField> createState() => _DotsTextFieldState();
 }
 
 class _DotsTextFieldState extends State<DotsTextField> {
-  late final TextEditingController _controller;
-  late final FocusNode _focusNode;
-
+  late final TextEditingController _controller = widget.controller ?? TextEditingController();
+  late final FocusNode _focusNode = widget.focusNode ?? FocusNode();
+  final ValueNotifier<bool> _showClearButton = ValueNotifier(false);
 
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController(text: widget.initialValue ?? '');
-    _controller.addListener(_onTextChanged);
-    _focusNode = FocusNode();
-    _focusNode.addListener(_onFocusChanged);
+    _controller.addListener(_updateClearButton);
+    _focusNode.addListener(_updateClearButton);
+    _updateClearButton();
+  }
+
+  void _updateClearButton() {
+    final show = _controller.text.isNotEmpty && _focusNode.hasFocus;
+    if (_showClearButton.value != show) {
+      _showClearButton.value = show;
+    }
   }
 
   @override
   void dispose() {
-    _controller.removeListener(_onTextChanged);
-    _controller.dispose();
-     _focusNode.removeListener(_onFocusChanged);
-    _focusNode.dispose();
+    _controller.removeListener(_updateClearButton);
+    _focusNode.removeListener(_updateClearButton);
+    _showClearButton.dispose();
+    if (widget.controller == null) _controller.dispose();
+    if (widget.focusNode == null) _focusNode.dispose();
     super.dispose();
   }
 
-  void _onTextChanged() {
-    setState(() {});
-  }
-
-   void _onFocusChanged() {
-    setState(() {});
+  void _defaultClear() {
+    _controller.clear();
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     final icon = widget.iconData;
-
-    final bool isFocused = _focusNode.hasFocus;
-
     final TextAlign textAlign = widget.alignCenter ? TextAlign.center : TextAlign.left;
 
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            height: 44,
-            clipBehavior: Clip.antiAlias,
-            decoration: ShapeDecoration(
-              color: theme.colors.bgContainerSecondary,
-              shape: RoundedRectangleBorder(
-                borderRadius: DotsBorderRadius.r1000,
-              ),
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: [
-                if (icon != null)
-                  DotsIcon(
-                    iconData: icon,
-                    color:
-                        widget.isError ? theme.colors.labelDestructive : theme.colors.textTertiary,
-                    size: 20,
-                  ),
-                const SizedBox(width: 6),
-                Expanded(
-                  child: TextField(
-                    focusNode: _focusNode,
-                    controller: _controller,
-                    textAlign: textAlign,
-                    style: theme.typo.main.bodyDefaultMedium.copyWith(
-                      color: widget.isError ? theme.colors.labelDestructive : theme.colors.textPrimary,
-                    ),
-                    cursorColor: theme.colors.labelHighlight,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: widget.hintText,
-                      hintStyle: TextStyle(
-                        color: widget.isError ? theme.colors.labelDestructive : theme.colors.textTertiary,
-                      ),
-                      isDense: true,
-                      contentPadding: EdgeInsets.zero,
-                    ),
-                    onChanged: (value) {
-                      if (mounted) setState(() {});
-                      widget.onChanged?.call(value);
-                    },
-                  ),
+    return ValueListenableBuilder<bool>(
+      valueListenable: _showClearButton,
+      builder: (context, showClear, child) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              height: 44,
+              clipBehavior: Clip.antiAlias,
+              decoration: ShapeDecoration(
+                color: theme.colors.bgContainerSecondary,
+                shape: RoundedRectangleBorder(
+                  borderRadius: DotsBorderRadius.r1000,
                 ),
-                if (_controller.text.isNotEmpty && isFocused ) ...[
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  if (icon != null)
+                    DotsIcon(
+                      iconData: icon,
+                      color: widget.isError ? theme.colors.labelDestructive : theme.colors.textTertiary,
+                      size: 20,
+                    ),
                   const SizedBox(width: 6),
-                  DotsCloseButton(
-                    icon: widget.iconDataButton,
-                    variant: widget.buttonVariant,
-                    size: widget.buttonSize,
-                    onTap: () {
-                      if (mounted) {
-                        _controller.clear();
-                        setState(() {});
-                      }
-                      widget.onChanged?.call('');
-                    },
+                  Expanded(
+                    child: TextField(
+                      focusNode: _focusNode,
+                      controller: _controller,
+                      textAlign: textAlign,
+                      style: theme.typo.main.bodyDefaultMedium.copyWith(
+                        color: widget.isError ? theme.colors.labelDestructive : theme.colors.textPrimary,
+                      ),
+                      cursorColor: theme.colors.labelHighlight,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: widget.hintText,
+                        hintStyle: TextStyle(
+                          color: widget.isError ? theme.colors.labelDestructive : theme.colors.textTertiary,
+                        ),
+                        isDense: true,
+                        contentPadding: const EdgeInsets.symmetric(vertical: 12),
+                        suffixIcon: showClear
+                            ? DotsCloseButton(
+                                icon: widget.iconDataButton,
+                                variant: widget.buttonVariant,
+                                size: widget.buttonSize,
+                                onTap: widget.onTapBtn ?? _defaultClear,
+                              )
+                            : null,
+                        suffixIconConstraints: const BoxConstraints(
+                          minWidth: 0,
+                          minHeight: 0,
+                        ),
+                      ),
+                      onChanged: widget.onChanged,
+                    ),
                   ),
                 ],
-              ],
-            ),
-          ),
-          if (widget.isError && widget.errorText != null) ...[
-            const SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Text(
-                '* ${widget.errorText}',
-                style: theme.typo.main.labelDefaultRegular.copyWith(
-                  color: theme.colors.labelDestructive,
-                ),
               ),
             ),
+            if (widget.isError && widget.errorText != null) ...[
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Text(
+                  '* ${widget.errorText}',
+                  style: theme.typo.main.labelDefaultRegular.copyWith(
+                    color: theme.colors.labelDestructive,
+                  ),
+                ),
+              ),
+            ],
           ],
-        ],
-      ),
+        );
+      }
     );
   }
 }
