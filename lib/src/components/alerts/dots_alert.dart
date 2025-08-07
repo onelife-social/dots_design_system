@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
@@ -205,9 +207,11 @@ class DotsAlert extends StatelessWidget {
         backgroundColor: Colors.transparent,
         insetPadding: EdgeInsets.zero,
         content: IntrinsicHeight(
-          child: Stack(
-            children: [
-              Container(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(32),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+              child: Container(
                 width: 320,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
@@ -268,7 +272,7 @@ class DotsAlert extends StatelessWidget {
                   ],
                 ),
               ),
-            ],
+            ),
           ),
         ),
       ),
