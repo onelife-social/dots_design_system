@@ -330,8 +330,6 @@ List<Story> get allStories => [
               label: 'Align Center',
               initial: false,
             ),
-            initialValue:
-                context.knobs.nullable.text(label: 'Initial Value', initial: 'Sample text'),
             iconData: context.knobs.nullable.options<DotsIconData>(
               label: 'Icon Data',
               initial: DotsIconData.search,

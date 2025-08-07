@@ -1,89 +1,125 @@
 import 'package:dots_design_system/dots_design_system.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
+import 'package:flutter/material.dart';
 
 List<Story> get actionSheetStories => [
       Story(
         name: 'Action Sheet/DotsActionSheet',
         description: 'Demo page for action sheet',
-        builder: (context) => DotsActionSheet(
-          title: context.knobs.text(label: 'title', initial: 'Title'),
-          description: context.knobs.text(label: 'description', initial: 'Description'),
-          variant: context.knobs.options<DotsActionSheetVariant>(
-            label: 'Variant',
-            initial: DotsActionSheetVariant.standard,
-            options: DotsActionSheetVariant.values
-                .map((item) => Option(label: item.name, value: item))
-                .toList(),
-          ),
-          primaryButton: context.knobs.boolean(label: 'Show primary button', initial: true)
-              ? DotsMainButton(
-                  content: context.knobs.text(label: 'Primary button text', initial: 'Primary'),
-                  details: context.knobs.nullable.text(
-                    label: 'Primary button details',
-                    initial: 'Details',
+        builder: (context) {
+          final textFieldController = TextEditingController();
+          final focus = FocusNode();
+
+          return StatefulBuilder(
+            builder: (context, setState) {
+              focus.addListener(() {
+                setState(() {});
+              });
+
+              void onTapBtn() {
+                textFieldController.clear();
+                setState(() {});
+              }
+
+              return DotsActionSheet(
+                title: context.knobs.text(label: 'title', initial: 'Title'),
+                description: context.knobs.text(label: 'description', initial: 'Description'),
+                variant: context.knobs.options<DotsActionSheetVariant>(
+                  label: 'Variant',
+                  initial: DotsActionSheetVariant.standard,
+                  options: DotsActionSheetVariant.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList(),
+                ),
+                primaryButton: context.knobs.boolean(label: 'Show primary button', initial: true)
+                    ? DotsMainButton(
+                        content: context.knobs.text(label: 'Primary button text', initial: 'Primary'),
+                        details: context.knobs.nullable.text(
+                          label: 'Primary button details',
+                          initial: 'Details',
+                        ),
+                        enabled: context.knobs.boolean(label: 'Primary button enabled', initial: true),
+                        variant: DotsMainButtonVariant.main,
+                        size: DotsMainButtonSize.mainAction,
+                        onTap: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Primary button tapped!'),
+                            ),
+                          );
+                        },
+                      )
+                    : null,
+                secondaryButton: context.knobs.boolean(label: 'Show secondary button', initial: true)
+                    ? DotsMainButton(
+                        content: context.knobs.text(label: 'Secondary button text', initial: 'Secondary'),
+                        details: context.knobs.nullable.text(
+                          label: 'Secondary button details',
+                          initial: 'Details',
+                        ),
+                        enabled: context.knobs.boolean(label: 'Secondary button enabled', initial: true),
+                        variant: DotsMainButtonVariant.secondary,
+                        size: DotsMainButtonSize.mainAction,
+                        onTap: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Secondary button tapped!'),
+                            ),
+                          );
+                        },
+                      )
+                    : null,
+                buttonPositioning: context.knobs.options<DotsActionSheetButtonPositioning>(
+                  label: 'Button positioning',
+                  initial: DotsActionSheetButtonPositioning.row,
+                  options: DotsActionSheetButtonPositioning.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList(),
+                ),
+                topWidget: Container(
+                  height: context.knobs.slider(
+                    label: 'Top widget height',
+                    initial: 100,
+                    min: 0,
+                    max: 500,
                   ),
-                  enabled: context.knobs.boolean(label: 'Primary button enabled', initial: true),
-                  variant: DotsMainButtonVariant.main,
-                  size: DotsMainButtonSize.mainAction,
-                  onTap: () {},
-                )
-              : null,
-          secondaryButton: context.knobs.boolean(label: 'Show secondary button', initial: true)
-              ? DotsMainButton(
-                  content: context.knobs.text(label: 'Secondary button text', initial: 'Secondary'),
-                  details: context.knobs.nullable.text(
-                    label: 'Secondary button details',
-                    initial: 'Details',
+                  color: context.dotsTheme.colors.bgContainerTertiary,
+                ),
+                onClose: () {},
+                bottomWidget: Container(
+                  height: context.knobs.slider(
+                    label: 'Bottom widget height',
+                    initial: 100,
+                    min: 0,
+                    max: 800,
                   ),
-                  enabled: context.knobs.boolean(label: 'Secondary button enabled', initial: true),
-                  variant: DotsMainButtonVariant.secondary,
-                  size: DotsMainButtonSize.mainAction,
-                  onTap: () {},
-                )
-              : null,
-          buttonPositioning: context.knobs.options<DotsActionSheetButtonPositioning>(
-            label: 'Button positioning',
-            initial: DotsActionSheetButtonPositioning.row,
-            options: DotsActionSheetButtonPositioning.values
-                .map((item) => Option(label: item.name, value: item))
-                .toList(),
-          ),
-          topWidget: Container(
-            height: context.knobs.slider(
-              label: 'Top widget height',
-              initial: 100,
-              min: 0,
-              max: 500,
-            ),
-            color: context.dotsTheme.colors.bgContainerTertiary,
-          ),
-          onClose: () {},
-          bottomWidget: Container(
-            height: context.knobs.slider(
-              label: 'Bottom widget height',
-              initial: 100,
-              min: 0,
-              max: 800,
-            ),
-            color: context.dotsTheme.colors.bgContainerTertiary,
-          ),
-          stepProgress: context.knobs.slider(
-            label: 'Step progress',
-            initial: 0.5,
-            min: 0,
-            max: 1,
-          ),
-          bigAspectRatio: context.knobs.boolean(
-            label: 'Big aspect ratio',
-            initial: true,
-          ),
-          scrollController: ScrollController(),
-          backButtonShaderMask: context.knobs.boolean(
-            label: 'Back button shader mask',
-            initial: false,
-          ),
-        ),
+                  color: context.dotsTheme.colors.bgContainerTertiary,
+                ),
+                stepProgress: context.knobs.slider(
+                  label: 'Step progress',
+                  initial: 0.5,
+                  min: 0,
+                  max: 1,
+                ),
+                bigAspectRatio: context.knobs.boolean(
+                  label: 'Big aspect ratio',
+                  initial: true,
+                ),
+                scrollController: ScrollController(),
+                backButtonShaderMask: context.knobs.boolean(
+                  label: 'Back button shader mask',
+                  initial: false,
+                ),
+                textFieldController: textFieldController,
+                focus: focus,
+                onTapTextFieldBtn: onTapBtn,
+                onChanged: (value) {
+                  setState(() {});
+                },
+              );
+            },
+          );
+        },
       ),
       Story(
         name: 'Action Sheet/DotsActionSheetSearch',
@@ -102,7 +138,13 @@ List<Story> get actionSheetStories => [
                   enabled: context.knobs.boolean(label: 'Primary button enabled', initial: true),
                   variant: DotsMainButtonVariant.main,
                   size: DotsMainButtonSize.mainAction,
-                  onTap: () {},
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Primary button tapped!'),
+                      ),
+                    );
+                  },
                 )
               : null,
           secondaryButton: context.knobs.boolean(label: 'Show secondary button', initial: true)
@@ -115,7 +157,13 @@ List<Story> get actionSheetStories => [
                   enabled: context.knobs.boolean(label: 'Secondary button enabled', initial: true),
                   variant: DotsMainButtonVariant.secondary,
                   size: DotsMainButtonSize.mainAction,
-                  onTap: () {},
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Secondary button tapped!'),
+                      ),
+                    );
+                  },
                 )
               : null,
           buttonPositioning: context.knobs.options<DotsActionSheetButtonPositioning>(
@@ -207,11 +255,12 @@ List<Story> get actionSheetStories => [
         name: 'Action Sheet/DotsActionSheetInput',
         description: 'Demo page for DotsActionSheetInput',
         builder: (context) {
+          final initialText = context.knobs.nullable.text(label: 'Initial Value', initial: 'Sample') ?? '';
+          final textFieldController = TextEditingController(text: initialText);
           final colorController = ValueNotifier<DotsColorOption>(DotsColorOption.textQuarternary);
 
           return StatefulBuilder(
             builder: (context, setState) {
-
               final selectedColor = colorController.value;
 
               return Padding(
@@ -226,7 +275,13 @@ List<Story> get actionSheetStories => [
                   ),
                   title: context.knobs.nullable.text(label: 'Title', initial: 'Action Sheet'),
                   subtitle: context.knobs.nullable.text(label: 'Subtitle', initial: 'Select an option'),
-                  onBackButtonTap: () {},
+                  onBackButtonTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Back button tapped!'),
+                      ),
+                    );
+                  },
                   onClose: () {},
                   showBlurBackground: context.knobs.boolean(label: 'Show Blur Background', initial: true),
                   iconData: context.knobs.options<DotsIconData>(
@@ -236,9 +291,21 @@ List<Story> get actionSheetStories => [
                         .map((item) => Option(label: item.name, value: item))
                         .toList(),
                   ),
-                  onIconTap: () {},
-                  initialValue: context.knobs.nullable.text(label: 'Initial Value', initial: 'Sample'),
-                  onMainButtonTap: () {},
+                  onIconTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Icon Btn tapped!'),
+                      ),
+                    );
+                  },
+                  textFieldController: textFieldController,
+                  onMainButtonTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Main button tapped!'),
+                      ),
+                    );
+                  },
                   actionButtonText: context.knobs.nullable.text(label: 'Action Button Text', initial: 'Confirm'),
                   colorController: colorController,
                   selectedColor: selectedColor,
@@ -311,8 +378,20 @@ List<Story> get actionSheetStories => [
                   isLabelButtonAvailable: context.knobs.boolean(label: 'Is Available', initial: false),
                   title: context.knobs.text(label: 'Title', initial: 'Select an album'),
                   onClose: () {},
-                  onBackButtonTap: () {},
-                  onMainButtonTap: () {},
+                  onBackButtonTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Back button tapped!'),
+                      ),
+                    );
+                  },
+                  onMainButtonTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Main button tapped!'),
+                      ),
+                    );
+                  },
                   mainButtonText: context.knobs.text(label: 'Action Button Text', initial: 'Siguiente'),
                   mainButtonIcon: context.knobs.options<DotsIconData>(
                     label: 'Main Button Icon',
