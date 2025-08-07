@@ -26,6 +26,8 @@ class TopBarDemo extends StatelessWidget {
     this.ctaEnabled = true,
     this.hideBackground = false,
     this.showCircleBackButton = false,
+    this.imageTitle,
+    this.onErrorImageTitle,
   });
 
   final TobBarVariant variant;
@@ -37,6 +39,8 @@ class TopBarDemo extends StatelessWidget {
   final String? ctaLabel;
   final bool ctaEnabled;
   final bool hideBackground;
+  final ImageProvider? imageTitle;
+  final void Function(Object exception, StackTrace? stackTrace)? onErrorImageTitle;
   final bool showCircleBackButton;
 
   DotsIconButton? get leftIcon => showLeftIcon
@@ -73,6 +77,8 @@ class TopBarDemo extends StatelessWidget {
           onTapBack: onTapBack,
           hideBackground: hideBackground,
           showCircleBackButton: showCircleBackButton,
+          imageTitle: imageTitle,
+          onErrorImageTitle: onErrorImageTitle,
         );
       case TobBarVariant.segmentedControl:
         return DotsTopBar.widget(
@@ -97,6 +103,8 @@ class TopBarDemo extends StatelessWidget {
           onCtaTap: () {},
           ctaEnabled: ctaEnabled,
           showCircleBackButton: showCircleBackButton,
+          imageTitle: imageTitle,
+          onErrorImageTitle: onErrorImageTitle,
         );
 
       default:
