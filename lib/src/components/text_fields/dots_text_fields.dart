@@ -21,7 +21,7 @@ class DotsTextField extends StatefulWidget {
   final DotsCloseButtonVariant buttonVariant;
 
   /// The size of the close button.
-  /// 
+  ///
   /// Defaults to [DotsCloseButtonSize.extraSmall].
   final DotsCloseButtonSize buttonSize;
 
@@ -38,7 +38,7 @@ class DotsTextField extends StatefulWidget {
   final String? errorText;
 
   /// Whether to align the text in the center.
-  /// 
+  ///
   /// Defaults to false.
   final bool alignCenter;
 
@@ -121,7 +121,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
               height: 44,
               clipBehavior: Clip.antiAlias,
               decoration: ShapeDecoration(
-                color: theme.colors.bgContainerSecondary,
+                color: theme.colors.bgContainerSecondaryOnBackground,
                 shape: RoundedRectangleBorder(
                   borderRadius: DotsBorderRadius.r1000,
                 ),

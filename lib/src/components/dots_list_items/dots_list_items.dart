@@ -30,7 +30,6 @@ class DotsListItemModel {
 }
 
 class DotsListsItem extends StatelessWidget {
-
   /// The [image] can be used to display an icon or image next to the label.
   final ImageProvider? image;
 
@@ -88,7 +87,7 @@ class DotsListsItem extends StatelessWidget {
             Expanded(
               child: Text(
                 label!,
-                style: theme.typo.main.bodyLargeBold,
+                style: theme.typo.main.bodyDefaultMedium,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
