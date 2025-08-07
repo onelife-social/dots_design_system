@@ -8,7 +8,7 @@ class DotsAlert extends StatelessWidget {
   final String? message;
   final VoidCallback? onClose;
 
-  final Function(String)? textfieldOnChanged;
+  final Function(String)? onInputChanged;
   final String? inputHint;
 
   final List<DotsListItemModel>? selectorItemList;
@@ -25,7 +25,7 @@ class DotsAlert extends StatelessWidget {
     required this.title,
     this.message,
     this.onClose,
-    this.textfieldOnChanged,
+    this.onInputChanged,
     this.inputHint,
     this.selectorItemList,
     this.mainButtonText,
@@ -123,7 +123,7 @@ class DotsAlert extends StatelessWidget {
     required DotsIconData iconData,
     required String title,
     VoidCallback? onClose,
-    required Function(String)? textfieldOnChanged,
+    required Function(String)? onInputChanged,
     required String? inputHint,
     required String mainButtonText,
     required VoidCallback mainButtonOnTap,
@@ -136,7 +136,7 @@ class DotsAlert extends StatelessWidget {
         iconData: iconData,
         title: title,
         onClose: onClose,
-        textfieldOnChanged: textfieldOnChanged,
+        onInputChanged: onInputChanged,
         inputHint: inputHint,
         mainButtonText: mainButtonText,
         mainButtonOnTap: mainButtonOnTap,
@@ -290,7 +290,7 @@ class DotsAlert extends StatelessWidget {
         DotsTextField(
           iconData: DotsIconData.search,
           hintText: inputHint,
-          onChanged: textfieldOnChanged,
+          onChanged: onInputChanged,
         ),
       ],
     );
