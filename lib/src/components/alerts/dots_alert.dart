@@ -294,16 +294,11 @@ class DotsAlert extends StatelessWidget {
   }
 
   Widget _description(DotsTheme theme) {
-    switch (variant) {
-      case DotsAlertVariant.input:
-        return _inputField();
-
-      case DotsAlertVariant.selector:
-        return _selectorField(theme);
-
-      default:
-        return _messageField(theme);
-    }
+    return switch (variant) {
+      DotsAlertVariant.input => _inputField(),
+      DotsAlertVariant.selector => _selectorField(theme),
+      _ => _messageField(theme),
+    };
   }
 
   Widget _inputField() {
