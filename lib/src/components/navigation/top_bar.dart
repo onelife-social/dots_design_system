@@ -48,6 +48,12 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// Whether the call to action is enabled.
   final bool ctaEnabled;
 
+  /// Image to display in the top bar.
+  final ImageProvider? imageTitle;
+
+  /// Callback for image load error.
+  final void Function(Object exception, StackTrace? stackTrace)? onErrorImageTitle;
+
   /// Whether to show the back button inside a gray circular background.
   final bool showCircleBackButton;
 
@@ -65,9 +71,11 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
         ctaLabel = null,
         onCtaTap = null,
         ctaEnabled = false,
+        imageTitle = null,
+        onErrorImageTitle = null,
         showCircleBackButton = false;
 
-  /// Bar with title and optional subtitle, left and right icons, and back button.
+  /// Bar with title and optional subtitle, left and right icons, back button and image.
   const DotsTopBar.title({
     super.key,
     this.hideBackground = false,
@@ -76,6 +84,8 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.leftIcon,
     this.rightIcon,
     this.onTapBack,
+    this.imageTitle,
+    this.onErrorImageTitle,
     this.showCircleBackButton = false,
   })  : assert(
           (leftIcon == null || onTapBack == null),
@@ -105,6 +115,8 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
         _bigStatusBar = true,
         ctaLabel = null,
         ctaEnabled = false,
+        imageTitle = null,
+        onErrorImageTitle = null,
         onCtaTap = null;
 
   /// Bar with call to action and back button.
@@ -112,6 +124,8 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     this.hideBackground = false,
     this.title,
+    this.imageTitle,
+    this.onErrorImageTitle,
     this.onTapBack,
     this.ctaLabel,
     this.onCtaTap,
@@ -164,9 +178,23 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                title ?? '',
-                                style: theme.typo.main.bodyLargeBold,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  if (imageTitle != null)...[
+                                    DotsProfilePhoto(
+                                      imageProvider: imageTitle!,
+                                      width: 20,
+                                      height: 20,
+                                      onError: onErrorImageTitle,
+                                    ),
+                                    SizedBox(width: 6)
+                                  ],
+                                  Text(
+                                    title ?? '',
+                                    style: theme.typo.main.bodyLargeBold,
+                                  ),
+                                ],
                               ),
                               if (subtitle != null)
                                 Text(
