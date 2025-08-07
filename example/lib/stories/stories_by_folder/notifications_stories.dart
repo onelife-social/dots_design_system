@@ -412,7 +412,7 @@ List<Story> get notificationsStories => [
                   return DotsAlert.input(
                     iconData: iconData,
                     title: title,
-                    textfieldOnChanged: (value) => setState(() => textfieldContent = value),
+                    onInputChanged: (value) => setState(() => textfieldContent = value),
                     inputHint: inputHint,
                     mainButtonText: mainButtonText,
                     mainButtonOnTap: () {
