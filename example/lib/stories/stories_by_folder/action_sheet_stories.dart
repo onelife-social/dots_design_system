@@ -1,6 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
+import 'package:flutter/material.dart';
 
 List<Story> get actionSheetStories => [
       Story(
@@ -8,11 +8,11 @@ List<Story> get actionSheetStories => [
         description: 'Demo page for action sheet',
         builder: (context) {
           final textFieldController = TextEditingController();
-          final isFocused = FocusNode();
+          final focus = FocusNode();
 
           return StatefulBuilder(
             builder: (context, setState) {
-              isFocused.addListener(() {
+              focus.addListener(() {
                 setState(() {});
               });
 
@@ -41,7 +41,13 @@ List<Story> get actionSheetStories => [
                         enabled: context.knobs.boolean(label: 'Primary button enabled', initial: true),
                         variant: DotsMainButtonVariant.main,
                         size: DotsMainButtonSize.mainAction,
-                        onTap: () {},
+                        onTap: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Primary button tapped!'),
+                            ),
+                          );
+                        },
                       )
                     : null,
                 secondaryButton: context.knobs.boolean(label: 'Show secondary button', initial: true)
@@ -54,7 +60,13 @@ List<Story> get actionSheetStories => [
                         enabled: context.knobs.boolean(label: 'Secondary button enabled', initial: true),
                         variant: DotsMainButtonVariant.secondary,
                         size: DotsMainButtonSize.mainAction,
-                        onTap: () {},
+                        onTap: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Secondary button tapped!'),
+                            ),
+                          );
+                        },
                       )
                     : null,
                 buttonPositioning: context.knobs.options<DotsActionSheetButtonPositioning>(
@@ -99,7 +111,7 @@ List<Story> get actionSheetStories => [
                   initial: false,
                 ),
                 textFieldController: textFieldController,
-                isFocused: isFocused,
+                focus: focus,
                 onTapTextFieldBtn: onTapBtn,
                 onChanged: (value) {
                   setState(() {});
@@ -126,7 +138,13 @@ List<Story> get actionSheetStories => [
                   enabled: context.knobs.boolean(label: 'Primary button enabled', initial: true),
                   variant: DotsMainButtonVariant.main,
                   size: DotsMainButtonSize.mainAction,
-                  onTap: () {},
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Primary button tapped!'),
+                      ),
+                    );
+                  },
                 )
               : null,
           secondaryButton: context.knobs.boolean(label: 'Show secondary button', initial: true)
@@ -139,7 +157,13 @@ List<Story> get actionSheetStories => [
                   enabled: context.knobs.boolean(label: 'Secondary button enabled', initial: true),
                   variant: DotsMainButtonVariant.secondary,
                   size: DotsMainButtonSize.mainAction,
-                  onTap: () {},
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Secondary button tapped!'),
+                      ),
+                    );
+                  },
                 )
               : null,
           buttonPositioning: context.knobs.options<DotsActionSheetButtonPositioning>(
@@ -251,7 +275,13 @@ List<Story> get actionSheetStories => [
                   ),
                   title: context.knobs.nullable.text(label: 'Title', initial: 'Action Sheet'),
                   subtitle: context.knobs.nullable.text(label: 'Subtitle', initial: 'Select an option'),
-                  onBackButtonTap: () {},
+                  onBackButtonTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Back button tapped!'),
+                      ),
+                    );
+                  },
                   onClose: () {},
                   showBlurBackground: context.knobs.boolean(label: 'Show Blur Background', initial: true),
                   iconData: context.knobs.options<DotsIconData>(
@@ -261,9 +291,21 @@ List<Story> get actionSheetStories => [
                         .map((item) => Option(label: item.name, value: item))
                         .toList(),
                   ),
-                  onIconTap: () {},
+                  onIconTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Icon Btn tapped!'),
+                      ),
+                    );
+                  },
                   textFieldController: textFieldController,
-                  onMainButtonTap: () {},
+                  onMainButtonTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Main button tapped!'),
+                      ),
+                    );
+                  },
                   actionButtonText: context.knobs.nullable.text(label: 'Action Button Text', initial: 'Confirm'),
                   colorController: colorController,
                   selectedColor: selectedColor,
@@ -336,8 +378,20 @@ List<Story> get actionSheetStories => [
                   isLabelButtonAvailable: context.knobs.boolean(label: 'Is Available', initial: false),
                   title: context.knobs.text(label: 'Title', initial: 'Select an album'),
                   onClose: () {},
-                  onBackButtonTap: () {},
-                  onMainButtonTap: () {},
+                  onBackButtonTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Back button tapped!'),
+                      ),
+                    );
+                  },
+                  onMainButtonTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Main button tapped!'),
+                      ),
+                    );
+                  },
                   mainButtonText: context.knobs.text(label: 'Action Button Text', initial: 'Siguiente'),
                   mainButtonIcon: context.knobs.options<DotsIconData>(
                     label: 'Main Button Icon',

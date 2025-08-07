@@ -24,7 +24,7 @@ class DotsActionSheetSearch extends StatelessWidget {
   final bool backButtonShaderMask;
   final VoidCallback? onPrimaryButtonTap;
   final TextEditingController? textFieldController;
-  final FocusNode? isFocused;
+  final FocusNode? focus;
   final VoidCallback? onTapTextFieldBtn;
 
   const DotsActionSheetSearch({
@@ -49,7 +49,7 @@ class DotsActionSheetSearch extends StatelessWidget {
     this.backButtonShaderMask = false,
     this.onPrimaryButtonTap,
     this.textFieldController,
-    this.isFocused,
+    this.focus,
     this.onTapTextFieldBtn,
   });
 
@@ -102,7 +102,7 @@ class DotsActionSheetSearch extends StatelessWidget {
                           onChanged: onChanged,
                           hintText: hintText,
                           textFieldController: textFieldController,
-                          isFocused: isFocused,
+                          focus: focus,
                           onTapTextFieldBtn: onTapTextFieldBtn,
                         ),
                         Expanded(
@@ -146,7 +146,7 @@ class _DotsActionSheetSearchHeader extends StatelessWidget {
   final String hintText;
   final ValueChanged<String>? onChanged;
   final TextEditingController? textFieldController;
-  final FocusNode? isFocused;
+  final FocusNode? focus;
   final VoidCallback? onTapTextFieldBtn;
 
   const _DotsActionSheetSearchHeader({
@@ -154,7 +154,7 @@ class _DotsActionSheetSearchHeader extends StatelessWidget {
     required this.hintText,
     this.onChanged,
     this.textFieldController,
-    this.isFocused,
+    this.focus,
     this.onTapTextFieldBtn,
   });
 
@@ -180,7 +180,7 @@ class _DotsActionSheetSearchHeader extends StatelessWidget {
             ),
             DotsTextField(
               controller: textFieldController,
-              focusNode: isFocused,
+              focusNode: focus,
               iconData: DotsIconData.search,
               iconDataButton: DotsIconData.cross,
               buttonVariant: DotsCloseButtonVariant.inverted,

@@ -43,11 +43,11 @@ class DotsTextField extends StatefulWidget {
   final bool alignCenter;
 
   /// The controller for the TextField.
-  /// This is required to manage the text input.
+  /// Used to manage the text input. A default one is provided if non is passed as a parameter
   final TextEditingController? controller;
 
   /// The focus node for the TextField.
-  /// This is required to manage focus state.
+  /// Used to manage the focus. A default one is provided if non is passed as a parameter
   final FocusNode? focusNode;
 
   const DotsTextField({

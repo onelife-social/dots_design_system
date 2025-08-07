@@ -70,11 +70,11 @@ class DotsActionSheetInput extends StatelessWidget {
   final DotsIconData? dateIconData;
 
   /// The [textFieldController] is the controller for the text field.
-  /// the controller has to have a initial value set thats the name of the folder.
+  /// The controller must have an initial value set as the name of the folder.
   final TextEditingController textFieldController;
 
-  /// The [isFocused] is a FocusNode to manage focus state of the text field.
-  final FocusNode? isFocused;
+  /// The [focus] is a FocusNode to manage focus state of the text field.
+  final FocusNode? focus;
 
   /// The [onChanged] is a callback for the text field value changes.
   final ValueChanged<String>? onChanged;
@@ -104,7 +104,7 @@ class DotsActionSheetInput extends StatelessWidget {
     this.dateIconData,
     this.onTapTextFieldBtn,
     required this.textFieldController,
-    this.isFocused,
+    this.focus,
     this.onChanged,
   });
 
@@ -156,7 +156,7 @@ class DotsActionSheetInput extends StatelessWidget {
                             onMainButtonTap: onMainButtonTap,
                             actionButtonText: actionButtonText,
                             textFieldController: textFieldController,
-                            isFocused: isFocused,
+                            focus: focus,
                             onChanged: onChanged,
                             onTapTextFieldBtn: onTapTextFieldBtn,
                             selectedColor: selectedColor,
@@ -180,7 +180,7 @@ class DotsActionSheetInput extends StatelessWidget {
                         onDateTap: onDateTap,
                         dateIconData: dateIconData,
                         textFieldController: textFieldController,
-                        isFocused: isFocused,
+                        focus: focus,
                         onTapTextFieldBtn: onTapTextFieldBtn,
                       ),
                 ],
@@ -251,7 +251,7 @@ class _Body extends StatelessWidget {
   final Function()? onDateTap;
   final DotsIconData? dateIconData;
   final TextEditingController? textFieldController;
-  final FocusNode? isFocused;
+  final FocusNode? focus;
   final VoidCallback? onTapTextFieldBtn;
   final ValueChanged<String>? onChanged;
 
@@ -269,7 +269,7 @@ class _Body extends StatelessWidget {
     this.onDateTap,
     this.dateIconData = DotsIconData.calendar,
     this.textFieldController,
-    this.isFocused,
+    this.focus,
     this.onTapTextFieldBtn,
     this.onChanged,
   });
@@ -312,7 +312,7 @@ class _Body extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: DotsTextField(
             controller: textFieldController,
-            focusNode: isFocused,
+            focusNode: focus,
             alignCenter: true,
             onTapBtn: onTapTextFieldBtn,
             onChanged: onChanged,

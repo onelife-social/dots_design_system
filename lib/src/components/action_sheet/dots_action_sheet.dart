@@ -108,7 +108,7 @@ class DotsActionSheet extends StatelessWidget {
   final TextEditingController? textFieldController;
 
   /// The focus node for the text field in the search variant.
-  final FocusNode? isFocused;
+  final FocusNode? focus;
 
   /// Callback when the text field button is tapped in the search variant.
   final VoidCallback? onTapTextFieldBtn;
@@ -136,7 +136,7 @@ class DotsActionSheet extends StatelessWidget {
     this.backButtonShaderMask = false,
     this.onPrimaryButtonTap,
     this.textFieldController,
-    this.isFocused,
+    this.focus,
     this.onTapTextFieldBtn,
   });
 
@@ -184,7 +184,7 @@ class DotsActionSheet extends StatelessWidget {
           backButtonShaderMask: backButtonShaderMask,
           onPrimaryButtonTap: onPrimaryButtonTap,
           textFieldController: textFieldController,
-          isFocused: isFocused,
+          focus: focus,
           onTapTextFieldBtn: onTapTextFieldBtn,
         );
     }

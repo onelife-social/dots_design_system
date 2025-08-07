@@ -106,8 +106,8 @@ class DotsActionSheetList extends StatelessWidget {
   /// The [textFieldController] is the controller for the text field.
   final TextEditingController? textFieldController;
 
-  /// The [isFocused] is a boolean to determine if the text field is focused.
-  final FocusNode? isFocused;
+  /// The [focus] is a boolean to determine if the text field is focused.
+  final FocusNode? focus;
 
   /// The [onTapTextFieldBtn] is a callback for the text field button tap.
   final VoidCallback? onTapTextFieldBtn;
@@ -119,7 +119,7 @@ class DotsActionSheetList extends StatelessWidget {
     required this.onMainButtonTap,
     required this.mainButtonText,
     this.textFieldController,
-    this.isFocused,
+    this.focus,
     this.onTapTextFieldBtn,
     this.bottomPosition = 56,
     this.mainButtonIcon = DotsIconData.add,
@@ -205,7 +205,7 @@ class DotsActionSheetList extends StatelessWidget {
                       searchBtnIcon: searchBtnIcon,
                       onSearchBtnTap: onSearchBtnTap,
                       textFieldController: textFieldController,
-                      isFocused: isFocused,
+                      focus: focus,
                       onTapTextFieldBtn: onTapTextFieldBtn,
                     ),
                     Expanded(
@@ -282,7 +282,7 @@ class _Header extends StatelessWidget {
   final DotsIconData searchBtnIcon;
   final Function()? onSearchBtnTap;
   final TextEditingController? textFieldController;
-  final FocusNode? isFocused;
+  final FocusNode? focus;
   final VoidCallback? onTapTextFieldBtn;
 
   const _Header({
@@ -302,7 +302,7 @@ class _Header extends StatelessWidget {
     this.searchBtnIcon = DotsIconData.search,
     this.onSearchBtnTap,
     this.textFieldController,
-    this.isFocused,
+    this.focus,
     this.onTapTextFieldBtn,
   });
 
@@ -407,7 +407,7 @@ class _Header extends StatelessWidget {
                             ),
                             child: DotsTextField(
                               controller: textFieldController,
-                              focusNode: isFocused,
+                              focusNode: focus,
                               onTapBtn: onTapTextFieldBtn,
                               iconData: inputIcon,
                               hintText: hintInputText,
