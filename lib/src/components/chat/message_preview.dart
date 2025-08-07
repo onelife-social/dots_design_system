@@ -5,41 +5,47 @@ class MessagePreview extends StatelessWidget {
   final Widget image;
   final String album;
   final String senderName;
-  final String text;
+  final Widget contentMessage;
   final int newMessages;
   final String time;
+  final VoidCallback onTap;
 
   const MessagePreview({
     super.key,
     required this.image,
     required this.album,
     required this.senderName,
-    required this.text,
+    required this.contentMessage,
     required this.newMessages,
     required this.time,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 88,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Row(
-          children: [
-            _ImageAlbum(image: image),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _ChatHeaderInfo(album: album, time: time),
-                  _ChatContent(senderName: senderName, text: text, newMessages: newMessages)
-                ],
+    return GestureDetector(
+      onTap: onTap,
+      child: SizedBox(
+        height: 88,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            children: [
+              _ImageAlbum(image: image),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _ChatHeaderInfo(album: album, time: time),
+                    _ChatContent(
+                        senderName: senderName, text: contentMessage, newMessages: newMessages)
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -88,7 +94,7 @@ class _ChatHeaderInfo extends StatelessWidget {
 
 class _ChatContent extends StatelessWidget {
   final String senderName;
-  final String text;
+  final Widget text;
   final int newMessages;
 
   const _ChatContent({
@@ -104,24 +110,25 @@ class _ChatContent extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: RichText(
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: '$senderName: ',
-                  style: theme.typo.main.labelDefaultBold,
-                ),
-                TextSpan(
-                  text: text,
-                  style: theme.typo.main.labelDefaultRegular,
-                ),
-              ],
-            ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                senderName != '' ? '$senderName: ' : '',
+                style: theme.typo.main.labelDefaultBold,
+              ),
+              Expanded(child: text),
+            ],
           ),
         ),
-        BadgeTag(tag: newMessages.toString(), child: const SizedBox.shrink()),
+        if (newMessages > 0)
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: BadgeTag(
+              tag: newMessages.toString(),
+              child: const SizedBox.shrink(),
+            ),
+          ),
       ],
     );
   }
