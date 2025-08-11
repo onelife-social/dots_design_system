@@ -51,7 +51,7 @@ class DotsSlider extends StatelessWidget {
                 trackShape: RoundedRectSliderTrackShape(),
                 activeTrackColor: theme.colors.labelHighlight,
                 inactiveTrackColor: theme.colors.bgContainerSecondary,
-                thumbColor: theme.colors.bgBaseContrast,
+                thumbColor: theme.colors.labelAlwaysWhite,
                 activeTickMarkColor: theme.colors.labelSecondary,
                 inactiveTickMarkColor: theme.colors.labelSecondary,
                 overlayColor: Colors.transparent,
