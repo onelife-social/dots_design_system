@@ -190,24 +190,32 @@ class _Info extends StatelessWidget {
         TextSpan(
           children: [
             TextSpan(
-              text: '$title: ',
+              text: '$title ',
               style: theme.typo.main.labelDefaultBold.copyWith(
                 color: theme.colors.textPrimary,
               ),
             ),
             TextSpan(
-              text: description,
-              style: theme.typo.main.labelDefaultRegular.copyWith(
-                color: theme.colors.textSecondary,
-              ),
-            ),
-            if (date != null)
-              TextSpan(
-                text: ' $date',
-                style: theme.typo.number.numLabelDefault.copyWith(
-                  color: theme.colors.textQuarternary,
+              children: [
+                TextSpan(
+                  text: description,
+                  style: theme.typo.main.labelDefaultRegular.copyWith(
+                    color: theme.colors.textSecondary,
+                  ),
                 ),
-              ),
+                if (date != null && date!.isNotEmpty)
+                  WidgetSpan(
+                    alignment: PlaceholderAlignment.baseline,
+                    baseline: TextBaseline.alphabetic,
+                    child: Text(
+                      ' $date',
+                      style: theme.typo.number.numLabelDefault.copyWith(
+                        color: theme.colors.textQuarternary,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ],
         ),
         maxLines: null,
