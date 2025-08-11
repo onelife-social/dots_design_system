@@ -17,7 +17,7 @@ class DotsColors {
     bgToastLight: Color(0xA5383838),
     bgChip: Color(0x99303030),
     bgAlert: Color(0xD1B2B2B2),
-    bgStrong: Color(0xFFFAFAFA),
+    bgStrong: Color(0xFFFFFFFF),
     textPrimary: Color(0xFF000000),
     textSecondary: Color(0xFF4F4F4F),
     textTertiary: Color(0xFF717171),
