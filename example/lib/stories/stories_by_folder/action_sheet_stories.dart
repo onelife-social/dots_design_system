@@ -474,4 +474,47 @@ List<Story> get actionSheetStories => [
         );
       },
     ),
+      Story(
+        name: 'Action Sheet/DotsActionSheetListIcon',
+        description: 'Demo page for DotsActionSheetListIcon',
+        builder: (context) {
+
+            final List<DotsActionSheetIconModel> iconModels = DotsIconData.values.map((icon) {
+            
+              return DotsActionSheetIconModel(
+                icon: icon,
+                variant: DotsIconButtonVariant.noBackground,
+                size: DotsIconButtonSize.extraLarge,
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('${icon.name} tapped!'),
+                    ),
+                  );
+                },
+              );
+            }).toList();
+
+          return DotsActionSheetListIcon(
+            title: context.knobs.text(label: 'Title', initial: 'Select an item'),
+            onBackButtonTap: context.knobs.boolean(label: 'Show back button', initial: true)
+              ? () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Back button tapped!'),
+                    ),
+                  );
+                }
+              : null,
+            onClose: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Close button tapped!'),
+                ),
+              );
+            },
+            icons: iconModels,
+          );
+        },
+      ),
     ];
