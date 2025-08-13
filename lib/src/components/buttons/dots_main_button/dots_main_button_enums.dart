@@ -51,6 +51,7 @@ enum DotsMainButtonVariant {
   main,
   secondary,
   secondaryPremium,
+  secondaryPremiumPlus,
   secondaryLight,
   secondaryDark,
   destructive,
@@ -61,6 +62,8 @@ enum DotsMainButtonVariant {
 
   bool get isMain => this == DotsMainButtonVariant.main;
   bool get isSecondary => this == DotsMainButtonVariant.secondary;
+  bool get isSecondaryPremium => this == DotsMainButtonVariant.secondaryPremium;
+  bool get isSecondaryPremiumPlus => this == DotsMainButtonVariant.secondaryPremiumPlus;
   bool get isSecondaryLight => this == DotsMainButtonVariant.secondaryLight;
   bool get isSecondaryDark => this == DotsMainButtonVariant.secondaryDark;
   bool get isDestructive => this == DotsMainButtonVariant.destructive;
