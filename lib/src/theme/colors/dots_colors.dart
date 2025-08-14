@@ -199,7 +199,7 @@ class DotsColors {
     bgSecondaryBtn: Color(0x4DC8C8C8),
     bgFloatingBtn: Color(0x66C8C8C8),
     bgBtnImage: Color(0x99747474),
-    bgBtnDisabled: Color(0x66C8C8C8),
+    bgBtnDisabled: Color(0x19C8C8C8),
     bgToastLight: Color(0xCCF3F3F3),
     bgChip: Color(0x99303030),
     bgAlert: Color(0xD1252525),
