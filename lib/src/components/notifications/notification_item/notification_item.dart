@@ -9,12 +9,9 @@ enum DotsNotificationItemVariant {
   bool get isMain => this == DotsNotificationItemVariant.main;
   bool get isEvent => this == DotsNotificationItemVariant.event;
   bool get isReaction => this == DotsNotificationItemVariant.reaction;
-
 }
 
-
 class DotsNotificationItem extends StatelessWidget {
-
   /// The variant of the notification item.
   final DotsNotificationItemVariant variant;
 
@@ -29,7 +26,7 @@ class DotsNotificationItem extends StatelessWidget {
   final void Function(Object exception, StackTrace? stackTrace)? onProfileImageError;
 
   /// The action image to be displayed in the notification item.
-  final ImageProvider? actionImage; 
+  final ImageProvider? actionImage;
 
   /// Callback for action image load error.
   /// Called when the action image fails to load.
@@ -61,6 +58,12 @@ class DotsNotificationItem extends StatelessWidget {
   /// Date text for the notification item.
   final String? date;
 
+  /// Max lines for the title and description.
+  final int? maxLines;
+
+  /// Action image text
+  final String? actionImageText;
+
   const DotsNotificationItem({
     super.key,
     required this.variant,
@@ -77,11 +80,13 @@ class DotsNotificationItem extends StatelessWidget {
     this.title = '',
     this.description = '',
     this.date,
+    this.maxLines,
+    this.actionImageText,
   });
 
   @override
   Widget build(BuildContext context) {
-
+    final theme = context.dotsTheme;
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: onTap,
@@ -103,10 +108,11 @@ class DotsNotificationItem extends StatelessWidget {
                 title: title,
                 description: description,
                 date: date,
+                maxLines: maxLines,
               ),
             ),
             const SizedBox(width: 12),
-            if (variant.isMain) 
+            if (variant.isMain)
               DotsMainButton(
                 content: mainBtnText ?? '',
                 variant: DotsMainButtonVariant.main,
@@ -115,10 +121,28 @@ class DotsNotificationItem extends StatelessWidget {
                 expand: false,
               )
             else if (variant.isReaction)
-              DotsImageThumbnail(
-                variant: DotsImageThumbnailVariant.image,
-                image: actionImage,
-                onError: onActionImageError,
+              Stack(
+                children: [
+                  DotsImageThumbnail(
+                    variant: DotsImageThumbnailVariant.image,
+                    image: actionImage,
+                    onError: onActionImageError,
+                  ),
+                  if (actionImageText != null && actionImageText!.isNotEmpty)
+                    Positioned.fill(
+                      child: Center(
+                        child: Text(
+                          actionImageText!,
+                          style: theme.typo.number.numBodyDefault.copyWith(
+                            fontWeight: FontWeight.w500,
+                            color: theme.colors.labelAlwaysWhite,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                ],
               )
             else
               DotsImageThumbnail(
@@ -134,19 +158,19 @@ class DotsNotificationItem extends StatelessWidget {
   }
 }
 
-
 class _Info extends StatelessWidget {
   final DotsNotificationItemVariant variant;
-  final String title;
-  final String description;
+  final String? title;
+  final String? description;
   final String? date;
+  final int? maxLines;
 
   const _Info({
     required this.variant,
-    this.title = '',
-    this.description = '',
-    this.date = '',
-    super.key,
+    this.title,
+    this.description,
+    this.date,
+    this.maxLines,
   });
 
   @override
@@ -158,52 +182,47 @@ class _Info extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: theme.typo.main.labelDefaultBold.copyWith(
-              color: theme.colors.textPrimary,
+          if (title != null && title!.isNotEmpty)
+            Text(
+              title!,
+              style: theme.typo.main.labelDefaultBold.copyWith(
+                color: theme.colors.textPrimary,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
-            maxLines: null,
-            overflow: TextOverflow.visible,
-          ),
-          Text(
-            description,
-            style: theme.typo.main.labelDefaultRegular.copyWith(
-              color: theme.colors.textSecondary,
+          if (description != null && description!.isNotEmpty)
+            Text(
+              description!,
+              style: theme.typo.main.labelDefaultRegular.copyWith(
+                color: theme.colors.textSecondary,
+              ),
+              maxLines: maxLines,
+              overflow: maxLines != null ? TextOverflow.ellipsis : null,
             ),
-            maxLines: null,
-            overflow: TextOverflow.visible,
-          ),
         ],
-      );
-    } else if (variant.isEvent) {
-      return Text(
-        title,
-        style: theme.typo.main.labelDefaultBold.copyWith(
-          color: theme.colors.textPrimary,
-        ),
-        maxLines: null,
-        overflow: TextOverflow.visible,
       );
     } else {
       return Text.rich(
         TextSpan(
           children: [
-            TextSpan(
-              text: '$title ',
-              style: theme.typo.main.labelDefaultBold.copyWith(
-                color: theme.colors.textPrimary,
+            if (title != null && title!.isNotEmpty)
+              TextSpan(
+                text: '$title ',
+                style: theme.typo.main.labelDefaultBold.copyWith(
+                  color: theme.colors.textPrimary,
+                ),
               ),
-            ),
             TextSpan(
               children: [
-                TextSpan(
-                  text: description,
-                  style: theme.typo.main.labelDefaultRegular.copyWith(
-                    color: theme.colors.textSecondary,
+                if (description != null && description!.isNotEmpty)
+                  TextSpan(
+                    text: description!,
+                    style: theme.typo.main.labelDefaultRegular.copyWith(
+                      color: theme.colors.textSecondary,
+                    ),
                   ),
-                ),
-                if (date != null && date!.isNotEmpty)
+                if (date != null && date!.isNotEmpty && !variant.isEvent)
                   WidgetSpan(
                     alignment: PlaceholderAlignment.baseline,
                     baseline: TextBaseline.alphabetic,
@@ -218,8 +237,8 @@ class _Info extends StatelessWidget {
             ),
           ],
         ),
-        maxLines: null,
-        overflow: TextOverflow.visible,
+        maxLines: maxLines,
+        overflow: maxLines != null ? TextOverflow.ellipsis : null,
       );
     }
   }
