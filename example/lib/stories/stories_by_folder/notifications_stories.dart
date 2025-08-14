@@ -34,13 +34,20 @@ List<Story> get notificationsStories => [
                       .toList(),
                 ),
                 profileImage: NetworkImage(
-                  context.knobs.text(label: 'Profile Image URL', initial: 'https://picsum.photos/250?image=15'),
+                  context.knobs.text(
+                      label: 'Profile Image URL', initial: 'https://picsum.photos/250?image=15'),
                 ),
                 actionImage: NetworkImage(
-                  context.knobs.text(label: 'Action Image URL', initial: 'https://picsum.photos/250?image=9'),
+                  context.knobs.text(
+                      label: 'Action Image URL', initial: 'https://picsum.photos/250?image=9'),
                 ),
+                actionImageText: context.knobs.text(label: 'Action Image Text', initial: '+12'),
                 title: context.knobs.text(label: 'Title', initial: '¡Recupera todas las fotos!'),
-                description: context.knobs.text(label: 'Description', initial: 'Sigue estos sencillos pasos para recuperar todos los Memories en tu álbum. '),
+                description: context.knobs.text(
+                    label: 'Description',
+                    initial:
+                        'Sigue estos sencillos pasos para recuperar todos los Memories en tu álbum. '),
+                maxLines: int.tryParse(context.knobs.text(label: 'Max Lines', initial: '2')),
                 date: context.knobs.text(label: 'Date', initial: '13:45'),
                 onTap: () {},
               ),
@@ -92,12 +99,14 @@ List<Story> get notificationsStories => [
                     ),
                   ),
                   userImages: [
-                    NetworkImage(context.knobs.text(
+                    NetworkImage(
+                      context.knobs.text(
                         label: 'User Image 1',
                         initial: 'https://picsum.photos/250?image=24',
                       ),
                     ),
-                    NetworkImage(context.knobs.text(
+                    NetworkImage(
+                      context.knobs.text(
                         label: 'User Image 2',
                         initial: 'https://picsum.photos/250?image=66',
                       ),
@@ -230,7 +239,7 @@ List<Story> get notificationsStories => [
                       ),
                     ),
                   ),
-                  const SizedBox(width: 20), 
+                  const SizedBox(width: 20),
                   SizedBox(
                     height: cellHeight,
                     child: ActivityPreview(
