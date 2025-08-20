@@ -289,6 +289,9 @@ List<Story> get allStories => [
                   onTap: () {},
                 )
               : null,
+          extraSpaceAfterImage: context.knobs
+              .slider(label: 'Extra space after image', initial: 16, min: 0, max: 100)
+              .toDouble(),
         ),
       ),
       Story(

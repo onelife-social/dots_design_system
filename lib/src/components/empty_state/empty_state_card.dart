@@ -1,13 +1,9 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-enum DotsEmptyStateCardVariant { 
-  image, 
-  icon 
-}
+enum DotsEmptyStateCardVariant { image, icon }
 
 class DotsEmptyStateCard extends StatelessWidget {
-
   /// The variant of the empty state card.
   final DotsEmptyStateCardVariant variant;
 
@@ -16,6 +12,7 @@ class DotsEmptyStateCard extends StatelessWidget {
 
   /// The icon data to display (if variant is [DotsEmptyStateCardVariant.icon]).
   final DotsIcon? icon;
+
   /// Title of the empty state card.
   final String title;
 
@@ -25,6 +22,9 @@ class DotsEmptyStateCard extends StatelessWidget {
   /// Icon to display in the empty state card.
   final DotsMainButton? button;
 
+  /// Add extra space after the image.
+  final double extraSpaceAfterImage;
+
   const DotsEmptyStateCard({
     super.key,
     required this.variant,
@@ -33,6 +33,7 @@ class DotsEmptyStateCard extends StatelessWidget {
     required this.title,
     required this.description,
     this.button,
+    this.extraSpaceAfterImage = 0,
   });
 
   @override
@@ -51,7 +52,8 @@ class DotsEmptyStateCard extends StatelessWidget {
             Image(image: imageProvider!)
           else if (variant == DotsEmptyStateCardVariant.icon && icon != null)
             icon!,
-          SizedBox(height: variant == DotsEmptyStateCardVariant.image ? 4 : 16),
+          SizedBox(
+              height: variant == DotsEmptyStateCardVariant.image ? 4 + extraSpaceAfterImage : 16),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: context.getByRatio(20, 12)),
             child: Text(
