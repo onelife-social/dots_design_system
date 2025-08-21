@@ -2,6 +2,7 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/components/blur_container_demo_page.dart';
 import 'package:example/components/carrousel_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
+import 'package:example/components/dots_slider_demo.dart';
 import 'package:example/components/dots_text_animations_demo_page.dart';
 import 'package:example/components/folder_carrousel_demo_page.dart';
 import 'package:example/components/item_input_demo.dart';
@@ -11,6 +12,7 @@ import 'package:example/components/empty_state_card_demo.dart';
 import 'package:example/stories/stories_by_folder/action_sheet_stories.dart';
 import 'package:example/stories/stories_by_folder/badge_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
+import 'package:example/stories/stories_by_folder/chat_stories.dart';
 import 'package:example/stories/stories_by_folder/dropdown_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/separators_demo.dart';
@@ -23,7 +25,8 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:example/stories/helpers/color_knob_options.dart';
 import 'package:example/stories/stories_by_folder/notifications_stories.dart';
-
+import 'package:example/stories/stories_by_folder/profile_photo_stories.dart';
+import 'package:example/stories/stories_by_folder/memory_details.dart';
 
 List<Story> get allStories => [
       ...notificationsStories,
@@ -37,6 +40,9 @@ List<Story> get allStories => [
       ...actionSheetStories,
       ...dropdownStories,
       ...separatorStories,
+      ...chatStories,
+      ...profilePhotoStories,
+      ...memoryDetailsStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
@@ -113,20 +119,6 @@ List<Story> get allStories => [
             ),
           );
         },
-      ),
-      Story(
-        name: 'Profile photo',
-        description: 'Demo page for Profile photo',
-        builder: (context) => ColoredBox(
-          color: context.dotsTheme.colors.bgContainerSecondary,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: DotsProfilePhoto(
-              imageProvider: NetworkImage(context.knobs
-                  .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9')),
-            ),
-          ),
-        ),
       ),
       Story(
         name: 'Menu',
@@ -297,6 +289,9 @@ List<Story> get allStories => [
                   onTap: () {},
                 )
               : null,
+          extraSpaceAfterImage: context.knobs
+              .slider(label: 'Extra space after image', initial: 16, min: 0, max: 100)
+              .toDouble(),
         ),
       ),
       Story(
@@ -338,8 +333,6 @@ List<Story> get allStories => [
               label: 'Align Center',
               initial: false,
             ),
-            initialValue:
-                context.knobs.nullable.text(label: 'Initial Value', initial: 'Sample text'),
             iconData: context.knobs.nullable.options<DotsIconData>(
               label: 'Icon Data',
               initial: DotsIconData.search,
@@ -507,9 +500,8 @@ List<Story> get allStories => [
           final iconData = context.knobs.options<DotsIconData>(
             label: 'Icon',
             initial: DotsIconData.home,
-            options: DotsIconData.values
-                .map((item) => Option(label: item.name, value: item))
-                .toList(),
+            options:
+                DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
           );
           return Center(
             child: Container(
@@ -522,50 +514,6 @@ List<Story> get allStories => [
                 onTap: () {},
                 variant: variant,
                 iconData: iconData,
-              ),
-            ),
-          );
-        },
-      ),
-      Story(
-        name: 'DotsNotificationItem',
-        description: 'Demo page for DotsNotificationItem',
-        builder: (context) {
-          final variant = context.knobs.options<DotsNotificationItemVariant>(
-            label: 'Variant',
-            initial: DotsNotificationItemVariant.main,
-            options: DotsNotificationItemVariant.values
-                .map((item) => Option(label: item.name, value: item))
-                .toList(),
-          );
-          return Center(
-            child: Container(
-              padding: const EdgeInsets.all(16.0),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              alignment: Alignment.center,
-              child: DotsNotificationItem(
-                variant: variant,
-                mainBtnText: context.knobs.text(label: 'Main Button Text', initial: 'Ver'),
-                onMainBtnTap: () {},
-                iconColor: basicColorSelector(context, 'Icon Color'),
-                iconData: context.knobs.options<DotsIconData>(
-                  label: 'Icon',
-                  initial: DotsIconData.cake,
-                  options: DotsIconData.values
-                      .map((item) => Option(label: item.name, value: item))
-                      .toList(),
-                ),
-                profileImage: NetworkImage(
-                  context.knobs.text(label: 'Profile Image URL', initial: 'https://picsum.photos/250?image=15'),
-                ),
-                actionImage: NetworkImage(
-                  context.knobs.text(label: 'Action Image URL', initial: 'https://picsum.photos/250?image=9'),
-                ),
-                title: context.knobs.text(label: 'Title', initial: '¡Recupera todas las fotos!'),
-                description: context.knobs.text(label: 'Description', initial: 'Sigue estos sencillos pasos para recuperar todos los Memories en tu álbum. '),
-                date: context.knobs.text(label: 'Date', initial: '13:45'),
-                onTap: () {},
               ),
             ),
           );
@@ -586,7 +534,8 @@ List<Story> get allStories => [
             child: DotsImageThumbnail(
               variant: variant,
               image: NetworkImage(
-                context.knobs.text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+                context.knobs
+                    .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
               ),
               iconColor: basicColorSelector(context, 'Icon Color'),
               iconData: context.knobs.options<DotsIconData>(
@@ -604,6 +553,14 @@ List<Story> get allStories => [
               ),
             ),
           );
+        },
+      ),
+      Story(
+        name: 'Slider',
+        description: 'Demo page for Slider',
+        builder: (context) {
+          return DotsSliderDemo(
+              divisions: context.knobs.sliderInt(label: 'Divisions', initial: 7, min: 1, max: 10));
         },
       ),
     ];

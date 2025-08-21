@@ -1,7 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-
 class EmptyStateCardDemo extends StatelessWidget {
   const EmptyStateCardDemo({
     super.key,
@@ -11,6 +10,7 @@ class EmptyStateCardDemo extends StatelessWidget {
     required this.title,
     required this.description,
     this.button,
+    this.extraSpaceAfterImage = 0,
   });
 
   final DotsEmptyStateCardVariant variant;
@@ -19,6 +19,7 @@ class EmptyStateCardDemo extends StatelessWidget {
   final String title;
   final String description;
   final DotsMainButton? button;
+  final double extraSpaceAfterImage;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +30,7 @@ class EmptyStateCardDemo extends StatelessWidget {
       title: title,
       description: description,
       button: button,
+      extraSpaceAfterImage: extraSpaceAfterImage,
     );
   }
 }

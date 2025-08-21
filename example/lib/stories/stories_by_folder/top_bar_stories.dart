@@ -6,7 +6,7 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 List<Story> get topBarStories => [
       Story(
-        name: 'Top bar',
+        name: 'Top Bars/Top bar',
         description: 'Demo page for Top bar',
         builder: (context) => ColoredBox(
           color: context.dotsTheme.colors.bgContainerSecondary,
@@ -28,12 +28,24 @@ List<Story> get topBarStories => [
               hideBackground: context.knobs.boolean(label: 'Hide background', initial: false),
               ctaLabel: context.knobs.nullable.text(label: 'CTA title', initial: 'Call to Action'),
               ctaEnabled: context.knobs.boolean(label: 'CTA enabled', initial: true),
+              showCircleBackButton:
+                  context.knobs.boolean(label: 'Show circle back button', initial: false),
+              imageTitle: context.knobs.nullable.text(
+                    label: 'Image URL',
+                    initial: 'https://picsum.photos/250?image=9',
+                  ) !=
+                  null
+              ? NetworkImage(context.knobs.nullable.text(
+                  label: 'Image URL',
+                  initial: 'https://picsum.photos/250?image=9',
+                )!)
+              : null,
             ),
           ),
         ),
       ),
       Story(
-        name: 'Home Top bar',
+        name: 'Top Bars/Home Top bar',
         description: 'Demo page for Home Top bar',
         builder: (context) => ColoredBox(
           color: Color.fromARGB(0, 255, 255, 255),

@@ -48,6 +48,15 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// Whether the call to action is enabled.
   final bool ctaEnabled;
 
+  /// Image to display in the top bar.
+  final ImageProvider? imageTitle;
+
+  /// Callback for image load error.
+  final void Function(Object exception, StackTrace? stackTrace)? onErrorImageTitle;
+
+  /// Whether to show the back button inside a gray circular background.
+  final bool showCircleBackButton;
+
   /// Only status bar, no title or segmented control.
   const DotsTopBar.onlyStatusBar({
     super.key,
@@ -61,9 +70,12 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
         _bigStatusBar = false,
         ctaLabel = null,
         onCtaTap = null,
-        ctaEnabled = false;
+        ctaEnabled = false,
+        imageTitle = null,
+        onErrorImageTitle = null,
+        showCircleBackButton = false;
 
-  /// Bar with title and optional subtitle, left and right icons, and back button.
+  /// Bar with title and optional subtitle, left and right icons, back button and image.
   const DotsTopBar.title({
     super.key,
     this.hideBackground = false,
@@ -72,6 +84,9 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.leftIcon,
     this.rightIcon,
     this.onTapBack,
+    this.imageTitle,
+    this.onErrorImageTitle,
+    this.showCircleBackButton = false,
   })  : assert(
           (leftIcon == null || onTapBack == null),
           'leftIcon cannot be used with onTapBack',
@@ -90,6 +105,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.leftIcon,
     this.rightIcon,
     this.onTapBack,
+    this.showCircleBackButton = false,
   })  : assert(
           (leftIcon == null || onTapBack == null),
           'leftIcon cannot be used with onTapBack',
@@ -99,6 +115,8 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
         _bigStatusBar = true,
         ctaLabel = null,
         ctaEnabled = false,
+        imageTitle = null,
+        onErrorImageTitle = null,
         onCtaTap = null;
 
   /// Bar with call to action and back button.
@@ -106,10 +124,13 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     this.hideBackground = false,
     this.title,
+    this.imageTitle,
+    this.onErrorImageTitle,
     this.onTapBack,
     this.ctaLabel,
     this.onCtaTap,
     this.ctaEnabled = true,
+    this.showCircleBackButton = false,
   })  : assert(
           onCtaTap == null || ctaLabel != null,
           'ctaLabel is required when onCtaTap is provided',
@@ -157,9 +178,23 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                title ?? '',
-                                style: theme.typo.main.bodyLargeBold,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  if (imageTitle != null)...[
+                                    DotsProfilePhoto(
+                                      imageProvider: imageTitle!,
+                                      width: 20,
+                                      height: 20,
+                                      onError: onErrorImageTitle,
+                                    ),
+                                    SizedBox(width: 6)
+                                  ],
+                                  Text(
+                                    title ?? '',
+                                    style: theme.typo.main.bodyLargeBold,
+                                  ),
+                                ],
                               ),
                               if (subtitle != null)
                                 Text(
@@ -176,11 +211,13 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           if (onTapBack != null) ...[
-                            SizedBox(width: 8),
+                            SizedBox(width: showCircleBackButton ? 16 : 8),
                             DotsIconButton(
                               icon: DotsIconData.chevronLeft,
                               size: DotsIconButtonSize.medium,
-                              variant: DotsIconButtonVariant.noBackground,
+                              variant: showCircleBackButton
+                                  ? DotsIconButtonVariant.solid
+                                  : DotsIconButtonVariant.noBackground,
                               onTap: onTapBack,
                             ),
                           ],
