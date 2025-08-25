@@ -32,3 +32,4 @@ export 'chat/chat_lib.dart';
 export 'slider/slider_lib.dart';
 export 'memory_details/memory_details_lib.dart';
 export 'alerts/alerts_lib.dart';
+export 'miscellaneous/miscellaneous_lib.dart';
