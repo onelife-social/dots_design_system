@@ -47,6 +47,9 @@ class DotsAlert extends StatelessWidget {
   /// Callback when the secondary button is tapped.
   final VoidCallback? secondaryButtonOnTap;
 
+  /// Whether to show a close button in the top-right corner.
+  final bool showCloseButton;
+
   const DotsAlert._({
     super.key,
     this.variant = DotsAlertVariant.noButtons,
@@ -62,6 +65,7 @@ class DotsAlert extends StatelessWidget {
     this.mainButtonOnTap,
     this.secondaryButtonText,
     this.secondaryButtonOnTap,
+    required this.showCloseButton,
   });
 
   factory DotsAlert.noButtons({
@@ -71,6 +75,7 @@ class DotsAlert extends StatelessWidget {
     required String message,
     VoidCallback? onClose,
     bool enableCloseOnTapOutside = true,
+    bool showCloseButton = false,
   }) =>
       DotsAlert._(
         key: key,
@@ -80,6 +85,7 @@ class DotsAlert extends StatelessWidget {
         message: message,
         onClose: onClose,
         enableCloseOnTapOutside: enableCloseOnTapOutside,
+        showCloseButton: showCloseButton,
       );
 
   factory DotsAlert.oneButton({
@@ -91,6 +97,7 @@ class DotsAlert extends StatelessWidget {
     bool enableCloseOnTapOutside = true,
     required String mainButtonText,
     required VoidCallback mainButtonOnTap,
+    bool showCloseButton = false,
   }) =>
       DotsAlert._(
         key: key,
@@ -102,6 +109,7 @@ class DotsAlert extends StatelessWidget {
         enableCloseOnTapOutside: enableCloseOnTapOutside,
         mainButtonText: mainButtonText,
         mainButtonOnTap: mainButtonOnTap,
+        showCloseButton: showCloseButton,
       );
 
   factory DotsAlert.twoHorizontalButtons({
@@ -115,6 +123,7 @@ class DotsAlert extends StatelessWidget {
     required VoidCallback mainButtonOnTap,
     required String secondaryButtonText,
     required VoidCallback secondaryButtonOnTap,
+    bool showCloseButton = false,
   }) =>
       DotsAlert._(
         key: key,
@@ -128,6 +137,34 @@ class DotsAlert extends StatelessWidget {
         mainButtonOnTap: mainButtonOnTap,
         secondaryButtonText: secondaryButtonText,
         secondaryButtonOnTap: secondaryButtonOnTap,
+        showCloseButton: showCloseButton,
+      );
+  factory DotsAlert.twoHorizontalButtonsDestructive({
+    Key? key,
+    required DotsIconData iconData,
+    required String title,
+    required String message,
+    VoidCallback? onClose,
+    bool enableCloseOnTapOutside = true,
+    required String mainButtonText,
+    required VoidCallback mainButtonOnTap,
+    required String secondaryButtonText,
+    required VoidCallback secondaryButtonOnTap,
+    bool showCloseButton = false,
+  }) =>
+      DotsAlert._(
+        key: key,
+        variant: DotsAlertVariant.twoHorizontalButtonsDestructive,
+        iconData: iconData,
+        title: title,
+        message: message,
+        onClose: onClose,
+        enableCloseOnTapOutside: enableCloseOnTapOutside,
+        mainButtonText: mainButtonText,
+        mainButtonOnTap: mainButtonOnTap,
+        secondaryButtonText: secondaryButtonText,
+        secondaryButtonOnTap: secondaryButtonOnTap,
+        showCloseButton: showCloseButton,
       );
 
   factory DotsAlert.twoVerticalButtons({
@@ -141,6 +178,7 @@ class DotsAlert extends StatelessWidget {
     required VoidCallback mainButtonOnTap,
     required String secondaryButtonText,
     required VoidCallback secondaryButtonOnTap,
+    bool showCloseButton = false,
   }) =>
       DotsAlert._(
         key: key,
@@ -154,6 +192,7 @@ class DotsAlert extends StatelessWidget {
         mainButtonOnTap: mainButtonOnTap,
         secondaryButtonText: secondaryButtonText,
         secondaryButtonOnTap: secondaryButtonOnTap,
+        showCloseButton: showCloseButton,
       );
 
   factory DotsAlert.input({
@@ -168,6 +207,7 @@ class DotsAlert extends StatelessWidget {
     required VoidCallback mainButtonOnTap,
     required String secondaryButtonText,
     required VoidCallback secondaryButtonOnTap,
+    bool showCloseButton = false,
   }) =>
       DotsAlert._(
         key: key,
@@ -182,6 +222,7 @@ class DotsAlert extends StatelessWidget {
         mainButtonOnTap: mainButtonOnTap,
         secondaryButtonText: secondaryButtonText,
         secondaryButtonOnTap: secondaryButtonOnTap,
+        showCloseButton: showCloseButton,
       );
 
   factory DotsAlert.selector({
@@ -196,6 +237,7 @@ class DotsAlert extends StatelessWidget {
     required VoidCallback mainButtonOnTap,
     required String secondaryButtonText,
     required VoidCallback secondaryButtonOnTap,
+    bool showCloseButton = false,
   }) =>
       DotsAlert._(
         key: key,
@@ -210,6 +252,7 @@ class DotsAlert extends StatelessWidget {
         mainButtonOnTap: mainButtonOnTap,
         secondaryButtonText: secondaryButtonText,
         secondaryButtonOnTap: secondaryButtonOnTap,
+        showCloseButton: showCloseButton,
       );
 
   @override
@@ -254,7 +297,7 @@ class DotsAlert extends StatelessWidget {
                             Expanded(
                               child: Center(child: _icon(theme)),
                             ),
-                            if (!variant.isTwoHorizontalButtons)
+                            if (showCloseButton)
                               DotsCloseButton(
                                 icon: DotsIconData.cross,
                                 size: DotsCloseButtonSize.small,
@@ -393,6 +436,27 @@ class DotsAlert extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: _mainButton(
+                DotsMainButtonVariant.main,
+                mainButtonText,
+                mainButtonOnTap,
+              ),
+            ),
+          ],
+        );
+
+      case DotsAlertVariant.twoHorizontalButtonsDestructive:
+        return Row(
+          children: [
+            Expanded(
+              child: _mainButton(
+                DotsMainButtonVariant.secondary,
+                secondaryButtonText,
+                secondaryButtonOnTap,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: _mainButton(
                 DotsMainButtonVariant.destructive,
                 mainButtonText,
                 mainButtonOnTap,
@@ -431,8 +495,8 @@ class DotsAlert extends StatelessWidget {
           ],
         );
 
-      default:
-        return const Offstage();
+      case DotsAlertVariant.noButtons:
+        return const SizedBox();
     }
   }
 
