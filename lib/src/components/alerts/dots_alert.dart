@@ -502,6 +502,7 @@ class DotsAlert extends StatelessWidget {
 
   Widget _mainButton(DotsMainButtonVariant variant, String? text, VoidCallback? onTap) {
     return DotsMainButton(
+      adaptPaddingForText: true,
       variant: variant,
       size: DotsMainButtonSize.large,
       content: text ?? '',
