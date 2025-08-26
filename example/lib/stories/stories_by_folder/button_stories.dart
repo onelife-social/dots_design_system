@@ -34,6 +34,8 @@ List<Story> get buttonStories => [
                     .toList()),
             onTap: () {},
             expand: context.knobs.boolean(label: 'Expand', initial: true),
+            adaptPaddingForText:
+                context.knobs.boolean(label: 'Adapt padding for text', initial: false),
           ),
         ),
       ),
