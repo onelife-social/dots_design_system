@@ -349,6 +349,10 @@ List<Story> get notificationsStories => [
                 label: 'Input Hint',
                 initial: 'Input content',
               );
+              final showCloseButton = context.knobs.boolean(
+                label: 'Show close button',
+                initial: true,
+              );
 
               switch (variant) {
                 case DotsAlertVariant.oneButton:
@@ -367,6 +371,7 @@ List<Story> get notificationsStories => [
                         const SnackBar(content: Text('Close button tapped!')),
                       );
                     },
+                    showCloseButton: showCloseButton,
                   );
 
                 case DotsAlertVariant.twoHorizontalButtons:
@@ -391,6 +396,31 @@ List<Story> get notificationsStories => [
                         const SnackBar(content: Text('Close button tapped!')),
                       );
                     },
+                    showCloseButton: showCloseButton,
+                  );
+                case DotsAlertVariant.twoHorizontalButtonsDestructive:
+                  return DotsAlert.twoHorizontalButtonsDestructive(
+                    iconData: iconData,
+                    title: title,
+                    message: message,
+                    mainButtonText: mainButtonText,
+                    mainButtonOnTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Main button tapped!')),
+                      );
+                    },
+                    secondaryButtonText: secondaryButtonText,
+                    secondaryButtonOnTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Secondary button tapped!')),
+                      );
+                    },
+                    onClose: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Close button tapped!')),
+                      );
+                    },
+                    showCloseButton: showCloseButton,
                   );
 
                 case DotsAlertVariant.twoVerticalButtons:
@@ -415,6 +445,7 @@ List<Story> get notificationsStories => [
                         const SnackBar(content: Text('Close button tapped!')),
                       );
                     },
+                    showCloseButton: showCloseButton,
                   );
 
                 case DotsAlertVariant.input:
@@ -440,6 +471,7 @@ List<Story> get notificationsStories => [
                         const SnackBar(content: Text('Close button tapped!')),
                       );
                     },
+                    showCloseButton: showCloseButton,
                   );
 
                 case DotsAlertVariant.selector:
@@ -488,10 +520,10 @@ List<Story> get notificationsStories => [
                         const SnackBar(content: Text('Close button tapped!')),
                       );
                     },
+                    showCloseButton: showCloseButton,
                   );
 
                 case DotsAlertVariant.noButtons:
-                default:
                   return DotsAlert.noButtons(
                     iconData: iconData,
                     title: title,
@@ -501,6 +533,7 @@ List<Story> get notificationsStories => [
                         const SnackBar(content: Text('Close button tapped!')),
                       );
                     },
+                    showCloseButton: showCloseButton,
                   );
               }
             },
