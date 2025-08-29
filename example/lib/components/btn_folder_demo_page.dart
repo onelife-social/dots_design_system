@@ -1,7 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class BtnFolderDemoPage extends StatelessWidget {
+class BtnFolderDemoPage extends StatefulWidget {
   final String text;
   final Color? iconColor;
   final DotsIcon icon;
@@ -20,19 +20,38 @@ class BtnFolderDemoPage extends StatelessWidget {
   });
 
   @override
+  State<BtnFolderDemoPage> createState() => _BtnFolderDemoPageState();
+}
+
+class _BtnFolderDemoPageState extends State<BtnFolderDemoPage> {
+  bool isSelected = false;
+
+  @override
+  void initState() {
+    isSelected = widget.isSelected;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
       children: [
-        BtnFolder(
-          icon: icon.iconData,
-          text: text,
-          onPressed: () {},
-          isSelected: isSelected,
-          iconSelectedColor: iconColor ?? DotsColors.light.gradientInitialLinealPurple,
-          showEditIcon: showEditIcon,
-          isEditable: isEditable,
+        SizedBox(
+          height: 100,
+          child: BtnFolder(
+            icon: widget.icon.iconData,
+            text: widget.text,
+            onPressed: () {
+              setState(() {
+                isSelected = !isSelected;
+              });
+            },
+            isSelected: isSelected,
+            iconSelectedColor: widget.iconColor ?? DotsColors.light.gradientInitialLinealPurple,
+            showEditIcon: widget.showEditIcon,
+            isEditable: widget.isEditable,
+          ),
         ),
       ],
     );
