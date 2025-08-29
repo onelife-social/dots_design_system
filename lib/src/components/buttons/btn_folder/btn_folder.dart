@@ -118,7 +118,7 @@ class _FolderButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.symmetric(horizontal: 16),
           backgroundColor: context.dotsTheme.colors.bgStrong,
-          elevation: 0,
+          elevation: 4,
           side: BorderSide(
             color: Colors.black.dotsWithOpacity(0.08),
             width: 1,

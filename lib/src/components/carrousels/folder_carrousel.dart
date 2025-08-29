@@ -21,6 +21,7 @@ class FolderCarrousel extends StatelessWidget {
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
+          spacing: 6,
           children: customWidgets ??
               [
                 for (int i = 0; i < buttonsData.length; i++) ...[
@@ -33,7 +34,6 @@ class FolderCarrousel extends StatelessWidget {
                     isEditable: buttonsData[i].isEditable,
                     showEditIcon: showEditIcon,
                   ),
-                  if (i != buttonsData.length - 1) const SizedBox(width: 6),
                 ],
               ],
         ),
