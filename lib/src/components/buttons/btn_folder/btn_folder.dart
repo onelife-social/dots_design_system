@@ -36,30 +36,26 @@ class BtnFolder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(21),
-      child: AnimatedSize(
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.easeInOut,
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            _FolderButton(
-              isSelected: isSelected,
-              onPressed: onPressed,
-              icon: icon,
-              iconSelectedColor: iconSelectedColor,
-              text: text,
-            ),
-            if (showEditIcon && isEditable)
-              Positioned(
-                right: -5,
-                top: -5,
-                child: _EditIcon(onPressed: onPressed),
-              ),
-          ],
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(21),
+          child: _FolderButton(
+            isSelected: isSelected,
+            onPressed: onPressed,
+            icon: icon,
+            iconSelectedColor: iconSelectedColor,
+            text: text,
+          ),
         ),
-      ),
+        if (showEditIcon && isEditable)
+          Positioned(
+            right: -5,
+            top: -5,
+            child: _EditIcon(onPressed: onPressed),
+          ),
+      ],
     );
   }
 }
@@ -81,48 +77,66 @@ class _FolderButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!isSelected) {
-      return SizedBox(
-        width: 42,
-        height: 42,
-        child: ElevatedButton(
-          onPressed: onPressed,
-          style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.symmetric(horizontal: 11),
-            backgroundColor: context.dotsTheme.colors.bgContainerSecondaryOnBackground,
-            elevation: 0,
-          ),
-          child: DotsIcon(
-            iconData: icon,
-            size: 20,
-            color: context.dotsTheme.colors.textQuarternary,
-          ),
-        ),
-      );
-    }
-    return SizedBox(
-      height: 42,
-      child: ElevatedButton.icon(
-        onPressed: onPressed,
-        label: text != null
-            ? Text(
-                text!.length > 20 ? '${text!.substring(0, 20)}…' : text!,
-                style: context.dotsTheme.typo.main.bodyDefaultMedium,
-              )
-            : SizedBox.shrink(),
-        icon: DotsIcon(
-          iconData: icon,
-          size: 20,
-          color: iconSelectedColor,
-        ),
-        style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          backgroundColor: context.dotsTheme.colors.bgStrong,
-          elevation: 4,
-          side: BorderSide(
-            color: Colors.black.dotsWithOpacity(0.08),
-            width: 1,
-          ),
+    return GestureDetector(
+      onTap: onPressed,
+      child: AnimatedSize(
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeInOut,
+        child: AnimatedContainer(
+          height: 42,
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeInOut,
+          decoration: isSelected
+              ? BoxDecoration(
+                  color: context.dotsTheme.colors.bgStrong,
+                  borderRadius: DotsBorderRadius.r1000,
+                  boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.dotsWithOpacity(0.1),
+                        blurRadius: 15,
+                        offset: const Offset(0, 4),
+                      ),
+                    ])
+              : BoxDecoration(
+                  color: context.dotsTheme.colors.bgContainerSecondaryOnBackground,
+                  borderRadius: DotsBorderRadius.r1000,
+                ),
+          child: isSelected
+              ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      width: 16,
+                    ),
+                    DotsIcon(
+                      iconData: icon,
+                      size: 20,
+                      color: iconSelectedColor,
+                    ),
+                    SizedBox(
+                      width: 6,
+                    ),
+                    Flexible(
+                      child: text != null
+                          ? Text(
+                              text!.length > 20 ? '${text!.substring(0, 20)}…' : text!,
+                              style: context.dotsTheme.typo.main.bodyDefaultMedium,
+                            )
+                          : SizedBox.shrink(),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                  ],
+                )
+              : Padding(
+                  padding: const EdgeInsets.all(11),
+                  child: DotsIcon(
+                    iconData: icon,
+                    size: 20,
+                    color: context.dotsTheme.colors.textQuarternary,
+                  ),
+                ),
         ),
       ),
     );
