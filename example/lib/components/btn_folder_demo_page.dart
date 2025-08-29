@@ -25,12 +25,6 @@ class _BtnFolderDemoPageState extends State<BtnFolderDemoPage> {
   bool isSelected = false;
 
   @override
-  void initState() {
-    isSelected = widget.isSelected;
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
