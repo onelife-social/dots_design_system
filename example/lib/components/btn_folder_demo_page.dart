@@ -5,7 +5,6 @@ class BtnFolderDemoPage extends StatefulWidget {
   final String text;
   final Color? iconColor;
   final DotsIcon icon;
-  final bool isSelected;
   final bool showEditIcon;
   final bool isEditable;
 
@@ -14,7 +13,6 @@ class BtnFolderDemoPage extends StatefulWidget {
     required this.text,
     required this.iconColor,
     required this.icon,
-    required this.isSelected,
     required this.showEditIcon,
     required this.isEditable,
   });
