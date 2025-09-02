@@ -127,8 +127,9 @@ class DotsNotificationItem extends StatelessWidget {
                     variant: DotsImageThumbnailVariant.image,
                     image: actionImage,
                     onError: onActionImageError,
+                    coverImage: actionImageText?.isNotEmpty == true,
                   ),
-                  if (actionImageText != null && actionImageText!.isNotEmpty)
+                  if (actionImageText?.isNotEmpty == true)
                     Positioned.fill(
                       child: Center(
                         child: Text(
