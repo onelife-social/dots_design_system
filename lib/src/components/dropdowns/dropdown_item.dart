@@ -28,6 +28,7 @@ class DropdownItem extends StatelessWidget {
     final Color color = itemColor ?? theme.colors.textPrimary;
 
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: onTap,
       child: Container(
         width: 234,
