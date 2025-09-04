@@ -16,6 +16,7 @@ class DotsMainButton extends StatelessWidget {
     this.enabled = true,
     this.onTap,
     this.expand = true,
+    this.adaptPaddingForText = false,
   });
 
   /// The text to display on the button.
@@ -56,6 +57,9 @@ class DotsMainButton extends StatelessWidget {
   /// Whether the button should expand to fill available space.
   final bool expand;
 
+  /// Whether to adapt padding based on text.
+  final bool adaptPaddingForText;
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -76,7 +80,7 @@ class DotsMainButton extends StatelessWidget {
             borderRadius: borderRadius,
           ),
           height: size.height,
-          padding: size.padding,
+          padding: adaptPaddingForText ? EdgeInsets.symmetric(horizontal: 7) : size.padding,
           child: DotsShaderMask(
             styleType: buttonTheme.foregroundGradient,
             child: Row(

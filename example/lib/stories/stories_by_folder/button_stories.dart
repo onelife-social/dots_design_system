@@ -34,6 +34,8 @@ List<Story> get buttonStories => [
                     .toList()),
             onTap: () {},
             expand: context.knobs.boolean(label: 'Expand', initial: true),
+            adaptPaddingForText:
+                context.knobs.boolean(label: 'Adapt padding for text', initial: false),
           ),
         ),
       ),
@@ -134,7 +136,6 @@ List<Story> get buttonStories => [
                   DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
             ),
           ),
-          isSelected: context.knobs.boolean(label: 'Selected', initial: true),
           isEditable: context.knobs.boolean(label: 'Editable', initial: false),
           showEditIcon: context.knobs.boolean(label: 'ShowEditIcon', initial: false),
         ),

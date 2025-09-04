@@ -9,9 +9,7 @@ enum DotsImageThumbnailVariant {
   bool get isIcon => this == DotsImageThumbnailVariant.icon;
 }
 
-
 class DotsImageThumbnail extends StatelessWidget {
-
   /// The variant of the image thumbnail.
   final DotsImageThumbnailVariant variant;
 
@@ -31,6 +29,9 @@ class DotsImageThumbnail extends StatelessWidget {
   /// Color of the icon if the variant is icon.
   final Color? iconColor;
 
+  /// Whether to show the semi-transparent black container overlaying the image.
+  final bool coverImage;
+
   const DotsImageThumbnail({
     super.key,
     required this.variant,
@@ -39,6 +40,7 @@ class DotsImageThumbnail extends StatelessWidget {
     this.iconData = DotsIconData.user,
     this.iconSize = 20,
     this.iconColor,
+    this.coverImage = false,
   });
 
   @override
@@ -50,27 +52,33 @@ class DotsImageThumbnail extends StatelessWidget {
       height: 40,
       decoration: BoxDecoration(
         color: variant.isIcon
-          ? theme.colors.bgContainerSecondaryOnBackground
-          : theme.colors.transparent,
+            ? theme.colors.bgContainerSecondaryOnBackground
+            : theme.colors.transparent,
         borderRadius: DotsBorderRadius.r12,
         image: (image != null && !variant.isIcon)
-          ? DecorationImage(
-              image: image!,
-              fit: BoxFit.cover,
-              onError: (exception, stackTrace) {
-                onError?.call(exception, stackTrace);
-              },
-            )
-          : null,
+            ? DecorationImage(
+                image: image!,
+                fit: BoxFit.cover,
+                onError: (exception, stackTrace) {
+                  onError?.call(exception, stackTrace);
+                },
+              )
+            : null,
       ),
-      child: Center(
-        child: variant.isIcon
-          ? DotsIcon(
-              iconData: iconData,
-              color: iconColor,
-              size: iconSize,
-            )
-          : null,
+      child: Container(
+        decoration: BoxDecoration(
+          color: coverImage ? Colors.black.withOpacity(0.3) : Colors.transparent,
+          borderRadius: DotsBorderRadius.r12,
+        ),
+        child: Center(
+          child: variant.isIcon
+              ? DotsIcon(
+                  iconData: iconData,
+                  color: iconColor,
+                  size: iconSize,
+                )
+              : null,
+        ),
       ),
     );
   }
