@@ -35,4 +35,36 @@ List<Story> get toastStories => [
                   ),
                 ),
               )),
+      Story(
+          name: 'Toast/Connection Resumed',
+          description: 'Demo page for Toast information',
+          builder: (context) => Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: DotsToastConnectionResumed(
+                  title: context.knobs.text(label: 'Title', initial: 'Title'),
+                  variant: context.knobs.options<DotsToastVariant>(
+                    label: 'Variant',
+                    initial: DotsToastVariant.connectionResumed,
+                    options: DotsToastVariant.values
+                        .map((item) => Option(label: item.name, value: item))
+                        .toList(),
+                  ),
+                ),
+              )),
+      Story(
+          name: 'Toast/Connection Lost',
+          description: 'Demo page for Toast information',
+          builder: (context) => Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: DotsToastConnectionLost(
+                  title: context.knobs.text(label: 'Title', initial: 'Title'),
+                  variant: context.knobs.options<DotsToastVariant>(
+                    label: 'Variant',
+                    initial: DotsToastVariant.connectionLost,
+                    options: DotsToastVariant.values
+                        .map((item) => Option(label: item.name, value: item))
+                        .toList(),
+                  ),
+                ),
+              )),
     ];

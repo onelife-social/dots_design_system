@@ -382,7 +382,6 @@ List<Story> get allStories => [
           );
         },
       ),
-      ...toastStories,
       Story(
         name: 'Dots text Item input',
         description: 'Demo page for Dots Item input',
