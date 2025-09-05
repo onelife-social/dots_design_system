@@ -193,6 +193,8 @@ enum DotsIconData {
   search('ic-search.svg', DotsIconGroup.system),
   settings('ic-settings.svg', DotsIconGroup.system),
   selector('ic-selector.svg', DotsIconGroup.system),
+  connectionOff('ic-connection-off.svg', DotsIconGroup.system),
+  connectionOn('ic-connection-on.svg', DotsIconGroup.system),
 
   // Home
   editField('ic-add-field.svg', DotsIconGroup.home);
