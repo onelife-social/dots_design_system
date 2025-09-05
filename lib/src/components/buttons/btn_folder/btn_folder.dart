@@ -188,3 +188,13 @@ class BtnFolderData {
     this.isEditable = false,
   });
 }
+
+class CustomFolderWidget {
+  final int index;
+  final Widget widget;
+
+  const CustomFolderWidget({
+    required this.index,
+    required this.widget,
+  });
+}
