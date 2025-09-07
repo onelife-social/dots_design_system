@@ -8,6 +8,9 @@ class BtnFolder extends StatelessWidget {
   // The text to display in the button when selected.
   final String? text;
 
+  // Callback function when the button is clicked.
+  final VoidCallback? onTap;
+
   // Callback function when the button is pressed.
   final VoidCallback? onPressed;
 
@@ -27,6 +30,7 @@ class BtnFolder extends StatelessWidget {
     super.key,
     required this.icon,
     this.text,
+    required this.onTap,
     required this.onPressed,
     this.isSelected = false,
     required this.iconSelectedColor,
@@ -43,6 +47,7 @@ class BtnFolder extends StatelessWidget {
           borderRadius: BorderRadius.circular(21),
           child: _FolderButton(
             isSelected: isSelected,
+            onTap: onTap,
             onPressed: onPressed,
             icon: icon,
             iconSelectedColor: iconSelectedColor,
@@ -62,6 +67,7 @@ class BtnFolder extends StatelessWidget {
 
 class _FolderButton extends StatelessWidget {
   final bool isSelected;
+  final VoidCallback? onTap;
   final VoidCallback? onPressed;
   final DotsIconData icon;
   final Color iconSelectedColor;
@@ -69,6 +75,7 @@ class _FolderButton extends StatelessWidget {
 
   const _FolderButton({
     this.isSelected = false,
+    required this.onTap,
     required this.onPressed,
     required this.icon,
     required this.iconSelectedColor,
@@ -78,7 +85,8 @@ class _FolderButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPressed,
+      onTap: onTap,
+      onLongPress: onPressed,
       child: AnimatedSize(
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeInOut,
@@ -174,6 +182,7 @@ class _EditIcon extends StatelessWidget {
 class BtnFolderData {
   final DotsIconData icon;
   final String? text;
+  final VoidCallback? onTap;
   final VoidCallback? onPressed;
   final bool isSelected;
   final Color iconSelectedColor;
@@ -182,6 +191,7 @@ class BtnFolderData {
   const BtnFolderData({
     required this.icon,
     this.text,
+    this.onTap,
     this.onPressed,
     this.isSelected = false,
     required this.iconSelectedColor,
@@ -189,11 +199,11 @@ class BtnFolderData {
   });
 }
 
-class CustomFolderWidget {
+class DefaultFolderWidget {
   final int index;
   final Widget widget;
 
-  const CustomFolderWidget({
+  const DefaultFolderWidget({
     required this.index,
     required this.widget,
   });

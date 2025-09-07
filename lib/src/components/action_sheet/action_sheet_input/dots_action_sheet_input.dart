@@ -14,7 +14,6 @@ enum ActionSheetInputVariant {
 }
 
 class DotsActionSheetInput extends StatelessWidget {
-
   /// The [variant] parameter determines the type of action sheet.
   /// - [ActionSheetInputVariant.main] is the default variant.
   /// - [ActionSheetInputVariant.colors] is for color selection.
@@ -59,7 +58,7 @@ class DotsActionSheetInput extends StatelessWidget {
 
   /// The [dateLabel] is the label for the date input.
   final String? dateLabel;
-  
+
   /// The [dateValue] is the value for the date input.
   final String? dateValue;
 
@@ -81,7 +80,6 @@ class DotsActionSheetInput extends StatelessWidget {
 
   /// The [onTapTextFieldBtn] is a callback for the text field button tap.
   final VoidCallback? onTapTextFieldBtn;
-
 
   const DotsActionSheetInput({
     super.key,
@@ -145,44 +143,44 @@ class DotsActionSheetInput extends StatelessWidget {
                   _Header(title: title, onBackButtonTap: onBackButtonTap),
                   SizedBox(height: context.getByRatio(16, 10)),
                   if (variant.isColors && colorController != null)
-                      ValueListenableBuilder<DotsColorOption>(
-                        valueListenable: colorController!,
-                        builder: (context, selectedColor, _) {
-                          return _Body(
-                            variant: variant,
-                            subtitle: subtitle,
-                            iconData: iconData,
-                            onIconTap: onIconTap,
-                            onMainButtonTap: onMainButtonTap,
-                            actionButtonText: actionButtonText,
-                            textFieldController: textFieldController,
-                            focus: focus,
-                            onChanged: onChanged,
-                            onTapTextFieldBtn: onTapTextFieldBtn,
-                            selectedColor: selectedColor,
-                            onColorSelected: (color) {
-                              colorController!.value = color;
-                            },
-                          );
-                        },
-                      )
-                    else
-                      _Body(
-                        variant: variant,
-                        subtitle: subtitle,
-                        iconData: iconData,
-                        onIconTap: onIconTap,
-                        onMainButtonTap: onMainButtonTap,
-                        actionButtonText: actionButtonText,
-                        selectedColor: selectedColor,
-                        dateLabel: dateLabel,
-                        dateValue: dateValue,
-                        onDateTap: onDateTap,
-                        dateIconData: dateIconData,
-                        textFieldController: textFieldController,
-                        focus: focus,
-                        onTapTextFieldBtn: onTapTextFieldBtn,
-                      ),
+                    ValueListenableBuilder<DotsColorOption>(
+                      valueListenable: colorController!,
+                      builder: (context, selectedColor, _) {
+                        return _Body(
+                          variant: variant,
+                          subtitle: subtitle,
+                          iconData: iconData,
+                          onIconTap: onIconTap,
+                          onMainButtonTap: onMainButtonTap,
+                          actionButtonText: actionButtonText,
+                          textFieldController: textFieldController,
+                          focus: focus,
+                          onChanged: onChanged,
+                          onTapTextFieldBtn: onTapTextFieldBtn,
+                          selectedColor: selectedColor,
+                          onColorSelected: (color) {
+                            colorController!.value = color;
+                          },
+                        );
+                      },
+                    )
+                  else
+                    _Body(
+                      variant: variant,
+                      subtitle: subtitle,
+                      iconData: iconData,
+                      onIconTap: onIconTap,
+                      onMainButtonTap: onMainButtonTap,
+                      actionButtonText: actionButtonText,
+                      selectedColor: selectedColor,
+                      dateLabel: dateLabel,
+                      dateValue: dateValue,
+                      onDateTap: onDateTap,
+                      dateIconData: dateIconData,
+                      textFieldController: textFieldController,
+                      focus: focus,
+                      onTapTextFieldBtn: onTapTextFieldBtn,
+                    ),
                 ],
               ),
             ),
@@ -230,7 +228,7 @@ class _Header extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 36),
+          if (onBackButtonTap != null) const SizedBox(width: 36),
         ],
       ),
     );
@@ -359,5 +357,5 @@ class _Body extends StatelessWidget {
         ),
       ],
     );
-}
+  }
 }
