@@ -235,7 +235,7 @@ class _Header extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 36),
+          if (onBackButtonTap != null) const SizedBox(width: 36),
         ],
       ),
     );
