@@ -14,7 +14,6 @@ enum ActionSheetInputVariant {
 }
 
 class DotsActionSheetInput extends StatelessWidget {
-
   /// The [variant] parameter determines the type of action sheet.
   /// - [ActionSheetInputVariant.main] is the default variant.
   /// - [ActionSheetInputVariant.colors] is for color selection.
@@ -48,6 +47,9 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [onMainButtonTap] is a callback for the main button tap.
   final Function()? onMainButtonTap;
 
+  /// The [enableMainButton] determines if the main button is enabled.
+  final bool enableMainButton;
+
   /// The [actionButtonText] is the text for the action button.
   final String? actionButtonText;
 
@@ -59,7 +61,7 @@ class DotsActionSheetInput extends StatelessWidget {
 
   /// The [dateLabel] is the label for the date input.
   final String? dateLabel;
-  
+
   /// The [dateValue] is the value for the date input.
   final String? dateValue;
 
@@ -82,13 +84,13 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [onTapTextFieldBtn] is a callback for the text field button tap.
   final VoidCallback? onTapTextFieldBtn;
 
-
   const DotsActionSheetInput({
     super.key,
     this.variant = ActionSheetInputVariant.main,
     this.title,
     this.subtitle,
     this.onMainButtonTap,
+    this.enableMainButton = true,
     this.actionButtonText,
     this.onBackButtonTap,
     this.onClose,
@@ -145,44 +147,47 @@ class DotsActionSheetInput extends StatelessWidget {
                   _Header(title: title, onBackButtonTap: onBackButtonTap),
                   SizedBox(height: context.getByRatio(16, 10)),
                   if (variant.isColors && colorController != null)
-                      ValueListenableBuilder<DotsColorOption>(
-                        valueListenable: colorController!,
-                        builder: (context, selectedColor, _) {
-                          return _Body(
-                            variant: variant,
-                            subtitle: subtitle,
-                            iconData: iconData,
-                            onIconTap: onIconTap,
-                            onMainButtonTap: onMainButtonTap,
-                            actionButtonText: actionButtonText,
-                            textFieldController: textFieldController,
-                            focus: focus,
-                            onChanged: onChanged,
-                            onTapTextFieldBtn: onTapTextFieldBtn,
-                            selectedColor: selectedColor,
-                            onColorSelected: (color) {
-                              colorController!.value = color;
-                            },
-                          );
-                        },
-                      )
-                    else
-                      _Body(
-                        variant: variant,
-                        subtitle: subtitle,
-                        iconData: iconData,
-                        onIconTap: onIconTap,
-                        onMainButtonTap: onMainButtonTap,
-                        actionButtonText: actionButtonText,
-                        selectedColor: selectedColor,
-                        dateLabel: dateLabel,
-                        dateValue: dateValue,
-                        onDateTap: onDateTap,
-                        dateIconData: dateIconData,
-                        textFieldController: textFieldController,
-                        focus: focus,
-                        onTapTextFieldBtn: onTapTextFieldBtn,
-                      ),
+                    ValueListenableBuilder<DotsColorOption>(
+                      valueListenable: colorController!,
+                      builder: (context, selectedColor, _) {
+                        return _Body(
+                          variant: variant,
+                          subtitle: subtitle,
+                          iconData: iconData,
+                          onIconTap: onIconTap,
+                          onMainButtonTap: onMainButtonTap,
+                          enableMainButton: enableMainButton,
+                          actionButtonText: actionButtonText,
+                          textFieldController: textFieldController,
+                          focus: focus,
+                          onChanged: onChanged,
+                          onTapTextFieldBtn: onTapTextFieldBtn,
+                          selectedColor: selectedColor,
+                          onColorSelected: (color) {
+                            colorController!.value = color;
+                          },
+                        );
+                      },
+                    )
+                  else
+                    _Body(
+                      variant: variant,
+                      subtitle: subtitle,
+                      iconData: iconData,
+                      onIconTap: onIconTap,
+                      onMainButtonTap: onMainButtonTap,
+                      enableMainButton: enableMainButton,
+                      actionButtonText: actionButtonText,
+                      selectedColor: selectedColor,
+                      dateLabel: dateLabel,
+                      dateValue: dateValue,
+                      onDateTap: onDateTap,
+                      dateIconData: dateIconData,
+                      textFieldController: textFieldController,
+                      focus: focus,
+                      onTapTextFieldBtn: onTapTextFieldBtn,
+                      onChanged: onChanged,
+                    ),
                 ],
               ),
             ),
@@ -243,6 +248,7 @@ class _Body extends StatelessWidget {
   final DotsIconData? iconData;
   final Function()? onIconTap;
   final Function()? onMainButtonTap;
+  final bool enableMainButton;
   final String? actionButtonText;
   final DotsColorOption? selectedColor;
   final ValueChanged<DotsColorOption>? onColorSelected;
@@ -261,6 +267,7 @@ class _Body extends StatelessWidget {
     this.iconData,
     this.onIconTap,
     this.onMainButtonTap,
+    this.enableMainButton = true,
     this.actionButtonText,
     this.selectedColor,
     this.onColorSelected,
@@ -351,6 +358,7 @@ class _Body extends StatelessWidget {
                   variant: DotsMainButtonVariant.main,
                   size: DotsMainButtonSize.mainAction,
                   onTap: onMainButtonTap,
+                  enabled: enableMainButton,
                   content: actionButtonText ?? '',
                 ),
               ),
@@ -359,5 +367,5 @@ class _Body extends StatelessWidget {
         ),
       ],
     );
-}
+  }
 }

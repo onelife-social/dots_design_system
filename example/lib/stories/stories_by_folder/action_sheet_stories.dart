@@ -33,12 +33,14 @@ List<Story> get actionSheetStories => [
                 ),
                 primaryButton: context.knobs.boolean(label: 'Show primary button', initial: true)
                     ? DotsMainButton(
-                        content: context.knobs.text(label: 'Primary button text', initial: 'Primary'),
+                        content:
+                            context.knobs.text(label: 'Primary button text', initial: 'Primary'),
                         details: context.knobs.nullable.text(
                           label: 'Primary button details',
                           initial: 'Details',
                         ),
-                        enabled: context.knobs.boolean(label: 'Primary button enabled', initial: true),
+                        enabled:
+                            context.knobs.boolean(label: 'Primary button enabled', initial: true),
                         variant: DotsMainButtonVariant.main,
                         size: DotsMainButtonSize.mainAction,
                         onTap: () {
@@ -50,14 +52,17 @@ List<Story> get actionSheetStories => [
                         },
                       )
                     : null,
-                secondaryButton: context.knobs.boolean(label: 'Show secondary button', initial: true)
+                secondaryButton: context.knobs
+                        .boolean(label: 'Show secondary button', initial: true)
                     ? DotsMainButton(
-                        content: context.knobs.text(label: 'Secondary button text', initial: 'Secondary'),
+                        content: context.knobs
+                            .text(label: 'Secondary button text', initial: 'Secondary'),
                         details: context.knobs.nullable.text(
                           label: 'Secondary button details',
                           initial: 'Details',
                         ),
-                        enabled: context.knobs.boolean(label: 'Secondary button enabled', initial: true),
+                        enabled:
+                            context.knobs.boolean(label: 'Secondary button enabled', initial: true),
                         variant: DotsMainButtonVariant.secondary,
                         size: DotsMainButtonSize.mainAction,
                         onTap: () {
@@ -255,7 +260,8 @@ List<Story> get actionSheetStories => [
         name: 'Action Sheet/DotsActionSheetInput',
         description: 'Demo page for DotsActionSheetInput',
         builder: (context) {
-          final initialText = context.knobs.nullable.text(label: 'Initial Value', initial: 'Sample') ?? '';
+          final initialText =
+              context.knobs.nullable.text(label: 'Initial Value', initial: 'Sample') ?? '';
           final textFieldController = TextEditingController(text: initialText);
           final colorController = ValueNotifier<DotsColorOption>(DotsColorOption.textQuarternary);
 
@@ -274,7 +280,8 @@ List<Story> get actionSheetStories => [
                         .toList(),
                   ),
                   title: context.knobs.nullable.text(label: 'Title', initial: 'Action Sheet'),
-                  subtitle: context.knobs.nullable.text(label: 'Subtitle', initial: 'Select an option'),
+                  subtitle:
+                      context.knobs.nullable.text(label: 'Subtitle', initial: 'Select an option'),
                   onBackButtonTap: () {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
@@ -283,7 +290,8 @@ List<Story> get actionSheetStories => [
                     );
                   },
                   onClose: () {},
-                  showBlurBackground: context.knobs.boolean(label: 'Show Blur Background', initial: true),
+                  showBlurBackground:
+                      context.knobs.boolean(label: 'Show Blur Background', initial: true),
                   iconData: context.knobs.options<DotsIconData>(
                     label: 'Folder Icon Data',
                     initial: DotsIconData.add,
@@ -306,11 +314,14 @@ List<Story> get actionSheetStories => [
                       ),
                     );
                   },
-                  actionButtonText: context.knobs.nullable.text(label: 'Action Button Text', initial: 'Confirm'),
+                  actionButtonText:
+                      context.knobs.nullable.text(label: 'Action Button Text', initial: 'Confirm'),
                   colorController: colorController,
                   selectedColor: selectedColor,
-                  dateLabel: context.knobs.nullable.text(label: 'Date Label', initial: 'Select a date'),
-                  dateValue: context.knobs.nullable.text(label: 'Date Value', initial: '2023-01-01'),
+                  dateLabel:
+                      context.knobs.nullable.text(label: 'Date Label', initial: 'Select a date'),
+                  dateValue:
+                      context.knobs.nullable.text(label: 'Date Value', initial: '2023-01-01'),
                   dateIconData: context.knobs.options<DotsIconData>(
                     label: 'Date Icon Data',
                     initial: DotsIconData.calendar,
@@ -364,148 +375,150 @@ List<Story> get actionSheetStories => [
                   });
                 }
               });
-            return ValueListenableBuilder<List<String>>(
-              valueListenable: albumsNotifier,
-              builder: (context, albums, _) {
-                return DotsActionSheetList(
-                  variant: context.knobs.options<ActionSheetListVariant>(
-                    label: 'Variant',
-                    initial: ActionSheetListVariant.main,
-                    options: ActionSheetListVariant.values
-                        .map((item) => Option(label: item.name, value: item))
-                        .toList(),
+              return ValueListenableBuilder<List<String>>(
+                valueListenable: albumsNotifier,
+                builder: (context, albums, _) {
+                  return DotsActionSheetList(
+                    variant: context.knobs.options<ActionSheetListVariant>(
+                      label: 'Variant',
+                      initial: ActionSheetListVariant.main,
+                      options: ActionSheetListVariant.values
+                          .map((item) => Option(label: item.name, value: item))
+                          .toList(),
+                    ),
+                    isLabelButtonAvailable:
+                        context.knobs.boolean(label: 'Is Available', initial: false),
+                    title: context.knobs.text(label: 'Title', initial: 'Select an album'),
+                    onClose: () {},
+                    onBackButtonTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Back button tapped!'),
+                        ),
+                      );
+                    },
+                    onMainButtonTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Main button tapped!'),
+                        ),
+                      );
+                    },
+                    mainButtonText:
+                        context.knobs.text(label: 'Action Button Text', initial: 'Siguiente'),
+                    mainButtonIcon: context.knobs.options<DotsIconData>(
+                      label: 'Main Button Icon',
+                      initial: DotsIconData.add,
+                      options: DotsIconData.values
+                          .map((item) => Option(label: item.name, value: item))
+                          .toList(),
+                    ),
+                    labelButtonText:
+                        context.knobs.text(label: 'Label Button Text', initial: 'Label'),
+                    selectedAlbumNames: albums,
+                    onBtnChipTap: (int index) {
+                      final newList = List<String>.from(albums);
+                      newList.removeAt(index);
+                      albumsNotifier.value = newList;
+                    },
+                    inputIcon: context.knobs.options<DotsIconData>(
+                      label: 'Input Icon',
+                      initial: DotsIconData.search,
+                      options: DotsIconData.values
+                          .map((item) => Option(label: item.name, value: item))
+                          .toList(),
+                    ),
+                    hintInputText:
+                        context.knobs.text(label: 'Hint Input Text', initial: 'Busca un álbum...'),
+                    listTitle: context.knobs.text(label: 'List Title', initial: 'Albums'),
+                    listItems: [
+                      for (int i = 0; i < items.length; i++)
+                        DotsListItemModel(
+                          label: items[i].label,
+                          image: items[i].image,
+                          variant: items[i].variant,
+                          onTap: () {
+                            setState(() {
+                              items[i] = DotsListItemModel(
+                                label: items[i].label,
+                                image: items[i].image,
+                                variant: items[i].variant == DotsListsItemVariant.radioButton
+                                    ? DotsListsItemVariant.selector
+                                    : DotsListsItemVariant.radioButton,
+                              );
+                            });
+                          },
+                        ),
+                    ],
+                    isEmptySearch: context.knobs.boolean(label: 'isEmptySearch', initial: false),
+                    emptyListTitle: context.knobs.text(
+                      label: 'Empty List Title',
+                      initial: 'No results found',
+                    ),
+                    emptyListDescription: context.knobs.text(
+                      label: 'Empty List Description',
+                      initial: 'Try searching for something else',
+                    ),
+                    emptyListIconData: context.knobs.options<DotsIconData>(
+                      label: 'Empty List Icon',
+                      initial: DotsIconData.search,
+                      options: DotsIconData.values
+                          .map((item) => Option(label: item.name, value: item))
+                          .toList(),
+                    ),
+                    emptyListImage: NetworkImage('https://picsum.photos/250?image=9'),
+                    isScrolled: isScrolled,
+                    searchBtnHide: searchBtnHide,
+                    searchBtnIcon: context.knobs.options<DotsIconData>(
+                      label: 'Search Button Icon',
+                      initial: DotsIconData.search,
+                      options: DotsIconData.values
+                          .map((item) => Option(label: item.name, value: item))
+                          .toList(),
+                    ),
+                    onSearchBtnTap: () {
+                      setState(() {
+                        searchBtnHide = true;
+                      });
+                    },
+                    scrollController: scrollController,
+                  );
+                },
+              );
+            },
+          );
+        },
+      ),
+      Story(
+        name: 'Action Sheet/DotsActionSheetListIcon',
+        description: 'Demo page for DotsActionSheetListIcon',
+        builder: (context) {
+          final List<DotsActionSheetIconModel> iconModels = DotsIconData.values.map((icon) {
+            return DotsActionSheetIconModel(
+              icon: icon,
+              variant: DotsIconButtonVariant.noBackground,
+              size: DotsIconButtonSize.extraLarge,
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('${icon.name} tapped!'),
                   ),
-                  isLabelButtonAvailable: context.knobs.boolean(label: 'Is Available', initial: false),
-                  title: context.knobs.text(label: 'Title', initial: 'Select an album'),
-                  onClose: () {},
-                  onBackButtonTap: () {
+                );
+              },
+            );
+          }).toList();
+
+          return DotsActionSheetListIcon(
+            title: context.knobs.text(label: 'Title', initial: 'Select an item'),
+            onBackButtonTap: context.knobs.boolean(label: 'Show back button', initial: true)
+                ? () {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Back button tapped!'),
                       ),
                     );
-                  },
-                  onMainButtonTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Main button tapped!'),
-                      ),
-                    );
-                  },
-                  mainButtonText: context.knobs.text(label: 'Action Button Text', initial: 'Siguiente'),
-                  mainButtonIcon: context.knobs.options<DotsIconData>(
-                    label: 'Main Button Icon',
-                    initial: DotsIconData.add,
-                    options: DotsIconData.values
-                        .map((item) => Option(label: item.name, value: item))
-                        .toList(),
-                  ),
-                  labelButtonText: context.knobs.text(label: 'Label Button Text', initial: 'Label'),
-                  selectedAlbumNames: albums,
-                  onBtnChipTap: (int index) {
-                    final newList = List<String>.from(albums);
-                    newList.removeAt(index);
-                    albumsNotifier.value = newList;
-                  },
-                  inputIcon: context.knobs.options<DotsIconData>(
-                    label: 'Input Icon',
-                    initial: DotsIconData.search,
-                    options: DotsIconData.values
-                        .map((item) => Option(label: item.name, value: item))
-                        .toList(),
-                  ),
-                  hintInputText: context.knobs.text(label: 'Hint Input Text', initial: 'Busca un álbum...'),
-                  listTitle: context.knobs.text(label: 'List Title', initial: 'Albums'),
-                  listItems: [
-                    for (int i = 0; i < items.length; i++)
-                      DotsListItemModel(
-                        label: items[i].label,
-                        image: items[i].image,
-                        variant: items[i].variant,
-                        onTap: () {
-                          setState(() {
-                            items[i] = DotsListItemModel(
-                              label: items[i].label,
-                              image: items[i].image,
-                              variant: items[i].variant == DotsListsItemVariant.radioButton
-                                ? DotsListsItemVariant.selector
-                                : DotsListsItemVariant.radioButton,
-                            );
-                          });
-                        },
-                      ),
-                  ],
-                  isEmptySearch: context.knobs.boolean(label: 'isEmptySearch', initial: false),
-                  emptyListTitle: context.knobs.text(
-                    label: 'Empty List Title',
-                    initial: 'No results found',
-                  ),
-                  emptyListDescription: context.knobs.text(
-                    label: 'Empty List Description',
-                    initial: 'Try searching for something else',
-                  ),
-                  emptyListIconData: context.knobs.options<DotsIconData>(
-                    label: 'Empty List Icon',
-                    initial: DotsIconData.search,
-                    options: DotsIconData.values
-                        .map((item) => Option(label: item.name, value: item))
-                        .toList(),
-                  ),
-                  emptyListImage: NetworkImage('https://picsum.photos/250?image=9'),
-                  isScrolled: isScrolled,
-                  searchBtnHide: searchBtnHide,
-                  searchBtnIcon: context.knobs.options<DotsIconData>(
-                    label: 'Search Button Icon',
-                    initial: DotsIconData.search,
-                    options: DotsIconData.values
-                        .map((item) => Option(label: item.name, value: item))
-                        .toList(),
-                  ),
-                  onSearchBtnTap: () {
-                    setState(() {
-                      searchBtnHide = true;
-                    });
-                  },
-                  scrollController: scrollController,
-                );
-              },
-            );
-          },
-        );
-      },
-    ),
-      Story(
-        name: 'Action Sheet/DotsActionSheetListIcon',
-        description: 'Demo page for DotsActionSheetListIcon',
-        builder: (context) {
-
-            final List<DotsActionSheetIconModel> iconModels = DotsIconData.values.map((icon) {
-            
-              return DotsActionSheetIconModel(
-                icon: icon,
-                variant: DotsIconButtonVariant.noBackground,
-                size: DotsIconButtonSize.extraLarge,
-                onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('${icon.name} tapped!'),
-                    ),
-                  );
-                },
-              );
-            }).toList();
-
-          return DotsActionSheetListIcon(
-            title: context.knobs.text(label: 'Title', initial: 'Select an item'),
-            onBackButtonTap: context.knobs.boolean(label: 'Show back button', initial: true)
-              ? () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Back button tapped!'),
-                    ),
-                  );
-                }
-              : null,
+                  }
+                : null,
             onClose: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(

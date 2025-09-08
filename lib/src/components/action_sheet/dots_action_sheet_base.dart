@@ -138,7 +138,9 @@ class _Header extends StatelessWidget {
           if (subtitle != null)
             Text(
               subtitle ?? '',
-              style: theme.typo.main.labelDefaultRegular,
+              style: theme.typo.main.labelDefaultRegular.copyWith(
+                color: theme.colors.textSecondary,
+              ),
             ),
         ],
       ),
