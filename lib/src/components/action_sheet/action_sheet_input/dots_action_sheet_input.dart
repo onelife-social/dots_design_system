@@ -210,19 +210,22 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    final double onBackButtonTapWidth = 36;
+
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
       child: Row(
         children: [
-          if (onBackButtonTap != null) ...[
-            DotsIconButton(
-              icon: DotsIconData.chevronLeft,
-              size: DotsIconButtonSize.medium,
-              variant: DotsIconButtonVariant.noBackground,
-              onTap: onBackButtonTap,
+          if (onBackButtonTap != null)
+            SizedBox(
+              width: onBackButtonTapWidth,
+              child: DotsIconButton(
+                icon: DotsIconData.chevronLeft,
+                size: DotsIconButtonSize.medium,
+                variant: DotsIconButtonVariant.noBackground,
+                onTap: onBackButtonTap,
+              ),
             ),
-            const SizedBox(width: 12),
-          ],
           Expanded(
             child: Center(
               child: Padding(
@@ -235,7 +238,7 @@ class _Header extends StatelessWidget {
               ),
             ),
           ),
-          if (onBackButtonTap != null) const SizedBox(width: 36),
+          if (onBackButtonTap != null) SizedBox(width: onBackButtonTapWidth),
         ],
       ),
     );
