@@ -58,7 +58,6 @@ extension DotsColorOptionExtension on DotsColorOption {
 }
 
 class DotsColorOptionsRow extends StatelessWidget {
-  
   /// Size of each color circle
   final double size;
 
@@ -108,7 +107,7 @@ class DotsColorOptionsRow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           for (int i = 0; i < colorOptions.length; i++) ...[
-            if (i == 0) SizedBox(width: 16), 
+            if (i == 0) SizedBox(width: 16),
             GestureDetector(
               onTap: () => onColorSelected(colorOptions[i]),
               child: Stack(
@@ -123,8 +122,8 @@ class DotsColorOptionsRow extends StatelessWidget {
                         side: BorderSide(
                           width: selectedColor == colorOptions[i] ? 2 : 1.5,
                           color: selectedColor == colorOptions[i]
-                              ? Colors.black.withOpacity(0.25)
-                              : Colors.black.withOpacity(0.10),
+                              ? Colors.black.dotsWithOpacity(0.25)
+                              : Colors.black.dotsWithOpacity(0.10),
                         ),
                       ),
                     ),
@@ -138,8 +137,8 @@ class DotsColorOptionsRow extends StatelessWidget {
                 ],
               ),
             ),
-            if (i != colorOptions.length - 1)
-              SizedBox(width: spacing),
+            if (i != colorOptions.length - 1) SizedBox(width: spacing),
+            if (i == colorOptions.length - 1) SizedBox(width: 16),
           ],
         ],
       ),

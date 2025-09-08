@@ -110,21 +110,21 @@ class DotsActionSheetStandard extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              spacing: bigAspectRatio ? 22 : 16,
+                              spacing: 8,
                               children: [
                                 SizedBox(
                                   width: double.infinity,
                                   child: Text(title,
                                       textAlign: TextAlign.center,
-                                      style: bigAspectRatio
-                                          ? theme.typo.main.titleH6
-                                          : theme.typo.main.bodyLargeBold),
+                                      style: theme.typo.secondary.title02H6),
                                 ),
                                 SizedBox(
                                   width: double.infinity,
                                   child: Text(description,
                                       textAlign: TextAlign.center,
-                                      style: theme.typo.main.labelDefaultRegular),
+                                      style: theme.typo.main.labelSmallRegular.copyWith(
+                                        color: theme.colors.textSecondary,
+                                      )),
                                 ),
                               ],
                             ),

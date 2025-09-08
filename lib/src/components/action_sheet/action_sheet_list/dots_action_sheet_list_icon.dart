@@ -18,7 +18,6 @@ class DotsActionSheetIconModel {
 }
 
 class DotsActionSheetListIcon extends StatelessWidget {
-
   /// The [title] parameter is the title of the action sheet.
   final String title;
 
@@ -37,7 +36,7 @@ class DotsActionSheetListIcon extends StatelessWidget {
   /// The [icons] parameter is a list of icons to display in the action sheet.
   final List<DotsActionSheetIconModel> icons;
 
- const DotsActionSheetListIcon({
+  const DotsActionSheetListIcon({
     super.key,
     required this.title,
     this.onBackButtonTap,
@@ -70,62 +69,65 @@ class DotsActionSheetListIcon extends StatelessWidget {
           left: 0,
           right: 0,
           bottom: bottomPosition,
-          child: Container(
-            constraints: BoxConstraints(
-              maxHeight: context.getByRatio(657, 480),
-            ),
-            decoration: BoxDecoration(
-              color: theme.colors.bgBaseContrast,
-              borderRadius: DotsBorderRadius.r32,
-            ),
-            width: double.infinity,
-            child: Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: DotsBorderRadius.r32,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      _Header(
-                        title: title,
-                        onBackButtonTap: onBackButtonTap,
-                      ),
-                      _Body(
-                        icons: icons,
-                      ),
-                    ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Container(
+              constraints: BoxConstraints(
+                maxHeight: context.getByRatio(657, 480),
+              ),
+              decoration: BoxDecoration(
+                color: theme.colors.bgBaseContrast,
+                borderRadius: DotsBorderRadius.r32,
+              ),
+              width: double.infinity,
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: DotsBorderRadius.r32,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        _Header(
+                          title: title,
+                          onBackButtonTap: onBackButtonTap,
+                        ),
+                        _Body(
+                          icons: icons,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: -1,
-                  child: IgnorePointer(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(32),
-                        bottomRight: Radius.circular(32),
-                      ),
-                      child: Container(
-                        height: 48,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                            stops: [0.0, 0.5, 1.0],
-                            colors: [
-                              theme.colors.bgBaseContrast,
-                              theme.colors.bgBaseContrast.dotsWithOpacity(0.7),
-                              theme.colors.bgBaseContrast.dotsWithOpacity(0.0),
-                            ],
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: -1,
+                    child: IgnorePointer(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(32),
+                          bottomRight: Radius.circular(32),
+                        ),
+                        child: Container(
+                          height: 48,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                              stops: [0.0, 0.5, 1.0],
+                              colors: [
+                                theme.colors.bgBaseContrast,
+                                theme.colors.bgBaseContrast.dotsWithOpacity(0.7),
+                                theme.colors.bgBaseContrast.dotsWithOpacity(0.0),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -169,12 +171,12 @@ class _Header extends StatelessWidget {
               Expanded(
                 child: Center(
                   child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Text(
-                    title,
-                    style: theme.typo.secondary.title02H6,
-                    textAlign: TextAlign.center,
-                  ),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Text(
+                      title,
+                      style: theme.typo.secondary.title02H6,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
               ),
@@ -201,7 +203,7 @@ class _Body extends StatelessWidget {
 
     return Expanded(
       child: GridView.builder(
-        padding:  const EdgeInsets.only(bottom: 24, left: 24, right: 24),
+        padding: const EdgeInsets.only(bottom: 24, left: 24, right: 24),
         physics: const AlwaysScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 5,
