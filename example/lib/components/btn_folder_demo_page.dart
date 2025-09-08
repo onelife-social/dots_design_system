@@ -34,6 +34,7 @@ class _BtnFolderDemoPageState extends State<BtnFolderDemoPage> {
           child: BtnFolder(
             icon: widget.icon.iconData,
             text: widget.text,
+            onTap: () {},
             onPressed: () {
               setState(() {
                 isSelected = !isSelected;

@@ -6,7 +6,7 @@ class FolderCarrousel extends StatelessWidget {
   final List<BtnFolderData> buttonsData;
 
   /// List of widgets to render directly inside the folder carrousel which override ButtonsData
-  final List<CustomFolderWidget>? customWidgets;
+  final List<DefaultFolderWidget>? customWidgets;
 
   // Variable to determine if the edit icon should be shown.
   final bool showEditIcon;
@@ -21,6 +21,7 @@ class FolderCarrousel extends StatelessWidget {
         BtnFolder(
           icon: buttonsData[i].icon,
           text: buttonsData[i].text,
+          onTap: buttonsData[i].onTap,
           onPressed: buttonsData[i].onPressed,
           isSelected: buttonsData[i].isSelected,
           iconSelectedColor: buttonsData[i].iconSelectedColor,
