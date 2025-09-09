@@ -32,6 +32,7 @@ class DotsColorsModel {
   final Color textSecondary;
   final Color textTertiary;
   final Color textQuarternary;
+  final Color textDisabled;
 
   // Label
   final Color labelPrimary;
@@ -66,20 +67,20 @@ class DotsColorsModel {
   final Color wedding001;
   final Color wedding002;
   final Color wedding003;
-  final Color wedding004; 
+  final Color wedding004;
   final Color wedding005;
   final Color wedding006;
   final Color wedding007;
   final Color wedding008;
   final Color wedding009;
   final Color wedding010;
-  
+
   // Birthday
 
   final Color birthday001;
   final Color birthday002;
   final Color birthday003;
-  final Color birthday004; 
+  final Color birthday004;
   final Color birthday005;
   final Color birthday006;
   final Color birthday007;
@@ -125,7 +126,6 @@ class DotsColorsModel {
   final Color couple008;
   final Color couple009;
   final Color couple010;
-
 
   // Children
 
@@ -272,6 +272,7 @@ class DotsColorsModel {
     required this.textSecondary,
     required this.textTertiary,
     required this.textQuarternary,
+    required this.textDisabled,
     required this.labelPrimary,
     required this.labelSecondary,
     required this.labelHighlight,
@@ -465,6 +466,7 @@ class DotsColorsModel {
       textSecondary: Color.lerp(textSecondary, other?.textSecondary, t) ?? textSecondary,
       textTertiary: Color.lerp(textTertiary, other?.textTertiary, t) ?? textTertiary,
       textQuarternary: Color.lerp(textQuarternary, other?.textQuarternary, t) ?? textQuarternary,
+      textDisabled: Color.lerp(textDisabled, other?.textDisabled, t) ?? textDisabled,
       labelPrimary: Color.lerp(labelPrimary, other?.labelPrimary, t) ?? labelPrimary,
       labelSecondary: Color.lerp(labelSecondary, other?.labelSecondary, t) ?? labelSecondary,
       labelHighlight: Color.lerp(labelHighlight, other?.labelHighlight, t) ?? labelHighlight,
@@ -524,7 +526,7 @@ class DotsColorsModel {
       celebration010: Color.lerp(celebration010, other?.celebration010, t) ?? celebration010,
       other001: Color.lerp(other001, other?.other001, t) ?? other001,
       other002: Color.lerp(other002, other?.other002, t) ?? other002,
-      other003: Color.lerp(other003, other?.other003, t)  ?? other003,
+      other003: Color.lerp(other003, other?.other003, t) ?? other003,
       other004: Color.lerp(other004, other?.other004, t) ?? other004,
       other005: Color.lerp(other005, other?.other005, t) ?? other005,
       other006: Color.lerp(other006, other?.other006, t) ?? other006,
