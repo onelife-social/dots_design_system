@@ -11,11 +11,11 @@ enum ActionSheetListVariant {
   bool get isGhost => this == ActionSheetListVariant.ghost;
 }
 
-class SelectedGroups {
+class SelectedItem {
   final int id;
   final String name;
 
-  SelectedGroups({
+  SelectedItem({
     required this.id,
     required this.name,
   });
@@ -66,8 +66,8 @@ class DotsActionSheetList extends StatelessWidget {
   /// The [onInputChanged] is a callback for the input field changes.
   final ValueChanged<String>? onInputChanged;
 
-  /// The [selectedAlbumNames] is a text list of selected albums at the action sheet.
-  final List<SelectedGroups>? selectedAlbumNames;
+  /// The [selectedItemNames] is a text list of selected albums at the action sheet.
+  final List<SelectedItem>? selectedItemNames;
 
   /// The [onBtnChipTap] is a callback for the filter chip tap.
   final Function(int)? onBtnChipTap;
@@ -140,7 +140,7 @@ class DotsActionSheetList extends StatelessWidget {
     this.inputIcon = DotsIconData.search,
     this.hintInputText,
     this.onInputChanged,
-    this.selectedAlbumNames,
+    this.selectedItemNames,
     this.onBtnChipTap,
     this.isScrolled = false,
     this.isLabelButtonAvailable = false,
@@ -207,7 +207,7 @@ class DotsActionSheetList extends StatelessWidget {
                       hintInputText: hintInputText,
                       onInputChanged: onInputChanged,
                       isScrolled: isScrolled,
-                      selectedAlbumNames: selectedAlbumNames,
+                      selectedAlbumNames: selectedItemNames,
                       onBtnChipTap: onBtnChipTap,
                       isLabelButtonAvailable: isLabelButtonAvailable,
                       searchBtnHide: searchBtnHide,
@@ -262,7 +262,7 @@ class DotsActionSheetList extends StatelessWidget {
                       mainButtonText: mainButtonText,
                       onMainButtonTap: onMainButtonTap,
                       mainButtonIcon: mainButtonIcon,
-                      enabled: selectedAlbumNames?.isNotEmpty == true,
+                      enabled: selectedItemNames?.isNotEmpty == true,
                     ),
                   ],
                 ),
@@ -284,7 +284,7 @@ class _Header extends StatelessWidget {
   final DotsIconData inputIcon;
   final String? hintInputText;
   final ValueChanged<String>? onInputChanged;
-  final List<SelectedGroups>? selectedAlbumNames;
+  final List<SelectedItem>? selectedAlbumNames;
   final Function(int)? onBtnChipTap;
   final bool isScrolled;
   final bool isLabelButtonAvailable;
