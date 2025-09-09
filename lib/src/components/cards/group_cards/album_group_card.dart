@@ -42,12 +42,15 @@ class AlbumGroupCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    return Center(
-      child: GestureDetector(
-        onTap: onTap,
+    return GestureDetector(
+      onTap: onTap,
+      child: AspectRatio(
+        aspectRatio: 1.0,
         child: Container(
           clipBehavior: Clip.antiAlias,
           constraints: BoxConstraints(
+            minWidth: variant.isSmall ? 135 : 288,
+            minHeight: variant.isSmall ? 135 : 288,
             maxHeight: variant.isSmall ? 160 : 340,
             maxWidth: variant.isSmall ? 160 : 340,
           ),
@@ -86,18 +89,15 @@ class AlbumGroupCard extends StatelessWidget {
                   children: [
                     Align(
                       alignment: Alignment.bottomCenter,
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: Text(
-                          title,
-                          textAlign: TextAlign.center,
-                          style: (variant.isSmall
-                                  ? theme.typo.main.labelDefaultMedium
-                                  : theme.typo.main.bodyLargeMedium)
-                              .copyWith(color: theme.colors.labelAlwaysWhite),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                        ),
+                      child: Text(
+                        title,
+                        textAlign: TextAlign.center,
+                        style: (variant.isSmall
+                                ? theme.typo.main.labelDefaultMedium
+                                : theme.typo.main.bodyLargeMedium)
+                            .copyWith(color: theme.colors.labelAlwaysWhite),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
                     ),
                     if (tagIconData != null)
