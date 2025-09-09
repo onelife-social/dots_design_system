@@ -12,10 +12,13 @@ class DotsIconButton extends StatelessWidget {
     this.tag,
     this.size = DotsIconButtonSize.large,
     this.variant = DotsIconButtonVariant.solid,
+    this.style = DotsIconButtonStyle.defaultStyle,
+    this.state = DotsIconButtonState.defaultState,
     this.direction = DotsIconButtonDirection.column,
     this.labelStyle,
     this.onTap,
     this.color,
+    this.textTappable = false,
   });
 
   /// The icon to display on the button.
@@ -42,7 +45,18 @@ class DotsIconButton extends StatelessWidget {
   /// The visual variant of the button.
   ///
   /// Defaults to [DotsIconButtonVariant.solid].
+  @Deprecated('Use DotsIconButtonStyle and DotsIconButtonState instead')
   final DotsIconButtonVariant variant;
+
+  /// The style of the button.
+  ///
+  /// Defaults to [DotsIconButtonStyle.defaultStyle].
+  final DotsIconButtonStyle style;
+
+  /// The state of the button.
+  ///
+  /// Defaults to [DotsIconButtonState.defaultState].
+  final DotsIconButtonState state;
 
   /// The direction of the button.
   ///
@@ -60,28 +74,49 @@ class DotsIconButton extends StatelessWidget {
   /// Optional color for the icon.
   ///
   /// If not provided, the icon will use the default color from the theme.
-  final dynamic color;
+  final Color? color;
+
+  /// Whether the text label is tappable.
+  final bool textTappable;
+
+  bool get isStyleAndStateDefault =>
+      style == DotsIconButtonStyle.defaultStyle && state == DotsIconButtonState.defaultState;
+
+  bool get isVariantDefault => variant == DotsIconButtonVariant.solid;
+
+  bool get useVariantInsteadOfStyleAndState => isStyleAndStateDefault && !isVariantDefault;
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    final buttonTheme = getIconButtonThemeByVariant(theme, variant);
+    final buttonTheme = useVariantInsteadOfStyleAndState
+        ? getIconButtonThemeByVariant(theme, variant)
+        : getIconButtonThemeByStyleAndState(theme, style, state);
     final borderRadius = BorderRadius.circular(size.size);
 
-    return direction == DotsIconButtonDirection.column
+    final widget = direction == DotsIconButtonDirection.column
         ? Column(
             mainAxisSize: MainAxisSize.min,
+            spacing: 2,
             children: [
               ..._getChildren(buttonTheme, borderRadius, context),
             ],
           )
         : Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 8,
+            spacing: style.isNoBackground ? 6 : 8,
             children: [
               ..._getChildren(buttonTheme, borderRadius, context),
             ],
           );
+
+    if (textTappable && label != null) {
+      return GestureDetector(
+        onTap: onTap,
+        child: widget,
+      );
+    }
+    return widget;
   }
 
   List<Widget> _getChildren(
@@ -101,13 +136,14 @@ class DotsIconButton extends StatelessWidget {
         onTap: onTap,
         tag: tag,
         color: color,
+        noButtonSize: style.isNoBackground,
       ),
       if (label != null)
         _Label(
           label: label,
           style: labelStyle ??
               theme.typo.main.labelDefaultRegular.copyWith(
-                color: color ?? buttonTheme.foregroundColor,
+                color: color ?? buttonTheme.labelColor,
               ),
         )
     ];
@@ -122,6 +158,7 @@ class _IconButton extends StatelessWidget {
   final BorderRadius borderRadius;
   final Function()? onTap;
   final String? tag;
+  final bool noButtonSize;
   final dynamic color;
 
   const _IconButton({
@@ -133,21 +170,29 @@ class _IconButton extends StatelessWidget {
     required this.onTap,
     required this.tag,
     required this.color,
+    required this.noButtonSize,
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
     return SizedBox(
-      height: size.size,
-      width: size.size,
+      height: noButtonSize ? null : size.size,
+      width: noButtonSize ? null : size.size,
       child: Material(
         color: buttonTheme.backgroundColor ?? Colors.transparent,
         borderRadius: borderRadius,
         child: InkWell(
           onTap: onTap,
           borderRadius: borderRadius,
-          child: Container(
-            decoration: BoxDecoration(borderRadius: borderRadius),
+          child: DotsDecoratedBox(
+            styleType: buttonTheme.style,
+            decoration: BoxDecoration(
+              borderRadius: borderRadius,
+              border: buttonTheme.borderColor != null
+                  ? Border.all(color: buttonTheme.borderColor ?? Colors.transparent, width: 0.7)
+                  : null,
+            ),
             child: Center(
               child: tag != null
                   ? BadgeTag(

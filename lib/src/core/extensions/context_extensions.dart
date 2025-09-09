@@ -21,4 +21,16 @@ extension ContextExtensions on BuildContext {
       return big;
     }
   }
+
+  /// Returns a width based on a fraction of the screen width.
+  double widthByPercent(double fraction) {
+    assert(fraction >= 0 && fraction <= 1, 'Fraction must be between 0 and 1');
+    return screenWidth * fraction;
+  }
+
+  /// Returns a height based on a fraction of the screen height.
+  double heightByPercent(double fraction) {
+    assert(fraction >= 0 && fraction <= 1, 'Fraction must be between 0 and 1');
+    return screenHeight * fraction;
+  }
 }
