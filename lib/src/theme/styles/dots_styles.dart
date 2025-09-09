@@ -46,6 +46,15 @@ class DotsStyles {
     bgBlur: DotsStyleBlur(
       blur: 50,
     ),
+    blur50: DotsStyleBlur(
+      blur: 50,
+    ),
+    blur12: DotsStyleBlur(
+      blur: 12,
+    ),
+    blur10: DotsStyleBlur(
+      blur: 10,
+    ),
     floatingBtnShadow: DotsStyleShadow(
       color: Color(0x26000000),
       blurRadius: 15,
@@ -110,6 +119,15 @@ class DotsStyles {
     ),
     bgBlur: DotsStyleBlur(
       blur: 50,
+    ),
+    blur50: DotsStyleBlur(
+      blur: 50,
+    ),
+    blur12: DotsStyleBlur(
+      blur: 12,
+    ),
+    blur10: DotsStyleBlur(
+      blur: 10,
     ),
     floatingBtnShadow: DotsStyleShadow(
       color: Color(0x26000000),

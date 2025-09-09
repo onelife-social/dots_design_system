@@ -122,6 +122,7 @@ class DotsDecoratedBox extends StatelessWidget {
     }
     return DecoratedBox(
       decoration: decoration,
+      child: child,
     );
   }
 }

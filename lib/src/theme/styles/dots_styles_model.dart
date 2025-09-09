@@ -10,6 +10,9 @@ class DotsStylesModel {
   final DotsStyleColorGradient bgBasic;
   final DotsStyleColorGradient textBasic;
   final DotsStyleBlur bgBlur;
+  final DotsStyleBlur blur50;
+  final DotsStyleBlur blur12;
+  final DotsStyleBlur blur10;
   final DotsStyleShadow floatingBtnShadow;
   final DotsStyleShadow toastShadow;
   final DotsStyleShadow defaultShadow;
@@ -25,6 +28,9 @@ class DotsStylesModel {
     required this.bgBasic,
     required this.textBasic,
     required this.bgBlur,
+    required this.blur50,
+    required this.blur12,
+    required this.blur10,
     required this.floatingBtnShadow,
     required this.toastShadow,
     required this.defaultShadow,
@@ -44,6 +50,9 @@ class DotsStylesModel {
       bgBasic: bgBasic.lerp(other.bgBasic, t) ?? bgBasic,
       textBasic: textBasic.lerp(other.textBasic, t) ?? textBasic,
       bgBlur: bgBlur.lerp(other.bgBlur, t) ?? bgBlur,
+      blur50: blur50.lerp(other.blur50, t) ?? blur50,
+      blur12: blur12.lerp(other.blur12, t) ?? blur12,
+      blur10: blur10.lerp(other.blur10, t) ?? blur10,
       floatingBtnShadow: floatingBtnShadow.lerp(other.floatingBtnShadow, t) ?? floatingBtnShadow,
       toastShadow: toastShadow.lerp(other.toastShadow, t) ?? toastShadow,
       defaultShadow: defaultShadow.lerp(other.defaultShadow, t) ?? defaultShadow,
