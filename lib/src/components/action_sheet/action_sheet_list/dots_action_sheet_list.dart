@@ -11,8 +11,17 @@ enum ActionSheetListVariant {
   bool get isGhost => this == ActionSheetListVariant.ghost;
 }
 
-class DotsActionSheetList extends StatelessWidget {
+class SelectedGroups {
+  final int id;
+  final String name;
 
+  SelectedGroups({
+    required this.id,
+    required this.name,
+  });
+}
+
+class DotsActionSheetList extends StatelessWidget {
   /// The [variant] parameter determines the type of action sheet.
   /// - [ActionSheetListVariant.main] is the default variant & have a mainButton.
   /// - [ActionSheetListVariant.ghost] have a btn to create a album.
@@ -58,7 +67,7 @@ class DotsActionSheetList extends StatelessWidget {
   final ValueChanged<String>? onInputChanged;
 
   /// The [selectedAlbumNames] is a text list of selected albums at the action sheet.
-  final List<String>? selectedAlbumNames;
+  final List<SelectedGroups>? selectedAlbumNames;
 
   /// The [onBtnChipTap] is a callback for the filter chip tap.
   final Function(int)? onBtnChipTap;
@@ -183,13 +192,13 @@ class DotsActionSheetList extends StatelessWidget {
               ),
               width: double.infinity,
               child: ClipRRect(
-                borderRadius: DotsBorderRadius.r32, 
+                borderRadius: DotsBorderRadius.r32,
                 child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      _Header(
-                        title: title,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    _Header(
+                      title: title,
                       onBackButtonTap: onBackButtonTap,
                       variant: variant,
                       onLabelButtonTap: onLabelButtonTap,
@@ -253,6 +262,7 @@ class DotsActionSheetList extends StatelessWidget {
                       mainButtonText: mainButtonText,
                       onMainButtonTap: onMainButtonTap,
                       mainButtonIcon: mainButtonIcon,
+                      enabled: selectedAlbumNames?.isNotEmpty == true,
                     ),
                   ],
                 ),
@@ -274,7 +284,7 @@ class _Header extends StatelessWidget {
   final DotsIconData inputIcon;
   final String? hintInputText;
   final ValueChanged<String>? onInputChanged;
-  final List<String>? selectedAlbumNames;
+  final List<SelectedGroups>? selectedAlbumNames;
   final Function(int)? onBtnChipTap;
   final bool isScrolled;
   final bool isLabelButtonAvailable;
@@ -312,13 +322,13 @@ class _Header extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: isScrolled
-          ? Border(
-              bottom: BorderSide(
-                color: theme.colors.labelSecondary,
-                width: 0.5,
-              ),
-            )
-          : null,
+            ? Border(
+                bottom: BorderSide(
+                  color: theme.colors.labelSecondary,
+                  width: 0.5,
+                ),
+              )
+            : null,
       ),
       child: Padding(
         padding: EdgeInsets.only(top: 16),
@@ -344,16 +354,16 @@ class _Header extends StatelessWidget {
                   Expanded(
                     child: Center(
                       child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: Text(
-                        title,
-                        style: theme.typo.secondary.title02H6,
-                        textAlign: TextAlign.center,
-                      ),
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Text(
+                          title,
+                          style: theme.typo.secondary.title02H6,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
-                  if (!variant.isGhost)  
+                  if (!variant.isGhost)
                     const SizedBox(width: 24)
                   else
                     Container(
@@ -375,52 +385,51 @@ class _Header extends StatelessWidget {
               duration: const Duration(milliseconds: 200),
               curve: Curves.easeInOut,
               alignment: Alignment.bottomCenter,
-              child: Column(
-                children: [
-                  AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 150),
-                    switchInCurve: Curves.easeInOut,
-                    switchOutCurve: Curves.easeInOut,
-                    transitionBuilder: (child, animation) {
-                      return FadeTransition(
-                        opacity: animation,
-                        child: AnimatedBuilder(
-                          animation: animation,
-                          builder: (context, child) {
-                            return Transform(
-                              alignment: Alignment.center,
-                              transform: Matrix4.diagonal3Values(animation.value, 1.0, 1.0),
-                              child: child,
-                            );
-                          },
-                          child: child,
-                        ),
-                      );
-                    },
-                    child: (!isScrolled || searchBtnHide)
-                        ? Padding(
-                            key: const ValueKey('searchField'),
-                            padding: EdgeInsets.only(
-                              left: 16,
-                              right: 16,
-                              bottom: context.getByRatio(16, 10),
-                            ),
-                            child: DotsTextField(
-                              controller: textFieldController,
-                              focusNode: focus,
-                              onTapBtn: onTapTextFieldBtn,
-                              iconData: inputIcon,
-                              hintText: hintInputText,
-                              onChanged: onInputChanged,
-                            ),
-                          )
-                        : const SizedBox(
-                            key: ValueKey('emptyField'),
+              child: Column(children: [
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 150),
+                  switchInCurve: Curves.easeInOut,
+                  switchOutCurve: Curves.easeInOut,
+                  transitionBuilder: (child, animation) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: AnimatedBuilder(
+                        animation: animation,
+                        builder: (context, child) {
+                          return Transform(
+                            alignment: Alignment.center,
+                            transform: Matrix4.diagonal3Values(animation.value, 1.0, 1.0),
+                            child: child,
+                          );
+                        },
+                        child: child,
+                      ),
+                    );
+                  },
+                  child: (!isScrolled || searchBtnHide)
+                      ? Padding(
+                          key: const ValueKey('searchField'),
+                          padding: EdgeInsets.only(
+                            left: 16,
+                            right: 16,
+                            bottom: context.getByRatio(16, 10),
                           ),
-                  ),
+                          child: DotsTextField(
+                            controller: textFieldController,
+                            focusNode: focus,
+                            onTapBtn: onTapTextFieldBtn,
+                            iconData: inputIcon,
+                            hintText: hintInputText,
+                            onChanged: onInputChanged,
+                          ),
+                        )
+                      : const SizedBox(
+                          key: ValueKey('emptyField'),
+                        ),
+                ),
                 if (selectedAlbumNames?.isNotEmpty == true)
                   Padding(
-                    padding:  EdgeInsets.only(bottom: context.getByRatio(16, 10)),
+                    padding: EdgeInsets.only(bottom: context.getByRatio(16, 10)),
                     child: Container(
                       alignment: Alignment.centerLeft,
                       child: SingleChildScrollView(
@@ -443,14 +452,12 @@ class _Header extends StatelessWidget {
                             for (int i = 0; i < selectedAlbumNames!.length; i++)
                               Padding(
                                 padding: EdgeInsets.only(
-                                  left: i == 0
-                                      ? (searchBtnHide ? 16 : 4)
-                                      : 0,
+                                  left: i == 0 ? (searchBtnHide ? 16 : 4) : 0,
                                   right: 4,
                                 ),
                                 child: DotsFilterChip(
-                                  label: selectedAlbumNames?[i],
-                                  onTap: () => onBtnChipTap?.call(i),
+                                  label: selectedAlbumNames?[i].name,
+                                  onTap: () => onBtnChipTap?.call(selectedAlbumNames![i].id),
                                 ),
                               ),
                           ],
@@ -458,8 +465,7 @@ class _Header extends StatelessWidget {
                       ),
                     ),
                   ),
-                ]
-              ),
+              ]),
             ),
           ],
         ),
@@ -469,7 +475,6 @@ class _Header extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-
   final String? listTitle;
   final List<DotsListItemModel>? listItems;
   final bool isEmptySearch;
@@ -566,6 +571,7 @@ class _Footer extends StatelessWidget {
   final String mainButtonText;
   final Function() onMainButtonTap;
   final DotsIconData mainButtonIcon;
+  final bool enabled;
 
   const _Footer({
     super.key,
@@ -573,7 +579,7 @@ class _Footer extends StatelessWidget {
     required this.mainButtonText,
     required this.onMainButtonTap,
     this.mainButtonIcon = DotsIconData.add,
-
+    this.enabled = true,
   });
 
   @override
@@ -589,6 +595,7 @@ class _Footer extends StatelessWidget {
                 variant: DotsMainButtonVariant.main,
                 size: DotsMainButtonSize.mainAction,
                 onTap: onMainButtonTap,
+                enabled: enabled,
               )
             : DotsIconButton(
                 icon: mainButtonIcon,

@@ -378,6 +378,12 @@ List<Story> get actionSheetStories => [
               return ValueListenableBuilder<List<String>>(
                 valueListenable: albumsNotifier,
                 builder: (context, albums, _) {
+                  final List<SelectedGroups> selectedAlbums = albums
+                      .asMap()
+                      .entries
+                      .map((entry) => SelectedGroups(id: entry.key, name: entry.value))
+                      .toList();
+
                   return DotsActionSheetList(
                     variant: context.knobs.options<ActionSheetListVariant>(
                       label: 'Variant',
@@ -415,7 +421,7 @@ List<Story> get actionSheetStories => [
                     ),
                     labelButtonText:
                         context.knobs.text(label: 'Label Button Text', initial: 'Label'),
-                    selectedAlbumNames: albums,
+                    selectedAlbumNames: selectedAlbums,
                     onBtnChipTap: (int index) {
                       final newList = List<String>.from(albums);
                       newList.removeAt(index);
