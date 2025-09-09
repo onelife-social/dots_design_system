@@ -21,4 +21,16 @@ extension ContextExtensions on BuildContext {
       return big;
     }
   }
+
+  /// Returns a width based on a percentage of the screen width.
+  double widthByPercent(double percent) {
+    assert(percent >= 0 && percent <= 1, 'Percent must be between 0 and 1');
+    return screenWidth * percent;
+  }
+
+  /// Returns a height based on a percentage of the screen height.
+  double heightByPercent(double percent) {
+    assert(percent >= 0 && percent <= 1, 'Percent must be between 0 and 1');
+    return screenHeight * percent;
+  }
 }

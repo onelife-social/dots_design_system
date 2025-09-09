@@ -66,6 +66,24 @@ List<Story> get buttonStories => [
                   options: DotsIconButtonVariant.values
                       .map((item) => Option(label: item.name, value: item))
                       .toList()),
+              style: context.knobs.options<DotsIconButtonStyle>(
+                  label: 'Style',
+                  initial: DotsIconButtonStyle.defaultStyle,
+                  options: DotsIconButtonStyle.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList()),
+              state: context.knobs.options<DotsIconButtonState>(
+                  label: 'State',
+                  initial: DotsIconButtonState.defaultState,
+                  options: DotsIconButtonState.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList()),
+              direction: context.knobs.options<DotsIconButtonDirection>(
+                  label: 'Direction',
+                  initial: DotsIconButtonDirection.column,
+                  options: DotsIconButtonDirection.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList()),
               tag: context.knobs.nullable.text(label: 'Tag', initial: '5', enabled: false),
               onTap: () {},
             ),

@@ -52,7 +52,6 @@ enum DotsIconData {
   volleyball('ic-volleyball.svg', DotsIconGroup.album),
 
   // Arrow
-  blank('ic-_.svg', DotsIconGroup.arrow),
   diagonalUp('ic-arrow-diagonal-up.svg', DotsIconGroup.arrow),
   down('ic-arrow-down.svg', DotsIconGroup.arrow),
   right('ic-arrow-right.svg', DotsIconGroup.arrow),
@@ -63,6 +62,7 @@ enum DotsIconData {
   chevronLeft('ic-chevron-left.svg', DotsIconGroup.arrow),
   chevronRight('ic-chevron-right.svg', DotsIconGroup.arrow),
   chevronUp('ic-chevron-up.svg', DotsIconGroup.arrow),
+  circlePath('ic-circle-path.svg', DotsIconGroup.arrow),
   download('ic-download.svg', DotsIconGroup.arrow),
   downloadCircle('ic-download-circle.svg', DotsIconGroup.arrow),
   downloadCircleCrossed('ic-download-circle-crossed.svg', DotsIconGroup.arrow),

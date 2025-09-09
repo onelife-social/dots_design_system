@@ -17,11 +17,11 @@ enum DotsIconButtonSize {
   ),
   small(
     size: 28,
-    iconSize: 20,
+    iconSize: 14,
   ),
   extraSmall(
     size: 22,
-    iconSize: 20,
+    iconSize: 14,
   );
 
   final double size;
@@ -37,6 +37,7 @@ enum DotsIconButtonSize {
   const DotsIconButtonSize({required this.size, required this.iconSize});
 }
 
+@Deprecated('Use DotsIconButtonStyle and DotsIconButtonState instead')
 enum DotsIconButtonVariant {
   solid,
   photo,
@@ -49,6 +50,30 @@ enum DotsIconButtonVariant {
   bool get isActive => this == DotsIconButtonVariant.active;
   bool get isNoBackground => this == DotsIconButtonVariant.noBackground;
   bool get isPhotoDisable => this == DotsIconButtonVariant.photoDisable;
+}
+
+enum DotsIconButtonStyle {
+  defaultStyle,
+  onPhoto,
+  floating,
+  noBackground;
+
+  bool get isSolid => this == DotsIconButtonStyle.defaultStyle;
+  bool get isPhoto => this == DotsIconButtonStyle.onPhoto;
+  bool get isActive => this == DotsIconButtonStyle.floating;
+  bool get isNoBackground => this == DotsIconButtonStyle.noBackground;
+}
+
+enum DotsIconButtonState {
+  defaultState,
+  active,
+  disabled,
+  destructive;
+
+  bool get isSolid => this == DotsIconButtonState.defaultState;
+  bool get isPhoto => this == DotsIconButtonState.active;
+  bool get isActive => this == DotsIconButtonState.disabled;
+  bool get isDestructive => this == DotsIconButtonState.destructive;
 }
 
 enum DotsIconButtonDirection {

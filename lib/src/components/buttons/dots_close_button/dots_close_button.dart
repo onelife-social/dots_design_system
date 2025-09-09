@@ -6,7 +6,7 @@ import 'dots_close_button_theme.dart';
 class DotsCloseButton extends StatelessWidget {
   const DotsCloseButton({
     super.key,
-    required this.icon,
+    this.icon = DotsIconData.cross,
     this.size = DotsCloseButtonSize.large,
     this.variant = DotsCloseButtonVariant.softContrast,
     this.onTap,
@@ -15,7 +15,7 @@ class DotsCloseButton extends StatelessWidget {
 
   /// The icon to display on the button.
   final DotsIconData icon;
- 
+
   /// The size of the button.
   ///
   /// Defaults to [DotsCloseButtonSize.large].
@@ -28,7 +28,7 @@ class DotsCloseButton extends StatelessWidget {
 
   /// Callback when the button is tapped.
   final Function()? onTap;
-  
+
   /// Optional color for the icon.
   ///
   /// If not provided, the icon will use the default color from the theme.

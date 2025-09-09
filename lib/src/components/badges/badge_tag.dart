@@ -44,14 +44,16 @@ class BadgeTag extends StatelessWidget {
             ),
             alignment: Alignment.center,
             child: Center(
-              child: Text(
-                tag,
-                maxLines: 1,
-                textAlign: TextAlign.center,
-                style: theme.typo.main.labelSmallMedium.copyWith(
-                  color: theme.colors.labelAlwaysWhite,
-                ),
-              ),
+              child: tag.isEmpty
+                  ? SizedBox.shrink()
+                  : Text(
+                      tag,
+                      maxLines: 1,
+                      textAlign: TextAlign.center,
+                      style: theme.typo.main.labelSmallMedium.copyWith(
+                        color: theme.colors.labelAlwaysWhite,
+                      ),
+                    ),
             ),
           ),
         ),
