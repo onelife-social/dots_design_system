@@ -22,7 +22,7 @@ class FolderCarrousel extends StatelessWidget {
           icon: buttonsData[i].icon,
           text: buttonsData[i].text,
           onTap: buttonsData[i].onTap,
-          onLongPress: buttonsData[i].onPressed,
+          onPressed: buttonsData[i].onPressed,
           isSelected: buttonsData[i].isSelected,
           iconSelectedColor: buttonsData[i].iconSelectedColor,
           isEditable: buttonsData[i].isEditable,

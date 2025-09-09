@@ -12,7 +12,7 @@ class BtnFolder extends StatelessWidget {
   final VoidCallback? onTap;
 
   // Callback function when the button is pressed.
-  final VoidCallback? onLongPress;
+  final VoidCallback? onPressed;
 
   // Variable to determine if the button is selected.
   final bool isSelected;
@@ -31,7 +31,7 @@ class BtnFolder extends StatelessWidget {
     required this.icon,
     this.text,
     required this.onTap,
-    required this.onLongPress,
+    required this.onPressed,
     this.isSelected = false,
     required this.iconSelectedColor,
     this.showEditIcon = false,
@@ -40,33 +40,27 @@ class BtnFolder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 47,
-      child: Align(
-        alignment: Alignment.bottomCenter,
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(21),
-              child: _FolderButton(
-                isSelected: isSelected,
-                onTap: onTap,
-                onLongPress: onLongPress,
-                icon: icon,
-                iconSelectedColor: iconSelectedColor,
-                text: text,
-              ),
-            ),
-            if (showEditIcon && isEditable)
-              Positioned(
-                right: -5,
-                top: -5,
-                child: _EditIcon(onPressed: onLongPress),
-              ),
-          ],
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(21),
+          child: _FolderButton(
+            isSelected: isSelected,
+            onTap: onTap,
+            onPressed: onPressed,
+            icon: icon,
+            iconSelectedColor: iconSelectedColor,
+            text: text,
+          ),
         ),
-      ),
+        if (showEditIcon && isEditable)
+          Positioned(
+            right: -5,
+            top: -5,
+            child: _EditIcon(onPressed: onPressed),
+          ),
+      ],
     );
   }
 }
@@ -74,7 +68,7 @@ class BtnFolder extends StatelessWidget {
 class _FolderButton extends StatelessWidget {
   final bool isSelected;
   final VoidCallback? onTap;
-  final VoidCallback? onLongPress;
+  final VoidCallback? onPressed;
   final DotsIconData icon;
   final Color iconSelectedColor;
   final String? text;
@@ -82,7 +76,7 @@ class _FolderButton extends StatelessWidget {
   const _FolderButton({
     this.isSelected = false,
     required this.onTap,
-    required this.onLongPress,
+    required this.onPressed,
     required this.icon,
     required this.iconSelectedColor,
     this.text,
@@ -92,7 +86,7 @@ class _FolderButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      onLongPress: onLongPress,
+      onLongPress: onPressed,
       child: AnimatedSize(
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeInOut,
