@@ -2,13 +2,15 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/widgets.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
+import '../../components/album_group_card_demo_page.dart';
+
 List<Story> get groupCards => [
       Story(
         name: 'Cards/Album Group Cards',
         description: 'Demo page for album group cards',
         builder: (context) => Padding(
           padding: const EdgeInsets.all(16.0),
-          child: AlbumGroupCard(
+          child: AlbumGroupCardDemoPage(
             imageProvider: NetworkImage(
               context.knobs.text(
                 label: 'Container background image',
@@ -29,8 +31,6 @@ List<Story> get groupCards => [
               options:
                   DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
             ),
-            onTap: () {},
-            onError: (exception, stackTrace) {},
           ),
         ),
       ),
