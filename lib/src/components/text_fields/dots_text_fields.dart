@@ -102,6 +102,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
 
   void _defaultClear() {
     _controller.clear();
+    widget.onChanged?.call('');
   }
 
   @override

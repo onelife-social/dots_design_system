@@ -21,6 +21,10 @@ class DotsToast extends StatelessWidget {
         return theme.colors.labelDestructive;
       case DotsToastVariant.info:
         return theme.colors.textTertiary;
+      case DotsToastVariant.connectionResumed:
+        return theme.colors.labelHighlight;
+      case DotsToastVariant.connectionLost:
+        return theme.colors.labelDestructive;
     }
   }
 
@@ -35,6 +39,10 @@ class DotsToast extends StatelessWidget {
         return DotsIconData.crossCircle;
       case DotsToastVariant.info:
         return DotsIconData.alertCircle;
+      case DotsToastVariant.connectionResumed:
+        return DotsIconData.connectionOn;
+      case DotsToastVariant.connectionLost:
+        return DotsIconData.connectionOff;
     }
   }
 
