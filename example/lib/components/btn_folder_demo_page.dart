@@ -35,7 +35,7 @@ class _BtnFolderDemoPageState extends State<BtnFolderDemoPage> {
             icon: widget.icon.iconData,
             text: widget.text,
             onTap: () {},
-            onPressed: () {
+            onLongPress: () {
               setState(() {
                 isSelected = !isSelected;
               });
