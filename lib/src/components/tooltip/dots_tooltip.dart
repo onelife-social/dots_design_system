@@ -1,8 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-import 'dots_tooltip_enums.dart';
-
 class DotsTooltip extends StatelessWidget {
   final DotsIconData? icon;
   final String text;
@@ -57,24 +55,6 @@ class DotsTooltip extends StatelessWidget {
       case DotsToolTipTailPosition.bottomAlignCenter:
       case DotsToolTipTailPosition.topAlignCenter:
         return 0;
-    }
-  }
-
-  bool isLeft() {
-    switch (tailPosition) {
-      case DotsToolTipTailPosition.bottomAlignLeadingEdge:
-      case DotsToolTipTailPosition.topAlignLeadingEdge:
-      case DotsToolTipTailPosition.bottomAlignLeading:
-      case DotsToolTipTailPosition.topAlignLeading:
-        return true;
-      case DotsToolTipTailPosition.bottomAlignTrailingEdge:
-      case DotsToolTipTailPosition.topAlignTrailingEdge:
-      case DotsToolTipTailPosition.topAlignTrailing:
-      case DotsToolTipTailPosition.bottomAlignTrailing:
-        return false;
-      case DotsToolTipTailPosition.bottomAlignCenter:
-      case DotsToolTipTailPosition.topAlignCenter:
-        return true;
     }
   }
 
