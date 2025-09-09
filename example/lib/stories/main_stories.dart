@@ -565,4 +565,28 @@ List<Story> get allStories => [
               divisions: context.knobs.sliderInt(label: 'Divisions', initial: 7, min: 1, max: 10));
         },
       ),
+      Story(
+        name: 'Tooltip',
+        description: 'Demo page for Tooltip',
+        builder: (context) {
+          return DotsTooltip(
+            text: context.knobs.text(label: 'Tooltip message', initial: 'This is a tooltip'),
+            tailPosition: context.knobs.options<DotsToolTipTailPosition>(
+              label: 'Tail Position',
+              initial: DotsToolTipTailPosition.topAlignLeading,
+              options: DotsToolTipTailPosition.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
+            showCloseButton: context.knobs.boolean(label: 'Show close button', initial: true),
+            icon: context.knobs.options<DotsIconData>(
+              label: 'Icon',
+              initial: DotsIconData.eye,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+            onTap: () {},
+          );
+        },
+      ),
     ];
