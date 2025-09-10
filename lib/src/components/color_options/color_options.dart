@@ -8,15 +8,18 @@ enum DotsColorOption {
   friends010,
   friends005,
   class005,
+  class009,
   wedding002,
   family006,
   family004,
   child006,
   child002,
   celebration002,
-  hobby009,
   hobby004,
-  couple005;
+  hobby005,
+  hobby009,
+  couple005,
+  work005;
 }
 
 extension DotsColorOptionExtension on DotsColorOption {
@@ -35,6 +38,8 @@ extension DotsColorOptionExtension on DotsColorOption {
         return theme.colors.friends005;
       case DotsColorOption.class005:
         return theme.colors.class005;
+      case DotsColorOption.class009:
+        return theme.colors.class009;
       case DotsColorOption.wedding002:
         return theme.colors.wedding002;
       case DotsColorOption.family006:
@@ -51,8 +56,12 @@ extension DotsColorOptionExtension on DotsColorOption {
         return theme.colors.hobby009;
       case DotsColorOption.hobby004:
         return theme.colors.hobby004;
+      case DotsColorOption.hobby005:
+        return theme.colors.hobby005;
       case DotsColorOption.couple005:
         return theme.colors.couple005;
+      case DotsColorOption.work005:
+        return theme.colors.work005;
     }
   }
 }
