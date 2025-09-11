@@ -217,59 +217,64 @@ class _MenuEvent extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    return ClipRRect(
-      borderRadius: DotsBorderRadius.r20,
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-        child: Container(
-          padding: const EdgeInsets.all(10),
-          decoration: ShapeDecoration(
-            color: theme.colors.bgBtnDisabled,
-            shape: RoundedRectangleBorder(
-              borderRadius: DotsBorderRadius.r20,
+    return GestureDetector(
+      child: ClipRRect(
+        borderRadius: DotsBorderRadius.r20,
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            decoration: ShapeDecoration(
+              color: theme.colors.bgBtnDisabled,
+              shape: RoundedRectangleBorder(
+                borderRadius: DotsBorderRadius.r20,
+              ),
             ),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: List.generate(max(0, actions.length * 2 - 1), (i) {
-              if (i.isOdd) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 6),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: List.generate(max(0, actions.length * 2 - 1), (i) {
+                if (i.isOdd) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    child: Container(
+                      width: 0.5,
+                      height: 22.78,
+                      color: Colors.black.dotsWithOpacity(0.1),
+                    ),
+                  );
+                }
+                final action = actions[i ~/ 2];
+                return GestureDetector(
+                  onTap: action.onTap,
                   child: Container(
-                    width: 0.5,
-                    height: 22.78,
-                    color: Colors.black.dotsWithOpacity(0.1),
+                    color: Colors.transparent,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        DotsIcon(
+                          iconData: action.icon,
+                          size: 20,
+                          color: theme.colors.labelAlwaysWhite,
+                        ),
+                        SizedBox(
+                          width: 46,
+                          child: Text(
+                            action.text,
+                            textAlign: TextAlign.center,
+                            style: theme.typo.main.labelSmallRegular
+                                .copyWith(color: theme.colors.labelAlwaysWhite),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
-              }
-              final action = actions[i ~/ 2];
-              return GestureDetector(
-                onTap: action.onTap,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    DotsIcon(
-                      iconData: action.icon,
-                      size: 20,
-                      color: theme.colors.labelAlwaysWhite,
-                    ),
-                    SizedBox(
-                      width: 46,
-                      child: Text(
-                        action.text,
-                        textAlign: TextAlign.center,
-                        style: theme.typo.main.labelSmallRegular
-                            .copyWith(color: theme.colors.labelAlwaysWhite),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }),
+              }),
+            ),
           ),
         ),
       ),
