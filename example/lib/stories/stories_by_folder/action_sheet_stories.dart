@@ -8,13 +8,7 @@ List<Story> get actionSheetStories => [
         description: 'Demo page for Group Alerts popup',
         builder: (context) {
           return DotsActionSheetSpotlight(
-            variant: context.knobs.options<DotsActionSheetSpotlightVariant>(
-              label: 'Variant',
-              initial: DotsActionSheetSpotlightVariant.alert,
-              options: DotsActionSheetSpotlightVariant.values
-                  .map((item) => Option(label: item.name, value: item))
-                  .toList(),
-            ),
+            variant: DotsActionSheetSpotlightVariant.alert,
             title: context.knobs.text(label: 'Title', initial: 'Boda M&L'),
             label: context.knobs.text(label: 'Label', initial: 'hace 3 min'),
             bodyTitle: context.knobs.text(label: 'Alert Title', initial: '¡El bus sale en 10min!'),
@@ -48,6 +42,10 @@ List<Story> get actionSheetStories => [
                 ),
               );
             },
+            imageWidth: context.knobs.slider(label: 'Image width', initial: 96, min: 0, max: 400),
+            imageHeight: context.knobs.slider(label: 'Image height', initial: 96, min: 0, max: 400),
+            iconSize: context.knobs.slider(label: 'Icon size', initial: 20, min: 0, max: 50),
+            iconOffset: context.knobs.slider(label: 'Icon offset', initial: 4, min: -20, max: 80),
           );
         },
       ),
@@ -56,13 +54,7 @@ List<Story> get actionSheetStories => [
         description: 'Demo page for user Birthday popup',
         builder: (context) {
           return DotsActionSheetSpotlight(
-            variant: context.knobs.options<DotsActionSheetSpotlightVariant>(
-              label: 'Variant',
-              initial: DotsActionSheetSpotlightVariant.user,
-              options: DotsActionSheetSpotlightVariant.values
-                  .map((item) => Option(label: item.name, value: item))
-                  .toList(),
-            ),
+            variant: DotsActionSheetSpotlightVariant.user,
             title: context.knobs.text(label: 'Title', initial: '¡Hoy es el cumpleaños de Carmen!'),
             label: context.knobs.text(label: 'Label', initial: '@carmenmu17 · 24 años'),
             description: context.knobs.text(
@@ -93,6 +85,9 @@ List<Story> get actionSheetStories => [
                 ),
               );
             },
+            imageWidth: context.knobs.slider(label: 'Image width', initial: 96, min: 0, max: 400),
+            iconSize: context.knobs.slider(label: 'Icon size', initial: 20, min: 0, max: 50),
+            iconOffset: context.knobs.slider(label: 'Icon offset', initial: 4, min: -20, max: 80),
           );
         },
       ),
@@ -101,13 +96,7 @@ List<Story> get actionSheetStories => [
         description: 'Demo page for Aniversary/Pet birthday/Son-daughter birthday popup',
         builder: (context) {
           return DotsActionSheetSpotlight(
-            variant: context.knobs.options<DotsActionSheetSpotlightVariant>(
-              label: 'Variant',
-              initial: DotsActionSheetSpotlightVariant.album,
-              options: DotsActionSheetSpotlightVariant.values
-                  .map((item) => Option(label: item.name, value: item))
-                  .toList(),
-            ),
+            variant: DotsActionSheetSpotlightVariant.album,
             title: context.knobs.text(label: 'Title', initial: '¡Hoy cumplís 8 años juntos!'),
             description: context.knobs.text(
                 label: 'Description', initial: 'Tenéis 345 Memories compartidos. Revíverlos y añade nuevos recuerdos.'),
@@ -137,6 +126,10 @@ List<Story> get actionSheetStories => [
                 ),
               );
             },
+            imageWidth: context.knobs.slider(label: 'Image width', initial: 96, min: 0, max: 400),
+            imageHeight: context.knobs.slider(label: 'Image height', initial: 96, min: 0, max: 400),
+            iconSize: context.knobs.slider(label: 'Icon size', initial: 20, min: 0, max: 50),
+            iconOffset: context.knobs.slider(label: 'Icon offset', initial: 4, min: -20, max: 80),
           );
         },
       ),

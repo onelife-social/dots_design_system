@@ -27,28 +27,28 @@ class ImageWithIcon extends StatelessWidget {
   /// Icon widget to display in the top-right corner
   final Widget icon;
 
-  /// Size of the icon
+  /// Size of the icon in pixels
   final double iconSize;
 
-  /// Icon offset
+  /// Custom offset for the icon position. If null, uses default positioning
   final double? iconOffset;
 
-  /// Width of the widget
+  /// Width of the widget in pixels
   final double width;
 
-  /// Height of the widget
+  /// Height of the widget in pixels
   final double height;
 
-  /// Border radius for the card
+  /// Border radius for the card corners in pixels
   final double borderRadius;
 
-  /// Elevation of the card
+  /// Elevation of the card for shadow effect
   final double elevation;
 
-  /// Border width
+  /// Width of the border around the image in pixels
   final double borderWidth;
 
-  /// Whether to make the image circular
+  /// Whether to make the image circular instead of rounded rectangle
   final bool circularImage;
 
   @override

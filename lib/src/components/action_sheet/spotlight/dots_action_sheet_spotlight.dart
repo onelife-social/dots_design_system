@@ -10,19 +10,45 @@ enum DotsActionSheetSpotlightVariant {
 }
 
 class DotsActionSheetSpotlight extends StatelessWidget {
+  /// Main title text displayed prominently in the action sheet
   final String title;
+
+  /// Optional label text displayed below the title
   final String? label;
+
+  /// Optional body title for alert variant, displayed in a bordered container
   final String? bodyTitle;
+
+  /// Optional description text displayed below the title/label
   final String? description;
+
+  /// Image provider for the main image displayed at the top
   final ImageProvider image;
+
+  /// Callback function called when the close button is tapped
   final VoidCallback? onClose;
+
+  /// Primary action button widget displayed at the bottom
   final Widget primaryButton;
+
+  /// Visual variant that determines the layout and styling
   final DotsActionSheetSpotlightVariant variant;
+
+  /// Icon data for the icon displayed on the image
   final DotsIconData iconData;
+
+  /// Width of the image in pixels
   final double imageWidth;
+
+  /// Height of the image in pixels
   final double imageHeight;
+
+  /// Size of the icon in pixels
   final double iconSize;
+
+  /// Offset for positioning the icon on the image
   final double iconOffset;
+
   const DotsActionSheetSpotlight({
     super.key,
     required this.variant,
@@ -50,8 +76,8 @@ class DotsActionSheetSpotlight extends StatelessWidget {
     final topWidget = ImageWithIcon(
       image: image,
       icon: DotsIcon(iconData: iconData),
-      height: imageHeight,
       width: imageWidth,
+      height: variant == DotsActionSheetSpotlightVariant.user ? imageWidth : imageHeight,
       iconSize: iconSize,
       iconOffset: iconOffset,
       circularImage: variant == DotsActionSheetSpotlightVariant.user,
@@ -70,9 +96,9 @@ class DotsActionSheetSpotlight extends StatelessWidget {
                   Text(bodyTitle!,
                       textAlign: TextAlign.center,
                       style: context.dotsTheme.typo.main.bodyLargeBold),
-                SizedBox(height: bodyTitle != null && description != null ? 6 : 0),
-                if (description != null)
-                  Text(description!,
+                SizedBox(height: bodyTitle != null && this.description != null ? 6 : 0),
+                if (this.description != null)
+                  Text(this.description!,
                       textAlign: TextAlign.center,
                       style: context.dotsTheme.typo.main.bodyDefaultRegular),
               ],
@@ -162,7 +188,7 @@ class DotsActionSheetSpotlight extends StatelessWidget {
                                 SizedBox(height: 12),
                                 SizedBox(
                                   width: double.infinity,
-                                  child: Text(description!,
+                                  child: Text(description,
                                       textAlign: TextAlign.center,
                                       style: theme.typo.main.bodyDefaultRegular.copyWith(
                                         color: theme.colors.textSecondary,
@@ -174,7 +200,7 @@ class DotsActionSheetSpotlight extends StatelessWidget {
                           ),
                           if (bottomWidget != null) ...[
                             SizedBox(height: 16),
-                            bottomWidget!,
+                            bottomWidget,
                             SizedBox(height: 20),
                           ],
                           SizedBox(height: 20),
