@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class DotsActionSheetRadioButtons extends StatefulWidget {
   /// Widget displayed at the top of the sheet.
-  final Widget topWidget;
+  final Widget? topWidget;
 
   /// Title text.
   final String title;
@@ -37,7 +37,7 @@ class DotsActionSheetRadioButtons extends StatefulWidget {
 
   const DotsActionSheetRadioButtons({
     super.key,
-    required this.topWidget,
+    this.topWidget,
     required this.title,
     required this.subtitle,
     required this.items,
@@ -141,7 +141,7 @@ class _DotsActionSheetRadioButtonsState extends State<DotsActionSheetRadioButton
                       height: isSmall ? sheetFixedSmall : null,
                       forceHeight: isSmall,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 16, right: 16, top: 32, bottom: 16),
+                        padding: const EdgeInsets.only(top: 16),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -173,7 +173,7 @@ class _DotsActionSheetRadioButtonsState extends State<DotsActionSheetRadioButton
                       ),
                     ),
                     Positioned(
-                      top: 8,
+                      top: 16,
                       left: 0,
                       right: 0,
                       child: const Center(child: Grabber()),
