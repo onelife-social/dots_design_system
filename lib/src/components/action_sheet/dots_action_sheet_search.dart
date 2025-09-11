@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class DotsActionSheetSearch extends StatelessWidget {
   final String title;
   final String hintText;
-  final String description;
   final Widget topWidget;
   final Widget? bottomWidget;
   final VoidCallback onClose;
@@ -31,7 +30,6 @@ class DotsActionSheetSearch extends StatelessWidget {
     super.key,
     required this.title,
     required this.hintText,
-    this.description = '',
     required this.topWidget,
     this.bottomWidget,
     required this.onClose,

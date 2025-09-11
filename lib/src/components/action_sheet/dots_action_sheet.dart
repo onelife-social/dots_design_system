@@ -165,7 +165,6 @@ class DotsActionSheet extends StatelessWidget {
       case DotsActionSheetVariant.search:
         return DotsActionSheetSearch(
           title: title,
-          description: description,
           hintText: hintText,
           topWidget: topWidget,
           bottomWidget: bottomWidget,

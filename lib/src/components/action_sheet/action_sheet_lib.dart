@@ -8,3 +8,4 @@ export 'action_sheet_list/dots_action_sheet_list.dart';
 export 'action_sheet_list/dots_action_sheet_list_icon.dart';
 export 'action_sheet_radio_buttons/dots_action_sheet_radio_buttons.dart';
 export 'grabber.dart';
+export 'spotlight/dots_action_sheet_spotlight.dart';
