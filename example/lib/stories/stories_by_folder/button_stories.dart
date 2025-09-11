@@ -141,7 +141,7 @@ List<Story> get buttonStories => [
         ),
       ),
       Story(
-        name: 'Btn Folder',
+        name: 'Buttons/Btn Folder',
         description: 'Demo page for Btn Folder',
         builder: (context) => BtnFolderDemoPage(
           text: context.knobs.text(label: 'Weddings', initial: 'Weddings'),

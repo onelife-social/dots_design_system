@@ -14,8 +14,10 @@ extension ContextExtensions on BuildContext {
   double get screenWidth => MediaQuery.of(this).size.width;
   double get screenHeight => MediaQuery.of(this).size.height;
 
+  bool get isSmallScreen => MediaQuery.of(this).aspectRatio <= kBigRatio;
+
   T getByRatio<T>(T big, T small) {
-    if (MediaQuery.of(this).aspectRatio <= kBigRatio) {
+    if (isSmallScreen) {
       return small;
     } else {
       return big;
