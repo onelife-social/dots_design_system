@@ -64,8 +64,7 @@ class RadioCardIcons extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       spacing: 16,
       children: [
-        Flexible(
-          fit: FlexFit.loose,
+        Expanded(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
