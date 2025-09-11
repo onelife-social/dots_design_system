@@ -247,26 +247,29 @@ class _MenuEvent extends StatelessWidget {
               final action = actions[i ~/ 2];
               return GestureDetector(
                 onTap: action.onTap,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    DotsIcon(
-                      iconData: action.icon,
-                      size: 20,
-                      color: theme.colors.labelAlwaysWhite,
-                    ),
-                    SizedBox(
-                      width: 46,
-                      child: Text(
-                        action.text,
-                        textAlign: TextAlign.center,
-                        style: theme.typo.main.labelSmallRegular
-                            .copyWith(color: theme.colors.labelAlwaysWhite),
+                child: Container(
+                  color: Colors.transparent,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      DotsIcon(
+                        iconData: action.icon,
+                        size: 20,
+                        color: theme.colors.labelAlwaysWhite,
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        width: 46,
+                        child: Text(
+                          action.text,
+                          textAlign: TextAlign.center,
+                          style: theme.typo.main.labelSmallRegular
+                              .copyWith(color: theme.colors.labelAlwaysWhite),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             }),
