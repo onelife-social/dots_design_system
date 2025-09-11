@@ -16,7 +16,7 @@ class DotsToggle extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoSwitch(
       value: isSelected,
-      onChanged: null,
+      onChanged: (_) {},
       activeTrackColor: context.dotsTheme.colors.labelHighlight,
       thumbColor: context.dotsTheme.colors.labelAlwaysWhite,
     );
