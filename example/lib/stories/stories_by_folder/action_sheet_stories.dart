@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
@@ -662,6 +663,93 @@ List<Story> get actionSheetStories => [
               );
             },
             icons: iconModels,
+          );
+        },
+      ),
+      Story(
+        name: 'Action Sheet/DotsActionSheetRadioButtons',
+        description: 'Demo page for DotsActionSheetRadioButtons',
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return DotsActionSheetRadioButtons(
+                topWidget: CachedNetworkImage(
+                  imageUrl: context.knobs
+                      .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+                  width: 96,
+                ),
+                title: context.knobs.text(label: 'Title', initial: 'Título'),
+                subtitle: context.knobs.text(
+                  label: 'Subtitle',
+                  initial: 'Breve descripción de la acción que se va a realizar o de su estado',
+                ),
+                items: [
+                  RadioCardIcons(
+                    title: '250 memories organizados al día',
+                    details1: '8 min/día',
+                    onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Tapped: 250 memories organizados al día')),
+                    ),
+                    variant: RadioCardIconsVariant.selector,
+                  ),
+                  RadioCardIcons(
+                    title: '500 memories organizados al día',
+                    details1: '12 min/día',
+                    onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Tapped: 500 memories organizados al día')),
+                    ),
+                    variant: RadioCardIconsVariant.selector,
+                  ),
+                  RadioCardIcons(
+                    title: '1000 memories organizados al día',
+                    details1: '15 min/día',
+                    onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Tapped: 1000 memories organizados al día')),
+                    ),
+                    variant: RadioCardIconsVariant.selector,
+                  ),
+                  RadioCardIcons(
+                    title: '1500 memories organizados al día',
+                    details1: '20 min/día',
+                    onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Tapped: 1500 memories organizados al día')),
+                    ),
+                    variant: RadioCardIconsVariant.selector,
+                  ),
+                  RadioCardIcons(
+                    title: '2000 memories organizados al día',
+                    details1: '25 min/día',
+                    onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Tapped: 2000 memories organizados al día')),
+                    ),
+                    variant: RadioCardIconsVariant.selector,
+                  ),
+                  RadioCardIcons(
+                    title: '2500 memories organizados al día',
+                    details1: '30 min/día',
+                    onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Tapped: 2500 memories organizados al día')),
+                    ),
+                    variant: RadioCardIconsVariant.selector,
+                  ),
+                  RadioCardIcons(
+                    title: '3000 memories organizados al día',
+                    details1: '35 min/día',
+                    onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Tapped: 3000 memories organizados al día')),
+                    ),
+                    variant: RadioCardIconsVariant.selector,
+                  ),
+                ],
+                buttonLabel: 'Siguiente',
+                onTapButton: () => ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Tapped: button')),
+                ),
+                onClose: () => ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Tapped: close / tapped outside to close')),
+                ),
+              );
+            },
           );
         },
       ),
