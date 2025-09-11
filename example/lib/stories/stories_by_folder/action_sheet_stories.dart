@@ -86,6 +86,13 @@ List<Story> get actionSheetStories => [
                 );
               },
             ),
+            onClose: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('onClose'),
+                ),
+              );
+            },
           );
         },
       ),

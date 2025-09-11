@@ -42,6 +42,11 @@ class DotsActionSheetSpotlight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+    final double bottomPosition = 56;
+    final bool showCloseButton = variant != DotsActionSheetSpotlightVariant.user && onClose != null;
+    final description = variant == DotsActionSheetSpotlightVariant.alert ? null : this.description;
+
     final topWidget = ImageWithIcon(
       image: image,
       icon: DotsIcon(iconData: iconData),
@@ -74,44 +79,6 @@ class DotsActionSheetSpotlight extends StatelessWidget {
             ),
           )
         : null;
-    return _DotsActionSheetStandard2(
-      topWidget: topWidget,
-      title: title,
-      description: variant == DotsActionSheetSpotlightVariant.alert ? null : description,
-      bottomWidget: bottomWidget,
-      primaryButton: primaryButton,
-      onClose: onClose ?? () {},
-      showCloseButton: variant != DotsActionSheetSpotlightVariant.user && onClose != null,
-      label: label,
-    );
-  }
-}
-
-class _DotsActionSheetStandard2 extends StatelessWidget {
-  final String title;
-  final String? label;
-  final String? description;
-  final Widget topWidget;
-  final Widget? bottomWidget;
-  final VoidCallback onClose;
-  final Widget primaryButton;
-  final bool showCloseButton;
-
-  const _DotsActionSheetStandard2({
-    required this.title,
-    this.description,
-    required this.topWidget,
-    this.bottomWidget,
-    required this.onClose,
-    required this.primaryButton,
-    this.showCloseButton = false,
-    this.label,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-    final double bottomPosition = 56;
 
     return Stack(
       children: [
