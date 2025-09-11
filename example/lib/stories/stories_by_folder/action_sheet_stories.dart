@@ -36,7 +36,7 @@ List<Story> get actionSheetStories => [
                     onTap: () {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Back button tapped!'),
+                          content: Text('Ir al álbum'),
                         ),
                       );
                     },
@@ -44,7 +44,7 @@ List<Story> get actionSheetStories => [
             onClose: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text('Close button tapped!'),
+                  content: Text('onClose'),
                 ),
               );
             },
@@ -81,7 +81,7 @@ List<Story> get actionSheetStories => [
               onTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Back button tapped!'),
+                    content: Text('Cerrar'),
                   ),
                 );
               },
@@ -118,7 +118,7 @@ List<Story> get actionSheetStories => [
               onTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Back button tapped!'),
+                    content: Text('Ir al álbum'),
                   ),
                 );
               },
@@ -126,7 +126,7 @@ List<Story> get actionSheetStories => [
             onClose: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text('Close button tapped!'),
+                  content: Text('onClose'),
                 ),
               );
             },
