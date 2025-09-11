@@ -168,7 +168,7 @@ enum DotsIconData {
   prime1('ic-prime-1.svg', DotsIconGroup.premium),
   prime2('ic-prime-2.svg', DotsIconGroup.premium),
   volumeOff('ic-volume--off.svg', DotsIconGroup.premium),
-  volume('ic-volume--off.svg', DotsIconGroup.premium),
+  volume('ic-volume.svg', DotsIconGroup.premium),
 
   // Social
   chat('ic-chat.svg', DotsIconGroup.social),

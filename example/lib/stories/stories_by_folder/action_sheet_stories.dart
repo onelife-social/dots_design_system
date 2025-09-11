@@ -1,8 +1,138 @@
 import 'package:dots_design_system/dots_design_system.dart';
-import 'package:storybook_flutter/storybook_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:storybook_flutter/storybook_flutter.dart';
 
 List<Story> get actionSheetStories => [
+      Story(
+        name: 'Action Sheet/Alert',
+        description: 'Demo page for Group Alerts popup',
+        builder: (context) {
+          return DotsActionSheetSpotlight(
+            variant: context.knobs.options<DotsActionSheetSpotlightVariant>(
+              label: 'Variant',
+              initial: DotsActionSheetSpotlightVariant.alert,
+              options: DotsActionSheetSpotlightVariant.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
+            title: context.knobs.text(label: 'Title', initial: 'Boda M&L'),
+            label: context.knobs.text(label: 'Label', initial: 'hace 3 min'),
+            bodyTitle: context.knobs.text(label: 'Alert Title', initial: '¡El bus sale en 10min!'),
+            description: context.knobs.text(
+                label: 'Alert Description',
+                initial: 'Breve descripción de la acción que se va a realizar o de su estado'),
+            image: NetworkImage('https://picsum.photos/250?image=9'),
+            iconData: context.knobs.options<DotsIconData>(
+              label: 'Icon Data',
+              initial: DotsIconData.volume,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+            primaryButton: DotsMainButton(
+                    content:
+                        context.knobs.text(label: 'Primary button text', initial: 'Ir a álbum'),
+                    variant: DotsMainButtonVariant.main,
+                    size: DotsMainButtonSize.mainAction,
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Back button tapped!'),
+                        ),
+                      );
+                    },
+                  ),
+            onClose: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Close button tapped!'),
+                ),
+              );
+            },
+          );
+        },
+      ),
+      Story(
+        name: 'Action Sheet/Birthday',
+        description: 'Demo page for user Birthday popup',
+        builder: (context) {
+          return DotsActionSheetSpotlight(
+            variant: context.knobs.options<DotsActionSheetSpotlightVariant>(
+              label: 'Variant',
+              initial: DotsActionSheetSpotlightVariant.user,
+              options: DotsActionSheetSpotlightVariant.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
+            title: context.knobs.text(label: 'Title', initial: '¡Hoy es el cumpleaños de Carmen!'),
+            label: context.knobs.text(label: 'Label', initial: '@carmenmu17 · 24 años'),
+            description: context.knobs.text(
+                label: 'Description', initial: 'Tenéis 4 álbumes y 345 Memories compartidos.'),
+            image: NetworkImage('https://picsum.photos/250?image=9'),
+            iconData: context.knobs.options<DotsIconData>(
+              label: 'Icon Data',
+              initial: DotsIconData.cake,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+            primaryButton: DotsMainButton(
+              content: context.knobs.text(label: 'Primary button text', initial: 'Cerrar'),
+              variant: DotsMainButtonVariant.secondary,
+              size: DotsMainButtonSize.mainAction,
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Back button tapped!'),
+                  ),
+                );
+              },
+            ),
+          );
+        },
+      ),
+      Story(
+        name: 'Action Sheet/Aniversary',
+        description: 'Demo page for Aniversary/Pet birthday/Son-daughter birthday popup',
+        builder: (context) {
+          return DotsActionSheetSpotlight(
+            variant: context.knobs.options<DotsActionSheetSpotlightVariant>(
+              label: 'Variant',
+              initial: DotsActionSheetSpotlightVariant.album,
+              options: DotsActionSheetSpotlightVariant.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
+            title: context.knobs.text(label: 'Title', initial: '¡Hoy cumplís 8 años juntos!'),
+            description: context.knobs.text(
+                label: 'Description', initial: 'Tenéis 345 Memories compartidos. Revíverlos y añade nuevos recuerdos.'),
+            image: NetworkImage('https://picsum.photos/250?image=9'),
+            iconData: context.knobs.options<DotsIconData>(
+              label: 'Icon Data',
+              initial: DotsIconData.heart,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+            primaryButton: DotsMainButton(
+              content: context.knobs.text(label: 'Primary button text', initial: 'Ir al álbum'),
+              variant: DotsMainButtonVariant.main,
+              size: DotsMainButtonSize.mainAction,
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Back button tapped!'),
+                  ),
+                );
+              },
+            ),
+            onClose: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Close button tapped!'),
+                ),
+              );
+            },
+          );
+        },
+      ),
       Story(
         name: 'Action Sheet/DotsActionSheet',
         description: 'Demo page for action sheet',
@@ -132,7 +262,6 @@ List<Story> get actionSheetStories => [
         builder: (context) => DotsActionSheetSearch(
           hintText: context.knobs.text(label: 'hintText', initial: 'Search...'),
           title: context.knobs.text(label: 'title', initial: 'Title'),
-          description: context.knobs.text(label: 'description', initial: 'Description'),
           primaryButton: context.knobs.boolean(label: 'Show primary button', initial: true)
               ? DotsMainButton(
                   content: context.knobs.text(label: 'Primary button text', initial: 'Primary'),
