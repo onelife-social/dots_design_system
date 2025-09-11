@@ -91,16 +91,7 @@ class DotsActionSheetStandard extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 16),
-                            child: Container(
-                              width: 36,
-                              height: 4,
-                              decoration: ShapeDecoration(
-                                color: theme.colors.bgSecondaryBtn,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(2.50),
-                                ),
-                              ),
-                            ),
+                            child: Grabber(),
                           ),
                           topWidget,
                           Container(
