@@ -22,6 +22,11 @@ class DotsActionSheetRadioButtons extends StatefulWidget {
   /// Callback for main action button tap.
   final Function()? onTapButton;
 
+  /// Whether to show the close button.
+  ///
+  /// Defaults to `false`.
+  final bool showCloseButton;
+
   /// Callback for closing the sheet.
   final VoidCallback? onClose;
 
@@ -43,6 +48,7 @@ class DotsActionSheetRadioButtons extends StatefulWidget {
     required this.items,
     this.buttonLabel,
     this.onTapButton,
+    this.showCloseButton = false,
     this.onClose,
     this.showBlurBackground = true,
     this.bottomPosition = 56,
@@ -178,16 +184,17 @@ class _DotsActionSheetRadioButtonsState extends State<DotsActionSheetRadioButton
                       right: 0,
                       child: const Center(child: Grabber()),
                     ),
-                    Positioned(
-                      top: 12,
-                      right: 16,
-                      child: DotsCloseButton(
-                        icon: DotsIconData.cross,
-                        size: DotsCloseButtonSize.medium,
-                        variant: DotsCloseButtonVariant.softContrast,
-                        onTap: widget.onClose,
+                    if (widget.showCloseButton)
+                      Positioned(
+                        top: 12,
+                        right: 16,
+                        child: DotsCloseButton(
+                          icon: DotsIconData.cross,
+                          size: DotsCloseButtonSize.medium,
+                          variant: DotsCloseButtonVariant.softContrast,
+                          onTap: widget.onClose,
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),
