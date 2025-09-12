@@ -25,6 +25,9 @@ class DotsEmptyStateCard extends StatelessWidget {
   /// Add extra space after the image.
   final double extraSpaceAfterImage;
 
+  /// Width of the image.
+  final double? imageWidth;
+
   const DotsEmptyStateCard({
     super.key,
     required this.variant,
@@ -34,6 +37,7 @@ class DotsEmptyStateCard extends StatelessWidget {
     required this.description,
     this.button,
     this.extraSpaceAfterImage = 0,
+    this.imageWidth,
   });
 
   @override
@@ -49,7 +53,10 @@ class DotsEmptyStateCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           if (variant == DotsEmptyStateCardVariant.image && imageProvider != null)
-            Image(image: imageProvider!)
+            SizedBox(
+              width: imageWidth,
+              child: Image(image: imageProvider!),
+            )
           else if (variant == DotsEmptyStateCardVariant.icon && icon != null)
             icon!,
           SizedBox(
