@@ -171,7 +171,7 @@ class _DotsActionSheetRadioButtonsState extends State<DotsActionSheetRadioButton
                               ),
                             ),
                             if (widget.buttonLabel != null) ...[
-                              const SizedBox(height: 16),
+                              const SizedBox(height: 20),
                               _Footer(widget.buttonLabel, widget.onTapButton),
                             ],
                           ],
