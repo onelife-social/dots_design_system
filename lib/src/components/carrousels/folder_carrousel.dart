@@ -11,8 +11,16 @@ class FolderCarrousel extends StatelessWidget {
   // Variable to determine if the edit icon should be shown.
   final bool showEditIcon;
 
-  const FolderCarrousel(
-      {super.key, required this.buttonsData, required this.showEditIcon, this.customWidgets});
+  /// Optional scroll controller for the carrousel
+  final ScrollController? controller;
+
+  const FolderCarrousel({
+    super.key,
+    required this.buttonsData,
+    required this.showEditIcon,
+    this.customWidgets,
+    this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +57,7 @@ class FolderCarrousel extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: SingleChildScrollView(
+        controller: controller,
         scrollDirection: Axis.horizontal,
         child: Row(children: spacedChildren),
       ),
