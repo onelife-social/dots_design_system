@@ -99,7 +99,7 @@ class RadioCardIcons extends StatelessWidget {
         ),
         variant.isSelector
             ? DotsRadioButton(isSelected: isSelected)
-            : DotsToggle(isSelected: isSelected),
+            : DotsToggle(isSelected: isSelected, onChanged: (_) => onTap()),
       ],
     );
 
