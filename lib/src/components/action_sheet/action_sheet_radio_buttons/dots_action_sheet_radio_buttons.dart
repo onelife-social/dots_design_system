@@ -304,6 +304,7 @@ class _ScrollableListWithFades extends StatelessWidget {
               controller: controller,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
+                spacing: 8,
                 children: items,
               ),
             ),
