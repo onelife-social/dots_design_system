@@ -20,6 +20,8 @@ class DotsActionSheetStandard extends StatelessWidget {
   final DotsActionSheetButtonPositioning buttonPositioning;
   final bool showBackdrop;
   final bool backButtonShaderMask;
+  final bool showCloseButton;
+  final VoidCallback? onCloseButtonTap;
 
   const DotsActionSheetStandard({
     super.key,
@@ -39,6 +41,8 @@ class DotsActionSheetStandard extends StatelessWidget {
     this.buttonPositioning = DotsActionSheetButtonPositioning.row,
     this.showBackdrop = true,
     this.backButtonShaderMask = false,
+    this.showCloseButton = false,
+    this.onCloseButtonTap,
   });
 
   @override
@@ -132,6 +136,17 @@ class DotsActionSheetStandard extends StatelessWidget {
                         ],
                       ),
                     ),
+                    if (showCloseButton)
+                      Positioned(
+                        top: 16,
+                        right: 0,
+                        child: DotsCloseButton(
+                          icon: DotsIconData.cross,
+                          size: DotsCloseButtonSize.medium,
+                          variant: DotsCloseButtonVariant.softContrast,
+                          onTap: onCloseButtonTap ?? onClose,
+                        ),
+                      ),
                   ],
                 ),
               ),
