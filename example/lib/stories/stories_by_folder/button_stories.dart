@@ -178,4 +178,24 @@ List<Story> get buttonStories => [
           );
         },
       ),
+      Story(
+        name: 'Buttons/Toggle',
+        description: 'Demo page for Toggle',
+        builder: (context) {
+          bool isSelected = false;
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return DotsToggle(
+                isSelected: isSelected,
+                onChanged: (_) {
+                  setState(() => isSelected = !isSelected);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Toggle value changed to: $isSelected')),
+                  );
+                },
+              );
+            },
+          );
+        },
+      ),
     ];
