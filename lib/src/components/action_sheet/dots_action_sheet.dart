@@ -113,6 +113,14 @@ class DotsActionSheet extends StatelessWidget {
   /// Callback when the text field button is tapped in the search variant.
   final VoidCallback? onTapTextFieldBtn;
 
+  /// Whether to show a close button in the Action Sheet.
+  ///
+  /// Defaults to false.
+  final bool showCloseButton;
+
+  /// Callback when the close button is tapped.
+  final VoidCallback? onCloseButtonTap;
+
   const DotsActionSheet({
     super.key,
     required this.title,
@@ -138,6 +146,8 @@ class DotsActionSheet extends StatelessWidget {
     this.textFieldController,
     this.focus,
     this.onTapTextFieldBtn,
+    this.showCloseButton = false,
+    this.onCloseButtonTap,
   });
 
   @override
@@ -161,6 +171,8 @@ class DotsActionSheet extends StatelessWidget {
           buttonPositioning: buttonPositioning ?? DotsActionSheetButtonPositioning.row,
           showBackdrop: showBackdrop,
           backButtonShaderMask: backButtonShaderMask,
+          showCloseButton: showCloseButton,
+          onCloseButtonTap: onCloseButtonTap,
         );
       case DotsActionSheetVariant.search:
         return DotsActionSheetSearch(
@@ -185,6 +197,8 @@ class DotsActionSheet extends StatelessWidget {
           textFieldController: textFieldController,
           focus: focus,
           onTapTextFieldBtn: onTapTextFieldBtn,
+          showCloseButton: showCloseButton,
+          onCloseButtonTap: onCloseButtonTap,
         );
     }
   }

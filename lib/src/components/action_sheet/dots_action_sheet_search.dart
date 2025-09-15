@@ -25,6 +25,8 @@ class DotsActionSheetSearch extends StatelessWidget {
   final TextEditingController? textFieldController;
   final FocusNode? focus;
   final VoidCallback? onTapTextFieldBtn;
+  final bool showCloseButton;
+  final VoidCallback? onCloseButtonTap;
 
   const DotsActionSheetSearch({
     super.key,
@@ -49,6 +51,8 @@ class DotsActionSheetSearch extends StatelessWidget {
     this.textFieldController,
     this.focus,
     this.onTapTextFieldBtn,
+    this.showCloseButton = false,
+    this.onCloseButtonTap,
   });
 
   @override
@@ -126,6 +130,17 @@ class DotsActionSheetSearch extends StatelessWidget {
                               ],
                             ),
                           ),
+                        ),
+                      ),
+                    if (showCloseButton)
+                      Positioned(
+                        top: 16,
+                        right: 0,
+                        child: DotsCloseButton(
+                          icon: DotsIconData.cross,
+                          size: DotsCloseButtonSize.medium,
+                          variant: DotsCloseButtonVariant.softContrast,
+                          onTap: onCloseButtonTap ?? onClose,
                         ),
                       ),
                   ],
