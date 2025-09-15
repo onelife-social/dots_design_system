@@ -52,7 +52,7 @@ DotsIconButtonTheme getIconButtonThemeByStyleAndState(
       switch (state) {
         case DotsIconButtonState.defaultState:
           return DotsIconButtonTheme(
-            backgroundColor: theme.colors.bgContainerSecondary,
+            backgroundColor: theme.colors.bgContainerSecondaryOnBackground,
             foregroundColor: theme.colors.textPrimary,
             labelColor: theme.colors.textPrimary,
             style: theme.styles.blur50,
@@ -65,8 +65,8 @@ DotsIconButtonTheme getIconButtonThemeByStyleAndState(
           );
         case DotsIconButtonState.disabled:
           return DotsIconButtonTheme(
-            backgroundColor: theme.colors.textDisabled,
-            foregroundColor: theme.colors.bgBtnDisabled,
+            backgroundColor: theme.colors.bgBtnDisabled,
+            foregroundColor: theme.colors.textDisabled,
             labelColor: theme.colors.textDisabled,
             style: theme.styles.blur50,
           );
