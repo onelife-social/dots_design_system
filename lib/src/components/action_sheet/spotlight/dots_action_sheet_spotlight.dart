@@ -25,6 +25,9 @@ class DotsActionSheetSpotlight extends StatelessWidget {
   /// Image provider for the main image displayed at the top
   final ImageProvider image;
 
+  /// Callback function called when the image fails to load
+  final ImageErrorListener? onImageError;
+
   /// Callback function called when the close button is tapped
   final VoidCallback? onClose;
 
@@ -57,6 +60,7 @@ class DotsActionSheetSpotlight extends StatelessWidget {
     this.bodyTitle,
     this.description,
     required this.image,
+    this.onImageError,
     this.onClose,
     required this.primaryButton,
     this.imageWidth = 96,
@@ -75,6 +79,7 @@ class DotsActionSheetSpotlight extends StatelessWidget {
 
     final topWidget = ImageWithIcon(
       image: image,
+      onError: onImageError,
       icon: DotsIcon(iconData: iconData),
       width: imageWidth,
       height: variant == DotsActionSheetSpotlightVariant.user ? imageWidth : imageHeight,
