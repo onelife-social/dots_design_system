@@ -253,6 +253,9 @@ class DotsColorsModel {
   final Color borderLabel;
   final Color borderGlass;
 
+  // Fills
+  final Color fillSecondary;
+
   const DotsColorsModel({
     required this.bgBase,
     required this.bgBaseContrast,
@@ -439,6 +442,7 @@ class DotsColorsModel {
     required this.borderAlert,
     required this.borderLabel,
     required this.borderGlass,
+    required this.fillSecondary,
   });
 
   DotsColorsModel lerp(DotsColorsModel? other, double t) {
@@ -650,6 +654,7 @@ class DotsColorsModel {
       borderAlert: Color.lerp(borderAlert, other?.borderAlert, t) ?? borderAlert,
       borderLabel: Color.lerp(borderLabel, other?.borderLabel, t) ?? borderLabel,
       borderGlass: Color.lerp(borderGlass, other?.borderGlass, t) ?? borderGlass,
+      fillSecondary: Color.lerp(fillSecondary, other?.fillSecondary, t) ?? fillSecondary,
     );
   }
 }
