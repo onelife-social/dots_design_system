@@ -175,40 +175,35 @@ class _IconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
     return SizedBox(
       height: noButtonSize ? null : size.size,
       width: noButtonSize ? null : size.size,
-      child: Material(
-        color: buttonTheme.backgroundColor ?? Colors.transparent,
-        borderRadius: borderRadius,
+      child: Container(
+        decoration: BoxDecoration(
+          color: buttonTheme.backgroundColor ?? Colors.transparent,
+          borderRadius: borderRadius,
+          border: buttonTheme.borderColor != null
+              ? Border.all(color: buttonTheme.borderColor ?? Colors.transparent, width: 0.7)
+              : null,
+        ),
         child: InkWell(
           onTap: onTap,
           borderRadius: borderRadius,
-          child: DotsDecoratedBox(
-            styleType: buttonTheme.style,
-            decoration: BoxDecoration(
-              borderRadius: borderRadius,
-              border: buttonTheme.borderColor != null
-                  ? Border.all(color: buttonTheme.borderColor ?? Colors.transparent, width: 0.7)
-                  : null,
-            ),
-            child: Center(
-              child: tag != null
-                  ? BadgeTag(
-                      tag: tag!,
-                      child: DotsIcon(
-                        iconData: icon,
-                        size: iconSize ?? size.iconSize,
-                        color: color ?? buttonTheme.foregroundColor,
-                      ),
-                    )
-                  : DotsIcon(
+          child: Center(
+            child: tag != null
+                ? BadgeTag(
+                    tag: tag!,
+                    child: DotsIcon(
                       iconData: icon,
                       size: iconSize ?? size.iconSize,
                       color: color ?? buttonTheme.foregroundColor,
                     ),
-            ),
+                  )
+                : DotsIcon(
+                    iconData: icon,
+                    size: iconSize ?? size.iconSize,
+                    color: color ?? buttonTheme.foregroundColor,
+                  ),
           ),
         ),
       ),
