@@ -35,6 +35,7 @@ flutter:
   # Shaders
   shaders:
     - assets/shaders/blur.frag
+    - assets/shaders/progressive_blur.frag
   # Fonts
   fonts:
     - family: Inter
