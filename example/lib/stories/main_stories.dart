@@ -29,6 +29,8 @@ import 'package:example/stories/stories_by_folder/notifications_stories.dart';
 import 'package:example/stories/stories_by_folder/profile_photo_stories.dart';
 import 'package:example/stories/stories_by_folder/memory_details.dart';
 
+import '../components/linear_gradient_blur_container_demo_page.dart';
+
 List<Story> get allStories => [
       ...notificationsStories,
       ...themeStories,
@@ -483,6 +485,24 @@ List<Story> get allStories => [
               initial: 5.0,
               min: 0.0,
               max: 5.0,
+            ),
+          );
+        },
+      ),
+      Story(
+        name: 'Linear Gradient blur container',
+        description: 'Demo page for linear gradient blur container',
+        builder: (context) {
+          return LinearGradientBlurContainerDemoPage(
+            imageUrl: context.knobs.text(
+              label: 'Image URL',
+              initial: 'https://picsum.photos/250?image=9',
+            ),
+            sigma: context.knobs.slider(
+              label: 'Blur Sigma',
+              initial: 5.0,
+              min: 0.0,
+              max: 50.0,
             ),
           );
         },
