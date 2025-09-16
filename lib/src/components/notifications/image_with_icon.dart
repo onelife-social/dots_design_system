@@ -22,7 +22,7 @@ class ImageWithIcon extends StatelessWidget {
 
   /// Callback for image load error.
   /// Called when the image fails to load.
-  final void Function(Object exception, StackTrace? stackTrace)? onError;
+  final ImageErrorListener? onError;
 
   /// Icon widget to display in the top-right corner
   final Widget icon;
