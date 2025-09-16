@@ -4,6 +4,7 @@ class DotsColorsModel {
   // Base
   final Color bgBase;
   final Color bgBaseContrast;
+  final Color bgBaseGradientStart;
 
   // Container
   final Color bgContainerPrimary;
@@ -256,6 +257,7 @@ class DotsColorsModel {
   const DotsColorsModel({
     required this.bgBase,
     required this.bgBaseContrast,
+    required this.bgBaseGradientStart,
     required this.bgContainerPrimary,
     required this.bgContainerSecondary,
     required this.bgContainerSecondaryOnBackground,
@@ -445,6 +447,8 @@ class DotsColorsModel {
     return DotsColorsModel(
       bgBase: Color.lerp(bgBase, other?.bgBase, t) ?? bgBase,
       bgBaseContrast: Color.lerp(bgBaseContrast, other?.bgBaseContrast, t) ?? bgBaseContrast,
+      bgBaseGradientStart:
+          Color.lerp(bgBaseGradientStart, other?.bgBaseGradientStart, t) ?? bgBaseGradientStart,
       bgContainerPrimary:
           Color.lerp(bgContainerPrimary, other?.bgContainerPrimary, t) ?? bgContainerPrimary,
       bgContainerSecondary:

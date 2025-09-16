@@ -14,6 +14,7 @@ class ColorsDemoPage extends StatelessWidget {
       'Base': {
         'bgBase': colors.bgBase,
         'bgBaseContrast': colors.bgBaseContrast,
+        'bgBaseGradientStart': colors.bgBaseGradientStart,
       },
       'Container': {
         'bgContainerPrimary': colors.bgContainerPrimary,
