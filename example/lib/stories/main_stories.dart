@@ -18,6 +18,7 @@ import 'package:example/stories/stories_by_folder/dropdown_stories.dart';
 import 'package:example/stories/stories_by_folder/miscellaneous_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/separators_demo.dart';
+import 'package:example/stories/stories_by_folder/spinner_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:example/stories/stories_by_folder/toast_stories.dart';
 import 'package:example/stories/stories_by_folder/top_bar_stories.dart';
@@ -47,6 +48,7 @@ List<Story> get allStories => [
       ...chatStories,
       ...profilePhotoStories,
       ...memoryDetailsStories,
+      ...spinnerStories,
       ...miscellaneousStories,
       Story(
         name: 'Container',
