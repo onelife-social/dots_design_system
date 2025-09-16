@@ -9,6 +9,7 @@ import 'package:example/components/item_input_demo.dart';
 import 'package:example/components/memory_card_demo_page.dart';
 import 'package:example/components/segmented_control_handle.dart';
 import 'package:example/components/empty_state_card_demo.dart';
+import 'package:example/stories/helpers/linear_gradient_options.dart';
 import 'package:example/stories/stories_by_folder/action_sheet_stories.dart';
 import 'package:example/stories/stories_by_folder/badge_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
@@ -504,6 +505,8 @@ List<Story> get allStories => [
               min: 0.0,
               max: 50.0,
             ),
+            tintColor: basicColorSelector(context, 'Tint Color'),
+            linearGradientBlur: LinearGradientOptions.linearGradientBlur(context),
           );
         },
       ),
