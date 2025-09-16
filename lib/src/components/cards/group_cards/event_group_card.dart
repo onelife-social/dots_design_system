@@ -71,17 +71,42 @@ class EventGroupCard extends StatelessWidget {
             maxWidth: variant.isSmall ? 160 : 340,
           ),
           decoration: ShapeDecoration(
-            image: DecorationImage(
-              image: imageProvider,
-              fit: BoxFit.cover,
-              onError: onError,
-            ),
+            image: !variant.isSmall
+                ? DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                    onError: onError,
+                  )
+                : null,
             shape: RoundedRectangleBorder(
               borderRadius: variant.isSmall ? DotsBorderRadius.r32 : DotsBorderRadius.r52,
             ),
           ),
           child: Stack(
             children: [
+              if (variant.isSmall)
+                DotsLinearGradientBlur(
+                  sigma: 25,
+                  linearGradientBlur: const LinearGradientBlur(
+                    values: [0, 1],
+                    stops: [0.7, 0.9],
+                    start: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(32),
+                    child: Image(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: double.infinity,
+                      errorBuilder: (context, error, stackTrace) {
+                        if (onError != null) onError!(error, stackTrace);
+                        return SizedBox();
+                      },
+                    ),
+                  ),
+                ),
               Align(
                 alignment: variant.isSmall ? Alignment.bottomCenter : Alignment.topCenter,
                 child: Container(
