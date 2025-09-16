@@ -13,3 +13,5 @@ export 'dots_floating_button/dots_floating_button.dart';
 export 'btn_folder/btn_folder.dart';
 
 export 'dots_toggle.dart';
+
+export 'dots_selector.dart';

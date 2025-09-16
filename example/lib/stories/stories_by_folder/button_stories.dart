@@ -203,4 +203,56 @@ List<Story> get buttonStories => [
           );
         },
       ),
+      Story(
+        name: 'Buttons/Selector',
+        description: 'Demo page for Selector',
+        builder: (context) {
+          bool isSelectedCheck = false, isSelectedNum = false;
+          int timesTapped = 0;
+
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return DotsMainContainer(
+                height: 100,
+                width: 175,
+                backgroundColor: context.dotsTheme.colors.bgContainerTertiary,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() => isSelectedCheck = !isSelectedCheck);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Selector check variant value changed to: $isSelectedCheck',
+                            ),
+                          ),
+                        );
+                      },
+                      child: DotsSelector.check(isSelected: isSelectedCheck),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (!isSelectedNum) timesTapped++;
+                          isSelectedNum = !isSelectedNum;
+                        });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Selector number variant value changed to: $isSelectedNum',
+                            ),
+                          ),
+                        );
+                      },
+                      child: DotsSelector.num(isSelected: isSelectedNum, number: timesTapped),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        },
+      ),
     ];
