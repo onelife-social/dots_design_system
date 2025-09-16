@@ -7,8 +7,8 @@ class DotsMainButtonTheme {
   final Color? foregroundSecondaryColor;
   final DotsStyleColorGradient? backgroundGradient;
   final DotsStyleColorGradient? foregroundGradient;
+  final DotsStyleType? blurStyle;
 
-  final bool blur;
   final bool shadow;
 
   const DotsMainButtonTheme({
@@ -17,7 +17,7 @@ class DotsMainButtonTheme {
     this.foregroundSecondaryColor,
     this.backgroundGradient,
     this.foregroundGradient,
-    this.blur = false,
+    this.blurStyle,
     this.shadow = false,
   });
 }
@@ -36,7 +36,7 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
         backgroundColor: theme.colors.bgSecondaryBtn,
         foregroundColor: theme.colors.textSecondary,
         foregroundSecondaryColor: theme.colors.textSecondary.dotsWithOpacity(0.6),
-        blur: true,
+        blurStyle: theme.styles.blur50,
       );
     case DotsMainButtonVariant.secondaryPremium:
       return DotsMainButtonTheme(
@@ -53,14 +53,14 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
         backgroundColor: theme.colors.bgFloatingBtn,
         foregroundColor: theme.colors.labelAlwaysWhite,
         foregroundSecondaryColor: theme.colors.labelAlwaysWhite.dotsWithOpacity(0.6),
-        blur: true,
+        blurStyle: theme.styles.blur50,
       );
     case DotsMainButtonVariant.secondaryDark:
       return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgBtnImage,
         foregroundColor: theme.colors.textSecondary,
         foregroundSecondaryColor: theme.colors.textSecondary.dotsWithOpacity(0.6),
-        blur: true,
+        blurStyle: theme.styles.blur50,
         shadow: true,
       );
     case DotsMainButtonVariant.destructive:
@@ -74,7 +74,7 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
         backgroundColor: theme.colors.bgContainerSecondaryOnBackground,
         foregroundColor: theme.colors.textQuarternary,
         foregroundSecondaryColor: theme.colors.textQuarternary.dotsWithOpacity(0.6),
-        blur: true,
+        blurStyle: theme.styles.blur50,
       );
     case DotsMainButtonVariant.ghost:
       return DotsMainButtonTheme(
@@ -92,7 +92,7 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
       return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgBtnImage,
         foregroundGradient: theme.styles.bgPremiumPlus,
-        blur: true,
+        blurStyle: theme.styles.blur50,
         shadow: true,
       );
     case DotsMainButtonVariant.premium:
@@ -106,8 +106,14 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
       return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgBtnImage,
         foregroundGradient: theme.styles.bgPremium,
-        blur: true,
+        blurStyle: theme.styles.blur50,
         shadow: true,
+      );
+    case DotsMainButtonVariant.surfacePremium:
+      return DotsMainButtonTheme(
+        foregroundGradient: theme.styles.textPremium,
+        backgroundColor: theme.colors.bgContainerSecondary,
+        blurStyle: theme.styles.blur10,
       );
   }
 }

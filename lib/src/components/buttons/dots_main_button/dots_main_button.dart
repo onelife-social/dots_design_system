@@ -107,7 +107,8 @@ class DotsMainButton extends StatelessWidget {
                     details ?? '',
                     overflow: TextOverflow.ellipsis,
                     style: theme.typo.main.bodyDefaultMedium.copyWith(
-                      color: buttonTheme.foregroundSecondaryColor ?? foregroundColor,
+                      color: buttonTheme.foregroundSecondaryColor?.dotsWithOpacity(0.6) ??
+                          foregroundColor?.dotsWithOpacity(0.6),
                     ),
                   ),
               ],
@@ -125,9 +126,9 @@ class DotsMainButton extends StatelessWidget {
         child: button,
       );
     }
-    if (buttonTheme.blur) {
+    if (buttonTheme.blurStyle != null) {
       button = DotsDecoratedBox(
-        styleType: theme.styles.bgBlur,
+        styleType: buttonTheme.blurStyle,
         decoration: BoxDecoration(
           borderRadius: borderRadius,
         ),
