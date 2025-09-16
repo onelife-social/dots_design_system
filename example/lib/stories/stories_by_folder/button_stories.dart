@@ -1,7 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/components/btn_folder_demo_page.dart';
 import 'package:example/stories/helpers/color_knob_options.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 List<Story> get buttonStories => [
@@ -157,5 +157,102 @@ List<Story> get buttonStories => [
           isEditable: context.knobs.boolean(label: 'Editable', initial: false),
           showEditIcon: context.knobs.boolean(label: 'ShowEditIcon', initial: false),
         ),
+      ),
+      Story(
+        name: 'Buttons/Radio button',
+        description: 'Demo page for Radio Button',
+        builder: (context) {
+          bool isSelected = false;
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return InkWell(
+                onTap: () {
+                  setState(() => isSelected = !isSelected);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Toggle value changed to: $isSelected')),
+                  );
+                },
+                child: DotsRadioButton(isSelected: isSelected),
+              );
+            },
+          );
+        },
+      ),
+      Story(
+        name: 'Buttons/Toggle',
+        description: 'Demo page for Toggle',
+        builder: (context) {
+          bool isSelected = false;
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  DotsToggle(
+                    isSelected: isSelected,
+                    onChanged: (_) {
+                      setState(() => isSelected = !isSelected);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Toggle value changed to: $isSelected')),
+                      );
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        },
+      ),
+      Story(
+        name: 'Buttons/Selector',
+        description: 'Demo page for Selector',
+        builder: (context) {
+          bool isSelectedCheck = false, isSelectedNum = false;
+          int timesTapped = 0;
+
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return DotsMainContainer(
+                height: 100,
+                width: 175,
+                backgroundColor: context.dotsTheme.colors.bgContainerTertiary,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() => isSelectedCheck = !isSelectedCheck);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Selector check variant value changed to: $isSelectedCheck',
+                            ),
+                          ),
+                        );
+                      },
+                      child: DotsSelector.check(isSelected: isSelectedCheck),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (!isSelectedNum) timesTapped++;
+                          isSelectedNum = !isSelectedNum;
+                        });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Selector number variant value changed to: $isSelectedNum',
+                            ),
+                          ),
+                        );
+                      },
+                      child: DotsSelector.num(isSelected: isSelectedNum, number: timesTapped),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        },
       ),
     ];

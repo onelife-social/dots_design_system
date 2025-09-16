@@ -300,7 +300,7 @@ class DotsAlert extends StatelessWidget {
                             if (showCloseButton)
                               DotsCloseButton(
                                 icon: DotsIconData.cross,
-                                size: DotsCloseButtonSize.small,
+                                size: DotsCloseButtonSize.medium,
                                 variant: DotsCloseButtonVariant.softContrast,
                                 onTap: onClose,
                               )

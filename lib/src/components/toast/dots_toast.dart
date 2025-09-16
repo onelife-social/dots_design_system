@@ -82,10 +82,12 @@ class DotsToast extends StatelessWidget {
                 color: iconColor(theme),
                 size: 24,
               ),
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: theme.typo.main.bodyDefaultMedium,
+              Flexible(
+                child: Text(
+                  title,
+                  textAlign: TextAlign.start,
+                  style: theme.typo.main.bodyDefaultMedium,
+                ),
               ),
             ],
           ));
