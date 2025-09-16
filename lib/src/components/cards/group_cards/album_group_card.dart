@@ -55,31 +55,31 @@ class AlbumGroupCard extends StatelessWidget {
             maxWidth: variant.isSmall ? 160 : 340,
           ),
           decoration: ShapeDecoration(
-            image: DecorationImage(
-              image: imageProvider,
-              fit: BoxFit.cover,
-              onError: onError,
-            ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(variant.isLarge ? 52 : 32),
             ),
           ),
           child: Stack(
             children: [
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: variant.isLarge ? 94 : 43,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      colors: [
-                        Color(0x803c3c3c),
-                        Colors.transparent,
-                      ],
-                    ),
+              DotsLinearGradientBlur(
+                sigma: 25,
+                linearGradientBlur: const LinearGradientBlur(
+                  values: [0, 1],
+                  stops: [0.7, 0.9],
+                  start: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(variant.isLarge ? 52 : 32),
+                  child: Image(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                    errorBuilder: (context, error, stackTrace) {
+                      if (onError != null) onError!(error, stackTrace);
+                      return SizedBox();
+                    },
                   ),
                 ),
               ),
