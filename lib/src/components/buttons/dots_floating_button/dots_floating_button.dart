@@ -30,7 +30,7 @@ class DotsFloatingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    final borderRadius = DotsBorderRadius.r36;
+    final borderRadius = DotsBorderRadius.r22;
 
     final button = Material(
       color: theme.colors.bgSecondaryBtn,
@@ -43,9 +43,9 @@ class DotsFloatingButton extends StatelessWidget {
             borderRadius: borderRadius,
             boxShadow: [
               BoxShadow(
-                color: const Color(0x3F000000),
+                color: const Color(0x26000000),
                 blurRadius: 15,
-                offset: const Offset(0, 4),
+                offset: Offset(0, 4),
                 spreadRadius: 0,
               ),
             ],
