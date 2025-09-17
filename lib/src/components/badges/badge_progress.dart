@@ -2,14 +2,10 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class BadgeProgress extends StatelessWidget {
-  /// Text to display on the tag.
-  ///
-  /// If null, nothing is displayed.
+  /// Number to display on the left of tag.
   final int current;
 
-  /// Text to display on the tag.
-  ///
-  /// If null, nothing is displayed.
+  /// Number to display on the right of tag.
   final int max;
 
   const BadgeProgress({
