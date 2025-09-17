@@ -190,6 +190,7 @@ class DotsColors {
     borderAlert: Color(0x4DFFFFFF),
     borderLabel: Color(0xFFEAECF0),
     borderGlass: Color(0xFFBCBCBC),
+    borderButton: Color(0x7FBCBCBC),
     fillSecondary: Color(0x29787880),
   );
   static final dark = DotsColorsModel(
@@ -379,6 +380,7 @@ class DotsColors {
     borderAlert: Color(0x4D6E6E6E),
     borderLabel: Color(0xFFEAECF0),
     borderGlass: Color(0xFFBCBCBC),
+    borderButton: Color(0x33BCBCBC),
     fillSecondary: Color(0x52787880),
   );
 }
