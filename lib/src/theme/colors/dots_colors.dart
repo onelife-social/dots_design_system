@@ -191,6 +191,10 @@ class DotsColors {
     borderLabel: Color(0xFFEAECF0),
     borderGlass: Color(0xFFBCBCBC),
     fillSecondary: Color(0x29787880),
+    textPremiumStart: const Color(0xFFC17FFA),
+    textPremiumEnd: const Color(0xFF8C84F7),
+    textPremiumPlusStart: const Color(0xFFDDA61C),
+    textPremiumPlusEnd: const Color(0xFFA37F28),
   );
   static final dark = DotsColorsModel(
     bgBase: Color(0xFF191919),
@@ -380,5 +384,9 @@ class DotsColors {
     borderLabel: Color(0xFFEAECF0),
     borderGlass: Color(0xFFBCBCBC),
     fillSecondary: Color(0x52787880),
+    textPremiumStart: const Color(0xFFC17FFA),
+    textPremiumEnd: const Color(0xFF8C84F7),
+    textPremiumPlusStart: const Color(0xFFE9C058),
+    textPremiumPlusEnd: const Color(0xFFB48D2D),
   );
 }

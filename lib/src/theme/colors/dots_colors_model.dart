@@ -257,6 +257,12 @@ class DotsColorsModel {
   // Fills
   final Color fillSecondary;
 
+  // Premium
+  final Color textPremiumStart;
+  final Color textPremiumEnd;
+  final Color textPremiumPlusStart;
+  final Color textPremiumPlusEnd;
+
   const DotsColorsModel({
     required this.bgBase,
     required this.bgBaseContrast,
@@ -445,6 +451,10 @@ class DotsColorsModel {
     required this.borderLabel,
     required this.borderGlass,
     required this.fillSecondary,
+    required this.textPremiumStart,
+    required this.textPremiumEnd,
+    required this.textPremiumPlusStart,
+    required this.textPremiumPlusEnd,
   });
 
   DotsColorsModel lerp(DotsColorsModel? other, double t) {
@@ -659,6 +669,13 @@ class DotsColorsModel {
       borderLabel: Color.lerp(borderLabel, other?.borderLabel, t) ?? borderLabel,
       borderGlass: Color.lerp(borderGlass, other?.borderGlass, t) ?? borderGlass,
       fillSecondary: Color.lerp(fillSecondary, other?.fillSecondary, t) ?? fillSecondary,
+      textPremiumStart:
+          Color.lerp(textPremiumStart, other?.textPremiumStart, t) ?? textPremiumStart,
+      textPremiumEnd: Color.lerp(textPremiumEnd, other?.textPremiumEnd, t) ?? textPremiumEnd,
+      textPremiumPlusStart:
+          Color.lerp(textPremiumPlusStart, other?.textPremiumPlusStart, t) ?? textPremiumPlusStart,
+      textPremiumPlusEnd:
+          Color.lerp(textPremiumPlusEnd, other?.textPremiumPlusEnd, t) ?? textPremiumPlusEnd,
     );
   }
 }

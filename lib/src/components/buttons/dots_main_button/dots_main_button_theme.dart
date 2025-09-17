@@ -7,6 +7,7 @@ class DotsMainButtonTheme {
   final Color? foregroundSecondaryColor;
   final DotsStyleColorGradient? backgroundGradient;
   final DotsStyleColorGradient? foregroundGradient;
+  final Color? iconColor;
   final DotsStyleType? blurStyle;
 
   final bool shadow;
@@ -17,6 +18,7 @@ class DotsMainButtonTheme {
     this.foregroundSecondaryColor,
     this.backgroundGradient,
     this.foregroundGradient,
+    this.iconColor,
     this.blurStyle,
     this.shadow = false,
   });
@@ -117,6 +119,14 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
       return DotsMainButtonTheme(
         foregroundGradient: theme.styles.textPremium,
         backgroundColor: theme.colors.bgContainerSecondary,
+        iconColor: theme.colors.textPremiumStart,
+        blurStyle: theme.styles.blur10,
+      );
+    case DotsMainButtonVariant.surfacePremiumPlus:
+      return DotsMainButtonTheme(
+        foregroundGradient: theme.styles.textPremiumPlus,
+        backgroundColor: theme.colors.bgContainerSecondary,
+        iconColor: theme.colors.textPremiumPlusStart,
         blurStyle: theme.styles.blur10,
       );
   }

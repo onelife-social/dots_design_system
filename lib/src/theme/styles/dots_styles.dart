@@ -26,7 +26,7 @@ class DotsStyles {
       endColor: Color(0xFFA37F28),
     ),
     textPremium: DotsStyleColorGradient(
-      startColor: Color(0xFFC07FFA),
+      startColor: Color(0xFFC17FFA),
       endColor: Color(0xFF8C84F7),
       beginAlignment: Alignment(0.00, 0.50),
       endAlignment: Alignment(0.60, 0.50),
@@ -100,7 +100,7 @@ class DotsStyles {
       endColor: Color(0xFFB48D2D),
     ),
     textPremium: DotsStyleColorGradient(
-      startColor: Color(0xFFC07FFA),
+      startColor: Color(0xFFC17FFA),
       endColor: Color(0xFF8C84F7),
       beginAlignment: Alignment(0.00, 0.50),
       endAlignment: Alignment(0.60, 0.50),
