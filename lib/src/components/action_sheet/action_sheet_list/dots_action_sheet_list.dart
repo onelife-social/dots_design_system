@@ -109,6 +109,9 @@ class DotsActionSheetList extends StatelessWidget {
   /// The [emptyListImage] is the image for the empty state of the list.
   final ImageProvider? emptyListImage;
 
+  /// The [emptyImageWidth] is the width for the empty state image.
+  final double? emptyImageWidth;
+
   /// The [scrollController] is the controller for the scroll view.
   final ScrollController? scrollController;
 
@@ -150,6 +153,7 @@ class DotsActionSheetList extends StatelessWidget {
     this.emptyListDescription,
     this.emptyListIconData,
     this.emptyListImage,
+    this.emptyImageWidth,
     this.isEmptySearch = false,
     this.searchBtnHide = true,
     this.searchBtnIcon = DotsIconData.search,
@@ -229,6 +233,7 @@ class DotsActionSheetList extends StatelessWidget {
                               emptyListDescription: emptyListDescription,
                               emptyListIconData: emptyListIconData,
                               emptyListImage: emptyListImage,
+                              imageWidth: emptyImageWidth,
                               scrollController: scrollController,
                             ),
                           ),
@@ -483,9 +488,9 @@ class _Body extends StatelessWidget {
   final DotsIconData? emptyListIconData;
   final ImageProvider? emptyListImage;
   final ScrollController? scrollController;
+  final double? imageWidth;
 
   const _Body({
-    super.key,
     this.listTitle,
     this.listItems,
     this.isEmptySearch = false,
@@ -494,6 +499,7 @@ class _Body extends StatelessWidget {
     this.emptyListIconData,
     this.emptyListImage,
     this.scrollController,
+    this.imageWidth,
   });
 
   @override
@@ -521,6 +527,7 @@ class _Body extends StatelessWidget {
                     title: emptyListTitle ?? '',
                     description: emptyListDescription ?? '',
                     imageProvider: emptyListImage,
+                    imageWidth: imageWidth,
                   ),
           ),
         ),
