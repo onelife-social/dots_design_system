@@ -21,7 +21,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   ///
   /// If not provided, the top bar will not display a left icon button.
   /// Cannot be used with [onTapBack].
-  final DotsIconButton? leftIcon;
+  final Widget? leftIcon;
 
   /// Icon button on the right side of the top bar.
   ///
