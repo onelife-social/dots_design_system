@@ -23,18 +23,22 @@ class DotsMainButtonTheme {
 }
 
 DotsMainButtonTheme getButtonThemeByButtonVariant(
-    DotsTheme theme, DotsMainButtonVariant variant, DotsMainButtonSize size) {
+  DotsTheme theme,
+  DotsMainButtonVariant variant,
+  DotsMainButtonSize size,
+  Color? textColor,
+) {
   switch (variant) {
     case DotsMainButtonVariant.main:
       return DotsMainButtonTheme(
         backgroundColor: theme.colors.labelHighlight,
-        foregroundColor: theme.colors.labelAlwaysWhite,
+        foregroundColor: textColor ?? theme.colors.labelAlwaysWhite,
         foregroundSecondaryColor: theme.colors.labelAlwaysWhite.dotsWithOpacity(0.6),
       );
     case DotsMainButtonVariant.secondary:
       return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgSecondaryBtn,
-        foregroundColor: theme.colors.textSecondary,
+        foregroundColor: textColor ?? theme.colors.textSecondary,
         foregroundSecondaryColor: theme.colors.textSecondary.dotsWithOpacity(0.6),
         blurStyle: theme.styles.blur50,
       );
@@ -51,14 +55,14 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
     case DotsMainButtonVariant.secondaryLight:
       return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgFloatingBtn,
-        foregroundColor: theme.colors.labelAlwaysWhite,
+        foregroundColor: textColor ?? theme.colors.labelAlwaysWhite,
         foregroundSecondaryColor: theme.colors.labelAlwaysWhite.dotsWithOpacity(0.6),
         blurStyle: theme.styles.blur50,
       );
     case DotsMainButtonVariant.secondaryDark:
       return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgBtnImage,
-        foregroundColor: theme.colors.textSecondary,
+        foregroundColor: textColor ?? theme.colors.textSecondary,
         foregroundSecondaryColor: theme.colors.textSecondary.dotsWithOpacity(0.6),
         blurStyle: theme.styles.blur50,
         shadow: true,
@@ -66,7 +70,7 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
     case DotsMainButtonVariant.destructive:
       return DotsMainButtonTheme(
         backgroundColor: theme.colors.labelDestructive,
-        foregroundColor: theme.colors.labelAlwaysWhite,
+        foregroundColor: textColor ?? theme.colors.labelAlwaysWhite,
         foregroundSecondaryColor: theme.colors.labelAlwaysWhite.dotsWithOpacity(0.6),
       );
     case DotsMainButtonVariant.disabled:
@@ -78,7 +82,7 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
       );
     case DotsMainButtonVariant.ghost:
       return DotsMainButtonTheme(
-        foregroundColor: theme.colors.labelHighlight,
+        foregroundColor: textColor ?? theme.colors.labelHighlight,
         foregroundSecondaryColor: theme.colors.labelHighlight.dotsWithOpacity(0.6),
       );
     case DotsMainButtonVariant.premiumPlus:
