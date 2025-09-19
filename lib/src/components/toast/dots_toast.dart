@@ -51,46 +51,48 @@ class DotsToast extends StatelessWidget {
     final theme = context.dotsTheme;
     if (isAction) {
       return _ToastContainer(
-          width: 160,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            spacing: 4,
-            children: [
-              DotsIcon(
-                iconData: iconData(variant, isAction),
-                color: iconColor(theme),
-                size: 24,
-              ),
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: theme.typo.main.bodyDefaultMedium,
-              ),
-            ],
-          ));
+        width: 160,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          spacing: 4,
+          children: [
+            DotsIcon(
+              iconData: iconData(variant, isAction),
+              color: iconColor(theme),
+              size: 24,
+            ),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: theme.typo.main.bodyDefaultMedium.copyWith(color: theme.colors.textPrimary),
+            ),
+          ],
+        ),
+      );
     } else {
       return _ToastContainer(
-          width: 358,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            spacing: 8,
-            children: [
-              DotsIcon(
-                iconData: iconData(variant, isAction),
-                color: iconColor(theme),
-                size: 24,
+        width: 358,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 12,
+          children: [
+            DotsIcon(
+              iconData: iconData(variant, isAction),
+              color: iconColor(theme),
+              size: 20,
+            ),
+            Flexible(
+              child: Text(
+                title,
+                textAlign: TextAlign.start,
+                style: theme.typo.main.bodyDefaultMedium.copyWith(color: theme.colors.textPrimary),
               ),
-              Flexible(
-                child: Text(
-                  title,
-                  textAlign: TextAlign.start,
-                  style: theme.typo.main.bodyDefaultMedium,
-                ),
-              ),
-            ],
-          ));
+            ),
+          ],
+        ),
+      );
     }
   }
 }
@@ -105,19 +107,21 @@ class _ToastContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     final decoration = BoxDecoration(
+      color: context.dotsTheme.colors.bgContainerPrimary,
       borderRadius: BorderRadius.circular(24),
       border: Border.all(
         width: 1.40,
         color: theme.colors.borderAlert,
       ),
     );
+
     return DotsDecoratedBox(
       styleType: context.dotsTheme.styles.toastShadow,
       decoration: decoration,
       child: SizedBox(
         width: width,
         child: DotsDecoratedBox(
-          styleType: context.dotsTheme.styles.bgToast,
+          styleType: context.dotsTheme.styles.squircle24,
           decoration: decoration,
           child: Padding(
             padding: const EdgeInsets.all(16),
