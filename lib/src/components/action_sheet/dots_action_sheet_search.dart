@@ -116,6 +116,29 @@ class DotsActionSheetSearch extends StatelessWidget {
                       ],
                     ),
                     if (primaryButton != null)
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        height: 70,
+                        child: IgnorePointer(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                                stops: [0.0, 0.5, 1.0],
+                                colors: [
+                                  theme.colors.bgBaseContrast,
+                                  theme.colors.bgBaseContrast,
+                                  theme.colors.transparent,
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    if (primaryButton != null)
                       Positioned.fill(
                         top: null,
                         bottom: 16,
