@@ -1,4 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 enum ProgressBarSize {
@@ -16,7 +17,7 @@ enum ProgressBarSize {
 
 class ProgressBarSection extends StatelessWidget {
   /// Callback when the section is tapped.
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   /// Size configuration for the progress bar.
   final ProgressBarSize size;
@@ -54,7 +55,12 @@ class ProgressBarSection extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               spacing: 8,
               children: [
-                _TextProgress(size: size, leftText: leftText, rightText: rightText),
+                _TextProgress(
+                  size: size,
+                  leftText: leftText,
+                  rightText: rightText,
+                  showChevron: onTap != null,
+                ),
                 _BarProgress(progress: progress),
               ],
             ),
@@ -69,8 +75,14 @@ class _TextProgress extends StatelessWidget {
   final ProgressBarSize size;
   final String leftText;
   final String rightText;
+  final bool showChevron;
 
-  const _TextProgress({required this.size, required this.leftText, required this.rightText});
+  const _TextProgress({
+    required this.size,
+    required this.leftText,
+    required this.rightText,
+    required this.showChevron,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +101,6 @@ class _TextProgress extends StatelessWidget {
             ),
           ),
           Row(
-            spacing: 6,
             children: [
               Text(
                 rightText,
@@ -97,11 +108,14 @@ class _TextProgress extends StatelessWidget {
                   color: theme.colors.textSecondary,
                 ),
               ),
-              DotsIcon(
-                iconData: DotsIconData.chevronRight,
-                size: 14,
-                color: theme.colors.textSecondary,
-              ),
+              if (showChevron) ...[
+                SizedBox(width: 6),
+                DotsIcon(
+                  iconData: DotsIconData.chevronRight,
+                  size: 14,
+                  color: theme.colors.textSecondary,
+                ),
+              ],
             ],
           ),
         ],
