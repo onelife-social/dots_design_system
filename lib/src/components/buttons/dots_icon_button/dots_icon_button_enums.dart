@@ -1,32 +1,14 @@
 enum DotsIconButtonSize {
-  enormous(
-    size: 56,
-    iconSize: 32,
-  ),
-  extraLarge(
-    size: 52,
-    iconSize: 32,
-  ),
-  large(
-    size: 48,
-    iconSize: 24,
-  ),
-  medium(
-    size: 36,
-    iconSize: 20,
-  ),
-  small(
-    size: 28,
-    iconSize: 14,
-  ),
-  extraSmall(
-    size: 22,
-    iconSize: 14,
-  );
+  enormous(size: 56, iconSize: 32, spacing: 4),
+  extraLarge(size: 52, iconSize: 32, spacing: 4),
+  large(size: 48, iconSize: 24, spacing: 2),
+  medium(size: 36, iconSize: 20, spacing: 2),
+  small(size: 28, iconSize: 14, spacing: 4),
+  extraSmall(size: 22, iconSize: 14, spacing: 4);
 
   final double size;
   final double iconSize;
-
+  final double spacing;
   bool get isXXLarge => this == DotsIconButtonSize.enormous;
   bool get isExtraLarge => this == DotsIconButtonSize.extraLarge;
   bool get isLarge => this == DotsIconButtonSize.large;
@@ -34,7 +16,7 @@ enum DotsIconButtonSize {
   bool get isSmall => this == DotsIconButtonSize.small;
   bool get isExtraSmall => this == DotsIconButtonSize.extraSmall;
 
-  const DotsIconButtonSize({required this.size, required this.iconSize});
+  const DotsIconButtonSize({required this.size, required this.iconSize, required this.spacing});
 }
 
 @Deprecated('Use DotsIconButtonStyle and DotsIconButtonState instead')
