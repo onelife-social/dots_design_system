@@ -8,17 +8,17 @@ enum DotsMainButtonSize {
     spacing: 6,
   ),
   large(
-    padding: EdgeInsets.symmetric(horizontal: 32),
+    padding: EdgeInsets.symmetric(horizontal: 20),
     height: 44,
     spacing: 4,
   ),
   medium(
-    padding: EdgeInsets.symmetric(horizontal: 20),
+    padding: EdgeInsets.symmetric(horizontal: 16),
     height: 36,
     spacing: 4,
   ),
   small(
-    padding: EdgeInsets.symmetric(horizontal: 16),
+    padding: EdgeInsets.symmetric(horizontal: 12),
     height: 28,
     spacing: 4,
   );
