@@ -51,4 +51,12 @@ List<Story> get badgeStories => [
                   .toList()),
         ),
       ),
+      Story(
+        name: 'Badges/BadgeProgress',
+        description: 'Demo page for BadgeProgress',
+        builder: (context) => BadgeProgress(
+          current: context.knobs.slider(label: 'Min', initial: 0, min: 0, max: 500).toInt(),
+          max: context.knobs.slider(label: 'Max', initial: 100, min: 0, max: 500).toInt(),
+        ),
+      ),
     ];

@@ -4,7 +4,6 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class DotsNavBarItem {
-
   /// Label for the item.
   final String label;
 
@@ -12,7 +11,7 @@ class DotsNavBarItem {
   final DotsIconData iconData;
 
   /// Callback function when the item is tapped.
-  ///   
+  ///
   /// If not provided, the item will not respond to taps.
   final Function()? onTap;
 
@@ -49,11 +48,11 @@ class DotsNavBar extends StatelessWidget {
           padding: const EdgeInsets.all(5),
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(
-            color: theme.colors.bgFloatingBase.dotsWithOpacity(0.3),
+            color: theme.colors.bgContainerSecondary,
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 0.70,
-                color: theme.colors.borderGlass,
+                color: theme.colors.borderButton,
               ),
               borderRadius: DotsBorderRadius.r36,
             ),
@@ -84,7 +83,7 @@ class DotsNavBar extends StatelessWidget {
                       ? theme.colors.labelHighlight
                       : theme.colors.textSecondary;
                   return GestureDetector(
-                    onTap: () { 
+                    onTap: () {
                       item.onTap?.call();
                     },
                     child: Container(
