@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/widgets.dart';
 
@@ -48,20 +46,17 @@ class ProgressBarSection extends StatelessWidget {
     return ClipRRect(
       child: GestureDetector(
         onTap: onTap,
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-          child: DecoratedBox(
-            decoration: BoxDecoration(color: theme.colors.bgContainerPrimary),
-            child: Padding(
-              padding: EdgeInsets.zero,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                spacing: 8,
-                children: [
-                  _TextProgress(size: size, leftText: leftText, rightText: rightText),
-                  _BarProgress(progress: progress),
-                ],
-              ),
+        child: DecoratedBox(
+          decoration: BoxDecoration(color: theme.colors.bgContainerPrimary),
+          child: Padding(
+            padding: EdgeInsets.zero,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              spacing: 8,
+              children: [
+                _TextProgress(size: size, leftText: leftText, rightText: rightText),
+                _BarProgress(progress: progress),
+              ],
             ),
           ),
         ),
