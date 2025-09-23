@@ -97,7 +97,7 @@ class DotsIconButton extends StatelessWidget {
     final widget = direction == DotsIconButtonDirection.column
         ? Column(
             mainAxisSize: MainAxisSize.min,
-            spacing: 2,
+            spacing: size.spacing,
             children: [
               ..._getChildren(buttonTheme, borderRadius, context),
             ],

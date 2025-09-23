@@ -104,20 +104,28 @@ class DotsDecoratedBox extends StatelessWidget {
       );
     }
     if (styleType is DotsStyleSquircle) {
-      return DecoratedBox(
-        decoration: ShapeDecoration(
-          shape: SmoothRectangleBorder(
-            borderRadius: SmoothBorderRadius(
-              cornerRadius: styleType.radius,
-              cornerSmoothing: styleType.cornerSmoothing,
-            ),
+      return _DotsDecoratedBoxClipper(
+        shape: SmoothRectangleBorder(
+          borderRadius: SmoothBorderRadius(
+            cornerRadius: styleType.radius,
+            cornerSmoothing: styleType.cornerSmoothing,
           ),
-          color: decoration.color,
-          image: decoration.image,
-          gradient: decoration.gradient,
-          shadows: decoration.shadows,
         ),
-        child: child,
+        child: DecoratedBox(
+          decoration: ShapeDecoration(
+            shape: SmoothRectangleBorder(
+              borderRadius: SmoothBorderRadius(
+                cornerRadius: styleType.radius,
+                cornerSmoothing: styleType.cornerSmoothing,
+              ),
+            ),
+            color: decoration.color,
+            image: decoration.image,
+            gradient: decoration.gradient,
+            shadows: decoration.shadows,
+          ),
+          child: child,
+        ),
       );
     }
     return DecoratedBox(

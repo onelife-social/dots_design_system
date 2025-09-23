@@ -89,37 +89,47 @@ class DotsMainButton extends StatelessWidget {
           ),
           height: size.height,
           padding: adaptPaddingForText ? EdgeInsets.symmetric(horizontal: 7) : size.padding,
-          child: DotsShaderMask(
-            styleType: buttonTheme.foregroundGradient,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              spacing: size.spacing,
-              mainAxisSize: expand ? MainAxisSize.max : MainAxisSize.min,
-              children: [
-                if (icon != null)
-                  DotsIcon(
-                    iconData: icon ?? DotsIconData.values.first,
-                    size: iconSize,
-                    color: foregroundColor,
-                  ),
-                Text(
-                  content,
-                  overflow: TextOverflow.ellipsis,
-                  style: size.getTextStyle(theme).copyWith(
-                        color: foregroundColor,
-                      ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: size.spacing,
+            mainAxisSize: expand ? MainAxisSize.max : MainAxisSize.min,
+            children: [
+              if (icon != null)
+                DotsIcon(
+                  iconData: icon ?? DotsIconData.values.first,
+                  size: iconSize,
+                  color: buttonTheme.iconColor ?? foregroundColor,
                 ),
-                if (details != null &&
-                    (size == DotsMainButtonSize.mainAction || size == DotsMainButtonSize.large))
-                  Text(
-                    details ?? '',
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.typo.main.bodyDefaultMedium.copyWith(
-                      color: buttonTheme.foregroundSecondaryColor ?? foregroundColor,
-                    ),
+              DotsShaderMask(
+                styleType: buttonTheme.foregroundGradient,
+                child: IntrinsicWidth(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: size.spacing,
+                    children: [
+                      Text(
+                        content,
+                        overflow: TextOverflow.ellipsis,
+                        style: size.getTextStyle(theme).copyWith(
+                              color: foregroundColor,
+                            ),
+                      ),
+                      if (details != null &&
+                          (size == DotsMainButtonSize.mainAction ||
+                              size == DotsMainButtonSize.large))
+                        Text(
+                          details ?? '',
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.typo.main.bodyDefaultMedium.copyWith(
+                            color: buttonTheme.foregroundSecondaryColor?.dotsWithOpacity(0.6) ??
+                                foregroundColor?.dotsWithOpacity(0.6),
+                          ),
+                        ),
+                    ],
                   ),
-              ],
-            ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -133,9 +143,9 @@ class DotsMainButton extends StatelessWidget {
         child: button,
       );
     }
-    if (buttonTheme.blur) {
+    if (buttonTheme.blurStyle != null) {
       button = DotsDecoratedBox(
-        styleType: theme.styles.bgBlur,
+        styleType: buttonTheme.blurStyle,
         decoration: BoxDecoration(
           borderRadius: borderRadius,
         ),
