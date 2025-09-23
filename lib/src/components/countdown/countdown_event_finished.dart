@@ -182,76 +182,60 @@ class _CountdownEventFinishedBigBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10, left: 25, right: 25),
       child: SizedBox(
-        height: 80,
-        child: IntrinsicWidth(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            spacing: 2,
-            children: [
-              Text(
+        width: 160,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          spacing: 2,
+          children: [
+            Center(
+              child: Text(
                 title,
-                style: theme.typo.main.labelDefaultBold.copyWith(
-                  color: textColor,
-                ),
+                style: theme.typo.main.labelDefaultBold.copyWith(color: textColor),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 10,
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                        years,
-                        style: theme.typo.main.titleH4.copyWith(
-                          color: textColor,
-                        ),
-                      ),
-                      Text(
-                        yearsLabel,
-                        style: theme.typo.main.labelSmallMedium.copyWith(
-                          color: textColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        months,
-                        style: theme.typo.main.titleH4.copyWith(
-                          color: textColor,
-                        ),
-                      ),
-                      Text(
-                        monthsLabel,
-                        style: theme.typo.main.labelSmallMedium.copyWith(
-                          color: textColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        days.toString(),
-                        style: theme.typo.main.titleH4.copyWith(
-                          color: textColor,
-                        ),
-                      ),
-                      Text(
-                        daysLabel,
-                        style: theme.typo.main.labelSmallMedium.copyWith(
-                          color: textColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              )
-            ],
-          ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 10,
+              children: [
+                _CountdownEventFinishedBigItem(item: years, itemLabel: yearsLabel),
+                _CountdownEventFinishedBigItem(item: months, itemLabel: monthsLabel),
+                _CountdownEventFinishedBigItem(item: days, itemLabel: daysLabel),
+              ],
+            )
+          ],
         ),
+      ),
+    );
+  }
+}
+
+class _CountdownEventFinishedBigItem extends StatelessWidget {
+  final String item;
+  final String itemLabel;
+  const _CountdownEventFinishedBigItem({required this.item, required this.itemLabel});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+    final Color textColor = theme.colors.labelAlwaysWhite;
+    return Flexible(
+      child: Column(
+        children: [
+          Text(
+            item,
+            style: theme.typo.main.titleH4.copyWith(
+              color: textColor,
+            ),
+          ),
+          Text(
+            itemLabel,
+            style: theme.typo.main.labelSmallMedium.copyWith(
+              color: textColor,
+            ),
+          ),
+        ],
       ),
     );
   }
