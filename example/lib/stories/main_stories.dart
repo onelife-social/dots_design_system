@@ -260,8 +260,14 @@ List<Story> get allStories => [
         name: 'Countdown Event Finished',
         description: 'Demo page for Countdown event finished',
         builder: (context) => CountdownEventFinishedDemoPage(
-          variant: CountdownEventFinishedVariant.small,
-          title: 'Felizmente casados',
+          variant: context.knobs.options<CountdownEventFinishedVariant>(
+            label: 'Variant',
+            initial: CountdownEventFinishedVariant.big,
+            options: CountdownEventFinishedVariant.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          ),
+          title: context.knobs.text(label: 'Title', initial: 'Felizmente casados!'),
           icon: DotsIconData.weddingRings,
           years: context.knobs.text(label: 'years', initial: '09'),
           months: context.knobs.text(label: 'months', initial: '11'),
