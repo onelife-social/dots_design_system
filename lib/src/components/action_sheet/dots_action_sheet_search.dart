@@ -131,7 +131,7 @@ class DotsActionSheetSearch extends StatelessWidget {
                                 colors: [
                                   theme.colors.bgBaseContrast,
                                   theme.colors.bgBaseContrast,
-                                  theme.colors.transparent,
+                                  theme.colors.bgBaseContrast.dotsWithOpacity(0.0),
                                 ],
                               ),
                             ),

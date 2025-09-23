@@ -8,17 +8,17 @@ enum DotsMainButtonSize {
     spacing: 6,
   ),
   large(
-    padding: EdgeInsets.symmetric(horizontal: 32),
+    padding: EdgeInsets.symmetric(horizontal: 20),
     height: 44,
     spacing: 4,
   ),
   medium(
-    padding: EdgeInsets.symmetric(horizontal: 20),
+    padding: EdgeInsets.symmetric(horizontal: 16),
     height: 36,
     spacing: 4,
   ),
   small(
-    padding: EdgeInsets.symmetric(horizontal: 16),
+    padding: EdgeInsets.symmetric(horizontal: 12),
     height: 28,
     spacing: 4,
   );
@@ -58,7 +58,9 @@ enum DotsMainButtonVariant {
   disabled,
   ghost,
   premiumPlus,
-  premium;
+  premium,
+  surfacePremium,
+  surfacePremiumPlus;
 
   bool get isMain => this == DotsMainButtonVariant.main;
   bool get isSecondary => this == DotsMainButtonVariant.secondary;
@@ -71,4 +73,6 @@ enum DotsMainButtonVariant {
   bool get isGhost => this == DotsMainButtonVariant.ghost;
   bool get isPremium => this == DotsMainButtonVariant.premium;
   bool get isPremiumPlus => this == DotsMainButtonVariant.premiumPlus;
+  bool get isSurfacePremium => this == DotsMainButtonVariant.surfacePremium;
+  bool get isSurfacePremiumPlus => this == DotsMainButtonVariant.surfacePremiumPlus;
 }
