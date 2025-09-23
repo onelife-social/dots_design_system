@@ -1,6 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/components/blur_container_demo_page.dart';
 import 'package:example/components/carrousel_demo_page.dart';
+import 'package:example/components/countdown_event_finished_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
 import 'package:example/components/dots_slider_demo.dart';
 import 'package:example/components/dots_text_animations_demo_page.dart';
@@ -253,6 +254,28 @@ List<Story> get allStories => [
               ),
             ],
           ),
+        ),
+      ),
+      Story(
+        name: 'Countdown Event Finished',
+        description: 'Demo page for Countdown event finished',
+        builder: (context) => CountdownEventFinishedDemoPage(
+          variant: context.knobs.options<CountdownEventFinishedVariant>(
+            label: 'Variant',
+            initial: CountdownEventFinishedVariant.big,
+            options: CountdownEventFinishedVariant.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          ),
+          title: context.knobs.text(label: 'Title', initial: 'Felizmente casados!'),
+          icon: DotsIconData.weddingRings,
+          years: context.knobs.text(label: 'years', initial: '09'),
+          months: context.knobs.text(label: 'months', initial: '11'),
+          days: context.knobs.text(label: 'days', initial: '23'),
+          yearsLabel: context.knobs.text(label: 'Years label', initial: 'Años'),
+          monthsLabel: context.knobs.text(label: 'Months label', initial: 'Meses'),
+          daysLabel: context.knobs.text(label: 'Days label', initial: 'Días'),
+          conjunctionText: context.knobs.text(label: 'Conjunction text', initial: 'y'),
         ),
       ),
       Story(
