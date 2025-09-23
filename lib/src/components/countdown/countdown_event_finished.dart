@@ -9,17 +9,43 @@ enum CountdownEventFinishedVariant {
   bool get isBig => this == CountdownEventFinishedVariant.big;
 }
 
+/// A widget that displays a message indicating that a countdown event has finished.
+/// It can be displayed in two variants: small and big.
+/// The small variant is a compact version that shows the years, months, and days
+/// along with an icon. The big variant is a more detailed version that includes a title
+/// and larger text for the years, months, and days.
+/// The widget is styled with a background color and rounded corners.
+/// It uses the DotsDecoratedBox widget to apply the styles and decorations.
+
 class CountdownEventFinished extends StatelessWidget {
+  /// The variant of the countdown event finished widget.
   final CountdownEventFinishedVariant variant;
+
+  /// The title to be displayed in the big variant.
   final String? title;
+
+  /// The icon to be displayed in the small variant.
   final DotsIconData? icon;
+
+  /// The number of years, months, and days to be displayed.
   final String years;
+
+  /// The number of months to be displayed.
   final String months;
+
+  /// The number of days to be displayed.
   final String days;
+
+  /// The labels for years, months, and days.
   final String yearsLabel;
+
+  /// The label for months.
   final String monthsLabel;
+
+  /// The label for days.
   final String daysLabel;
 
+  /// The conjunction text to be used between months and days.
   final String conjunctionText;
 
   const CountdownEventFinished({
@@ -105,6 +131,7 @@ class _CountdownEventFinishedSmallBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    final Color textColor = theme.colors.labelAlwaysWhite;
 
     return Padding(
       padding: const EdgeInsets.only(left: 12, right: 12),
@@ -113,13 +140,11 @@ class _CountdownEventFinishedSmallBody extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            DotsIcon(iconData: icon, size: 16, color: theme.colors.labelAlwaysWhite),
+            DotsIcon(iconData: icon, size: 16, color: textColor),
             const SizedBox(width: 2),
             Text(
               '$years $yearsLabel $months $monthsLabel $conjunctionText $days $daysLabel',
-              style: theme.typo.main.labelDefaultBold.copyWith(
-                color: theme.colors.labelAlwaysWhite,
-              ),
+              style: theme.typo.main.labelDefaultBold.copyWith(color: textColor),
             )
           ],
         ),
@@ -152,6 +177,8 @@ class _CountdownEventFinishedBigBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    final Color textColor = theme.colors.labelAlwaysWhite;
+
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10, left: 25, right: 25),
       child: SizedBox(
@@ -165,58 +192,57 @@ class _CountdownEventFinishedBigBody extends StatelessWidget {
               Text(
                 title,
                 style: theme.typo.main.labelDefaultBold.copyWith(
-                  color: theme.colors.labelAlwaysWhite,
+                  color: textColor,
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                spacing: 10,
                 children: [
                   Column(
                     children: [
                       Text(
                         years,
                         style: theme.typo.main.titleH4.copyWith(
-                          color: theme.colors.labelAlwaysWhite,
+                          color: textColor,
                         ),
                       ),
                       Text(
                         yearsLabel,
                         style: theme.typo.main.labelSmallMedium.copyWith(
-                          color: theme.colors.labelAlwaysWhite,
+                          color: textColor,
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(width: 10),
                   Column(
                     children: [
                       Text(
                         months,
                         style: theme.typo.main.titleH4.copyWith(
-                          color: theme.colors.labelAlwaysWhite,
+                          color: textColor,
                         ),
                       ),
                       Text(
                         monthsLabel,
                         style: theme.typo.main.labelSmallMedium.copyWith(
-                          color: theme.colors.labelAlwaysWhite,
+                          color: textColor,
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(width: 10),
                   Column(
                     children: [
                       Text(
                         days.toString(),
                         style: theme.typo.main.titleH4.copyWith(
-                          color: theme.colors.labelAlwaysWhite,
+                          color: textColor,
                         ),
                       ),
                       Text(
                         daysLabel,
                         style: theme.typo.main.labelSmallMedium.copyWith(
-                          color: theme.colors.labelAlwaysWhite,
+                          color: textColor,
                         ),
                       ),
                     ],
