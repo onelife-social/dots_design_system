@@ -613,4 +613,25 @@ List<Story> get allStories => [
           );
         },
       ),
+      Story(
+        name: 'ProgressBarSection',
+        description: 'Demo page for ProgressBarSection',
+        builder: (context) {
+          return ProgressBarSection(
+            onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Progress bar tapped')),
+            ),
+            size: context.knobs.options<ProgressBarSize>(
+              label: 'Size',
+              initial: ProgressBarSize.small,
+              options: ProgressBarSize.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
+            leftText: context.knobs.text(label: 'Left text', initial: 'Subiendo Memories'),
+            rightText: context.knobs.text(label: 'Right text', initial: '4 de 8'),
+            progress: context.knobs.slider(label: 'Progress', initial: 0.5, min: 0, max: 1),
+          );
+        },
+      ),
     ];
