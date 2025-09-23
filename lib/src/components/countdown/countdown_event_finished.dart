@@ -16,9 +16,9 @@ class CountdownEventFinished extends StatelessWidget {
   final CountdownEventFinishedVariant variant;
   final String title;
   final DotsIconData icon;
-  final int years;
-  final int months;
-  final int days;
+  final String years;
+  final String months;
+  final String days;
   final String yearsLabel;
   final String monthsLabel;
   final String daysLabel;
@@ -42,83 +42,92 @@ class CountdownEventFinished extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    final decoration = BoxDecoration(
+      color: context.dotsTheme.colors.bgContainerSecondaryOnBackground,
+      borderRadius: BorderRadius.circular(24),
+    );
 
     return DotsDecoratedBox(
-      styleType: theme.styles.squircle24,
-      decoration: BoxDecoration(
-        color: theme.colors.bgContainerSecondary,
-      ),
+      styleType: context.dotsTheme.styles.toastShadow,
+      decoration: decoration,
       child: SizedBox(
-        height: 80,
-        width: 172,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                title,
-                style: theme.typo.main.labelDefaultBold.copyWith(
-                  color: theme.colors.labelAlwaysWhite,
-                ),
+        child: DotsDecoratedBox(
+          styleType: context.dotsTheme.styles.squircle24,
+          decoration: decoration,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 10, bottom: 10, left: 12, right: 12),
+            child: SizedBox(
+              height: 80,
+              width: 172,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                spacing: 2,
+                children: [
+                  Text(
+                    title,
+                    style: theme.typo.main.labelDefaultBold.copyWith(
+                      color: theme.colors.labelAlwaysWhite,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            years,
+                            style: theme.typo.main.titleH4.copyWith(
+                              color: theme.colors.labelAlwaysWhite,
+                            ),
+                          ),
+                          Text(
+                            yearsLabel,
+                            style: theme.typo.main.labelSmallMedium.copyWith(
+                              color: theme.colors.labelAlwaysWhite,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 10),
+                      Column(
+                        children: [
+                          Text(
+                            months,
+                            style: theme.typo.main.titleH4.copyWith(
+                              color: theme.colors.labelAlwaysWhite,
+                            ),
+                          ),
+                          Text(
+                            monthsLabel,
+                            style: theme.typo.main.labelSmallMedium.copyWith(
+                              color: theme.colors.labelAlwaysWhite,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 10),
+                      Column(
+                        children: [
+                          Text(
+                            days.toString(),
+                            style: theme.typo.main.titleH4.copyWith(
+                              color: theme.colors.labelAlwaysWhite,
+                            ),
+                          ),
+                          Text(
+                            daysLabel,
+                            style: theme.typo.main.labelSmallMedium.copyWith(
+                              color: theme.colors.labelAlwaysWhite,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
               ),
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 10,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          years.toString(),
-                          style: theme.typo.main.titleH4.copyWith(
-                            color: theme.colors.labelAlwaysWhite,
-                          ),
-                        ),
-                        Text(
-                          yearsLabel,
-                          style: theme.typo.main.labelSmallMedium.copyWith(
-                            color: theme.colors.labelAlwaysWhite,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          months.toString(),
-                          style: theme.typo.main.titleH4.copyWith(
-                            color: theme.colors.labelAlwaysWhite,
-                          ),
-                        ),
-                        Text(
-                          monthsLabel,
-                          style: theme.typo.main.labelSmallMedium.copyWith(
-                            color: theme.colors.labelAlwaysWhite,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          days.toString(),
-                          style: theme.typo.main.titleH4.copyWith(
-                            color: theme.colors.labelAlwaysWhite,
-                          ),
-                        ),
-                        Text(
-                          daysLabel,
-                          style: theme.typo.main.labelSmallMedium.copyWith(
-                            color: theme.colors.labelAlwaysWhite,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              )
-            ],
+            ),
           ),
         ),
       ),
