@@ -256,6 +256,21 @@ List<Story> get allStories => [
         ),
       ),
       Story(
+        name: 'Countdown Event Finished',
+        description: 'Demo page for Countdown event finished',
+        builder: (context) => Container(
+          width: 130,
+          height: 1000,
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CountdownEventFinished(),
+            ],
+          ),
+        ),
+      ),
+      Story(
         name: 'Empty State Card',
         description: 'Demo page for Empty State Card',
         builder: (context) => EmptyStateCardDemo(
