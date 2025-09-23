@@ -1,8 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
-import 'package:dots_design_system/src/core/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
-
-import '../icons/icons_lib.dart';
 
 enum CountdownEventFinishedVariant {
   small,
@@ -14,8 +11,8 @@ enum CountdownEventFinishedVariant {
 
 class CountdownEventFinished extends StatelessWidget {
   final CountdownEventFinishedVariant variant;
-  final String title;
-  final DotsIconData icon;
+  final String? title;
+  final DotsIconData? icon;
   final String years;
   final String months;
   final String days;
@@ -28,8 +25,6 @@ class CountdownEventFinished extends StatelessWidget {
   const CountdownEventFinished({
     super.key,
     required this.variant,
-    required this.title,
-    required this.icon,
     required this.years,
     required this.months,
     required this.days,
@@ -37,48 +32,21 @@ class CountdownEventFinished extends StatelessWidget {
     required this.monthsLabel,
     required this.daysLabel,
     required this.conjunctionText,
+    this.title,
+    this.icon,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+
     final decoration = BoxDecoration(
-      color: context.dotsTheme.colors.bgContainerSecondaryOnBackground,
-      borderRadius: BorderRadius.circular(24),
+      color: theme.colors.bgContainerSecondaryOnBackground,
+      borderRadius: DotsBorderRadius.r24,
     );
 
-    if (variant.isSmall) {
-      return DotsDecoratedBox(
-        styleType: context.dotsTheme.styles.toastShadow,
-        decoration: decoration,
-        child: SizedBox(
-          child: DotsDecoratedBox(
-            styleType: context.dotsTheme.styles.squircle24,
-            decoration: decoration,
-            child: _CountdownEventFinishedSmallBody(
-              years: years,
-              months: months,
-              days: days,
-              yearsLabel: yearsLabel,
-              monthsLabel: monthsLabel,
-              daysLabel: daysLabel,
-              conjunctionText: conjunctionText,
-              icon: icon,
-            ),
-          ),
-        ),
-      );
-    }
-
-    return DotsDecoratedBox(
-      styleType: context.dotsTheme.styles.toastShadow,
-      decoration: decoration,
-      child: SizedBox(
-        child: DotsDecoratedBox(
-          styleType: context.dotsTheme.styles.squircle24,
-          decoration: decoration,
-          child: _CountdownEventFinishedBigBody(
-            title: title,
+    final Widget child = variant.isSmall
+        ? _CountdownEventFinishedSmallBody(
             years: years,
             months: months,
             days: days,
@@ -86,8 +54,27 @@ class CountdownEventFinished extends StatelessWidget {
             monthsLabel: monthsLabel,
             daysLabel: daysLabel,
             conjunctionText: conjunctionText,
-            icon: icon,
-          ),
+            icon: icon ?? DotsIconData.weddingRings,
+          )
+        : _CountdownEventFinishedBigBody(
+            title: title ?? '',
+            years: years,
+            months: months,
+            days: days,
+            yearsLabel: yearsLabel,
+            monthsLabel: monthsLabel,
+            daysLabel: daysLabel,
+            conjunctionText: conjunctionText,
+          );
+
+    return DotsDecoratedBox(
+      styleType: theme.styles.toastShadow,
+      decoration: decoration,
+      child: SizedBox(
+        child: DotsDecoratedBox(
+          styleType: theme.styles.squircle24,
+          decoration: decoration,
+          child: child,
         ),
       ),
     );
@@ -105,7 +92,6 @@ class _CountdownEventFinishedSmallBody extends StatelessWidget {
   final DotsIconData icon;
 
   const _CountdownEventFinishedSmallBody({
-    super.key,
     required this.years,
     required this.months,
     required this.days,
@@ -151,7 +137,6 @@ class _CountdownEventFinishedBigBody extends StatelessWidget {
   final String monthsLabel;
   final String daysLabel;
   final String conjunctionText;
-  final DotsIconData icon;
 
   const _CountdownEventFinishedBigBody({
     required this.title,
@@ -162,7 +147,6 @@ class _CountdownEventFinishedBigBody extends StatelessWidget {
     required this.monthsLabel,
     required this.daysLabel,
     required this.conjunctionText,
-    required this.icon,
   });
 
   @override
