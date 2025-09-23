@@ -1,6 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/components/blur_container_demo_page.dart';
 import 'package:example/components/carrousel_demo_page.dart';
+import 'package:example/components/countdown_event_finished_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
 import 'package:example/components/dots_slider_demo.dart';
 import 'package:example/components/dots_text_animations_demo_page.dart';
@@ -258,16 +259,16 @@ List<Story> get allStories => [
       Story(
         name: 'Countdown Event Finished',
         description: 'Demo page for Countdown event finished',
-        builder: (context) => Container(
-          width: 130,
-          height: 1000,
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CountdownEventFinished(),
-            ],
-          ),
+        builder: (context) => CountdownEventFinishedDemoPage(
+          variant: CountdownEventFinishedVariant.small,
+          title: 'Felizmente casados',
+          icon: DotsIconData.check,
+          years: 09,
+          months: 11,
+          days: 05,
+          yearsLabel: 'Años',
+          monthsLabel: 'Meses',
+          daysLabel: 'Días',
         ),
       ),
       Story(
