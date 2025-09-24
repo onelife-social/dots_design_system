@@ -179,33 +179,31 @@ class _CountdownEventFinishedBigBody extends StatelessWidget {
     final theme = context.dotsTheme;
     final Color textColor = theme.colors.labelAlwaysWhite;
 
-    return Padding(
-      padding: const EdgeInsets.only(top: 10, bottom: 10, left: 25, right: 25),
-      child: SizedBox(
-        width: 160,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          spacing: 2,
-          children: [
-            Center(
-              child: Text(
-                title,
-                style: theme.typo.main.labelDefaultBold.copyWith(color: textColor),
-              ),
+    return Container(
+      width: 169,
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 22),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        spacing: 2,
+        children: [
+          Center(
+            child: Text(
+              title,
+              style: theme.typo.main.labelDefaultBold.copyWith(color: textColor),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              spacing: 10,
-              children: [
-                _CountdownEventFinishedBigItem(item: years, itemLabel: yearsLabel),
-                _CountdownEventFinishedBigItem(item: months, itemLabel: monthsLabel),
-                _CountdownEventFinishedBigItem(item: days, itemLabel: daysLabel),
-              ],
-            )
-          ],
-        ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 10,
+            children: [
+              _CountdownEventFinishedBigItem(item: years, itemLabel: yearsLabel),
+              _CountdownEventFinishedBigItem(item: months, itemLabel: monthsLabel),
+              _CountdownEventFinishedBigItem(item: days, itemLabel: daysLabel),
+            ],
+          )
+        ],
       ),
     );
   }
