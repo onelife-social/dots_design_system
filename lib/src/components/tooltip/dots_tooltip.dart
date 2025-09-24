@@ -5,6 +5,7 @@ class DotsTooltip extends StatelessWidget {
   final DotsIconData? icon;
   final String text;
   final Function()? onTap;
+  final Function()? onClose;
   final bool showCloseButton;
 
   final DotsToolTipTailPosition tailPosition;
@@ -15,7 +16,8 @@ class DotsTooltip extends StatelessWidget {
       this.onTap,
       this.icon,
       this.showCloseButton = true,
-      required this.tailPosition});
+      required this.tailPosition,
+      this.onClose});
 
   BorderRadiusGeometry get _borderRadius {
     switch (tailPosition) {
@@ -98,6 +100,7 @@ class DotsTooltip extends StatelessWidget {
                       ? DotsCloseButton(
                           size: DotsCloseButtonSize.small,
                           variant: DotsCloseButtonVariant.softContrast,
+                          onTap: () => onClose?.call(),
                         )
                       : SizedBox()
                 ],
