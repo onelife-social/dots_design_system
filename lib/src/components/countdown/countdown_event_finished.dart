@@ -143,7 +143,7 @@ class _CountdownEventFinishedSmallBody extends StatelessWidget {
             DotsIcon(iconData: icon, size: 16, color: textColor),
             const SizedBox(width: 2),
             Text(
-              '$years $yearsLabel $months $monthsLabel $conjunctionText $days $daysLabel',
+              '$years $yearsLabel $months $monthsLabel $conjunctionText $days $daysLabel'.trim(),
               style: theme.typo.main.labelDefaultBold.copyWith(color: textColor),
             )
           ],
