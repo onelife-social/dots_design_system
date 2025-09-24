@@ -84,14 +84,14 @@ class ActivityOverviewItem extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: imageBorderRadius,
                   image: (image != null)
-                    ? DecorationImage(
-                        image: image!,
-                        fit: BoxFit.cover,
-                        onError: (exception, stackTrace) {
-                          onError?.call(exception, stackTrace);
-                        },
-                      )
-                    : null,
+                      ? DecorationImage(
+                          image: image!,
+                          fit: BoxFit.cover,
+                          onError: (exception, stackTrace) {
+                            onError?.call(exception, stackTrace);
+                          },
+                        )
+                      : null,
                 ),
               ),
               Positioned.fill(
@@ -170,74 +170,69 @@ class ActivityOverviewItem extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 2),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '+${formatCount(reactionsCount)}',
-                  style: theme.typo.main.bodyDefaultMedium.copyWith(
-                    color: theme.colors.labelHighlight,
+            if (reactionsCount > 0)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '+${formatCount(reactionsCount)}',
+                    style: theme.typo.main.bodyDefaultMedium.copyWith(
+                      color: theme.colors.labelHighlight,
+                    ),
                   ),
-                ),
-                const SizedBox(width: 4),
-                if (userImages.isNotEmpty)
-                  SizedBox(
-                    width: _calculateUserImagesWidth(
-                        userImages.take(maxUserImages).length),
-                    height: 17,
-                    child: Stack(
-                      alignment: Alignment.centerLeft,
-                      children: userImages
-                          .take(maxUserImages)
-                          .toList()
-                          .asMap()
-                          .entries
-                          .map((entry) {
-                        final index = entry.key;
-                        final image = entry.value;
-                        final leftOffset = index * 10.0;
+                  const SizedBox(width: 4),
+                  if (userImages.isNotEmpty)
+                    SizedBox(
+                      width: _calculateUserImagesWidth(userImages.take(maxUserImages).length),
+                      height: 17,
+                      child: Stack(
+                        alignment: Alignment.centerLeft,
+                        children:
+                            userImages.take(maxUserImages).toList().asMap().entries.map((entry) {
+                          final index = entry.key;
+                          final image = entry.value;
+                          final leftOffset = index * 10.0;
 
-                        return Positioned(
-                          left: leftOffset,
-                          child: SizedBox(
-                            width: 17,
-                            height: 17,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: theme.colors.bgBase,
-                                border: Border.all(
+                          return Positioned(
+                            left: leftOffset,
+                            child: SizedBox(
+                              width: 17,
+                              height: 17,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
                                   color: theme.colors.bgBase,
-                                  width: 1,
+                                  border: Border.all(
+                                    color: theme.colors.bgBase,
+                                    width: 1,
+                                  ),
                                 ),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: FadeInImage(
-                                  placeholder: MemoryImage(kTransparentImage),
-                                  image: image,
-                                  fit: BoxFit.cover,
-                                  imageErrorBuilder:
-                                      (context, error, stackTrace) {
-                                    return Container(
-                                      color: theme.colors.bgContainerSecondary,
-                                      child: Icon(
-                                        Icons.person,
-                                        size: 12,
-                                        color: theme.colors.textTertiary,
-                                      ),
-                                    );
-                                  },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: FadeInImage(
+                                    placeholder: MemoryImage(kTransparentImage),
+                                    image: image,
+                                    fit: BoxFit.cover,
+                                    imageErrorBuilder: (context, error, stackTrace) {
+                                      return Container(
+                                        color: theme.colors.bgContainerSecondary,
+                                        child: Icon(
+                                          Icons.person,
+                                          size: 12,
+                                          color: theme.colors.textTertiary,
+                                        ),
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      }).toList(),
+                          );
+                        }).toList(),
+                      ),
                     ),
-                  ),
-              ],
-            ),
+                ],
+              ),
           ],
         ),
       ],
