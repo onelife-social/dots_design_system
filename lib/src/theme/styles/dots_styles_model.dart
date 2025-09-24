@@ -18,6 +18,8 @@ class DotsStylesModel {
   final DotsStyleShadow defaultShadow;
   final DotsStyleSquircle defaultSquircle;
   final DotsStyleSquircle squircle24;
+  final DotsStyleSquircle squircle8;
+  final DotsStyleSquircle squircle12;
 
   DotsStylesModel({
     required this.bgAlert,
@@ -37,6 +39,8 @@ class DotsStylesModel {
     required this.defaultShadow,
     required this.defaultSquircle,
     required this.squircle24,
+    required this.squircle8,
+    required this.squircle12,
   });
 
   DotsStylesModel lerp(DotsStylesModel? other, double t) {
@@ -60,6 +64,8 @@ class DotsStylesModel {
       defaultShadow: defaultShadow.lerp(other.defaultShadow, t) ?? defaultShadow,
       defaultSquircle: defaultSquircle.lerp(other.defaultSquircle, t) ?? defaultSquircle,
       squircle24: squircle24.lerp(other.squircle24, t) ?? squircle24,
+      squircle8: squircle8.lerp(other.squircle8, t) ?? squircle8,
+      squircle12: squircle12.lerp(other.squircle12, t) ?? squircle12,
     );
   }
 }
