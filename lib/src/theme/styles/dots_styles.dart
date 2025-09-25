@@ -78,6 +78,14 @@ class DotsStyles {
       radius: 24,
       cornerSmoothing: 0.5,
     ),
+    squircle8: DotsStyleSquircle(
+      radius: 8,
+      cornerSmoothing: 0.5,
+    ),
+    squircle12: DotsStyleSquircle(
+      radius: 12,
+      cornerSmoothing: 0.5,
+    ),
   );
 
   static final dark = DotsStylesModel(
@@ -154,6 +162,14 @@ class DotsStyles {
     ),
     squircle24: DotsStyleSquircle(
       radius: 24,
+      cornerSmoothing: 0.5,
+    ),
+    squircle8: DotsStyleSquircle(
+      radius: 8,
+      cornerSmoothing: 0.5,
+    ),
+    squircle12: DotsStyleSquircle(
+      radius: 12,
       cornerSmoothing: 0.5,
     ),
   );

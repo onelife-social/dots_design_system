@@ -58,10 +58,11 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
       );
     case DotsMainButtonVariant.secondaryLight:
       return DotsMainButtonTheme(
-        backgroundColor: theme.colors.bgFloatingBtn,
-        foregroundColor: textColor ?? theme.colors.labelAlwaysWhite,
-        foregroundSecondaryColor: theme.colors.labelAlwaysWhite.dotsWithOpacity(0.6),
+        backgroundColor: theme.colors.bgBtnImage,
+        foregroundColor: textColor ?? theme.colors.textSecondary,
+        foregroundSecondaryColor: theme.colors.textSecondary.dotsWithOpacity(0.6),
         blurStyle: theme.styles.blur50,
+        shadow: true,
       );
     case DotsMainButtonVariant.secondaryDark:
       return DotsMainButtonTheme(

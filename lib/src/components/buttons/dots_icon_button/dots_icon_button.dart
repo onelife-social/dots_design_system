@@ -18,6 +18,7 @@ class DotsIconButton extends StatelessWidget {
     this.labelStyle,
     this.onTap,
     this.color,
+    this.backgroundColor,
     this.textTappable = false,
   });
 
@@ -75,6 +76,11 @@ class DotsIconButton extends StatelessWidget {
   ///
   /// If not provided, the icon will use the default color from the theme.
   final Color? color;
+
+  /// Optional background color for the button.
+  ///
+  /// If not provided, the button will use the default background color from the theme.
+  final Color? backgroundColor;
 
   /// Whether the text label is tappable.
   final bool textTappable;
@@ -136,6 +142,7 @@ class DotsIconButton extends StatelessWidget {
         onTap: onTap,
         tag: tag,
         color: color,
+        backgroundColor: backgroundColor,
         noButtonSize: style.isNoBackground,
       ),
       if (label != null)
@@ -160,6 +167,7 @@ class _IconButton extends StatelessWidget {
   final String? tag;
   final bool noButtonSize;
   final dynamic color;
+  final dynamic backgroundColor;
 
   const _IconButton({
     required this.icon,
@@ -171,6 +179,7 @@ class _IconButton extends StatelessWidget {
     required this.tag,
     required this.color,
     required this.noButtonSize,
+    required this.backgroundColor,
   });
 
   @override
@@ -180,7 +189,7 @@ class _IconButton extends StatelessWidget {
       width: noButtonSize ? null : size.size,
       child: Container(
         decoration: BoxDecoration(
-          color: buttonTheme.backgroundColor ?? Colors.transparent,
+          color: backgroundColor ?? buttonTheme.backgroundColor ?? Colors.transparent,
           borderRadius: borderRadius,
           border: buttonTheme.borderColor != null
               ? Border.all(color: buttonTheme.borderColor ?? Colors.transparent, width: 0.7)
