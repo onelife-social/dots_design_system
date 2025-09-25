@@ -99,12 +99,10 @@ class CountdownEventFinished extends StatelessWidget {
       child: DotsDecoratedBox(
         styleType: theme.styles.toastShadow,
         decoration: decoration,
-        child: SizedBox(
-          child: DotsDecoratedBox(
-            styleType: theme.styles.squircle24,
-            decoration: decoration,
-            child: child,
-          ),
+        child: DotsDecoratedBox(
+          styleType: theme.styles.squircle24,
+          decoration: decoration,
+          child: child,
         ),
       ),
     );
