@@ -1,8 +1,8 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class DotsProfilePhotoBited extends StatelessWidget {
-
   /// [imageProvider] is the image to display.
   final ImageProvider imageProvider;
 
@@ -47,47 +47,61 @@ class DotsProfilePhotoBited extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    
+
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
         width: width,
         height: height,
-        child: Stack(
-          children: [
-            ClipPath(
-              clipper: _BiteCircleClipper(
-                biteSize: biteSize,
-                biteOffset: biteOffset,
-              ),
-              child: Image(
-                image: imageProvider,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  onError?.call(error, stackTrace);
-                  return Container(color: Colors.grey, width: width, height: height);
-                },
-              ),
-            ),
-            Positioned(
-              left: width * biteOffset.dx - width * biteSize,
-              top: height * biteOffset.dy - height * biteSize,
-              width: width * biteSize * 2,
-              height: height * biteSize * 2,
-              child: Center(
-                child: Text(
-                  reaction ?? '',
-                  style: emojiStyle ?? theme.typo.main.labelDefaultBold,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final double w = constraints.maxWidth.isFinite ? constraints.maxWidth : width;
+            final double h = constraints.maxHeight.isFinite ? constraints.maxHeight : height;
+
+            final double diameter = math.min(w, h);
+            final double circleLeft = (w - diameter) / 2;
+            final double circleTop = (h - diameter) / 2;
+
+            return Stack(
+              children: [
+                ClipPath(
+                  clipper: _BiteCircleClipper(
+                    biteSize: biteSize,
+                    biteOffset: biteOffset,
+                  ),
+                  child: SizedBox(
+                    width: w,
+                    height: h,
+                    child: Image(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        onError?.call(error, stackTrace);
+                        return Container(color: Colors.grey, width: w, height: h);
+                      },
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ],
+                Positioned(
+                  left: circleLeft + diameter * biteOffset.dx - diameter * biteSize,
+                  top: circleTop + diameter * biteOffset.dy - diameter * biteSize,
+                  width: diameter * biteSize * 2,
+                  height: diameter * biteSize * 2,
+                  child: Center(
+                    child: Text(
+                      reaction ?? '',
+                      style: emojiStyle ?? theme.typo.main.labelDefaultBold,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
   }
 }
-
 
 class _BiteCircleClipper extends CustomClipper<Path> {
   final double biteSize;
@@ -96,25 +110,28 @@ class _BiteCircleClipper extends CustomClipper<Path> {
   _BiteCircleClipper({
     required this.biteSize,
     required this.biteOffset,
-  });
+  }) : assert(biteSize > 0 && biteSize < 0.5);
 
   @override
   Path getClip(Size size) {
-    final path = Path()
-      ..addOval(Rect.fromLTWH(0, 0, size.width, size.height));
+    final double diameter = math.min(size.width, size.height);
+    final double circleLeft = (size.width - diameter) / 2;
+    final double circleTop = (size.height - diameter) / 2;
 
-    final biteRadius = size.width * biteSize;
-    final biteCenter = Offset(
-      size.width * biteOffset.dx,
-      size.height * biteOffset.dy,
+    final Rect circleRect = Rect.fromLTWH(circleLeft, circleTop, diameter, diameter);
+    final Path base = Path()..addOval(circleRect);
+
+    final double biteRadius = diameter * biteSize;
+    final Offset biteCenter = Offset(
+      circleLeft + diameter * biteOffset.dx,
+      circleTop + diameter * biteOffset.dy,
     );
-    path.addOval(Rect.fromCircle(center: biteCenter, radius: biteRadius));
+    final Path bitePath = Path()..addOval(Rect.fromCircle(center: biteCenter, radius: biteRadius));
 
-    return Path.combine(PathOperation.difference,
-        Path()..addOval(Rect.fromLTWH(0, 0, size.width, size.height)),
-        Path()..addOval(Rect.fromCircle(center: biteCenter, radius: biteRadius)));
+    return Path.combine(PathOperation.difference, base, bitePath);
   }
 
   @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
+  bool shouldReclip(covariant _BiteCircleClipper oldClipper) =>
+      oldClipper.biteSize != biteSize || oldClipper.biteOffset != biteOffset;
 }
