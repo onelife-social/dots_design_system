@@ -29,6 +29,7 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
   DotsMainButtonVariant variant,
   DotsMainButtonSize size,
   Color? textColor,
+  Color? iconColor,
 ) {
   switch (variant) {
     case DotsMainButtonVariant.main:
@@ -47,14 +48,14 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
     case DotsMainButtonVariant.secondaryPremium:
       return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgContainerSecondaryOnBackground,
-        foregroundGradient: theme.styles.textPremium,
-        iconColor: theme.colors.textPremiumStart,
+        foregroundGradient: textColor != null ? null : theme.styles.textPremium,
+        iconColor: iconColor ?? theme.colors.textPremiumStart,
       );
     case DotsMainButtonVariant.secondaryPremiumPlus:
       return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgContainerSecondaryOnBackground,
-        foregroundGradient: theme.styles.textPremiumPlus,
-        iconColor: theme.colors.textPremiumPlusStart,
+        foregroundGradient: textColor != null ? null : theme.styles.textPremiumPlus,
+        iconColor: iconColor ?? theme.colors.textPremiumPlusStart,
       );
     case DotsMainButtonVariant.secondaryLight:
       return DotsMainButtonTheme(
@@ -120,16 +121,16 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
       );
     case DotsMainButtonVariant.surfacePremium:
       return DotsMainButtonTheme(
-        foregroundGradient: theme.styles.textPremium,
+        foregroundGradient: textColor != null ? null : theme.styles.textPremium,
         backgroundColor: theme.colors.bgContainerSecondary,
-        iconColor: theme.colors.textPremiumStart,
+        iconColor: iconColor ?? theme.colors.textPremiumStart,
         blurStyle: theme.styles.blur10,
       );
     case DotsMainButtonVariant.surfacePremiumPlus:
       return DotsMainButtonTheme(
-        foregroundGradient: theme.styles.textPremiumPlus,
+        foregroundGradient: textColor != null ? null : theme.styles.textPremiumPlus,
         backgroundColor: theme.colors.bgContainerSecondary,
-        iconColor: theme.colors.textPremiumPlusStart,
+        iconColor: iconColor ?? theme.colors.textPremiumPlusStart,
         blurStyle: theme.styles.blur10,
       );
   }

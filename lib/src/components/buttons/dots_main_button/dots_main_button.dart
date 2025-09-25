@@ -18,6 +18,7 @@ class DotsMainButton extends StatelessWidget {
     this.expand = true,
     this.adaptPaddingForText = false,
     this.textColor,
+    this.iconColor,
   });
 
   /// The text to display on the button.
@@ -64,6 +65,9 @@ class DotsMainButton extends StatelessWidget {
   /// Optional text color to override the default one from the theme.
   final Color? textColor;
 
+  /// Optional icon color to override the default one from the theme.
+  final Color? iconColor;
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -72,11 +76,15 @@ class DotsMainButton extends StatelessWidget {
       enabled ? variant : DotsMainButtonVariant.disabled,
       size,
       textColor,
+      iconColor,
     );
     final borderRadius = BorderRadius.circular(size.height);
 
-    final foregroundColor =
-        buttonTheme.foregroundGradient == null ? buttonTheme.foregroundColor : Colors.white;
+    final foregroundColor = textColor != null
+        ? textColor
+        : buttonTheme.foregroundGradient == null
+            ? buttonTheme.foregroundColor
+            : Colors.white;
     Widget button = Material(
       color: buttonTheme.backgroundColor ?? Colors.transparent,
       borderRadius: borderRadius,
