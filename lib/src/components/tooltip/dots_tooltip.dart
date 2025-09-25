@@ -73,14 +73,14 @@ class DotsTooltip extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Container(
-              constraints: BoxConstraints(
-                  maxWidth: 318, minWidth: 185, maxHeight: height, minHeight: height),
+              constraints: BoxConstraints(maxWidth: 288, minWidth: 185, minHeight: height),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: theme.colors.bgContainerPrimary,
                 borderRadius: _borderRadius,
               ),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 10,
                 children: [
                   if (icon != null)
