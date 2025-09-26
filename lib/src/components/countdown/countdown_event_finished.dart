@@ -183,7 +183,7 @@ class _CountdownEventFinishedBigBody extends StatelessWidget {
 
     return Container(
       width: 169,
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 22),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
