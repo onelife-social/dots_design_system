@@ -7,7 +7,7 @@ import 'package:transparent_image/transparent_image.dart';
 class ActivityOverviewItem extends StatelessWidget {
   const ActivityOverviewItem({
     super.key,
-    this.image,
+    this.images,
     this.onError,
     required this.icon,
     required this.count,
@@ -22,8 +22,8 @@ class ActivityOverviewItem extends StatelessWidget {
     this.maxUserImages = 2,
   });
 
-  /// Image provider for the main image to display
-  final ImageProvider? image;
+  /// List of Image providers for the main images to display
+  final List<ImageProvider>? images;
 
   /// Callback for image load error.
   /// Called when the image fails to load.
@@ -77,15 +77,55 @@ class ActivityOverviewItem extends StatelessWidget {
             clipBehavior: Clip.none,
             alignment: Alignment.center,
             children: [
+              if (images != null && images!.length > 1)
+                Transform(
+                  alignment: Alignment.bottomRight,
+                  transform: Matrix4.identity()..rotateZ(-0.087),
+                  child: Stack(
+                    children: [
+                      Container(
+                        width: width,
+                        height: height,
+                        clipBehavior: Clip.hardEdge,
+                        decoration: BoxDecoration(
+                          borderRadius: imageBorderRadius,
+                          image: (images != null && images!.isNotEmpty)
+                              ? DecorationImage(
+                                  image: images!.last,
+                                  fit: BoxFit.cover,
+                                  onError: (exception, stackTrace) {
+                                    onError?.call(exception, stackTrace);
+                                  },
+                                )
+                              : null,
+                        ),
+                      ),
+                      Container(
+                        width: width,
+                        height: height,
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: imageBorderRadius,
+                            side: BorderSide(
+                              color: Colors.white60,
+                              width: borderWidth,
+                              strokeAlign: BorderSide.strokeAlignInside,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               Container(
                 width: width,
                 height: height,
                 clipBehavior: Clip.hardEdge,
                 decoration: BoxDecoration(
                   borderRadius: imageBorderRadius,
-                  image: (image != null)
+                  image: (images != null && images!.isNotEmpty)
                       ? DecorationImage(
-                          image: image!,
+                          image: images!.first,
                           fit: BoxFit.cover,
                           onError: (exception, stackTrace) {
                             onError?.call(exception, stackTrace);
