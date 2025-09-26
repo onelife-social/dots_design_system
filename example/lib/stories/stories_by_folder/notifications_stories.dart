@@ -58,20 +58,35 @@ List<Story> get notificationsStories => [
       Story(
         name: 'Notifications/Activity Preview Item',
         description: 'Demo page for Activity Preview Item',
-        builder: (context) => Container(
-          width: 300,
-          height: 1000,
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ActivityOverviewItem(
-                  image: NetworkImage(
-                    context.knobs.text(
-                      label: 'Main Image',
-                      initial: 'https://picsum.photos/250?image=9',
-                    ),
-                  ),
+        builder: (context) {
+          final imageCount = context.knobs.options<int>(
+            label: 'Image Count',
+            initial: 2,
+            options: [
+              Option(label: '1', value: 1),
+              Option(label: '2', value: 2),
+            ],
+          );
+
+          final images = List<ImageProvider>.generate(
+            imageCount,
+            (i) => NetworkImage(
+              context.knobs.text(
+                label: 'Image ${i + 1}',
+                initial: 'https://picsum.photos/250?image=${9 + i * 15}',
+              ),
+            ),
+          );
+
+          return Container(
+            width: 300,
+            height: 1000,
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ActivityOverviewItem(
+                  images: images,
                   icon: DotsIcon(
                     iconData: context.knobs.options<DotsIconData>(
                       label: 'Icon',
@@ -111,10 +126,12 @@ List<Story> get notificationsStories => [
                         initial: 'https://picsum.photos/250?image=66',
                       ),
                     )
-                  ])
-            ],
-          ),
-        ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
       ),
       Story(
         name: 'Notifications/Banner',
