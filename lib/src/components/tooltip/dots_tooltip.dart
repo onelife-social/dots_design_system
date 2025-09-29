@@ -1,5 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
+import 'dart:ui';
 
 class DotsTooltip extends StatelessWidget {
   final DotsIconData? icon;
@@ -72,40 +73,50 @@ class DotsTooltip extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            Container(
-              constraints: BoxConstraints(maxWidth: 288, minWidth: 185, minHeight: height),
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: theme.colors.bgContainerPrimary,
-                borderRadius: _borderRadius,
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 10,
-                children: [
-                  if (icon != null)
-                    DotsIcon(
-                      iconData: icon,
-                      size: 32,
-                      color: theme.colors.labelHighlight,
-                    ),
-                  Expanded(
-                    child: Text(
-                      text,
-                      textAlign: TextAlign.center,
-                      style: theme.typo.main.labelDefaultMedium,
-                    ),
+            ClipRRect(
+              borderRadius: _borderRadius,
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+                child: Container(
+                  constraints: BoxConstraints(maxWidth: 288, minWidth: 185, minHeight: height),
+                  padding: const EdgeInsets.all(16).copyWith(right: 52),
+                  decoration: BoxDecoration(
+                    color: theme.colors.bgContainerPrimary,
+                    borderRadius: _borderRadius,
                   ),
-                  showCloseButton
-                      ? DotsCloseButton(
-                          size: DotsCloseButtonSize.small,
-                          variant: DotsCloseButtonVariant.softContrast,
-                          onTap: () => onClose?.call(),
-                        )
-                      : SizedBox()
-                ],
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    spacing: 10,
+                    children: [
+                      if (icon != null)
+                        DotsIcon(
+                          iconData: icon,
+                          size: 32,
+                          color: theme.colors.labelHighlight,
+                        ),
+                      Expanded(
+                        child: Text(
+                          text,
+                          textAlign: TextAlign.left,
+                          style: theme.typo.main.labelDefaultMedium,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
+            showCloseButton
+                ? Positioned(
+                    top: 16,
+                    right: 16,
+                    child: DotsCloseButton(
+                      size: DotsCloseButtonSize.small,
+                      variant: DotsCloseButtonVariant.softContrast,
+                      onTap: () => onClose?.call(),
+                    ),
+                  )
+                : SizedBox(),
             Positioned(
               top: tailPosition.isBottom ? height : -12,
               right: tailPosition.isRight ? tailFromBorderWidth() : null,
