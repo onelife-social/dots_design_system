@@ -49,6 +49,15 @@ class DotsStyles {
     blur50: DotsStyleBlur(
       blur: 50,
     ),
+    blur40: DotsStyleBlur(
+      blur: 40,
+    ),
+    blur30: DotsStyleBlur(
+      blur: 30,
+    ),
+    blur20: DotsStyleBlur(
+      blur: 20,
+    ),
     blur12: DotsStyleBlur(
       blur: 12,
     ),
@@ -134,6 +143,15 @@ class DotsStyles {
     ),
     blur50: DotsStyleBlur(
       blur: 50,
+    ),
+    blur40: DotsStyleBlur(
+      blur: 40,
+    ),
+    blur30: DotsStyleBlur(
+      blur: 30,
+    ),
+    blur20: DotsStyleBlur(
+      blur: 20,
     ),
     blur12: DotsStyleBlur(
       blur: 12,
