@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
@@ -187,32 +189,38 @@ class _IconButton extends StatelessWidget {
     return SizedBox(
       height: noButtonSize ? null : size.size,
       width: noButtonSize ? null : size.size,
-      child: Container(
-        decoration: BoxDecoration(
-          color: backgroundColor ?? buttonTheme.backgroundColor ?? Colors.transparent,
-          borderRadius: borderRadius,
-          border: buttonTheme.borderColor != null
-              ? Border.all(color: buttonTheme.borderColor ?? Colors.transparent, width: 0.7)
-              : null,
-        ),
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: borderRadius,
-          child: Center(
-            child: tag != null
-                ? BadgeTag(
-                    tag: tag!,
-                    child: DotsIcon(
-                      iconData: icon,
-                      size: iconSize ?? size.iconSize,
-                      color: color ?? buttonTheme.foregroundColor,
-                    ),
-                  )
-                : DotsIcon(
-                    iconData: icon,
-                    size: iconSize ?? size.iconSize,
-                    color: color ?? buttonTheme.foregroundColor,
-                  ),
+      child: ClipRRect(
+        borderRadius: borderRadius,
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: DotsDecoratedBox(
+            decoration: BoxDecoration(
+              color: backgroundColor ?? buttonTheme.backgroundColor ?? Colors.transparent,
+              borderRadius: borderRadius,
+              border: buttonTheme.borderColor != null
+                  ? Border.all(color: buttonTheme.borderColor ?? Colors.transparent, width: 0.7)
+                  : null,
+            ),
+            child: InkWell(
+              onTap: onTap,
+              borderRadius: borderRadius,
+              child: Center(
+                child: tag != null
+                    ? BadgeTag(
+                        tag: tag!,
+                        child: DotsIcon(
+                          iconData: icon,
+                          size: iconSize ?? size.iconSize,
+                          color: color ?? buttonTheme.foregroundColor,
+                        ),
+                      )
+                    : DotsIcon(
+                        iconData: icon,
+                        size: iconSize ?? size.iconSize,
+                        color: color ?? buttonTheme.foregroundColor,
+                      ),
+              ),
+            ),
           ),
         ),
       ),
