@@ -15,9 +15,20 @@ enum ProgressBarSize {
   const ProgressBarSize({required this.padding});
 }
 
+enum ProgressBarVariant {
+  /// No blur nor background.
+  plain,
+
+  /// Blurred container with no solid background fill.
+  blur,
+
+  /// Blurred container with a solid background fill color.
+  blurWithBackground,
+}
+
 class ProgressBarSection extends StatelessWidget {
-  /// Callback when the section is tapped.
-  final VoidCallback? onTap;
+  /// Visual variant.
+  final ProgressBarVariant variant;
 
   /// Size configuration for the progress bar.
   final ProgressBarSize size;
@@ -31,42 +42,66 @@ class ProgressBarSection extends StatelessWidget {
   /// Progress value between 0.0 and 1.0.
   final double progress;
 
+  /// Callback when the section is tapped.
+  final VoidCallback? onTap;
+
   const ProgressBarSection({
     super.key,
-    required this.onTap,
-    required this.size,
+    this.variant = ProgressBarVariant.plain,
+    this.size = ProgressBarSize.medium,
     required this.leftText,
     required this.rightText,
     required this.progress,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    final DotsTheme theme = context.dotsTheme;
+    final theme = context.dotsTheme;
 
-    return ClipRRect(
-      child: GestureDetector(
-        onTap: onTap,
-        child: DecoratedBox(
-          decoration: BoxDecoration(color: theme.colors.bgContainerPrimary),
-          child: Padding(
-            padding: EdgeInsets.zero,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              spacing: 8,
-              children: [
-                _TextProgress(
-                  size: size,
-                  leftText: leftText,
-                  rightText: rightText,
-                  showChevron: onTap != null,
-                ),
-                _BarProgress(progress: progress),
-              ],
-            ),
-          ),
+    final content = Column(
+      mainAxisSize: MainAxisSize.min,
+      spacing: 8,
+      children: [
+        _TextProgress(
+          size: size,
+          leftText: leftText,
+          rightText: rightText,
+          showChevron: onTap != null,
         ),
-      ),
+        _BarProgress(progress: progress),
+      ],
+    );
+
+    Widget wrapped;
+    switch (variant) {
+      case ProgressBarVariant.plain:
+        wrapped = content;
+        break;
+
+      case ProgressBarVariant.blur:
+        wrapped = DotsDecoratedBox(
+          styleType: theme.styles.blur50,
+          decoration: BoxDecoration(color: theme.colors.bgContainerPrimary),
+          child: content,
+        );
+        break;
+
+      case ProgressBarVariant.blurWithBackground:
+        wrapped = DotsDecoratedBox(
+          styleType: theme.styles.blur50,
+          decoration: BoxDecoration(color: theme.colors.bgContainerPrimary),
+          child: Container(
+            color: theme.colors.bgContainerPrimary,
+            child: content,
+          ),
+        );
+        break;
+    }
+
+    return GestureDetector(
+      onTap: onTap,
+      child: wrapped,
     );
   }
 }
