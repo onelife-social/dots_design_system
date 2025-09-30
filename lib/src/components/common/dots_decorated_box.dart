@@ -143,13 +143,27 @@ class _DotsDecoratedBoxClipper extends StatelessWidget {
 
   final ShapeBorder shape;
   final Widget child;
+
   @override
   Widget build(BuildContext context) {
+    final textDirection = Directionality.maybeOf(context) ?? TextDirection.ltr;
     return ClipPath(
-      clipper: ShapeBorderClipper(
-        shape: shape,
-      ),
+      clipper: _ShapeBorderClipperFixed(shape: shape, textDirection: textDirection),
       child: child,
     );
   }
+}
+
+class _ShapeBorderClipperFixed extends CustomClipper<Path> {
+  _ShapeBorderClipperFixed({required this.shape, required this.textDirection});
+
+  final ShapeBorder shape;
+  final TextDirection textDirection;
+
+  @override
+  Path getClip(Size size) => shape.getOuterPath(Offset.zero & size, textDirection: textDirection);
+
+  @override
+  bool shouldReclip(covariant _ShapeBorderClipperFixed oldClipper) =>
+      oldClipper.shape != shape || oldClipper.textDirection != textDirection;
 }
