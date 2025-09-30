@@ -120,7 +120,7 @@ class DotsActionSheetSearch extends StatelessWidget {
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        height: 70,
+                        height: 90,
                         child: IgnorePointer(
                           child: Container(
                             decoration: BoxDecoration(
