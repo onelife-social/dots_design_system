@@ -641,8 +641,12 @@ List<Story> get allStories => [
         description: 'Demo page for ProgressBarSection',
         builder: (context) {
           return ProgressBarSection(
-            onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Progress bar tapped')),
+            variant: context.knobs.options<ProgressBarVariant>(
+              label: 'Variant',
+              initial: ProgressBarVariant.plain,
+              options: ProgressBarVariant.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
             ),
             size: context.knobs.options<ProgressBarSize>(
               label: 'Size',
@@ -654,6 +658,9 @@ List<Story> get allStories => [
             leftText: context.knobs.text(label: 'Left text', initial: 'Subiendo Memories'),
             rightText: context.knobs.text(label: 'Right text', initial: '4 de 8'),
             progress: context.knobs.slider(label: 'Progress', initial: 0.5, min: 0, max: 1),
+            onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Progress bar tapped')),
+            ),
           );
         },
       ),
