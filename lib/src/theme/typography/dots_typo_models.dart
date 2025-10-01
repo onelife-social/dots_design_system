@@ -107,7 +107,8 @@ class DotsTypoNumberModel {
   final TextStyle numTitleH6;
 
   // Body
-  final TextStyle numBodyLarge;
+  final TextStyle numBodyLargeBold;
+  final TextStyle numBodyLargeMedium;
   final TextStyle numBodyDefault;
 
   // Label
@@ -121,7 +122,8 @@ class DotsTypoNumberModel {
     required this.numTitleH4,
     required this.numTitleH5,
     required this.numTitleH6,
-    required this.numBodyLarge,
+    required this.numBodyLargeBold,
+    required this.numBodyLargeMedium,
     required this.numBodyDefault,
     required this.numLabelDefault,
     required this.numLabelSmall,
@@ -135,7 +137,8 @@ class DotsTypoNumberModel {
       numTitleH4: TextStyle.lerp(numTitleH4, other?.numTitleH4, t) ?? numTitleH4,
       numTitleH5: TextStyle.lerp(numTitleH5, other?.numTitleH5, t) ?? numTitleH5,
       numTitleH6: TextStyle.lerp(numTitleH6, other?.numTitleH6, t) ?? numTitleH6,
-      numBodyLarge: TextStyle.lerp(numBodyLarge, other?.numBodyLarge, t) ?? numBodyLarge,
+      numBodyLargeBold: TextStyle.lerp(numBodyLargeBold, other?.numBodyLargeBold, t) ?? numBodyLargeBold,
+      numBodyLargeMedium: TextStyle.lerp(numBodyLargeMedium, other?.numBodyLargeMedium, t) ?? numBodyLargeMedium,
       numBodyDefault: TextStyle.lerp(numBodyDefault, other?.numBodyDefault, t) ?? numBodyDefault,
       numLabelDefault:
           TextStyle.lerp(numLabelDefault, other?.numLabelDefault, t) ?? numLabelDefault,
