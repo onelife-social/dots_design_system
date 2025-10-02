@@ -57,6 +57,11 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// Whether to show the back button inside a gray circular background.
   final bool showCircleBackButton;
 
+  /// Color of the top bar background.
+  ///
+  /// If it's provided, ignores the [hideBackground] property.
+  final Color? color;
+
   /// Only status bar, no title or segmented control.
   const DotsTopBar.onlyStatusBar({
     super.key,
@@ -73,7 +78,8 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
         ctaEnabled = false,
         imageTitle = null,
         onErrorImageTitle = null,
-        showCircleBackButton = false;
+        showCircleBackButton = false,
+        color = null;
 
   /// Bar with title and optional subtitle, left and right icons, back button and image.
   const DotsTopBar.title({
@@ -87,6 +93,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.imageTitle,
     this.onErrorImageTitle,
     this.showCircleBackButton = false,
+    this.color,
   })  : assert(
           (leftIcon == null || onTapBack == null),
           'leftIcon cannot be used with onTapBack',
@@ -106,6 +113,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.rightIcon,
     this.onTapBack,
     this.showCircleBackButton = false,
+    this.color,
   })  : assert(
           (leftIcon == null || onTapBack == null),
           'leftIcon cannot be used with onTapBack',
@@ -131,6 +139,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.onCtaTap,
     this.ctaEnabled = true,
     this.showCircleBackButton = false,
+    this.color,
   })  : assert(
           onCtaTap == null || ctaLabel != null,
           'ctaLabel is required when onCtaTap is provided',
@@ -158,7 +167,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     return ColoredBox(
-      color: hideBackground ? Colors.transparent : theme.colors.bgContainerPrimary,
+      color: color ?? (hideBackground ? Colors.transparent : theme.colors.bgContainerPrimary),
       child: ConstrainedBox(
         constraints: BoxConstraints.tightFor(height: preferredSize.height),
         child: Column(
@@ -181,7 +190,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  if (imageTitle != null)...[
+                                  if (imageTitle != null) ...[
                                     DotsProfilePhoto(
                                       imageProvider: imageTitle!,
                                       width: 20,
