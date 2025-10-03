@@ -74,19 +74,30 @@ DotsMenuItemModel<String> item = DotsMenuItemModel(
 );
 
 List<DotsMenuItemModel<String>> subItems = [
-  DotsMenuItemModel(id: 'sort_photos', label: 'Ordenar por', icon: DotsIconData.sort, subItems: [
-    DotsMenuItemModel(
-      id: 'sort_by_date',
-      label: 'Foto más reciente',
-      icon: DotsIconData.clockTimer,
-      selected: true,
-    ),
-    DotsMenuItemModel(
-      id: 'sort_by_oldest',
-      label: 'Foto más antigua',
-      icon: DotsIconData.order,
-    ),
-  ]),
+  DotsMenuItemModel(
+    id: 'view_mode',
+    label: 'Vista ampliada',
+    icon: DotsIconData.add,
+    addDivider: true,
+  ),
+  DotsMenuItemModel(
+    id: 'sort_photos',
+    label: 'Ordenar por',
+    icon: DotsIconData.sort,
+    subItems: [
+      DotsMenuItemModel(
+        id: 'sort_by_date',
+        label: 'Foto más reciente',
+        icon: DotsIconData.clockTimer,
+        selected: true,
+      ),
+      DotsMenuItemModel(
+        id: 'sort_by_oldest',
+        label: 'Foto más antigua',
+        icon: DotsIconData.order,
+      ),
+    ],
+  ),
   DotsMenuItemModel(
       id: 'filter_photos',
       label: 'Filtrar',
