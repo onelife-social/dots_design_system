@@ -154,6 +154,7 @@ enum DotsIconData {
   template('ic-template.svg', DotsIconGroup.media),
   video('ic-video.svg', DotsIconGroup.media),
   videoOff('ic-video--off.svg', DotsIconGroup.media),
+  visualization('ic-visualization.svg', DotsIconGroup.media),
 
   // Premium
   creditCardAlert('ic-creditcard-alert.svg', DotsIconGroup.premium),
