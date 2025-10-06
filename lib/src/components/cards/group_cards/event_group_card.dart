@@ -61,12 +61,15 @@ class EventGroupCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    return Center(
-      child: GestureDetector(
-        onTap: onTap,
+    return GestureDetector(
+      onTap: onTap,
+      child: AspectRatio(
+        aspectRatio: 1.0,
         child: Container(
           clipBehavior: Clip.antiAlias,
           constraints: BoxConstraints(
+            minWidth: variant.isSmall ? 135 : 288,
+            minHeight: variant.isSmall ? 135 : 288,
             maxHeight: variant.isSmall ? 160 : 340,
             maxWidth: variant.isSmall ? 160 : 340,
           ),
