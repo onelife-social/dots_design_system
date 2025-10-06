@@ -192,6 +192,25 @@ class _IconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (noButtonSize) {
+      return Center(
+        child: tag != null
+            ? BadgeTag(
+                tag: tag!,
+                child: DotsIcon(
+                  iconData: icon,
+                  size: iconSize ?? size.iconSize,
+                  color: color ?? buttonTheme.foregroundColor,
+                ),
+              )
+            : DotsIcon(
+                iconData: icon,
+                size: iconSize ?? size.iconSize,
+                color: color ?? buttonTheme.foregroundColor,
+              ),
+      );
+    }
+
     return SizedBox(
       height: noButtonSize ? null : size.size,
       width: noButtonSize ? null : size.size,
