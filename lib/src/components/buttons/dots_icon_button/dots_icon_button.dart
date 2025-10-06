@@ -192,22 +192,20 @@ class _IconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final iconWidget = DotsIcon(
+      iconData: icon,
+      size: iconSize ?? size.iconSize,
+      color: color ?? buttonTheme.foregroundColor,
+    );
+
     if (noButtonSize) {
       return Center(
         child: tag != null
             ? BadgeTag(
                 tag: tag!,
-                child: DotsIcon(
-                  iconData: icon,
-                  size: iconSize ?? size.iconSize,
-                  color: color ?? buttonTheme.foregroundColor,
-                ),
+                child: iconWidget,
               )
-            : DotsIcon(
-                iconData: icon,
-                size: iconSize ?? size.iconSize,
-                color: color ?? buttonTheme.foregroundColor,
-              ),
+            : iconWidget,
       );
     }
 
@@ -230,17 +228,9 @@ class _IconButton extends StatelessWidget {
               child: tag != null
                   ? BadgeTag(
                       tag: tag!,
-                      child: DotsIcon(
-                        iconData: icon,
-                        size: iconSize ?? size.iconSize,
-                        color: color ?? buttonTheme.foregroundColor,
-                      ),
+                      child: iconWidget,
                     )
-                  : DotsIcon(
-                      iconData: icon,
-                      size: iconSize ?? size.iconSize,
-                      color: color ?? buttonTheme.foregroundColor,
-                    ),
+                  : iconWidget,
             ),
           ),
         ),
