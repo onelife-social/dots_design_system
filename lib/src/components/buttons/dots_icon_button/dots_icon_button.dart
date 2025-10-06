@@ -102,21 +102,27 @@ class DotsIconButton extends StatelessWidget {
         : getIconButtonThemeByStyleAndState(theme, style, state);
     final borderRadius = BorderRadius.circular(size.size);
 
-    final widget = direction == DotsIconButtonDirection.column
-        ? Column(
-            mainAxisSize: MainAxisSize.min,
-            spacing: size.spacing,
-            children: [
-              ..._getChildren(buttonTheme, borderRadius, context),
-            ],
-          )
-        : Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: style.isNoBackground ? 6 : 8,
-            children: [
-              ..._getChildren(buttonTheme, borderRadius, context),
-            ],
-          );
+    final widget = InkWell(
+      onTap: onTap,
+      focusColor: null,
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
+      child: direction == DotsIconButtonDirection.column
+          ? Column(
+              mainAxisSize: MainAxisSize.min,
+              spacing: size.spacing,
+              children: [
+                ..._getChildren(buttonTheme, borderRadius, context),
+              ],
+            )
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              spacing: style.isNoBackground ? 6 : 8,
+              children: [
+                ..._getChildren(buttonTheme, borderRadius, context),
+              ],
+            ),
+    );
 
     if (textTappable && label != null) {
       return GestureDetector(
@@ -201,25 +207,21 @@ class _IconButton extends StatelessWidget {
                   ? Border.all(color: buttonTheme.borderColor ?? Colors.transparent, width: 0.7)
                   : null,
             ),
-            child: InkWell(
-              onTap: onTap,
-              borderRadius: borderRadius,
-              child: Center(
-                child: tag != null
-                    ? BadgeTag(
-                        tag: tag!,
-                        child: DotsIcon(
-                          iconData: icon,
-                          size: iconSize ?? size.iconSize,
-                          color: color ?? buttonTheme.foregroundColor,
-                        ),
-                      )
-                    : DotsIcon(
+            child: Center(
+              child: tag != null
+                  ? BadgeTag(
+                      tag: tag!,
+                      child: DotsIcon(
                         iconData: icon,
                         size: iconSize ?? size.iconSize,
                         color: color ?? buttonTheme.foregroundColor,
                       ),
-              ),
+                    )
+                  : DotsIcon(
+                      iconData: icon,
+                      size: iconSize ?? size.iconSize,
+                      color: color ?? buttonTheme.foregroundColor,
+                    ),
             ),
           ),
         ),
