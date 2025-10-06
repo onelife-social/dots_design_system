@@ -85,7 +85,9 @@ List<Story> get buttonStories => [
                       .map((item) => Option(label: item.name, value: item))
                       .toList()),
               tag: context.knobs.nullable.text(label: 'Tag', initial: '5', enabled: false),
-              onTap: () {},
+              onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('On tap!')),
+              ),
             ),
           ),
         ),
