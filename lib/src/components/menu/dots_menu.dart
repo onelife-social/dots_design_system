@@ -118,11 +118,13 @@ class _DotsMenuContainer<T> extends StatelessWidget {
     required this.onTapItem,
     required this.onTapMainItem,
   });
+
   final bool isInitialItem;
   final DotsMenuItemModel<T> mainItem;
 
   final Function() onTapMainItem;
   final Function(DotsMenuItemModel<T> item) onTapItem;
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -132,45 +134,69 @@ class _DotsMenuContainer<T> extends StatelessWidget {
       decoration:
           BoxDecoration(color: theme.colors.bgBaseContrast, borderRadius: DotsBorderRadius.r20),
       child: _MenuContainerScrollable(
-          isScrollable: mainItem.subItems.length > 7,
-          header: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _MenuItem(
-                item: mainItem,
-                isExpanded: true,
-                onTapItem: () {
-                  onTapMainItem();
-                },
-                isInitialItem: isInitialItem,
+        isScrollable: mainItem.subItems.length > 7,
+        header: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _MenuItem(
+              item: mainItem,
+              isExpanded: true,
+              onTapItem: () {
+                onTapMainItem();
+              },
+              isInitialItem: isInitialItem,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 4),
+              child: Divider(
+                height: 4,
+                color: theme.colors.labelSecondary,
+                indent: 8,
+                endIndent: 8,
+                thickness: 0.5,
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 4),
-                child: Divider(
-                  height: 4,
-                  color: theme.colors.labelSecondary,
-                  indent: 8,
-                  endIndent: 8,
-                  thickness: 0.5,
-                ),
-              ),
-            ],
-          ),
-          list: Column(
-              spacing: 8,
-              mainAxisSize: MainAxisSize.min,
-              children: mainItem.subItems
-                  .map(
-                    (item) => _MenuItem(
-                      item: item,
-                      isExpanded: false,
-                      onTapItem: () {
-                        onTapItem(item);
-                      },
-                    ),
-                  )
-                  .toList())),
+            ),
+          ],
+        ),
+        list: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: _buildSubItems(theme),
+        ),
+      ),
     );
+  }
+
+  List<Widget> _buildSubItems(DotsTheme theme) {
+    final List<DotsMenuItemModel<T>> subs = mainItem.subItems;
+    final List<Widget> children = [];
+
+    for (var i = 0; i < subs.length; i++) {
+      final item = subs[i];
+      children.add(
+        _MenuItem(
+          item: item,
+          isExpanded: false,
+          onTapItem: () => onTapItem(item),
+        ),
+      );
+
+      final isLast = i == subs.length - 1;
+      if (item.addDivider && !isLast) {
+        children.add(
+          Divider(
+            height: 4,
+            color: theme.colors.labelSecondary,
+            indent: 8,
+            endIndent: 8,
+            thickness: 0.5,
+          ),
+        );
+        children.add(const SizedBox(height: 4));
+      } else if (!isLast) {
+        children.add(const SizedBox(height: 8));
+      }
+    }
+    return children;
   }
 }
 
@@ -213,6 +239,7 @@ class _MenuItem extends StatelessWidget {
       required this.isExpanded,
       required this.onTapItem,
       this.isInitialItem = false});
+
   final DotsMenuItemModel item;
   final bool isExpanded;
   final bool isInitialItem;
@@ -253,6 +280,7 @@ class _MenuItem extends StatelessWidget {
     final theme = context.dotsTheme;
     final leftIcon = this.leftIcon;
     final rightIcon = item.icon;
+
     return Material(
       color: Colors.transparent,
       child: InkWell(

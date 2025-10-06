@@ -8,6 +8,7 @@ class DotsMenuItemModel<T> {
   final bool selected;
   final bool isDelete;
   final List<DotsMenuItemModel<T>> subItems;
+  final bool addDivider;
   final Function()? onTap;
 
   DotsMenuItemModel({
@@ -18,6 +19,7 @@ class DotsMenuItemModel<T> {
     this.selected = false,
     this.isDelete = false,
     this.subItems = const [],
+    this.addDivider = false,
     this.onTap,
   });
 
