@@ -25,7 +25,8 @@ class MessagePreview extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: SizedBox(
+      child: Container(
+        color: Colors.transparent,
         height: 88,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
