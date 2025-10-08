@@ -55,6 +55,7 @@ class FolderCarrousel extends StatelessWidget {
     }
 
     return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       controller: controller,
       scrollDirection: Axis.horizontal,
       child: Row(children: spacedChildren),
