@@ -22,6 +22,7 @@ class DotsIconButton extends StatelessWidget {
     this.color,
     this.backgroundColor,
     this.textTappable = false,
+    this.shouldApplyBlur = true,
   });
 
   /// The icon to display on the button.
@@ -86,6 +87,9 @@ class DotsIconButton extends StatelessWidget {
 
   /// Whether the text label is tappable.
   final bool textTappable;
+
+  /// Whether the button should apply the blur effect.
+  final bool shouldApplyBlur;
 
   bool get isStyleAndStateDefault =>
       style == DotsIconButtonStyle.defaultStyle && state == DotsIconButtonState.defaultState;
@@ -152,6 +156,7 @@ class DotsIconButton extends StatelessWidget {
         color: color,
         backgroundColor: backgroundColor,
         noButtonSize: style.isNoBackground,
+        shouldApplyBlur: shouldApplyBlur,
       ),
       if (label != null)
         _Label(
@@ -176,6 +181,7 @@ class _IconButton extends StatelessWidget {
   final bool noButtonSize;
   final dynamic color;
   final dynamic backgroundColor;
+  final bool shouldApplyBlur;
 
   const _IconButton({
     required this.icon,
@@ -188,6 +194,7 @@ class _IconButton extends StatelessWidget {
     required this.color,
     required this.noButtonSize,
     required this.backgroundColor,
+    required this.shouldApplyBlur,
   });
 
   @override
@@ -198,14 +205,33 @@ class _IconButton extends StatelessWidget {
       color: color ?? buttonTheme.foregroundColor,
     );
 
+    final widget = Center(
+      child: tag != null
+          ? BadgeTag(
+              tag: tag!,
+              child: iconWidget,
+            )
+          : iconWidget,
+    );
+
     if (noButtonSize) {
-      return Center(
-        child: tag != null
-            ? BadgeTag(
-                tag: tag!,
-                child: iconWidget,
-              )
-            : iconWidget,
+      return widget;
+    }
+
+    if (!shouldApplyBlur) {
+      return SizedBox(
+        height: noButtonSize ? null : size.size,
+        width: noButtonSize ? null : size.size,
+        child: DotsDecoratedBox(
+          decoration: BoxDecoration(
+            color: backgroundColor ?? buttonTheme.backgroundColor ?? Colors.transparent,
+            borderRadius: borderRadius,
+            border: buttonTheme.borderColor != null
+                ? Border.all(color: buttonTheme.borderColor ?? Colors.transparent, width: 0.7)
+                : null,
+          ),
+          child: widget,
+        ),
       );
     }
 
@@ -224,14 +250,7 @@ class _IconButton extends StatelessWidget {
                   ? Border.all(color: buttonTheme.borderColor ?? Colors.transparent, width: 0.7)
                   : null,
             ),
-            child: Center(
-              child: tag != null
-                  ? BadgeTag(
-                      tag: tag!,
-                      child: iconWidget,
-                    )
-                  : iconWidget,
-            ),
+            child: widget,
           ),
         ),
       ),

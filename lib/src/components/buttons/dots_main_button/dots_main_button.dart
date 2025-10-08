@@ -19,6 +19,7 @@ class DotsMainButton extends StatelessWidget {
     this.adaptPaddingForText = false,
     this.textColor,
     this.iconColor,
+    this.shouldApplyBlur = true,
   });
 
   /// The text to display on the button.
@@ -67,6 +68,9 @@ class DotsMainButton extends StatelessWidget {
 
   /// Optional icon color to override the default one from the theme.
   final Color? iconColor;
+
+  /// Whether the button should apply the blur effect.
+  final bool shouldApplyBlur;
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +155,7 @@ class DotsMainButton extends StatelessWidget {
         child: button,
       );
     }
-    if (buttonTheme.blurStyle != null) {
+    if (buttonTheme.blurStyle != null && shouldApplyBlur) {
       button = DotsDecoratedBox(
         styleType: buttonTheme.blurStyle,
         decoration: BoxDecoration(
@@ -160,7 +164,7 @@ class DotsMainButton extends StatelessWidget {
         child: button,
       );
     }
-    if (buttonTheme.shadow) {
+    if (buttonTheme.shadow && shouldApplyBlur) {
       button = DotsDecoratedBox(
         styleType: theme.styles.defaultShadow,
         decoration: BoxDecoration(
