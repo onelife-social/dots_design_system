@@ -287,8 +287,8 @@ class _MenuEvent extends StatelessWidget {
                         size: 20,
                         color: theme.colors.labelAlwaysWhite,
                       ),
-                      SizedBox(
-                        width: 46,
+                      ConstrainedBox(
+                        constraints: BoxConstraints(minWidth: 46),
                         child: Text(
                           action.text,
                           textAlign: TextAlign.center,
