@@ -234,11 +234,12 @@ class _MenuContainerScrollable extends StatelessWidget {
 }
 
 class _MenuItem extends StatelessWidget {
-  const _MenuItem(
-      {required this.item,
-      required this.isExpanded,
-      required this.onTapItem,
-      this.isInitialItem = false});
+  const _MenuItem({
+    required this.item,
+    required this.isExpanded,
+    required this.onTapItem,
+    this.isInitialItem = false,
+  });
 
   final DotsMenuItemModel item;
   final bool isExpanded;
