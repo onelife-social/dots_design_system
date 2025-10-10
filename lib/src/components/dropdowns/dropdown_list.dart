@@ -56,11 +56,20 @@ class DropdownList extends StatefulWidget {
 class _DropdownListState extends State<DropdownList> {
   final GlobalKey _buttonKey = GlobalKey();
   double? _buttonWidth;
+  double? _buttonHeight; // <— cache height too
+
+  final LayerLink _layerLink = LayerLink();
+  OverlayEntry? _overlayEntry;
 
   @override
   void initState() {
     super.initState();
     _scheduleMeasure();
+    if (widget.isActive) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _showOverlay();
+      });
+    }
   }
 
   @override
@@ -71,9 +80,24 @@ class _DropdownListState extends State<DropdownList> {
         oldWidget.size != widget.size ||
         oldWidget.variant != widget.variant) {
       _scheduleMeasure();
-    } else if (widget.isActive && _buttonWidth == null) {
-      _scheduleMeasure();
     }
+
+    if (oldWidget.isActive != widget.isActive) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        if (widget.isActive) {
+          _showOverlay();
+        } else {
+          _removeOverlay();
+        }
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _removeOverlay();
+    super.dispose();
   }
 
   void _scheduleMeasure() {
@@ -83,11 +107,60 @@ class _DropdownListState extends State<DropdownList> {
       final render = ctx.findRenderObject();
       if (render is RenderBox) {
         final w = render.size.width;
-        if (mounted && w != _buttonWidth) {
-          setState(() => _buttonWidth = w);
+        final h = render.size.height;
+        final changed = w != _buttonWidth || h != _buttonHeight;
+        if (mounted && changed) {
+          setState(() {
+            _buttonWidth = w;
+            _buttonHeight = h;
+          });
+          _overlayEntry?.markNeedsBuild();
         }
       }
     });
+  }
+
+  void _showOverlay() {
+    if (_overlayEntry != null) return;
+    final overlay = Overlay.of(context);
+
+    _overlayEntry = OverlayEntry(
+      builder: (context) {
+        final buttonHeight = _buttonHeight ?? 0; // <— use cached height
+        return Stack(
+          children: [
+            Positioned.fill(
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  widget.onTap?.call();
+                },
+              ),
+            ),
+            CompositedTransformFollower(
+              link: _layerLink,
+              showWhenUnlinked: false,
+              offset: Offset(0, buttonHeight + 8),
+              child: DropdownMenu(
+                items: widget.items,
+                width: _buttonWidth,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && _overlayEntry != null) {
+        overlay.insert(_overlayEntry!);
+      }
+    });
+  }
+
+  void _removeOverlay() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
   }
 
   @override
@@ -106,52 +179,40 @@ class _DropdownListState extends State<DropdownList> {
             ? theme.colors.textPrimary
             : theme.colors.labelAlwaysWhite;
 
-    final Widget button = GestureDetector(
-      onTap: () {
-        widget.onTap?.call();
-        _scheduleMeasure();
-      },
-      child: Container(
-        key: _buttonKey,
-        padding: EdgeInsets.symmetric(
-          vertical: widget.size.isSmall ? 8 : 12,
-          horizontal: widget.size.isSmall ? 12 : 16,
-        ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(22),
-          color: bgColor,
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          spacing: widget.size.isSmall ? 4 : 8,
-          children: [
-            Text(
-              widget.label,
-              style: theme.typo.main.bodyLargeMedium.copyWith(color: textColor),
-            ),
-            DotsIcon(
-              iconData: widget.isActive ? DotsIconData.chevronUp : DotsIconData.chevronDown,
-              size: 14,
-              color: textColor,
-            ),
-          ],
+    return CompositedTransformTarget(
+      link: _layerLink,
+      child: GestureDetector(
+        onTap: () {
+          widget.onTap?.call();
+          _scheduleMeasure();
+        },
+        child: Container(
+          key: _buttonKey,
+          padding: EdgeInsets.symmetric(
+            vertical: widget.size.isSmall ? 8 : 12,
+            horizontal: widget.size.isSmall ? 12 : 16,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(22),
+            color: bgColor,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            spacing: widget.size.isSmall ? 4 : 8,
+            children: [
+              Text(
+                widget.label,
+                style: theme.typo.main.bodyLargeMedium.copyWith(color: textColor),
+              ),
+              DotsIcon(
+                iconData: widget.isActive ? DotsIconData.chevronUp : DotsIconData.chevronDown,
+                size: 14,
+                color: textColor,
+              ),
+            ],
+          ),
         ),
       ),
     );
-
-    return widget.isActive
-        ? Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 10,
-            children: [
-              button,
-              DropdownMenu(
-                items: widget.items,
-                width: _buttonWidth,
-              ),
-            ],
-          )
-        : button;
   }
 }
