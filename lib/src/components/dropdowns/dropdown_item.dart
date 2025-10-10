@@ -14,12 +14,18 @@ class DropdownItem extends StatelessWidget {
   // Optional color override for text and icon.
   final Color? itemColor;
 
+  // If true, the item shrinks to fit its content instead of using fixed width.
+  //
+  // Defaults to `false`.
+  final bool minSize;
+
   const DropdownItem({
     super.key,
     required this.text,
     this.icon,
     required this.onTap,
     this.itemColor,
+    this.minSize = false,
   });
 
   @override
@@ -27,24 +33,23 @@ class DropdownItem extends StatelessWidget {
     final DotsTheme theme = context.dotsTheme;
     final Color color = itemColor ?? theme.colors.textPrimary;
 
+    final textWidget = Text(
+      text,
+      style: theme.typo.main.bodyDefaultMedium.copyWith(
+        color: color,
+      ),
+    );
+
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: onTap,
       child: Container(
-        width: 234,
+        width: minSize ? null : 234,
         padding: const EdgeInsets.all(8),
         child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: minSize ? MainAxisSize.min : MainAxisSize.max,
           children: [
-            Flexible(
-              child: Text(
-                text,
-                style: theme.typo.main.bodyDefaultMedium.copyWith(
-                  color: color,
-                ),
-              ),
-            ),
+            Expanded(child: textWidget),
             if (icon != null) ...[
               const SizedBox(width: 6),
               DotsIcon(
