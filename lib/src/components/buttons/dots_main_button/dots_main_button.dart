@@ -19,7 +19,7 @@ class DotsMainButton extends StatelessWidget {
     this.adaptPaddingForText = false,
     this.textColor,
     this.iconColor,
-    this.shouldApplyBlur = true,
+    this.shouldApplyBlur = false,
   });
 
   /// The text to display on the button.
