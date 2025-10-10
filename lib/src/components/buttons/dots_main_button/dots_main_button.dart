@@ -83,12 +83,9 @@ class DotsMainButton extends StatelessWidget {
       iconColor,
     );
     final borderRadius = BorderRadius.circular(size.height);
+    final foregroundColor = textColor ??
+        (buttonTheme.foregroundGradient == null ? buttonTheme.foregroundColor : Colors.white);
 
-    final foregroundColor = textColor != null
-        ? textColor
-        : buttonTheme.foregroundGradient == null
-            ? buttonTheme.foregroundColor
-            : Colors.white;
     Widget button = Material(
       color: buttonTheme.backgroundColor ?? Colors.transparent,
       borderRadius: borderRadius,
