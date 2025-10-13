@@ -69,7 +69,7 @@ class _Card extends StatelessWidget {
         height: 77.4,
         width: 57.7,
         child: ClipRRect(
-          borderRadius: DotsBorderRadius.r16,
+          borderRadius: DotsBorderRadius.r15,
           child: image,
         ),
       ),
@@ -121,7 +121,7 @@ class _UpdatedBorder extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.all(1.5),
         decoration: BoxDecoration(
-          borderRadius: DotsBorderRadius.r14h,
+          borderRadius: DotsBorderRadius.r18,
         ),
       ),
     );
