@@ -86,8 +86,8 @@ class DotsProfilePhotoBited extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  left: circleLeft + diameter * biteOffset.dx - diameter * biteSize + (DotsPlatform.isIOS ? 1.5 : 0),
-                  top: circleTop + diameter * biteOffset.dy - diameter * biteSize - (DotsPlatform.isIOS ? 1.5 : 0),
+                  left: circleLeft + diameter * biteOffset.dx - diameter * biteSize + (DotsPlatform.isIOS ? 1.5 : -0.5),
+                  top: circleTop + diameter * biteOffset.dy - diameter * biteSize - (DotsPlatform.isIOS ? 1.5 : 0.5),
                   width: diameter * biteSize * 2,
                   height: diameter * biteSize * 2,
                   child: Align(
