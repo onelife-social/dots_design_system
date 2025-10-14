@@ -669,8 +669,8 @@ List<Story> get allStories => [
         description: 'Demo page for User Item',
         builder: (context) => UserItem(
           imageProvider: NetworkImage('https://picsum.photos/250?image=9'),
-          name: 'John Doe',
-          details: 'Amigo de Dots',
+          name: context.knobs.text(label: 'Name', initial: 'Name'),
+          details: context.knobs.text(label: 'Details', initial: 'Amigo de Dots'),
           onTap: () {},
         ),
       ),
