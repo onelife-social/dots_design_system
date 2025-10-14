@@ -1,6 +1,9 @@
+
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
+import '../../../utils/utils.dart';
 
 class DotsProfilePhotoBited extends StatelessWidget {
   /// [imageProvider] is the image to display.
@@ -83,11 +86,12 @@ class DotsProfilePhotoBited extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  left: circleLeft + diameter * biteOffset.dx - diameter * biteSize,
-                  top: circleTop + diameter * biteOffset.dy - diameter * biteSize,
+                  left: circleLeft + diameter * biteOffset.dx - diameter * biteSize + (DotsPlatform.isIOS ? 1.5 : -0.5),
+                  top: circleTop + diameter * biteOffset.dy - diameter * biteSize - (DotsPlatform.isIOS ? 1.5 : 0.5),
                   width: diameter * biteSize * 2,
                   height: diameter * biteSize * 2,
-                  child: Center(
+                  child: Align(
+                    alignment: Alignment.center,
                     child: Text(
                       reaction ?? '',
                       style: emojiStyle ?? theme.typo.main.labelDefaultBold,
