@@ -664,4 +664,14 @@ List<Story> get allStories => [
           );
         },
       ),
+      Story(
+        name: 'User Item',
+        description: 'Demo page for User Item',
+        builder: (context) => UserItem(
+          imageProvider: NetworkImage('https://picsum.photos/250?image=9'),
+          name: 'John Doe',
+          details: 'Amigo de Dots',
+          onTap: () {},
+        ),
+      ),
     ];
