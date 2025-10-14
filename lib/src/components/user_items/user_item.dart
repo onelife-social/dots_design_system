@@ -10,11 +10,16 @@ class UserItem extends StatelessWidget {
     required this.onTap,
   });
 
+  // The image provider to display the profile image.
   final ImageProvider imageProvider;
 
+  // The name of the user to display in the component.
   final String name;
+
+  // The details to display in the component.
   final String details;
 
+  // Callback when the component is pressed.
   final VoidCallback onTap;
 
   @override
