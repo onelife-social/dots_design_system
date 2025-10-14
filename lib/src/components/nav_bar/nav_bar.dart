@@ -18,11 +18,15 @@ class DotsNavBarItem {
   /// Optional key for the item.
   final Key? key;
 
+  /// Optional pending number for the item. Badge on the item.
+  final int? pendingNumber;
+
   DotsNavBarItem({
     this.key,
     required this.label,
     required this.iconData,
     this.onTap,
+    this.pendingNumber,
   });
 }
 
@@ -48,7 +52,7 @@ class DotsNavBar extends StatelessWidget {
           padding: const EdgeInsets.all(5),
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(
-            color: theme.colors.bgContainerSecondary,
+            color: theme.colors.bgContainerSecondary.withOpacity(0.7),
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 0.70,
@@ -79,63 +83,88 @@ class DotsNavBar extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: List.generate(items.length, (index) {
                   final item = items[index];
-                  final Color color = selectedIndex == index
-                      ? theme.colors.labelHighlight
-                      : theme.colors.textSecondary;
-                  return GestureDetector(
-                    onTap: () {
-                      item.onTap?.call();
-                    },
-                    child: Container(
-                      width: 70,
-                      height: 55,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: const ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: DotsBorderRadius.all32,
-                        ),
-                      ),
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Container(
-                            key: item.key,
-                            width: 48,
-                            height: 48,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: theme.colors.transparent,
-                            ),
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              AnimatedScale(
-                                scale: selectedIndex == index ? 1.2 : 1.0,
-                                duration: const Duration(milliseconds: 250),
-                                curve: Curves.ease,
-                                child: DotsIcon(
-                                  iconData: item.iconData,
-                                  color: color,
-                                  size: 20,
-                                ),
-                              ),
-                              const SizedBox(height: 2),
-                              AnimatedDefaultTextStyle(
-                                duration: const Duration(milliseconds: 250),
-                                style: theme.typo.main.labelDefaultRegular.copyWith(color: color),
-                                child: Text(item.label),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
+                  return _NavBarItem(item: item, isSelected: selectedIndex == index);
                 }),
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _NavBarItem extends StatelessWidget {
+  final DotsNavBarItem item;
+  final bool isSelected;
+  const _NavBarItem({required this.item, required this.isSelected});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+    final Color color = isSelected ? theme.colors.labelHighlight : theme.colors.textSecondary;
+    final String? pendingNumberText = item.pendingNumber == null
+        ? null
+        : item.pendingNumber! > kMaxPendingNumber
+            ? kMaxPendingNumber.toString()
+            : item.pendingNumber.toString();
+    return GestureDetector(
+      onTap: () {
+        item.onTap?.call();
+      },
+      child: Container(
+        width: 70,
+        height: 55,
+                      clipBehavior: Clip.antiAlias,
+        decoration: const ShapeDecoration(
+          shape: RoundedRectangleBorder(
+            borderRadius: DotsBorderRadius.all32,
+          ),
+        ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              key: item.key,
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: theme.colors.transparent,
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    DotsIcon(
+                      iconData: item.iconData,
+                      color: color,
+                      size: 20,
+                    ),
+                    if (pendingNumberText != null)
+                      Positioned.fill(
+                        top: -5,
+                        right: -12,
+                        child: BadgeTag(
+                          size: const Size(0, 0),
+                          tag: pendingNumberText,
+                          child: const SizedBox.shrink(),
+                        ),
+                      )
+                  ],
+                ),
+                const SizedBox(height: 2),
+                AnimatedDefaultTextStyle(
+                  duration: const Duration(milliseconds: 250),
+                  style: theme.typo.main.labelDefaultRegular.copyWith(color: color),
+                  child: Text(item.label),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

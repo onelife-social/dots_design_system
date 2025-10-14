@@ -6,3 +6,6 @@ const kTopBarBigHeight = 106.0;
 
 // Ratios
 const kBigRatio = 16.0;
+
+// NavBar
+const kMaxPendingNumber = 99;
