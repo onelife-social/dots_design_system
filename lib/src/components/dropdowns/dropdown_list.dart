@@ -198,11 +198,15 @@ class _DropdownListState extends State<DropdownList> {
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             spacing: widget.size.isSmall ? 4 : 8,
             children: [
               Text(
                 widget.label,
-                style: theme.typo.main.bodyLargeMedium.copyWith(color: textColor),
+                style: widget.size.isSmall
+                    ? theme.typo.main.labelDefaultBold.copyWith(color: textColor)
+                    : theme.typo.main.bodyLargeMedium.copyWith(color: textColor),
               ),
               DotsIcon(
                 iconData: widget.isActive ? DotsIconData.chevronUp : DotsIconData.chevronDown,
