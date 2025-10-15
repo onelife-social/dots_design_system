@@ -24,18 +24,17 @@ List<Story> get actionSheetStories => [
                   DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
             ),
             primaryButton: DotsMainButton(
-                    content:
-                        context.knobs.text(label: 'Primary button text', initial: 'Ir a álbum'),
-                    variant: DotsMainButtonVariant.main,
-                    size: DotsMainButtonSize.mainAction,
-                    onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Ir al álbum'),
-                        ),
-                      );
-                    },
+              content: context.knobs.text(label: 'Primary button text', initial: 'Ir a álbum'),
+              variant: DotsMainButtonVariant.main,
+              size: DotsMainButtonSize.mainAction,
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Ir al álbum'),
                   ),
+                );
+              },
+            ),
             onClose: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
@@ -100,7 +99,8 @@ List<Story> get actionSheetStories => [
             variant: DotsActionSheetSpotlightVariant.album,
             title: context.knobs.text(label: 'Title', initial: '¡Hoy cumplís 8 años juntos!'),
             description: context.knobs.text(
-                label: 'Description', initial: 'Tenéis 345 Memories compartidos. Revíverlos y añade nuevos recuerdos.'),
+                label: 'Description',
+                initial: 'Tenéis 345 Memories compartidos. Revíverlos y añade nuevos recuerdos.'),
             image: NetworkImage('https://picsum.photos/250?image=9'),
             iconData: context.knobs.options<DotsIconData>(
               label: 'Icon Data',
@@ -460,6 +460,8 @@ List<Story> get actionSheetStories => [
                         .toList(),
                   ),
                   onDateTap: () {},
+                  inputHintText:
+                      context.knobs.text(label: 'Input Hint Text', initial: 'Type something...'),
                 ),
               );
             },
