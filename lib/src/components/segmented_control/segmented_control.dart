@@ -5,11 +5,22 @@ const _textPadding = EdgeInsets.symmetric(horizontal: 15);
 const _itemPadding = EdgeInsets.all(4);
 
 class SegmentedControl extends StatelessWidget {
+  /// The label for the left option.
   final String leftOptionName;
+
+  /// The label for the right option.
   final String rightOptionName;
+
+  /// The currently selected option.
   final SegmentedControlOption selectedOption;
+
+  /// The color of the selected segment.
   final Color? selectedColor;
+
+  /// The background color of the segmented control.
   final Color? backgroundColor;
+
+  /// Callback when an option is tapped.
   final void Function(SegmentedControlOption optionTaped) onTapOption;
 
   const SegmentedControl({

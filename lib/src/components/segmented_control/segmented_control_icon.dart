@@ -4,9 +4,16 @@ import 'package:flutter/material.dart';
 const _itemPadding = EdgeInsets.all(4);
 
 class SegmentedControlIcon extends StatelessWidget {
+  /// Icon for the left option.
   final DotsIconData leftOptionIcon;
+
+  /// Icon for the right option.
   final DotsIconData rightOptionIcon;
+
+  /// Currently selected option.
   final SegmentedControlOption selectedOption;
+
+  /// Callback when an option is tapped.
   final void Function(SegmentedControlOption optionTaped) onTapOption;
 
   const SegmentedControlIcon({
