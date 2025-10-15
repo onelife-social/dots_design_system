@@ -31,56 +31,71 @@ class SegmentedControlIcon extends StatelessWidget {
     final Color selectedColor = theme.colors.bgFloatingActive;
     final Color backgroundColor = theme.colors.bgContainerSecondary;
 
-    return Stack(
-      fit: StackFit.loose,
-      children: [
-        _BackSegmented(
-          leftOptionIcon: leftOptionIcon,
-          rightOptionIcon: rightOptionIcon,
-          backgroundColor: backgroundColor,
-          onTapOption: (SegmentedControlOption optionTaped) => onTapOption(optionTaped),
-        ),
-        Positioned(
-          left: selectedOption.isLeft ? 0 : null,
-          right: selectedOption.isRight ? 0 : null,
-          child: Padding(
+    const double segmentWidth = 48;
+    const double spacing = 4;
+    const double horizontalPaddingTotal = 8;
+    final double totalWidth = (segmentWidth * 2) + spacing + horizontalPaddingTotal;
+
+    final Color leftIconColor =
+        selectedOption.isLeft ? theme.colors.textSecondary : theme.colors.textDisabled;
+    final Color rightIconColor =
+        selectedOption.isRight ? theme.colors.textSecondary : theme.colors.textDisabled;
+
+    return SizedBox(
+      width: totalWidth,
+      height: 48,
+      child: Stack(
+        children: [
+          _BackgroundShape(
+            backgroundColor: backgroundColor,
+          ),
+          Padding(
             padding: _itemPadding,
-            child: _SelectedSegment(
-              optionIcon: selectedOptionIcon,
-              selectedColor: selectedColor,
-              onTap: () => onTapOption(selectedOption),
+            child: AnimatedAlign(
+              duration: const Duration(milliseconds: 200),
+              alignment: selectedOption.isLeft ? Alignment.centerLeft : Alignment.centerRight,
+              child: _SelectedPill(
+                selectedColor: selectedColor,
+              ),
             ),
           ),
-        ),
-      ],
+          Positioned.fill(
+            child: Padding(
+              padding: _itemPadding,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                spacing: 4,
+                children: [
+                  _IconTapArea(
+                    icon: leftOptionIcon,
+                    color: leftIconColor,
+                    onTap: () => onTapOption(SegmentedControlOption.left),
+                  ),
+                  _IconTapArea(
+                    icon: rightOptionIcon,
+                    color: rightIconColor,
+                    onTap: () => onTapOption(SegmentedControlOption.right),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
-  }
-
-  DotsIconData get selectedOptionIcon {
-    return switch (selectedOption) {
-      SegmentedControlOption.left => leftOptionIcon,
-      SegmentedControlOption.right => rightOptionIcon,
-    };
   }
 }
 
-class _BackSegmented extends StatelessWidget {
-  final DotsIconData leftOptionIcon;
-  final DotsIconData rightOptionIcon;
-  final Color? backgroundColor;
-  final Function(SegmentedControlOption optionTaped) onTapOption;
+class _BackgroundShape extends StatelessWidget {
+  final Color backgroundColor;
 
-  const _BackSegmented({
-    required this.leftOptionIcon,
-    required this.rightOptionIcon,
+  const _BackgroundShape({
     required this.backgroundColor,
-    required this.onTapOption,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-
     return DotsDecoratedBox(
       styleType: theme.styles.bgBlur,
       decoration: ShapeDecoration(
@@ -97,80 +112,59 @@ class _BackSegmented extends StatelessWidget {
             borderRadius: DotsBorderRadius.r1000,
           ),
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          spacing: 4,
-          children: [
-            ConstrainedBox(
-              constraints: BoxConstraints(minHeight: double.infinity, minWidth: 48),
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () => onTapOption(SegmentedControlOption.left),
-                child: Center(
-                  child: DotsIcon(
-                    iconData: leftOptionIcon,
-                    size: 24,
-                    color: theme.colors.textDisabled,
-                  ),
-                ),
-              ),
-            ),
-            ConstrainedBox(
-              constraints: BoxConstraints(minHeight: double.infinity, minWidth: 48),
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () => onTapOption(SegmentedControlOption.right),
-                child: Center(
-                  child: DotsIcon(
-                    iconData: rightOptionIcon,
-                    size: 24,
-                    color: theme.colors.textDisabled,
-                  ),
-                ),
-              ),
-            ),
-          ],
+      ),
+    );
+  }
+}
+
+class _IconTapArea extends StatelessWidget {
+  final DotsIconData icon;
+  final Color color;
+  final VoidCallback onTap;
+
+  const _IconTapArea({
+    required this.icon,
+    required this.color,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: double.infinity, minWidth: 48),
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onTap,
+        child: Center(
+          child: DotsIcon(
+            iconData: icon,
+            size: 24,
+            color: color,
+          ),
         ),
       ),
     );
   }
 }
 
-class _SelectedSegment extends StatelessWidget {
-  final DotsIconData optionIcon;
-  final Color? selectedColor;
-  final Function() onTap;
+class _SelectedPill extends StatelessWidget {
+  final Color selectedColor;
 
-  const _SelectedSegment({
-    required this.optionIcon,
+  const _SelectedPill({
     required this.selectedColor,
-    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: onTap,
-      child: Container(
-        height: 40,
-        width: 48,
-        decoration: ShapeDecoration(
-          color: selectedColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: DotsBorderRadius.r1000,
-          ),
-        ),
-        child: Center(
-          child: DotsIcon(
-            iconData: optionIcon,
-            size: 24,
-            color: theme.colors.textSecondary,
-          ),
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.easeInOutCubic,
+      height: 40,
+      width: 48,
+      decoration: ShapeDecoration(
+        color: selectedColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: DotsBorderRadius.r1000,
         ),
       ),
     );
