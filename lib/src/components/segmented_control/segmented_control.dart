@@ -1,14 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-enum SegmentedControlOption {
-  left,
-  right;
-
-  bool get isLeft => this == SegmentedControlOption.left;
-  bool get isRight => this == SegmentedControlOption.right;
-}
-
 const _textPadding = EdgeInsets.symmetric(horizontal: 15);
 const _itemPadding = EdgeInsets.all(4);
 
