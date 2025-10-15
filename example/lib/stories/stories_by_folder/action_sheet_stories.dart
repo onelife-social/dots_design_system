@@ -460,8 +460,8 @@ List<Story> get actionSheetStories => [
                         .toList(),
                   ),
                   onDateTap: () {},
-                  inputHintText:
-                      context.knobs.text(label: 'Input Hint Text', initial: 'Type something...'),
+                  inputHintText: context.knobs.nullable
+                      .text(label: 'Input Hint Text', initial: 'Type something...'),
                 ),
               );
             },
