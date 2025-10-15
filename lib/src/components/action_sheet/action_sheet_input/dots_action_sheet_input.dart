@@ -84,6 +84,9 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [onTapTextFieldBtn] is a callback for the text field button tap.
   final VoidCallback? onTapTextFieldBtn;
 
+  /// The [inputHintText] is a hint text for the text field.
+  final String? inputHintText;
+
   const DotsActionSheetInput({
     super.key,
     this.variant = ActionSheetInputVariant.main,
@@ -108,6 +111,7 @@ class DotsActionSheetInput extends StatelessWidget {
     required this.textFieldController,
     this.focus,
     this.onChanged,
+    this.inputHintText,
   });
 
   @override
@@ -166,6 +170,7 @@ class DotsActionSheetInput extends StatelessWidget {
                           onColorSelected: (color) {
                             colorController!.value = color;
                           },
+                          inputHintText: inputHintText,
                         );
                       },
                     )
@@ -187,6 +192,7 @@ class DotsActionSheetInput extends StatelessWidget {
                       focus: focus,
                       onTapTextFieldBtn: onTapTextFieldBtn,
                       onChanged: onChanged,
+                      inputHintText: inputHintText,
                     ),
                 ],
               ),
@@ -263,6 +269,7 @@ class _Body extends StatelessWidget {
   final FocusNode? focus;
   final VoidCallback? onTapTextFieldBtn;
   final ValueChanged<String>? onChanged;
+  final String? inputHintText;
 
   const _Body({
     this.subtitle,
@@ -282,6 +289,7 @@ class _Body extends StatelessWidget {
     this.focus,
     this.onTapTextFieldBtn,
     this.onChanged,
+    this.inputHintText,
   });
 
   @override
@@ -326,6 +334,7 @@ class _Body extends StatelessWidget {
             alignCenter: true,
             onTapBtn: onTapTextFieldBtn,
             onChanged: onChanged,
+            hintText: inputHintText,
           ),
         ),
         if (variant.isDate) ...[
