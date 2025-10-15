@@ -10,6 +10,7 @@ class UserItem extends StatelessWidget {
     required this.name,
     required this.details,
     required this.onTap,
+    this.onError,
   });
 
   // The image provider to display the profile image.
@@ -24,19 +25,32 @@ class UserItem extends StatelessWidget {
   // Callback when the component is pressed.
   final VoidCallback onTap;
 
+  // Callback for image load error.
+  /// Called when the image fails to load.
+  final void Function(Object exception, StackTrace? stackTrace)? onError;
+
   @override
   Widget build(BuildContext context) {
+    final dotsTheme = context.dotsTheme;
+
+    final defaultImage = Image.asset(
+      ImagesPaths.defaultUserItem,
+      width: 26,
+      height: 26,
+      fit: BoxFit.cover,
+    );
+
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
         height: 45,
         width: 170,
         child: DotsDecoratedBox(
-          styleType: context.dotsTheme.styles.floatingBtnShadow,
+          styleType: dotsTheme.styles.floatingBtnShadow,
           child: DotsDecoratedBox(
-            styleType: context.dotsTheme.styles.squircle24,
+            styleType: dotsTheme.styles.squircle24,
             decoration: BoxDecoration(
-              color: context.dotsTheme.colors.bgStrong,
+              color: dotsTheme.colors.bgStrong,
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6.5),
@@ -49,7 +63,7 @@ class UserItem extends StatelessWidget {
                     height: 26,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: context.dotsTheme.colors.bgStrong,
+                      color: dotsTheme.colors.bgStrong,
                     ),
                     child: ClipOval(
                       child: Image(
@@ -59,20 +73,11 @@ class UserItem extends StatelessWidget {
                         fit: BoxFit.cover,
                         loadingBuilder: (context, child, loadingProgress) {
                           if (loadingProgress == null) return child;
-                          return Image.asset(
-                            ImagesPaths.defaultUserItem,
-                            width: 26,
-                            height: 26,
-                            fit: BoxFit.cover,
-                          );
+                          return defaultImage;
                         },
                         errorBuilder: (context, error, stackTrace) {
-                          return Image.asset(
-                            ImagesPaths.defaultUserItem,
-                            width: 26,
-                            height: 26,
-                            fit: BoxFit.cover,
-                          );
+                          if (onError != null) onError!(error, stackTrace);
+                          return defaultImage;
                         },
                       ),
                     ),
@@ -84,15 +89,15 @@ class UserItem extends StatelessWidget {
                       children: [
                         Text(
                           name,
-                          style: context.dotsTheme.typo.main.bodyDefaultMedium.copyWith(
-                            color: context.dotsTheme.colors.textPrimary,
+                          style: dotsTheme.typo.main.bodyDefaultMedium.copyWith(
+                            color: dotsTheme.colors.textPrimary,
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
                         Text(
                           details,
-                          style: context.dotsTheme.typo.main.labelSmallRegular.copyWith(
-                            color: context.dotsTheme.colors.textQuarternary,
+                          style: dotsTheme.typo.main.labelSmallRegular.copyWith(
+                            color: dotsTheme.colors.textQuarternary,
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
