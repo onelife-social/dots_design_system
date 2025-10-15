@@ -577,7 +577,6 @@ class _Body extends StatelessWidget {
                       textAlign: TextAlign.left,
                     ),
                     const SizedBox(height: 12),
-                  ] else ...[
                   ],
                   for (final item in listItems!)
                     Padding(
