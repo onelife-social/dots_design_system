@@ -53,7 +53,6 @@ class SegmentedControlIcon extends StatelessWidget {
             padding: _itemPadding,
             child: AnimatedAlign(
               duration: const Duration(milliseconds: 200),
-              curve: Curves.easeInOutCubic,
               alignment: selectedOption.isLeft ? Alignment.centerLeft : Alignment.centerRight,
               child: _SelectedPill(
                 selectedColor: selectedColor,
