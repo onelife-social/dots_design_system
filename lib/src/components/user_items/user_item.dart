@@ -29,16 +29,16 @@ class UserItem extends StatelessWidget {
   /// Called when the image fails to load.
   final void Function(Object exception, StackTrace? stackTrace)? onError;
 
+  static Image defaultImage = Image.asset(
+    ImagesPaths.defaultUserItem,
+    width: 26,
+    height: 26,
+    fit: BoxFit.cover,
+  );
+
   @override
   Widget build(BuildContext context) {
     final dotsTheme = context.dotsTheme;
-
-    final defaultImage = Image.asset(
-      ImagesPaths.defaultUserItem,
-      width: 26,
-      height: 26,
-      fit: BoxFit.cover,
-    );
 
     return GestureDetector(
       onTap: onTap,
