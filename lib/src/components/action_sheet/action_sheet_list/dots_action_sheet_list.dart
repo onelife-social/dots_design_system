@@ -211,7 +211,7 @@ class DotsActionSheetList extends StatelessWidget {
                       hintInputText: hintInputText,
                       onInputChanged: onInputChanged,
                       isScrolled: isScrolled,
-                      selectedAlbumNames: selectedItemNames,
+                      selectedItems: selectedItemNames,
                       onBtnChipTap: onBtnChipTap,
                       isLabelButtonAvailable: isLabelButtonAvailable,
                       searchBtnHide: searchBtnHide,
@@ -289,7 +289,7 @@ class _Header extends StatelessWidget {
   final DotsIconData inputIcon;
   final String? hintInputText;
   final ValueChanged<String>? onInputChanged;
-  final List<SelectedItem>? selectedAlbumNames;
+  final List<SelectedItem>? selectedItems;
   final Function(int)? onBtnChipTap;
   final bool isScrolled;
   final bool isLabelButtonAvailable;
@@ -309,7 +309,7 @@ class _Header extends StatelessWidget {
     this.inputIcon = DotsIconData.search,
     this.hintInputText,
     this.onInputChanged,
-    this.selectedAlbumNames,
+    this.selectedItems,
     this.onBtnChipTap,
     this.isScrolled = false,
     this.isLabelButtonAvailable = false,
@@ -324,6 +324,7 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+
     return Container(
       decoration: BoxDecoration(
         border: isScrolled
@@ -336,15 +337,19 @@ class _Header extends StatelessWidget {
             : null,
       ),
       child: Padding(
-        padding: EdgeInsets.only(top: 16),
+        padding: const EdgeInsets.only(top: 16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: EdgeInsets.only(bottom: context.getByRatio(16, 10), left: 16, right: 16),
+              padding: EdgeInsets.only(
+                bottom: context.getByRatio(16, 10),
+                left: 16,
+                right: 16,
+              ),
               child: Row(
                 children: [
-                  if (onBackButtonTap != null) ...[
+                  if (onBackButtonTap != null)
                     Container(
                       alignment: Alignment.centerLeft,
                       width: variant.isMain ? 44 : 80,
@@ -354,8 +359,9 @@ class _Header extends StatelessWidget {
                         variant: DotsIconButtonVariant.noBackground,
                         onTap: onBackButtonTap,
                       ),
-                    ),
-                  ],
+                    )
+                  else
+                    SizedBox(width: !variant.isGhost ? 24 : 80),
                   Expanded(
                     child: Center(
                       child: Padding(
@@ -371,8 +377,7 @@ class _Header extends StatelessWidget {
                   if (!variant.isGhost)
                     const SizedBox(width: 24)
                   else
-                    Container(
-                      alignment: Alignment.centerRight,
+                    SizedBox(
                       width: 80,
                       child: DotsMainButton(
                         content: labelButtonText ?? '',
@@ -390,87 +395,106 @@ class _Header extends StatelessWidget {
               duration: const Duration(milliseconds: 200),
               curve: Curves.easeInOut,
               alignment: Alignment.bottomCenter,
-              child: Column(children: [
-                AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 150),
-                  switchInCurve: Curves.easeInOut,
-                  switchOutCurve: Curves.easeInOut,
-                  transitionBuilder: (child, animation) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: AnimatedBuilder(
-                        animation: animation,
-                        builder: (context, child) {
-                          return Transform(
-                            alignment: Alignment.center,
-                            transform: Matrix4.diagonal3Values(animation.value, 1.0, 1.0),
-                            child: child,
-                          );
-                        },
-                        child: child,
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 150),
+                switchInCurve: Curves.easeInOut,
+                switchOutCurve: Curves.easeInOut,
+                transitionBuilder: (child, animation) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: AnimatedBuilder(
+                      animation: animation,
+                      builder: (context, c) => Transform(
+                        alignment: Alignment.center,
+                        transform: Matrix4.diagonal3Values(animation.value, 1, 1),
+                        child: c,
                       ),
-                    );
-                  },
-                  child: (!isScrolled || searchBtnHide)
-                      ? Padding(
-                          key: const ValueKey('searchField'),
-                          padding: EdgeInsets.only(
-                            left: 16,
-                            right: 16,
-                            bottom: context.getByRatio(16, 10),
-                          ),
-                          child: DotsTextField(
-                            controller: textFieldController,
-                            focusNode: focus,
-                            onTapBtn: onTapTextFieldBtn,
-                            iconData: inputIcon,
-                            hintText: hintInputText,
-                            onChanged: onInputChanged,
-                          ),
-                        )
-                      : const SizedBox(
-                          key: ValueKey('emptyField'),
-                        ),
-                ),
-                if (selectedAlbumNames?.isNotEmpty == true)
-                  Padding(
-                    padding: EdgeInsets.only(bottom: context.getByRatio(16, 10)),
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            if (isScrolled && !searchBtnHide)
-                              Padding(
-                                padding: const EdgeInsets.only(left: 16),
-                                child: DotsIconButton(
-                                  icon: searchBtnIcon,
-                                  size: DotsIconButtonSize.small,
-                                  variant: DotsIconButtonVariant.solid,
-                                  iconSize: 14,
-                                  onTap: onSearchBtnTap,
-                                ),
-                              ),
-                            for (int i = 0; i < selectedAlbumNames!.length; i++)
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  left: i == 0 ? (searchBtnHide ? 16 : 4) : 0,
-                                  right: 4,
-                                ),
-                                child: DotsFilterChip(
-                                  label: selectedAlbumNames?[i].name,
-                                  onTap: () => onBtnChipTap?.call(selectedAlbumNames![i].id),
-                                ),
-                              ),
-                          ],
-                        ),
-                      ),
+                      child: child,
                     ),
-                  ),
-              ]),
+                  );
+                },
+                child: (!isScrolled || searchBtnHide)
+                    ? Padding(
+                        key: const ValueKey('searchField'),
+                        padding: const EdgeInsets.only(
+                          left: 16,
+                          right: 16,
+                          bottom: 16,
+                        ),
+                        child: DotsTextField(
+                          controller: textFieldController,
+                          focusNode: focus,
+                          onTapBtn: onTapTextFieldBtn,
+                          iconData: inputIcon,
+                          hintText: hintInputText,
+                          onChanged: onInputChanged,
+                        ),
+                      )
+                    : const SizedBox(
+                        key: ValueKey('emptyField'),
+                      ),
+              ),
+            ),
+            AnimatedSize(
+              duration: const Duration(milliseconds: 200),
+              curve: Curves.easeInOut,
+              alignment: Alignment.topCenter,
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 150),
+                switchInCurve: Curves.easeOut,
+                switchOutCurve: Curves.easeIn,
+                transitionBuilder: (child, animation) {
+                  final slide = Tween<Offset>(
+                    begin: const Offset(0, 0.08),
+                    end: Offset.zero,
+                  ).animate(animation);
+                  return FadeTransition(
+                    opacity: animation,
+                    child: SlideTransition(position: slide, child: child),
+                  );
+                },
+                child: (selectedItems?.isNotEmpty == true)
+                    ? Padding(
+                        key: ValueKey<int>(selectedItems!.length),
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            padding: EdgeInsets.zero,
+                            child: Row(
+                              children: [
+                                if (isScrolled && !searchBtnHide)
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 16),
+                                    child: DotsIconButton(
+                                      icon: searchBtnIcon,
+                                      size: DotsIconButtonSize.small,
+                                      variant: DotsIconButtonVariant.solid,
+                                      iconSize: 14,
+                                      onTap: onSearchBtnTap,
+                                    ),
+                                  ),
+                                for (int i = 0; i < selectedItems!.length; i++)
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      left: i == 0 ? (searchBtnHide ? 16 : 4) : 0,
+                                      right: 4,
+                                    ),
+                                    child: DotsFilterChip(
+                                      label: selectedItems![i].name,
+                                      onTap: () => onBtnChipTap?.call(selectedItems![i].id),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    : const SizedBox(
+                        key: ValueKey('noChips'),
+                      ),
+              ),
             ),
           ],
         ),
@@ -544,14 +568,16 @@ class _Body extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    listTitle ?? '',
-                    style: theme.typo.main.labelDefaultBold.copyWith(
-                      color: theme.colors.textTertiary,
+                  if (listTitle != null && listTitle!.isNotEmpty) ...[
+                    Text(
+                      listTitle ?? '',
+                      style: theme.typo.main.labelDefaultBold.copyWith(
+                        color: theme.colors.textTertiary,
+                      ),
+                      textAlign: TextAlign.left,
                     ),
-                    textAlign: TextAlign.left,
-                  ),
-                  const SizedBox(height: 12),
+                    const SizedBox(height: 12),
+                  ],
                   for (final item in listItems!)
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20),
