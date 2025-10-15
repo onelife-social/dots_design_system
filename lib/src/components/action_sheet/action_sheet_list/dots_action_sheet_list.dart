@@ -211,7 +211,7 @@ class DotsActionSheetList extends StatelessWidget {
                       hintInputText: hintInputText,
                       onInputChanged: onInputChanged,
                       isScrolled: isScrolled,
-                      selectedAlbumNames: selectedItemNames,
+                      selectedItems: selectedItemNames,
                       onBtnChipTap: onBtnChipTap,
                       isLabelButtonAvailable: isLabelButtonAvailable,
                       searchBtnHide: searchBtnHide,
@@ -289,7 +289,7 @@ class _Header extends StatelessWidget {
   final DotsIconData inputIcon;
   final String? hintInputText;
   final ValueChanged<String>? onInputChanged;
-  final List<SelectedItem>? selectedAlbumNames;
+  final List<SelectedItem>? selectedItems;
   final Function(int)? onBtnChipTap;
   final bool isScrolled;
   final bool isLabelButtonAvailable;
@@ -309,7 +309,7 @@ class _Header extends StatelessWidget {
     this.inputIcon = DotsIconData.search,
     this.hintInputText,
     this.onInputChanged,
-    this.selectedAlbumNames,
+    this.selectedItems,
     this.onBtnChipTap,
     this.isScrolled = false,
     this.isLabelButtonAvailable = false,
@@ -453,9 +453,9 @@ class _Header extends StatelessWidget {
                     child: SlideTransition(position: slide, child: child),
                   );
                 },
-                child: (selectedAlbumNames?.isNotEmpty == true)
+                child: (selectedItems?.isNotEmpty == true)
                     ? Padding(
-                        key: ValueKey<int>(selectedAlbumNames!.length),
+                        key: ValueKey<int>(selectedItems!.length),
                         padding: const EdgeInsets.only(bottom: 16),
                         child: SizedBox(
                           width: double.infinity,
@@ -475,15 +475,15 @@ class _Header extends StatelessWidget {
                                       onTap: onSearchBtnTap,
                                     ),
                                   ),
-                                for (int i = 0; i < selectedAlbumNames!.length; i++)
+                                for (int i = 0; i < selectedItems!.length; i++)
                                   Padding(
                                     padding: EdgeInsets.only(
                                       left: i == 0 ? (searchBtnHide ? 16 : 4) : 0,
                                       right: 4,
                                     ),
                                     child: DotsFilterChip(
-                                      label: selectedAlbumNames![i].name,
-                                      onTap: () => onBtnChipTap?.call(selectedAlbumNames![i].id),
+                                      label: selectedItems![i].name,
+                                      onTap: () => onBtnChipTap?.call(selectedItems![i].id),
                                     ),
                                   ),
                               ],
