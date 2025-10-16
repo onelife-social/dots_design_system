@@ -17,8 +17,8 @@ class BtnFolder extends StatelessWidget {
   // Variable to determine if the button is selected.
   final bool isSelected;
 
-  // Variable to determine if the button is a search button.
-  final bool isSearchBtn;
+  // Variable to determine if the button is a non-expandable button.
+  final bool isNonExpandable;
 
   // The color of the icon when the button is selected.
   final Color iconSelectedColor;
@@ -36,7 +36,7 @@ class BtnFolder extends StatelessWidget {
     required this.onTap,
     required this.onLongPress,
     this.isSelected = false,
-    this.isSearchBtn = false,
+    this.isNonExpandable = false,
     required this.iconSelectedColor,
     this.showEditIcon = false,
     this.isEditable = false,
@@ -53,7 +53,7 @@ class BtnFolder extends StatelessWidget {
             padding: const EdgeInsets.all(4),
             child: _FolderButton(
               isSelected: isSelected,
-              isSearchBtn: isSearchBtn,
+              isNonExpandable: isNonExpandable,
               onTap: onTap,
               onLongPress: onLongPress,
               icon: icon,
@@ -75,7 +75,7 @@ class BtnFolder extends StatelessWidget {
 
 class _FolderButton extends StatelessWidget {
   final bool isSelected;
-  final bool isSearchBtn;
+  final bool isNonExpandable;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
   final DotsIconData icon;
@@ -84,7 +84,7 @@ class _FolderButton extends StatelessWidget {
 
   const _FolderButton({
     this.isSelected = false,
-    this.isSearchBtn = false,
+    this.isNonExpandable = false,
     required this.onTap,
     required this.onLongPress,
     required this.icon,
@@ -98,72 +98,66 @@ class _FolderButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       onLongPress: onLongPress,
-      child: AnimatedSize(
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeInOut,
-        child: AnimatedContainer(
-          height: 44,
-          margin: const EdgeInsets.only(bottom: 6),
-          duration: const Duration(milliseconds: 200),
-          curve: Curves.easeInOut,
-          decoration: BoxDecoration(
-                  color: isSelected 
-                    ? theme.colors.bgStrong
-                    : theme.colors.bgContainerSecondaryOnBackground,
-                  borderRadius: DotsBorderRadius.r1000,
-                  boxShadow: isSelected
-                    ? [
-                        BoxShadow(
-                          color: theme.colors.shadowFolder,
-                          blurRadius: 4,
-                          offset: const Offset(1, 4),
-                        ),
-                      ]
-                    : [],
+      child: Container(
+        height: 44,
+        margin: const EdgeInsets.only(bottom: 6),
+        decoration: BoxDecoration(
+                color: isSelected 
+                  ? theme.colors.bgStrong
+                  : theme.colors.bgContainerSecondaryOnBackground,
+                borderRadius: DotsBorderRadius.r1000,
+                boxShadow: isSelected
+                  ? [
+                      BoxShadow(
+                        color: theme.colors.shadowFolder,
+                        blurRadius: 4,
+                        offset: const Offset(1, 4),
+                      ),
+                    ]
+                  : [],
+                ),
+        child: isNonExpandable
+            ? Padding(
+                padding: const EdgeInsets.all(12),
+                child: DotsIcon(
+                  iconData: icon,
+                  size: 20,
+                  color: theme.colors.textQuarternary,
+                ),
+              )
+            : Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    width: 16,
                   ),
-          child: isSearchBtn
-              ? Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: DotsIcon(
+                  DotsIcon(
                     iconData: icon,
                     size: 20,
-                    color: theme.colors.textQuarternary,
+                    color: isSelected
+                        ? iconSelectedColor
+                        : theme.colors.textQuarternary,
                   ),
-                )
-              : Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: 16,
-                    ),
-                    DotsIcon(
-                      iconData: icon,
-                      size: 20,
-                      color: isSelected
-                          ? iconSelectedColor
-                          : theme.colors.textQuarternary,
-                    ),
-                    SizedBox(
-                      width: 6,
-                    ),
-                    Flexible(
-                      child: text != null
-                          ? Text(
-                              text!.length > 20 ? '${text!.substring(0, 20)}…' : text!,
-                              style: theme.typo.main.bodyDefaultMedium.copyWith(
-                                color: isSelected
-                                    ? theme.colors.textPrimary
-                                    : theme.colors.textQuarternary,
-                              ),
-                            )
-                          : SizedBox.shrink(),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                  ],
-                )
-        ),
+                  SizedBox(
+                    width: 6,
+                  ),
+                  Flexible(
+                    child: text != null
+                        ? Text(
+                            text!.length > 20 ? '${text!.substring(0, 20)}…' : text!,
+                            style: theme.typo.main.bodyDefaultMedium.copyWith(
+                              color: isSelected
+                                  ? theme.colors.textPrimary
+                                  : theme.colors.textQuarternary,
+                            ),
+                          )
+                        : SizedBox.shrink(),
+                  ),
+                  SizedBox(
+                    width: 16,
+                  ),
+                ],
+              )
       ),
     );
   }
