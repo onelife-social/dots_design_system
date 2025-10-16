@@ -200,7 +200,7 @@ class DotsColors {
   );
   static final dark = DotsColorsModel(
     bgBase: Color(0xFF191919),
-    bgBaseContrast: Color(0xFF292929),
+    bgBaseContrast: Color(0xFF1F1F1F),
     bgBaseGradientStart: Color(0x00191919),
     bgContainerPrimary: Color(0xD9191919),
     bgContainerSecondary: Color(0xB3282828),
@@ -213,7 +213,7 @@ class DotsColors {
     bgToastLight: Color(0xCCF3F3F3),
     bgChip: Color(0x99303030),
     bgAlert: Color(0xD1252525),
-    bgStrong: Color(0xFF525252),
+    bgStrong: Color(0xFF3E3E3E),
     textPrimary: Color(0xFFFFFFFF),
     textSecondary: Color(0xBFFFFFFF),
     textTertiary: Color(0xA6FFFFFF),
