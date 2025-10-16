@@ -106,21 +106,21 @@ class _FolderButton extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 6),
           duration: const Duration(milliseconds: 200),
           curve: Curves.easeInOut,
-          decoration: isSelected
-              ? BoxDecoration(
-                  color: theme.colors.bgStrong,
+          decoration: BoxDecoration(
+                  color: isSelected 
+                    ? theme.colors.bgStrong
+                    : theme.colors.bgContainerSecondaryOnBackground,
                   borderRadius: DotsBorderRadius.r1000,
-                  boxShadow: [
-                      BoxShadow(
-                        color: theme.colors.shadowPrimary,
-                        blurRadius: 4,
-                        offset: const Offset(1, 4),
-                      ),
-                    ])
-              : BoxDecoration(
-                  color: theme.colors.bgContainerSecondaryOnBackground,
-                  borderRadius: DotsBorderRadius.r1000,
-                ),
+                  boxShadow: isSelected
+                    ? [
+                        BoxShadow(
+                          color: theme.colors.shadowFolder,
+                          blurRadius: 4,
+                          offset: const Offset(1, 4),
+                        ),
+                      ]
+                    : [],
+                  ),
           child: isSearchBtn
               ? Padding(
                   padding: const EdgeInsets.all(12),
