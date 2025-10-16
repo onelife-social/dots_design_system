@@ -5,6 +5,11 @@ class UsersList extends StatefulWidget {
   final UsersItemList creator;
   final List<UsersItemList> users;
   final List<UsersItemList> aliases;
+
+  final String textfieldLabel;
+  final TextEditingController textController;
+  final ValueChanged<String> textOnChanged;
+
   final String addParticipantLabel;
   final String addFriendLabel;
   final VoidCallback addFriendOnTap;
@@ -14,6 +19,9 @@ class UsersList extends StatefulWidget {
     required this.creator,
     required this.users,
     required this.aliases,
+    required this.textfieldLabel,
+    required this.textController,
+    required this.textOnChanged,
     required this.addParticipantLabel,
     required this.addFriendLabel,
     required this.addFriendOnTap,
@@ -31,26 +39,43 @@ class _UsersListState extends State<UsersList> {
     final theme = context.dotsTheme;
 
     final items = <Widget>[
+      // Creator
       UsersItemList.label(
         data: widget.creator.data!,
         label: widget.creator.label,
       ),
+
+      // Users
       for (final u in widget.users)
         UsersItemList.main(
           data: u.data!,
           onTap: u.onTap!,
         ),
+
+      // Aliases
       for (final a in widget.aliases)
         UsersItemList.main(
           data: a.data!,
           onTap: a.onTap!,
         ),
-      // _NewParticipantTextfield(),
+
+      // Textfield
+      if (showTextfield)
+        UsersItemList.textfield(
+          label: widget.textfieldLabel,
+          textController: widget.textController,
+          textOnChanged: widget.textOnChanged,
+          onTap: () => widget.textController.clear(),
+        ),
+
+      // Add new participant
       UsersItemList.button(
         label: widget.addParticipantLabel,
         icon: DotsIconData.add,
         onTap: () => setState(() => showTextfield = true),
       ),
+
+      // Add new friend
       UsersItemList.button(
         label: widget.addFriendLabel,
         icon: DotsIconData.user,

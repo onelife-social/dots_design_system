@@ -720,9 +720,13 @@ List<Story> get allStories => [
                 aliases: aliases,
                 textfieldLabel: 'Nombre del participante...',
                 textController: textFieldController,
-                textOnChanged: (value) => ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Textfield value: $value')),
-                ),
+                textOnChanged: (value) {
+                  if (value.length >= 3) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Textfield value: $value')),
+                    );
+                  }
+                },
                 addParticipantLabel: 'Añadir otro participante',
                 addFriendLabel: 'Añadir amigo de Dots',
                 addFriendOnTap: () => ScaffoldMessenger.of(context).showSnackBar(
