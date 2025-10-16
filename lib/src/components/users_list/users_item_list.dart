@@ -184,21 +184,26 @@ class _MainWidget extends StatelessWidget {
         );
 
       case UserItemListVariant.button:
-        return Row(
-          spacing: 6,
-          children: [
-            DotsIcon(
-              iconData: icon!,
-              size: 16,
-              color: theme.colors.labelHighlight,
+        return SizedBox(
+          height: 30,
+          child: Center(
+            child: Row(
+              spacing: 6,
+              children: [
+                DotsIcon(
+                  iconData: icon!,
+                  size: 16,
+                  color: theme.colors.labelHighlight,
+                ),
+                Text(
+                  label!,
+                  style: theme.typo.main.bodyDefaultMedium.copyWith(
+                    color: theme.colors.labelHighlight,
+                  ),
+                ),
+              ],
             ),
-            Text(
-              label!,
-              style: theme.typo.main.bodyDefaultMedium.copyWith(
-                color: theme.colors.labelHighlight,
-              ),
-            ),
-          ],
+          ),
         );
     }
   }
