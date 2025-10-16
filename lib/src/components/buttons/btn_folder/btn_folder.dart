@@ -17,6 +17,9 @@ class BtnFolder extends StatelessWidget {
   // Variable to determine if the button is selected.
   final bool isSelected;
 
+  // Variable to determine if the button is a search button.
+  final bool isSearchBtn;
+
   // The color of the icon when the button is selected.
   final Color iconSelectedColor;
 
@@ -33,6 +36,7 @@ class BtnFolder extends StatelessWidget {
     required this.onTap,
     required this.onLongPress,
     this.isSelected = false,
+    this.isSearchBtn = false,
     required this.iconSelectedColor,
     this.showEditIcon = false,
     this.isEditable = false,
@@ -40,39 +44,38 @@ class BtnFolder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 47,
-      child: Align(
-        alignment: Alignment.bottomCenter,
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(21),
-              child: _FolderButton(
-                isSelected: isSelected,
-                onTap: onTap,
-                onLongPress: onLongPress,
-                icon: icon,
-                iconSelectedColor: iconSelectedColor,
-                text: text,
-              ),
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(21),
+          child: Padding(
+            padding: const EdgeInsets.all(4),
+            child: _FolderButton(
+              isSelected: isSelected,
+              isSearchBtn: isSearchBtn,
+              onTap: onTap,
+              onLongPress: onLongPress,
+              icon: icon,
+              iconSelectedColor: iconSelectedColor,
+              text: text,
             ),
-            if (showEditIcon && isEditable)
-              Positioned(
-                right: -5,
-                top: -5,
-                child: _EditIcon(onPressed: onLongPress),
-              ),
-          ],
+          ),
         ),
-      ),
+        if (showEditIcon && isEditable)
+          Positioned(
+            right: 0,
+            top: 0,
+            child: _EditIcon(onPressed: onLongPress),
+          ),
+      ],
     );
   }
 }
 
 class _FolderButton extends StatelessWidget {
   final bool isSelected;
+  final bool isSearchBtn;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
   final DotsIconData icon;
@@ -81,6 +84,7 @@ class _FolderButton extends StatelessWidget {
 
   const _FolderButton({
     this.isSelected = false,
+    this.isSearchBtn = false,
     required this.onTap,
     required this.onLongPress,
     required this.icon,
@@ -90,6 +94,7 @@ class _FolderButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
     return GestureDetector(
       onTap: onTap,
       onLongPress: onLongPress,
@@ -97,26 +102,35 @@ class _FolderButton extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeInOut,
         child: AnimatedContainer(
-          height: 42,
+          height: 44,
+          margin: const EdgeInsets.only(bottom: 6),
           duration: const Duration(milliseconds: 200),
           curve: Curves.easeInOut,
           decoration: isSelected
               ? BoxDecoration(
-                  color: context.dotsTheme.colors.bgStrong,
+                  color: theme.colors.bgStrong,
                   borderRadius: DotsBorderRadius.r1000,
                   boxShadow: [
                       BoxShadow(
-                        color: Colors.black.dotsWithOpacity(0.1),
-                        blurRadius: 15,
-                        offset: const Offset(0, 4),
+                        color: theme.colors.shadowPrimary,
+                        blurRadius: 4,
+                        offset: const Offset(1, 4),
                       ),
                     ])
               : BoxDecoration(
-                  color: context.dotsTheme.colors.bgContainerSecondaryOnBackground,
+                  color: theme.colors.bgContainerSecondaryOnBackground,
                   borderRadius: DotsBorderRadius.r1000,
                 ),
-          child: isSelected
-              ? Row(
+          child: isSearchBtn
+              ? Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: DotsIcon(
+                    iconData: icon,
+                    size: 20,
+                    color: theme.colors.textQuarternary,
+                  ),
+                )
+              : Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SizedBox(
@@ -125,7 +139,9 @@ class _FolderButton extends StatelessWidget {
                     DotsIcon(
                       iconData: icon,
                       size: 20,
-                      color: iconSelectedColor,
+                      color: isSelected
+                          ? iconSelectedColor
+                          : theme.colors.textQuarternary,
                     ),
                     SizedBox(
                       width: 6,
@@ -134,7 +150,11 @@ class _FolderButton extends StatelessWidget {
                       child: text != null
                           ? Text(
                               text!.length > 20 ? '${text!.substring(0, 20)}…' : text!,
-                              style: context.dotsTheme.typo.main.bodyDefaultMedium,
+                              style: theme.typo.main.bodyDefaultMedium.copyWith(
+                                color: isSelected
+                                    ? theme.colors.textPrimary
+                                    : theme.colors.textQuarternary,
+                              ),
                             )
                           : SizedBox.shrink(),
                     ),
@@ -143,14 +163,6 @@ class _FolderButton extends StatelessWidget {
                     ),
                   ],
                 )
-              : Padding(
-                  padding: const EdgeInsets.all(11),
-                  child: DotsIcon(
-                    iconData: icon,
-                    size: 20,
-                    color: context.dotsTheme.colors.textQuarternary,
-                  ),
-                ),
         ),
       ),
     );
@@ -164,20 +176,21 @@ class _EditIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
     return GestureDetector(
-      onTap: () => onPressed,
+      onTap: onPressed,
       child: Container(
         width: 18,
         height: 18,
         decoration: BoxDecoration(
-          color: context.dotsTheme.colors.bgChip,
+          color: theme.colors.bgChip,
           borderRadius: BorderRadius.circular(100),
         ),
         child: Center(
           child: DotsIcon(
             iconData: DotsIconData.pencil,
             size: 10,
-            color: Colors.white,
+            color: theme.colors.labelAlwaysWhite,
           ),
         ),
       ),
