@@ -93,7 +93,7 @@ class AlbumGroupCard extends StatelessWidget {
                         title,
                         textAlign: TextAlign.center,
                         style: (variant.isSmall
-                                ? theme.typo.main.labelDefaultMedium
+                                ? theme.typo.main.bodyDefaultMedium
                                 : theme.typo.main.bodyLargeMedium)
                             .copyWith(color: theme.colors.labelAlwaysWhite),
                         overflow: TextOverflow.ellipsis,

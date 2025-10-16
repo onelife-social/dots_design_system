@@ -65,7 +65,7 @@ class DotsEmptyStateCard extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: context.getByRatio(20, 12)),
             child: Text(
               title,
-              style: theme.typo.secondary.title02H6.copyWith(
+              style: theme.typo.secondary.title02H5.copyWith(
                 color: theme.colors.textPrimary,
               ),
               textAlign: TextAlign.center,
@@ -75,7 +75,7 @@ class DotsEmptyStateCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             description,
-            style: theme.typo.main.labelDefaultRegular.copyWith(
+            style: theme.typo.main.bodyDefaultRegular.copyWith(
               color: theme.colors.textQuarternary,
             ),
             textAlign: TextAlign.center,
