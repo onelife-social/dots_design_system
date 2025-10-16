@@ -38,3 +38,4 @@ export 'spinner/spinner_lib.dart';
 export 'countdown/countdown_lib.dart';
 export 'user_items/user_item.dart';
 export 'segmented_control/segmented_control_lib.dart';
+export 'user_items/user_info.dart';

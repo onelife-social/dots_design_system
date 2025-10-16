@@ -2,19 +2,35 @@ import 'package:flutter/material.dart';
 import '../../../dots_design_system.dart';
 import '../../core/values/paths/images_paths.dart';
 
+class UserInfoData {
+  /// The image provider to display the profile image.
+  final ImageProvider? imageProvider;
+
+  /// The name of the user to display in the component.
+  final String name;
+
+  /// The details to display in the component.
+  final String? details;
+
+  /// Callback for image load error.
+  final void Function(Object exception, StackTrace? stackTrace)? imageOnError;
+
+  const UserInfoData({
+    this.imageProvider,
+    required this.name,
+    this.details,
+    this.imageOnError,
+  });
+}
+
 class UserInfo extends StatelessWidget {
+  /// User information data to display.
+  final UserInfoData data;
+
   const UserInfo({
     super.key,
-    required this.imageProvider,
-    required this.name,
-    required this.details,
-    this.onError,
+    required this.data,
   });
-
-  final ImageProvider imageProvider;
-  final String name;
-  final String details;
-  final void Function(Object exception, StackTrace? stackTrace)? onError;
 
   static Image defaultImage = Image.asset(
     ImagesPaths.defaultUserItem,
