@@ -5,20 +5,24 @@ class MessagePreview extends StatelessWidget {
   final Widget image;
   final String album;
   final String senderName;
-  final Widget contentMessage;
+  final String message;
+  final String? typingText;
   final int newMessages;
   final String time;
   final VoidCallback onTap;
+  final Widget? attachmentMessage;
 
   const MessagePreview({
     super.key,
     required this.image,
     required this.album,
     required this.senderName,
-    required this.contentMessage,
+    required this.message,
     required this.newMessages,
     required this.time,
     required this.onTap,
+    this.typingText,
+    this.attachmentMessage,
   });
 
   @override
@@ -27,25 +31,34 @@ class MessagePreview extends StatelessWidget {
       onTap: onTap,
       child: Container(
         color: Colors.transparent,
-        height: 88,
+        height: 92,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            children: [
-              _ImageAlbum(image: image),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _ChatHeaderInfo(album: album, time: time),
-                    _ChatContent(
-                        senderName: senderName, text: contentMessage, newMessages: newMessages)
-                  ],
-                ),
+          child: Center(
+            child: SizedBox(
+              height: 62,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _ImageAlbum(image: image),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        _ChatHeaderInfo(album: album, time: time),
+                        SizedBox(height: 4),
+                        _ChatContent(
+                            senderName: senderName,
+                            message: message,
+                            typingText: typingText,
+                            attachmentMessage: attachmentMessage,
+                            newMessages: newMessages),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
@@ -59,11 +72,11 @@ class _ImageAlbum extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: DotsBorderRadius.r16,
+    return DotsDecoratedBox(
+      styleType: context.dotsTheme.styles.squircle16,
       child: SizedBox(
-        width: 52,
-        height: 52,
+        width: 56,
+        height: 56,
         child: image,
       ),
     );
@@ -85,9 +98,23 @@ class _ChatHeaderInfo extends StatelessWidget {
 
     return Row(
       children: [
-        Expanded(child: Text(album, style: theme.typo.main.bodyDefaultBold)),
+        Expanded(
+          child: Text(
+            album,
+            style: theme.typo.main.bodyLargeBold.copyWith(
+              color: theme.colors.textPrimary,
+              height: 1,
+            ),
+          ),
+        ),
         const SizedBox(height: 4),
-        Text(time, style: theme.typo.main.labelDefaultRegular),
+        Text(
+          time,
+          style: theme.typo.main.bodyDefaultRegular.copyWith(
+            color: theme.colors.textSecondary,
+            height: 1,
+          ),
+        ),
       ],
     );
   }
@@ -95,39 +122,69 @@ class _ChatHeaderInfo extends StatelessWidget {
 
 class _ChatContent extends StatelessWidget {
   final String senderName;
-  final Widget text;
+  final String message;
   final int newMessages;
+  final String? typingText;
+  final Widget? attachmentMessage;
 
   const _ChatContent({
     required this.senderName,
-    required this.text,
+    required this.message,
     required this.newMessages,
+    this.typingText,
+    this.attachmentMessage,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
+    final TextStyle textStyle = context.dotsTheme.typo.main.bodyDefaultRegular.copyWith(
+      color: context.dotsTheme.colors.textSecondary,
+    );
+
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                senderName != '' ? '$senderName: ' : '',
-                style: theme.typo.main.labelDefaultBold,
-              ),
-              Expanded(child: text),
-            ],
+          child: RichText(
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            text: TextSpan(
+              children: [
+                if (typingText != null && typingText!.isNotEmpty)
+                  TextSpan(
+                    text: typingText,
+                    style: textStyle,
+                  )
+                else if (typingText == null) ...[
+                  if (senderName.isNotEmpty)
+                    TextSpan(
+                      text: '$senderName: ',
+                      style: theme.typo.main.bodyDefaultBold.copyWith(
+                        color: theme.colors.textSecondary,
+                      ),
+                    ),
+                  if (attachmentMessage != null) ...[
+                    WidgetSpan(
+                      alignment: PlaceholderAlignment.middle,
+                      child: attachmentMessage!,
+                    ),
+                    TextSpan(
+                      text: ' ',
+                    ),
+                  ],
+                  TextSpan(text: message, style: textStyle),
+                ]
+              ],
+            ),
           ),
         ),
         if (newMessages > 0)
           Padding(
-            padding: const EdgeInsets.only(left: 8),
+            padding: const EdgeInsets.only(left: 12),
             child: BadgeTag(
-              tag: newMessages.toString(),
-              child: const SizedBox.shrink(),
+              tag: newMessages > 999 ? '+999' : newMessages.toString(),
             ),
           ),
       ],
