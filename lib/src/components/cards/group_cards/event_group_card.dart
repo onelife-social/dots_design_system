@@ -187,6 +187,7 @@ class EventGroupCard extends StatelessWidget {
                                   )
                                 : DotsMainButton(
                                     content: secondaryText,
+                                    textColor: theme.colors.labelAlwaysWhite,
                                     icon: DotsIconData.exitFullscreen,
                                     variant: DotsMainButtonVariant.secondary,
                                     iconSize: 14,
