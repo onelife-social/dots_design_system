@@ -31,8 +31,7 @@ class MemoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
-        height: 99.5,
-        width: 66,
+        width: 68,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -45,6 +44,7 @@ class MemoryCard extends StatelessWidget {
                 _Card(image: image, onError: onError),
               ],
             ),
+            const SizedBox(height: 8),
             _GroupName(groupName: groupName),
           ],
         ),
@@ -66,8 +66,8 @@ class _Card extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        height: 77.4,
-        width: 57.7,
+        height: 80.0,
+        width: 60.39,
         child: ClipRRect(
           borderRadius: DotsBorderRadius.r15,
           child: image,
@@ -86,8 +86,8 @@ class _GroupName extends StatelessWidget {
     final theme = context.dotsTheme;
     return Text(
       groupName,
-      style: theme.typo.main.labelSmallRegular
-          .copyWith(fontWeight: FontWeight.w500, color: theme.colors.textTertiary),
+      style: theme.typo.main.labelDefaultMedium
+          .copyWith(color: theme.colors.textSecondary),
       overflow: TextOverflow.ellipsis,
       maxLines: 1,
       textAlign: TextAlign.center,
@@ -101,8 +101,8 @@ class _UpdatedBorder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 64.53,
-      height: 83.5,
+      width: 67.53,
+      height: 87.39,
       decoration: BoxDecoration(
         borderRadius: DotsBorderRadius.r18,
         border: GradientBoxBorder(
@@ -134,7 +134,7 @@ class _DotsIntelligenceBorder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 77.4,
+      height: 87.39,
       width: 57.7,
       child: Image.asset(
         'assets/images/filter_generated_memory.png',
