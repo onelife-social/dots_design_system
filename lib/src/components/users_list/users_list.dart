@@ -2,16 +2,31 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class UsersList extends StatefulWidget {
+  /// The creator user item to display at the top of the list.
   final UsersItemList creator;
+
+  /// The main list of user items.
   final List<UsersItemList> users;
+
+  /// The list of alias user items.
   final List<UsersItemList> aliases;
 
+  /// Label for the participant text field.
   final String textfieldLabel;
+
+  /// Controller for the participant text field.
   final TextEditingController textController;
+
+  /// Callback for text changes in the participant text field.
   final ValueChanged<String> textOnChanged;
 
+  /// Label for the "add participant" button.
   final String addParticipantLabel;
+
+  /// Label for the "add friend" button.
   final String addFriendLabel;
+
+  /// Callback when the "add friend" button is tapped.
   final VoidCallback addFriendOnTap;
 
   const UsersList({
