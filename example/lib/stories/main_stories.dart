@@ -379,6 +379,7 @@ List<Story> get allStories => [
                   .map((item) => Option(label: item.name, value: item))
                   .toList(),
             ),
+            background: context.knobs.boolean(label: 'Background?', initial: true),
           ),
         ),
       ),
@@ -717,6 +718,11 @@ List<Story> get allStories => [
                 creator: creator,
                 users: users,
                 aliases: aliases,
+                textfieldLabel: 'Nombre del participante...',
+                textController: textFieldController,
+                textOnChanged: (value) => ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Textfield value: $value')),
+                ),
                 addParticipantLabel: 'Añadir otro participante',
                 addFriendLabel: 'Añadir amigo de Dots',
                 addFriendOnTap: () => ScaffoldMessenger.of(context).showSnackBar(

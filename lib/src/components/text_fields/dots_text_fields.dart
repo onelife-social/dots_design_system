@@ -2,7 +2,6 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class DotsTextField extends StatefulWidget {
-  
   /// The icon data for the TextField.
   ///
   /// If null, no icon will be displayed.
@@ -50,6 +49,11 @@ class DotsTextField extends StatefulWidget {
   /// Used to manage the focus. A default one is provided if non is passed as a parameter
   final FocusNode? focusNode;
 
+  /// Whether to display a background color.
+  ///
+  /// Defaults to `true`.
+  final bool background;
+
   const DotsTextField({
     super.key,
     this.iconData,
@@ -64,6 +68,7 @@ class DotsTextField extends StatefulWidget {
     this.alignCenter = false,
     this.controller,
     this.focusNode,
+    this.background = true,
   });
 
   @override
@@ -122,7 +127,9 @@ class _DotsTextFieldState extends State<DotsTextField> {
               height: 44,
               clipBehavior: Clip.antiAlias,
               decoration: ShapeDecoration(
-                color: theme.colors.bgContainerSecondaryOnBackground,
+                color: widget.background == true
+                    ? theme.colors.bgContainerSecondaryOnBackground
+                    : null,
                 shape: RoundedRectangleBorder(
                   borderRadius: DotsBorderRadius.r1000,
                 ),
@@ -134,7 +141,9 @@ class _DotsTextFieldState extends State<DotsTextField> {
                   if (icon != null)
                     DotsIcon(
                       iconData: icon,
-                      color: widget.isError ? theme.colors.labelDestructive : theme.colors.textTertiary,
+                      color: widget.isError
+                          ? theme.colors.labelDestructive
+                          : theme.colors.textTertiary,
                       size: 20,
                     ),
                   const SizedBox(width: 6),
@@ -144,14 +153,18 @@ class _DotsTextFieldState extends State<DotsTextField> {
                       controller: _controller,
                       textAlign: textAlign,
                       style: theme.typo.main.bodyDefaultMedium.copyWith(
-                        color: widget.isError ? theme.colors.labelDestructive : theme.colors.textPrimary,
+                        color: widget.isError
+                            ? theme.colors.labelDestructive
+                            : theme.colors.textPrimary,
                       ),
                       cursorColor: theme.colors.labelHighlight,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: widget.hintText,
                         hintStyle: TextStyle(
-                          color: widget.isError ? theme.colors.labelDestructive : theme.colors.textTertiary,
+                          color: widget.isError
+                              ? theme.colors.labelDestructive
+                              : theme.colors.textTertiary,
                         ),
                         isDense: true,
                         contentPadding: const EdgeInsets.symmetric(vertical: 12),
@@ -188,7 +201,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
             ],
           ],
         );
-      }
+      },
     );
   }
 }
