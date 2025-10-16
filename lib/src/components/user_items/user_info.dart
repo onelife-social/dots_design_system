@@ -48,49 +48,51 @@ class UserInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 8,
         children: [
-          Container(
-            width: 26,
-            height: 26,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: dotsTheme.colors.bgStrong,
-            ),
-            child: ClipOval(
-              child: Image(
-                image: imageProvider,
-                width: 26,
-                height: 26,
-                fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return defaultImage;
-                },
-                errorBuilder: (context, error, stackTrace) {
-                  if (onError != null) onError!(error, stackTrace);
-                  return defaultImage;
-                },
+          if (data.imageProvider != null)
+            Container(
+              width: 26,
+              height: 26,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: dotsTheme.colors.bgStrong,
+              ),
+              child: ClipOval(
+                child: Image(
+                  image: data.imageProvider!,
+                  width: 26,
+                  height: 26,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return defaultImage;
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    if (data.imageOnError != null) data.imageOnError!(error, stackTrace);
+                    return defaultImage;
+                  },
+                ),
               ),
             ),
-          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  name,
+                  data.name,
                   style: dotsTheme.typo.main.bodyDefaultMedium.copyWith(
                     color: dotsTheme.colors.textPrimary,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
-                Text(
-                  details,
-                  style: dotsTheme.typo.main.labelSmallRegular.copyWith(
-                    color: dotsTheme.colors.textQuarternary,
+                if (data.details != null)
+                  Text(
+                    data.details!,
+                    style: dotsTheme.typo.main.labelSmallRegular.copyWith(
+                      color: dotsTheme.colors.textQuarternary,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  overflow: TextOverflow.ellipsis,
-                ),
               ],
             ),
           ),
