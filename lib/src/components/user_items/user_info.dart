@@ -74,27 +74,43 @@ class UserInfo extends StatelessWidget {
               ),
             ),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  data.name,
-                  style: dotsTheme.typo.main.bodyDefaultMedium.copyWith(
-                    color: dotsTheme.colors.textPrimary,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-                if (data.details != null)
-                  Text(
-                    data.details!,
-                    style: dotsTheme.typo.main.labelSmallRegular.copyWith(
-                      color: dotsTheme.colors.textQuarternary,
+            child: data.details == null
+                ? Container(
+                    constraints: const BoxConstraints(minHeight: 26),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          data.name,
+                          style: dotsTheme.typo.main.bodyDefaultMedium.copyWith(
+                            color: dotsTheme.colors.textPrimary,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
                     ),
-                    overflow: TextOverflow.ellipsis,
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        data.name,
+                        style: dotsTheme.typo.main.bodyDefaultMedium.copyWith(
+                          color: dotsTheme.colors.textPrimary,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        data.details!,
+                        style: dotsTheme.typo.main.labelSmallRegular.copyWith(
+                          color: dotsTheme.colors.textQuarternary,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
                   ),
-              ],
-            ),
           ),
         ],
       ),
