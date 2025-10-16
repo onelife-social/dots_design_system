@@ -665,54 +665,65 @@ List<Story> get allStories => [
         name: 'Users List',
         description: 'Demo page for Users List',
         builder: (context) {
-          final UsersItemList creator = UsersItemList.label(
-            data: UserInfoData(
-              imageProvider: NetworkImage('https://picsum.photos/250?image=1'),
-              name: 'Carlos',
-            ),
-            label: 'Creator',
-          );
+          final textFieldController = TextEditingController();
 
-          final List<UsersItemList> users = [
-            UsersItemList.main(
-              data: UserInfoData(
-                imageProvider: NetworkImage('https://picsum.photos/250?image=2'),
-                name: 'Ana Orduña',
-                details: 'Amigo de Dots',
-              ),
-              onTap: () {},
-            ),
-            UsersItemList.main(
-              data: UserInfoData(
-                imageProvider: NetworkImage('https://picsum.photos/250?image=3'),
-                name: 'Carlitos',
-                details: 'Amigo de Dots',
-              ),
-              onTap: () {},
-            ),
-            UsersItemList.main(
-              data: UserInfoData(
-                imageProvider: NetworkImage('https://picsum.photos/250?image=4'),
-                name: 'Esther',
-                details: 'Amigo de Dots',
-              ),
-              onTap: () {},
-            ),
-          ];
+          return StatefulBuilder(
+            builder: (context, setState) {
+              final UsersItemList creator = UsersItemList.label(
+                data: UserInfoData(
+                  imageProvider: NetworkImage('https://picsum.photos/250?image=1'),
+                  name: 'Carlos',
+                ),
+                label: 'Creator',
+              );
 
-          final List<UsersItemList> aliases = [
-            UsersItemList.main(
-              data: UserInfoData(
-                name: 'Andrea',
-              ),
-              onTap: () {},
-            ),
-          ];
+              final List<UsersItemList> users = [
+                UsersItemList.main(
+                  data: UserInfoData(
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=2'),
+                    name: 'Ana Orduña',
+                    details: 'Amigo de Dots',
+                  ),
+                  onTap: () {},
+                ),
+                UsersItemList.main(
+                  data: UserInfoData(
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=3'),
+                    name: 'Carlitos',
+                    details: 'Amigo de Dots',
+                  ),
+                  onTap: () {},
+                ),
+                UsersItemList.main(
+                  data: UserInfoData(
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=4'),
+                    name: 'Esther',
+                    details: 'Amigo de Dots',
+                  ),
+                  onTap: () {},
+                ),
+              ];
 
-          return UsersList(
-            creator: creator,
-            users: users,
-            aliases: aliases,
+              final List<UsersItemList> aliases = [
+                UsersItemList.main(
+                  data: UserInfoData(
+                    name: 'Andrea',
+                  ),
+                  onTap: () {},
+                ),
+              ];
+
+              return UsersList(
+                creator: creator,
+                users: users,
+                aliases: aliases,
+                addParticipantLabel: 'Añadir otro participante',
+                addFriendLabel: 'Añadir amigo de Dots',
+                addFriendOnTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Tapped add friend')),
+                ),
+              );
+            },
           );
         },
       ),
