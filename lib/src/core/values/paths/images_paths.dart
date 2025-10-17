@@ -6,4 +6,5 @@ class ImagesPaths {
   static final String bgBasic = '$_images/bg_basic.png';
   static final String bgPremium = '$_images/bg_premium.png';
   static final String bgPremiumPlus = '$_images/bg_premium_plus.png';
+  static final String defaultUserItem = '$_images/default_user_item.png';
 }

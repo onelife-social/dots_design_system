@@ -19,7 +19,7 @@ class DotsMainButton extends StatelessWidget {
     this.adaptPaddingForText = false,
     this.textColor,
     this.iconColor,
-    this.shouldApplyBlur = true,
+    this.shouldApplyBlur = false,
   });
 
   /// The text to display on the button.
@@ -83,12 +83,9 @@ class DotsMainButton extends StatelessWidget {
       iconColor,
     );
     final borderRadius = BorderRadius.circular(size.height);
+    final foregroundColor = textColor ??
+        (buttonTheme.foregroundGradient == null ? buttonTheme.foregroundColor : Colors.white);
 
-    final foregroundColor = textColor != null
-        ? textColor
-        : buttonTheme.foregroundGradient == null
-            ? buttonTheme.foregroundColor
-            : Colors.white;
     Widget button = Material(
       color: buttonTheme.backgroundColor ?? Colors.transparent,
       borderRadius: borderRadius,

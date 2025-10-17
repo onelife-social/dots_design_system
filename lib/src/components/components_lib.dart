@@ -36,3 +36,5 @@ export 'miscellaneous/miscellaneous_lib.dart';
 export 'tooltip/tooltip_lib.dart';
 export 'spinner/spinner_lib.dart';
 export 'countdown/countdown_lib.dart';
+export 'user_items/user_item.dart';
+export 'segmented_control/segmented_control_lib.dart';

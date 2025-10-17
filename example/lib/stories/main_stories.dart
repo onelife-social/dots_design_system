@@ -8,7 +8,6 @@ import 'package:example/components/dots_text_animations_demo_page.dart';
 import 'package:example/components/folder_carrousel_demo_page.dart';
 import 'package:example/components/item_input_demo.dart';
 import 'package:example/components/memory_card_demo_page.dart';
-import 'package:example/components/segmented_control_handle.dart';
 import 'package:example/components/empty_state_card_demo.dart';
 import 'package:example/stories/helpers/linear_gradient_options.dart';
 import 'package:example/stories/stories_by_folder/action_sheet_stories.dart';
@@ -17,6 +16,7 @@ import 'package:example/stories/stories_by_folder/button_stories.dart';
 import 'package:example/stories/stories_by_folder/chat_stories.dart';
 import 'package:example/stories/stories_by_folder/dropdown_stories.dart';
 import 'package:example/stories/stories_by_folder/miscellaneous_stories.dart';
+import 'package:example/stories/stories_by_folder/segmented_control_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/separators_demo.dart';
 import 'package:example/stories/stories_by_folder/spinner_stories.dart';
@@ -50,6 +50,7 @@ List<Story> get allStories => [
       ...profilePhotoStories,
       ...memoryDetailsStories,
       ...spinnerStories,
+      ...segmentedControlStories,
       ...miscellaneousStories,
       Story(
         name: 'Container',
@@ -111,22 +112,6 @@ List<Story> get allStories => [
             max: 300,
           ),
         ),
-      ),
-      Story(
-        name: 'Segmented control bar',
-        description: 'Demo page for Segmented control bar',
-        builder: (context) {
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SegmentedControlHandle(
-              key: ValueKey('SegmentedControlHandle'),
-              leftOptionName: context.knobs.text(label: 'Option 1', initial: 'Option 1'),
-              rightOptionName: context.knobs.text(label: 'Option 2', initial: 'Option 2'),
-              selectedColor: knobColorSelector(context, 'Selected color'),
-              backgroundColor: knobColorSelector(context, 'Background color'),
-            ),
-          );
-        },
       ),
       Story(
         name: 'Menu',
@@ -663,5 +648,15 @@ List<Story> get allStories => [
             ),
           );
         },
+      ),
+      Story(
+        name: 'User Item',
+        description: 'Demo page for User Item',
+        builder: (context) => UserItem(
+          imageProvider: NetworkImage('https://picsum.photos/250?image=9'),
+          name: context.knobs.text(label: 'Name', initial: 'Name'),
+          details: context.knobs.text(label: 'Details', initial: 'Amigo de Dots'),
+          onTap: () {},
+        ),
       ),
     ];

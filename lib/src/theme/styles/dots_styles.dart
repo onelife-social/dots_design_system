@@ -83,16 +83,28 @@ class DotsStyles {
       radius: 16,
       cornerSmoothing: 0.5,
     ),
-    squircle24: DotsStyleSquircle(
-      radius: 24,
-      cornerSmoothing: 0.5,
-    ),
     squircle8: DotsStyleSquircle(
       radius: 8,
       cornerSmoothing: 0.5,
     ),
     squircle12: DotsStyleSquircle(
       radius: 12,
+      cornerSmoothing: 0.5,
+    ),
+    squircle16: DotsStyleSquircle(
+      radius: 16,
+      cornerSmoothing: 0.5,
+    ),
+    squircle24: DotsStyleSquircle(
+      radius: 24,
+      cornerSmoothing: 0.5,
+    ),
+    squircle32: DotsStyleSquircle(
+      radius: 32,
+      cornerSmoothing: 0.5,
+    ),
+    squircle52: DotsStyleSquircle(
+      radius: 52,
       cornerSmoothing: 0.5,
     ),
   );
@@ -178,16 +190,28 @@ class DotsStyles {
       radius: 16,
       cornerSmoothing: 0.5,
     ),
-    squircle24: DotsStyleSquircle(
-      radius: 24,
-      cornerSmoothing: 0.5,
-    ),
     squircle8: DotsStyleSquircle(
       radius: 8,
       cornerSmoothing: 0.5,
     ),
     squircle12: DotsStyleSquircle(
       radius: 12,
+      cornerSmoothing: 0.5,
+    ),
+    squircle16: DotsStyleSquircle(
+      radius: 16,
+      cornerSmoothing: 0.5,
+    ),
+    squircle24: DotsStyleSquircle(
+      radius: 24,
+      cornerSmoothing: 0.5,
+    ),
+    squircle32: DotsStyleSquircle(
+      radius: 32,
+      cornerSmoothing: 0.5,
+    ),
+    squircle52: DotsStyleSquircle(
+      radius: 52,
       cornerSmoothing: 0.5,
     ),
   );
