@@ -113,8 +113,10 @@ class UsersItemList extends StatelessWidget {
     };
 
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onTap: () => onTap?.call(tapValue),
       child: Container(
+        color: Colors.transparent,
         padding: const EdgeInsets.symmetric(vertical: 3),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
