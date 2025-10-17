@@ -30,6 +30,9 @@ class DotsActionSheetList extends StatelessWidget {
   /// The [title] parameter is the title of the action sheet.
   final String title;
 
+  /// The [description] parameter is the description of the action sheet.
+  final String? description;
+
   /// The [onBackButtonTap] is a callback for the back button.
   final Function()? onBackButtonTap;
 
@@ -38,6 +41,9 @@ class DotsActionSheetList extends StatelessWidget {
 
   /// The [onClose] is a callback for closing the action sheet tapping outside.
   final VoidCallback? onClose;
+
+  /// The [onCloseButtonTap] is a callback for the close button tap.
+  final VoidCallback? onCloseButtonTap;
 
   /// The [showBlurBackground] parameter determines if the background should be blurred.
   final bool showBlurBackground;
@@ -130,6 +136,7 @@ class DotsActionSheetList extends StatelessWidget {
     required this.title,
     required this.onMainButtonTap,
     required this.mainButtonText,
+    this.description,
     this.textFieldController,
     this.focus,
     this.onTapTextFieldBtn,
@@ -139,6 +146,7 @@ class DotsActionSheetList extends StatelessWidget {
     this.labelButtonText,
     this.onBackButtonTap,
     this.onClose,
+    this.onCloseButtonTap,
     this.showBlurBackground = true,
     this.inputIcon = DotsIconData.search,
     this.hintInputText,
@@ -201,11 +209,17 @@ class DotsActionSheetList extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Grabber(),
+                    ),
                     _Header(
                       title: title,
+                      description: description,
                       onBackButtonTap: onBackButtonTap,
                       variant: variant,
                       onLabelButtonTap: onLabelButtonTap,
+                      onCloseButtonTap: onCloseButtonTap,
                       labelButtonText: labelButtonText,
                       inputIcon: inputIcon,
                       hintInputText: hintInputText,
@@ -282,9 +296,11 @@ class DotsActionSheetList extends StatelessWidget {
 
 class _Header extends StatelessWidget {
   final String title;
+  final String? description;
   final Function()? onBackButtonTap;
   final ActionSheetListVariant variant;
   final Function()? onLabelButtonTap;
+  final Function()? onCloseButtonTap;
   final String? labelButtonText;
   final DotsIconData inputIcon;
   final String? hintInputText;
@@ -304,7 +320,9 @@ class _Header extends StatelessWidget {
     required this.variant,
     required this.title,
     this.onBackButtonTap,
+    this.description,
     this.onLabelButtonTap,
+    this.onCloseButtonTap,
     this.labelButtonText,
     this.inputIcon = DotsIconData.search,
     this.hintInputText,
@@ -339,11 +357,12 @@ class _Header extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
               padding: EdgeInsets.only(
-                bottom: context.getByRatio(16, 10),
+                bottom: description != null ? 4 : context.getByRatio(16, 10),
                 left: 16,
                 right: 16,
               ),
@@ -374,9 +393,14 @@ class _Header extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if (!variant.isGhost)
-                    const SizedBox(width: 24)
-                  else
+                  if (!variant.isGhost && onCloseButtonTap != null)
+                    DotsCloseButton(
+                      icon: DotsIconData.cross,
+                      size: DotsCloseButtonSize.medium,
+                      variant: DotsCloseButtonVariant.softContrast,
+                      onTap: onCloseButtonTap,
+                    )
+                  else if (onLabelButtonTap != null)
                     SizedBox(
                       width: 80,
                       child: DotsMainButton(
@@ -387,10 +411,23 @@ class _Header extends StatelessWidget {
                         onTap: onLabelButtonTap,
                         expand: false,
                       ),
-                    ),
+                    )
+                  else
+                    SizedBox(width: 24),
                 ],
               ),
             ),
+            if (description != null)
+              Padding(
+                padding: EdgeInsets.only(left: 32, right: 32, bottom: context.getByRatio(16, 10)),
+                child: Text(
+                  textAlign: TextAlign.center,
+                  description ?? '',
+                  style: theme.typo.main.bodyDefaultRegular.copyWith(
+                    color: theme.colors.textQuarternary,
+                  ),
+                ),
+              ),
             AnimatedSize(
               duration: const Duration(milliseconds: 200),
               curve: Curves.easeInOut,
@@ -584,6 +621,7 @@ class _Body extends StatelessWidget {
                       child: DotsListsItem(
                         label: item.label,
                         iconData: item.iconData,
+                        picType: item.picType,
                         image: item.image,
                         variant: item.variant,
                         onTap: item.onTap,
