@@ -666,7 +666,7 @@ List<Story> get allStories => [
         name: 'Users List',
         description: 'Demo page for Users List',
         builder: (context) {
-          final textFieldController = TextEditingController();
+          final textFieldControllers = <TextEditingController>[];
 
           return StatefulBuilder(
             builder: (context, setState) {
@@ -719,7 +719,7 @@ List<Story> get allStories => [
                 users: users,
                 aliases: aliases,
                 textfieldLabel: 'Nombre del participante...',
-                textController: textFieldController,
+                textControllers: textFieldControllers,
                 textOnChanged: (value) {
                   if (value.length >= 3) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -728,6 +728,10 @@ List<Story> get allStories => [
                   }
                 },
                 addParticipantLabel: 'Añadir otro participante',
+                addParticipantOnTap: () { 
+                  if (textFieldControllers.any((c) => c.text.isEmpty)) return;
+                  setState(() => textFieldControllers.add(TextEditingController()));
+                },
                 addFriendLabel: 'Añadir amigo de Dots',
                 addFriendOnTap: () => ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('Tapped add friend')),

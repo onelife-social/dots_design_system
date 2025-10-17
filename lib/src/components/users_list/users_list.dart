@@ -11,17 +11,20 @@ class UsersList extends StatefulWidget {
   /// The list of alias user items.
   final List<UsersItemList> aliases;
 
-  /// Label for the participant text field.
+  /// Label for the participant text fields.
   final String textfieldLabel;
 
-  /// Controller for the participant text field.
-  final TextEditingController textController;
+  /// Controllers for the participant text fields.
+  final List<TextEditingController> textControllers;
 
-  /// Callback for text changes in the participant text field.
+  /// Callback for text changes in the participant text fields.
   final ValueChanged<String> textOnChanged;
 
   /// Label for the "add participant" button.
   final String addParticipantLabel;
+
+  /// Callback when the "add participant" button is tapped.
+  final VoidCallback addParticipantOnTap;
 
   /// Label for the "add friend" button.
   final String addFriendLabel;
@@ -35,9 +38,10 @@ class UsersList extends StatefulWidget {
     required this.users,
     required this.aliases,
     required this.textfieldLabel,
-    required this.textController,
+    required this.textControllers,
     required this.textOnChanged,
     required this.addParticipantLabel,
+    required this.addParticipantOnTap,
     required this.addFriendLabel,
     required this.addFriendOnTap,
   });
@@ -47,8 +51,6 @@ class UsersList extends StatefulWidget {
 }
 
 class _UsersListState extends State<UsersList> {
-  bool showTextfield = false;
-
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -74,20 +76,23 @@ class _UsersListState extends State<UsersList> {
           onTap: a.onTap!,
         ),
 
-      // Textfield
-      if (showTextfield)
-        UsersItemList.textfield(
+      // Textfields
+      ...List.generate(widget.textControllers.length, (index) {
+        final textController = widget.textControllers[index];
+
+        return UsersItemList.textfield(
           label: widget.textfieldLabel,
-          textController: widget.textController,
+          textController: textController,
           textOnChanged: widget.textOnChanged,
-          onTap: () => widget.textController.clear(),
-        ),
+          onTap: () => textController.clear(),
+        );
+      }),
 
       // Add new participant
       UsersItemList.button(
         label: widget.addParticipantLabel,
         icon: DotsIconData.add,
-        onTap: () => setState(() => showTextfield = true),
+        onTap: widget.addParticipantOnTap,
       ),
 
       // Add new friend
