@@ -1,4 +1,3 @@
-import 'package:dots_design_system/src/components/user_items/user_info.dart';
 import 'package:flutter/material.dart';
 import '../../../dots_design_system.dart';
 

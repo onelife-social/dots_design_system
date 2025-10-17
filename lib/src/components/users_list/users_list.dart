@@ -2,17 +2,17 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class UsersList extends StatefulWidget {
-  /// The creator user item to display at the top of the list.
-  final UsersItemList creator;
+  /// The list of all members information.
+  final List<MemberInfo> members;
 
-  /// The list of admins user items.
-  final List<UsersItemList> admins;
+  /// Label for the creator item.
+  final String creatorLabel;
 
-  /// The main list of user items.
-  final List<UsersItemList> users;
+  /// Label for the admin item.
+  final String adminLabel;
 
-  /// The list of alias user items.
-  final List<UsersItemList> aliases;
+  /// Callback when a friend item is tapped.
+  final void Function(String?)? memberOnTap;
 
   /// Label for the participant text fields.
   final String textfieldLabel;
@@ -27,20 +27,20 @@ class UsersList extends StatefulWidget {
   final String addParticipantLabel;
 
   /// Callback when the "add participant" button is tapped.
-  final VoidCallback addParticipantOnTap;
+  final void Function(String?) addParticipantOnTap;
 
   /// Label for the "add friend" button.
   final String addFriendLabel;
 
   /// Callback when the "add friend" button is tapped.
-  final VoidCallback addFriendOnTap;
+  final void Function(String?) addFriendOnTap;
 
   const UsersList({
     super.key,
-    required this.creator,
-    required this.admins,
-    required this.users,
-    required this.aliases,
+    required this.members,
+    required this.creatorLabel,
+    required this.adminLabel,
+    required this.memberOnTap,
     required this.textfieldLabel,
     required this.textControllers,
     required this.textOnChanged,
@@ -59,60 +59,79 @@ class _UsersListState extends State<UsersList> {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    final items = <Widget>[
+    int textfieldIndex = 0;
+    final items = List.generate(widget.members.length, (index) {
+      final member = widget.members[index];
+
       // Creator
-      UsersItemList.label(
-        data: widget.creator.data!,
-        label: widget.creator.label,
-      ),
-
-      // Admins
-      for (final a in widget.admins)
-        UsersItemList.label(
-          data: a.data!,
-          label: a.label,
-        ),
-
-      // Users
-      for (final u in widget.users)
-        UsersItemList.main(
-          data: u.data!,
-          onTap: u.onTap!,
-        ),
-
-      // Aliases
-      for (final a in widget.aliases)
-        UsersItemList.main(
-          data: a.data!,
-          onTap: a.onTap!,
-        ),
-
-      // Textfields
-      ...List.generate(widget.textControllers.length, (index) {
-        final textController = widget.textControllers[index];
-
-        return UsersItemList.textfield(
-          label: widget.textfieldLabel,
-          textController: textController,
-          textOnChanged: widget.textOnChanged,
-          onTap: () => textController.clear(),
+      if (index == 0) {
+        return UsersItemList.label(
+          data: member.userInfoData,
+          label: widget.creatorLabel,
         );
-      }),
+      }
 
-      // Add new participant
+      switch (member.memberType) {
+        case MemberType.creator:
+          return const Offstage(); // This case is already handled above
+
+        // Admin
+        case MemberType.admin:
+          return UsersItemList.label(
+            data: member.userInfoData,
+            label: widget.adminLabel,
+          );
+
+        // Friends
+        case MemberType.friend:
+          return UsersItemList.main(
+            id: member.id!,
+            data: member.userInfoData,
+            onTap: widget.memberOnTap!,
+          );
+
+        // Aliases
+        case MemberType.alias:
+          textfieldIndex++;
+          final controller = widget.textControllers[textfieldIndex - 1]
+            ..text = member.userInfoData.name;
+
+          return UsersItemList.textfield(
+            id: member.id!,
+            label: widget.textfieldLabel,
+            textController: controller,
+            textOnChanged: widget.textOnChanged,
+            onTap: widget.memberOnTap!,
+          );
+      }
+    });
+
+    final int numAliases = widget.members.where((m) => m.memberType == MemberType.alias).length;
+    items.addAll([
+      // Possible textfields
+      for (int i = textfieldIndex; i <= widget.textControllers.length - numAliases; i++)
+        UsersItemList.textfield(
+          id: null,
+          label: widget.textfieldLabel,
+          textController: widget.textControllers[i],
+          textOnChanged: widget.textOnChanged,
+          onTap: widget.memberOnTap!,
+        ),
+
+      // Add new participant button
       UsersItemList.button(
         label: widget.addParticipantLabel,
         icon: DotsIconData.add,
         onTap: widget.addParticipantOnTap,
       ),
 
-      // Add new friend
+      // Add new friend button
       UsersItemList.button(
         label: widget.addFriendLabel,
         icon: DotsIconData.user,
         onTap: widget.addFriendOnTap,
       ),
-    ];
+    ]);
 
     return Container(
       decoration: BoxDecoration(

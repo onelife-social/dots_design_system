@@ -11,6 +11,9 @@ enum UserItemListVariant {
 }
 
 class UsersItemList extends StatelessWidget {
+  /// Member unique id.
+  final String? id;
+
   /// The visual variant of the item.
   final UserItemListVariant variant;
 
@@ -18,7 +21,7 @@ class UsersItemList extends StatelessWidget {
   final UserInfoData? data;
 
   // Callback when the component is pressed.
-  final VoidCallback? onTap;
+  final void Function(String?)? onTap;
 
   /// *(Only for `label/button/text` variant)* Label to display.
   final String label;
@@ -30,10 +33,11 @@ class UsersItemList extends StatelessWidget {
   final TextEditingController? textController;
 
   /// *(Only for `text` variant)* Text onChanged callback for the input field.
-  final ValueChanged<String>? textOnChanged;
+  final ValueChanged<String>? textOnChanged; //* onLostFocus
 
   const UsersItemList._({
     super.key,
+    this.id,
     this.variant = UserItemListVariant.main,
     this.data,
     this.onTap,
@@ -45,11 +49,13 @@ class UsersItemList extends StatelessWidget {
 
   factory UsersItemList.main({
     Key? key,
+    required String id,
     required UserInfoData data,
-    required VoidCallback onTap,
+    required void Function(String?)? onTap,
   }) =>
       UsersItemList._(
         key: key,
+        id: id,
         variant: UserItemListVariant.main,
         data: data,
         onTap: onTap,
@@ -69,23 +75,25 @@ class UsersItemList extends StatelessWidget {
 
   factory UsersItemList.textfield({
     Key? key,
-    required VoidCallback onTap,
+    required String? id,
     required String label,
     required TextEditingController textController,
     required ValueChanged<String> textOnChanged,
+    required void Function(String?)? onTap,
   }) =>
       UsersItemList._(
         key: key,
+        id: id,
         variant: UserItemListVariant.textfield,
-        onTap: onTap,
         label: label,
         textController: textController,
         textOnChanged: textOnChanged,
+        onTap: onTap,
       );
 
   factory UsersItemList.button({
     Key? key,
-    required VoidCallback onTap,
+    required void Function(String?)? onTap,
     required String label,
     required DotsIconData icon,
   }) =>
@@ -99,8 +107,13 @@ class UsersItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String? tapValue = switch (variant) {
+      UserItemListVariant.main || UserItemListVariant.textfield => id,
+      _ => null,
+    };
+
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => onTap?.call(tapValue),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 3),
         child: Row(
@@ -118,6 +131,7 @@ class UsersItemList extends StatelessWidget {
             _TrailingWidget(
               variant: variant,
               onTap: onTap,
+              tapValue: tapValue,
               label: label,
             ),
           ],
@@ -211,12 +225,14 @@ class _MainWidget extends StatelessWidget {
 
 class _TrailingWidget extends StatelessWidget {
   final UserItemListVariant variant;
-  final VoidCallback? onTap;
+  final void Function(String?)? onTap;
+  final String? tapValue;
   final String? label;
 
   const _TrailingWidget({
     required this.variant,
     this.onTap,
+    this.tapValue,
     this.label,
   });
 
@@ -229,7 +245,7 @@ class _TrailingWidget extends StatelessWidget {
       case UserItemListVariant.textfield:
         return DotsCloseButton(
           size: DotsCloseButtonSize.extraSmall,
-          onTap: onTap,
+          onTap: () => onTap?.call(tapValue),
         );
 
       case UserItemListVariant.label:

@@ -670,72 +670,73 @@ List<Story> get allStories => [
 
           return StatefulBuilder(
             builder: (context, setState) {
-              final UsersItemList creator = UsersItemList.label(
-                data: UserInfoData(
-                  imageProvider: NetworkImage('https://picsum.photos/250?image=1'),
-                  name: 'Carlos',
+              final List<MemberInfo> members = [
+                MemberInfo(
+                  userInfoData: UserInfoData(
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=1'),
+                    name: 'Carlos',
+                  ),
+                  memberType: MemberType.creator,
                 ),
-                label: 'Creator',
-              );
-
-              final List<UsersItemList> admins = [
-                UsersItemList.label(
-                  data: UserInfoData(
+                MemberInfo(
+                  userInfoData: UserInfoData(
                     imageProvider: NetworkImage('https://picsum.photos/250?image=2'),
                     name: 'Admin 1',
                   ),
-                  label: 'Admin',
+                  memberType: MemberType.admin,
                 ),
-                UsersItemList.label(
-                  data: UserInfoData(
+                MemberInfo(
+                  userInfoData: UserInfoData(
                     imageProvider: NetworkImage('https://picsum.photos/250?image=3'),
                     name: 'Admin 2',
                   ),
-                  label: 'Admin',
+                  memberType: MemberType.admin,
                 ),
-              ];
-
-              final List<UsersItemList> users = [
-                UsersItemList.main(
-                  data: UserInfoData(
+                MemberInfo(
+                  id: '1',
+                  userInfoData: UserInfoData(
                     imageProvider: NetworkImage('https://picsum.photos/250?image=4'),
                     name: 'Ana Orduña',
                     details: 'Amigo de Dots',
                   ),
-                  onTap: () {},
+                  memberType: MemberType.friend,
                 ),
-                UsersItemList.main(
-                  data: UserInfoData(
+                MemberInfo(
+                  id: '2',
+                  userInfoData: UserInfoData(
                     imageProvider: NetworkImage('https://picsum.photos/250?image=5'),
                     name: 'Carlitos',
                     details: 'Amigo de Dots',
                   ),
-                  onTap: () {},
+                  memberType: MemberType.friend,
                 ),
-                UsersItemList.main(
-                  data: UserInfoData(
+                MemberInfo(
+                  id: '9999',
+                  userInfoData: UserInfoData(
+                    name: 'Andrea',
+                  ),
+                  memberType: MemberType.alias,
+                ),
+                MemberInfo(
+                  id: '3',
+                  userInfoData: UserInfoData(
                     imageProvider: NetworkImage('https://picsum.photos/250?image=6'),
                     name: 'Esther',
                     details: 'Amigo de Dots',
                   ),
-                  onTap: () {},
-                ),
-              ];
-
-              final List<UsersItemList> aliases = [
-                UsersItemList.main(
-                  data: UserInfoData(
-                    name: 'Andrea',
-                  ),
-                  onTap: () {},
+                  memberType: MemberType.friend,
                 ),
               ];
 
               return UsersList(
-                creator: creator,
-                admins: admins,
-                users: users,
-                aliases: aliases,
+                members: members,
+                creatorLabel: 'Creador',
+                adminLabel: 'Admin',
+                memberOnTap: (id) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Friend tapped: $id')),
+                  );
+                },
                 textfieldLabel: 'Nombre del participante...',
                 textControllers: textFieldControllers,
                 textOnChanged: (value) {
@@ -746,12 +747,12 @@ List<Story> get allStories => [
                   }
                 },
                 addParticipantLabel: 'Añadir otro participante',
-                addParticipantOnTap: () {
+                addParticipantOnTap: (_) {
                   if (textFieldControllers.any((c) => c.text.isEmpty)) return;
                   setState(() => textFieldControllers.add(TextEditingController()));
                 },
                 addFriendLabel: 'Añadir amigo de Dots',
-                addFriendOnTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                addFriendOnTap: (_) => ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('Tapped add friend')),
                 ),
               );
