@@ -5,6 +5,9 @@ class UsersList extends StatefulWidget {
   /// The creator user item to display at the top of the list.
   final UsersItemList creator;
 
+  /// The list of admins user items.
+  final List<UsersItemList> admins;
+
   /// The main list of user items.
   final List<UsersItemList> users;
 
@@ -35,6 +38,7 @@ class UsersList extends StatefulWidget {
   const UsersList({
     super.key,
     required this.creator,
+    required this.admins,
     required this.users,
     required this.aliases,
     required this.textfieldLabel,
@@ -61,6 +65,13 @@ class _UsersListState extends State<UsersList> {
         data: widget.creator.data!,
         label: widget.creator.label,
       ),
+
+      // Admins
+      for (final a in widget.admins)
+        UsersItemList.label(
+          data: a.data!,
+          label: a.label,
+        ),
 
       // Users
       for (final u in widget.users)

@@ -678,10 +678,27 @@ List<Story> get allStories => [
                 label: 'Creator',
               );
 
+              final List<UsersItemList> admins = [
+                UsersItemList.label(
+                  data: UserInfoData(
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=2'),
+                    name: 'Admin 1',
+                  ),
+                  label: 'Admin',
+                ),
+                UsersItemList.label(
+                  data: UserInfoData(
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=3'),
+                    name: 'Admin 2',
+                  ),
+                  label: 'Admin',
+                ),
+              ];
+
               final List<UsersItemList> users = [
                 UsersItemList.main(
                   data: UserInfoData(
-                    imageProvider: NetworkImage('https://picsum.photos/250?image=2'),
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=4'),
                     name: 'Ana Orduña',
                     details: 'Amigo de Dots',
                   ),
@@ -689,7 +706,7 @@ List<Story> get allStories => [
                 ),
                 UsersItemList.main(
                   data: UserInfoData(
-                    imageProvider: NetworkImage('https://picsum.photos/250?image=3'),
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=5'),
                     name: 'Carlitos',
                     details: 'Amigo de Dots',
                   ),
@@ -697,7 +714,7 @@ List<Story> get allStories => [
                 ),
                 UsersItemList.main(
                   data: UserInfoData(
-                    imageProvider: NetworkImage('https://picsum.photos/250?image=4'),
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=6'),
                     name: 'Esther',
                     details: 'Amigo de Dots',
                   ),
@@ -716,6 +733,7 @@ List<Story> get allStories => [
 
               return UsersList(
                 creator: creator,
+                admins: admins,
                 users: users,
                 aliases: aliases,
                 textfieldLabel: 'Nombre del participante...',
@@ -728,7 +746,7 @@ List<Story> get allStories => [
                   }
                 },
                 addParticipantLabel: 'Añadir otro participante',
-                addParticipantOnTap: () { 
+                addParticipantOnTap: () {
                   if (textFieldControllers.any((c) => c.text.isEmpty)) return;
                   setState(() => textFieldControllers.add(TextEditingController()));
                 },
