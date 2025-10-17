@@ -739,12 +739,10 @@ List<Story> get allStories => [
                 },
                 textfieldLabel: 'Nombre del participante...',
                 textControllers: textFieldControllers,
-                textOnChanged: (value) {
-                  if (value.length >= 3) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Textfield value: $value')),
-                    );
-                  }
+                textOnFocusLost: (value) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Add new alias: $value')),
+                  );
                 },
                 addParticipantLabel: 'Añadir otro participante',
                 addParticipantOnTap: (_) {
@@ -752,9 +750,11 @@ List<Story> get allStories => [
                   setState(() => textFieldControllers.add(TextEditingController()));
                 },
                 addFriendLabel: 'Añadir amigo de Dots',
-                addFriendOnTap: (_) => ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Tapped add friend')),
-                ),
+                addFriendOnTap: (_) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Tapped add friend')),
+                  );
+                },
               );
             },
           );

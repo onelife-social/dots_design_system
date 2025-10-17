@@ -32,8 +32,8 @@ class UsersItemList extends StatelessWidget {
   /// *(Only for `text` variant)* Text controller for the input field.
   final TextEditingController? textController;
 
-  /// *(Only for `text` variant)* Text onChanged callback for the input field.
-  final ValueChanged<String>? textOnChanged; //* onLostFocus
+  /// *(Only for `text` variant)* Callback when the textfield loses focus.
+  final void Function(String?)? onFocusLost;
 
   const UsersItemList._({
     super.key,
@@ -44,7 +44,7 @@ class UsersItemList extends StatelessWidget {
     this.label = '',
     this.icon,
     this.textController,
-    this.textOnChanged,
+    this.onFocusLost,
   });
 
   factory UsersItemList.main({
@@ -78,8 +78,8 @@ class UsersItemList extends StatelessWidget {
     required String? id,
     required String label,
     required TextEditingController textController,
-    required ValueChanged<String> textOnChanged,
     required void Function(String?)? onTap,
+    required void Function(String?)? onFocusLost,
   }) =>
       UsersItemList._(
         key: key,
@@ -87,8 +87,8 @@ class UsersItemList extends StatelessWidget {
         variant: UserItemListVariant.textfield,
         label: label,
         textController: textController,
-        textOnChanged: textOnChanged,
         onTap: onTap,
+        onFocusLost: onFocusLost,
       );
 
   factory UsersItemList.button({
@@ -126,7 +126,7 @@ class UsersItemList extends StatelessWidget {
               icon: icon,
               label: label,
               textController: textController,
-              textOnChanged: textOnChanged,
+              onFocusLost: onFocusLost,
             ),
             _TrailingWidget(
               variant: variant,
@@ -141,13 +141,13 @@ class UsersItemList extends StatelessWidget {
   }
 }
 
-class _MainWidget extends StatelessWidget {
+class _MainWidget extends StatefulWidget {
   final UserItemListVariant variant;
   final UserInfoData? data;
   final DotsIconData? icon;
   final String? label;
   final TextEditingController? textController;
-  final ValueChanged<String>? textOnChanged;
+  final void Function(String?)? onFocusLost;
 
   const _MainWidget({
     required this.variant,
@@ -155,17 +155,46 @@ class _MainWidget extends StatelessWidget {
     this.icon,
     this.label,
     this.textController,
-    this.textOnChanged,
+    this.onFocusLost,
   });
+
+  @override
+  State<_MainWidget> createState() => _MainWidgetState();
+}
+
+class _MainWidgetState extends State<_MainWidget> {
+  FocusNode? _focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.variant == UserItemListVariant.textfield) {
+      _focusNode = FocusNode();
+      _focusNode!.addListener(_handleFocusChange);
+    }
+  }
+
+  void _handleFocusChange() {
+    if (_focusNode!.hasFocus == false) {
+      widget.onFocusLost?.call(widget.textController?.text);
+    }
+  }
+
+  @override
+  void dispose() {
+    _focusNode?.removeListener(_handleFocusChange);
+    _focusNode?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    switch (variant) {
+    switch (widget.variant) {
       case UserItemListVariant.main:
       case UserItemListVariant.label:
-        return UserInfo(data: data!);
+        return UserInfo(data: widget.data!);
 
       case UserItemListVariant.textfield:
         return Expanded(
@@ -173,9 +202,10 @@ class _MainWidget extends StatelessWidget {
             height: 30,
             child: Center(
               child: TextField(
-                controller: textController!,
+                controller: widget.textController!,
+                focusNode: _focusNode,
                 decoration: InputDecoration(
-                  hintText: label!,
+                  hintText: widget.label!,
                   hintStyle: theme.typo.main.bodyDefaultMedium.copyWith(
                     color: theme.colors.textQuarternary,
                   ),
@@ -187,7 +217,6 @@ class _MainWidget extends StatelessWidget {
                 style: theme.typo.main.bodyDefaultMedium.copyWith(
                   color: theme.colors.textPrimary,
                 ),
-                onChanged: textOnChanged,
                 inputFormatters: [
                   LengthLimitingTextInputFormatter(50),
                 ],
@@ -205,12 +234,12 @@ class _MainWidget extends StatelessWidget {
               spacing: 6,
               children: [
                 DotsIcon(
-                  iconData: icon!,
+                  iconData: widget.icon!,
                   size: 16,
                   color: theme.colors.labelHighlight,
                 ),
                 Text(
-                  label!,
+                  widget.label!,
                   style: theme.typo.main.bodyDefaultMedium.copyWith(
                     color: theme.colors.labelHighlight,
                   ),
