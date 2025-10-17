@@ -666,7 +666,7 @@ List<Story> get allStories => [
         name: 'Users List',
         description: 'Demo page for Users List',
         builder: (context) {
-          final textFieldControllers = <TextEditingController>[];
+          final textFieldControllers = <TextEditingController>[TextEditingController()];
 
           return StatefulBuilder(
             builder: (context, setState) {
