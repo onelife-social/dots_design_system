@@ -5,11 +5,13 @@ enum DotsListsItemVariant {
   main,
   selector,
   icon,
+  check,
   radioButton;
 
   bool get isMain => this == DotsListsItemVariant.main;
   bool get isSelector => this == DotsListsItemVariant.selector;
   bool get isIcon => this == DotsListsItemVariant.icon;
+  bool get isCheck => this == DotsListsItemVariant.check;
   bool get isRadioButton => this == DotsListsItemVariant.radioButton;
 }
 
@@ -96,6 +98,11 @@ class DotsListsItem extends StatelessWidget {
             DotsRadioButton(
               isSelected: variant.isRadioButton,
               size: 22,
+            )
+          else if (variant.isCheck)
+            DotsSelector.check(
+              size: DotsSelectorSize.small,
+              isSelected: true,
             ),
         ],
       ),
