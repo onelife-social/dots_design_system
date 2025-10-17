@@ -31,6 +31,12 @@ List<Story> get groupCards => [
               options:
                   DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
             ),
+            blurSigma: context.knobs
+                .sliderInt(label: 'Blur Sigma', initial: 20, min: 0, max: 200)
+                .toDouble(),
+            edgeSize: context.knobs
+                .sliderInt(label: 'Edge Size', initial: 100, min: 0, max: 500)
+                .toDouble(),
           ),
         ),
       ),
