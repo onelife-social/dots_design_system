@@ -25,6 +25,7 @@ class UserInfo extends StatelessWidget {
     return Expanded(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         spacing: 8,
         children: [
           if (data.imageProvider != null)
@@ -53,21 +54,16 @@ class UserInfo extends StatelessWidget {
               ),
             ),
           Expanded(
-            child: data.details == null
+            child: data.details == null || data.details!.isEmpty
                 ? Container(
                     constraints: const BoxConstraints(minHeight: 26),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          data.name,
-                          style: dotsTheme.typo.main.bodyDefaultMedium.copyWith(
-                            color: dotsTheme.colors.textPrimary,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      data.name,
+                      style: dotsTheme.typo.main.bodyDefaultMedium.copyWith(
+                        color: dotsTheme.colors.textPrimary,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   )
                 : Column(
