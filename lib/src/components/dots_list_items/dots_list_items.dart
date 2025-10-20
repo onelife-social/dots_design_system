@@ -1,22 +1,35 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/values/paths/images_paths.dart';
+
 enum DotsListsItemVariant {
   main,
   selector,
   icon,
+  check,
   radioButton;
 
   bool get isMain => this == DotsListsItemVariant.main;
   bool get isSelector => this == DotsListsItemVariant.selector;
   bool get isIcon => this == DotsListsItemVariant.icon;
+  bool get isCheck => this == DotsListsItemVariant.check;
   bool get isRadioButton => this == DotsListsItemVariant.radioButton;
+}
+
+enum DotsListsItemPicType {
+  album,
+  user;
+
+  bool get isAlbum => this == DotsListsItemPicType.album;
+  bool get isUser => this == DotsListsItemPicType.user;
 }
 
 class DotsListItemModel {
   final String label;
   final DotsIconData iconData;
   final ImageProvider? image;
+  final DotsListsItemPicType picType;
   final DotsListsItemVariant variant;
   final void Function()? onTap;
 
@@ -24,6 +37,7 @@ class DotsListItemModel {
     required this.label,
     this.iconData = DotsIconData.user,
     this.image,
+    this.picType = DotsListsItemPicType.album,
     required this.variant,
     this.onTap,
   });
@@ -45,6 +59,9 @@ class DotsListsItem extends StatelessWidget {
   /// The variant of the list item.
   final DotsListsItemVariant variant;
 
+  /// The type of the picture.
+  final DotsListsItemPicType picType;
+
   /// Callback for image load error.
   /// Called when the image fails to load.
   final void Function(Object exception, StackTrace? stackTrace)? onError;
@@ -55,9 +72,17 @@ class DotsListsItem extends StatelessWidget {
     this.image,
     this.label,
     this.onTap,
+    this.picType = DotsListsItemPicType.album,
     this.iconData = DotsIconData.user,
     this.onError,
   });
+
+  static Image defaultImage = Image.asset(
+    ImagesPaths.defaultUserItem,
+    width: 40,
+    height: 40,
+    fit: BoxFit.cover,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -69,11 +94,36 @@ class DotsListsItem extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          if (image != null && !variant.isIcon)
+          if (image != null && !variant.isIcon && picType.isAlbum)
             DotsImageThumbnail(
               variant: DotsImageThumbnailVariant.image,
               image: image,
               onError: onError,
+            )
+          else if (image != null && !variant.isIcon && picType.isUser)
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: theme.colors.bgBaseContrast,
+              ),
+              child: ClipOval(
+                child: Image(
+                  image: image!,
+                  width: 40,
+                  height: 40,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return defaultImage;
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    if (onError != null) onError!(error, stackTrace);
+                    return defaultImage;
+                  },
+                ),
+              ),
             )
           else
             DotsImageThumbnail(
@@ -96,6 +146,11 @@ class DotsListsItem extends StatelessWidget {
             DotsRadioButton(
               isSelected: variant.isRadioButton,
               size: 22,
+            )
+          else if (variant.isCheck)
+            DotsSelector.check(
+              size: DotsSelectorSize.small,
+              isSelected: true,
             ),
         ],
       ),

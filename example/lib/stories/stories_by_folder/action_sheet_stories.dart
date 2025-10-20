@@ -527,11 +527,20 @@ List<Story> get actionSheetStories => [
                     isLabelButtonAvailable:
                         context.knobs.boolean(label: 'Is Available', initial: false),
                     title: context.knobs.text(label: 'Title', initial: 'Select an album'),
+                    description:
+                        context.knobs.text(label: 'Description', initial: 'This is a description'),
                     onClose: () {},
                     onBackButtonTap: () {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Back button tapped!'),
+                        ),
+                      );
+                    },
+                    onCloseButtonTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Close button tapped!'),
                         ),
                       );
                     },
