@@ -379,6 +379,7 @@ List<Story> get allStories => [
                   .map((item) => Option(label: item.name, value: item))
                   .toList(),
             ),
+            background: context.knobs.boolean(label: 'Background?', initial: true),
           ),
         ),
       ),
@@ -653,10 +654,115 @@ List<Story> get allStories => [
         name: 'User Item',
         description: 'Demo page for User Item',
         builder: (context) => UserItem(
-          imageProvider: NetworkImage('https://picsum.photos/250?image=9'),
-          name: context.knobs.text(label: 'Name', initial: 'Name'),
-          details: context.knobs.text(label: 'Details', initial: 'Amigo de Dots'),
+          data: UserInfoData(
+            imageProvider: NetworkImage('https://picsum.photos/250?image=9'),
+            name: context.knobs.text(label: 'Name', initial: 'Name'),
+            details: context.knobs.text(label: 'Details', initial: 'Amigo de Dots'),
+          ),
           onTap: () {},
         ),
+      ),
+      Story(
+        name: 'Users List',
+        description: 'Demo page for Users List',
+        builder: (context) {
+          final textFieldControllers = <TextEditingController>[TextEditingController()];
+
+          return StatefulBuilder(
+            builder: (context, setState) {
+              final List<MemberInfo> members = [
+                MemberInfo(
+                  userInfoData: UserInfoData(
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=1'),
+                    name: 'Carlos',
+                  ),
+                  memberType: MemberType.creator,
+                ),
+                MemberInfo(
+                  userInfoData: UserInfoData(
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=2'),
+                    name: 'Admin 1',
+                  ),
+                  memberType: MemberType.admin,
+                ),
+                MemberInfo(
+                  userInfoData: UserInfoData(
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=3'),
+                    name: 'Admin 2',
+                  ),
+                  memberType: MemberType.admin,
+                ),
+                MemberInfo(
+                  id: '1',
+                  userInfoData: UserInfoData(
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=4'),
+                    name: 'Ana Orduña',
+                    details: 'Amigo de Dots',
+                  ),
+                  memberType: MemberType.friend,
+                ),
+                MemberInfo(
+                  id: '2',
+                  userInfoData: UserInfoData(
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=5'),
+                    name: 'Carlitos',
+                    details: 'Amigo de Dots',
+                  ),
+                  memberType: MemberType.friend,
+                ),
+                MemberInfo(
+                  id: '9999',
+                  userInfoData: UserInfoData(
+                    name: 'Andrea',
+                  ),
+                  memberType: MemberType.alias,
+                ),
+                MemberInfo(
+                  id: '3',
+                  userInfoData: UserInfoData(
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=6'),
+                    name: 'Esther',
+                    details: 'Amigo de Dots',
+                  ),
+                  memberType: MemberType.friend,
+                ),
+              ];
+
+              return UsersList(
+                members: members,
+                creatorLabel: 'Creador',
+                adminLabel: 'Admin',
+                memberOnTap: (id) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Friend tapped: $id')),
+                  );
+                },
+                textfieldLabel: 'Nombre del participante...',
+                textControllers: textFieldControllers,
+                textOnChanged: (id, value) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Alias changed: $id -> $value')),
+                  );
+                },
+                textOnFocusLost: (value) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Add new alias: $value')),
+                  );
+                },
+                addParticipantLabel: 'Añadir otro participante',
+                addParticipantOnTap: (_) {
+                  if (textFieldControllers.any((c) => c.text.isEmpty)) return;
+                  setState(() => textFieldControllers.add(TextEditingController()));
+                },
+                addFriendLabel: 'Añadir amigo de Dots',
+                addFriendOnTap: (_) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Tapped add friend')),
+                  );
+                },
+              );
+            },
+          );
+        },
       ),
     ];
