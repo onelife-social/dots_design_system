@@ -30,6 +30,9 @@ class DotsActionSheetList extends StatelessWidget {
   /// The [title] parameter is the title of the action sheet.
   final String title;
 
+  /// The [description] parameter is the description of the action sheet.
+  final String? description;
+
   /// The [onBackButtonTap] is a callback for the back button.
   final Function()? onBackButtonTap;
 
@@ -38,6 +41,9 @@ class DotsActionSheetList extends StatelessWidget {
 
   /// The [onClose] is a callback for closing the action sheet tapping outside.
   final VoidCallback? onClose;
+
+  /// The [onCloseButtonTap] is a callback for the close button tap.
+  final VoidCallback? onCloseButtonTap;
 
   /// The [showBlurBackground] parameter determines if the background should be blurred.
   final bool showBlurBackground;
@@ -94,6 +100,10 @@ class DotsActionSheetList extends StatelessWidget {
   /// Each item is a [DotsListItemModel] widget.
   final List<DotsListItemModel>? listItems;
 
+  /// The [groupedListItems] is a map of items to be displayed in the action sheet.
+  /// Each item is a [DotsListItemModel] widget.
+  final Map<String, List<DotsListItemModel>>? groupedListItems;
+
   /// The [isEmptySearch] is a boolean to determine if the search is empty.
   final bool isEmptySearch;
 
@@ -130,6 +140,7 @@ class DotsActionSheetList extends StatelessWidget {
     required this.title,
     required this.onMainButtonTap,
     required this.mainButtonText,
+    this.description,
     this.textFieldController,
     this.focus,
     this.onTapTextFieldBtn,
@@ -139,6 +150,7 @@ class DotsActionSheetList extends StatelessWidget {
     this.labelButtonText,
     this.onBackButtonTap,
     this.onClose,
+    this.onCloseButtonTap,
     this.showBlurBackground = true,
     this.inputIcon = DotsIconData.search,
     this.hintInputText,
@@ -159,6 +171,7 @@ class DotsActionSheetList extends StatelessWidget {
     this.searchBtnIcon = DotsIconData.search,
     this.onSearchBtnTap,
     this.scrollController,
+    this.groupedListItems,
   });
 
   @override
@@ -201,11 +214,17 @@ class DotsActionSheetList extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Grabber(),
+                    ),
                     _Header(
                       title: title,
+                      description: description,
                       onBackButtonTap: onBackButtonTap,
                       variant: variant,
                       onLabelButtonTap: onLabelButtonTap,
+                      onCloseButtonTap: onCloseButtonTap,
                       labelButtonText: labelButtonText,
                       inputIcon: inputIcon,
                       hintInputText: hintInputText,
@@ -228,6 +247,7 @@ class DotsActionSheetList extends StatelessWidget {
                             child: _Body(
                               listTitle: listTitle,
                               listItems: listItems,
+                              groupedListItems: groupedListItems,
                               isEmptySearch: isEmptySearch,
                               emptyListTitle: emptyListTitle,
                               emptyListDescription: emptyListDescription,
@@ -282,9 +302,11 @@ class DotsActionSheetList extends StatelessWidget {
 
 class _Header extends StatelessWidget {
   final String title;
+  final String? description;
   final Function()? onBackButtonTap;
   final ActionSheetListVariant variant;
   final Function()? onLabelButtonTap;
+  final Function()? onCloseButtonTap;
   final String? labelButtonText;
   final DotsIconData inputIcon;
   final String? hintInputText;
@@ -304,7 +326,9 @@ class _Header extends StatelessWidget {
     required this.variant,
     required this.title,
     this.onBackButtonTap,
+    this.description,
     this.onLabelButtonTap,
+    this.onCloseButtonTap,
     this.labelButtonText,
     this.inputIcon = DotsIconData.search,
     this.hintInputText,
@@ -336,168 +360,193 @@ class _Header extends StatelessWidget {
               )
             : null,
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                bottom: context.getByRatio(16, 10),
-                left: 16,
-                right: 16,
-              ),
-              child: Row(
-                children: [
-                  if (onBackButtonTap != null)
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      width: variant.isMain ? 44 : 80,
-                      child: DotsIconButton(
-                        icon: DotsIconData.chevronLeft,
-                        size: DotsIconButtonSize.medium,
-                        variant: DotsIconButtonVariant.noBackground,
-                        onTap: onBackButtonTap,
-                      ),
-                    )
-                  else
-                    SizedBox(width: !variant.isGhost ? 24 : 80),
-                  Expanded(
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: Text(
-                          title,
-                          style: theme.typo.secondary.title02H6,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                  if (!variant.isGhost)
-                    const SizedBox(width: 24)
-                  else
-                    SizedBox(
-                      width: 80,
-                      child: DotsMainButton(
-                        content: labelButtonText ?? '',
-                        variant: DotsMainButtonVariant.main,
-                        size: DotsMainButtonSize.small,
-                        enabled: isLabelButtonAvailable,
-                        onTap: onLabelButtonTap,
-                        expand: false,
-                      ),
-                    ),
-                ],
-              ),
-            ),
-            AnimatedSize(
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.easeInOut,
-              alignment: Alignment.bottomCenter,
-              child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 150),
-                switchInCurve: Curves.easeInOut,
-                switchOutCurve: Curves.easeInOut,
-                transitionBuilder: (child, animation) {
-                  return FadeTransition(
-                    opacity: animation,
-                    child: AnimatedBuilder(
-                      animation: animation,
-                      builder: (context, c) => Transform(
-                        alignment: Alignment.center,
-                        transform: Matrix4.diagonal3Values(animation.value, 1, 1),
-                        child: c,
-                      ),
-                      child: child,
-                    ),
-                  );
-                },
-                child: (!isScrolled || searchBtnHide)
-                    ? Padding(
-                        key: const ValueKey('searchField'),
-                        padding: const EdgeInsets.only(
-                          left: 16,
-                          right: 16,
-                          bottom: 16,
-                        ),
-                        child: DotsTextField(
-                          controller: textFieldController,
-                          focusNode: focus,
-                          onTapBtn: onTapTextFieldBtn,
-                          iconData: inputIcon,
-                          hintText: hintInputText,
-                          onChanged: onInputChanged,
-                        ),
-                      )
-                    : const SizedBox(
-                        key: ValueKey('emptyField'),
-                      ),
-              ),
-            ),
-            AnimatedSize(
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.easeInOut,
-              alignment: Alignment.topCenter,
-              child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 150),
-                switchInCurve: Curves.easeOut,
-                switchOutCurve: Curves.easeIn,
-                transitionBuilder: (child, animation) {
-                  final slide = Tween<Offset>(
-                    begin: const Offset(0, 0.08),
-                    end: Offset.zero,
-                  ).animate(animation);
-                  return FadeTransition(
-                    opacity: animation,
-                    child: SlideTransition(position: slide, child: child),
-                  );
-                },
-                child: (selectedItems?.isNotEmpty == true)
-                    ? Padding(
-                        key: ValueKey<int>(selectedItems!.length),
-                        padding: const EdgeInsets.only(bottom: 16),
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            padding: EdgeInsets.zero,
-                            child: Row(
-                              children: [
-                                if (isScrolled && !searchBtnHide)
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 16),
-                                    child: DotsIconButton(
-                                      icon: searchBtnIcon,
-                                      size: DotsIconButtonSize.small,
-                                      variant: DotsIconButtonVariant.solid,
-                                      iconSize: 14,
-                                      onTap: onSearchBtnTap,
-                                    ),
-                                  ),
-                                for (int i = 0; i < selectedItems!.length; i++)
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      left: i == 0 ? (searchBtnHide ? 16 : 4) : 0,
-                                      right: 4,
-                                    ),
-                                    child: DotsFilterChip(
-                                      label: selectedItems![i].name,
-                                      onTap: () => onBtnChipTap?.call(selectedItems![i].id),
-                                    ),
-                                  ),
-                              ],
+      child: Stack(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 16,
+                  bottom: description != null ? 4 : context.getByRatio(16, 10),
+                  left: 16,
+                  right: 16,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      children: [
+                        if (onBackButtonTap != null)
+                          Container(
+                            width: 36,
+                            alignment: Alignment.centerLeft,
+                            child: DotsIconButton(
+                              icon: DotsIconData.chevronLeft,
+                              size: DotsIconButtonSize.medium,
+                              variant: DotsIconButtonVariant.noBackground,
+                              onTap: onBackButtonTap,
                             ),
                           ),
+                        Expanded(
+                          child: Text(
+                            title,
+                            style: theme.typo.secondary.title02H6,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                      )
-                    : const SizedBox(
-                        key: ValueKey('noChips'),
+                        (onLabelButtonTap != null && (variant.isGhost || onCloseButtonTap == null))
+                            ? SizedBox(
+                                width: 80,
+                                child: DotsMainButton(
+                                  content: labelButtonText ?? '',
+                                  variant: DotsMainButtonVariant.main,
+                                  size: DotsMainButtonSize.small,
+                                  enabled: isLabelButtonAvailable,
+                                  onTap: onLabelButtonTap,
+                                  expand: false,
+                                ),
+                              )
+                            : const SizedBox(
+                                width: 36,
+                              ),
+                      ],
+                    ),
+                    if (description != null)
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 32, right: 32, bottom: context.getByRatio(16, 10)),
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          description ?? '',
+                          style: theme.typo.main.bodyDefaultRegular.copyWith(
+                            color: theme.colors.textQuarternary,
+                          ),
+                        ),
                       ),
+                  ],
+                ),
+              ),
+              AnimatedSize(
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeInOut,
+                alignment: Alignment.bottomCenter,
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 150),
+                  switchInCurve: Curves.easeInOut,
+                  switchOutCurve: Curves.easeInOut,
+                  transitionBuilder: (child, animation) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: AnimatedBuilder(
+                        animation: animation,
+                        builder: (context, c) => Transform(
+                          alignment: Alignment.center,
+                          transform: Matrix4.diagonal3Values(animation.value, 1, 1),
+                          child: c,
+                        ),
+                        child: child,
+                      ),
+                    );
+                  },
+                  child: (!isScrolled || searchBtnHide)
+                      ? Padding(
+                          key: const ValueKey('searchField'),
+                          padding: const EdgeInsets.only(
+                            left: 16,
+                            right: 16,
+                            bottom: 16,
+                          ),
+                          child: DotsTextField(
+                            controller: textFieldController,
+                            focusNode: focus,
+                            onTapBtn: onTapTextFieldBtn,
+                            iconData: inputIcon,
+                            hintText: hintInputText,
+                            onChanged: onInputChanged,
+                          ),
+                        )
+                      : const SizedBox(
+                          key: ValueKey('emptyField'),
+                        ),
+                ),
+              ),
+              AnimatedSize(
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeInOut,
+                alignment: Alignment.topCenter,
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 150),
+                  switchInCurve: Curves.easeOut,
+                  switchOutCurve: Curves.easeIn,
+                  transitionBuilder: (child, animation) {
+                    final slide = Tween<Offset>(
+                      begin: const Offset(0, 0.08),
+                      end: Offset.zero,
+                    ).animate(animation);
+                    return FadeTransition(
+                      opacity: animation,
+                      child: SlideTransition(position: slide, child: child),
+                    );
+                  },
+                  child: (selectedItems?.isNotEmpty == true)
+                      ? Padding(
+                          key: ValueKey<int>(selectedItems!.length),
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              padding: EdgeInsets.zero,
+                              child: Row(
+                                children: [
+                                  if (isScrolled && !searchBtnHide)
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 16),
+                                      child: DotsIconButton(
+                                        icon: searchBtnIcon,
+                                        size: DotsIconButtonSize.small,
+                                        variant: DotsIconButtonVariant.solid,
+                                        iconSize: 14,
+                                        onTap: onSearchBtnTap,
+                                      ),
+                                    ),
+                                  for (int i = 0; i < selectedItems!.length; i++)
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        left: i == 0 ? (searchBtnHide ? 16 : 4) : 0,
+                                        right: 4,
+                                      ),
+                                      child: DotsFilterChip(
+                                        label: selectedItems![i].name,
+                                        onTap: () => onBtnChipTap?.call(selectedItems![i].id),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
+                      : const SizedBox(
+                          key: ValueKey('noChips'),
+                        ),
+                ),
+              ),
+            ],
+          ),
+          if (!variant.isGhost && onCloseButtonTap != null)
+            Positioned(
+              top: 0,
+              right: 16,
+              child: DotsCloseButton(
+                icon: DotsIconData.cross,
+                size: DotsCloseButtonSize.medium,
+                variant: DotsCloseButtonVariant.softContrast,
+                onTap: onCloseButtonTap,
               ),
             ),
-          ],
-        ),
+        ],
       ),
     );
   }
@@ -513,6 +562,7 @@ class _Body extends StatelessWidget {
   final ImageProvider? emptyListImage;
   final ScrollController? scrollController;
   final double? imageWidth;
+  final Map<String, List<DotsListItemModel>>? groupedListItems;
 
   const _Body({
     this.listTitle,
@@ -524,13 +574,15 @@ class _Body extends StatelessWidget {
     this.emptyListImage,
     this.scrollController,
     this.imageWidth,
+    this.groupedListItems,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    if (listItems == null || listItems!.isEmpty) {
+    if ((listItems == null || listItems!.isEmpty) &&
+        (groupedListItems == null || groupedListItems!.isEmpty)) {
       return ClipRect(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -556,7 +608,7 @@ class _Body extends StatelessWidget {
           ),
         ),
       );
-    } else {
+    } else if (listItems != null && listItems!.isNotEmpty) {
       return ClipRect(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -584,6 +636,7 @@ class _Body extends StatelessWidget {
                       child: DotsListsItem(
                         label: item.label,
                         iconData: item.iconData,
+                        picType: item.picType,
                         image: item.image,
                         variant: item.variant,
                         onTap: item.onTap,
@@ -595,7 +648,78 @@ class _Body extends StatelessWidget {
           ),
         ),
       );
+    } else if (groupedListItems != null && groupedListItems!.isNotEmpty) {
+      return ClipRect(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: ScrollConfiguration(
+            behavior: const ScrollBehavior().copyWith(scrollbars: false),
+            child: SingleChildScrollView(
+              controller: scrollController,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (listTitle != null && listTitle!.isNotEmpty) ...[
+                    Text(
+                      listTitle ?? '',
+                      style: theme.typo.main.labelDefaultBold.copyWith(
+                        color: theme.colors.textTertiary,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                    const SizedBox(height: 12),
+                  ],
+                  for (final entry in groupedListItems!.entries) ...[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: theme.colors.labelSecondary.dotsWithOpacity(0.1),
+                                    width: 0.5,
+                                  ),
+                                ),
+                              ),
+                              padding: EdgeInsets.only(bottom: 10),
+                              child: Text(
+                                entry.key,
+                                style: theme.typo.main.labelSmallMedium.copyWith(
+                                  color: theme.colors.textSecondary,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    for (final item in entry.value)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: DotsListsItem(
+                          label: item.label,
+                          iconData: item.iconData,
+                          picType: item.picType,
+                          image: item.image,
+                          variant: item.variant,
+                          onTap: item.onTap,
+                        ),
+                      ),
+                  ],
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
     }
+
+    return const SizedBox.shrink();
   }
 }
 
