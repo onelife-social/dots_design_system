@@ -1,5 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:soft_edge_blur/soft_edge_blur.dart';
 
 enum AlbumGroupCardVariant {
   small,
@@ -28,6 +29,12 @@ class AlbumGroupCard extends StatelessWidget {
   /// Callback when an error occurs while loading the image.
   final void Function(Object exception, StackTrace? stackTrace)? onError;
 
+  /// The sigma value for the blur effect.
+  final double? blurSigma;
+
+  /// The size of the edge blur effect.
+  final double? edgeSize;
+
   const AlbumGroupCard({
     super.key,
     required this.imageProvider,
@@ -36,6 +43,8 @@ class AlbumGroupCard extends StatelessWidget {
     this.tagIconData,
     this.onTap,
     this.onError,
+    this.blurSigma,
+    this.edgeSize,
   });
 
   @override
@@ -47,73 +56,80 @@ class AlbumGroupCard extends StatelessWidget {
       child: AspectRatio(
         aspectRatio: 1.0,
         child: Container(
-          clipBehavior: Clip.antiAlias,
           constraints: BoxConstraints(
             minWidth: variant.isSmall ? 135 : 288,
             minHeight: variant.isSmall ? 135 : 288,
             maxHeight: variant.isSmall ? 160 : 340,
             maxWidth: variant.isSmall ? 160 : 340,
           ),
-          decoration: ShapeDecoration(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(variant.isLarge ? 52 : 32),
-            ),
-          ),
-          child: Stack(
-            children: [
-              DotsLinearGradientBlur(
-                sigma: 25,
-                linearGradientBlur: const LinearGradientBlur(
-                  values: [0, 1],
-                  stops: [0.7, 0.9],
-                  start: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(variant.isLarge ? 52 : 32),
-                  child: Image(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: double.infinity,
-                    errorBuilder: (context, error, stackTrace) {
-                      if (onError != null) onError!(error, stackTrace);
-                      return SizedBox();
-                    },
+          child: DotsDecoratedBox(
+            styleType: variant.isLarge ? theme.styles.squircle52 : theme.styles.squircle32,
+            child: Stack(
+              children: [
+                SoftEdgeBlur(
+                  edges: [
+                    EdgeBlur(
+                      type: EdgeType.bottomEdge,
+                      size: edgeSize ?? (variant.isLarge ? 110 : 60),
+                      sigma: blurSigma ?? 12,
+                      controlPoints: [
+                        ControlPoint(
+                          position: 0.5,
+                          type: ControlPointType.visible,
+                        ),
+                        ControlPoint(
+                          position: 1,
+                          type: ControlPointType.transparent,
+                        )
+                      ],
+                    )
+                  ],
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(variant.isLarge ? 52 : 32),
+                    child: Image(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: double.infinity,
+                      errorBuilder: (context, error, stackTrace) {
+                        if (onError != null) onError!(error, stackTrace);
+                        return SizedBox();
+                      },
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(variant.isSmall ? 16 : 24),
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Text(
-                        title,
-                        textAlign: TextAlign.center,
-                        style: (variant.isSmall
-                                ? theme.typo.main.labelDefaultMedium
-                                : theme.typo.main.bodyLargeMedium)
-                            .copyWith(color: theme.colors.labelAlwaysWhite),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                      ),
-                    ),
-                    if (tagIconData != null)
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        child: CardTag(
-                          iconData: tagIconData!,
-                          size: variant.isSmall ? 24 : 28,
-                          iconSize: variant.isSmall ? 16 : 20,
+                Padding(
+                  padding: EdgeInsets.all(variant.isSmall ? 16 : 24),
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          title,
+                          textAlign: TextAlign.center,
+                          style: (variant.isSmall
+                                  ? theme.typo.main.bodyDefaultMedium
+                                  : theme.typo.main.bodyLargeMedium)
+                              .copyWith(color: theme.colors.labelAlwaysWhite),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
                       ),
-                  ],
+                      if (tagIconData != null)
+                        Positioned(
+                          left: 0,
+                          top: 0,
+                          child: CardTag(
+                            iconData: tagIconData!,
+                            size: variant.isSmall ? 24 : 28,
+                            iconSize: variant.isSmall ? 16 : 20,
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

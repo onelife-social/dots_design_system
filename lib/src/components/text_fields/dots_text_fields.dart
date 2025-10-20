@@ -27,6 +27,9 @@ class DotsTextField extends StatefulWidget {
   /// The hint text to display in the TextField.
   final String? hintText;
 
+  /// The maximum length of text that can be entered in the TextField.
+  final int? maxTextLength;
+
   /// Callback when the text in the TextField changes.
   final ValueChanged<String>? onChanged;
 
@@ -59,6 +62,7 @@ class DotsTextField extends StatefulWidget {
     this.iconData,
     this.onTapBtn,
     this.hintText = '',
+    this.maxTextLength,
     this.iconDataButton = DotsIconData.cross,
     this.buttonVariant = DotsCloseButtonVariant.inverted,
     this.buttonSize = DotsCloseButtonSize.extraSmall,
@@ -151,6 +155,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
                     child: TextField(
                       focusNode: _focusNode,
                       controller: _controller,
+                      maxLength: widget.maxTextLength,
                       textAlign: textAlign,
                       style: theme.typo.main.bodyDefaultMedium.copyWith(
                         color: widget.isError
@@ -160,6 +165,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
                       cursorColor: theme.colors.labelHighlight,
                       decoration: InputDecoration(
                         border: InputBorder.none,
+                        counterText: '',
                         hintText: widget.hintText,
                         hintStyle: TextStyle(
                           color: widget.isError

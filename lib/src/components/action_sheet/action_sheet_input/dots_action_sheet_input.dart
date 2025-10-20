@@ -87,6 +87,9 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [inputHintText] is a hint text for the text field.
   final String? inputHintText;
 
+  /// The [maxTextLength] is the maximum length of text that can be entered in the text field.
+  final int? maxTextLength;
+
   const DotsActionSheetInput({
     super.key,
     this.variant = ActionSheetInputVariant.main,
@@ -112,6 +115,7 @@ class DotsActionSheetInput extends StatelessWidget {
     this.focus,
     this.onChanged,
     this.inputHintText,
+    this.maxTextLength,
   });
 
   @override
@@ -171,6 +175,7 @@ class DotsActionSheetInput extends StatelessWidget {
                             colorController!.value = color;
                           },
                           inputHintText: inputHintText,
+                          maxTextLength: maxTextLength,
                         );
                       },
                     )
@@ -193,6 +198,7 @@ class DotsActionSheetInput extends StatelessWidget {
                       onTapTextFieldBtn: onTapTextFieldBtn,
                       onChanged: onChanged,
                       inputHintText: inputHintText,
+                      maxTextLength: maxTextLength,
                     ),
                 ],
               ),
@@ -270,6 +276,7 @@ class _Body extends StatelessWidget {
   final VoidCallback? onTapTextFieldBtn;
   final ValueChanged<String>? onChanged;
   final String? inputHintText;
+  final int? maxTextLength;
 
   const _Body({
     this.subtitle,
@@ -290,6 +297,7 @@ class _Body extends StatelessWidget {
     this.onTapTextFieldBtn,
     this.onChanged,
     this.inputHintText,
+    this.maxTextLength,
   });
 
   @override
@@ -335,6 +343,7 @@ class _Body extends StatelessWidget {
             onTapBtn: onTapTextFieldBtn,
             onChanged: onChanged,
             hintText: inputHintText,
+            maxTextLength: maxTextLength,
           ),
         ),
         if (variant.isDate) ...[

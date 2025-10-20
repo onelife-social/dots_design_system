@@ -33,7 +33,7 @@ class CardTag extends StatelessWidget {
           height: size,
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(
-            color: theme.colors.bgToastLight,
+            color: theme.colors.bgContainerPrimary,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(size),
             ),

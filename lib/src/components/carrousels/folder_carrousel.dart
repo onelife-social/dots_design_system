@@ -46,19 +46,11 @@ class FolderCarrousel extends StatelessWidget {
       }
     }
 
-    final List<Widget> spacedChildren = [];
-    for (int i = 0; i < children.length; i++) {
-      spacedChildren.add(children[i]);
-      if (i != children.length - 1) {
-        spacedChildren.add(const SizedBox(width: 6));
-      }
-    }
-
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       controller: controller,
       scrollDirection: Axis.horizontal,
-      child: Row(children: spacedChildren),
+      child: Row(children: children),
     );
   }
 }

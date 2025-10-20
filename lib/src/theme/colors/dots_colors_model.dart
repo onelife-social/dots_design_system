@@ -235,6 +235,7 @@ class DotsColorsModel {
   // Shadow
 
   final Color shadowPrimary;
+  final Color shadowFolder;
 
   // Gradient
   final Color gradientInitialLineal;
@@ -309,6 +310,7 @@ class DotsColorsModel {
     required this.misc1000,
     required this.misc1100,
     required this.shadowPrimary,
+    required this.shadowFolder,
     required this.wedding001,
     required this.wedding002,
     required this.wedding003,
@@ -514,6 +516,7 @@ class DotsColorsModel {
       misc1000: Color.lerp(misc1000, other?.misc1000, t) ?? misc1000,
       misc1100: Color.lerp(misc1100, other?.misc1100, t) ?? misc1100,
       shadowPrimary: Color.lerp(shadowPrimary, other?.shadowPrimary, t) ?? shadowPrimary,
+      shadowFolder: Color.lerp(shadowFolder, other?.shadowFolder, t) ?? shadowFolder,
       wedding001: Color.lerp(wedding001, other?.wedding001, t) ?? wedding001,
       wedding002: Color.lerp(wedding002, other?.wedding002, t) ?? wedding002,
       wedding003: Color.lerp(wedding003, other?.wedding003, t) ?? wedding003,

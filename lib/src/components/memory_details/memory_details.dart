@@ -2,7 +2,6 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class DotsMemoryDetails extends StatelessWidget {
-
   /// The image to be displayed in the memory details.
   final ImageProvider? image;
 
@@ -16,6 +15,8 @@ class DotsMemoryDetails extends StatelessWidget {
   /// The time to be displayed below the date.
   final String? time;
 
+  /// Callback when the memory details is tapped.
+  final Function()? onTap;
 
   const DotsMemoryDetails({
     super.key,
@@ -23,6 +24,7 @@ class DotsMemoryDetails extends StatelessWidget {
     this.onImageError,
     this.date,
     this.time,
+    this.onTap,
   });
 
   @override
@@ -32,13 +34,14 @@ class DotsMemoryDetails extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
-
       children: [
-        Container(
-          width: 88,
-          height: 120,
-          clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
+        GestureDetector(
+          onTap: onTap,
+          child: Container(
+            width: 88,
+            height: 120,
+            clipBehavior: Clip.antiAlias,
+            decoration: ShapeDecoration(
               image: image != null
                   ? DecorationImage(
                       image: image!,
@@ -49,20 +52,21 @@ class DotsMemoryDetails extends StatelessWidget {
                     )
                   : null,
               shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                      width: 1.50,
-                      color: theme.colors.bgContainerSecondary,
-                  ),
-                  borderRadius: DotsBorderRadius.r24,
+                side: BorderSide(
+                  width: 1.50,
+                  color: theme.colors.bgContainerSecondary,
+                ),
+                borderRadius: DotsBorderRadius.r24,
               ),
               shadows: [
-                  BoxShadow(
-                      color: theme.colors.shadowPrimary,
-                      blurRadius: 10,
-                      offset: Offset(0, 4),
-                      spreadRadius: 0,
-                  )
+                BoxShadow(
+                  color: theme.colors.shadowPrimary,
+                  blurRadius: 10,
+                  offset: Offset(0, 4),
+                  spreadRadius: 0,
+                )
               ],
+            ),
           ),
         ),
         const SizedBox(height: 16),
