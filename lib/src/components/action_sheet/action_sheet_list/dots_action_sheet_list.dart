@@ -671,14 +671,33 @@ class _Body extends StatelessWidget {
                     const SizedBox(height: 12),
                   ],
                   for (final entry in groupedListItems!.entries) ...[
-                    Text(
-                      entry.key,
-                      style: theme.typo.main.labelSmallMedium.copyWith(
-                        color: theme.colors.textSecondary,
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: theme.colors.labelSecondary.dotsWithOpacity(0.1),
+                                    width: 0.5,
+                                  ),
+                                ),
+                              ),
+                              padding: EdgeInsets.only(bottom: 10),
+                              child: Text(
+                                entry.key,
+                                style: theme.typo.main.labelSmallMedium.copyWith(
+                                  color: theme.colors.textSecondary,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      textAlign: TextAlign.left,
                     ),
-                    const SizedBox(height: 10),
                     for (final item in entry.value)
                       Padding(
                         padding: const EdgeInsets.only(bottom: 20),
