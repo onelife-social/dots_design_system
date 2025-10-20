@@ -77,12 +77,7 @@ class _UsersListStoryState extends State<UsersListStory> {
     for (final m in members.where((m) => m.memberType == MemberType.alias)) {
       final aliasId = m.id ?? tempId();
       textControllers[aliasId] = TextEditingController(text: m.userInfoData.name);
-      // if (m.id == null) m.id = aliasId;
     }
-
-    // for (final m in members.where((m) => m.memberType == MemberType.alias)) {
-    //             textControllers[m.id ?? tempId()] = TextEditingController(text: m.userInfoData.name);
-    //           }
   }
 
   String tempId() => DateTime.now().microsecondsSinceEpoch.toString();
@@ -116,9 +111,6 @@ class _UsersListStoryState extends State<UsersListStory> {
       addParticipantLabel: 'Añadir otro participante',
       addParticipantOnTap: (id) {
         if (textControllers.values.any((controller) => controller.text.trim().isEmpty)) return;
-
-        // final text = textControllers[id]?.text.trim();
-        // if (text == null || text.isEmpty) return;
 
         final newId = tempId();
         setState(() {
