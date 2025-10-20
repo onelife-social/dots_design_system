@@ -106,18 +106,22 @@ class _UsersListState extends State<UsersList> {
       }
     });
 
-    final int numAliases = widget.members.where((m) => m.memberType == MemberType.alias).length;
-    items.addAll([
-      // Possible textfields
-      for (int i = textfieldIndex; i <= widget.textControllers.length - numAliases; i++)
-        UsersItemList.textfield(
-          id: null,
-          label: widget.textfieldLabel,
-          textController: widget.textControllers[i],
-          onTap: widget.memberOnTap!,
-          onFocusLost: widget.textOnFocusLost,
-        ),
+    if (widget.members.length > 1) {
+      final int numAliases = widget.members.where((m) => m.memberType == MemberType.alias).length;
+      items.addAll([
+        // Possible textfields
+        for (int i = textfieldIndex; i <= widget.textControllers.length - numAliases; i++)
+          UsersItemList.textfield(
+            id: null,
+            label: widget.textfieldLabel,
+            textController: widget.textControllers[i],
+            onTap: widget.memberOnTap!,
+            onFocusLost: widget.textOnFocusLost,
+          ),
+      ]);
+    }
 
+    items.addAll([
       // Add new participant button
       UsersItemList.button(
         label: widget.addParticipantLabel,
