@@ -139,12 +139,6 @@ class _ChatContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-
-    final TextStyle textStyle = context.dotsTheme.typo.main.bodyDefaultRegular.copyWith(
-      color: context.dotsTheme.colors.textSecondary,
-    );
-
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -152,37 +146,55 @@ class _ChatContent extends StatelessWidget {
           child: RichText(
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            text: TextSpan(
-              children: [
-                if (typingText != null && typingText!.isNotEmpty)
+            text: () {
+              final TextStyle textStyle = context.dotsTheme.typo.main.bodyDefaultRegular.copyWith(
+                color: context.dotsTheme.colors.textSecondary,
+              );
+
+              final theme = context.dotsTheme;
+
+              final List<InlineSpan> spans = [];
+
+              if (typingText != null && typingText!.isNotEmpty) {
+                spans.add(
                   TextSpan(
                     text: typingText,
                     style: textStyle,
-                  )
-                else if (typingText == null) ...[
-                  if (senderName.isNotEmpty)
+                  ),
+                );
+              } else if (typingText == null) {
+                if (senderName.isNotEmpty) {
+                  spans.add(
                     TextSpan(
                       text: '$senderName: ',
                       style: theme.typo.main.bodyDefaultBold.copyWith(
                         color: theme.colors.textSecondary,
                       ),
                     ),
-                  if (attachmentMessage != null) ...[
-                    WidgetSpan(
-                      alignment: PlaceholderAlignment.middle,
-                      child: attachmentMessage!,
-                    ),
-                    TextSpan(
-                      text: ' ',
-                    ),
-                  ],
-                  ...TextUtils().buildTextWithEmojiSpans(
+                  );
+                }
+                if (attachmentMessage != null) {
+                  spans
+                    ..add(
+                      WidgetSpan(
+                        alignment: PlaceholderAlignment.middle,
+                        child: attachmentMessage!,
+                      ),
+                    )
+                    ..add(
+                      const TextSpan(text: ' '),
+                    );
+                }
+                spans.addAll(
+                  TextUtils().buildTextWithEmojiSpans(
                     text: message,
                     baseStyle: textStyle,
                   ),
-                ]
-              ],
-            ),
+                );
+              }
+
+              return TextSpan(children: spans);
+            }(),
           ),
         ),
         if (newMessages > 0)
