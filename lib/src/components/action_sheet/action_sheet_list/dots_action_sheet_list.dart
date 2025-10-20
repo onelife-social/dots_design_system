@@ -376,10 +376,11 @@ class _Header extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Stack(
+                    Row(
                       children: [
                         if (onBackButtonTap != null)
-                          Align(
+                          Container(
+                            width: 36,
                             alignment: Alignment.centerLeft,
                             child: DotsIconButton(
                               icon: DotsIconData.chevronLeft,
@@ -388,33 +389,28 @@ class _Header extends StatelessWidget {
                               onTap: onBackButtonTap,
                             ),
                           ),
-                        Center(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 32),
-                            child: Text(
-                              title,
-                              style: theme.typo.secondary.title02H6,
-                              textAlign: TextAlign.center,
-                            ),
+                        Expanded(
+                          child: Text(
+                            title,
+                            style: theme.typo.secondary.title02H6,
+                            textAlign: TextAlign.center,
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: (onLabelButtonTap != null &&
-                                  (variant.isGhost || onCloseButtonTap == null))
-                              ? SizedBox(
-                                  width: 80,
-                                  child: DotsMainButton(
-                                    content: labelButtonText ?? '',
-                                    variant: DotsMainButtonVariant.main,
-                                    size: DotsMainButtonSize.small,
-                                    enabled: isLabelButtonAvailable,
-                                    onTap: onLabelButtonTap,
-                                    expand: false,
-                                  ),
-                                )
-                              : const SizedBox.shrink(),
-                        ),
+                        (onLabelButtonTap != null && (variant.isGhost || onCloseButtonTap == null))
+                            ? SizedBox(
+                                width: 80,
+                                child: DotsMainButton(
+                                  content: labelButtonText ?? '',
+                                  variant: DotsMainButtonVariant.main,
+                                  size: DotsMainButtonSize.small,
+                                  enabled: isLabelButtonAvailable,
+                                  onTap: onLabelButtonTap,
+                                  expand: false,
+                                ),
+                              )
+                            : const SizedBox(
+                                width: 36,
+                              ),
                       ],
                     ),
                     if (description != null)
