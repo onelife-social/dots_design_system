@@ -23,9 +23,6 @@ class UsersList extends StatefulWidget {
   /// Callback for text changes in the participant text fields.
   final void Function(String?, String?) textOnChanged;
 
-  /// Callback for focus lost in the participant text fields.
-  final void Function(String?) textOnFocusLost;
-
   /// Label for the "add participant" button.
   final String addParticipantLabel;
 
@@ -47,7 +44,6 @@ class UsersList extends StatefulWidget {
     required this.textfieldLabel,
     required this.textControllers,
     required this.textOnChanged,
-    required this.textOnFocusLost,
     required this.addParticipantLabel,
     required this.addParticipantOnTap,
     required this.addFriendLabel,
@@ -106,7 +102,6 @@ class _UsersListState extends State<UsersList> {
             textController: controller,
             onTap: widget.memberOnTap!,
             textOnChanged: widget.textOnChanged,
-            textOnFocusLost: widget.textOnFocusLost,
           );
       }
     });
@@ -122,7 +117,6 @@ class _UsersListState extends State<UsersList> {
             textController: widget.textControllers[i],
             onTap: widget.memberOnTap!,
             textOnChanged: widget.textOnChanged,
-            textOnFocusLost: widget.textOnFocusLost,
           ),
       ]);
     }

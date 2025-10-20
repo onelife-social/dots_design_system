@@ -744,11 +744,6 @@ List<Story> get allStories => [
                     SnackBar(content: Text('Alias changed: $id -> $value')),
                   );
                 },
-                textOnFocusLost: (value) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Add new alias: $value')),
-                  );
-                },
                 addParticipantLabel: 'Añadir otro participante',
                 addParticipantOnTap: (_) {
                   if (textFieldControllers.any((c) => c.text.isEmpty)) return;
