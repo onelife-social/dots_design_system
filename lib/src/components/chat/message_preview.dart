@@ -1,5 +1,7 @@
-import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
+
+import '../../../dots_design_system.dart';
+import '../../../utils/text_utils.dart';
 
 class MessagePreview extends StatelessWidget {
   final Widget image;
@@ -174,7 +176,10 @@ class _ChatContent extends StatelessWidget {
                       text: ' ',
                     ),
                   ],
-                  TextSpan(text: message, style: textStyle),
+                  ...TextUtils().buildTextWithEmojiSpans(
+                    text: message,
+                    baseStyle: textStyle,
+                  ),
                 ]
               ],
             ),
