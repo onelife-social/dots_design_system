@@ -739,6 +739,11 @@ List<Story> get allStories => [
                 },
                 textfieldLabel: 'Nombre del participante...',
                 textControllers: textFieldControllers,
+                textOnChanged: (id, value) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Alias changed: $id -> $value')),
+                  );
+                },
                 textOnFocusLost: (value) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('Add new alias: $value')),

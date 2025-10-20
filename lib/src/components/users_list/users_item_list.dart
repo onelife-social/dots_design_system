@@ -32,8 +32,11 @@ class UsersItemList extends StatelessWidget {
   /// *(Only for `text` variant)* Text controller for the input field.
   final TextEditingController? textController;
 
+  /// *(Only for `text` variant)* Callback when the textfield changes.
+  final void Function(String?, String?)? textOnChanged;
+
   /// *(Only for `text` variant)* Callback when the textfield loses focus.
-  final void Function(String?)? onFocusLost;
+  final void Function(String?)? textOnFocusLost;
 
   const UsersItemList._({
     super.key,
@@ -44,7 +47,8 @@ class UsersItemList extends StatelessWidget {
     this.label = '',
     this.icon,
     this.textController,
-    this.onFocusLost,
+    this.textOnChanged,
+    this.textOnFocusLost,
   });
 
   factory UsersItemList.main({
@@ -79,7 +83,8 @@ class UsersItemList extends StatelessWidget {
     required String label,
     required TextEditingController textController,
     required void Function(String?)? onTap,
-    required void Function(String?)? onFocusLost,
+    required void Function(String?, String?)? textOnChanged,
+    required void Function(String?)? textOnFocusLost,
   }) =>
       UsersItemList._(
         key: key,
@@ -88,7 +93,8 @@ class UsersItemList extends StatelessWidget {
         label: label,
         textController: textController,
         onTap: onTap,
-        onFocusLost: onFocusLost,
+        textOnChanged: textOnChanged,
+        textOnFocusLost: textOnFocusLost,
       );
 
   factory UsersItemList.button({
@@ -124,11 +130,13 @@ class UsersItemList extends StatelessWidget {
           children: [
             _MainWidget(
               variant: variant,
+              id: id,
               data: data,
               icon: icon,
               label: label,
               textController: textController,
-              onFocusLost: onFocusLost,
+              textOnChanged: textOnChanged,
+              textOnFocusLost: textOnFocusLost,
             ),
             _TrailingWidget(
               variant: variant,
@@ -145,19 +153,23 @@ class UsersItemList extends StatelessWidget {
 
 class _MainWidget extends StatefulWidget {
   final UserItemListVariant variant;
+  final String? id;
   final UserInfoData? data;
   final DotsIconData? icon;
   final String? label;
   final TextEditingController? textController;
-  final void Function(String?)? onFocusLost;
+  final void Function(String?, String?)? textOnChanged;
+  final void Function(String?)? textOnFocusLost;
 
   const _MainWidget({
     required this.variant,
+    this.id,
     this.data,
     this.icon,
     this.label,
     this.textController,
-    this.onFocusLost,
+    this.textOnChanged,
+    this.textOnFocusLost,
   });
 
   @override
@@ -178,7 +190,7 @@ class _MainWidgetState extends State<_MainWidget> {
 
   void _handleFocusChange() {
     if (_focusNode!.hasFocus == false) {
-      widget.onFocusLost?.call(widget.textController?.text);
+      widget.textOnFocusLost?.call(widget.textController?.text);
     }
   }
 
@@ -223,6 +235,7 @@ class _MainWidgetState extends State<_MainWidget> {
                   LengthLimitingTextInputFormatter(50),
                 ],
                 cursorColor: theme.colors.labelHighlight,
+                onChanged: (value) => widget.textOnChanged?.call(widget.id , value),
               ),
             ),
           ),
