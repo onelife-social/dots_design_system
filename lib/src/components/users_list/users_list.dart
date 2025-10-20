@@ -20,6 +20,9 @@ class UsersList extends StatefulWidget {
   /// Controllers for the participant text fields.
   final Map<String, TextEditingController> textControllers;
 
+  /// Focus nodes for the participant text fields.
+  final Map<String, FocusNode> focusNodes;
+
   /// Callback for text changes in the participant text fields.
   final void Function(String?, String?) textOnChanged;
 
@@ -43,6 +46,7 @@ class UsersList extends StatefulWidget {
     required this.memberOnTap,
     required this.textfieldLabel,
     required this.textControllers,
+    required this.focusNodes,
     required this.textOnChanged,
     required this.addParticipantLabel,
     required this.addParticipantOnTap,
@@ -97,6 +101,7 @@ class _UsersListState extends State<UsersList> {
             textController: widget.textControllers[member.id]!..text = member.userInfoData.name,
             onTap: widget.memberOnTap!,
             textOnChanged: widget.textOnChanged,
+            focusNode: widget.focusNodes[member.id],
           );
       }
     });

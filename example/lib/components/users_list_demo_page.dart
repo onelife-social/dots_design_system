@@ -11,6 +11,7 @@ class UsersListStory extends StatefulWidget {
 class _UsersListStoryState extends State<UsersListStory> {
   final List<MemberInfo> members = [];
   final Map<String, TextEditingController> textControllers = {};
+  final Map<String, FocusNode> focusNodes = {};
 
   @override
   void initState() {
@@ -77,6 +78,7 @@ class _UsersListStoryState extends State<UsersListStory> {
     for (final m in members.where((m) => m.memberType == MemberType.alias)) {
       final aliasId = m.id ?? tempId();
       textControllers[aliasId] = TextEditingController(text: m.userInfoData.name);
+      focusNodes[aliasId] = FocusNode();
     }
   }
 
@@ -86,6 +88,9 @@ class _UsersListStoryState extends State<UsersListStory> {
   void dispose() {
     for (final c in textControllers.values) {
       c.dispose();
+    }
+    for (final f in focusNodes.values) {
+      f.dispose();
     }
     super.dispose();
   }
@@ -103,6 +108,7 @@ class _UsersListStoryState extends State<UsersListStory> {
       },
       textfieldLabel: 'Nombre del participante...',
       textControllers: textControllers,
+      focusNodes: focusNodes,
       textOnChanged: (id, value) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Alias changed: $id -> $value')),

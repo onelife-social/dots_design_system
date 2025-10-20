@@ -35,6 +35,9 @@ class UsersItemList extends StatelessWidget {
   /// *(Only for `text` variant)* Callback when the textfield changes.
   final void Function(String?, String?)? textOnChanged;
 
+  /// *(Only for `text` variant)* Focus node to preserve focus.
+  final FocusNode? textFocusNode;
+
   const UsersItemList._({
     super.key,
     this.id,
@@ -45,6 +48,7 @@ class UsersItemList extends StatelessWidget {
     this.icon,
     this.textController,
     this.textOnChanged,
+    this.textFocusNode,
   });
 
   factory UsersItemList.main({
@@ -80,15 +84,17 @@ class UsersItemList extends StatelessWidget {
     required TextEditingController textController,
     required void Function(String?)? onTap,
     required void Function(String?, String?)? textOnChanged,
+    FocusNode? focusNode,
   }) =>
       UsersItemList._(
-        key: key,
+        key: key ?? ValueKey(id),
         id: id,
         variant: UserItemListVariant.textfield,
         label: label,
         textController: textController,
         onTap: onTap,
         textOnChanged: textOnChanged,
+        textFocusNode: focusNode,
       );
 
   factory UsersItemList.button({
@@ -130,6 +136,7 @@ class UsersItemList extends StatelessWidget {
               label: label,
               textController: textController,
               textOnChanged: textOnChanged,
+              textFocusNode: textFocusNode,
             ),
             _TrailingWidget(
               variant: variant,
@@ -152,6 +159,7 @@ class _MainWidget extends StatelessWidget {
   final String? label;
   final TextEditingController? textController;
   final void Function(String?, String?)? textOnChanged;
+  final FocusNode? textFocusNode;
 
   const _MainWidget({
     required this.variant,
@@ -161,6 +169,7 @@ class _MainWidget extends StatelessWidget {
     this.label,
     this.textController,
     this.textOnChanged,
+    this.textFocusNode,
   });
 
   @override
@@ -179,6 +188,7 @@ class _MainWidget extends StatelessWidget {
             child: Center(
               child: TextField(
                 controller: textController!,
+                focusNode: textFocusNode,
                 decoration: InputDecoration(
                   hintText: label!,
                   hintStyle: theme.typo.main.bodyDefaultMedium.copyWith(
@@ -196,7 +206,7 @@ class _MainWidget extends StatelessWidget {
                   LengthLimitingTextInputFormatter(50),
                 ],
                 cursorColor: theme.colors.labelHighlight,
-                onChanged: (value) => textOnChanged?.call(id , value),
+                onChanged: (value) => textOnChanged?.call(id, value),
               ),
             ),
           ),
