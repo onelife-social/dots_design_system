@@ -195,6 +195,7 @@ class _MainWidget extends StatelessWidget {
               child: TextField(
                 controller: textController!,
                 focusNode: textFocusNode,
+                autofocus: textController!.text.isEmpty,
                 decoration: InputDecoration(
                   hintText: label!,
                   hintStyle: theme.typo.main.bodyDefaultMedium.copyWith(
