@@ -14,6 +14,7 @@ class DotsActionSheetBase extends StatelessWidget {
   final bool showBlurBackground;
   final VoidCallback? onClose;
   final VoidCallback? onTapCloseButton;
+  final bool addTitlePadding;
 
   const DotsActionSheetBase({
     super.key,
@@ -27,6 +28,7 @@ class DotsActionSheetBase extends StatelessWidget {
     this.showBlurBackground = true,
     this.onClose,
     this.onTapCloseButton,
+    this.addTitlePadding = false,
   });
 
   @override
@@ -73,7 +75,11 @@ class DotsActionSheetBase extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        _Header(title: title, subtitle: subtitle, onBackButtonTap: onBackButtonTap),
+                        _Header(
+                            title: title,
+                            subtitle: subtitle,
+                            onBackButtonTap: onBackButtonTap,
+                            addTitlePadding: addTitlePadding),
                         SizedBox(
                           height: 16,
                         ),
@@ -107,10 +113,12 @@ class _Header extends StatelessWidget {
   final String title;
   final String? subtitle;
   final Function()? onBackButtonTap;
+  final bool addTitlePadding;
   const _Header({
     required this.title,
     required this.subtitle,
     required this.onBackButtonTap,
+    required this.addTitlePadding,
   });
 
   @override
@@ -140,9 +148,15 @@ class _Header extends StatelessWidget {
                   left: 0,
                   right: 0,
                   child: Center(
-                    child: Text(
-                      title,
-                      style: theme.typo.secondary.title02H6,
+                    child: Padding(
+                      padding: addTitlePadding
+                          ? const EdgeInsets.symmetric(horizontal: 36)
+                          : EdgeInsets.zero,
+                      child: Text(
+                        title,
+                        style: theme.typo.secondary.title02H6,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
