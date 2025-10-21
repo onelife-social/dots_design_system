@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +43,7 @@ class UsersList extends StatefulWidget {
   final bool showAddFriendButton;
 
   /// Whether to apply the bounce in animation to text fields.
-  final bool? applyBounceIn;
+  final bool applyBounceIn;
 
   const UsersList({
     super.key,
@@ -59,7 +60,7 @@ class UsersList extends StatefulWidget {
     required this.addFriendLabel,
     required this.addFriendOnTap,
     required this.showAddFriendButton,
-    this.applyBounceIn,
+    this.applyBounceIn = false,
   });
 
   @override
@@ -110,7 +111,6 @@ class _UsersListState extends State<UsersList> {
             onTap: widget.memberOnTap!,
             textOnChanged: widget.textOnChanged,
             focusNode: widget.focusNodes[member.id],
-            applyBounceIn: widget.applyBounceIn,
           );
       }
     });
@@ -146,7 +146,18 @@ class _UsersListState extends State<UsersList> {
           color: theme.colors.labelSecondary.dotsWithOpacity(0.3),
           thickness: 0.2,
         ),
-        itemBuilder: (_, index) => items[index],
+        itemBuilder: (_, index) {
+          final item = items[index];
+          return widget.applyBounceIn &&
+                  item is UsersItemList &&
+                  item.variant == UserItemListVariant.textfield &&
+                  (item.textController?.text.isEmpty ?? true)
+              ? BounceIn(
+                  duration: const Duration(milliseconds: 1000),
+                  child: item,
+                )
+              : item;
+        },
       ),
     );
   }

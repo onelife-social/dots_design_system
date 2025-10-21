@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -39,9 +38,6 @@ class UsersItemList extends StatelessWidget {
   /// *(Only for `text` variant)* Focus node to preserve focus.
   final FocusNode? textFocusNode;
 
-  /// Whether to apply the bounce in animation.
-  final bool? applyBounceIn;
-
   const UsersItemList._({
     super.key,
     this.id,
@@ -53,7 +49,6 @@ class UsersItemList extends StatelessWidget {
     this.textController,
     this.textOnChanged,
     this.textFocusNode,
-    this.applyBounceIn = false,
   });
 
   factory UsersItemList.main({
@@ -90,7 +85,6 @@ class UsersItemList extends StatelessWidget {
     required void Function(String?)? onTap,
     required void Function(String?, String?)? textOnChanged,
     FocusNode? focusNode,
-    bool? applyBounceIn,
   }) =>
       UsersItemList._(
         key: key ?? ValueKey(id),
@@ -101,7 +95,6 @@ class UsersItemList extends StatelessWidget {
         onTap: onTap,
         textOnChanged: textOnChanged,
         textFocusNode: focusNode,
-        applyBounceIn: applyBounceIn,
       );
 
   factory UsersItemList.button({
@@ -128,35 +121,17 @@ class UsersItemList extends StatelessWidget {
     final content = Container(
       color: Colors.transparent,
       padding: const EdgeInsets.symmetric(vertical: 3),
-      child: variant == UserItemListVariant.textfield &&
-              data != null &&
-              data?.name.isNotEmpty == true &&
-              applyBounceIn == true
-          ? BounceIn(
-              duration: const Duration(milliseconds: 800),
-              child: _UserListRow(
-                  variant: variant,
-                  id: id,
-                  data: data,
-                  icon: icon,
-                  label: label,
-                  textController: textController,
-                  textOnChanged: textOnChanged,
-                  textFocusNode: textFocusNode,
-                  onTap: onTap,
-                  tapValue: tapValue),
-            )
-          : _UserListRow(
-              variant: variant,
-              id: id,
-              data: data,
-              icon: icon,
-              label: label,
-              textController: textController,
-              textOnChanged: textOnChanged,
-              textFocusNode: textFocusNode,
-              onTap: onTap,
-              tapValue: tapValue),
+      child: _UserListRow(
+          variant: variant,
+          id: id,
+          data: data,
+          icon: icon,
+          label: label,
+          textController: textController,
+          textOnChanged: textOnChanged,
+          textFocusNode: textFocusNode,
+          onTap: onTap,
+          tapValue: tapValue),
     );
 
     if (variant == UserItemListVariant.textfield) {
