@@ -655,12 +655,13 @@ List<Story> get allStories => [
         name: 'User Item',
         description: 'Demo page for User Item',
         builder: (context) => UserItem(
+          id: '1',
           data: UserInfoData(
             imageProvider: NetworkImage('https://picsum.photos/250?image=9'),
             name: context.knobs.text(label: 'Name', initial: 'Name'),
             details: context.knobs.text(label: 'Details', initial: 'Amigo de Dots'),
           ),
-          onTap: () {},
+          onTap: (_) {},
         ),
       ),
       Story(
