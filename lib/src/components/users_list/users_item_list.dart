@@ -128,7 +128,10 @@ class UsersItemList extends StatelessWidget {
     final content = Container(
       color: Colors.transparent,
       padding: const EdgeInsets.symmetric(vertical: 3),
-      child: variant == UserItemListVariant.textfield && applyBounceIn == true
+      child: variant == UserItemListVariant.textfield &&
+              data != null &&
+              data?.name.isNotEmpty == true &&
+              applyBounceIn == true
           ? BounceIn(
               duration: const Duration(milliseconds: 800),
               child: _UserListRow(
