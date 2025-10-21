@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -38,6 +39,9 @@ class UsersItemList extends StatelessWidget {
   /// *(Only for `text` variant)* Focus node to preserve focus.
   final FocusNode? textFocusNode;
 
+  /// Whether to apply the bounce in animation.
+  final bool? applyBounceIn;
+
   const UsersItemList._({
     super.key,
     this.id,
@@ -49,6 +53,7 @@ class UsersItemList extends StatelessWidget {
     this.textController,
     this.textOnChanged,
     this.textFocusNode,
+    this.applyBounceIn = false,
   });
 
   factory UsersItemList.main({
@@ -85,6 +90,7 @@ class UsersItemList extends StatelessWidget {
     required void Function(String?)? onTap,
     required void Function(String?, String?)? textOnChanged,
     FocusNode? focusNode,
+    bool? applyBounceIn,
   }) =>
       UsersItemList._(
         key: key ?? ValueKey(id),
@@ -95,6 +101,7 @@ class UsersItemList extends StatelessWidget {
         onTap: onTap,
         textOnChanged: textOnChanged,
         textFocusNode: focusNode,
+        applyBounceIn: applyBounceIn,
       );
 
   factory UsersItemList.button({
@@ -121,28 +128,32 @@ class UsersItemList extends StatelessWidget {
     final content = Container(
       color: Colors.transparent,
       padding: const EdgeInsets.symmetric(vertical: 3),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        spacing: 8,
-        children: [
-          _MainWidget(
-            variant: variant,
-            id: id,
-            data: data,
-            icon: icon,
-            label: label,
-            textController: textController,
-            textOnChanged: textOnChanged,
-            textFocusNode: textFocusNode,
-          ),
-          _TrailingWidget(
-            variant: variant,
-            onTap: onTap,
-            tapValue: tapValue,
-            label: label,
-          ),
-        ],
-      ),
+      child: variant == UserItemListVariant.textfield && applyBounceIn == true
+          ? BounceIn(
+              duration: const Duration(milliseconds: 800),
+              child: _UserListRow(
+                  variant: variant,
+                  id: id,
+                  data: data,
+                  icon: icon,
+                  label: label,
+                  textController: textController,
+                  textOnChanged: textOnChanged,
+                  textFocusNode: textFocusNode,
+                  onTap: onTap,
+                  tapValue: tapValue),
+            )
+          : _UserListRow(
+              variant: variant,
+              id: id,
+              data: data,
+              icon: icon,
+              label: label,
+              textController: textController,
+              textOnChanged: textOnChanged,
+              textFocusNode: textFocusNode,
+              onTap: onTap,
+              tapValue: tapValue),
     );
 
     if (variant == UserItemListVariant.textfield) {
@@ -153,6 +164,59 @@ class UsersItemList extends StatelessWidget {
       behavior: HitTestBehavior.translucent,
       onTap: () => onTap?.call(tapValue),
       child: content,
+    );
+  }
+}
+
+class _UserListRow extends StatelessWidget {
+  const _UserListRow({
+    super.key,
+    required this.variant,
+    required this.id,
+    required this.data,
+    required this.icon,
+    required this.label,
+    required this.textController,
+    required this.textOnChanged,
+    required this.textFocusNode,
+    required this.onTap,
+    required this.tapValue,
+  });
+
+  final UserItemListVariant variant;
+  final String? id;
+  final UserInfoData? data;
+  final DotsIconData? icon;
+  final String label;
+  final TextEditingController? textController;
+  final void Function(String? p1, String? p2)? textOnChanged;
+  final FocusNode? textFocusNode;
+  final void Function(String? p1)? onTap;
+  final String? tapValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      spacing: 8,
+      children: [
+        _MainWidget(
+          variant: variant,
+          id: id,
+          data: data,
+          icon: icon,
+          label: label,
+          textController: textController,
+          textOnChanged: textOnChanged,
+          textFocusNode: textFocusNode,
+        ),
+        _TrailingWidget(
+          variant: variant,
+          onTap: onTap,
+          tapValue: tapValue,
+          label: label,
+        ),
+      ],
     );
   }
 }
