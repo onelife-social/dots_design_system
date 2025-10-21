@@ -15,7 +15,7 @@ class DotsActionSheetBase extends StatelessWidget {
   final VoidCallback? onClose;
   final VoidCallback? onTapCloseButton;
   final bool addTitlePadding;
-
+  final TextStyle? titleStyle;
   const DotsActionSheetBase({
     super.key,
     required this.title,
@@ -29,6 +29,7 @@ class DotsActionSheetBase extends StatelessWidget {
     this.onClose,
     this.onTapCloseButton,
     this.addTitlePadding = false,
+    this.titleStyle,
   });
 
   @override
@@ -79,6 +80,7 @@ class DotsActionSheetBase extends StatelessWidget {
                             title: title,
                             subtitle: subtitle,
                             onBackButtonTap: onBackButtonTap,
+                            titleStyle: titleStyle,
                             addTitlePadding: addTitlePadding),
                         SizedBox(
                           height: 16,
@@ -114,11 +116,13 @@ class _Header extends StatelessWidget {
   final String? subtitle;
   final Function()? onBackButtonTap;
   final bool addTitlePadding;
+  final TextStyle? titleStyle;
   const _Header({
     required this.title,
     required this.subtitle,
     required this.onBackButtonTap,
     required this.addTitlePadding,
+    this.titleStyle,
   });
 
   @override
@@ -154,7 +158,9 @@ class _Header extends StatelessWidget {
                           : EdgeInsets.zero,
                       child: Text(
                         title,
-                        style: theme.typo.secondary.title02H6,
+                        style: titleStyle ??
+                            theme.typo.secondary.title02H6
+                                .copyWith(color: theme.colors.textPrimary),
                         textAlign: TextAlign.center,
                       ),
                     ),
