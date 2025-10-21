@@ -173,8 +173,7 @@ class TopBarContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-
+    
     return ConstrainedBox(
       constraints: BoxConstraints.tightFor(height: preferredSize.height),
       child: Column(
@@ -183,46 +182,12 @@ class TopBarContent extends StatelessWidget {
           const SizedBox(height: 50),
           if (bigStatusBar)
             Expanded(
-              child: Stack(
-                children: [
-                  Positioned.fill(
-                    child: Center(
-                      child: child ??
-                          (title != null
-                              ? Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      title!,
-                                      style: theme.typo.main.labelDefaultBold.copyWith(
-                                        color: theme.colors.textTertiary,
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              : null),
-                    ),
-                  ),
-                  Positioned.fill(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        if (imgProfile != null) ...[
-                          const SizedBox(width: 16),
-                          imgProfile!,
-                        ],
-                        const Spacer(),
-                        if (rightIcon != null) ...[
-                          rightIcon!,
-                        ],
-                        if (secondRightIcon != null) ...[
-                          secondRightIcon!,
-                          const SizedBox(width: 16),
-                        ],
-                      ],
-                    ),
-                  ),
-                ],
+              child: DotsHomeTopBarMainSection(
+                title: title,
+                imgProfile: imgProfile,
+                rightIcon: rightIcon,
+                secondRightIcon: secondRightIcon,
+                child: child,
               ),
             ),
         ],
