@@ -41,6 +41,9 @@ class UsersList extends StatefulWidget {
   /// Whether to show the "add friend" button.
   final bool showAddFriendButton;
 
+  /// Whether to apply the bounce in animation to text fields.
+  final bool? applyBounceIn;
+
   const UsersList({
     super.key,
     required this.members,
@@ -56,6 +59,7 @@ class UsersList extends StatefulWidget {
     required this.addFriendLabel,
     required this.addFriendOnTap,
     required this.showAddFriendButton,
+    this.applyBounceIn,
   });
 
   @override
@@ -106,6 +110,7 @@ class _UsersListState extends State<UsersList> {
             onTap: widget.memberOnTap!,
             textOnChanged: widget.textOnChanged,
             focusNode: widget.focusNodes[member.id],
+            applyBounceIn: widget.applyBounceIn,
           );
       }
     });
