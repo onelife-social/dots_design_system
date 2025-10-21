@@ -137,6 +137,7 @@ class _UsersListStoryState extends State<UsersListStory> {
           SnackBar(content: Text('Tapped add friend')),
         );
       },
+      showAddFriendButton: true,
     );
   }
 }
