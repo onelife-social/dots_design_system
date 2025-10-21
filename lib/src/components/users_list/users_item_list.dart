@@ -118,35 +118,41 @@ class UsersItemList extends StatelessWidget {
       _ => null,
     };
 
+    final content = Container(
+      color: Colors.transparent,
+      padding: const EdgeInsets.symmetric(vertical: 3),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        spacing: 8,
+        children: [
+          _MainWidget(
+            variant: variant,
+            id: id,
+            data: data,
+            icon: icon,
+            label: label,
+            textController: textController,
+            textOnChanged: textOnChanged,
+            textFocusNode: textFocusNode,
+          ),
+          _TrailingWidget(
+            variant: variant,
+            onTap: onTap,
+            tapValue: tapValue,
+            label: label,
+          ),
+        ],
+      ),
+    );
+
+    if (variant == UserItemListVariant.textfield) {
+      return content;
+    }
+
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () => onTap?.call(tapValue),
-      child: Container(
-        color: Colors.transparent,
-        padding: const EdgeInsets.symmetric(vertical: 3),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          spacing: 8,
-          children: [
-            _MainWidget(
-              variant: variant,
-              id: id,
-              data: data,
-              icon: icon,
-              label: label,
-              textController: textController,
-              textOnChanged: textOnChanged,
-              textFocusNode: textFocusNode,
-            ),
-            _TrailingWidget(
-              variant: variant,
-              onTap: onTap,
-              tapValue: tapValue,
-              label: label,
-            ),
-          ],
-        ),
-      ),
+      child: content,
     );
   }
 }

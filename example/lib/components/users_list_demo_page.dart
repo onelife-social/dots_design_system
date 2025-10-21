@@ -79,10 +79,31 @@ class _UsersListStoryState extends State<UsersListStory> {
       final aliasId = m.id ?? tempId();
       textControllers[aliasId] = TextEditingController(text: m.userInfoData.name);
       focusNodes[aliasId] = FocusNode();
+
+      focusNodes[aliasId]!.addListener(() {
+        if (!focusNodes[aliasId]!.hasFocus) {
+          final controller = textControllers[aliasId]!;
+          final index = members.indexWhere((mm) => mm.id == aliasId);
+          if (index != -1) {
+            final old = members[index];
+            setState(() {
+              members[index] = MemberInfo(
+                id: old.id,
+                userInfoData: UserInfoData(
+                  imageProvider: old.userInfoData.imageProvider,
+                  name: controller.text,
+                  details: old.userInfoData.details,
+                ),
+                memberType: old.memberType,
+              );
+            });
+          }
+        }
+      });
     }
   }
 
-  String tempId() => DateTime.now().microsecondsSinceEpoch.toString();
+  String tempId() => DateTime.now().millisecondsSinceEpoch.toString();
 
   @override
   void dispose() {
@@ -113,14 +134,29 @@ class _UsersListStoryState extends State<UsersListStory> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Alias changed: $id -> $value')),
         );
+
+        final index = members.indexWhere((m) => m.id == id);
+        if (index != -1) {
+          final old = members[index];
+          members[index] = MemberInfo(
+            id: old.id,
+            userInfoData: UserInfoData(
+              imageProvider: old.userInfoData.imageProvider,
+              name: value ?? '',
+              details: old.userInfoData.details,
+            ),
+            memberType: old.memberType,
+          );
+        }
       },
       addParticipantLabel: 'Añadir otro participante',
       addParticipantOnTap: (id) {
-        if (textControllers.values.any((controller) => controller.text.trim().isEmpty)) return;
+        if (textControllers.values.any((c) => c.text.trim().isEmpty)) return;
 
         final newId = tempId();
         setState(() {
           textControllers[newId] = TextEditingController(text: '');
+          focusNodes[newId] = FocusNode();
 
           members.add(
             MemberInfo(
