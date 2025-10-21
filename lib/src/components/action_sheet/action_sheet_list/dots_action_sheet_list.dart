@@ -388,6 +388,10 @@ class _Header extends StatelessWidget {
                               variant: DotsIconButtonVariant.noBackground,
                               onTap: onBackButtonTap,
                             ),
+                          )
+                        else
+                          const SizedBox(
+                            width: 36,
                           ),
                         Expanded(
                           child: Text(
