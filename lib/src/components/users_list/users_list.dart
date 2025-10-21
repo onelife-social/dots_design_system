@@ -38,6 +38,9 @@ class UsersList extends StatefulWidget {
   /// Callback when the "add friend" button is tapped.
   final void Function(String?) addFriendOnTap;
 
+  /// Whether to show the "add friend" button.
+  final bool showAddFriendButton;
+
   const UsersList({
     super.key,
     required this.members,
@@ -52,6 +55,7 @@ class UsersList extends StatefulWidget {
     required this.addParticipantOnTap,
     required this.addFriendLabel,
     required this.addFriendOnTap,
+    required this.showAddFriendButton,
   });
 
   @override
@@ -106,7 +110,6 @@ class _UsersListState extends State<UsersList> {
       }
     });
 
-
     items.addAll([
       // Add new participant button
       UsersItemList.button(
@@ -116,11 +119,12 @@ class _UsersListState extends State<UsersList> {
       ),
 
       // Add new friend button
-      UsersItemList.button(
-        label: widget.addFriendLabel,
-        icon: DotsIconData.user,
-        onTap: widget.addFriendOnTap,
-      ),
+      if (widget.showAddFriendButton)
+        UsersItemList.button(
+          label: widget.addFriendLabel,
+          icon: DotsIconData.user,
+          onTap: widget.addFriendOnTap,
+        ),
     ]);
 
     return Container(
