@@ -174,7 +174,6 @@ class _UsersListStoryState extends State<UsersListStory> {
         );
       },
       showAddFriendButton: true,
-      applyBounceIn: true,
     );
   }
 }
