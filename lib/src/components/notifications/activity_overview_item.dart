@@ -19,7 +19,7 @@ class ActivityOverviewItem extends StatelessWidget {
     this.height = 68,
     this.borderRadius = 12.0,
     this.elevation = 4.0,
-    this.borderWidth = 2.0,
+    this.borderWidth = 1.0,
     this.maxUserImages = 2,
   });
 
@@ -84,29 +84,46 @@ class ActivityOverviewItem extends StatelessWidget {
               Transform(
                 alignment: Alignment.bottomRight,
                 transform: Matrix4.identity()..rotateZ(-0.087),
-                child: Container(
-                  width: width,
-                  height: height,
-                  decoration: BoxDecoration(
-                    borderRadius: imageBorderRadius,
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color(0x26000000),
-                        blurRadius: 6,
-                        spreadRadius: -4,
-                        offset: const Offset(0, 6),
+                child: Stack(
+                  children: [
+                    Container(
+                      width: width,
+                      height: height,
+                      decoration: BoxDecoration(
+                        borderRadius: imageBorderRadius,
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0x26000000),
+                            blurRadius: 10,
+                            offset: const Offset(-6, 5),
+                          ),
+                        ],
+                        image: (images != null && images!.isNotEmpty)
+                            ? DecorationImage(
+                                image: images!.last,
+                                fit: BoxFit.cover,
+                                onError: (exception, stackTrace) {
+                                  onError?.call(exception, stackTrace);
+                                },
+                              )
+                            : null,
                       ),
-                    ],
-                    image: (images != null && images!.isNotEmpty)
-                        ? DecorationImage(
-                            image: images!.last,
-                            fit: BoxFit.cover,
-                            onError: (exception, stackTrace) {
-                              onError?.call(exception, stackTrace);
-                            },
-                          )
-                        : null,
-                  ),
+                    ),
+                    Container(
+                      width: width,
+                      height: height,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: imageBorderRadius,
+                          side: BorderSide(
+                            color: const Color(0x4DFFFFFF),
+                            width: borderWidth,
+                            strokeAlign: BorderSide.strokeAlignInside,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             Container(
@@ -155,7 +172,7 @@ class ActivityOverviewItem extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: imageBorderRadius,
                   side: BorderSide(
-                    color: Colors.white60,
+                    color: const Color(0x4DFFFFFF),
                     width: borderWidth,
                     strokeAlign: BorderSide.strokeAlignInside,
                   ),
@@ -301,7 +318,7 @@ class ActivityOverviewItem extends StatelessWidget {
 Color _backgroundColor(DotsTheme theme, ActivityPreviewVariant variant) {
     switch (variant) {
       case ActivityPreviewVariant.reactions:
-        return theme.colors.misc200;
+        return theme.colors.friends001;
       case ActivityPreviewVariant.views:
         return theme.colors.hobby002;
       case ActivityPreviewVariant.favs:

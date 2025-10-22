@@ -79,7 +79,7 @@ class DotsEntryViewer extends StatelessWidget {
           Expanded(
             child: Text(
               userName ?? '',
-              style: theme.typo.main.bodyDefaultRegular.copyWith(
+              style: theme.typo.main.bodyLargeRegular.copyWith(
                 color: theme.colors.textPrimary,
               ),
               overflow: TextOverflow.ellipsis,
