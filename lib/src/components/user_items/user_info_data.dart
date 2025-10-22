@@ -4,6 +4,9 @@ class UserInfoData {
   /// The image provider to display the profile image.
   final ImageProvider? imageProvider;
 
+  /// Text to display in the alias image.
+  final String? aliasLabelImageText;
+
   /// The name of the user to display in the component.
   final String name;
 
@@ -15,6 +18,7 @@ class UserInfoData {
 
   const UserInfoData({
     this.imageProvider,
+    this.aliasLabelImageText,
     required this.name,
     this.details,
     this.imageOnError,

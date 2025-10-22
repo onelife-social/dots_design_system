@@ -191,6 +191,8 @@ enum DotsIconData {
   userBlock('ic-user-block.svg', DotsIconGroup.social),
   userRemoveFilled('ic-user-remove--filled.svg', DotsIconGroup.social),
   userRemoveOutlined('ic-user-remove--outlined.svg', DotsIconGroup.social),
+  whatsapp('ic-whatsapp.svg', DotsIconGroup.social),
+  iMessage('ic-imessage.svg', DotsIconGroup.social),
 
   // System
   alertCircle('ic-alert-circle.svg', DotsIconGroup.system),
