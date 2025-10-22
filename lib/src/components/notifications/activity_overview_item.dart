@@ -186,7 +186,7 @@ class ActivityOverviewItem extends StatelessWidget {
                 radius: 10,
                 backgroundColor: theme.colors.bgBase,
                 child: Container(
-                  margin: const EdgeInsets.all(2),
+                  margin: const EdgeInsets.all(1.5),
                   width: 18,
                   height: 18,
                   decoration: BoxDecoration(
