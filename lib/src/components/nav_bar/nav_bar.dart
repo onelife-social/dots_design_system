@@ -146,8 +146,8 @@ class _NavBarItem extends StatelessWidget {
                     ),
                     if (pendingNumberText != null)
                       Positioned.fill(
-                        top: -3,
-                        right: -9,
+                        top: -5,
+                        right: -12,
                         child: BadgeTag(
                           size: const Size(0, 0),
                           tag: pendingNumberText,

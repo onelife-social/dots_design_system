@@ -461,6 +461,12 @@ List<Story> get allStories => [
                   onTap: () {},
                 ),
                 DotsNavBarItem(
+                  pendingNumber: context.knobs.nullable.sliderInt(
+                    label: 'Pending Number',
+                    initial: 5,
+                    min: 1,
+                    max: 99,
+                  ),
                   label: context.knobs.text(label: 'Gallery', initial: 'Gallery'),
                   iconData: context.knobs.options<DotsIconData>(
                     label: 'Third Icon',
