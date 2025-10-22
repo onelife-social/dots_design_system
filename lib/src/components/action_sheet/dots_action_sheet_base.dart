@@ -129,7 +129,7 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     return SizedBox(
-      height: subtitle != null ? 60 : 40,
+      height: subtitle != null ? 60 : 50,
       child: Column(
         children: [
           Expanded(

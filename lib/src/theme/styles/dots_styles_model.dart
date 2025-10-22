@@ -22,7 +22,9 @@ class DotsStylesModel {
   final DotsStyleSquircle defaultSquircle;
   final DotsStyleSquircle squircle8;
   final DotsStyleSquircle squircle12;
+  final DotsStyleSquircle squircle15;
   final DotsStyleSquircle squircle16;
+  final DotsStyleSquircle squircle20;
   final DotsStyleSquircle squircle24;
   final DotsStyleSquircle squircle32;
   final DotsStyleSquircle squircle52;
@@ -49,7 +51,9 @@ class DotsStylesModel {
     required this.defaultSquircle,
     required this.squircle8,
     required this.squircle12,
+    required this.squircle15,
     required this.squircle16,
+    required this.squircle20,
     required this.squircle24,
     required this.squircle32,
     required this.squircle52,
@@ -80,7 +84,9 @@ class DotsStylesModel {
       defaultSquircle: defaultSquircle.lerp(other.defaultSquircle, t) ?? defaultSquircle,
       squircle8: squircle8.lerp(other.squircle8, t) ?? squircle8,
       squircle12: squircle12.lerp(other.squircle12, t) ?? squircle12,
+      squircle15: squircle15.lerp(other.squircle15, t) ?? squircle15,
       squircle16: squircle16.lerp(other.squircle16, t) ?? squircle16,
+      squircle20: squircle20.lerp(other.squircle20, t) ?? squircle20,
       squircle24: squircle24.lerp(other.squircle24, t) ?? squircle24,
       squircle32: squircle32.lerp(other.squircle32, t) ?? squircle32,
       squircle52: squircle52.lerp(other.squircle52, t) ?? squircle52,

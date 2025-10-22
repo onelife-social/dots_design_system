@@ -241,6 +241,14 @@ class DotsTypo {
         fontWeight: FontWeight.w700,
         height: 1.29,
       ),
+      numBodyDefaultMedium: TextStyle(
+        color: color,
+        package: dotsDesignSystemPackage,
+        fontSize: 14,
+        fontFamily: 'Proxima Soft',
+        fontWeight: FontWeight.w500,
+        height: 1.29,
+      ),
       numLabelDefault: TextStyle(
         color: color,
         package: dotsDesignSystemPackage,

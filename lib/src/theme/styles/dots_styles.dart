@@ -91,8 +91,16 @@ class DotsStyles {
       radius: 12,
       cornerSmoothing: 0.5,
     ),
+    squircle15: DotsStyleSquircle(
+      radius: 15,
+      cornerSmoothing: 0.5,
+    ),
     squircle16: DotsStyleSquircle(
       radius: 16,
+      cornerSmoothing: 0.5,
+    ),
+    squircle20: DotsStyleSquircle(
+      radius: 20,
       cornerSmoothing: 0.5,
     ),
     squircle24: DotsStyleSquircle(
@@ -198,8 +206,16 @@ class DotsStyles {
       radius: 12,
       cornerSmoothing: 0.5,
     ),
+    squircle15: DotsStyleSquircle(
+      radius: 15,
+      cornerSmoothing: 0.5,
+    ),
     squircle16: DotsStyleSquircle(
       radius: 16,
+      cornerSmoothing: 0.5,
+    ),
+    squircle20: DotsStyleSquircle(
+      radius: 20,
       cornerSmoothing: 0.5,
     ),
     squircle24: DotsStyleSquircle(

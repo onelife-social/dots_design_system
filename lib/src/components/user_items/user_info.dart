@@ -52,6 +52,23 @@ class UserInfo extends StatelessWidget {
                   },
                 ),
               ),
+            )
+          else if (data.aliasLabelImageText != null)
+            Container(
+              width: 26,
+              height: 26,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: dotsTheme.colors.bgContainerSecondaryOnBackground,
+              ),
+              child: Center(
+                child: Text(
+                  data.aliasLabelImageText!,
+                  style: dotsTheme.typo.number.numBodyDefaultMedium.copyWith(
+                    color: dotsTheme.colors.textTertiary,
+                  ),
+                ),
+              ),
             ),
           Expanded(
             child: data.details == null || data.details!.isEmpty
