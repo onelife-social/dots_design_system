@@ -199,17 +199,16 @@ class DotsActionSheetSpotlight extends StatelessWidget {
                                         color: theme.colors.textSecondary,
                                       )),
                                 ),
-                                SizedBox(height: 28),
                               ],
                             ],
                           ),
                           if (bottomWidget != null) ...[
                             SizedBox(height: 16),
                             bottomWidget,
-                            SizedBox(height: 20),
                           ],
-                          SizedBox(height: 20),
+                          SizedBox(height: bottomWidget != null ? 20 : 28),
                           primaryButton,
+                          SizedBox(height: 15),
                         ],
                       ),
                     ),
@@ -228,78 +227,7 @@ class DotsActionSheetSpotlight extends StatelessWidget {
             ),
           ),
         ),
-        _BackdropFilterMask(bottomPosition: bottomPosition),
-        _LinearBlurMask(bottomPosition: bottomPosition),
-        Positioned(
-          left: 16,
-          right: 16,
-          bottom: bottomPosition + 16,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: DotsActionSheetStandardButtons(
-              buttonPositioning: DotsActionSheetButtonPositioning.row,
-              primaryButton: primaryButton,
-            ),
-          ),
-        ),
       ],
-    );
-  }
-}
-
-class _LinearBlurMask extends StatelessWidget {
-  final double bottomPosition;
-
-  const _LinearBlurMask({required this.bottomPosition});
-
-  @override
-  Widget build(BuildContext context) {
-    final totalHeight = DotsMainButtonSize.mainAction.height + 26;
-    final theme = context.dotsTheme;
-
-    return Positioned(
-      left: 16,
-      right: 16,
-      bottom: bottomPosition,
-      child: ClipRRect(
-        borderRadius: DotsBorderRadius.bottom32,
-        child: SizedBox(
-          height: totalHeight,
-          child: CustomPaint(
-            size: Size(double.infinity, totalHeight),
-            painter: LinearBlurPainter(
-              topColor: theme.colors.gradientInitialLineal,
-              bottomColor: theme.colors.gradientFinalLineal,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _BackdropFilterMask extends StatelessWidget {
-  final double bottomPosition;
-
-  const _BackdropFilterMask({required this.bottomPosition});
-
-  @override
-  Widget build(BuildContext context) {
-    final totalHeight = DotsMainButtonSize.mainAction.height + 26;
-    return Positioned(
-      left: 16,
-      right: 16,
-      bottom: bottomPosition,
-      child: ClipRRect(
-        borderRadius: DotsBorderRadius.bottom32,
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 2, sigmaY: 12),
-          child: Container(
-            height: totalHeight / 2,
-            color: context.dotsTheme.colors.transparent,
-          ),
-        ),
-      ),
     );
   }
 }
