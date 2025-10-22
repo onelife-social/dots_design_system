@@ -10,6 +10,7 @@ class ActivityOverviewItem extends StatelessWidget {
     this.images,
     this.onError,
     required this.icon,
+    required this.variant,
     required this.count,
     required this.title,
     required this.reactionsCount,
@@ -32,6 +33,9 @@ class ActivityOverviewItem extends StatelessWidget {
   /// Icon widget to display in the top-right corner
   final Widget icon;
 
+  /// The variant of the activity preview.
+  final ActivityPreviewVariant variant;
+  
   /// The count number to display below the image
   final int count;
 
@@ -67,12 +71,14 @@ class ActivityOverviewItem extends StatelessWidget {
     final theme = context.dotsTheme;
 
     final imageBorderRadius = BorderRadius.all(Radius.circular(borderRadius));
+    final bgBadgeColor = _backgroundColor(theme, variant);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Card(
           elevation: elevation,
+          shadowColor: Color.fromARGB(99, 0, 0, 0),
           child: Stack(
             clipBehavior: Clip.none,
             alignment: Alignment.center,
@@ -174,7 +180,7 @@ class ActivityOverviewItem extends StatelessWidget {
                     width: 18,
                     height: 18,
                     decoration: BoxDecoration(
-                      color: theme.colors.bgSecondaryBtn,
+                      color: bgBadgeColor,
                       shape: BoxShape.circle,
                     ),
                     child: Center(
@@ -197,7 +203,7 @@ class ActivityOverviewItem extends StatelessWidget {
             Text(
               formatCount(count),
               maxLines: 1,
-              style: theme.typo.main.labelDefaultBold.copyWith(
+              style: theme.typo.main.bodyDefaultMedium.copyWith(
                 color: theme.colors.textSecondary,
               ),
             ),
@@ -205,7 +211,7 @@ class ActivityOverviewItem extends StatelessWidget {
               title,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: theme.typo.main.labelDefaultBold.copyWith(
+              style: theme.typo.main.bodyDefaultMedium.copyWith(
                 color: theme.colors.textSecondary,
               ),
             ),
@@ -298,3 +304,16 @@ class ActivityOverviewItem extends StatelessWidget {
     return 17.0 + ((imageCount - 1) * 10.0);
   }
 }
+
+
+Color _backgroundColor(DotsTheme theme, ActivityPreviewVariant variant) {
+    switch (variant) {
+      case ActivityPreviewVariant.reactions:
+        return theme.colors.misc200;
+      case ActivityPreviewVariant.views:
+        return theme.colors.hobby002;
+      case ActivityPreviewVariant.favs:
+        return theme.colors.couple001;
+      
+    }
+  }

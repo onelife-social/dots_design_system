@@ -6,6 +6,9 @@ class DotsActivityGroupHeader extends StatelessWidget {
   /// The text to display in the separator.
   final String text;
 
+  /// An optional number to display alongside the text.
+  final String? number;
+
   /// Whether to show a top line separator.
   /// Defaults to false.
   final bool topLineSeparator;
@@ -13,6 +16,7 @@ class DotsActivityGroupHeader extends StatelessWidget {
   const DotsActivityGroupHeader({
     super.key,
     required this.text,
+    this.number,
     this.topLineSeparator = false,
   });
 
@@ -20,6 +24,9 @@ class DotsActivityGroupHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    final baseStyle = number != null
+        ? theme.typo.main.bodyLargeBold
+        : theme.typo.main.titleH5;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -34,14 +41,24 @@ class DotsActivityGroupHeader extends StatelessWidget {
           ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
-          child: SizedBox(
-            width: double.infinity,
-            child: Text(
-              text,
-              style: theme.typo.main.bodyLargeBold.copyWith(
-                color: theme.colors.textPrimary,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                text,
+                style: baseStyle.copyWith(color: theme.colors.textPrimary),
               ),
-            ),
+              if (number != null) ...[
+                const SizedBox(width: 6),
+                Text(
+                  number.toString(),
+                  style: theme.typo.main.bodyLargeBold.copyWith(
+                    color: theme.colors.textQuarternary,
+                    height: 1
+                  ),
+                ),
+              ],
+            ],
           ),
         ),
       ],

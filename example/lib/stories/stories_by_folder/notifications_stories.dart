@@ -97,6 +97,13 @@ List<Story> get notificationsStories => [
                     ),
                     size: 48,
                   ),
+                  variant: context.knobs.options<ActivityPreviewVariant>(
+                    label: 'Variant',
+                    initial: ActivityPreviewVariant.reactions,
+                    options: ActivityPreviewVariant.values
+                        .map((item) => Option(label: item.name, value: item))
+                        .toList(),
+                  ),
                   count: int.parse(
                     context.knobs.text(
                       label: 'Count',

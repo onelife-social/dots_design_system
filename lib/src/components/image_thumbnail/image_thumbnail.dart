@@ -16,6 +16,9 @@ class DotsImageThumbnail extends StatelessWidget {
   /// The profile image to be displayed in the image thumbnail.
   final ImageProvider? image;
 
+  /// Size of the container.
+  final double size;
+
   /// Callback for image load error.
   /// Called when the image fails to load.
   final void Function(Object exception, StackTrace? stackTrace)? onError;
@@ -36,6 +39,7 @@ class DotsImageThumbnail extends StatelessWidget {
     super.key,
     required this.variant,
     this.image,
+    this.size = 40,
     this.onError,
     this.iconData = DotsIconData.user,
     this.iconSize = 20,
@@ -48,8 +52,8 @@ class DotsImageThumbnail extends StatelessWidget {
     final theme = context.dotsTheme;
 
     return Container(
-      width: 40,
-      height: 40,
+      width: size,
+      height: size,
       decoration: BoxDecoration(
         color: variant.isIcon
             ? theme.colors.bgContainerSecondaryOnBackground

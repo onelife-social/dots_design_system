@@ -100,8 +100,8 @@ class DotsNotificationItem extends StatelessWidget {
             DotsProfilePhoto(
               imageProvider: profileImage,
               onError: onProfileImageError,
-              width: 40,
-              height: 40,
+              width: 44,
+              height: 44,
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -128,6 +128,7 @@ class DotsNotificationItem extends StatelessWidget {
                   DotsImageThumbnail(
                     variant: DotsImageThumbnailVariant.image,
                     image: actionImage,
+                    size: 44,
                     onError: onActionImageError,
                     coverImage: actionImageText?.isNotEmpty == true,
                   ),
@@ -151,6 +152,7 @@ class DotsNotificationItem extends StatelessWidget {
               DotsImageThumbnail(
                 variant: DotsImageThumbnailVariant.icon,
                 iconData: iconData,
+                size: 44,
                 iconSize: iconSize,
                 iconColor: iconColor,
               ),
@@ -188,7 +190,7 @@ class _Info extends StatelessWidget {
           if (title != null && title!.isNotEmpty)
             Text(
               title!,
-              style: theme.typo.main.labelDefaultBold.copyWith(
+              style: theme.typo.main.bodyDefaultBold.copyWith(
                 color: theme.colors.textPrimary,
               ),
               maxLines: 2,
@@ -199,7 +201,7 @@ class _Info extends StatelessWidget {
               TextSpan(
                 children: TextUtils().buildTextWithEmojiSpans(
                   text: description!,
-                  baseStyle: theme.typo.main.labelDefaultRegular.copyWith(
+                  baseStyle: theme.typo.main.bodyDefaultRegular.copyWith(
                     color: theme.colors.textSecondary,
                   ),
                 ),
@@ -216,7 +218,7 @@ class _Info extends StatelessWidget {
             if (title != null && title!.isNotEmpty)
               TextSpan(
                 text: '$title ',
-                style: theme.typo.main.labelDefaultBold.copyWith(
+                style: theme.typo.main.bodyDefaultBold.copyWith(
                   color: theme.colors.textPrimary,
                 ),
               ),
@@ -225,7 +227,7 @@ class _Info extends StatelessWidget {
                 if (description != null && description!.isNotEmpty)
                   ...TextUtils().buildTextWithEmojiSpans(
                     text: description!,
-                    baseStyle: theme.typo.main.labelDefaultRegular.copyWith(
+                    baseStyle: theme.typo.main.bodyDefaultRegular.copyWith(
                       color: theme.colors.textSecondary,
                     ),
                   ),
