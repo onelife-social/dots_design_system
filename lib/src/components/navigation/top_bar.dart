@@ -201,7 +201,9 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
                                   ],
                                   Text(
                                     title ?? '',
-                                    style: theme.typo.main.bodyLargeBold,
+                                    style: theme.typo.main.titleH6.copyWith(
+                                      color: theme.colors.textPrimary,
+                                    ),
                                   ),
                                 ],
                               ),

@@ -54,7 +54,7 @@ class NotificationBanner extends StatelessWidget {
                   child: Text(
                     title,
                     textAlign: TextAlign.center,
-                    style: theme.typo.main.labelDefaultBold.copyWith(
+                    style: theme.typo.main.bodyLargeBold.copyWith(
                       color: theme.colors.textPrimary,
                     ),
                   ),
@@ -64,7 +64,7 @@ class NotificationBanner extends StatelessWidget {
                   Text(
                     body!,
                     textAlign: TextAlign.center,
-                    style: theme.typo.main.labelDefaultRegular.copyWith(
+                    style: theme.typo.main.bodyDefaultRegular.copyWith(
                       color: theme.colors.textSecondary,
                     ),
                   ),
@@ -75,7 +75,7 @@ class NotificationBanner extends StatelessWidget {
                     child: DotsMainButton(
                       content: actionButtonText!,
                       onTap: onActionTap,
-                      size: DotsMainButtonSize.small,
+                      size: DotsMainButtonSize.medium,
                       variant: DotsMainButtonVariant.main,
                       expand: false,
                     ),
@@ -90,7 +90,7 @@ class NotificationBanner extends StatelessWidget {
               right: 12,
               child: DotsCloseButton(
                 icon: DotsIconData.cross,
-                size: DotsCloseButtonSize.small,
+                size: DotsCloseButtonSize.medium,
                 variant: DotsCloseButtonVariant.softContrast,
                 onTap: onClose,
               ),
