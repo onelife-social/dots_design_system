@@ -13,7 +13,9 @@ class DotsActionSheetBase extends StatelessWidget {
   final double? maxHeight;
   final bool showBlurBackground;
   final VoidCallback? onClose;
-
+  final VoidCallback? onTapCloseButton;
+  final bool addTitlePadding;
+  final TextStyle? titleStyle;
   const DotsActionSheetBase({
     super.key,
     required this.title,
@@ -25,6 +27,9 @@ class DotsActionSheetBase extends StatelessWidget {
     this.maxHeight,
     this.showBlurBackground = true,
     this.onClose,
+    this.onTapCloseButton,
+    this.addTitlePadding = false,
+    this.titleStyle,
   });
 
   @override
@@ -56,30 +61,47 @@ class DotsActionSheetBase extends StatelessWidget {
               constraints: BoxConstraints(
                 maxHeight: maxHeight ?? context.screenHeight * 0.8,
               ),
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-                clipBehavior: Clip.antiAlias,
-                decoration: ShapeDecoration(
-                  color: theme.colors.bgBaseContrast,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32),
-                  ),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _Header(title: title, subtitle: subtitle, onBackButtonTap: onBackButtonTap),
-                    SizedBox(
-                      height: 16,
+              child: Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                    clipBehavior: Clip.antiAlias,
+                    decoration: ShapeDecoration(
+                      color: theme.colors.bgBaseContrast,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(32),
+                      ),
                     ),
-                    Expanded(
-                        child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: child,
-                    )),
-                  ],
-                ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _Header(
+                            title: title,
+                            subtitle: subtitle,
+                            onBackButtonTap: onBackButtonTap,
+                            titleStyle: titleStyle,
+                            addTitlePadding: addTitlePadding),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: child,
+                        ),
+                      ],
+                    ),
+                  ),
+                  if (onTapCloseButton != null)
+                    Positioned(
+                      top: 16,
+                      right: 16,
+                      child: DotsCloseButton(
+                        size: DotsCloseButtonSize.medium,
+                        onTap: onTapCloseButton,
+                      ),
+                    )
+                ],
               ),
             ),
           ),
@@ -93,10 +115,14 @@ class _Header extends StatelessWidget {
   final String title;
   final String? subtitle;
   final Function()? onBackButtonTap;
+  final bool addTitlePadding;
+  final TextStyle? titleStyle;
   const _Header({
     required this.title,
     required this.subtitle,
     required this.onBackButtonTap,
+    required this.addTitlePadding,
+    this.titleStyle,
   });
 
   @override
@@ -126,9 +152,17 @@ class _Header extends StatelessWidget {
                   left: 0,
                   right: 0,
                   child: Center(
-                    child: Text(
-                      title,
-                      style: theme.typo.secondary.title02H6,
+                    child: Padding(
+                      padding: addTitlePadding
+                          ? const EdgeInsets.symmetric(horizontal: 36)
+                          : EdgeInsets.zero,
+                      child: Text(
+                        title,
+                        style: titleStyle ??
+                            theme.typo.secondary.title02H6
+                                .copyWith(color: theme.colors.textPrimary),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),

@@ -35,8 +35,8 @@ class UsersItemList extends StatelessWidget {
   /// *(Only for `text` variant)* Callback when the textfield changes.
   final void Function(String?, String?)? textOnChanged;
 
-  /// *(Only for `text` variant)* Callback when the textfield loses focus.
-  final void Function(String?)? textOnFocusLost;
+  /// *(Only for `text` variant)* Focus node to preserve focus.
+  final FocusNode? textFocusNode;
 
   const UsersItemList._({
     super.key,
@@ -48,7 +48,7 @@ class UsersItemList extends StatelessWidget {
     this.icon,
     this.textController,
     this.textOnChanged,
-    this.textOnFocusLost,
+    this.textFocusNode,
   });
 
   factory UsersItemList.main({
@@ -84,17 +84,17 @@ class UsersItemList extends StatelessWidget {
     required TextEditingController textController,
     required void Function(String?)? onTap,
     required void Function(String?, String?)? textOnChanged,
-    required void Function(String?)? textOnFocusLost,
+    FocusNode? focusNode,
   }) =>
       UsersItemList._(
-        key: key,
+        key: key ?? ValueKey(id),
         id: id,
         variant: UserItemListVariant.textfield,
         label: label,
         textController: textController,
         onTap: onTap,
         textOnChanged: textOnChanged,
-        textOnFocusLost: textOnFocusLost,
+        textFocusNode: focusNode,
       );
 
   factory UsersItemList.button({
@@ -118,40 +118,88 @@ class UsersItemList extends StatelessWidget {
       _ => null,
     };
 
+    final content = Container(
+      color: Colors.transparent,
+      padding: const EdgeInsets.symmetric(vertical: 3),
+      child: _UserListRow(
+          variant: variant,
+          id: id,
+          data: data,
+          icon: icon,
+          label: label,
+          textController: textController,
+          textOnChanged: textOnChanged,
+          textFocusNode: textFocusNode,
+          onTap: onTap,
+          tapValue: tapValue),
+    );
+
+    if (variant == UserItemListVariant.textfield) {
+      return content;
+    }
+
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () => onTap?.call(tapValue),
-      child: Container(
-        color: Colors.transparent,
-        padding: const EdgeInsets.symmetric(vertical: 3),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          spacing: 8,
-          children: [
-            _MainWidget(
-              variant: variant,
-              id: id,
-              data: data,
-              icon: icon,
-              label: label,
-              textController: textController,
-              textOnChanged: textOnChanged,
-              textOnFocusLost: textOnFocusLost,
-            ),
-            _TrailingWidget(
-              variant: variant,
-              onTap: onTap,
-              tapValue: tapValue,
-              label: label,
-            ),
-          ],
-        ),
-      ),
+      child: content,
     );
   }
 }
 
-class _MainWidget extends StatefulWidget {
+class _UserListRow extends StatelessWidget {
+  const _UserListRow({
+    super.key,
+    required this.variant,
+    required this.id,
+    required this.data,
+    required this.icon,
+    required this.label,
+    required this.textController,
+    required this.textOnChanged,
+    required this.textFocusNode,
+    required this.onTap,
+    required this.tapValue,
+  });
+
+  final UserItemListVariant variant;
+  final String? id;
+  final UserInfoData? data;
+  final DotsIconData? icon;
+  final String label;
+  final TextEditingController? textController;
+  final void Function(String? p1, String? p2)? textOnChanged;
+  final FocusNode? textFocusNode;
+  final void Function(String? p1)? onTap;
+  final String? tapValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      spacing: 8,
+      children: [
+        _MainWidget(
+          variant: variant,
+          id: id,
+          data: data,
+          icon: icon,
+          label: label,
+          textController: textController,
+          textOnChanged: textOnChanged,
+          textFocusNode: textFocusNode,
+        ),
+        _TrailingWidget(
+          variant: variant,
+          onTap: onTap,
+          tapValue: tapValue,
+          label: label,
+        ),
+      ],
+    );
+  }
+}
+
+class _MainWidget extends StatelessWidget {
   final UserItemListVariant variant;
   final String? id;
   final UserInfoData? data;
@@ -159,7 +207,7 @@ class _MainWidget extends StatefulWidget {
   final String? label;
   final TextEditingController? textController;
   final void Function(String?, String?)? textOnChanged;
-  final void Function(String?)? textOnFocusLost;
+  final FocusNode? textFocusNode;
 
   const _MainWidget({
     required this.variant,
@@ -169,46 +217,17 @@ class _MainWidget extends StatefulWidget {
     this.label,
     this.textController,
     this.textOnChanged,
-    this.textOnFocusLost,
+    this.textFocusNode,
   });
-
-  @override
-  State<_MainWidget> createState() => _MainWidgetState();
-}
-
-class _MainWidgetState extends State<_MainWidget> {
-  FocusNode? _focusNode;
-
-  @override
-  void initState() {
-    super.initState();
-    if (widget.variant == UserItemListVariant.textfield) {
-      _focusNode = FocusNode();
-      _focusNode!.addListener(_handleFocusChange);
-    }
-  }
-
-  void _handleFocusChange() {
-    if (_focusNode!.hasFocus == false) {
-      widget.textOnFocusLost?.call(widget.textController?.text);
-    }
-  }
-
-  @override
-  void dispose() {
-    _focusNode?.removeListener(_handleFocusChange);
-    _focusNode?.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    switch (widget.variant) {
+    switch (variant) {
       case UserItemListVariant.main:
       case UserItemListVariant.label:
-        return UserInfo(data: widget.data!);
+        return UserInfo(data: data!);
 
       case UserItemListVariant.textfield:
         return Expanded(
@@ -216,10 +235,11 @@ class _MainWidgetState extends State<_MainWidget> {
             height: 30,
             child: Center(
               child: TextField(
-                controller: widget.textController!,
-                focusNode: _focusNode,
+                controller: textController!,
+                focusNode: textFocusNode,
+                autofocus: textController!.text.isEmpty,
                 decoration: InputDecoration(
-                  hintText: widget.label!,
+                  hintText: label!,
                   hintStyle: theme.typo.main.bodyDefaultMedium.copyWith(
                     color: theme.colors.textQuarternary,
                   ),
@@ -235,7 +255,7 @@ class _MainWidgetState extends State<_MainWidget> {
                   LengthLimitingTextInputFormatter(50),
                 ],
                 cursorColor: theme.colors.labelHighlight,
-                onChanged: (value) => widget.textOnChanged?.call(widget.id , value),
+                onChanged: (value) => textOnChanged?.call(id, value),
               ),
             ),
           ),
@@ -249,12 +269,12 @@ class _MainWidgetState extends State<_MainWidget> {
               spacing: 6,
               children: [
                 DotsIcon(
-                  iconData: widget.icon!,
+                  iconData: icon!,
                   size: 16,
                   color: theme.colors.labelHighlight,
                 ),
                 Text(
-                  widget.label!,
+                  label!,
                   style: theme.typo.main.bodyDefaultMedium.copyWith(
                     color: theme.colors.labelHighlight,
                   ),
