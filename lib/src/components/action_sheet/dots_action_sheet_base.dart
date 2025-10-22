@@ -96,9 +96,12 @@ class DotsActionSheetBase extends StatelessWidget {
                     Positioned(
                       top: 16,
                       right: 16,
-                      child: DotsCloseButton(
-                        size: DotsCloseButtonSize.medium,
-                        onTap: onTapCloseButton,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 6),
+                        child: DotsCloseButton(
+                          size: DotsCloseButtonSize.medium,
+                          onTap: onTapCloseButton,
+                        ),
                       ),
                     )
                 ],
