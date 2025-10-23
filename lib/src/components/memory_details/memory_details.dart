@@ -100,7 +100,7 @@ class DotsMemoryDetails extends StatelessWidget {
               ],
             ),
             textAlign: TextAlign.center,
-            softWrap: true, // <- permite saltar solo cuando sea necesario
+            softWrap: true,
             overflow: TextOverflow.visible,
           ),
         ),
