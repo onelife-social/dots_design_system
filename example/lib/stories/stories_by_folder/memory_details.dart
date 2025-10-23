@@ -43,6 +43,8 @@ List<Story> get memoryDetailsStories => [
               .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=68')),
           onImageError: (exception, stackTrace) {
           },
+          uploadBytext: context.knobs.text(label: 'Upload By Text', initial: 'Uploaded by Alice to'),
+          groupName: context.knobs.text(label: 'Group Name', initial: 'Familia Martínez-Ramírez🧢 '),
           date: context.knobs.text(label: 'Date', initial: '23 julio 2023'),
           time: context.knobs.text(label: 'Time', initial: '12:00'),
         ),

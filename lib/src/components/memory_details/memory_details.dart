@@ -9,6 +9,12 @@ class DotsMemoryDetails extends StatelessWidget {
   /// Called when the image fails to load.
   final void Function(Object exception, StackTrace? stackTrace)? onImageError;
 
+  /// The text indicating who uploaded the memory.
+  final String? uploadBytext;
+
+  /// The text indicating the group name where the memory was uploaded.
+  final String? groupName;
+
   /// The date to be displayed below the image.
   final String? date;
 
@@ -22,6 +28,8 @@ class DotsMemoryDetails extends StatelessWidget {
     super.key,
     this.image,
     this.onImageError,
+    this.uploadBytext,
+    this.groupName,
     this.date,
     this.time,
     this.onTap,
@@ -30,6 +38,7 @@ class DotsMemoryDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    final double hPad = MediaQuery.of(context).size.width * 0.156;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,17 +79,49 @@ class DotsMemoryDetails extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        Text(
-          date ?? '',
-          style: theme.typo.main.labelDefaultBold.copyWith(
-            color: theme.colors.textTertiary,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: hPad),
+          child: Text.rich(
+            TextSpan(
+              children: [
+                if (uploadBytext?.isNotEmpty ?? false)
+                  TextSpan(
+                    text: '$uploadBytext ',
+                    style: theme.typo.main.labelDefaultRegular.copyWith(
+                      color: theme.colors.textTertiary,
+                    ),
+                  ),
+                TextSpan(
+                  text: groupName ?? '',
+                  style: theme.typo.main.labelDefaultBold.copyWith(
+                    color: theme.colors.textSecondary,
+                  ),
+                ),
+              ],
+            ),
+            textAlign: TextAlign.center,
+            softWrap: true, // <- permite saltar solo cuando sea necesario
+            overflow: TextOverflow.visible,
           ),
         ),
-        const SizedBox(height: 8),
-        Text(
-          time ?? '',
-          style: theme.typo.number.numLabelDefault.copyWith(
-            color: theme.colors.textQuarternary,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: hPad),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                (time?.isNotEmpty ?? false) ? '$date, ' : date!,
+                style: theme.typo.main.labelDefaultBold.copyWith(
+                  color: theme.colors.textTertiary,
+                ),
+              ),
+              Text(
+                time ?? '',
+                style: theme.typo.main.labelDefaultBold.copyWith(
+                  color: theme.colors.textTertiary,
+                ),
+              ),
+            ],
           ),
         ),
       ],
