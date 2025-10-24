@@ -1,10 +1,36 @@
 import 'package:dots_design_system/dots_design_system.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 import '../../components/album_group_card_demo_page.dart';
 
-List<Story> get groupCards => [
+List<Story> get cards => [
+      Story(
+        name: 'Cards/Recap Card',
+        description: 'Recap Page new Recap',
+        builder: (context) => RecapCard(
+          buttonText: context.knobs.text(label: 'Button Text', initial: 'Ver Recap'),
+          badgeText: context.knobs.text(label: 'Badge Text', initial: '¡Nuevo!'),
+          variant: context.knobs.options<RecapCardVariant>(
+            label: 'Variant',
+            initial: RecapCardVariant.newRecap,
+            options: RecapCardVariant.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          ),
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('onTap'),
+              ),
+            );
+          },
+          imageProvider: NetworkImage(
+            context.knobs.text(
+                label: 'Container background image', initial: 'https://picsum.photos/250?image=9'),
+          ),
+        ),
+      ),
       Story(
         name: 'Cards/Album Group Cards',
         description: 'Demo page for album group cards',

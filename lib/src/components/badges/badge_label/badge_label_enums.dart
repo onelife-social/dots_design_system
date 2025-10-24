@@ -2,6 +2,10 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/widgets.dart';
 
 enum BadgeLabelSize {
+  large(
+    padding: EdgeInsets.symmetric(horizontal: 12),
+    height: 30,
+  ),
   medium(
     padding: EdgeInsets.symmetric(horizontal: 8),
     height: 22,
@@ -21,6 +25,8 @@ enum BadgeLabelSize {
 
   TextStyle getTextStyle(DotsTheme theme) {
     switch (this) {
+      case BadgeLabelSize.large:
+        return theme.typo.main.bodyDefaultMedium;
       case BadgeLabelSize.medium:
       case BadgeLabelSize.small:
         return theme.typo.main.labelSmallMedium;
