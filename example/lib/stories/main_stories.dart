@@ -1,22 +1,28 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/components/blur_container_demo_page.dart';
 import 'package:example/components/carrousel_demo_page.dart';
-import 'package:example/components/countdown_event_finished_demo_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
 import 'package:example/components/dots_slider_demo.dart';
 import 'package:example/components/dots_text_animations_demo_page.dart';
+import 'package:example/components/empty_state_card_demo.dart';
 import 'package:example/components/folder_carrousel_demo_page.dart';
 import 'package:example/components/item_input_demo.dart';
 import 'package:example/components/memory_card_demo_page.dart';
-import 'package:example/components/empty_state_card_demo.dart';
 import 'package:example/components/users_list_demo_page.dart';
+import 'package:example/stories/helpers/color_knob_options.dart';
 import 'package:example/stories/helpers/linear_gradient_options.dart';
 import 'package:example/stories/stories_by_folder/action_sheet_stories.dart';
 import 'package:example/stories/stories_by_folder/badge_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
 import 'package:example/stories/stories_by_folder/chat_stories.dart';
+import 'package:example/stories/stories_by_folder/countdown_stories.dart';
 import 'package:example/stories/stories_by_folder/dropdown_stories.dart';
+import 'package:example/stories/stories_by_folder/group_cards_stories.dart';
+import 'package:example/stories/stories_by_folder/memory_details.dart';
 import 'package:example/stories/stories_by_folder/miscellaneous_stories.dart';
+import 'package:example/stories/stories_by_folder/notifications_stories.dart';
+import 'package:example/stories/stories_by_folder/profile_photo_stories.dart';
 import 'package:example/stories/stories_by_folder/segmented_control_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/separators_demo.dart';
@@ -24,14 +30,8 @@ import 'package:example/stories/stories_by_folder/spinner_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:example/stories/stories_by_folder/toast_stories.dart';
 import 'package:example/stories/stories_by_folder/top_bar_stories.dart';
-import 'package:example/stories/stories_by_folder/group_cards_stories.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:example/stories/helpers/color_knob_options.dart';
-import 'package:example/stories/stories_by_folder/notifications_stories.dart';
-import 'package:example/stories/stories_by_folder/profile_photo_stories.dart';
-import 'package:example/stories/stories_by_folder/memory_details.dart';
 
 import '../components/linear_gradient_blur_container_demo_page.dart';
 
@@ -42,7 +42,8 @@ List<Story> get allStories => [
       ...buttonStories,
       ...toastStories,
       ...topBarStories,
-      ...groupCards,
+      ...cards,
+      ...countdownStories,
       ...selectorRadioButtonStories,
       ...actionSheetStories,
       ...dropdownStories,
@@ -240,28 +241,6 @@ List<Story> get allStories => [
               ),
             ],
           ),
-        ),
-      ),
-      Story(
-        name: 'Countdown Event Finished',
-        description: 'Demo page for Countdown event finished',
-        builder: (context) => CountdownEventFinishedDemoPage(
-          variant: context.knobs.options<CountdownEventFinishedVariant>(
-            label: 'Variant',
-            initial: CountdownEventFinishedVariant.big,
-            options: CountdownEventFinishedVariant.values
-                .map((item) => Option(label: item.name, value: item))
-                .toList(),
-          ),
-          title: context.knobs.text(label: 'Title', initial: 'Felizmente casados!'),
-          icon: DotsIconData.weddingRings,
-          years: context.knobs.text(label: 'years', initial: '09'),
-          months: context.knobs.text(label: 'months', initial: '11'),
-          days: context.knobs.text(label: 'days', initial: '23'),
-          yearsLabel: context.knobs.text(label: 'Years label', initial: 'Años'),
-          monthsLabel: context.knobs.text(label: 'Months label', initial: 'Meses'),
-          daysLabel: context.knobs.text(label: 'Days label', initial: 'Días'),
-          conjunctionText: context.knobs.text(label: 'Conjunction text', initial: 'y'),
         ),
       ),
       Story(

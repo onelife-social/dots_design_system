@@ -1,10 +1,75 @@
 import 'package:dots_design_system/dots_design_system.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 import '../../components/album_group_card_demo_page.dart';
 
-List<Story> get groupCards => [
+List<Story> get cards => [
+      Story(
+        name: 'Cards/Recap Card Locked',
+        description: 'Recap Page locked',
+        builder: (context) => RecapCardLocked(
+          width: context.knobs.slider(label: 'Width', initial: 254, min: 254, max: 382),
+          variant: context.knobs.options<RecapCardLockedVariant>(
+            label: 'Variant',
+            initial: RecapCardLockedVariant.countdown,
+            options: RecapCardLockedVariant.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          ),
+          title: context.knobs.text(label: 'Title', initial: 'Recap Noviembre'),
+          imageProvider: NetworkImage(context.knobs.text(
+              label: 'Container background image', initial: 'https://picsum.photos/250?image=9')),
+          buttonText: context.knobs.text(label: 'Button Text', initial: 'Subir'),
+          description: context.knobs.text(
+              label: 'Description',
+              initial: 'Para desbloquear este recap, necesitas subir 16 fotos y 4 vídeos.'),
+          countdownDate: DateTime.now().add(
+            Duration(
+                days: context.knobs.sliderInt(label: 'Days', initial: 0, min: 0, max: 99),
+                hours: context.knobs.sliderInt(label: 'Hours', initial: 0, min: 0, max: 23),
+                minutes: context.knobs.sliderInt(label: 'Minutes', initial: 5, min: 0, max: 59),
+                seconds: context.knobs.sliderInt(label: 'Seconds', initial: 0, min: 0, max: 59)),
+          ),
+          daysLabel: context.knobs.text(label: 'Days Label', initial: 'días'),
+          hoursLabel: context.knobs.text(label: 'Hours Label', initial: 'horas'),
+          minutesLabel: context.knobs.text(label: 'Minutes Label', initial: 'min.'),
+          secondsLabel: context.knobs.text(label: 'Seconds Label', initial: 'seg.'),
+          onButtonTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('onButtonTap'),
+              ),
+            );
+          },
+        ),
+      ),
+      Story(
+        name: 'Cards/Recap Card',
+        description: 'Recap Page new Recap',
+        builder: (context) => RecapCard(
+          buttonText: context.knobs.text(label: 'Button Text', initial: 'Ver Recap'),
+          badgeText: context.knobs.text(label: 'Badge Text', initial: '¡Nuevo!'),
+          variant: context.knobs.options<RecapCardVariant>(
+            label: 'Variant',
+            initial: RecapCardVariant.newRecap,
+            options: RecapCardVariant.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          ),
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('onTap'),
+              ),
+            );
+          },
+          imageProvider: NetworkImage(
+            context.knobs.text(
+                label: 'Container background image', initial: 'https://picsum.photos/250?image=9'),
+          ),
+        ),
+      ),
       Story(
         name: 'Cards/Album Group Cards',
         description: 'Demo page for album group cards',

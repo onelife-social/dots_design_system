@@ -59,6 +59,7 @@ enum DotsMainButtonVariant {
   ghost,
   premiumPlus,
   premium,
+  surface,
   surfacePremium,
   surfacePremiumPlus;
 
@@ -73,6 +74,7 @@ enum DotsMainButtonVariant {
   bool get isGhost => this == DotsMainButtonVariant.ghost;
   bool get isPremium => this == DotsMainButtonVariant.premium;
   bool get isPremiumPlus => this == DotsMainButtonVariant.premiumPlus;
+  bool get isSurface => this == DotsMainButtonVariant.surface;
   bool get isSurfacePremium => this == DotsMainButtonVariant.surfacePremium;
   bool get isSurfacePremiumPlus => this == DotsMainButtonVariant.surfacePremiumPlus;
 }

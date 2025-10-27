@@ -119,6 +119,13 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
         blurStyle: theme.styles.blur50,
         shadow: true,
       );
+    case DotsMainButtonVariant.surface:
+      return DotsMainButtonTheme(
+        backgroundColor: theme.colors.bgContainerSecondary.dotsWithOpacity(0.7),
+        foregroundColor: textColor ?? theme.colors.textPrimary,
+        foregroundSecondaryColor: theme.colors.textPrimary.dotsWithOpacity(0.6),
+        blurStyle: theme.styles.blur10,
+      );
     case DotsMainButtonVariant.surfacePremium:
       return DotsMainButtonTheme(
         foregroundGradient: textColor != null ? null : theme.styles.textPremium,
