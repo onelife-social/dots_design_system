@@ -96,7 +96,7 @@ class DotsMainButton extends StatelessWidget {
 
     final Widget iconWidget = icon != null
         ? DotsIcon(
-            iconData: icon ?? DotsIconData.values.first,
+            iconData: icon!,
             size: iconSize,
             color: buttonTheme.iconColor ?? foregroundColor,
           )
