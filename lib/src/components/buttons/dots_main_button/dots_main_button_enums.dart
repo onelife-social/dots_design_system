@@ -78,3 +78,11 @@ enum DotsMainButtonVariant {
   bool get isSurfacePremium => this == DotsMainButtonVariant.surfacePremium;
   bool get isSurfacePremiumPlus => this == DotsMainButtonVariant.surfacePremiumPlus;
 }
+
+enum DotsMainButtonIconPosition {
+  left,
+  right;
+
+  bool get isLeft => this == DotsMainButtonIconPosition.left;
+  bool get isRight => this == DotsMainButtonIconPosition.right;
+}

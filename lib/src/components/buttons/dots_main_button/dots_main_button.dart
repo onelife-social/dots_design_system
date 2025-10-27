@@ -20,6 +20,8 @@ class DotsMainButton extends StatelessWidget {
     this.textColor,
     this.iconColor,
     this.shouldApplyBlur = false,
+    this.iconPosition = DotsMainButtonIconPosition.left,
+    this.textStyle,
   });
 
   /// The text to display on the button.
@@ -69,8 +71,14 @@ class DotsMainButton extends StatelessWidget {
   /// Optional icon color to override the default one from the theme.
   final Color? iconColor;
 
+  /// Optional text style to override the default one from the theme.
+  final TextStyle? textStyle;
+
   /// Whether the button should apply the blur effect.
   final bool shouldApplyBlur;
+
+  /// Position of the icon in the button.
+  final DotsMainButtonIconPosition iconPosition;
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +93,44 @@ class DotsMainButton extends StatelessWidget {
     final borderRadius = BorderRadius.circular(size.height);
     final foregroundColor = textColor ??
         (buttonTheme.foregroundGradient == null ? buttonTheme.foregroundColor : Colors.white);
+
+    final Widget iconWidget = icon != null
+        ? DotsIcon(
+            iconData: icon ?? DotsIconData.values.first,
+            size: iconSize,
+            color: buttonTheme.iconColor ?? foregroundColor,
+          )
+        : const SizedBox.shrink();
+
+    final Widget text = DotsShaderMask(
+      styleType: buttonTheme.foregroundGradient,
+      child: IntrinsicWidth(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          spacing: size.spacing,
+          children: [
+            Text(
+              content,
+              overflow: TextOverflow.ellipsis,
+              style: textStyle ??
+                  size.getTextStyle(theme).copyWith(
+                        color: foregroundColor,
+                      ),
+            ),
+            if (details != null &&
+                (size == DotsMainButtonSize.mainAction || size == DotsMainButtonSize.large))
+              Text(
+                details ?? '',
+                overflow: TextOverflow.ellipsis,
+                style: theme.typo.main.bodyDefaultMedium.copyWith(
+                  color: buttonTheme.foregroundSecondaryColor?.dotsWithOpacity(0.6) ??
+                      foregroundColor?.dotsWithOpacity(0.6),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
 
     Widget button = Material(
       color: buttonTheme.backgroundColor ?? Colors.transparent,
@@ -103,41 +149,8 @@ class DotsMainButton extends StatelessWidget {
             spacing: size.spacing,
             mainAxisSize: expand ? MainAxisSize.max : MainAxisSize.min,
             children: [
-              if (icon != null)
-                DotsIcon(
-                  iconData: icon ?? DotsIconData.values.first,
-                  size: iconSize,
-                  color: buttonTheme.iconColor ?? foregroundColor,
-                ),
-              DotsShaderMask(
-                styleType: buttonTheme.foregroundGradient,
-                child: IntrinsicWidth(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    spacing: size.spacing,
-                    children: [
-                      Text(
-                        content,
-                        overflow: TextOverflow.ellipsis,
-                        style: size.getTextStyle(theme).copyWith(
-                              color: foregroundColor,
-                            ),
-                      ),
-                      if (details != null &&
-                          (size == DotsMainButtonSize.mainAction ||
-                              size == DotsMainButtonSize.large))
-                        Text(
-                          details ?? '',
-                          overflow: TextOverflow.ellipsis,
-                          style: theme.typo.main.bodyDefaultMedium.copyWith(
-                            color: buttonTheme.foregroundSecondaryColor?.dotsWithOpacity(0.6) ??
-                                foregroundColor?.dotsWithOpacity(0.6),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-              ),
+              if (iconPosition.isLeft) ...[iconWidget, text],
+              if (iconPosition.isRight) ...[text, iconWidget],
             ],
           ),
         ),
