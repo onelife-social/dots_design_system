@@ -1,6 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:vector_graphics/vector_graphics.dart';
 
 class DotsIcon extends StatelessWidget {
   const DotsIcon({super.key, required this.iconData, this.color, this.size = 32});
@@ -22,8 +23,8 @@ class DotsIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = this.color;
 
-    return SvgPicture.asset(
-      _getPathByDotsIcons(iconData),
+    return SvgPicture(
+      AssetBytesLoader(_getPathByDotsIcons(iconData)),
       colorFilter: color != null ? ColorFilter.mode(color, BlendMode.srcIn) : null,
       height: size,
       width: size,
@@ -36,5 +37,5 @@ String _getPathByDotsIcons(DotsIconData icon) {
   final group = icon.iconGroup.folderName;
   final assetName = icon.asset;
 
-  return 'packages/$package/assets/icons/$group/$assetName';
+  return 'packages/$package/assets/icons/$group/$assetName.vec';
 }
