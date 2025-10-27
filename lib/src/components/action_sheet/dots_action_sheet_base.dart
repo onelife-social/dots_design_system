@@ -85,9 +85,11 @@ class DotsActionSheetBase extends StatelessWidget {
                         SizedBox(
                           height: 16,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: child,
+                        Flexible(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: child,
+                          ),
                         ),
                       ],
                     ),
@@ -100,7 +102,7 @@ class DotsActionSheetBase extends StatelessWidget {
                         size: DotsCloseButtonSize.medium,
                         onTap: onTapCloseButton,
                       ),
-                    )
+                    ),
                 ],
               ),
             ),
@@ -129,7 +131,7 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     return SizedBox(
-      height: subtitle != null ? 60 : 40,
+      height: subtitle != null ? 60 : 50,
       child: Column(
         children: [
           Expanded(
@@ -154,7 +156,7 @@ class _Header extends StatelessWidget {
                   child: Center(
                     child: Padding(
                       padding: addTitlePadding
-                          ? const EdgeInsets.symmetric(horizontal: 36)
+                          ? const EdgeInsets.symmetric(horizontal: 42)
                           : EdgeInsets.zero,
                       child: Text(
                         title,

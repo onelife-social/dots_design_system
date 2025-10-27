@@ -10,6 +10,7 @@ class ActivityOverviewItem extends StatelessWidget {
     this.images,
     this.onError,
     required this.icon,
+    required this.variant,
     required this.count,
     required this.title,
     required this.reactionsCount,
@@ -18,7 +19,7 @@ class ActivityOverviewItem extends StatelessWidget {
     this.height = 68,
     this.borderRadius = 12.0,
     this.elevation = 4.0,
-    this.borderWidth = 2.0,
+    this.borderWidth = 1.0,
     this.maxUserImages = 2,
   });
 
@@ -32,6 +33,9 @@ class ActivityOverviewItem extends StatelessWidget {
   /// Icon widget to display in the top-right corner
   final Widget icon;
 
+  /// The variant of the activity preview.
+  final ActivityPreviewVariant variant;
+  
   /// The count number to display below the image
   final int count;
 
@@ -67,128 +71,139 @@ class ActivityOverviewItem extends StatelessWidget {
     final theme = context.dotsTheme;
 
     final imageBorderRadius = BorderRadius.all(Radius.circular(borderRadius));
+    final bgBadgeColor = _backgroundColor(theme, variant);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Card(
-          elevation: elevation,
-          child: Stack(
-            clipBehavior: Clip.none,
-            alignment: Alignment.center,
-            children: [
-              if (images != null && images!.length > 1)
-                Transform(
-                  alignment: Alignment.bottomRight,
-                  transform: Matrix4.identity()..rotateZ(-0.087),
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: width,
-                        height: height,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                          borderRadius: imageBorderRadius,
-                          image: (images != null && images!.isNotEmpty)
-                              ? DecorationImage(
-                                  image: images!.last,
-                                  fit: BoxFit.cover,
-                                  onError: (exception, stackTrace) {
-                                    onError?.call(exception, stackTrace);
-                                  },
-                                )
-                              : null,
-                        ),
+        Stack(
+          clipBehavior: Clip.none,
+          alignment: Alignment.center,
+          children: [
+            if (images != null && images!.length > 1)
+              Transform(
+                alignment: Alignment.bottomRight,
+                transform: Matrix4.identity()..rotateZ(-0.087),
+                child: Stack(
+                  children: [
+                    Container(
+                      width: width,
+                      height: height,
+                      decoration: BoxDecoration(
+                        borderRadius: imageBorderRadius,
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0x26000000),
+                            blurRadius: 10,
+                            offset: const Offset(-6, 5),
+                          ),
+                        ],
+                        image: (images != null && images!.isNotEmpty)
+                            ? DecorationImage(
+                                image: images!.last,
+                                fit: BoxFit.cover,
+                                onError: (exception, stackTrace) {
+                                  onError?.call(exception, stackTrace);
+                                },
+                              )
+                            : null,
                       ),
-                      Container(
-                        width: width,
-                        height: height,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: imageBorderRadius,
-                            side: BorderSide(
-                              color: Colors.white60,
-                              width: borderWidth,
-                              strokeAlign: BorderSide.strokeAlignInside,
-                            ),
+                    ),
+                    Container(
+                      width: width,
+                      height: height,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: imageBorderRadius,
+                          side: BorderSide(
+                            color: const Color(0x4DFFFFFF),
+                            width: borderWidth,
+                            strokeAlign: BorderSide.strokeAlignInside,
                           ),
                         ),
                       ),
+                    ),
+                  ],
+                ),
+              ),
+            Container(
+              width: width,
+              height: height,
+              decoration: BoxDecoration(
+                borderRadius: imageBorderRadius,
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0x26000000),
+                    blurRadius: 6,
+                    offset: const Offset(0, 6),
+                  ),
+                ],
+                image: (images != null && images!.isNotEmpty)
+                    ? DecorationImage(
+                        image: images!.first,
+                        fit: BoxFit.cover,
+                        onError: (exception, stackTrace) {
+                          onError?.call(exception, stackTrace);
+                        },
+                      )
+                    : null,
+              ),
+            ),
+            Positioned.fill(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  borderRadius: imageBorderRadius,
+                  gradient: const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: [0.0, 0.5],
+                    colors: [
+                      Colors.black26,
+                      Colors.transparent,
                     ],
                   ),
                 ),
-              Container(
-                width: width,
-                height: height,
-                clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(
+              ),
+            ),
+            Container(
+              width: width,
+              height: height,
+              decoration: ShapeDecoration(
+                shape: RoundedRectangleBorder(
                   borderRadius: imageBorderRadius,
-                  image: (images != null && images!.isNotEmpty)
-                      ? DecorationImage(
-                          image: images!.first,
-                          fit: BoxFit.cover,
-                          onError: (exception, stackTrace) {
-                            onError?.call(exception, stackTrace);
-                          },
-                        )
-                      : null,
+                  side: BorderSide(
+                    color: const Color(0x4DFFFFFF),
+                    width: borderWidth,
+                    strokeAlign: BorderSide.strokeAlignInside,
+                  ),
                 ),
               ),
-              Positioned.fill(
-                child: DecoratedBox(
+            ),
+            Positioned(
+              top: -8,
+              right: -8,
+              child: CircleAvatar(
+                radius: 10,
+                backgroundColor: theme.colors.bgBase,
+                child: Container(
+                  margin: const EdgeInsets.all(1.5),
+                  width: 18,
+                  height: 18,
                   decoration: BoxDecoration(
-                    borderRadius: imageBorderRadius,
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: const [0.0, 0.5],
-                      colors: [
-                        Colors.black26,
-                        Colors.transparent,
-                      ],
+                    color: bgBadgeColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: SizedBox(
+                      width: 14,
+                      height: 14,
+                      child: icon,
                     ),
                   ),
                 ),
               ),
-              Container(
-                width: width,
-                height: height,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: imageBorderRadius,
-                    side: BorderSide(
-                        color: Colors.white60,
-                        width: borderWidth,
-                        strokeAlign: BorderSide.strokeAlignInside),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: -8,
-                right: -8,
-                child: CircleAvatar(
-                  radius: 10,
-                  backgroundColor: theme.colors.bgBase,
-                  child: Container(
-                    margin: const EdgeInsets.all(1),
-                    width: 18,
-                    height: 18,
-                    decoration: BoxDecoration(
-                      color: theme.colors.bgSecondaryBtn,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      child: SizedBox(
-                        width: 14,
-                        height: 14,
-                        child: icon,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
         const SizedBox(height: 16),
         Column(
@@ -197,7 +212,7 @@ class ActivityOverviewItem extends StatelessWidget {
             Text(
               formatCount(count),
               maxLines: 1,
-              style: theme.typo.main.labelDefaultBold.copyWith(
+              style: theme.typo.main.bodyDefaultMedium.copyWith(
                 color: theme.colors.textSecondary,
               ),
             ),
@@ -205,7 +220,7 @@ class ActivityOverviewItem extends StatelessWidget {
               title,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: theme.typo.main.labelDefaultBold.copyWith(
+              style: theme.typo.main.bodyDefaultMedium.copyWith(
                 color: theme.colors.textSecondary,
               ),
             ),
@@ -298,3 +313,16 @@ class ActivityOverviewItem extends StatelessWidget {
     return 17.0 + ((imageCount - 1) * 10.0);
   }
 }
+
+
+Color _backgroundColor(DotsTheme theme, ActivityPreviewVariant variant) {
+    switch (variant) {
+      case ActivityPreviewVariant.reactions:
+        return theme.colors.friends001;
+      case ActivityPreviewVariant.views:
+        return theme.colors.hobby002;
+      case ActivityPreviewVariant.favs:
+        return theme.colors.couple001;
+      
+    }
+  }

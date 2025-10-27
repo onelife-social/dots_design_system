@@ -7,6 +7,7 @@ enum UserItemListVariant {
   label,
   textfield,
   button,
+  pending,
   ;
 }
 
@@ -75,6 +76,16 @@ class UsersItemList extends StatelessWidget {
         variant: UserItemListVariant.label,
         data: data,
         label: label,
+      );
+
+  factory UsersItemList.pending({
+    Key? key,
+    required UserInfoData data,
+  }) =>
+      UsersItemList._(
+        key: key,
+        variant: UserItemListVariant.pending,
+        data: data,
       );
 
   factory UsersItemList.textfield({
@@ -227,6 +238,7 @@ class _MainWidget extends StatelessWidget {
     switch (variant) {
       case UserItemListVariant.main:
       case UserItemListVariant.label:
+      case UserItemListVariant.pending:
         return UserInfo(data: data!);
 
       case UserItemListVariant.textfield:
@@ -310,6 +322,13 @@ class _TrailingWidget extends StatelessWidget {
         return DotsCloseButton(
           size: DotsCloseButtonSize.extraSmall,
           onTap: () => onTap?.call(tapValue),
+        );
+
+      case UserItemListVariant.pending:
+        return DotsIcon(
+          iconData: DotsIconData.clockFilled,
+          size: 16,
+          color: theme.colors.textSecondary,
         );
 
       case UserItemListVariant.label:
