@@ -13,6 +13,7 @@ import 'package:example/components/users_list_demo_page.dart';
 import 'package:example/stories/helpers/color_knob_options.dart';
 import 'package:example/stories/helpers/linear_gradient_options.dart';
 import 'package:example/stories/stories_by_folder/action_sheet_stories.dart';
+import 'package:example/stories/stories_by_folder/alert_stories.dart';
 import 'package:example/stories/stories_by_folder/badge_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
 import 'package:example/stories/stories_by_folder/chat_stories.dart';
@@ -38,6 +39,7 @@ import '../components/linear_gradient_blur_container_demo_page.dart';
 List<Story> get allStories => [
       ...notificationsStories,
       ...themeStories,
+      ...actionSheetStories,
       ...badgeStories,
       ...buttonStories,
       ...toastStories,

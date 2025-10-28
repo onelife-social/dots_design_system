@@ -12,6 +12,9 @@ class DotsAlert extends StatelessWidget {
   /// The icon to display in the alert.
   final DotsIconData iconData;
 
+  /// The image to display in the alert instead of the icon.
+  final ImageProvider? iconImage;
+
   /// The title text of the alert.
   final String title;
 
@@ -55,6 +58,7 @@ class DotsAlert extends StatelessWidget {
     this.variant = DotsAlertVariant.noButtons,
     required this.iconData,
     required this.title,
+    this.iconImage,
     this.message,
     this.onClose,
     this.enableCloseOnTapOutside = true,
@@ -76,11 +80,13 @@ class DotsAlert extends StatelessWidget {
     VoidCallback? onClose,
     bool enableCloseOnTapOutside = true,
     bool showCloseButton = false,
+    ImageProvider? iconImage,
   }) =>
       DotsAlert._(
         key: key,
         variant: DotsAlertVariant.noButtons,
         iconData: iconData,
+        iconImage: iconImage,
         title: title,
         message: message,
         onClose: onClose,
@@ -98,11 +104,13 @@ class DotsAlert extends StatelessWidget {
     required String mainButtonText,
     required VoidCallback mainButtonOnTap,
     bool showCloseButton = false,
+    ImageProvider? iconImage,
   }) =>
       DotsAlert._(
         key: key,
         variant: DotsAlertVariant.oneButton,
         iconData: iconData,
+        iconImage: iconImage,
         title: title,
         message: message,
         onClose: onClose,
@@ -124,11 +132,13 @@ class DotsAlert extends StatelessWidget {
     required String secondaryButtonText,
     required VoidCallback secondaryButtonOnTap,
     bool showCloseButton = false,
+    ImageProvider? iconImage,
   }) =>
       DotsAlert._(
         key: key,
         variant: DotsAlertVariant.twoHorizontalButtons,
         iconData: iconData,
+        iconImage: iconImage,
         title: title,
         message: message,
         onClose: onClose,
@@ -151,11 +161,13 @@ class DotsAlert extends StatelessWidget {
     required String secondaryButtonText,
     required VoidCallback secondaryButtonOnTap,
     bool showCloseButton = false,
+    ImageProvider? iconImage,
   }) =>
       DotsAlert._(
         key: key,
         variant: DotsAlertVariant.twoHorizontalButtonsDestructive,
         iconData: iconData,
+        iconImage: iconImage,
         title: title,
         message: message,
         onClose: onClose,
@@ -179,11 +191,13 @@ class DotsAlert extends StatelessWidget {
     required String secondaryButtonText,
     required VoidCallback secondaryButtonOnTap,
     bool showCloseButton = false,
+    ImageProvider? iconImage,
   }) =>
       DotsAlert._(
         key: key,
         variant: DotsAlertVariant.twoVerticalButtons,
         iconData: iconData,
+        iconImage: iconImage,
         title: title,
         message: message,
         onClose: onClose,
@@ -208,11 +222,13 @@ class DotsAlert extends StatelessWidget {
     required String secondaryButtonText,
     required VoidCallback secondaryButtonOnTap,
     bool showCloseButton = false,
+    ImageProvider? iconImage,
   }) =>
       DotsAlert._(
         key: key,
         variant: DotsAlertVariant.input,
         iconData: iconData,
+        iconImage: iconImage,
         title: title,
         onClose: onClose,
         enableCloseOnTapOutside: enableCloseOnTapOutside,
@@ -238,11 +254,13 @@ class DotsAlert extends StatelessWidget {
     required String secondaryButtonText,
     required VoidCallback secondaryButtonOnTap,
     bool showCloseButton = false,
+    ImageProvider? iconImage,
   }) =>
       DotsAlert._(
         key: key,
         variant: DotsAlertVariant.selector,
         iconData: iconData,
+        iconImage: iconImage,
         title: title,
         message: message,
         onClose: onClose,
@@ -293,7 +311,7 @@ class DotsAlert extends StatelessWidget {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(width: 24),
+                            if (showCloseButton) SizedBox(width: DotsCloseButtonSize.medium.size),
                             Expanded(
                               child: Center(child: _icon(theme)),
                             ),
@@ -303,9 +321,7 @@ class DotsAlert extends StatelessWidget {
                                 size: DotsCloseButtonSize.medium,
                                 variant: DotsCloseButtonVariant.softContrast,
                                 onTap: onClose,
-                              )
-                            else
-                              SizedBox(width: 24),
+                              ),
                           ],
                         ),
                         Padding(
@@ -344,20 +360,29 @@ class DotsAlert extends StatelessWidget {
   }
 
   Widget _icon(DotsTheme theme) {
+    final iconWidget = Container(
+      width: 48,
+      height: 48,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(24.5),
+        color: theme.colors.labelHighlight.dotsWithOpacity(0.2),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: DotsIcon(iconData: iconData, color: theme.colors.labelHighlight),
+      ),
+    );
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: Container(
-        width: 48,
-        height: 48,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24.5),
-          color: theme.colors.labelHighlight.dotsWithOpacity(0.2),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: DotsIcon(iconData: iconData, color: theme.colors.labelHighlight),
-        ),
-      ),
+      child: iconImage != null
+          ? Image(
+              image: iconImage!,
+              width: 48,
+              height: 48,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => iconWidget,
+            )
+          : iconWidget,
     );
   }
 
