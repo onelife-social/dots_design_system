@@ -221,7 +221,14 @@ List<Story> get actionSheetStories => [
                   ),
                   color: context.dotsTheme.colors.bgContainerTertiary,
                 ),
-                onClose: () {},
+                showCloseButton: context.knobs.boolean(label: 'Show close button', initial: false),
+                onClose: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('onClose'),
+                    ),
+                  );
+                },
                 bottomWidget: Container(
                   height: context.knobs.slider(
                     label: 'Bottom widget height',
