@@ -13,6 +13,7 @@ import 'package:example/components/users_list_demo_page.dart';
 import 'package:example/stories/helpers/color_knob_options.dart';
 import 'package:example/stories/helpers/linear_gradient_options.dart';
 import 'package:example/stories/stories_by_folder/action_sheet_stories.dart';
+import 'package:example/stories/stories_by_folder/alert_stories.dart';
 import 'package:example/stories/stories_by_folder/badge_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
 import 'package:example/stories/stories_by_folder/chat_stories.dart';
@@ -36,24 +37,25 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 import '../components/linear_gradient_blur_container_demo_page.dart';
 
 List<Story> get allStories => [
-      ...notificationsStories,
-      ...themeStories,
+      ...actionSheetStories,
+      ...alertStories,
       ...badgeStories,
       ...buttonStories,
+      ...cards,
+      ...chatStories,
+      ...countdownStories,
+      ...dropdownStories,
+      ...memoryDetailsStories,
+      ...miscellaneousStories,
+      ...notificationsStories,
+      ...profilePhotoStories,
+      ...segmentedControlStories,
+      ...selectorRadioButtonStories,
+      ...separatorStories,
+      ...spinnerStories,
+      ...themeStories,
       ...toastStories,
       ...topBarStories,
-      ...cards,
-      ...countdownStories,
-      ...selectorRadioButtonStories,
-      ...actionSheetStories,
-      ...dropdownStories,
-      ...separatorStories,
-      ...chatStories,
-      ...profilePhotoStories,
-      ...memoryDetailsStories,
-      ...spinnerStories,
-      ...segmentedControlStories,
-      ...miscellaneousStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',

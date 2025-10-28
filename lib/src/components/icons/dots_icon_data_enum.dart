@@ -132,8 +132,9 @@ enum DotsIconData {
   trashOpen('ic-trash-open.svg', DotsIconGroup.editingTools),
 
   // Media
-  archive('ic-archive.svg', DotsIconGroup.media),
+  ai('ic-ai.svg', DotsIconGroup.media),
   album('ic-album.svg', DotsIconGroup.media),
+  archive('ic-archive.svg', DotsIconGroup.media),
   bookOpen('ic-book-open.svg', DotsIconGroup.media),
   bookOpenFilled('ic-book-open--filled.svg', DotsIconGroup.media),
   camera('ic-camera.svg', DotsIconGroup.media),
