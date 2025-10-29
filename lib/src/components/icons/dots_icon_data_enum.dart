@@ -213,6 +213,7 @@ enum DotsIconData {
   helpCircle('ic-help-circle.svg', DotsIconGroup.system),
   helpCircleOutline('ic-help-circle-outline.svg', DotsIconGroup.system),
   home('ic-home.svg', DotsIconGroup.system),
+  info('ic-info.svg', DotsIconGroup.system),
   infoCircle('ic-info-circle.svg', DotsIconGroup.system),
   lightbulb('ic-lightbulb.svg', DotsIconGroup.system),
   lightbulb2('ic-lightbulb-2.svg', DotsIconGroup.system),
