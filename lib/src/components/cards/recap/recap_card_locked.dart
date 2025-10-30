@@ -12,6 +12,9 @@ enum RecapCardLockedVariant {
 }
 
 class RecapCardLocked extends StatelessWidget {
+  /// The aspect ratio of the card.
+  static const double kAspectRatio = 7 / 8;
+
   /// The width of the card.
   final double? width;
 
@@ -79,7 +82,7 @@ class RecapCardLocked extends StatelessWidget {
     return SizedBox(
       width: width,
       child: AspectRatio(
-        aspectRatio: 7 / 8,
+        aspectRatio: kAspectRatio,
         child: DotsDecoratedBox(
           styleType: theme.styles.squircle52,
           child: Stack(
@@ -101,9 +104,14 @@ class RecapCardLocked extends StatelessWidget {
                     if (!variant.isSoon) ...[
                       Align(
                         alignment: Alignment.topRight,
-                        child: IconButton(
-                          onPressed: onInfoTap,
-                          icon: const DotsIcon(iconData: DotsIconData.infoCircle),
+                        child: DotsIconButton(
+                          icon: DotsIconData.info,
+                          onTap: onInfoTap,
+                          style: DotsIconButtonStyle.floating,
+                          size: DotsIconButtonSize.medium,
+                          state: DotsIconButtonState.defaultState,
+                          color: theme.colors.textPrimary,
+                          backgroundColor: theme.colors.bgBtnImage,
                         ),
                       ),
                     ],
@@ -111,8 +119,9 @@ class RecapCardLocked extends StatelessWidget {
                       child: CountdownRecap(
                         title: title,
                         description: description ?? '',
-                        countdownDate:
-                            variant.isCountdown ? countdownDate ?? DateTime.now() : DateTime.now(),
+                        countdownDate: variant.isCountdown
+                            ? countdownDate ?? DateTime.now()
+                            : DateTime.now(),
                         daysLabel: daysLabel ?? '',
                         hoursLabel: hoursLabel ?? '',
                         minutesLabel: minutesLabel ?? '',

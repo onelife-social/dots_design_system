@@ -258,19 +258,22 @@ class _CountdownBaseBody extends StatelessWidget {
     final theme = context.dotsTheme;
     final Color textColor = theme.colors.labelAlwaysWhite;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        DotsIcon(iconData: DotsIconData.lock, size: 20, color: textColor),
-        const SizedBox(height: 4),
-        Text(
-          title,
-          textAlign: TextAlign.center,
-          style: theme.typo.main.labelDefaultBold.copyWith(color: textColor),
-        ),
-        const SizedBox(height: 6),
-        child,
-      ],
+    return SizedBox(
+      width: 192,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          DotsIcon(iconData: DotsIconData.lock, size: 20, color: textColor),
+          const SizedBox(height: 4),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: theme.typo.main.labelDefaultBold.copyWith(color: textColor),
+          ),
+          const SizedBox(height: 6),
+          child,
+        ],
+      ),
     );
   }
 }

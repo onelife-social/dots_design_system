@@ -10,6 +10,9 @@ enum RecapCardVariant {
 }
 
 class RecapCard extends StatelessWidget {
+  /// The width of the card.
+  final double width;
+
   /// The variant of the group card.
   final RecapCardVariant variant;
 
@@ -30,6 +33,7 @@ class RecapCard extends StatelessWidget {
 
   const RecapCard({
     super.key,
+    required this.width,
     required this.imageProvider,
     required this.buttonText,
     required this.badgeText,
@@ -44,60 +48,64 @@ class RecapCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
-      child: AspectRatio(
-        aspectRatio: 4 / 5,
-        child: DotsDecoratedBox(
-          styleType: theme.styles.defaultShadow,
+      child: SizedBox(
+        width: width,
+        child: AspectRatio(
+          aspectRatio: 4 / 5,
           child: DotsDecoratedBox(
-            styleType: theme.styles.squircle52,
-            child: Stack(
-              children: [
-                Image(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: double.infinity,
-                  errorBuilder: (context, error, stackTrace) {
-                    if (onError != null) onError!(error, stackTrace);
-                    return SizedBox();
-                  },
-                ),
-                Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        top: 7,
-                        left: 7,
-                        child: BadgeLabel(
-                          content: badgeText,
-                          variant: BadgeLabelVariant.premium,
-                          size: BadgeLabelSize.large,
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: variant.isNewRecap
-                            ? DotsMainButton(
-                                content: buttonText,
-                                variant: DotsMainButtonVariant.surface,
-                                expand: false,
-                                onTap: onTap,
-                                shouldApplyBlur: true,
-                              )
-                            : Text(
-                                buttonText,
-                                textAlign: TextAlign.center,
-                                style: theme.typo.main.bodyDefaultMedium
-                                    .copyWith(color: theme.colors.labelAlwaysWhite),
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                              ),
-                      ),
-                    ],
+            styleType: theme.styles.defaultShadow,
+            child: DotsDecoratedBox(
+              styleType: theme.styles.squircle52,
+              child: Stack(
+                children: [
+                  Image(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                    errorBuilder: (context, error, stackTrace) {
+                      if (onError != null) onError!(error, stackTrace);
+                      return SizedBox();
+                    },
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          top: 7,
+                          left: 7,
+                          child: BadgeLabel(
+                            content: badgeText,
+                            variant: BadgeLabelVariant.premium,
+                            size: BadgeLabelSize.large,
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: variant.isNewRecap
+                              ? DotsMainButton(
+                                  content: buttonText,
+                                  variant: DotsMainButtonVariant.surface,
+                                  expand: false,
+                                  onTap: onTap,
+                                  shouldApplyBlur: true,
+                                )
+                              : Text(
+                                  buttonText,
+                                  textAlign: TextAlign.center,
+                                  style: theme.typo.main.bodyDefaultMedium.copyWith(
+                                    color: theme.colors.labelAlwaysWhite,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

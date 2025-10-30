@@ -117,7 +117,7 @@ class DotsActionSheetStandard extends StatelessWidget {
                                   width: double.infinity,
                                   child: Text(description,
                                       textAlign: TextAlign.center,
-                                      style: theme.typo.main.labelSmallRegular.copyWith(
+                                      style: theme.typo.main.labelDefaultRegular.copyWith(
                                         color: theme.colors.textSecondary,
                                       )),
                                 ),
