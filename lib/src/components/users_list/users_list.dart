@@ -139,6 +139,7 @@ class _UsersListState extends State<UsersList> {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
       child: ListView.separated(
+        physics: const NeverScrollableScrollPhysics(),
         padding: EdgeInsets.zero,
         shrinkWrap: true,
         itemCount: items.length,
