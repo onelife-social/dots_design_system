@@ -77,11 +77,12 @@ class DotsActionSheetBase extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         _Header(
-                            title: title,
-                            subtitle: subtitle,
-                            onBackButtonTap: onBackButtonTap,
-                            titleStyle: titleStyle,
-                            addTitlePadding: addTitlePadding),
+                          title: title,
+                          subtitle: subtitle,
+                          onBackButtonTap: onBackButtonTap,
+                          titleStyle: titleStyle,
+                          addTitlePadding: addTitlePadding,
+                        ),
                         SizedBox(
                           height: 16,
                         ),
@@ -131,7 +132,7 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     return SizedBox(
-      height: subtitle != null ? 60 : 50,
+      height: subtitle != null ? 60 : 40,
       child: Column(
         children: [
           Expanded(
@@ -160,9 +161,11 @@ class _Header extends StatelessWidget {
                           : EdgeInsets.zero,
                       child: Text(
                         title,
-                        style: titleStyle ??
-                            theme.typo.secondary.title02H6
-                                .copyWith(color: theme.colors.textPrimary),
+                        style:
+                            titleStyle ??
+                            theme.typo.secondary.title02H6.copyWith(
+                              color: theme.colors.textPrimary,
+                            ),
                         textAlign: TextAlign.center,
                       ),
                     ),
