@@ -19,6 +19,9 @@ class RecapCard extends StatelessWidget {
   /// The image provider for the background image
   final ImageProvider imageProvider;
 
+  /// The default image provider for the background image.
+  final ImageProvider defaultImage;
+
   /// Button text that will be displayed at the bottom of the card.
   final String buttonText;
 
@@ -35,6 +38,7 @@ class RecapCard extends StatelessWidget {
     super.key,
     required this.width,
     required this.imageProvider,
+    required this.defaultImage,
     required this.buttonText,
     required this.badgeText,
     this.variant = RecapCardVariant.newRecap,
@@ -65,7 +69,7 @@ class RecapCard extends StatelessWidget {
                     height: double.infinity,
                     errorBuilder: (context, error, stackTrace) {
                       if (onError != null) onError!(error, stackTrace);
-                      return SizedBox();
+                      return Image(image: defaultImage);
                     },
                   ),
                   Padding(

@@ -20,6 +20,7 @@ List<Story> get cards => [
           title: context.knobs.text(label: 'Title', initial: 'Recap Noviembre'),
           imageProvider: NetworkImage(context.knobs.text(
               label: 'Container background image', initial: 'https://picsum.photos/250?image=9')),
+          defaultImage: NetworkImage('https://picsum.photos/250?image=9'),
           buttonText: context.knobs.text(label: 'Button Text', initial: 'Subir'),
           description: context.knobs.text(
               label: 'Description',
@@ -48,6 +49,7 @@ List<Story> get cards => [
         name: 'Cards/Recap Card',
         description: 'Recap Page new Recap',
         builder: (context) => RecapCard(
+          width: context.knobs.slider(label: 'Width', initial: 254, min: 254, max: 382),
           buttonText: context.knobs.text(label: 'Button Text', initial: 'Ver Recap'),
           badgeText: context.knobs.text(label: 'Badge Text', initial: '¡Nuevo!'),
           variant: context.knobs.options<RecapCardVariant>(
@@ -68,6 +70,7 @@ List<Story> get cards => [
             context.knobs.text(
                 label: 'Container background image', initial: 'https://picsum.photos/250?image=9'),
           ),
+          defaultImage: NetworkImage('https://picsum.photos/250?image=9'),
         ),
       ),
       Story(
