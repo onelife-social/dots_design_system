@@ -24,6 +24,9 @@ class RecapCardLocked extends StatelessWidget {
   /// The image provider for the background image
   final ImageProvider imageProvider;
 
+  /// The default image provider for the background image.
+  final ImageProvider defaultImage;
+
   /// Callback when an error occurs while loading the image.
   final void Function(Object exception, StackTrace? stackTrace)? onError;
 
@@ -61,6 +64,7 @@ class RecapCardLocked extends StatelessWidget {
     super.key,
     required this.variant,
     required this.imageProvider,
+    required this.defaultImage,
     required this.title,
     this.width,
     this.description,
@@ -94,7 +98,7 @@ class RecapCardLocked extends StatelessWidget {
                 height: double.infinity,
                 errorBuilder: (context, error, stackTrace) {
                   if (onError != null) onError!(error, stackTrace);
-                  return SizedBox();
+                  return Image(image: defaultImage);
                 },
               ),
               Padding(
