@@ -69,7 +69,14 @@ class RecapCard extends StatelessWidget {
                     height: double.infinity,
                     errorBuilder: (context, error, stackTrace) {
                       if (onError != null) onError!(error, stackTrace);
-                      return Image(image: defaultImage);
+                      return Image(
+                        image: defaultImage,
+                        errorBuilder: (context, error, stackTrace) => Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          color: theme.colors.bgContainerTertiary,
+                        ),
+                      );
                     },
                   ),
                   Padding(
