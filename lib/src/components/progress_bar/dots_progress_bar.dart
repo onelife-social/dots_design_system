@@ -3,16 +3,23 @@ import 'package:flutter/material.dart';
 
 /// Conventional progress but divided in parts
 class DotsProgressBar extends StatelessWidget {
-  /// Percentage of the progress, must be between 0 and 1
+  /// Percentage of the progress, must be between 0 and 1.
   final double percentage;
 
-  /// Parts progress is divided, must be more than 0
+  /// Parts progress is divided, must be more than 0.
   final int parts;
 
-  /// Width of the progress bar
+  /// Width of the progress bar.
   final double width;
 
+  /// Space between each part.
   final double spaceBetween;
+
+  /// Color of the progress bar.
+  final Color? barColor;
+
+  /// Color of the background of the progress bar.
+  final Color? bgColor;
 
   const DotsProgressBar({
     super.key,
@@ -20,27 +27,24 @@ class DotsProgressBar extends StatelessWidget {
     this.parts = 3,
     this.width = 110,
     this.spaceBetween = 5,
-  })  : assert(
-          percentage <= 1 && percentage >= 0,
-          'Percentage must be between 1 and 0 both inclusive',
-        ),
-        assert(
-          parts > 0,
-          'Parts must be more than 0',
-        );
+    this.barColor,
+    this.bgColor,
+  }) : assert(
+         percentage <= 1 && percentage >= 0,
+         'Percentage must be between 1 and 0 both inclusive',
+       ),
+       assert(parts > 0, 'Parts must be more than 0');
 
   factory DotsProgressBar.byStep(int stepNumber, int totalSteps) {
-    assert(
-      stepNumber <= totalSteps,
-      'Step number must be less than or equal to $totalSteps',
-    );
+    assert(stepNumber <= totalSteps, 'Step number must be less than or equal to $totalSteps');
 
     return DotsProgressBar(percentage: stepNumber / totalSteps);
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
+    final Color finalBarColor = barColor ?? context.dotsTheme.colors.labelHighlight;
+    final Color finalBgColor = bgColor ?? context.dotsTheme.colors.labelSecondary;
 
     return SizedBox(
       height: 5,
@@ -50,8 +54,8 @@ class DotsProgressBar extends StatelessWidget {
           percentage: percentage,
           parts: parts,
           spaceBetween: spaceBetween,
-          colorPrimary: theme.colors.labelHighlight,
-          colorBackground: theme.colors.labelSecondary,
+          colorPrimary: finalBarColor,
+          colorBackground: finalBgColor,
         ),
       ),
     );
@@ -84,12 +88,7 @@ class _MultiStepProgressPainter extends CustomPainter {
       final startPoint = (widthOfEach + spaceBetween) * i;
       final endPoint = startPoint + widthOfEach;
       final rectToAdd = RRect.fromRectAndRadius(
-        Rect.fromLTRB(
-          startPoint,
-          0,
-          endPoint,
-          5,
-        ),
+        Rect.fromLTRB(startPoint, 0, endPoint, 5),
         const Radius.circular(100),
       );
 
@@ -101,12 +100,7 @@ class _MultiStepProgressPainter extends CustomPainter {
         disabledRectList.add(rectToAdd);
         enabledRectList.add(
           RRect.fromRectAndRadius(
-            Rect.fromLTRB(
-              startPoint,
-              0,
-              separation,
-              5,
-            ),
+            Rect.fromLTRB(startPoint, 0, separation, 5),
             const Radius.circular(100),
           ),
         );
@@ -114,16 +108,10 @@ class _MultiStepProgressPainter extends CustomPainter {
     }
 
     for (final rect in disabledRectList) {
-      canvas.drawRRect(
-        rect,
-        Paint()..color = colorBackground,
-      );
+      canvas.drawRRect(rect, Paint()..color = colorBackground);
     }
     for (final rect in enabledRectList) {
-      canvas.drawRRect(
-        rect,
-        Paint()..color = colorPrimary,
-      );
+      canvas.drawRRect(rect, Paint()..color = colorPrimary);
     }
   }
 
