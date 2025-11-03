@@ -2,14 +2,7 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-enum UserItemListVariant {
-  main,
-  label,
-  textfield,
-  button,
-  pending,
-  ;
-}
+enum UserItemListVariant { main, label, textfield, button, pending, join }
 
 class UsersItemList extends StatelessWidget {
   /// Member unique id.
@@ -57,36 +50,22 @@ class UsersItemList extends StatelessWidget {
     required String id,
     required UserInfoData data,
     required void Function(String?)? onTap,
-  }) =>
-      UsersItemList._(
-        key: key,
-        id: id,
-        variant: UserItemListVariant.main,
-        data: data,
-        onTap: onTap,
-      );
+  }) => UsersItemList._(
+    key: key,
+    id: id,
+    variant: UserItemListVariant.main,
+    data: data,
+    onTap: onTap,
+  );
 
-  factory UsersItemList.label({
-    Key? key,
-    required UserInfoData data,
-    required String label,
-  }) =>
-      UsersItemList._(
-        key: key,
-        variant: UserItemListVariant.label,
-        data: data,
-        label: label,
-      );
+  factory UsersItemList.label({Key? key, required UserInfoData data, required String label}) =>
+      UsersItemList._(key: key, variant: UserItemListVariant.label, data: data, label: label);
 
-  factory UsersItemList.pending({
-    Key? key,
-    required UserInfoData data,
-  }) =>
-      UsersItemList._(
-        key: key,
-        variant: UserItemListVariant.pending,
-        data: data,
-      );
+  factory UsersItemList.pending({Key? key, required UserInfoData data}) =>
+      UsersItemList._(key: key, variant: UserItemListVariant.pending, data: data);
+
+  factory UsersItemList.join({Key? key, required UserInfoData data}) =>
+      UsersItemList._(key: key, variant: UserItemListVariant.join, data: data);
 
   factory UsersItemList.textfield({
     Key? key,
@@ -96,31 +75,29 @@ class UsersItemList extends StatelessWidget {
     required void Function(String?)? onTap,
     required void Function(String?, String?)? textOnChanged,
     FocusNode? focusNode,
-  }) =>
-      UsersItemList._(
-        key: key ?? ValueKey(id),
-        id: id,
-        variant: UserItemListVariant.textfield,
-        label: label,
-        textController: textController,
-        onTap: onTap,
-        textOnChanged: textOnChanged,
-        textFocusNode: focusNode,
-      );
+  }) => UsersItemList._(
+    key: key ?? ValueKey(id),
+    id: id,
+    variant: UserItemListVariant.textfield,
+    label: label,
+    textController: textController,
+    onTap: onTap,
+    textOnChanged: textOnChanged,
+    textFocusNode: focusNode,
+  );
 
   factory UsersItemList.button({
     Key? key,
     required void Function(String?)? onTap,
     required String label,
     required DotsIconData icon,
-  }) =>
-      UsersItemList._(
-        key: key,
-        variant: UserItemListVariant.button,
-        onTap: onTap,
-        label: label,
-        icon: icon,
-      );
+  }) => UsersItemList._(
+    key: key,
+    variant: UserItemListVariant.button,
+    onTap: onTap,
+    label: label,
+    icon: icon,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -133,16 +110,17 @@ class UsersItemList extends StatelessWidget {
       color: Colors.transparent,
       padding: const EdgeInsets.symmetric(vertical: 3),
       child: _UserListRow(
-          variant: variant,
-          id: id,
-          data: data,
-          icon: icon,
-          label: label,
-          textController: textController,
-          textOnChanged: textOnChanged,
-          textFocusNode: textFocusNode,
-          onTap: onTap,
-          tapValue: tapValue),
+        variant: variant,
+        id: id,
+        data: data,
+        icon: icon,
+        label: label,
+        textController: textController,
+        textOnChanged: textOnChanged,
+        textFocusNode: textFocusNode,
+        onTap: onTap,
+        tapValue: tapValue,
+      ),
     );
 
     if (variant == UserItemListVariant.textfield) {
@@ -199,12 +177,7 @@ class _UserListRow extends StatelessWidget {
           textOnChanged: textOnChanged,
           textFocusNode: textFocusNode,
         ),
-        _TrailingWidget(
-          variant: variant,
-          onTap: onTap,
-          tapValue: tapValue,
-          label: label,
-        ),
+        _TrailingWidget(variant: variant, onTap: onTap, tapValue: tapValue, label: label),
       ],
     );
   }
@@ -239,6 +212,7 @@ class _MainWidget extends StatelessWidget {
       case UserItemListVariant.main:
       case UserItemListVariant.label:
       case UserItemListVariant.pending:
+      case UserItemListVariant.join:
         return UserInfo(data: data!);
 
       case UserItemListVariant.textfield:
@@ -260,12 +234,8 @@ class _MainWidget extends StatelessWidget {
                   border: InputBorder.none,
                   focusedBorder: InputBorder.none,
                 ),
-                style: theme.typo.main.bodyDefaultMedium.copyWith(
-                  color: theme.colors.textPrimary,
-                ),
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(50),
-                ],
+                style: theme.typo.main.bodyDefaultMedium.copyWith(color: theme.colors.textPrimary),
+                inputFormatters: [LengthLimitingTextInputFormatter(50)],
                 cursorColor: theme.colors.labelHighlight,
                 onChanged: (value) => textOnChanged?.call(id, value),
               ),
@@ -280,11 +250,7 @@ class _MainWidget extends StatelessWidget {
             child: Row(
               spacing: 6,
               children: [
-                DotsIcon(
-                  iconData: icon!,
-                  size: 16,
-                  color: theme.colors.labelHighlight,
-                ),
+                DotsIcon(iconData: icon!, size: 16, color: theme.colors.labelHighlight),
                 Text(
                   label!,
                   style: theme.typo.main.bodyDefaultMedium.copyWith(
@@ -305,12 +271,7 @@ class _TrailingWidget extends StatelessWidget {
   final String? tapValue;
   final String? label;
 
-  const _TrailingWidget({
-    required this.variant,
-    this.onTap,
-    this.tapValue,
-    this.label,
-  });
+  const _TrailingWidget({required this.variant, this.onTap, this.tapValue, this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -325,18 +286,19 @@ class _TrailingWidget extends StatelessWidget {
         );
 
       case UserItemListVariant.pending:
+      case UserItemListVariant.join:
         return DotsIcon(
-          iconData: DotsIconData.clockFilled,
-          size: 16,
+          iconData: variant == UserItemListVariant.join
+              ? DotsIconData.chevronRight
+              : DotsIconData.clockFilled,
+          size: variant == UserItemListVariant.join ? 14 : 16,
           color: theme.colors.textSecondary,
         );
 
       case UserItemListVariant.label:
         return Text(
           label!,
-          style: theme.typo.main.labelSmallMedium.copyWith(
-            color: theme.colors.labelActive,
-          ),
+          style: theme.typo.main.labelSmallMedium.copyWith(color: theme.colors.labelActive),
         );
 
       case UserItemListVariant.button:
