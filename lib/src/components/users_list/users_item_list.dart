@@ -64,8 +64,11 @@ class UsersItemList extends StatelessWidget {
   factory UsersItemList.pending({Key? key, required UserInfoData data}) =>
       UsersItemList._(key: key, variant: UserItemListVariant.pending, data: data);
 
-  factory UsersItemList.join({Key? key, required UserInfoData data}) =>
-      UsersItemList._(key: key, variant: UserItemListVariant.join, data: data);
+  factory UsersItemList.join({
+    Key? key,
+    required UserInfoData data,
+    required void Function(String?)? onTap,
+  }) => UsersItemList._(key: key, variant: UserItemListVariant.join, data: data, onTap: onTap);
 
   factory UsersItemList.textfield({
     Key? key,
