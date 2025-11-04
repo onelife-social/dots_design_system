@@ -21,7 +21,9 @@ class DotsMainButton extends StatelessWidget {
     this.iconColor,
     this.shouldApplyBlur = false,
     this.iconPosition = DotsMainButtonIconPosition.left,
+    this.splashColor,
     this.textStyle,
+    this.highlightColor,
   });
 
   /// The text to display on the button.
@@ -80,6 +82,12 @@ class DotsMainButton extends StatelessWidget {
   /// Position of the icon in the button.
   final DotsMainButtonIconPosition iconPosition;
 
+  /// Optional splash color to override the default one.
+  final Color? splashColor;
+
+  /// Optional highlight color to override the default one.
+  final Color? highlightColor;
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -91,15 +99,12 @@ class DotsMainButton extends StatelessWidget {
       iconColor,
     );
     final borderRadius = BorderRadius.circular(size.height);
-    final foregroundColor = textColor ??
+    final foregroundColor =
+        textColor ??
         (buttonTheme.foregroundGradient == null ? buttonTheme.foregroundColor : Colors.white);
 
     final Widget iconWidget = icon != null
-        ? DotsIcon(
-            iconData: icon!,
-            size: iconSize,
-            color: buttonTheme.iconColor ?? foregroundColor,
-          )
+        ? DotsIcon(iconData: icon!, size: iconSize, color: buttonTheme.iconColor ?? foregroundColor)
         : const SizedBox.shrink();
 
     final Widget text = DotsShaderMask(
@@ -112,10 +117,7 @@ class DotsMainButton extends StatelessWidget {
             Text(
               content,
               overflow: TextOverflow.ellipsis,
-              style: textStyle ??
-                  size.getTextStyle(theme).copyWith(
-                        color: foregroundColor,
-                      ),
+              style: textStyle ?? size.getTextStyle(theme).copyWith(color: foregroundColor),
             ),
             if (details != null &&
                 (size == DotsMainButtonSize.mainAction || size == DotsMainButtonSize.large))
@@ -123,7 +125,8 @@ class DotsMainButton extends StatelessWidget {
                 details ?? '',
                 overflow: TextOverflow.ellipsis,
                 style: theme.typo.main.bodyDefaultMedium.copyWith(
-                  color: buttonTheme.foregroundSecondaryColor?.dotsWithOpacity(0.6) ??
+                  color:
+                      buttonTheme.foregroundSecondaryColor?.dotsWithOpacity(0.6) ??
                       foregroundColor?.dotsWithOpacity(0.6),
                 ),
               ),
@@ -136,12 +139,12 @@ class DotsMainButton extends StatelessWidget {
       color: buttonTheme.backgroundColor ?? Colors.transparent,
       borderRadius: borderRadius,
       child: InkWell(
+        splashColor: splashColor,
+        highlightColor: highlightColor,
         onTap: enabled ? onTap : null,
         borderRadius: borderRadius,
         child: Container(
-          decoration: BoxDecoration(
-            borderRadius: borderRadius,
-          ),
+          decoration: BoxDecoration(borderRadius: borderRadius),
           height: size.height,
           padding: adaptPaddingForText ? EdgeInsets.symmetric(horizontal: 7) : size.padding,
           child: Row(
@@ -159,27 +162,21 @@ class DotsMainButton extends StatelessWidget {
     if (buttonTheme.backgroundGradient != null) {
       button = DotsDecoratedBox(
         styleType: buttonTheme.backgroundGradient,
-        decoration: BoxDecoration(
-          borderRadius: borderRadius,
-        ),
+        decoration: BoxDecoration(borderRadius: borderRadius),
         child: button,
       );
     }
     if (buttonTheme.blurStyle != null && shouldApplyBlur) {
       button = DotsDecoratedBox(
         styleType: buttonTheme.blurStyle,
-        decoration: BoxDecoration(
-          borderRadius: borderRadius,
-        ),
+        decoration: BoxDecoration(borderRadius: borderRadius),
         child: button,
       );
     }
     if (buttonTheme.shadow && shouldApplyBlur) {
       button = DotsDecoratedBox(
         styleType: theme.styles.defaultShadow,
-        decoration: BoxDecoration(
-          borderRadius: borderRadius,
-        ),
+        decoration: BoxDecoration(borderRadius: borderRadius),
         child: button,
       );
     }
