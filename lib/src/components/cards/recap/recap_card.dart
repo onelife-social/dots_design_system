@@ -26,7 +26,7 @@ class RecapCard extends StatelessWidget {
   final String buttonText;
 
   /// The text to display on the badge label.
-  final String badgeText;
+  final String? badgeText;
 
   /// Callback when the profile image is tapped.
   final Function()? onTap;
@@ -76,15 +76,16 @@ class RecapCard extends StatelessWidget {
                     padding: EdgeInsets.all(20),
                     child: Stack(
                       children: [
-                        Positioned(
-                          top: 7,
-                          left: 7,
-                          child: BadgeLabel(
-                            content: badgeText,
-                            variant: BadgeLabelVariant.premium,
-                            size: BadgeLabelSize.large,
+                        if (badgeText != null)
+                          Positioned(
+                            top: 7,
+                            left: 7,
+                            child: BadgeLabel(
+                              content: badgeText!,
+                              variant: BadgeLabelVariant.premium,
+                              size: BadgeLabelSize.large,
+                            ),
                           ),
-                        ),
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: variant.isNewRecap
