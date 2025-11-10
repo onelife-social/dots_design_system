@@ -34,7 +34,7 @@ class UsersItemList extends StatelessWidget {
   final void Function(String?)? onTap;
 
   /// *(Only for `label/button/text` variant)* Label to display.
-  final String label;
+  final String? label;
 
   /// *(Only for `button` variant)* Icon to display.
   final DotsIconData? icon;
@@ -95,7 +95,7 @@ class UsersItemList extends StatelessWidget {
     required String label,
     required TextEditingController textController,
     required void Function(String?)? onTap,
-    required void Function(String?, String?)? textOnChanged,
+    void Function(String?, String?)? textOnChanged,
     FocusNode? focusNode,
   }) => UsersItemList._(
     key: key ?? ValueKey(id),
@@ -163,10 +163,10 @@ class _UserListRow extends StatelessWidget {
     required this.id,
     required this.data,
     required this.icon,
-    required this.label,
-    required this.textController,
-    required this.textOnChanged,
-    required this.textFocusNode,
+    this.label,
+    this.textController,
+    this.textOnChanged,
+    this.textFocusNode,
     required this.onTap,
     required this.tapValue,
   });
@@ -175,7 +175,7 @@ class _UserListRow extends StatelessWidget {
   final String? id;
   final UserInfoData? data;
   final DotsIconData? icon;
-  final String label;
+  final String? label;
   final TextEditingController? textController;
   final void Function(String? p1, String? p2)? textOnChanged;
   final FocusNode? textFocusNode;
