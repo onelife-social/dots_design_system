@@ -209,6 +209,14 @@ class DotsTypo {
         fontWeight: FontWeight.w700,
         height: 1.25,
       ),
+      numTitleH5Medium: TextStyle(
+        color: color,
+        package: dotsDesignSystemPackage,
+        fontSize: 20,
+        fontFamily: 'Proxima Soft',
+        fontWeight: FontWeight.w500,
+        height: 1.25,
+      ),
       numTitleH6: TextStyle(
         color: color,
         package: dotsDesignSystemPackage,
