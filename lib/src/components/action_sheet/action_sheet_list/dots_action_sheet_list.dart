@@ -58,7 +58,7 @@ class DotsActionSheetList extends StatelessWidget {
   final Function() onMainButtonTap;
 
   /// The [mainButtonText] is the text for the main button.
-  final String mainButtonText;
+  final String? mainButtonText;
 
   /// The [mainButtonIcon] is the icon for the main button.
   final DotsIconData mainButtonIcon;
@@ -420,7 +420,10 @@ class _Header extends StatelessWidget {
                     if (description != null)
                       Padding(
                         padding: EdgeInsets.only(
-                            left: 32, right: 32, bottom: context.getByRatio(16, 10)),
+                          left: 32,
+                          right: 32,
+                          bottom: context.getByRatio(16, 10),
+                        ),
                         child: Text(
                           textAlign: TextAlign.center,
                           description ?? '',
@@ -729,7 +732,7 @@ class _Body extends StatelessWidget {
 
 class _Footer extends StatelessWidget {
   final ActionSheetListVariant variant;
-  final String mainButtonText;
+  final String? mainButtonText;
   final Function() onMainButtonTap;
   final DotsIconData mainButtonIcon;
   final bool enabled;
@@ -750,9 +753,11 @@ class _Footer extends StatelessWidget {
       color: theme.colors.transparent,
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
       child: Center(
-        child: variant.isMain
+        child: mainButtonText == null
+            ? Offstage()
+            : variant.isMain
             ? DotsMainButton(
-                content: mainButtonText,
+                content: mainButtonText!,
                 variant: DotsMainButtonVariant.main,
                 size: DotsMainButtonSize.mainAction,
                 onTap: onMainButtonTap,
