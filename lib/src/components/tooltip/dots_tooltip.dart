@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
@@ -66,6 +64,8 @@ class DotsTooltip extends StatelessWidget {
             ? DotsIcon(iconData: icon!, size: 32, color: theme.colors.labelHighlight)
             : null);
     final double height = 64.0;
+    final Color bgColor = theme.colors.bgBaseContrast;
+    final Color borderColor = theme.colors.bgContainerSecondary.dotsWithOpacity(1);
     return DotsDecoratedBox(
       styleType: theme.styles.defaultShadow,
       child: GestureDetector(
@@ -75,33 +75,30 @@ class DotsTooltip extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: _borderRadius,
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-                child: Container(
-                  constraints: BoxConstraints(maxWidth: 288, minWidth: 185, minHeight: height),
-                  padding: const EdgeInsets.all(16).copyWith(right: 52),
-                  decoration: BoxDecoration(
-                    color: theme.colors.bgContainerPrimary.dotsWithOpacity(0.85),
-                    borderRadius: _borderRadius,
-                    border: Border.all(
-                      width: 1,
-                      color: theme.colors.borderAlert.dotsWithOpacity(0.30),
-                    ),
+              child: Container(
+                constraints: BoxConstraints(maxWidth: 288, minWidth: 185, minHeight: height),
+                padding: const EdgeInsets.all(16).copyWith(right: 52),
+                decoration: BoxDecoration(
+                  color: bgColor,
+                  borderRadius: _borderRadius,
+                  border: Border.all(
+                    width: 1,
+                    color: borderColor,
                   ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: 10,
-                    children: [
-                      if (iconWidget != null) iconWidget,
-                      Expanded(
-                        child: Text(
-                          text,
-                          textAlign: TextAlign.left,
-                          style: theme.typo.main.labelDefaultMedium,
-                        ),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  spacing: 10,
+                  children: [
+                    if (iconWidget != null) iconWidget,
+                    Expanded(
+                      child: Text(
+                        text,
+                        textAlign: TextAlign.left,
+                        style: theme.typo.main.labelDefaultMedium,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -117,23 +114,20 @@ class DotsTooltip extends StatelessWidget {
                   )
                 : SizedBox(),
             Positioned(
-              top: tailPosition.isBottom ? height : -11,
+              top: tailPosition.isBottom ? height : -12,
               right: tailPosition.isRight ? tailFromBorderWidth() : null,
               left: tailPosition.isLeft ? tailFromBorderWidth() : null,
               child: Align(
                 alignment: Alignment.center,
                 child: ClipPath(
                   clipper: TriangleClipper(isInverted: tailPosition.isBottom),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-                    child: CustomPaint(
-                      size: const Size(21, 12),
-                      painter: TrianglePainter(
-                        color: theme.colors.bgContainerPrimary.dotsWithOpacity(0.85),
-                        borderColor: theme.colors.borderAlert.dotsWithOpacity(0.30),
-                        shadow: theme.styles.defaultShadow,
-                        isInverted: tailPosition.isBottom,
-                      ),
+                  child: CustomPaint(
+                    size: const Size(21, 13),
+                    painter: TrianglePainter(
+                      color: bgColor,
+                      borderColor: borderColor,
+                      shadow: theme.styles.defaultShadow,
+                      isInverted: tailPosition.isBottom,
                     ),
                   ),
                 ),
@@ -226,19 +220,25 @@ class TrianglePainter extends CustomPainter {
 
     late final Path borderPath;
     if (isInverted) {
-      // Border: left side + curve (peak) + right side, but NOT the top base
       borderPath = Path()
-        ..moveTo(0, 0) // Start at top-left
-        ..lineTo(size.width / 2 - 2, size.height - 2) // Left side
-        ..quadraticBezierTo(size.width / 2, size.height, size.width / 2 + 2, size.height - 2) // Curve (peak)
-        ..lineTo(size.width, 0); // Right side (ends at top-right, but doesn't close the top)
+        ..moveTo(0, 0)
+        ..lineTo(size.width / 2 - 2, size.height - 2)
+        ..quadraticBezierTo(
+          size.width / 2,
+          size.height,
+          size.width / 2 + 2,
+          size.height - 2,
+        )
+        ..lineTo(size.width, 0);
     } else {
-      // Border: left side + curve (peak) + right side, but NOT the bottom base
       borderPath = Path()
-        ..moveTo(0, size.height) // Start at bottom-left
-        ..lineTo(size.width / 2 - 2, 2) // Left side
-        ..quadraticBezierTo(size.width / 2, 0, size.width / 2 + 2, 2) // Curve (peak)
-        ..lineTo(size.width, size.height); // Right side (ends at bottom-right, but doesn't close the bottom)
+        ..moveTo(0, size.height)
+        ..lineTo(size.width / 2 - 2, 2)
+        ..quadraticBezierTo(size.width / 2, 0, size.width / 2 + 2, 2)
+        ..lineTo(
+          size.width,
+          size.height,
+        );
     }
     canvas.drawPath(borderPath, borderPaint);
   }
