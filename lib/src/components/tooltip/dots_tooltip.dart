@@ -81,8 +81,12 @@ class DotsTooltip extends StatelessWidget {
                   constraints: BoxConstraints(maxWidth: 288, minWidth: 185, minHeight: height),
                   padding: const EdgeInsets.all(16).copyWith(right: 52),
                   decoration: BoxDecoration(
-                    color: theme.colors.bgContainerPrimary,
+                    color: theme.colors.bgContainerPrimary.dotsWithOpacity(0.85),
                     borderRadius: _borderRadius,
+                    border: Border.all(
+                      width: 1,
+                      color: theme.colors.borderAlert.dotsWithOpacity(0.30),
+                    ),
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,17 +117,25 @@ class DotsTooltip extends StatelessWidget {
                   )
                 : SizedBox(),
             Positioned(
-              top: tailPosition.isBottom ? height : -12,
+              top: tailPosition.isBottom ? height : -11,
               right: tailPosition.isRight ? tailFromBorderWidth() : null,
               left: tailPosition.isLeft ? tailFromBorderWidth() : null,
               child: Align(
                 alignment: Alignment.center,
+                child: ClipPath(
+                  clipper: TriangleClipper(isInverted: tailPosition.isBottom),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
                     child: CustomPaint(
                       size: const Size(21, 12),
                       painter: TrianglePainter(
-                      color: theme.colors.bgContainerPrimary,
+                        color: theme.colors.bgContainerPrimary.dotsWithOpacity(0.85),
+                        borderColor: theme.colors.borderAlert.dotsWithOpacity(0.30),
                         shadow: theme.styles.defaultShadow,
-                      isInverted: tailPosition.isBottom),
+                        isInverted: tailPosition.isBottom,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -135,35 +147,49 @@ class DotsTooltip extends StatelessWidget {
 }
 
 class TriangleClipper extends CustomClipper<Path> {
+  final bool isInverted;
+
+  TriangleClipper({required this.isInverted});
+
   @override
   Path getClip(Size size) {
-    final Path path = Path()
+    late final Path path;
+    if (isInverted) {
+      path = Path()
+        ..moveTo(0, 0)
+        ..lineTo(size.width / 2 - 2, size.height - 2)
+        ..quadraticBezierTo(size.width / 2, size.height, size.width / 2 + 2, size.height - 2)
+        ..lineTo(size.width, 0)
+        ..close();
+    } else {
+      path = Path()
         ..moveTo(0, size.height)
         ..lineTo(size.width / 2 - 2, 2)
-      ..quadraticBezierTo(
-        size.width / 2,
-        0,
-        size.width / 2 + 2,
-        3,
-      )
+        ..quadraticBezierTo(size.width / 2, 0, size.width / 2 + 2, 2)
         ..lineTo(size.width, size.height)
         ..close();
+    }
 
     return path;
   }
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    if (oldClipper is TriangleClipper) {
+      return oldClipper.isInverted != isInverted;
+    }
     return false;
   }
 }
 
 class TrianglePainter extends CustomPainter {
   final Color color;
+  final Color borderColor;
   final DotsStyleShadow shadow;
   final bool isInverted;
   TrianglePainter({
     required this.color,
+    required this.borderColor,
     required this.shadow,
     required this.isInverted,
   });
@@ -176,36 +202,52 @@ class TrianglePainter extends CustomPainter {
       path = Path()
         ..moveTo(0, 0)
         ..lineTo(size.width / 2 - 2, size.height - 2)
-        ..quadraticBezierTo(
-          size.width / 2,
-          size.height,
-          size.width / 2 + 2,
-          size.height - 2,
-        )
+        ..quadraticBezierTo(size.width / 2, size.height, size.width / 2 + 2, size.height - 2)
         ..lineTo(size.width, 0)
         ..close();
     } else {
       path = Path()
         ..moveTo(0, size.height)
         ..lineTo(size.width / 2 - 2, 2)
-        ..quadraticBezierTo(
-          size.width / 2,
-          0,
-          size.width / 2 + 2,
-          2,
-        )
+        ..quadraticBezierTo(size.width / 2, 0, size.width / 2 + 2, 2)
         ..lineTo(size.width, size.height)
         ..close();
     }
     canvas.drawShadow(path, shadow.color, shadow.blurRadius, false);
 
     canvas.drawPath(path, paint);
+
+    final Paint borderPaint = Paint()
+      ..color = borderColor
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round;
+
+    late final Path borderPath;
+    if (isInverted) {
+      // Border: left side + curve (peak) + right side, but NOT the top base
+      borderPath = Path()
+        ..moveTo(0, 0) // Start at top-left
+        ..lineTo(size.width / 2 - 2, size.height - 2) // Left side
+        ..quadraticBezierTo(size.width / 2, size.height, size.width / 2 + 2, size.height - 2) // Curve (peak)
+        ..lineTo(size.width, 0); // Right side (ends at top-right, but doesn't close the top)
+    } else {
+      // Border: left side + curve (peak) + right side, but NOT the bottom base
+      borderPath = Path()
+        ..moveTo(0, size.height) // Start at bottom-left
+        ..lineTo(size.width / 2 - 2, 2) // Left side
+        ..quadraticBezierTo(size.width / 2, 0, size.width / 2 + 2, 2) // Curve (peak)
+        ..lineTo(size.width, size.height); // Right side (ends at bottom-right, but doesn't close the bottom)
+    }
+    canvas.drawPath(borderPath, borderPaint);
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     if (oldDelegate is TrianglePainter) {
       return oldDelegate.color != color ||
+          oldDelegate.borderColor != borderColor ||
           oldDelegate.isInverted != isInverted ||
           oldDelegate.shadow != shadow;
     }
