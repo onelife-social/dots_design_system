@@ -16,28 +16,28 @@ class UsersList extends StatefulWidget {
   final void Function(String?)? memberOnTap;
 
   /// Label for the participant text fields.
-  final String textfieldLabel;
+  final String? textfieldLabel;
 
   /// Controllers for the participant text fields.
-  final Map<String, TextEditingController> textControllers;
+  final Map<String, TextEditingController>? textControllers;
 
   /// Focus nodes for the participant text fields.
-  final Map<String, FocusNode> focusNodes;
+  final Map<String, FocusNode>? focusNodes;
 
   /// Callback for text changes in the participant text fields.
-  final void Function(String?, String?) textOnChanged;
+  final void Function(String?, String?)? textOnChanged;
 
   /// Label for the "add participant" button.
-  final String addParticipantLabel;
+  final String? addParticipantLabel;
 
   /// Callback when the "add participant" button is tapped.
-  final void Function(String?) addParticipantOnTap;
+  final void Function(String?)? addParticipantOnTap;
 
   /// Label for the "add friend" button.
-  final String addFriendLabel;
+  final String? addFriendLabel;
 
   /// Callback when the "add friend" button is tapped.
-  final void Function(String?) addFriendOnTap;
+  final void Function(String?)? addFriendOnTap;
 
   /// Whether to show the "add friend" button.
   final bool showAddFriendButton;
@@ -50,16 +50,16 @@ class UsersList extends StatefulWidget {
     required this.members,
     required this.creatorLabel,
     required this.adminLabel,
-    required this.memberOnTap,
-    required this.textfieldLabel,
-    required this.textControllers,
-    required this.focusNodes,
-    required this.textOnChanged,
-    required this.addParticipantLabel,
-    required this.addParticipantOnTap,
-    required this.addFriendLabel,
-    required this.addFriendOnTap,
-    required this.showAddFriendButton,
+    this.memberOnTap,
+    this.textfieldLabel,
+    this.textControllers,
+    this.focusNodes,
+    this.textOnChanged,
+    this.addParticipantLabel,
+    this.addParticipantOnTap,
+    this.addFriendLabel,
+    this.addFriendOnTap,
+    this.showAddFriendButton = false,
     this.applyBounceIn = false,
   });
 
@@ -77,10 +77,7 @@ class _UsersListState extends State<UsersList> {
 
       // Creator
       if (index == 0) {
-        return UsersItemList.label(
-          data: member.userInfoData,
-          label: widget.creatorLabel,
-        );
+        return UsersItemList.label(data: member.userInfoData, label: widget.creatorLabel);
       }
 
       switch (member.memberType) {
@@ -89,44 +86,51 @@ class _UsersListState extends State<UsersList> {
 
         // Admin
         case MemberType.admin:
-          return UsersItemList.label(
-            data: member.userInfoData,
-            label: widget.adminLabel,
-          );
+          return UsersItemList.label(data: member.userInfoData, label: widget.adminLabel);
 
         // Friends
         case MemberType.friend:
           return UsersItemList.main(
             id: member.id!,
             data: member.userInfoData,
-            onTap: widget.memberOnTap!,
+            onTap: widget.memberOnTap,
           );
 
         // Aliases
         case MemberType.alias:
+          final textController =
+              widget.textControllers?[member.id] ??
+              TextEditingController(text: member.userInfoData.name);
+          if (widget.textControllers?[member.id] != null) {
+            textController.text = member.userInfoData.name;
+          }
+
           return UsersItemList.textfield(
             id: member.id!,
-            label: widget.textfieldLabel,
-            textController: widget.textControllers[member.id]!..text = member.userInfoData.name,
-            onTap: widget.memberOnTap!,
+            label: widget.textfieldLabel ?? '',
+            textController: textController,
+            onTap: widget.memberOnTap,
             textOnChanged: widget.textOnChanged,
-            focusNode: widget.focusNodes[member.id],
+            focusNode: widget.focusNodes?[member.id],
           );
       }
     });
 
     items.addAll([
       // Add new participant button
-      UsersItemList.button(
-        label: widget.addParticipantLabel,
-        icon: DotsIconData.add,
-        onTap: widget.addParticipantOnTap,
-      ),
+      if ((widget.addParticipantLabel?.isNotEmpty ?? false) && widget.addParticipantOnTap != null)
+        UsersItemList.button(
+          label: widget.addParticipantLabel!,
+          icon: DotsIconData.add,
+          onTap: widget.addParticipantOnTap,
+        ),
 
       // Add new friend button
-      if (widget.showAddFriendButton)
+      if (widget.showAddFriendButton &&
+          (widget.addFriendLabel?.isNotEmpty ?? false) &&
+          widget.addFriendOnTap != null)
         UsersItemList.button(
-          label: widget.addFriendLabel,
+          label: widget.addFriendLabel!,
           icon: DotsIconData.user,
           onTap: widget.addFriendOnTap,
         ),
@@ -143,20 +147,15 @@ class _UsersListState extends State<UsersList> {
         padding: EdgeInsets.zero,
         shrinkWrap: true,
         itemCount: items.length,
-        separatorBuilder: (_, __) => Divider(
-          color: theme.colors.labelSecondary.dotsWithOpacity(0.3),
-          thickness: 0.2,
-        ),
+        separatorBuilder: (_, __) =>
+            Divider(color: theme.colors.labelSecondary.dotsWithOpacity(0.3), thickness: 0.2),
         itemBuilder: (_, index) {
           final item = items[index];
           return widget.applyBounceIn &&
                   item is UsersItemList &&
                   item.variant == UserItemListVariant.textfield &&
                   (item.textController?.text.isEmpty ?? true)
-              ? BounceIn(
-                  duration: const Duration(milliseconds: 1000),
-                  child: item,
-                )
+              ? BounceIn(duration: const Duration(milliseconds: 1000), child: item)
               : item;
         },
       ),

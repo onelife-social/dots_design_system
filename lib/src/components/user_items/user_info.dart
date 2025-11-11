@@ -2,25 +2,53 @@ import 'package:flutter/material.dart';
 import '../../../dots_design_system.dart';
 import '../../core/values/paths/images_paths.dart';
 
+class UserInfoTheme {
+  final TextStyle nameStyle;
+  final TextStyle detailsStyle;
+  final TextStyle aliasLabelImageStyle;
+
+  const UserInfoTheme({
+    required this.nameStyle,
+    required this.detailsStyle,
+    required this.aliasLabelImageStyle,
+  });
+}
+
+UserInfoTheme getUserInfoThemeBySize(DotsTheme theme, UserInfoSize size) {
+  switch (size) {
+    case UserInfoSize.small:
+      return UserInfoTheme(
+        nameStyle: theme.typo.main.bodyDefaultMedium,
+        detailsStyle: theme.typo.main.labelSmallRegular,
+        aliasLabelImageStyle: theme.typo.number.numBodyDefaultMedium,
+      );
+    case UserInfoSize.large:
+      return UserInfoTheme(
+        nameStyle: theme.typo.main.bodyLargeMedium,
+        detailsStyle: theme.typo.main.labelDefaultRegular,
+        aliasLabelImageStyle: theme.typo.number.numTitleH5Medium,
+      );
+  }
+}
+
 class UserInfo extends StatelessWidget {
   /// User information data to display.
   final UserInfoData data;
+  final UserInfoSize size;
 
-  const UserInfo({
-    super.key,
-    required this.data,
-  });
+  const UserInfo({super.key, required this.data, this.size = UserInfoSize.small});
 
-  static Image defaultImage = Image.asset(
+  Image get defaultImage => Image.asset(
     ImagesPaths.defaultUserItem,
-    width: 26,
-    height: 26,
+    width: size.imageSize,
+    height: size.imageSize,
     fit: BoxFit.cover,
   );
 
   @override
   Widget build(BuildContext context) {
     final dotsTheme = context.dotsTheme;
+    final styles = getUserInfoThemeBySize(dotsTheme, size);
 
     return Expanded(
       child: Row(
@@ -30,17 +58,14 @@ class UserInfo extends StatelessWidget {
         children: [
           if (data.imageProvider != null)
             Container(
-              width: 26,
-              height: 26,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: dotsTheme.colors.bgStrong,
-              ),
+              width: size.imageSize,
+              height: size.imageSize,
+              decoration: BoxDecoration(shape: BoxShape.circle, color: dotsTheme.colors.bgStrong),
               child: ClipOval(
                 child: Image(
                   image: data.imageProvider!,
-                  width: 26,
-                  height: 26,
+                  width: size.imageSize,
+                  height: size.imageSize,
                   fit: BoxFit.cover,
                   loadingBuilder: (context, child, loadingProgress) {
                     if (loadingProgress == null) return child;
@@ -55,8 +80,8 @@ class UserInfo extends StatelessWidget {
             )
           else if (data.aliasLabelImageText != null)
             Container(
-              width: 26,
-              height: 26,
+              width: size.imageSize,
+              height: size.imageSize,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: dotsTheme.colors.bgContainerSecondaryOnBackground,
@@ -64,22 +89,18 @@ class UserInfo extends StatelessWidget {
               child: Center(
                 child: Text(
                   data.aliasLabelImageText!,
-                  style: dotsTheme.typo.number.numBodyDefaultMedium.copyWith(
-                    color: dotsTheme.colors.textTertiary,
-                  ),
+                  style: styles.aliasLabelImageStyle.copyWith(color: dotsTheme.colors.textTertiary),
                 ),
               ),
             ),
           Expanded(
             child: data.details == null || data.details!.isEmpty
                 ? Container(
-                    constraints: const BoxConstraints(minHeight: 26),
+                    constraints: BoxConstraints(minHeight: size.imageSize),
                     alignment: Alignment.centerLeft,
                     child: Text(
                       data.name,
-                      style: dotsTheme.typo.main.bodyDefaultMedium.copyWith(
-                        color: dotsTheme.colors.textPrimary,
-                      ),
+                      style: styles.nameStyle.copyWith(color: dotsTheme.colors.textPrimary),
                       overflow: TextOverflow.ellipsis,
                     ),
                   )
@@ -89,14 +110,12 @@ class UserInfo extends StatelessWidget {
                     children: [
                       Text(
                         data.name,
-                        style: dotsTheme.typo.main.bodyDefaultMedium.copyWith(
-                          color: dotsTheme.colors.textPrimary,
-                        ),
+                        style: styles.nameStyle.copyWith(color: dotsTheme.colors.textPrimary),
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
                         data.details!,
-                        style: dotsTheme.typo.main.labelSmallRegular.copyWith(
+                        style: styles.detailsStyle.copyWith(
                           color: dotsTheme.colors.textQuarternary,
                         ),
                         overflow: TextOverflow.ellipsis,

@@ -2,7 +2,23 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-enum UserItemListVariant { main, label, textfield, button, pending, join }
+enum UserItemListVariant {
+  main,
+  label,
+  textfield,
+  button,
+  pending,
+  join,
+  waiting;
+
+  bool get isMain => this == UserItemListVariant.main;
+  bool get isLabel => this == UserItemListVariant.label;
+  bool get isTextfield => this == UserItemListVariant.textfield;
+  bool get isButton => this == UserItemListVariant.button;
+  bool get isPending => this == UserItemListVariant.pending;
+  bool get isJoin => this == UserItemListVariant.join;
+  bool get isWaiting => this == UserItemListVariant.waiting;
+}
 
 class UsersItemList extends StatelessWidget {
   /// Member unique id.
@@ -18,7 +34,7 @@ class UsersItemList extends StatelessWidget {
   final void Function(String?)? onTap;
 
   /// *(Only for `label/button/text` variant)* Label to display.
-  final String label;
+  final String? label;
 
   /// *(Only for `button` variant)* Icon to display.
   final DotsIconData? icon;
@@ -70,13 +86,16 @@ class UsersItemList extends StatelessWidget {
     required void Function(String?)? onTap,
   }) => UsersItemList._(key: key, variant: UserItemListVariant.join, data: data, onTap: onTap);
 
+  factory UsersItemList.waiting({Key? key, required UserInfoData data}) =>
+      UsersItemList._(key: key, variant: UserItemListVariant.waiting, data: data);
+
   factory UsersItemList.textfield({
     Key? key,
     required String? id,
     required String label,
     required TextEditingController textController,
     required void Function(String?)? onTap,
-    required void Function(String?, String?)? textOnChanged,
+    void Function(String?, String?)? textOnChanged,
     FocusNode? focusNode,
   }) => UsersItemList._(
     key: key ?? ValueKey(id),
@@ -140,15 +159,14 @@ class UsersItemList extends StatelessWidget {
 
 class _UserListRow extends StatelessWidget {
   const _UserListRow({
-    super.key,
     required this.variant,
     required this.id,
     required this.data,
     required this.icon,
-    required this.label,
-    required this.textController,
-    required this.textOnChanged,
-    required this.textFocusNode,
+    this.label,
+    this.textController,
+    this.textOnChanged,
+    this.textFocusNode,
     required this.onTap,
     required this.tapValue,
   });
@@ -157,7 +175,7 @@ class _UserListRow extends StatelessWidget {
   final String? id;
   final UserInfoData? data;
   final DotsIconData? icon;
-  final String label;
+  final String? label;
   final TextEditingController? textController;
   final void Function(String? p1, String? p2)? textOnChanged;
   final FocusNode? textFocusNode;
@@ -216,7 +234,11 @@ class _MainWidget extends StatelessWidget {
       case UserItemListVariant.label:
       case UserItemListVariant.pending:
       case UserItemListVariant.join:
-        return UserInfo(data: data!);
+      case UserItemListVariant.waiting:
+        return UserInfo(
+          data: data!,
+          size: variant.isWaiting ? UserInfoSize.large : UserInfoSize.small,
+        );
 
       case UserItemListVariant.textfield:
         return Expanded(
@@ -305,6 +327,7 @@ class _TrailingWidget extends StatelessWidget {
         );
 
       case UserItemListVariant.button:
+      case UserItemListVariant.waiting:
         return Offstage();
     }
   }

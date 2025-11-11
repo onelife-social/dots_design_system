@@ -17,6 +17,7 @@ List<Story> get segmentedControlStories => [
               rightOptionName: context.knobs.text(label: 'Option 2', initial: 'Option 2'),
               selectedColor: knobColorSelector(context, 'Selected color'),
               backgroundColor: knobColorSelector(context, 'Background color'),
+              rightOptionTag: context.knobs.text(label: 'Option 2 tag', initial: '2'),
             ),
           );
         },

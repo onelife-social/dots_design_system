@@ -8,6 +8,9 @@ class SegmentedControl extends StatelessWidget {
   /// The label for the left option.
   final String leftOptionName;
 
+  /// The optional tag for the right option.
+  final String? rightOptionTag;
+
   /// The label for the right option.
   final String rightOptionName;
 
@@ -31,11 +34,13 @@ class SegmentedControl extends StatelessWidget {
     this.selectedColor,
     this.backgroundColor,
     required this.onTapOption,
+    this.rightOptionTag,
   });
 
   @override
   Widget build(BuildContext context) {
     return Stack(
+      clipBehavior: Clip.none,
       fit: StackFit.loose,
       children: [
         _BackSegmented(
@@ -45,16 +50,29 @@ class SegmentedControl extends StatelessWidget {
           onTapOption: (SegmentedControlOption optionTaped) => onTapOption(optionTaped),
         ),
         Positioned(
-            left: selectedOption.isLeft ? 0 : null,
-            right: selectedOption.isRight ? 0 : null,
-            child: Padding(
-              padding: _itemPadding,
-              child: _SelectedSegment(
-                optionName: selectedOptionName,
-                selectedColor: selectedColor,
-                onTap: () => onTapOption(selectedOption),
+          left: selectedOption.isLeft ? 0 : null,
+          right: selectedOption.isRight ? 0 : null,
+          child: Padding(
+            padding: _itemPadding,
+            child: _SelectedSegment(
+              optionName: selectedOptionName,
+              selectedColor: selectedColor,
+              onTap: () => onTapOption(selectedOption),
+            ),
+          ),
+        ),
+        if (rightOptionTag != null && rightOptionTag!.isNotEmpty)
+          Positioned(
+            right: -2,
+            top: -2,
+            child: IgnorePointer(
+              child: BadgeTag(
+                size: const Size(0, 0),
+                tag: rightOptionTag!,
+                child: const SizedBox.shrink(),
               ),
-            ))
+            ),
+          ),
       ],
     );
   }
@@ -118,8 +136,9 @@ class _BackSegmented extends StatelessWidget {
                     child: Text(
                       leftOptionName,
                       textAlign: TextAlign.center,
-                      style: theme.typo.main.labelDefaultMedium
-                          .copyWith(color: theme.colors.labelSecondary),
+                      style: theme.typo.main.labelDefaultMedium.copyWith(
+                        color: theme.colors.labelSecondary,
+                      ),
                     ),
                   ),
                 ),
@@ -136,8 +155,9 @@ class _BackSegmented extends StatelessWidget {
                     child: Text(
                       rightOptionName,
                       textAlign: TextAlign.center,
-                      style: theme.typo.main.labelDefaultMedium
-                          .copyWith(color: theme.colors.labelSecondary),
+                      style: theme.typo.main.labelDefaultMedium.copyWith(
+                        color: theme.colors.labelSecondary,
+                      ),
                     ),
                   ),
                 ),

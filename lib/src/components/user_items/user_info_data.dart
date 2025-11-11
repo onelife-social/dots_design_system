@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
 
+enum UserInfoSize {
+  small(imageSize: 26),
+  large(imageSize: 40);
+
+  final double imageSize;
+
+  bool get isSmall => this == UserInfoSize.small;
+  bool get isLarge => this == UserInfoSize.large;
+
+  const UserInfoSize({required this.imageSize});
+}
+
 class UserInfoData {
   /// The image provider to display the profile image.
   final ImageProvider? imageProvider;
@@ -29,8 +41,7 @@ enum MemberType {
   creator,
   admin,
   friend,
-  alias,
-  ;
+  alias;
 
   bool get isCreator => this == MemberType.creator;
   bool get isAdmin => this == MemberType.admin;
@@ -48,9 +59,5 @@ class MemberInfo {
   /// The type of user.
   final MemberType memberType;
 
-  const MemberInfo({
-    this.id,
-    required this.userInfoData,
-    required this.memberType,
-  });
+  const MemberInfo({this.id, required this.userInfoData, required this.memberType});
 }

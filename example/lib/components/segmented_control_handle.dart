@@ -9,12 +9,14 @@ class SegmentedControlHandle extends StatefulWidget {
     required this.rightOptionName,
     this.selectedColor,
     this.backgroundColor,
+    this.rightOptionTag,
   });
 
   final String leftOptionName;
   final String rightOptionName;
   final Color? selectedColor;
   final Color? backgroundColor;
+  final String? rightOptionTag;
 
   @override
   State<SegmentedControlHandle> createState() => _SegmentedControlHandleState();
@@ -31,6 +33,7 @@ class _SegmentedControlHandleState extends State<SegmentedControlHandle> {
         selectedOption: selectedOption,
         selectedColor: widget.selectedColor,
         backgroundColor: widget.backgroundColor,
+        rightOptionTag: widget.rightOptionTag,
         onTapOption: (option) {
           if (kDebugMode) {
             print('Selected option: $option');
