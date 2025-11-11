@@ -1,9 +1,11 @@
+import 'dart:ui';
+
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
-import 'dart:ui';
 
 class DotsTooltip extends StatelessWidget {
   final DotsIconData? icon;
+  final Widget? iconWidget;
   final String text;
   final Function()? onTap;
   final Function()? onClose;
@@ -11,33 +13,27 @@ class DotsTooltip extends StatelessWidget {
 
   final DotsToolTipTailPosition tailPosition;
 
-  const DotsTooltip(
-      {super.key,
-      required this.text,
-      this.onTap,
-      this.icon,
-      this.showCloseButton = true,
-      required this.tailPosition,
-      this.onClose});
+  const DotsTooltip({
+    super.key,
+    required this.text,
+    this.onTap,
+    this.icon,
+    this.iconWidget,
+    this.showCloseButton = true,
+    required this.tailPosition,
+    this.onClose,
+  });
 
   BorderRadiusGeometry get _borderRadius {
     switch (tailPosition) {
       case DotsToolTipTailPosition.bottomAlignLeadingEdge:
-        return DotsBorderRadius.r24.copyWith(
-          bottomLeft: Radius.circular(14),
-        );
+        return DotsBorderRadius.r24.copyWith(bottomLeft: Radius.circular(14));
       case DotsToolTipTailPosition.bottomAlignTrailingEdge:
-        return DotsBorderRadius.r24.copyWith(
-          bottomRight: Radius.circular(14),
-        );
+        return DotsBorderRadius.r24.copyWith(bottomRight: Radius.circular(14));
       case DotsToolTipTailPosition.topAlignLeadingEdge:
-        return DotsBorderRadius.r24.copyWith(
-          topLeft: Radius.circular(14),
-        );
+        return DotsBorderRadius.r24.copyWith(topLeft: Radius.circular(14));
       case DotsToolTipTailPosition.topAlignTrailingEdge:
-        return DotsBorderRadius.r24.copyWith(
-          topRight: Radius.circular(14),
-        );
+        return DotsBorderRadius.r24.copyWith(topRight: Radius.circular(14));
       default:
         return DotsBorderRadius.r24;
     }
@@ -64,7 +60,11 @@ class DotsTooltip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    final icon = this.icon;
+    final Widget? iconWidget =
+        this.iconWidget ??
+        (icon != null
+            ? DotsIcon(iconData: icon!, size: 32, color: theme.colors.labelHighlight)
+            : null);
     final double height = 64.0;
     return DotsDecoratedBox(
       styleType: theme.styles.defaultShadow,
@@ -88,12 +88,7 @@ class DotsTooltip extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     spacing: 10,
                     children: [
-                      if (icon != null)
-                        DotsIcon(
-                          iconData: icon,
-                          size: 32,
-                          color: theme.colors.labelHighlight,
-                        ),
+                      if (iconWidget != null) iconWidget,
                       Expanded(
                         child: Text(
                           text,
@@ -123,11 +118,11 @@ class DotsTooltip extends StatelessWidget {
               left: tailPosition.isLeft ? tailFromBorderWidth() : null,
               child: Align(
                 alignment: Alignment.center,
-                child: CustomPaint(
-                  size: const Size(21, 12),
-                  painter: TrianglePainter(
+                    child: CustomPaint(
+                      size: const Size(21, 12),
+                      painter: TrianglePainter(
                       color: theme.colors.bgContainerPrimary,
-                      shadow: theme.styles.defaultShadow,
+                        shadow: theme.styles.defaultShadow,
                       isInverted: tailPosition.isBottom),
                 ),
               ),
@@ -143,16 +138,16 @@ class TriangleClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     final Path path = Path()
-      ..moveTo(0, size.height)
-      ..lineTo(size.width / 2 - 2, 2)
+        ..moveTo(0, size.height)
+        ..lineTo(size.width / 2 - 2, 2)
       ..quadraticBezierTo(
         size.width / 2,
         0,
         size.width / 2 + 2,
         3,
       )
-      ..lineTo(size.width, size.height)
-      ..close();
+        ..lineTo(size.width, size.height)
+        ..close();
 
     return path;
   }
