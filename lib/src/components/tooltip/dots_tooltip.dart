@@ -65,7 +65,7 @@ class DotsTooltip extends StatelessWidget {
             : null);
     final double height = 64.0;
     final Color bgColor = theme.colors.bgBaseContrast;
-    final Color borderColor = theme.colors.bgContainerSecondary.dotsWithOpacity(1);
+    final Color borderColor = theme.colors.bgContainerSecondary;
     return DotsDecoratedBox(
       styleType: theme.styles.defaultShadow,
       child: GestureDetector(
