@@ -184,11 +184,8 @@ class DotsActionSheetList extends StatelessWidget {
           onTap: onClose,
           child: Container(
             child: showBlurBackground
-                ? BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                    child: Container(
-                      color: Colors.black.dotsWithOpacity(0.3),
-                    ),
+                ? Container(
+                    color: Colors.black.dotsWithOpacity(0.4),
                   )
                 : null,
           ),
