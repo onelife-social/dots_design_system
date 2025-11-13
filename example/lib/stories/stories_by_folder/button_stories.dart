@@ -257,4 +257,33 @@ List<Story> get buttonStories => [
           );
         },
       ),
+      Story(
+        name: 'Buttons/Social Media Button',
+        description: 'Demo page for Social Media Button',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Center(
+            child: DotsSocialMediaButton(
+              variant: context.knobs.options<DotsSocialMediaVariant>(
+                label: 'Variant',
+                initial: DotsSocialMediaVariant.instagram,
+                options: DotsSocialMediaVariant.values
+                    .map((item) => Option(label: item.name, value: item))
+                    .toList(),
+              ),
+              label: context.knobs.nullable.text(label: 'Label', initial: 'Share', enabled: false),
+              size: context.knobs.options<DotsIconButtonSize>(
+                label: 'Size',
+                initial: DotsIconButtonSize.large,
+                options: DotsIconButtonSize.values
+                    .map((item) => Option(label: item.name, value: item))
+                    .toList(),
+              ),
+              onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('On tap!')),
+              ),
+            ),
+          ),
+        ),
+      ),
     ];

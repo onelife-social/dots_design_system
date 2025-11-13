@@ -62,3 +62,13 @@ enum DotsIconButtonDirection {
   column,
   row,
 }
+
+enum DotsSocialMediaVariant {
+  instagram,
+  tiktok,
+  whatsapp;
+
+  bool get isInstagram => this == DotsSocialMediaVariant.instagram;
+  bool get isTikTok => this == DotsSocialMediaVariant.tiktok;
+  bool get isWhatsApp => this == DotsSocialMediaVariant.whatsapp;
+}
