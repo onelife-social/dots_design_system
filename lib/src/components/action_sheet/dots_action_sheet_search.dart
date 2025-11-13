@@ -82,7 +82,7 @@ class DotsActionSheetSearch extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                maxHeight: maxHeight ?? MediaQuery.of(context).size.height * 0.8,
+                maxHeight: maxHeight ?? context.screenHeight * 0.8,
               ),
               child: Container(
                 width: double.infinity,

@@ -130,7 +130,7 @@ class DotsActionSheetSpotlight extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 0.8,
+                maxHeight: context.screenHeight * 0.8,
               ),
               child: Container(
                 width: double.infinity,

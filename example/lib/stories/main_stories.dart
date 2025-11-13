@@ -528,8 +528,8 @@ List<Story> get allStories => [
           );
           return Center(
             child: Container(
-              width: MediaQuery.of(context).size.width * 0.5,
-              height: MediaQuery.of(context).size.height * 0.5,
+              width: context.screenWidth * 0.5,
+              height: context.screenHeight * 0.5,
               alignment: Alignment.center,
               child: DotsListsItem(
                 image: NetworkImage('https://picsum.photos/250?image=9'),

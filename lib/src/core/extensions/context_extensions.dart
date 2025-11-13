@@ -1,4 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:dots_design_system/utils/utils.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 extension ContextExtensions on BuildContext {
@@ -11,7 +13,20 @@ extension ContextExtensions on BuildContext {
     return theme;
   }
 
-  double get screenWidth => MediaQuery.of(this).size.width;
+  double get screenWidth {
+    if (DotsPlatform.isMobileWeb || DotsPlatform.isNotWeb) {
+      return MediaQuery.of(this).size.width;
+    }
+
+    final double currentWebAspectRatio = clampDouble(
+      MediaQuery.of(this).size.width / MediaQuery.of(this).size.height,
+      9.0 / 21.0,
+      9.0 / 18.0,
+    );
+
+    return MediaQuery.of(this).size.height * currentWebAspectRatio;
+  }
+
   double get screenHeight => MediaQuery.of(this).size.height;
 
   bool get isSmallScreen => MediaQuery.of(this).aspectRatio <= kBigRatio;
