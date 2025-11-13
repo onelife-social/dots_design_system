@@ -45,6 +45,9 @@ class UsersList extends StatefulWidget {
   /// Whether to apply the bounce in animation to text fields.
   final bool applyBounceIn;
 
+  /// Whether the initialmembers can be modified.
+  final bool canModifyMembers;
+
   const UsersList({
     super.key,
     required this.members,
@@ -61,6 +64,7 @@ class UsersList extends StatefulWidget {
     this.addFriendOnTap,
     this.showAddFriendButton = false,
     this.applyBounceIn = false,
+    this.canModifyMembers = false,
   });
 
   @override
@@ -86,7 +90,11 @@ class _UsersListState extends State<UsersList> {
 
         // Admin
         case MemberType.admin:
-          return UsersItemList.label(data: member.userInfoData, label: widget.adminLabel);
+          return UsersItemList.label(
+            data: member.userInfoData,
+            label: widget.adminLabel,
+            onTap: widget.memberOnTap,
+          );
 
         // Friends
         case MemberType.friend:
@@ -95,6 +103,17 @@ class _UsersListState extends State<UsersList> {
             data: member.userInfoData,
             onTap: widget.memberOnTap,
           );
+
+        case MemberType.member:
+          if (widget.canModifyMembers) {
+            return UsersItemList.join(
+              data: member.userInfoData,
+              onTap: widget.memberOnTap,
+              iconSize: 22,
+            );
+          } else {
+            return UsersItemList.basic(data: member.userInfoData);
+          }
 
         // Aliases
         case MemberType.alias:

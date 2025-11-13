@@ -9,7 +9,8 @@ enum UserItemListVariant {
   button,
   pending,
   join,
-  waiting;
+  waiting,
+  basic;
 
   bool get isMain => this == UserItemListVariant.main;
   bool get isLabel => this == UserItemListVariant.label;
@@ -18,6 +19,7 @@ enum UserItemListVariant {
   bool get isPending => this == UserItemListVariant.pending;
   bool get isJoin => this == UserItemListVariant.join;
   bool get isWaiting => this == UserItemListVariant.waiting;
+  bool get isBasic => this == UserItemListVariant.basic;
 }
 
 class UsersItemList extends StatelessWidget {
@@ -48,6 +50,9 @@ class UsersItemList extends StatelessWidget {
   /// *(Only for `text` variant)* Focus node to preserve focus.
   final FocusNode? textFocusNode;
 
+  /// *(Only for `pending` and `join` variants)* Icon size.
+  final double? iconSize;
+
   const UsersItemList._({
     super.key,
     this.id,
@@ -59,6 +64,7 @@ class UsersItemList extends StatelessWidget {
     this.textController,
     this.textOnChanged,
     this.textFocusNode,
+    this.iconSize,
   });
 
   factory UsersItemList.main({
@@ -74,17 +80,47 @@ class UsersItemList extends StatelessWidget {
     onTap: onTap,
   );
 
-  factory UsersItemList.label({Key? key, required UserInfoData data, required String label}) =>
-      UsersItemList._(key: key, variant: UserItemListVariant.label, data: data, label: label);
+  factory UsersItemList.label({
+    Key? key,
+    required UserInfoData data,
+    required String label,
+    void Function(String?)? onTap,
+  }) => UsersItemList._(
+    key: key,
+    variant: UserItemListVariant.label,
+    data: data,
+    label: label,
+    onTap: onTap,
+  );
 
-  factory UsersItemList.pending({Key? key, required UserInfoData data}) =>
-      UsersItemList._(key: key, variant: UserItemListVariant.pending, data: data);
+  factory UsersItemList.pending({
+    Key? key,
+    required UserInfoData data,
+    Function(String?)? onTap,
+    double? iconSize,
+  }) => UsersItemList._(
+    key: key,
+    variant: UserItemListVariant.pending,
+    data: data,
+    onTap: onTap,
+    iconSize: iconSize,
+  );
+
+  factory UsersItemList.basic({Key? key, required UserInfoData data}) =>
+      UsersItemList._(key: key, variant: UserItemListVariant.basic, data: data);
 
   factory UsersItemList.join({
     Key? key,
     required UserInfoData data,
     required void Function(String?)? onTap,
-  }) => UsersItemList._(key: key, variant: UserItemListVariant.join, data: data, onTap: onTap);
+    double? iconSize,
+  }) => UsersItemList._(
+    key: key,
+    variant: UserItemListVariant.join,
+    data: data,
+    onTap: onTap,
+    iconSize: iconSize,
+  );
 
   factory UsersItemList.waiting({Key? key, required UserInfoData data}) =>
       UsersItemList._(key: key, variant: UserItemListVariant.waiting, data: data);
@@ -142,6 +178,7 @@ class UsersItemList extends StatelessWidget {
         textFocusNode: textFocusNode,
         onTap: onTap,
         tapValue: tapValue,
+        iconSize: iconSize,
       ),
     );
 
@@ -169,6 +206,7 @@ class _UserListRow extends StatelessWidget {
     this.textFocusNode,
     required this.onTap,
     required this.tapValue,
+    this.iconSize,
   });
 
   final UserItemListVariant variant;
@@ -181,6 +219,7 @@ class _UserListRow extends StatelessWidget {
   final FocusNode? textFocusNode;
   final void Function(String? p1)? onTap;
   final String? tapValue;
+  final double? iconSize;
 
   @override
   Widget build(BuildContext context) {
@@ -198,7 +237,13 @@ class _UserListRow extends StatelessWidget {
           textOnChanged: textOnChanged,
           textFocusNode: textFocusNode,
         ),
-        _TrailingWidget(variant: variant, onTap: onTap, tapValue: tapValue, label: label),
+        _TrailingWidget(
+          variant: variant,
+          onTap: onTap,
+          tapValue: tapValue,
+          label: label,
+          iconSize: iconSize,
+        ),
       ],
     );
   }
@@ -235,6 +280,7 @@ class _MainWidget extends StatelessWidget {
       case UserItemListVariant.pending:
       case UserItemListVariant.join:
       case UserItemListVariant.waiting:
+      case UserItemListVariant.basic:
         return UserInfo(
           data: data!,
           size: variant.isWaiting ? UserInfoSize.large : UserInfoSize.small,
@@ -295,8 +341,15 @@ class _TrailingWidget extends StatelessWidget {
   final void Function(String?)? onTap;
   final String? tapValue;
   final String? label;
+  final double? iconSize;
 
-  const _TrailingWidget({required this.variant, this.onTap, this.tapValue, this.label});
+  const _TrailingWidget({
+    required this.variant,
+    this.onTap,
+    this.tapValue,
+    this.label,
+    this.iconSize,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -316,7 +369,7 @@ class _TrailingWidget extends StatelessWidget {
           iconData: variant == UserItemListVariant.join
               ? DotsIconData.chevronRight
               : DotsIconData.clockFilled,
-          size: variant == UserItemListVariant.join ? 14 : 16,
+          size: iconSize ?? (variant == UserItemListVariant.join ? 14 : 16),
           color: theme.colors.textSecondary,
         );
 
@@ -328,6 +381,7 @@ class _TrailingWidget extends StatelessWidget {
 
       case UserItemListVariant.button:
       case UserItemListVariant.waiting:
+      case UserItemListVariant.basic:
         return Offstage();
     }
   }
