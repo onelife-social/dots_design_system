@@ -11,6 +11,7 @@ class DotsCloseButton extends StatelessWidget {
     this.variant = DotsCloseButtonVariant.softContrast,
     this.onTap,
     this.color,
+    this.addBlur = true,
   });
 
   /// The icon to display on the button.
@@ -34,6 +35,9 @@ class DotsCloseButton extends StatelessWidget {
   /// If not provided, the icon will use the default color from the theme.
   final dynamic color;
 
+  /// Whether to apply a blur effect to the button background.
+  final bool addBlur;
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -41,7 +45,7 @@ class DotsCloseButton extends StatelessWidget {
     final borderRadius = BorderRadius.circular(size.size);
 
     return DotsDecoratedBox(
-      styleType: theme.styles.bgBlur,
+      styleType: addBlur ? theme.styles.bgBlur : null,
       decoration: BoxDecoration(
         color: buttonTheme.backgroundColor ?? Colors.transparent,
         borderRadius: borderRadius,

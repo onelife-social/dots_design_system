@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class DotsActionSheetStandard extends StatelessWidget {
   final String title;
-  final String description;
+  final String? description;
   final Widget topWidget;
   final Widget? bottomWidget;
   final VoidCallback onClose;
@@ -26,7 +26,7 @@ class DotsActionSheetStandard extends StatelessWidget {
   const DotsActionSheetStandard({
     super.key,
     required this.title,
-    this.description = '',
+    this.description,
     required this.topWidget,
     this.bottomWidget,
     required this.onClose,
@@ -105,22 +105,28 @@ class DotsActionSheetStandard extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              spacing: 8,
                               children: [
                                 SizedBox(
                                   width: double.infinity,
-                                  child: Text(title,
-                                      textAlign: TextAlign.center,
-                                      style: theme.typo.secondary.title02H6),
+                                  child: Text(
+                                    title,
+                                    textAlign: TextAlign.center,
+                                    style: theme.typo.secondary.title02H6,
+                                  ),
                                 ),
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: Text(description,
+                                if (description != null && description!.isNotEmpty) ...[
+                                  const SizedBox(height: 8),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: Text(
+                                      description!,
                                       textAlign: TextAlign.center,
                                       style: theme.typo.main.labelDefaultRegular.copyWith(
                                         color: theme.colors.textSecondary,
-                                      )),
-                                ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ],
                             ),
                           ),
@@ -144,6 +150,7 @@ class DotsActionSheetStandard extends StatelessWidget {
                           icon: DotsIconData.cross,
                           size: DotsCloseButtonSize.medium,
                           variant: DotsCloseButtonVariant.softContrast,
+                          addBlur: false,
                           onTap: onCloseButtonTap ?? onClose,
                         ),
                       ),
@@ -223,18 +230,18 @@ class DotsActionSheetStandardButtons extends StatelessWidget {
             ],
           )
         : secondaryButton != null
-            ? Row(
-                children: [
-                  Expanded(
-                    child: secondaryButton!,
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(child: primaryButton),
-                ],
-              )
-            : primaryButton;
+        ? Row(
+            children: [
+              Expanded(
+                child: secondaryButton!,
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              Expanded(child: primaryButton),
+            ],
+          )
+        : primaryButton;
   }
 }
 

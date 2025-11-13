@@ -101,6 +101,7 @@ class DotsActionSheetBase extends StatelessWidget {
                       right: 16,
                       child: DotsCloseButton(
                         size: DotsCloseButtonSize.medium,
+                        addBlur: false,
                         onTap: onTapCloseButton,
                       ),
                     ),

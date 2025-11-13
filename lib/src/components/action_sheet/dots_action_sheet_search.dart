@@ -163,6 +163,7 @@ class DotsActionSheetSearch extends StatelessWidget {
                           icon: DotsIconData.cross,
                           size: DotsCloseButtonSize.medium,
                           variant: DotsCloseButtonVariant.softContrast,
+                          addBlur: false,
                           onTap: onCloseButtonTap ?? onClose,
                         ),
                       ),

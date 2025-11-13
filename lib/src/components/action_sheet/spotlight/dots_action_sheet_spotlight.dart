@@ -3,11 +3,7 @@ import 'dart:ui';
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-enum DotsActionSheetSpotlightVariant {
-  alert,
-  user,
-  album;
-}
+enum DotsActionSheetSpotlightVariant { alert, user, album }
 
 class DotsActionSheetSpotlight extends StatelessWidget {
   /// Main title text displayed prominently in the action sheet
@@ -98,14 +94,18 @@ class DotsActionSheetSpotlight extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 if (bodyTitle != null)
-                  Text(bodyTitle!,
-                      textAlign: TextAlign.center,
-                      style: context.dotsTheme.typo.main.bodyLargeBold),
+                  Text(
+                    bodyTitle!,
+                    textAlign: TextAlign.center,
+                    style: context.dotsTheme.typo.main.bodyLargeBold,
+                  ),
                 SizedBox(height: bodyTitle != null && this.description != null ? 6 : 0),
                 if (this.description != null)
-                  Text(this.description!,
-                      textAlign: TextAlign.center,
-                      style: context.dotsTheme.typo.main.bodyDefaultRegular),
+                  Text(
+                    this.description!,
+                    textAlign: TextAlign.center,
+                    style: context.dotsTheme.typo.main.bodyDefaultRegular,
+                  ),
               ],
             ),
           )
@@ -173,31 +173,37 @@ class DotsActionSheetSpotlight extends StatelessWidget {
                             children: [
                               SizedBox(
                                 width: double.infinity,
-                                child: Text(title,
-                                    textAlign: TextAlign.center,
-                                    style: theme.typo.secondary.title02H6),
+                                child: Text(
+                                  title,
+                                  textAlign: TextAlign.center,
+                                  style: theme.typo.secondary.title02H6,
+                                ),
                               ),
                               if (label != null) ...[
                                 SizedBox(height: 4),
                                 SizedBox(
                                   width: double.infinity,
-                                  child: Text(label!,
-                                      textAlign: TextAlign.center,
-                                      style: theme.typo.main.labelDefaultMedium.copyWith(
-                                        color: theme.colors.textTertiary,
-                                        fontSize: 13,
-                                      )),
+                                  child: Text(
+                                    label!,
+                                    textAlign: TextAlign.center,
+                                    style: theme.typo.main.labelDefaultMedium.copyWith(
+                                      color: theme.colors.textTertiary,
+                                      fontSize: 13,
+                                    ),
+                                  ),
                                 ),
                               ],
                               if (description != null) ...[
                                 SizedBox(height: 12),
                                 SizedBox(
                                   width: double.infinity,
-                                  child: Text(description,
-                                      textAlign: TextAlign.center,
-                                      style: theme.typo.main.bodyDefaultRegular.copyWith(
-                                        color: theme.colors.textSecondary,
-                                      )),
+                                  child: Text(
+                                    description,
+                                    textAlign: TextAlign.center,
+                                    style: theme.typo.main.bodyDefaultRegular.copyWith(
+                                      color: theme.colors.textSecondary,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ],
@@ -217,9 +223,11 @@ class DotsActionSheetSpotlight extends StatelessWidget {
                         top: 12,
                         right: 0,
                         child: DotsCloseButton(
-                            onTap: onClose,
-                            size: DotsCloseButtonSize.medium,
-                            variant: DotsCloseButtonVariant.softContrast),
+                          onTap: onClose,
+                          size: DotsCloseButtonSize.medium,
+                          variant: DotsCloseButtonVariant.softContrast,
+                          addBlur: false,
+                        ),
                       ),
                   ],
                 ),
