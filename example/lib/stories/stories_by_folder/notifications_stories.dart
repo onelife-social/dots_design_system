@@ -18,8 +18,8 @@ List<Story> get notificationsStories => [
           return Center(
             child: Container(
               padding: const EdgeInsets.all(16.0),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+              width: context.screenWidth,
+              height: context.screenHeight,
               alignment: Alignment.center,
               child: DotsNotificationItem(
                 variant: variant,
@@ -182,7 +182,7 @@ List<Story> get notificationsStories => [
         name: 'Notifications/Activity Preview Grid',
         description: 'Demo grid for Activity Preview',
         builder: (context) {
-          final screenHeight = MediaQuery.of(context).size.height;
+          final screenHeight = context.screenHeight;
           final cellHeight = screenHeight * 0.256;
 
           return Padding(

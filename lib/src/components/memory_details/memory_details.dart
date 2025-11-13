@@ -38,7 +38,7 @@ class DotsMemoryDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    final double hPad = MediaQuery.of(context).size.width * 0.156;
+    final double hPad = context.screenWidth * 0.156;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
