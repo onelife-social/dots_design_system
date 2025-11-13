@@ -20,8 +20,8 @@ extension ContextExtensions on BuildContext {
 
     final double currentWebAspectRatio = clampDouble(
       MediaQuery.of(this).size.width / MediaQuery.of(this).size.height,
-      18,
-      21,
+      9.0 / 18.0,
+      9.0 / 21,
     );
 
     return MediaQuery.of(this).size.height * currentWebAspectRatio;
