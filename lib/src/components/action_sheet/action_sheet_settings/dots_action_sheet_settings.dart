@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
@@ -33,97 +31,22 @@ class DotsActionSheetSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        GestureDetector(
-          onTap: onClose,
-          child: Container(
-            child: showBlurBackground
-                ? BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                    child: Container(color: Color(0xFF000000).dotsWithOpacity(0.3)),
-                  )
-                : null,
-          ),
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: bottomPosition,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: context.screenHeight * 0.8),
-              child: Container(
-                width: double.infinity,
-                clipBehavior: Clip.antiAlias,
-                padding: const EdgeInsets.all(16),
-                decoration: ShapeDecoration(
-                  color: context.dotsTheme.colors.bgBaseContrast,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-                ),
-                child: Stack(
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      spacing: 24,
-                      children: [
-                        const Grabber(),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Column(
-                            spacing: 16,
-                            children: [
-                              ImageWithIcon(
-                                image: image,
-                                onError: onImageError,
-                                width: imageWidth,
-                                height: imageHeight,
-                                circularImage: true,
-                              ),
-                              Column(
-                                spacing: 6,
-                                children: [
-                                  Text(
-                                    title,
-                                    style: context.dotsTheme.typo.main.titleH5.copyWith(
-                                      color: context.dotsTheme.colors.textPrimary,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  if (subtitle != null)
-                                    Text(
-                                      subtitle!,
-                                      style: context.dotsTheme.typo.main.bodyDefaultRegular
-                                          .copyWith(
-                                            color: context.dotsTheme.colors.textPrimary,
-                                          ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Column(spacing: 8, children: buttons),
-                      ],
-                    ),
-                    if (onTapCloseButton != null)
-                      Positioned(
-                        top: 0,
-                        right: 0,
-                        child: DotsCloseButton(
-                          size: DotsCloseButtonSize.medium,
-                          onTap: onTapCloseButton,
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
+    return DotsActionSheetContainer(
+      bottomPosition: bottomPosition,
+      horizontalPadding: 16,
+      showBlurBackground: showBlurBackground,
+      onClose: onClose,
+      containerPadding: const EdgeInsets.all(16),
+      child: DotsActionSheetSettingsContent(
+        image: image,
+        title: title,
+        subtitle: subtitle,
+        buttons: buttons,
+        onTapCloseButton: onTapCloseButton,
+        onImageError: onImageError,
+        imageWidth: imageWidth,
+        imageHeight: imageHeight,
+      ),
     );
   }
 }
