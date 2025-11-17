@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 enum ActionSheetInputVariant {
   main,
   colors,
-  date;
+  date,
+  user;
 
   bool get isMain => this == ActionSheetInputVariant.main;
   bool get isColors => this == ActionSheetInputVariant.colors;
   bool get isDate => this == ActionSheetInputVariant.date;
+  bool get isUser => this == ActionSheetInputVariant.user;
 }
 
 class DotsActionSheetInput extends StatelessWidget {
@@ -18,6 +20,7 @@ class DotsActionSheetInput extends StatelessWidget {
   /// - [ActionSheetInputVariant.main] is the default variant.
   /// - [ActionSheetInputVariant.colors] is for color selection.
   /// - [ActionSheetInputVariant.date] is for date selection.
+  /// - [ActionSheetInputVariant.user] is for user atributes input.
   final ActionSheetInputVariant variant;
 
   /// The [title] parameter is the title of the action sheet.
@@ -90,6 +93,12 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [maxTextLength] is the maximum length of text that can be entered in the text field.
   final int? maxTextLength;
 
+  /// The [image] is the image for the user variant.
+  final ImageProvider? image;
+
+  /// The [userLabel] is the label for the user variant.
+  final String? userLabel;
+
   const DotsActionSheetInput({
     super.key,
     this.variant = ActionSheetInputVariant.main,
@@ -116,6 +125,8 @@ class DotsActionSheetInput extends StatelessWidget {
     this.onChanged,
     this.inputHintText,
     this.maxTextLength,
+    this.image,
+    this.userLabel,
   });
 
   @override
@@ -199,6 +210,8 @@ class DotsActionSheetInput extends StatelessWidget {
                       onChanged: onChanged,
                       inputHintText: inputHintText,
                       maxTextLength: maxTextLength,
+                      image: image,
+                      userLabel: userLabel,
                     ),
                 ],
               ),
@@ -259,6 +272,7 @@ class _Header extends StatelessWidget {
 
 class _Body extends StatelessWidget {
   final String? subtitle;
+  final ImageProvider? image;
   final ActionSheetInputVariant variant;
   final DotsIconData? iconData;
   final Function()? onIconTap;
@@ -277,6 +291,7 @@ class _Body extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final String? inputHintText;
   final int? maxTextLength;
+  final String? userLabel;
 
   const _Body({
     this.subtitle,
@@ -298,6 +313,8 @@ class _Body extends StatelessWidget {
     this.onChanged,
     this.inputHintText,
     this.maxTextLength,
+    this.image,
+    this.userLabel,
   });
 
   @override
@@ -321,7 +338,7 @@ class _Body extends StatelessWidget {
           ),
           const SizedBox(height: 10),
         ],
-        if (!variant.isDate) ...[
+        if (variant.isMain || variant.isColors) ...[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: DotsIconButton(
@@ -333,6 +350,25 @@ class _Body extends StatelessWidget {
             ),
           ),
           SizedBox(height: elementsGap),
+        ],
+        if (variant.isUser) ...[
+          ImageWithIcon(
+            image: image,
+            width: 56,
+            height: 56,
+            circularImage: true,
+          ),
+          const SizedBox(height: 10),
+          if (userLabel != null && userLabel!.isNotEmpty) ...[
+            Text(
+              userLabel!,
+              style: theme.typo.main.titleH6.copyWith(color: theme.colors.textPrimary),
+              textAlign: TextAlign.center,
+            ),
+          ],
+          SizedBox(
+            height: elementsGap,
+          ),
         ],
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

@@ -10,6 +10,9 @@ export 'dots_close_button/dots_close_button_enums.dart';
 
 export 'dots_floating_button/dots_floating_button.dart';
 
+export 'dots_system_button/dots_system_button.dart';
+export 'dots_system_button/dots_system_button_enums.dart';
+
 export 'btn_folder/btn_folder.dart';
 
 export 'dots_toggle.dart';
