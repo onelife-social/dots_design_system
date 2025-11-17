@@ -32,7 +32,6 @@ class DotsActionSheetSearchContent extends StatelessWidget {
     return Stack(
       children: [
         Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
             _DotsActionSheetSearchHeader(
               title: title,
@@ -149,4 +148,3 @@ class _DotsActionSheetSearchHeader extends StatelessWidget {
     );
   }
 }
-
