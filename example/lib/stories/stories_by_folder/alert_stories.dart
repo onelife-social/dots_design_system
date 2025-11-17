@@ -62,8 +62,8 @@ List<Story> get alertStories => [
                 label: 'Show close button',
                 initial: true,
               );
-              final iconImage = NetworkImage(context.knobs
-                  .text(label: 'Icon Image URL', initial: ''));
+              final iconImage =
+                  NetworkImage(context.knobs.text(label: 'Icon Image URL', initial: ''));
 
               switch (variant) {
                 case DotsAlertVariant.oneButton:
@@ -139,6 +139,31 @@ List<Story> get alertStories => [
 
                 case DotsAlertVariant.twoVerticalButtons:
                   return DotsAlert.twoVerticalButtons(
+                    iconData: iconData,
+                    title: title,
+                    message: message,
+                    mainButtonText: mainButtonText,
+                    mainButtonOnTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Main button tapped!')),
+                      );
+                    },
+                    secondaryButtonText: secondaryButtonText,
+                    secondaryButtonOnTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Secondary button tapped!')),
+                      );
+                    },
+                    onClose: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Close button tapped!')),
+                      );
+                    },
+                    showCloseButton: showCloseButton,
+                  );
+
+                case DotsAlertVariant.twoVerticalButtonsDestructive:
+                  return DotsAlert.twoVerticalButtonsDestructive(
                     iconData: iconData,
                     title: title,
                     message: message,
