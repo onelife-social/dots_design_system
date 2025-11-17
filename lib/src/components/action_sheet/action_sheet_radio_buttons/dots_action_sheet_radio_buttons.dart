@@ -192,6 +192,7 @@ class _DotsActionSheetRadioButtonsState extends State<DotsActionSheetRadioButton
                           icon: DotsIconData.cross,
                           size: DotsCloseButtonSize.medium,
                           variant: DotsCloseButtonVariant.softContrast,
+                          addBlur: false,
                           onTap: widget.onClose,
                         ),
                       ),

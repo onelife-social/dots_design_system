@@ -35,6 +35,8 @@ flutter:
     - assets/icons/system/
     - assets/icons/home/
     - assets/images/
+    - assets/social_media/
+
   # Shaders
   shaders:
     - assets/shaders/blur.frag

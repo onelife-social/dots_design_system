@@ -33,7 +33,7 @@ class DotsActionSheet extends StatelessWidget {
   final String hintText;
 
   /// A short description displayed below the title.
-  final String description;
+  final String? description;
 
   /// A widget displayed at the top of the Action Sheet (e.g., an icon, image, or header).
   final Widget topWidget;
