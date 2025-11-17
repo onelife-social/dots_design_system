@@ -427,6 +427,13 @@ List<Story> get actionSheetStories => [
                     );
                   },
                   onClose: () {},
+                  onCloseButtonTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Close button tapped!'),
+                      ),
+                    );
+                  },
                   showBlurBackground:
                       context.knobs.boolean(label: 'Show Blur Background', initial: true),
                   iconData: context.knobs.options<DotsIconData>(

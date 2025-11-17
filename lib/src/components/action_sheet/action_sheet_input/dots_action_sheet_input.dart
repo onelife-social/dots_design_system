@@ -35,6 +35,9 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [onClose] is a callback for closing the action sheet tapping outside.
   final VoidCallback? onClose;
 
+  /// The [onCloseButtonTap] is a callback for the close button tap.
+  final VoidCallback? onCloseButtonTap;
+
   /// The [bottomPosition] is the position of the action sheet from the bottom.
   final double bottomPosition;
 
@@ -109,6 +112,7 @@ class DotsActionSheetInput extends StatelessWidget {
     this.actionButtonText,
     this.onBackButtonTap,
     this.onClose,
+    this.onCloseButtonTap,
     this.bottomPosition = 56,
     this.showBlurBackground = true,
     this.iconData,
@@ -163,7 +167,11 @@ class DotsActionSheetInput extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  _Header(title: title, onBackButtonTap: onBackButtonTap),
+                  _Header(
+                    title: title,
+                    onBackButtonTap: onBackButtonTap,
+                    onCloseButtonTap: onCloseButtonTap,
+                  ),
                   SizedBox(height: context.getByRatio(16, 10)),
                   if (variant.isColors && colorController != null)
                     ValueListenableBuilder<DotsColorOption>(
@@ -226,44 +234,59 @@ class DotsActionSheetInput extends StatelessWidget {
 class _Header extends StatelessWidget {
   final String? title;
   final Function()? onBackButtonTap;
+  final Function()? onCloseButtonTap;
 
   const _Header({
     this.title,
     this.onBackButtonTap,
+    this.onCloseButtonTap,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    final double onBackButtonTapWidth = 36;
+    final double onBackButtonWidth = 36;
 
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
-      child: Row(
+      child: Stack(
         children: [
-          if (onBackButtonTap != null)
-            SizedBox(
-              width: onBackButtonTapWidth,
-              child: DotsIconButton(
-                icon: DotsIconData.chevronLeft,
-                size: DotsIconButtonSize.medium,
-                variant: DotsIconButtonVariant.noBackground,
-                onTap: onBackButtonTap,
-              ),
-            ),
-          Expanded(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Text(
-                  title ?? '',
-                  style: theme.typo.secondary.title02H6,
-                  textAlign: TextAlign.center,
+          Row(
+            children: [
+              if (onBackButtonTap != null)
+                SizedBox(
+                  width: onBackButtonWidth,
+                  child: DotsIconButton(
+                    icon: DotsIconData.chevronLeft,
+                    size: DotsIconButtonSize.medium,
+                    variant: DotsIconButtonVariant.noBackground,
+                    onTap: onBackButtonTap,
+                  ),
+                ),
+              Expanded(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Text(
+                      title ?? '',
+                      style: theme.typo.secondary.title02H6,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ),
               ),
-            ),
+              if (onBackButtonTap != null) SizedBox(width: onBackButtonWidth),
+            ],
           ),
-          if (onBackButtonTap != null) SizedBox(width: onBackButtonTapWidth),
+          if (onCloseButtonTap != null)
+            Positioned(
+              top: 0,
+              right: 0,
+              child: DotsCloseButton(
+                size: DotsCloseButtonSize.medium,
+                onTap: onCloseButtonTap,
+              ),
+            ),
         ],
       ),
     );
