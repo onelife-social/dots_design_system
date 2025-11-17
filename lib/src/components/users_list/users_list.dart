@@ -81,7 +81,11 @@ class _UsersListState extends State<UsersList> {
 
       // Creator
       if (index == 0) {
-        return UsersItemList.label(data: member.userInfoData, label: widget.creatorLabel);
+        return UsersItemList.label(
+          id: member.id!,
+          data: member.userInfoData,
+          label: widget.creatorLabel,
+        );
       }
 
       switch (member.memberType) {
@@ -91,6 +95,7 @@ class _UsersListState extends State<UsersList> {
         // Admin
         case MemberType.admin:
           return UsersItemList.label(
+            id: member.id!,
             data: member.userInfoData,
             label: widget.adminLabel,
             onTap: widget.memberOnTap,
@@ -107,12 +112,13 @@ class _UsersListState extends State<UsersList> {
         case MemberType.member:
           if (widget.canModifyMembers) {
             return UsersItemList.join(
+              id: member.id!,
               data: member.userInfoData,
               onTap: widget.memberOnTap,
               iconSize: 22,
             );
           } else {
-            return UsersItemList.basic(data: member.userInfoData);
+            return UsersItemList.basic(id: member.id!, data: member.userInfoData);
           }
 
         // Aliases

@@ -6,7 +6,7 @@ class ImageWithIcon extends StatelessWidget {
     super.key,
     this.image,
     this.onError,
-    required this.icon,
+    this.icon,
     this.iconSize = 18,
     this.iconOffset,
     this.width = 53,
@@ -15,6 +15,7 @@ class ImageWithIcon extends StatelessWidget {
     this.elevation = 4.0,
     this.borderWidth = 2.0,
     this.circularImage = false,
+    this.showIcon = true,
   });
 
   /// Image provider for the main image to display
@@ -25,7 +26,7 @@ class ImageWithIcon extends StatelessWidget {
   final ImageErrorListener? onError;
 
   /// Icon widget to display in the top-right corner
-  final Widget icon;
+  final Widget? icon;
 
   /// Size of the icon in pixels
   final double iconSize;
@@ -51,12 +52,16 @@ class ImageWithIcon extends StatelessWidget {
   /// Whether to make the image circular instead of rounded rectangle
   final bool circularImage;
 
+  /// Whether to show the icon in the top-right corner
+  final bool showIcon;
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    final imageBorderRadius =
-        BorderRadius.all(Radius.circular(circularImage ? width / 2 : borderRadius));
+    final imageBorderRadius = BorderRadius.all(
+      Radius.circular(circularImage ? width / 2 : borderRadius),
+    );
 
     final iconBorderWidth = iconSize * 0.1;
     final iconContainerSize = (iconSize * 1.5);
@@ -114,39 +119,41 @@ class ImageWithIcon extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: imageBorderRadius,
                     side: BorderSide(
-                        color: Colors.white60,
-                        width: borderWidth,
-                        strokeAlign: BorderSide.strokeAlignInside),
+                      color: Colors.white60,
+                      width: borderWidth,
+                      strokeAlign: BorderSide.strokeAlignInside,
+                    ),
                   ),
                 ),
               ),
             ],
           ),
         ),
-        Positioned(
-          top: iconPosition,
-          right: iconPosition,
-          child: CircleAvatar(
-            radius: iconRadius,
-            backgroundColor: theme.colors.bgBase,
-            child: Container(
-              margin: EdgeInsets.all(iconBorderWidth),
-              width: iconContainerSize,
-              height: iconContainerSize,
-              decoration: BoxDecoration(
-                color: theme.colors.bgSecondaryBtn,
-                shape: BoxShape.circle,
-              ),
-              child: Center(
-                child: SizedBox(
-                  width: iconSize,
-                  height: iconSize,
-                  child: icon,
+        if (showIcon && icon != null)
+          Positioned(
+            top: iconPosition,
+            right: iconPosition,
+            child: CircleAvatar(
+              radius: iconRadius,
+              backgroundColor: theme.colors.bgBase,
+              child: Container(
+                margin: EdgeInsets.all(iconBorderWidth),
+                width: iconContainerSize,
+                height: iconContainerSize,
+                decoration: BoxDecoration(
+                  color: theme.colors.bgSecondaryBtn,
+                  shape: BoxShape.circle,
+                ),
+                child: Center(
+                  child: SizedBox(
+                    width: iconSize,
+                    height: iconSize,
+                    child: icon,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
       ],
     );
   }

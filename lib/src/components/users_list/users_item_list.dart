@@ -82,11 +82,13 @@ class UsersItemList extends StatelessWidget {
 
   factory UsersItemList.label({
     Key? key,
+    String? id,
     required UserInfoData data,
     required String label,
     void Function(String?)? onTap,
   }) => UsersItemList._(
     key: key,
+    id: id,
     variant: UserItemListVariant.label,
     data: data,
     label: label,
@@ -106,16 +108,18 @@ class UsersItemList extends StatelessWidget {
     iconSize: iconSize,
   );
 
-  factory UsersItemList.basic({Key? key, required UserInfoData data}) =>
-      UsersItemList._(key: key, variant: UserItemListVariant.basic, data: data);
+  factory UsersItemList.basic({Key? key, String? id, required UserInfoData data}) =>
+      UsersItemList._(key: key, id: id, variant: UserItemListVariant.basic, data: data);
 
   factory UsersItemList.join({
     Key? key,
+    String? id,
     required UserInfoData data,
     required void Function(String?)? onTap,
     double? iconSize,
   }) => UsersItemList._(
     key: key,
+    id: id,
     variant: UserItemListVariant.join,
     data: data,
     onTap: onTap,
@@ -159,10 +163,7 @@ class UsersItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String? tapValue = switch (variant) {
-      UserItemListVariant.main || UserItemListVariant.textfield => id,
-      _ => null,
-    };
+    final String? tapValue = id ?? '';
 
     final content = Container(
       color: Colors.transparent,
