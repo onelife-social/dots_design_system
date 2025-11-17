@@ -135,7 +135,6 @@ class DotsActionSheetInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return DotsActionSheetContainer(
       bottomPosition: bottomPosition,
-      horizontalPadding: 16,
       showBlurBackground: showBlurBackground,
       onClose: onClose,
       applyHorizontalPadding: false,

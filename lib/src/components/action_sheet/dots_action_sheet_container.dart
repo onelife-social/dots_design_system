@@ -40,17 +40,13 @@ class DotsActionSheetContainer extends StatelessWidget {
             onTap: onClose,
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-              child: Container(
-                color: Color(0xFF000000).dotsWithOpacity(0.3),
-              ),
+              child: Container(color: Color(0xFF000000).dotsWithOpacity(0.3)),
             ),
           )
         else if (onClose != null)
           GestureDetector(
             onTap: onClose,
-            child: Container(
-              color: Colors.transparent,
-            ),
+            child: Container(color: Colors.transparent),
           ),
         Positioned(
           left: 0,
@@ -59,20 +55,20 @@ class DotsActionSheetContainer extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
             child: ConstrainedBox(
-              constraints: BoxConstraints(
-                maxHeight: maxHeight ?? context.screenHeight * 0.8,
-              ),
+              constraints: BoxConstraints(maxHeight: maxHeight ?? context.screenHeight * 0.8),
               child: Stack(
                 children: [
                   Container(
                     width: double.infinity,
-                    padding: containerPadding ?? (applyHorizontalPadding ? const EdgeInsets.symmetric(horizontal: 16) : EdgeInsets.zero),
+                    padding:
+                        containerPadding ??
+                        (applyHorizontalPadding
+                            ? const EdgeInsets.symmetric(horizontal: 16)
+                            : EdgeInsets.zero),
                     clipBehavior: Clip.antiAlias,
                     decoration: ShapeDecoration(
                       color: theme.colors.bgBaseContrast,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(32),
-                      ),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
                     ),
                     child: child,
                   ),
@@ -97,4 +93,3 @@ class DotsActionSheetContainer extends StatelessWidget {
     );
   }
 }
-

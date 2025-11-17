@@ -135,48 +135,45 @@ class _Header extends StatelessWidget {
     final theme = context.dotsTheme;
     final double onBackButtonWidth = 36;
 
-    return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
-      child: Stack(
-        children: [
-          Row(
-            children: [
-              if (onBackButtonTap != null)
-                SizedBox(
-                  width: onBackButtonWidth,
-                  child: DotsIconButton(
-                    icon: DotsIconData.chevronLeft,
-                    size: DotsIconButtonSize.medium,
-                    variant: DotsIconButtonVariant.noBackground,
-                    onTap: onBackButtonTap,
-                  ),
-                ),
-              Expanded(
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Text(
-                      title ?? '',
-                      style: theme.typo.secondary.title02H6,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
+    return Stack(
+      children: [
+        Row(
+          children: [
+            if (onBackButtonTap != null)
+              SizedBox(
+                width: onBackButtonWidth,
+                child: DotsIconButton(
+                  icon: DotsIconData.chevronLeft,
+                  size: DotsIconButtonSize.medium,
+                  variant: DotsIconButtonVariant.noBackground,
+                  onTap: onBackButtonTap,
                 ),
               ),
-              if (onBackButtonTap != null) SizedBox(width: onBackButtonWidth),
-            ],
-          ),
-          if (onCloseButtonTap != null)
-            Positioned(
-              top: 0,
-              right: 0,
-              child: DotsCloseButton(
-                size: DotsCloseButtonSize.medium,
-                onTap: onCloseButtonTap,
+            Expanded(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Text(
+                    title ?? '',
+                    style: theme.typo.secondary.title02H6,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               ),
             ),
-        ],
-      ),
+            if (onBackButtonTap != null) SizedBox(width: onBackButtonWidth),
+          ],
+        ),
+        if (onCloseButtonTap != null)
+          Positioned(
+            top: 0,
+            right: 0,
+            child: DotsCloseButton(
+              size: DotsCloseButtonSize.medium,
+              onTap: onCloseButtonTap,
+            ),
+          ),
+      ],
     );
   }
 }
@@ -237,28 +234,22 @@ class _Body extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (subtitle != null) ...[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              subtitle ?? '',
-              style: theme.typo.main.labelDefaultRegular.copyWith(
-                color: theme.colors.textTertiary,
-              ),
-              textAlign: TextAlign.center,
+          Text(
+            subtitle ?? '',
+            style: theme.typo.main.labelDefaultRegular.copyWith(
+              color: theme.colors.textTertiary,
             ),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 10),
         ],
         if (variant.isMain || variant.isColors) ...[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: DotsIconButton(
-              icon: iconData ?? DotsIconData.add,
-              size: DotsIconButtonSize.extraLarge,
-              variant: DotsIconButtonVariant.solid,
-              onTap: onIconTap,
-              color: selectedColor?.getColor(context) ?? theme.colors.textQuarternary,
-            ),
+          DotsIconButton(
+            icon: iconData ?? DotsIconData.add,
+            size: DotsIconButtonSize.extraLarge,
+            variant: DotsIconButtonVariant.solid,
+            onTap: onIconTap,
+            color: selectedColor?.getColor(context) ?? theme.colors.textQuarternary,
           ),
           SizedBox(height: elementsGap),
         ],
@@ -281,29 +272,23 @@ class _Body extends StatelessWidget {
             height: elementsGap,
           ),
         ],
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: DotsTextField(
-            controller: textFieldController,
-            focusNode: focus,
-            alignCenter: true,
-            onTapBtn: onTapTextFieldBtn,
-            onChanged: onChanged,
-            hintText: inputHintText,
-            maxTextLength: maxTextLength,
-          ),
+        DotsTextField(
+          controller: textFieldController,
+          focusNode: focus,
+          alignCenter: true,
+          onTapBtn: onTapTextFieldBtn,
+          onChanged: onChanged,
+          hintText: inputHintText,
+          maxTextLength: maxTextLength,
         ),
         if (variant.isDate) ...[
           SizedBox(height: elementsGap),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: DotsItemInput(
-              label: dateLabel,
-              value: dateValue,
-              onTap: onDateTap,
-              icon: dateIconData,
-              position: DotsItemInputPosition.onlyOne,
-            ),
+          DotsItemInput(
+            label: dateLabel,
+            value: dateValue,
+            onTap: onDateTap,
+            icon: dateIconData,
+            position: DotsItemInputPosition.onlyOne,
           ),
         ],
         if (variant.isColors) ...[
@@ -316,25 +301,21 @@ class _Body extends StatelessWidget {
           ),
         ],
         SizedBox(height: elementsGap),
-        Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-          child: Row(
-            children: [
-              Expanded(
-                child: DotsMainButton(
-                  expand: true,
-                  variant: DotsMainButtonVariant.main,
-                  size: DotsMainButtonSize.mainAction,
-                  onTap: onMainButtonTap,
-                  enabled: enableMainButton,
-                  content: actionButtonText ?? '',
-                ),
+        Row(
+          children: [
+            Expanded(
+              child: DotsMainButton(
+                expand: true,
+                variant: DotsMainButtonVariant.main,
+                size: DotsMainButtonSize.mainAction,
+                onTap: onMainButtonTap,
+                enabled: enableMainButton,
+                content: actionButtonText ?? '',
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ],
     );
   }
 }
-
