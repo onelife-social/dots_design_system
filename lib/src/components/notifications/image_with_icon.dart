@@ -1,4 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:dots_design_system/src/core/values/paths/images_paths.dart';
 import 'package:flutter/material.dart';
 
 class ImageWithIcon extends StatelessWidget {
@@ -16,6 +17,7 @@ class ImageWithIcon extends StatelessWidget {
     this.borderWidth = 2.0,
     this.circularImage = false,
     this.showIcon = true,
+    this.aliasLabelImageText,
   });
 
   /// Image provider for the main image to display
@@ -55,6 +57,16 @@ class ImageWithIcon extends StatelessWidget {
   /// Whether to show the icon in the top-right corner
   final bool showIcon;
 
+  /// Text to display as an alias label when no image is provided
+  final String? aliasLabelImageText;
+
+  Image get defaultImage => Image.asset(
+    ImagesPaths.defaultUserItem,
+    width: width,
+    height: height,
+    fit: BoxFit.cover,
+  );
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -68,67 +80,91 @@ class ImageWithIcon extends StatelessWidget {
     final iconRadius = (iconContainerSize + iconBorderWidth) / 2;
     final iconPosition = -(iconOffset ?? iconRadius) + iconBorderWidth;
 
+    final hasImage = image != null;
+    final hasAliasText = aliasLabelImageText != null && aliasLabelImageText!.isNotEmpty;
+
     return Stack(
       clipBehavior: Clip.none,
       alignment: Alignment.center,
       children: [
-        Card(
-          clipBehavior: Clip.hardEdge,
-          shape: RoundedRectangleBorder(
-            borderRadius: imageBorderRadius,
-          ),
-          child: Stack(
-            children: [
-              Container(
-                width: width,
-                height: height,
-                clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(
-                  borderRadius: imageBorderRadius,
-                  image: (image != null)
-                      ? DecorationImage(
-                          image: image!,
-                          fit: BoxFit.cover,
-                          onError: (exception, stackTrace) {
-                            onError?.call(exception, stackTrace);
-                          },
-                        )
-                      : null,
+        if (hasImage)
+          Card(
+            clipBehavior: Clip.hardEdge,
+            shape: RoundedRectangleBorder(
+              borderRadius: imageBorderRadius,
+            ),
+            child: Stack(
+              children: [
+                Image(
+                  image: image!,
+                  width: width,
+                  height: height,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return defaultImage;
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    if (onError != null) onError!(error, stackTrace);
+                    return defaultImage;
+                  },
                 ),
-              ),
-              Positioned.fill(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius: imageBorderRadius,
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: const [0.0, 0.5],
-                      colors: [
-                        Colors.black26,
-                        Colors.transparent,
-                      ],
+                Positioned.fill(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: imageBorderRadius,
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        stops: const [0.0, 0.5],
+                        colors: [
+                          Colors.black26,
+                          Colors.transparent,
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Container(
-                width: width,
-                height: height,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: imageBorderRadius,
-                    side: BorderSide(
-                      color: Colors.white60,
-                      width: borderWidth,
-                      strokeAlign: BorderSide.strokeAlignInside,
+                Container(
+                  width: width,
+                  height: height,
+                  decoration: ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: imageBorderRadius,
+                      side: BorderSide(
+                        color: Colors.white60,
+                        width: borderWidth,
+                        strokeAlign: BorderSide.strokeAlignInside,
+                      ),
                     ),
                   ),
                 ),
+              ],
+            ),
+          )
+        else if (hasAliasText)
+          Container(
+            width: width,
+            height: height,
+            decoration: BoxDecoration(
+              shape: circularImage ? BoxShape.circle : BoxShape.rectangle,
+              borderRadius: circularImage ? null : imageBorderRadius,
+              color: theme.colors.bgContainerSecondaryOnBackground,
+            ),
+            child: Center(
+              child: Text(
+                aliasLabelImageText!,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Proxima Soft',
+                  fontSize: 40,
+                  fontWeight: FontWeight.w500,
+                  height: 1.0,
+                  color: theme.colors.textTertiary,
+                ),
               ),
-            ],
+            ),
           ),
-        ),
         if (showIcon && icon != null)
           Positioned(
             top: iconPosition,

@@ -121,6 +121,9 @@ class _UsersListState extends State<UsersList> {
             return UsersItemList.basic(id: member.id!, data: member.userInfoData);
           }
 
+        case MemberType.existingAlias:
+          return UsersItemList.existingAlias(id: member.id!, data: member.userInfoData);
+
         // Aliases
         case MemberType.alias:
           final textController =

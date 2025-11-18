@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class DotsActionSheetSettingsContent extends StatelessWidget {
   final VoidCallback? onTapCloseButton;
-  final ImageProvider image;
+  final ImageProvider? image;
+  final String? aliasLabelImageText;
   final ImageErrorListener? onImageError;
   final double imageWidth;
   final double imageHeight;
@@ -13,14 +14,15 @@ class DotsActionSheetSettingsContent extends StatelessWidget {
 
   const DotsActionSheetSettingsContent({
     super.key,
-    required this.image,
     required this.title,
     required this.buttons,
+    this.image,
     this.subtitle,
     this.onTapCloseButton,
     this.onImageError,
     this.imageWidth = 100,
     this.imageHeight = 100,
+    this.aliasLabelImageText,
   });
 
   @override
@@ -39,6 +41,7 @@ class DotsActionSheetSettingsContent extends StatelessWidget {
                 children: [
                   ImageWithIcon(
                     image: image,
+                    aliasLabelImageText: aliasLabelImageText,
                     onError: onImageError,
                     width: imageWidth,
                     height: imageHeight,
@@ -57,10 +60,9 @@ class DotsActionSheetSettingsContent extends StatelessWidget {
                       if (subtitle != null)
                         Text(
                           subtitle!,
-                          style: context.dotsTheme.typo.main.bodyDefaultRegular
-                              .copyWith(
-                                color: context.dotsTheme.colors.textPrimary,
-                              ),
+                          style: context.dotsTheme.typo.main.bodyDefaultRegular.copyWith(
+                            color: context.dotsTheme.colors.textPrimary,
+                          ),
                           textAlign: TextAlign.center,
                         ),
                     ],
@@ -84,4 +86,3 @@ class DotsActionSheetSettingsContent extends StatelessWidget {
     );
   }
 }
-

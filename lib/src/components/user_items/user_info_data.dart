@@ -42,13 +42,15 @@ enum MemberType {
   admin,
   friend,
   alias,
-  member;
+  member,
+  existingAlias;
 
   bool get isCreator => this == MemberType.creator;
   bool get isAdmin => this == MemberType.admin;
   bool get isFriend => this == MemberType.friend;
   bool get isAlias => this == MemberType.alias;
   bool get isMember => this == MemberType.member;
+  bool get isExistingAlias => this == MemberType.existingAlias;
 }
 
 class MemberInfo {
