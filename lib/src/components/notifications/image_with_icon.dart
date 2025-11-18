@@ -149,7 +149,7 @@ class ImageWithIcon extends StatelessWidget {
             decoration: BoxDecoration(
               shape: circularImage ? BoxShape.circle : BoxShape.rectangle,
               borderRadius: circularImage ? null : imageBorderRadius,
-              color: theme.colors.bgContainerSecondaryOnBackground,
+              color: theme.colors.bgSecondaryBtn,
             ),
             child: Center(
               child: Text(
@@ -159,7 +159,6 @@ class ImageWithIcon extends StatelessWidget {
                   fontFamily: 'Proxima Soft',
                   fontSize: 40,
                   fontWeight: FontWeight.w500,
-                  height: 1.0,
                   color: theme.colors.textTertiary,
                 ),
               ),
