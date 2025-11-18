@@ -40,6 +40,35 @@ List<Story> get buttonStories => [
         ),
       ),
       Story(
+        name: 'Buttons/System button',
+        description: 'Demo page for system button',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: DotsSystemButton(
+            content: context.knobs.text(label: 'Content', initial: 'System button'),
+            icon: context.knobs.options<DotsIconData>(
+                label: 'Icon',
+                initial: DotsIconData.draw,
+                options: DotsIconData.values
+                    .map((item) => Option(label: item.name, value: item))
+                    .toList()),
+            size: context.knobs.options<DotsSystemButtonSize>(
+                label: 'Size',
+                initial: DotsSystemButtonSize.medium,
+                options: DotsSystemButtonSize.values
+                    .map((item) => Option(label: item.name, value: item))
+                    .toList()),
+            variant: context.knobs.options<DotsSystemButtonVariant>(
+                label: 'Variant',
+                initial: DotsSystemButtonVariant.active,
+                options: DotsSystemButtonVariant.values
+                    .map((item) => Option(label: item.name, value: item))
+                    .toList()),
+            onTap: () {},
+          ),
+        ),
+      ),
+      Story(
         name: 'Buttons/Icon button',
         description: 'Demo page for icon button',
         builder: (context) => Padding(

@@ -4,6 +4,7 @@ enum DotsAlertVariant {
   twoHorizontalButtons,
   twoHorizontalButtonsDestructive,
   twoVerticalButtons,
+  twoVerticalButtonsDestructive,
   input,
   selector;
 
@@ -13,6 +14,8 @@ enum DotsAlertVariant {
   bool get isTwoHorizontalButtonsDestructive =>
       this == DotsAlertVariant.twoHorizontalButtonsDestructive;
   bool get isTwoVerticalButtons => this == DotsAlertVariant.twoVerticalButtons;
+  bool get isTwoVerticalButtonsDestructive =>
+      this == DotsAlertVariant.twoVerticalButtonsDestructive;
   bool get isInput => this == DotsAlertVariant.input;
   bool get isSelector => this == DotsAlertVariant.selector;
 }

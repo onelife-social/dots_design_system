@@ -10,7 +10,8 @@ enum UserItemListVariant {
   pending,
   join,
   waiting,
-  basic;
+  basic,
+  existingAlias;
 
   bool get isMain => this == UserItemListVariant.main;
   bool get isLabel => this == UserItemListVariant.label;
@@ -20,6 +21,7 @@ enum UserItemListVariant {
   bool get isJoin => this == UserItemListVariant.join;
   bool get isWaiting => this == UserItemListVariant.waiting;
   bool get isBasic => this == UserItemListVariant.basic;
+  bool get isExistingAlias => this == UserItemListVariant.existingAlias;
 }
 
 class UsersItemList extends StatelessWidget {
@@ -82,11 +84,13 @@ class UsersItemList extends StatelessWidget {
 
   factory UsersItemList.label({
     Key? key,
+    String? id,
     required UserInfoData data,
     required String label,
     void Function(String?)? onTap,
   }) => UsersItemList._(
     key: key,
+    id: id,
     variant: UserItemListVariant.label,
     data: data,
     label: label,
@@ -106,24 +110,39 @@ class UsersItemList extends StatelessWidget {
     iconSize: iconSize,
   );
 
-  factory UsersItemList.basic({Key? key, required UserInfoData data}) =>
-      UsersItemList._(key: key, variant: UserItemListVariant.basic, data: data);
+  factory UsersItemList.basic({Key? key, String? id, required UserInfoData data}) =>
+      UsersItemList._(key: key, id: id, variant: UserItemListVariant.basic, data: data);
 
   factory UsersItemList.join({
     Key? key,
+    String? id,
     required UserInfoData data,
     required void Function(String?)? onTap,
     double? iconSize,
   }) => UsersItemList._(
     key: key,
+    id: id,
     variant: UserItemListVariant.join,
     data: data,
     onTap: onTap,
     iconSize: iconSize,
   );
 
-  factory UsersItemList.waiting({Key? key, required UserInfoData data}) =>
-      UsersItemList._(key: key, variant: UserItemListVariant.waiting, data: data);
+  factory UsersItemList.waiting({
+    Key? key,
+    String? id,
+    required UserInfoData data,
+    void Function(String?)? onTap,
+  }) => UsersItemList._(
+    key: key,
+    id: id,
+    variant: UserItemListVariant.waiting,
+    data: data,
+    onTap: onTap,
+  );
+
+  factory UsersItemList.existingAlias({Key? key, String? id, required UserInfoData data}) =>
+      UsersItemList._(key: key, id: id, variant: UserItemListVariant.existingAlias, data: data);
 
   factory UsersItemList.textfield({
     Key? key,
@@ -159,10 +178,7 @@ class UsersItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String? tapValue = switch (variant) {
-      UserItemListVariant.main || UserItemListVariant.textfield => id,
-      _ => null,
-    };
+    final String? tapValue = id ?? '';
 
     final content = Container(
       color: Colors.transparent,
@@ -281,6 +297,7 @@ class _MainWidget extends StatelessWidget {
       case UserItemListVariant.join:
       case UserItemListVariant.waiting:
       case UserItemListVariant.basic:
+      case UserItemListVariant.existingAlias:
         return UserInfo(
           data: data!,
           size: variant.isWaiting ? UserInfoSize.large : UserInfoSize.small,
@@ -382,6 +399,7 @@ class _TrailingWidget extends StatelessWidget {
       case UserItemListVariant.button:
       case UserItemListVariant.waiting:
       case UserItemListVariant.basic:
+      case UserItemListVariant.existingAlias:
         return Offstage();
     }
   }

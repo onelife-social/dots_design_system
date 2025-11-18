@@ -1,16 +1,16 @@
-import 'dart:ui';
-
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 enum ActionSheetInputVariant {
   main,
   colors,
-  date;
+  date,
+  user;
 
   bool get isMain => this == ActionSheetInputVariant.main;
   bool get isColors => this == ActionSheetInputVariant.colors;
   bool get isDate => this == ActionSheetInputVariant.date;
+  bool get isUser => this == ActionSheetInputVariant.user;
 }
 
 class DotsActionSheetInput extends StatelessWidget {
@@ -18,6 +18,7 @@ class DotsActionSheetInput extends StatelessWidget {
   /// - [ActionSheetInputVariant.main] is the default variant.
   /// - [ActionSheetInputVariant.colors] is for color selection.
   /// - [ActionSheetInputVariant.date] is for date selection.
+  /// - [ActionSheetInputVariant.user] is for user atributes input.
   final ActionSheetInputVariant variant;
 
   /// The [title] parameter is the title of the action sheet.
@@ -31,6 +32,9 @@ class DotsActionSheetInput extends StatelessWidget {
 
   /// The [onClose] is a callback for closing the action sheet tapping outside.
   final VoidCallback? onClose;
+
+  /// The [onCloseButtonTap] is a callback for the close button tap.
+  final VoidCallback? onCloseButtonTap;
 
   /// The [bottomPosition] is the position of the action sheet from the bottom.
   final double bottomPosition;
@@ -90,6 +94,12 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [maxTextLength] is the maximum length of text that can be entered in the text field.
   final int? maxTextLength;
 
+  /// The [image] is the image for the user variant.
+  final ImageProvider? image;
+
+  /// The [userLabel] is the label for the user variant.
+  final String? userLabel;
+
   const DotsActionSheetInput({
     super.key,
     this.variant = ActionSheetInputVariant.main,
@@ -100,6 +110,7 @@ class DotsActionSheetInput extends StatelessWidget {
     this.actionButtonText,
     this.onBackButtonTap,
     this.onClose,
+    this.onCloseButtonTap,
     this.bottomPosition = 56,
     this.showBlurBackground = true,
     this.iconData,
@@ -116,277 +127,43 @@ class DotsActionSheetInput extends StatelessWidget {
     this.onChanged,
     this.inputHintText,
     this.maxTextLength,
+    this.image,
+    this.userLabel,
   });
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-
-    return Stack(
-      children: [
-        GestureDetector(
-          onTap: onClose,
-          child: Container(
-            child: showBlurBackground
-                ? BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                    child: Container(
-                      color: Colors.black.dotsWithOpacity(0.3),
-                    ),
-                  )
-                : null,
-          ),
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: bottomPosition,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Container(
-              decoration: BoxDecoration(
-                color: theme.colors.bgBaseContrast,
-                borderRadius: DotsBorderRadius.r32,
-              ),
-              width: context.getByRatio(358, 288),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _Header(title: title, onBackButtonTap: onBackButtonTap),
-                  SizedBox(height: context.getByRatio(16, 10)),
-                  if (variant.isColors && colorController != null)
-                    ValueListenableBuilder<DotsColorOption>(
-                      valueListenable: colorController!,
-                      builder: (context, selectedColor, _) {
-                        return _Body(
-                          variant: variant,
-                          subtitle: subtitle,
-                          iconData: iconData,
-                          onIconTap: onIconTap,
-                          onMainButtonTap: onMainButtonTap,
-                          enableMainButton: enableMainButton,
-                          actionButtonText: actionButtonText,
-                          textFieldController: textFieldController,
-                          focus: focus,
-                          onChanged: onChanged,
-                          onTapTextFieldBtn: onTapTextFieldBtn,
-                          selectedColor: selectedColor,
-                          onColorSelected: (color) {
-                            colorController!.value = color;
-                          },
-                          inputHintText: inputHintText,
-                          maxTextLength: maxTextLength,
-                        );
-                      },
-                    )
-                  else
-                    _Body(
-                      variant: variant,
-                      subtitle: subtitle,
-                      iconData: iconData,
-                      onIconTap: onIconTap,
-                      onMainButtonTap: onMainButtonTap,
-                      enableMainButton: enableMainButton,
-                      actionButtonText: actionButtonText,
-                      selectedColor: selectedColor,
-                      dateLabel: dateLabel,
-                      dateValue: dateValue,
-                      onDateTap: onDateTap,
-                      dateIconData: dateIconData,
-                      textFieldController: textFieldController,
-                      focus: focus,
-                      onTapTextFieldBtn: onTapTextFieldBtn,
-                      onChanged: onChanged,
-                      inputHintText: inputHintText,
-                      maxTextLength: maxTextLength,
-                    ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _Header extends StatelessWidget {
-  final String? title;
-  final Function()? onBackButtonTap;
-
-  const _Header({
-    this.title,
-    this.onBackButtonTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-    final double onBackButtonTapWidth = 36;
-
-    return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
-      child: Row(
-        children: [
-          if (onBackButtonTap != null)
-            SizedBox(
-              width: onBackButtonTapWidth,
-              child: DotsIconButton(
-                icon: DotsIconData.chevronLeft,
-                size: DotsIconButtonSize.medium,
-                variant: DotsIconButtonVariant.noBackground,
-                onTap: onBackButtonTap,
-              ),
-            ),
-          Expanded(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Text(
-                  title ?? '',
-                  style: theme.typo.secondary.title02H6,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          ),
-          if (onBackButtonTap != null) SizedBox(width: onBackButtonTapWidth),
-        ],
+    return DotsActionSheetContainer(
+      bottomPosition: bottomPosition,
+      showBlurBackground: showBlurBackground,
+      onClose: onClose,
+      applyHorizontalPadding: false,
+      child: DotsActionSheetInputContent(
+        variant: variant,
+        title: title,
+        subtitle: subtitle,
+        onBackButtonTap: onBackButtonTap,
+        onCloseButtonTap: onCloseButtonTap,
+        iconData: iconData,
+        onIconTap: onIconTap,
+        onMainButtonTap: onMainButtonTap,
+        enableMainButton: enableMainButton,
+        actionButtonText: actionButtonText,
+        colorController: colorController,
+        selectedColor: selectedColor,
+        dateLabel: dateLabel,
+        dateValue: dateValue,
+        onDateTap: onDateTap,
+        dateIconData: dateIconData,
+        textFieldController: textFieldController,
+        focus: focus,
+        onChanged: onChanged,
+        onTapTextFieldBtn: onTapTextFieldBtn,
+        inputHintText: inputHintText,
+        maxTextLength: maxTextLength,
+        image: image,
+        userLabel: userLabel,
       ),
-    );
-  }
-}
-
-class _Body extends StatelessWidget {
-  final String? subtitle;
-  final ActionSheetInputVariant variant;
-  final DotsIconData? iconData;
-  final Function()? onIconTap;
-  final Function()? onMainButtonTap;
-  final bool enableMainButton;
-  final String? actionButtonText;
-  final DotsColorOption? selectedColor;
-  final ValueChanged<DotsColorOption>? onColorSelected;
-  final String? dateLabel;
-  final String? dateValue;
-  final Function()? onDateTap;
-  final DotsIconData? dateIconData;
-  final TextEditingController? textFieldController;
-  final FocusNode? focus;
-  final VoidCallback? onTapTextFieldBtn;
-  final ValueChanged<String>? onChanged;
-  final String? inputHintText;
-  final int? maxTextLength;
-
-  const _Body({
-    this.subtitle,
-    required this.variant,
-    this.iconData,
-    this.onIconTap,
-    this.onMainButtonTap,
-    this.enableMainButton = true,
-    this.actionButtonText,
-    this.selectedColor,
-    this.onColorSelected,
-    this.dateLabel,
-    this.dateValue,
-    this.onDateTap,
-    this.dateIconData = DotsIconData.calendar,
-    this.textFieldController,
-    this.focus,
-    this.onTapTextFieldBtn,
-    this.onChanged,
-    this.inputHintText,
-    this.maxTextLength,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-    final double elementsGap = context.getByRatio(16, 10);
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (subtitle != null) ...[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              subtitle ?? '',
-              style: theme.typo.main.labelDefaultRegular.copyWith(
-                color: theme.colors.textTertiary,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          const SizedBox(height: 10),
-        ],
-        if (!variant.isDate) ...[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: DotsIconButton(
-              icon: iconData ?? DotsIconData.add,
-              size: DotsIconButtonSize.extraLarge,
-              variant: DotsIconButtonVariant.solid,
-              onTap: onIconTap,
-              color: selectedColor?.getColor(context) ?? theme.colors.textQuarternary,
-            ),
-          ),
-          SizedBox(height: elementsGap),
-        ],
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: DotsTextField(
-            controller: textFieldController,
-            focusNode: focus,
-            alignCenter: true,
-            onTapBtn: onTapTextFieldBtn,
-            onChanged: onChanged,
-            hintText: inputHintText,
-            maxTextLength: maxTextLength,
-          ),
-        ),
-        if (variant.isDate) ...[
-          SizedBox(height: elementsGap),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: DotsItemInput(
-              label: dateLabel,
-              value: dateValue,
-              onTap: onDateTap,
-              icon: dateIconData,
-              position: DotsItemInputPosition.onlyOne,
-            ),
-          ),
-        ],
-        if (variant.isColors) ...[
-          SizedBox(height: elementsGap),
-          DotsColorOptionsRow(
-            size: 32,
-            spacing: 18,
-            selectedColor: selectedColor,
-            onColorSelected: onColorSelected ?? (_) {},
-          ),
-        ],
-        SizedBox(height: elementsGap),
-        Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-          child: Row(
-            children: [
-              Expanded(
-                child: DotsMainButton(
-                  expand: true,
-                  variant: DotsMainButtonVariant.main,
-                  size: DotsMainButtonSize.mainAction,
-                  onTap: onMainButtonTap,
-                  enabled: enableMainButton,
-                  content: actionButtonText ?? '',
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

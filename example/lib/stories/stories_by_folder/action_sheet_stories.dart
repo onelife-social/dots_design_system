@@ -427,6 +427,13 @@ List<Story> get actionSheetStories => [
                     );
                   },
                   onClose: () {},
+                  onCloseButtonTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Close button tapped!'),
+                      ),
+                    );
+                  },
                   showBlurBackground:
                       context.knobs.boolean(label: 'Show Blur Background', initial: true),
                   iconData: context.knobs.options<DotsIconData>(
@@ -467,6 +474,8 @@ List<Story> get actionSheetStories => [
                         .toList(),
                   ),
                   onDateTap: () {},
+                  image: NetworkImage('https://picsum.photos/250?image=9'),
+                  userLabel: context.knobs.nullable.text(label: 'User Label', initial: 'User'),
                   inputHintText: context.knobs.nullable
                       .text(label: 'Input Hint Text', initial: 'Type something...'),
                 ),
@@ -768,6 +777,66 @@ List<Story> get actionSheetStories => [
                 ),
               );
             },
+          );
+        },
+      ),
+      Story(
+        name: 'Action Sheet/Settings',
+        description: 'Demo page for action sheet settings',
+        builder: (context) {
+          return DotsActionSheetSettings(
+            image: NetworkImage('https://picsum.photos/250?image=9'),
+            title: context.knobs.text(label: 'Title', initial: 'Ajustes del álbum'),
+            imageWidth: context.knobs.slider(label: 'Image width', initial: 100, min: 50, max: 200),
+            imageHeight:
+                context.knobs.slider(label: 'Image height', initial: 100, min: 50, max: 200),
+            showBlurBackground: context.knobs.boolean(label: 'Show blur background', initial: true),
+            bottomPosition:
+                context.knobs.slider(label: 'Bottom position', initial: 56, min: 0, max: 200),
+            onClose: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('onClose')),
+              );
+            },
+            onTapCloseButton: context.knobs.boolean(label: 'Show close button', initial: true)
+                ? () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Close button tapped')),
+                    );
+                  }
+                : null,
+            buttons: [
+              DotsSystemButton(
+                content: 'Editar álbum',
+                icon: DotsIconData.draw,
+                variant: DotsSystemButtonVariant.active,
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Edit album')),
+                  );
+                },
+              ),
+              DotsSystemButton(
+                content: 'Compartir álbum',
+                icon: DotsIconData.share,
+                variant: DotsSystemButtonVariant.active,
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Share album')),
+                  );
+                },
+              ),
+              DotsSystemButton(
+                content: 'Eliminar álbum',
+                icon: DotsIconData.trash,
+                variant: DotsSystemButtonVariant.destructive,
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Delete album')),
+                  );
+                },
+              ),
+            ],
           );
         },
       ),
