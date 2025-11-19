@@ -179,6 +179,45 @@ List<Story> get notificationsStories => [
         ),
       ),
       Story(
+        name: 'Notifications/BannerImage',
+        description: 'Demo page for Notification Banner Image',
+        builder: (context) => ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: 358,
+          ),
+          child: NotificationBannerImage(
+            imageProvider: NetworkImage(
+              context.knobs.text(
+                label: 'Image URL',
+                initial: 'https://picsum.photos/400/200?image=1',
+              ),
+            ),
+            title: context.knobs.text(
+              label: 'Title',
+              initial: 'Formato de notificación fija',
+            ),
+            actionButtonText: context.knobs.text(
+              label: 'Action Button Text',
+              initial: 'Botón acción',
+            ),
+            onActionTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Action button tapped!'),
+                ),
+              );
+            },
+            onClose: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Close button tapped!'),
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+      Story(
         name: 'Notifications/Activity Preview Grid',
         description: 'Demo grid for Activity Preview',
         builder: (context) {
