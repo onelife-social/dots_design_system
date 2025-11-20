@@ -111,7 +111,6 @@ class DotsActionSheetSpotlight extends StatelessWidget {
     return DotsActionSheetContainer(
       bottomPosition: bottomPosition,
       horizontalPadding: 16,
-      showBlurBackground: true,
       onClose: onClose,
       child: DotsActionSheetSpotlightContent(
         title: title,

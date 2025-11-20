@@ -8,7 +8,6 @@ class DotsActionSheetContainer extends StatelessWidget {
   final double bottomPosition;
   final double horizontalPadding;
   final double? maxHeight;
-  final bool showBlurBackground;
   final VoidCallback? onClose;
   final bool showCloseButton;
   final VoidCallback? onCloseButtonTap;
@@ -21,7 +20,6 @@ class DotsActionSheetContainer extends StatelessWidget {
     this.bottomPosition = 56,
     this.horizontalPadding = 16,
     this.maxHeight,
-    this.showBlurBackground = true,
     this.onClose,
     this.showCloseButton = false,
     this.onCloseButtonTap,
@@ -35,15 +33,7 @@ class DotsActionSheetContainer extends StatelessWidget {
 
     return Stack(
       children: [
-        if (showBlurBackground)
-          GestureDetector(
-            onTap: onClose,
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-              child: Container(color: Color(0xFF000000).dotsWithOpacity(0.3)),
-            ),
-          )
-        else if (onClose != null)
+         if (onClose != null)
           GestureDetector(
             onTap: onClose,
             child: Container(color: Color(0xFF000000).dotsWithOpacity(0.4)),

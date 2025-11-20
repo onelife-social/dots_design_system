@@ -43,9 +43,6 @@ class DotsActionSheetList extends StatelessWidget {
   /// The [onCloseButtonTap] is a callback for the close button tap.
   final VoidCallback? onCloseButtonTap;
 
-  /// The [showBlurBackground] parameter determines if the background should be blurred.
-  final bool showBlurBackground;
-
   /// The [onLabelButtonTap] is a callback for the main button tap.
   final Function()? onLabelButtonTap;
 
@@ -149,7 +146,6 @@ class DotsActionSheetList extends StatelessWidget {
     this.onBackButtonTap,
     this.onClose,
     this.onCloseButtonTap,
-    this.showBlurBackground = true,
     this.inputIcon = DotsIconData.search,
     this.hintInputText,
     this.onInputChanged,
@@ -178,7 +174,6 @@ class DotsActionSheetList extends StatelessWidget {
       bottomPosition: bottomPosition,
       horizontalPadding: 16,
       maxHeight: context.getByRatio(657, 480),
-      showBlurBackground: showBlurBackground,
       onClose: onClose,
       applyHorizontalPadding: false,
       containerPadding: EdgeInsets.zero,
