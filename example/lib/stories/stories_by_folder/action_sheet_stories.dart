@@ -434,8 +434,6 @@ List<Story> get actionSheetStories => [
                       ),
                     );
                   },
-                  showBlurBackground:
-                      context.knobs.boolean(label: 'Show Blur Background', initial: true),
                   iconData: context.knobs.options<DotsIconData>(
                     label: 'Folder Icon Data',
                     initial: DotsIconData.add,
@@ -790,7 +788,6 @@ List<Story> get actionSheetStories => [
             imageWidth: context.knobs.slider(label: 'Image width', initial: 100, min: 50, max: 200),
             imageHeight:
                 context.knobs.slider(label: 'Image height', initial: 100, min: 50, max: 200),
-            showBlurBackground: context.knobs.boolean(label: 'Show blur background', initial: true),
             bottomPosition:
                 context.knobs.slider(label: 'Bottom position', initial: 56, min: 0, max: 200),
             onClose: () {

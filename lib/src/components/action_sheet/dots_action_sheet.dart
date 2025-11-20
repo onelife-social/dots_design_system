@@ -88,11 +88,6 @@ class DotsActionSheet extends StatelessWidget {
   /// By deafault, it is set to [DotsActionSheetButtonPositioning.row]
   final DotsActionSheetButtonPositioning? buttonPositioning;
 
-  /// Whether to show a semi-transparent backdrop behind the Action Sheet.
-  ///
-  /// Defaults to true.
-  final bool showBackdrop;
-
   /// Whether to apply a shader mask to the back button.
   ///
   ///   Defaults to false.
@@ -140,7 +135,6 @@ class DotsActionSheet extends StatelessWidget {
     this.primaryButton,
     this.secondaryButton,
     this.buttonPositioning = DotsActionSheetButtonPositioning.row,
-    this.showBackdrop = true,
     this.backButtonShaderMask = false,
     this.onPrimaryButtonTap,
     this.textFieldController,
@@ -169,7 +163,6 @@ class DotsActionSheet extends StatelessWidget {
           primaryButton: primaryButton,
           secondaryButton: secondaryButton,
           buttonPositioning: buttonPositioning ?? DotsActionSheetButtonPositioning.row,
-          showBackdrop: showBackdrop,
           backButtonShaderMask: backButtonShaderMask,
           showCloseButton: showCloseButton,
           onCloseButtonTap: onCloseButtonTap,
@@ -191,7 +184,6 @@ class DotsActionSheet extends StatelessWidget {
           primaryButton: primaryButton,
           secondaryButton: secondaryButton,
           buttonPositioning: buttonPositioning ?? DotsActionSheetButtonPositioning.row,
-          showBackdrop: showBackdrop,
           backButtonShaderMask: backButtonShaderMask,
           onPrimaryButtonTap: onPrimaryButtonTap,
           textFieldController: textFieldController,
