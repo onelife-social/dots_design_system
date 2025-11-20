@@ -39,9 +39,6 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [bottomPosition] is the position of the action sheet from the bottom.
   final double bottomPosition;
 
-  /// The [showBlurBackground] parameter determines if the background should be blurred.
-  final bool showBlurBackground;
-
   /// The [iconData] is the icon for the folder.
   final DotsIconData? iconData;
 
@@ -112,7 +109,6 @@ class DotsActionSheetInput extends StatelessWidget {
     this.onClose,
     this.onCloseButtonTap,
     this.bottomPosition = 56,
-    this.showBlurBackground = true,
     this.iconData,
     this.onIconTap,
     this.colorController,
@@ -135,7 +131,6 @@ class DotsActionSheetInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return DotsActionSheetContainer(
       bottomPosition: bottomPosition,
-      showBlurBackground: showBlurBackground,
       onClose: onClose,
       applyHorizontalPadding: false,
       child: DotsActionSheetInputContent(

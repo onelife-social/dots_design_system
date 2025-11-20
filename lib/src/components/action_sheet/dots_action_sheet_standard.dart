@@ -16,7 +16,6 @@ class DotsActionSheetStandard extends StatelessWidget {
   final Widget? primaryButton;
   final Widget? secondaryButton;
   final DotsActionSheetButtonPositioning buttonPositioning;
-  final bool showBackdrop;
   final bool backButtonShaderMask;
   final bool showCloseButton;
   final VoidCallback? onCloseButtonTap;
@@ -37,7 +36,6 @@ class DotsActionSheetStandard extends StatelessWidget {
     this.primaryButton,
     this.secondaryButton,
     this.buttonPositioning = DotsActionSheetButtonPositioning.row,
-    this.showBackdrop = true,
     this.backButtonShaderMask = false,
     this.showCloseButton = false,
     this.onCloseButtonTap,
@@ -49,7 +47,6 @@ class DotsActionSheetStandard extends StatelessWidget {
       bottomPosition: bottomPosition,
       horizontalPadding: horizontalPadding,
       maxHeight: maxHeight,
-      showBlurBackground: showBackdrop,
       onClose: onClose,
       showCloseButton: showCloseButton,
       onCloseButtonTap: onCloseButtonTap,

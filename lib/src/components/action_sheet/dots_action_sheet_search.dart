@@ -17,7 +17,6 @@ class DotsActionSheetSearch extends StatelessWidget {
   final Widget? primaryButton;
   final Widget? secondaryButton;
   final DotsActionSheetButtonPositioning buttonPositioning;
-  final bool showBackdrop;
   final bool backButtonShaderMask;
   final VoidCallback? onPrimaryButtonTap;
   final TextEditingController? textFieldController;
@@ -43,7 +42,6 @@ class DotsActionSheetSearch extends StatelessWidget {
     this.primaryButton,
     this.secondaryButton,
     this.buttonPositioning = DotsActionSheetButtonPositioning.row,
-    this.showBackdrop = true,
     this.backButtonShaderMask = false,
     this.onPrimaryButtonTap,
     this.textFieldController,
@@ -59,7 +57,6 @@ class DotsActionSheetSearch extends StatelessWidget {
       bottomPosition: bottomPosition,
       horizontalPadding: horizontalPadding,
       maxHeight: maxHeight,
-      showBlurBackground: showBackdrop,
       onClose: onClose,
       showCloseButton: showCloseButton,
       onCloseButtonTap: onCloseButtonTap,

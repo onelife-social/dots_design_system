@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 class DotsActionSheetSettings extends StatelessWidget {
   final VoidCallback? onClose;
-  final bool showBlurBackground;
   final double bottomPosition;
   final VoidCallback? onTapCloseButton;
   final ImageProvider image;
@@ -21,7 +20,6 @@ class DotsActionSheetSettings extends StatelessWidget {
     required this.buttons,
     this.subtitle,
     this.onClose,
-    this.showBlurBackground = true,
     this.bottomPosition = 56,
     this.onTapCloseButton,
     this.onImageError,
@@ -34,7 +32,6 @@ class DotsActionSheetSettings extends StatelessWidget {
     return DotsActionSheetContainer(
       bottomPosition: bottomPosition,
       horizontalPadding: 16,
-      showBlurBackground: showBlurBackground,
       onClose: onClose,
       containerPadding: const EdgeInsets.all(16),
       child: DotsActionSheetSettingsContent(

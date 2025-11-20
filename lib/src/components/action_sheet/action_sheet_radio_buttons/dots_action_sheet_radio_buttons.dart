@@ -28,11 +28,6 @@ class DotsActionSheetRadioButtons extends StatelessWidget {
   /// Callback for closing the sheet.
   final VoidCallback? onClose;
 
-  /// Whether to show a blurred background.
-  ///
-  /// Defaults to `true`.
-  final bool showBlurBackground;
-
   /// Position from the bottom of the screen.
   ///
   /// Defaults to `56`.
@@ -48,7 +43,6 @@ class DotsActionSheetRadioButtons extends StatelessWidget {
     this.onTapButton,
     this.showCloseButton = false,
     this.onClose,
-    this.showBlurBackground = true,
     this.bottomPosition = 56,
   });
 
@@ -60,7 +54,6 @@ class DotsActionSheetRadioButtons extends StatelessWidget {
       bottomPosition: bottomPosition,
       horizontalPadding: 16,
       maxHeight: maxSheetHeight,
-      showBlurBackground: showBlurBackground,
       onClose: onClose,
       showCloseButton: false,
       applyHorizontalPadding: false,
