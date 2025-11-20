@@ -18,6 +18,7 @@ class ImageWithIcon extends StatelessWidget {
     this.circularImage = false,
     this.showIcon = true,
     this.aliasLabelImageText,
+    this.aliasLabelImageTextStyle,
   });
 
   /// Image provider for the main image to display
@@ -59,6 +60,9 @@ class ImageWithIcon extends StatelessWidget {
 
   /// Text to display as an alias label when no image is provided
   final String? aliasLabelImageText;
+
+  /// Style for the alias label image text
+  final TextStyle? aliasLabelImageTextStyle;
 
   Image get defaultImage => Image.asset(
     ImagesPaths.defaultUserItem,
@@ -155,12 +159,14 @@ class ImageWithIcon extends StatelessWidget {
               child: Text(
                 aliasLabelImageText!,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Proxima Soft',
-                  fontSize: 40,
-                  fontWeight: FontWeight.w500,
-                  color: theme.colors.textTertiary,
-                ),
+                style:
+                    aliasLabelImageTextStyle ??
+                    TextStyle(
+                      fontFamily: 'Proxima Soft',
+                      fontSize: 40,
+                      fontWeight: FontWeight.w500,
+                      color: theme.colors.textTertiary,
+                    ),
               ),
             ),
           ),

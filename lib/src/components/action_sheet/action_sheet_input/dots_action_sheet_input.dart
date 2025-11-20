@@ -97,6 +97,9 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [userLabel] is the label for the user variant.
   final String? userLabel;
 
+  /// The [aliasLabelImageText] is the text for the alias label image in the user variant.
+  final String? aliasLabelImageText;
+
   const DotsActionSheetInput({
     super.key,
     this.variant = ActionSheetInputVariant.main,
@@ -125,6 +128,7 @@ class DotsActionSheetInput extends StatelessWidget {
     this.maxTextLength,
     this.image,
     this.userLabel,
+    this.aliasLabelImageText,
   });
 
   @override
@@ -158,6 +162,7 @@ class DotsActionSheetInput extends StatelessWidget {
         maxTextLength: maxTextLength,
         image: image,
         userLabel: userLabel,
+        aliasLabelImageText: aliasLabelImageText,
       ),
     );
   }

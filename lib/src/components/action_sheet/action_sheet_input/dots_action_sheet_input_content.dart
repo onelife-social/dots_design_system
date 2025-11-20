@@ -26,6 +26,7 @@ class DotsActionSheetInputContent extends StatelessWidget {
   final int? maxTextLength;
   final ImageProvider? image;
   final String? userLabel;
+  final String? aliasLabelImageText;
 
   const DotsActionSheetInputContent({
     super.key,
@@ -53,6 +54,7 @@ class DotsActionSheetInputContent extends StatelessWidget {
     this.maxTextLength,
     this.image,
     this.userLabel,
+    this.aliasLabelImageText,
   });
 
   @override
@@ -88,6 +90,7 @@ class DotsActionSheetInputContent extends StatelessWidget {
                 },
                 inputHintText: inputHintText,
                 maxTextLength: maxTextLength,
+                aliasLabelImageText: aliasLabelImageText,
               );
             },
           )
@@ -113,6 +116,7 @@ class DotsActionSheetInputContent extends StatelessWidget {
             maxTextLength: maxTextLength,
             image: image,
             userLabel: userLabel,
+            aliasLabelImageText: aliasLabelImageText,
           ),
       ],
     );
@@ -200,6 +204,7 @@ class _Body extends StatelessWidget {
   final String? inputHintText;
   final int? maxTextLength;
   final String? userLabel;
+  final String? aliasLabelImageText;
 
   const _Body({
     this.subtitle,
@@ -223,6 +228,7 @@ class _Body extends StatelessWidget {
     this.maxTextLength,
     this.image,
     this.userLabel,
+    this.aliasLabelImageText,
   });
 
   @override
@@ -256,6 +262,10 @@ class _Body extends StatelessWidget {
         if (variant.isUser) ...[
           ImageWithIcon(
             image: image,
+            aliasLabelImageText: aliasLabelImageText,
+            aliasLabelImageTextStyle: theme.typo.main.titleH4.copyWith(
+              color: theme.colors.textTertiary,
+            ),
             width: 56,
             height: 56,
             circularImage: true,
