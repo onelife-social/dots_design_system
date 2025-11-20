@@ -76,6 +76,10 @@ class _UsersListState extends State<UsersList> {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
+    if (widget.members.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     final items = List.generate(widget.members.length, (index) {
       final member = widget.members[index];
 
