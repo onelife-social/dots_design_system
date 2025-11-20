@@ -178,7 +178,7 @@ class DotsActionSheetList extends StatelessWidget {
       bottomPosition: bottomPosition,
       horizontalPadding: 16,
       maxHeight: context.getByRatio(657, 480),
-      showBlurBackground: false,
+      showBlurBackground: showBlurBackground,
       onClose: onClose,
       applyHorizontalPadding: false,
       containerPadding: EdgeInsets.zero,
