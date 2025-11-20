@@ -46,8 +46,10 @@ class DotsActionSheetContainer extends StatelessWidget {
         else if (onClose != null)
           GestureDetector(
             onTap: onClose,
-            child: Container(color: Colors.transparent),
-          ),
+            child: Container(color: Color(0xFF000000).dotsWithOpacity(0.4)),
+          )
+        else
+          Container(color: Color(0xFF000000).dotsWithOpacity(0.4)),
         Positioned(
           left: 0,
           right: 0,
