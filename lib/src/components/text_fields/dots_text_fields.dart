@@ -203,15 +203,18 @@ class _DotsTextFieldState extends State<DotsTextField> {
                     ),
                   ),
                   if (widget.endButtonText != null) ...[
-                    const SizedBox(width: 12),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      padding: const EdgeInsets.only(
+                        top: 8,
+                        bottom: 8,
+                        left: 12,
+                        right: 16,
+                      ),
                       child: Container(
                         width: 0.5,
                         color: theme.colors.labelSecondary.dotsWithOpacity(0.3),
                       ),
                     ),
-                    const SizedBox(width: 16),
                     InkWell(
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,
