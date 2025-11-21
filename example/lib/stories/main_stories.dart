@@ -35,6 +35,7 @@ import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 import '../components/linear_gradient_blur_container_demo_page.dart';
+import '../components/settings_item.dart';
 
 List<Story> get allStories => [
       ...actionSheetStories,
@@ -656,5 +657,33 @@ List<Story> get allStories => [
         name: 'Users List',
         description: 'Demo page for Users List',
         builder: (_) => UsersListStory(),
+      ),
+      Story(
+        name: 'Settings Item',
+        description: 'Demo page for Settings Item',
+        builder: (context) => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: SettingsItem(
+                label: context.knobs.text(label: 'Label', initial: 'Label'),
+                startIcon: context.knobs.options<DotsIconData>(
+                  label: 'Start Icon',
+                  initial: DotsIconData.home,
+                  options: DotsIconData.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList(),
+                ),
+                endIcon: context.knobs.options<DotsIconData>(
+                  label: 'End Icon',
+                  initial: DotsIconData.chevronRight,
+                  options: DotsIconData.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList(),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     ];
