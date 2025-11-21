@@ -362,6 +362,7 @@ List<Story> get allStories => [
                   .toList(),
             ),
             background: context.knobs.boolean(label: 'Background?', initial: true),
+            endButtonText: context.knobs.nullable.text(label: 'End Button Text', initial: 'Submit'),
           ),
         ),
       ),

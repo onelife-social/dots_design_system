@@ -57,6 +57,16 @@ class DotsTextField extends StatefulWidget {
   /// Defaults to `true`.
   final bool background;
 
+  /// The text for the right button.
+  ///
+  /// Defaults to null.
+  final String? endButtonText;
+
+  /// Callback when the right button text is tapped.
+  ///
+  /// If null, the right button will not be tappable.
+  final Function()? onEndButtonTap;
+
   const DotsTextField({
     super.key,
     this.iconData,
@@ -73,6 +83,8 @@ class DotsTextField extends StatefulWidget {
     this.controller,
     this.focusNode,
     this.background = true,
+    this.endButtonText,
+    this.onEndButtonTap,
   });
 
   @override
@@ -190,6 +202,35 @@ class _DotsTextFieldState extends State<DotsTextField> {
                       onChanged: widget.onChanged,
                     ),
                   ),
+                  if (widget.endButtonText != null) ...[
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 8,
+                        bottom: 8,
+                        left: 12,
+                        right: 16,
+                      ),
+                      child: Container(
+                        width: 0.5,
+                        color: theme.colors.labelSecondary.dotsWithOpacity(0.3),
+                      ),
+                    ),
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: widget.onEndButtonTap,
+                      child: Container(
+                        height: double.infinity,
+                        alignment: Alignment.center,
+                        child: Text(
+                          widget.endButtonText!,
+                          style: theme.typo.main.bodyDefaultBold.copyWith(
+                            color: theme.colors.labelHighlight,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),
