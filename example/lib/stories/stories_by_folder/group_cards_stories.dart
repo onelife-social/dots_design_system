@@ -46,19 +46,13 @@ List<Story> get cards => [
         ),
       ),
       Story(
-        name: 'Cards/Recap Card',
-        description: 'Recap Page new Recap',
-        builder: (context) => RecapCard(
+        name: 'Cards/Recap Card Active',
+        description: 'Recap in block 1 - state active',
+        builder: (context) => RecapCard.active(
           width: context.knobs.slider(label: 'Width', initial: 254, min: 254, max: 382),
           buttonText: context.knobs.text(label: 'Button Text', initial: 'Ver Recap'),
           badgeText: context.knobs.text(label: 'Badge Text', initial: '¡Nuevo!'),
-          variant: context.knobs.options<RecapCardVariant>(
-            label: 'Variant',
-            initial: RecapCardVariant.newRecap,
-            options: RecapCardVariant.values
-                .map((item) => Option(label: item.name, value: item))
-                .toList(),
-          ),
+          title: context.knobs.text(label: 'Title', initial: 'Recap 15s'),
           onTap: () {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
@@ -70,7 +64,63 @@ List<Story> get cards => [
             context.knobs.text(
                 label: 'Container background image', initial: 'https://picsum.photos/250?image=9'),
           ),
-          defaultImage: NetworkImage('https://picsum.photos/250?image=9'),
+          textImageProvider: NetworkImage(
+            context.knobs.text(label: 'Text image', initial: ''),
+          ),
+        ),
+      ),
+      Story(
+        name: 'Cards/Recap Card Blocked',
+        description: 'Recap in block 1 - state blocked',
+        builder: (context) => RecapCard.blocked(
+          width: context.knobs.slider(label: 'Width', initial: 254, min: 254, max: 382),
+          buttonText: context.knobs.text(label: 'Button Text', initial: 'Subir 50 memories'),
+          title: context.knobs.text(label: 'Title', initial: 'Recap 15s'),
+          onInfoTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('onInfoTap'),
+              ),
+            );
+          },
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('onTap'),
+              ),
+            );
+          },
+          imageProvider: NetworkImage(
+            context.knobs.text(
+                label: 'Container background image', initial: 'https://picsum.photos/250?image=9'),
+          ),
+          textImageProvider: NetworkImage(
+            context.knobs.text(label: 'Text image', initial: ''),
+          ),
+        ),
+      ),
+      Story(
+        name: 'Cards/Recap Card Generated',
+        description: 'Recap in block 1 - state generated',
+        builder: (context) => RecapCard.generated(
+          width: context.knobs.slider(label: 'Width', initial: 254, min: 254, max: 382),
+          albumName: context.knobs.text(label: 'Album Name', initial: 'Familia'),
+          createdBy: context.knobs.text(label: 'Created By', initial: 'Creado por ti'),
+          title: context.knobs.text(label: 'Title', initial: 'Recap 15s'),
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('onTap'),
+              ),
+            );
+          },
+          imageProvider: NetworkImage(
+            context.knobs.text(
+                label: 'Container background image', initial: 'https://picsum.photos/250?image=9'),
+          ),
+          textImageProvider: NetworkImage(
+            context.knobs.text(label: 'Text image', initial: ''),
+          ),
         ),
       ),
       Story(
