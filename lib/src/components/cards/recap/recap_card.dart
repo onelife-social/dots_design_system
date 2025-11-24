@@ -45,11 +45,15 @@ class RecapCard extends StatelessWidget {
   /// Callback when an error occurs while loading the image.
   final ImageErrorWidgetBuilder? errorBuilder;
 
+  /// The image provider for the text image.
+  final ImageProvider? textImageProvider;
+
   // private constructor
   const RecapCard._({
     required this.variant,
     required this.width,
     required this.imageProvider,
+    this.textImageProvider,
     this.buttonText,
     this.badgeText,
     this.title,
@@ -68,10 +72,12 @@ class RecapCard extends StatelessWidget {
     required Function()? onInfoTap,
     ImageErrorWidgetBuilder? errorBuilder,
     String? title,
+    ImageProvider? textImageProvider,
   }) => RecapCard._(
     variant: RecapCardVariant.blocked,
     width: width,
     imageProvider: imageProvider,
+    textImageProvider: textImageProvider,
     buttonText: buttonText,
     onTap: onTap,
     onInfoTap: onInfoTap,
@@ -87,10 +93,12 @@ class RecapCard extends StatelessWidget {
     ImageErrorWidgetBuilder? errorBuilder,
     String? title,
     String? badgeText,
+    ImageProvider? textImageProvider,
   }) => RecapCard._(
     variant: RecapCardVariant.active,
     width: width,
     imageProvider: imageProvider,
+    textImageProvider: textImageProvider,
     buttonText: buttonText,
     onTap: onTap,
     errorBuilder: errorBuilder,
@@ -106,10 +114,12 @@ class RecapCard extends StatelessWidget {
     required Function()? onTap,
     ImageErrorWidgetBuilder? errorBuilder,
     String? title,
+    ImageProvider? textImageProvider,
   }) => RecapCard._(
     variant: RecapCardVariant.generated,
     width: width,
     imageProvider: imageProvider,
+    textImageProvider: textImageProvider,
     createdBy: createdBy,
     albumName: albumName,
     onTap: onTap,
@@ -140,53 +150,19 @@ class RecapCard extends StatelessWidget {
                     height: double.infinity,
                     errorBuilder: errorBuilder,
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(24),
+                  Container(
+                    color: Colors.black.withValues(alpha: 0.3),
                     child: Stack(
                       children: [
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              _RecapCardTitle(title: title),
-                              if (!variant.isBlocked && badgeText != null && badgeText!.isNotEmpty)
-                                BadgeLabel(
-                                  content: badgeText!,
-                                  variant: BadgeLabelVariant.premium,
-                                  size: BadgeLabelSize.large,
-                                ),
-                              if (variant.isBlocked)
-                                DotsIconButton(
-                                  icon: DotsIconData.lock,
-                                  onTap: onInfoTap,
-                                  style: DotsIconButtonStyle.floating,
-                                  size: DotsIconButtonSize.large,
-                                  state: DotsIconButtonState.defaultState,
-                                  color: theme.colors.textPrimary,
-                                  backgroundColor: theme.colors.bgBtnImage.withValues(alpha: 0.5),
-                                ),
-                            ],
+                        if (textImageProvider != null)
+                          Positioned.fill(
+                            child: Image(
+                              image: textImageProvider!,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) => const SizedBox.shrink(),
+                            ),
                           ),
-                        ),
-
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: variant.isGenerated
-                              ? _CreatedByText(
-                                  createdBy: createdBy,
-                                  albumName: albumName,
-                                )
-                              : DotsMainButton(
-                                  content: buttonText ?? '',
-                                  variant: DotsMainButtonVariant.main,
-                                  expand: false,
-                                  onTap: onTap,
-                                  shouldApplyBlur: true,
-                                ),
-                        ),
+                        _buildContent(context),
                       ],
                     ),
                   ),
@@ -195,6 +171,62 @@ class RecapCard extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildContent(BuildContext context) {
+    final theme = context.dotsTheme;
+    return Padding(
+      padding: EdgeInsets.all(24),
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.topRight,
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _RecapCardTitle(title: title),
+                if (!variant.isBlocked && badgeText != null && badgeText!.isNotEmpty)
+                  BadgeLabel(
+                    content: badgeText!,
+                    variant: BadgeLabelVariant.premium,
+                    size: BadgeLabelSize.large,
+                  ),
+                if (variant.isBlocked)
+                  DotsIconButton(
+                    icon: DotsIconData.lock,
+                    onTap: onInfoTap,
+                    style: DotsIconButtonStyle.floating,
+                    size: DotsIconButtonSize.large,
+                    state: DotsIconButtonState.defaultState,
+                    color: theme.colors.textPrimary,
+                    backgroundColor: theme.colors.bgBtnImage.withValues(
+                      alpha: 0.5,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: variant.isGenerated
+                ? _CreatedByText(
+                    createdBy: createdBy,
+                    albumName: albumName,
+                  )
+                : DotsMainButton(
+                    content: buttonText ?? '',
+                    variant: DotsMainButtonVariant.main,
+                    expand: false,
+                    onTap: onTap,
+                    shouldApplyBlur: true,
+                  ),
+          ),
+        ],
       ),
     );
   }

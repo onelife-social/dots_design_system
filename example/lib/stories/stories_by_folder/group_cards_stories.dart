@@ -52,6 +52,7 @@ List<Story> get cards => [
           width: context.knobs.slider(label: 'Width', initial: 254, min: 254, max: 382),
           buttonText: context.knobs.text(label: 'Button Text', initial: 'Ver Recap'),
           badgeText: context.knobs.text(label: 'Badge Text', initial: '¡Nuevo!'),
+          title: context.knobs.text(label: 'Title', initial: 'Recap 15s'),
           onTap: () {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
@@ -63,7 +64,9 @@ List<Story> get cards => [
             context.knobs.text(
                 label: 'Container background image', initial: 'https://picsum.photos/250?image=9'),
           ),
-          title: context.knobs.text(label: 'Title', initial: 'Recap 15s'),
+          textImageProvider: NetworkImage(
+            context.knobs.text(label: 'Text image', initial: ''),
+          ),
         ),
       ),
       Story(
@@ -72,6 +75,7 @@ List<Story> get cards => [
         builder: (context) => RecapCard.blocked(
           width: context.knobs.slider(label: 'Width', initial: 254, min: 254, max: 382),
           buttonText: context.knobs.text(label: 'Button Text', initial: 'Subir 50 memories'),
+          title: context.knobs.text(label: 'Title', initial: 'Recap 15s'),
           onInfoTap: () {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
@@ -90,7 +94,9 @@ List<Story> get cards => [
             context.knobs.text(
                 label: 'Container background image', initial: 'https://picsum.photos/250?image=9'),
           ),
-          title: context.knobs.text(label: 'Title', initial: 'Recap 15s'),
+          textImageProvider: NetworkImage(
+            context.knobs.text(label: 'Text image', initial: ''),
+          ),
         ),
       ),
       Story(
@@ -100,6 +106,7 @@ List<Story> get cards => [
           width: context.knobs.slider(label: 'Width', initial: 254, min: 254, max: 382),
           albumName: context.knobs.text(label: 'Album Name', initial: 'Familia'),
           createdBy: context.knobs.text(label: 'Created By', initial: 'Creado por ti'),
+          title: context.knobs.text(label: 'Title', initial: 'Recap 15s'),
           onTap: () {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
@@ -111,7 +118,9 @@ List<Story> get cards => [
             context.knobs.text(
                 label: 'Container background image', initial: 'https://picsum.photos/250?image=9'),
           ),
-          title: context.knobs.text(label: 'Title', initial: 'Recap 15s'),
+          textImageProvider: NetworkImage(
+            context.knobs.text(label: 'Text image', initial: ''),
+          ),
         ),
       ),
       Story(
