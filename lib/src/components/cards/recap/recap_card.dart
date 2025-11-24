@@ -152,7 +152,7 @@ class RecapCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               _RecapCardTitle(title: title),
-                              if (!variant.isBlocked && badgeText != null)
+                              if (!variant.isBlocked && badgeText != null && badgeText!.isNotEmpty)
                                 BadgeLabel(
                                   content: badgeText!,
                                   variant: BadgeLabelVariant.premium,
@@ -247,6 +247,8 @@ class _CreatedByText extends StatelessWidget {
     final theme = context.dotsTheme;
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         if (albumName != null && albumName!.isNotEmpty)
           Text(
