@@ -132,58 +132,49 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    return SizedBox(
-      height: subtitle != null ? 60 : 40,
-      child: Column(
-        children: [
-          Expanded(
-            child: Stack(
-              children: [
-                if (onBackButtonTap != null)
-                  Positioned.fill(
-                    child: Row(
-                      children: [
-                        DotsIconButton(
-                          icon: DotsIconData.chevronLeft,
-                          size: DotsIconButtonSize.medium,
-                          variant: DotsIconButtonVariant.noBackground,
-                          onTap: onBackButtonTap,
-                        ),
-                      ],
-                    ),
-                  ),
-                Positioned.fill(
-                  left: 0,
-                  right: 0,
-                  child: Center(
-                    child: Padding(
-                      padding: addTitlePadding
-                          ? const EdgeInsets.symmetric(horizontal: 42)
-                          : EdgeInsets.zero,
-                      child: Text(
-                        title,
-                        style:
-                            titleStyle ??
-                            theme.typo.secondary.title02H6.copyWith(
-                              color: theme.colors.textPrimary,
-                            ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            if (onBackButtonTap != null)
+              Align(
+                alignment: Alignment.topLeft,
+                child: DotsIconButton(
+                  icon: DotsIconData.chevronLeft,
+                  size: DotsIconButtonSize.medium,
+                  variant: DotsIconButtonVariant.noBackground,
+                  onTap: onBackButtonTap,
                 ),
-              ],
-            ),
-          ),
-          if (subtitle != null)
-            Text(
-              subtitle ?? '',
-              style: theme.typo.main.labelDefaultRegular.copyWith(
-                color: theme.colors.textSecondary,
+              ),
+            Padding(
+              padding: addTitlePadding
+                  ? const EdgeInsets.symmetric(horizontal: 42)
+                  : EdgeInsets.zero,
+              child: Text(
+                title,
+                style:
+                    titleStyle ??
+                    theme.typo.secondary.title02H6.copyWith(
+                      color: theme.colors.textPrimary,
+                    ),
+                textAlign: TextAlign.center,
               ),
             ),
+          ],
+        ),
+        if (subtitle != null) ...[
+          const SizedBox(height: 4),
+          Text(
+            subtitle ?? '',
+            style: theme.typo.main.labelDefaultRegular.copyWith(
+              color: theme.colors.textSecondary,
+            ),
+            textAlign: TextAlign.center,
+          ),
         ],
-      ),
+      ],
     );
   }
 }
