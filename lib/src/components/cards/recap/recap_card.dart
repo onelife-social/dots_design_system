@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
@@ -131,6 +133,14 @@ class RecapCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
+    final imageWidget = Image(
+      image: imageProvider,
+      fit: BoxFit.cover,
+      width: double.infinity,
+      height: double.infinity,
+      errorBuilder: errorBuilder,
+    );
+
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
@@ -143,15 +153,24 @@ class RecapCard extends StatelessWidget {
               styleType: theme.styles.squircle52,
               child: Stack(
                 children: [
-                  Image(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: double.infinity,
-                    errorBuilder: errorBuilder,
-                  ),
+                  variant.isBlocked
+                      ? ImageFiltered(
+                          imageFilter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                          child: imageWidget,
+                        )
+                      : imageWidget,
                   Container(
-                    color: Colors.black.withValues(alpha: 0.3),
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: DotsBorderRadius.r52,
+                        side: BorderSide(
+                          color: theme.colors.borderButton,
+                          width: 2,
+                          strokeAlign: BorderSide.strokeAlignInside,
+                        ),
+                      ),
+                      color: Colors.black.withValues(alpha: 0.3),
+                    ),
                     child: Stack(
                       children: [
                         if (textImageProvider != null)
