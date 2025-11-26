@@ -48,6 +48,9 @@ class UsersList extends StatefulWidget {
   /// Whether the initialmembers can be modified.
   final bool canModifyMembers;
 
+  /// Whether to autofocus on empty textfield.
+  final bool autofocusOnEmpty;
+
   const UsersList({
     super.key,
     required this.members,
@@ -65,6 +68,7 @@ class UsersList extends StatefulWidget {
     this.showAddFriendButton = false,
     this.applyBounceIn = false,
     this.canModifyMembers = false,
+    this.autofocusOnEmpty = true,
   });
 
   @override
@@ -144,6 +148,7 @@ class _UsersListState extends State<UsersList> {
             onTap: widget.memberOnTap,
             textOnChanged: widget.textOnChanged,
             focusNode: widget.focusNodes?[member.id],
+            autofocusOnEmpty: widget.autofocusOnEmpty,
           );
       }
     });
