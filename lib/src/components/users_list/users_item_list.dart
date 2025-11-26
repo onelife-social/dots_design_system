@@ -55,6 +55,9 @@ class UsersItemList extends StatelessWidget {
   /// *(Only for `pending` and `join` variants)* Icon size.
   final double? iconSize;
 
+  /// *(Only for `text` variant)* Whether to autofocus on empty textfield.
+  final bool autofocusOnEmpty;
+
   const UsersItemList._({
     super.key,
     this.id,
@@ -67,6 +70,7 @@ class UsersItemList extends StatelessWidget {
     this.textOnChanged,
     this.textFocusNode,
     this.iconSize,
+    this.autofocusOnEmpty = true,
   });
 
   factory UsersItemList.main({
@@ -152,6 +156,7 @@ class UsersItemList extends StatelessWidget {
     required void Function(String?)? onTap,
     void Function(String?, String?)? textOnChanged,
     FocusNode? focusNode,
+    bool autofocusOnEmpty = true,
   }) => UsersItemList._(
     key: key ?? ValueKey(id),
     id: id,
@@ -161,6 +166,7 @@ class UsersItemList extends StatelessWidget {
     onTap: onTap,
     textOnChanged: textOnChanged,
     textFocusNode: focusNode,
+    autofocusOnEmpty: autofocusOnEmpty,
   );
 
   factory UsersItemList.button({
@@ -195,6 +201,7 @@ class UsersItemList extends StatelessWidget {
         onTap: onTap,
         tapValue: tapValue,
         iconSize: iconSize,
+        autofocusOnEmpty: autofocusOnEmpty,
       ),
     );
 
@@ -223,6 +230,7 @@ class _UserListRow extends StatelessWidget {
     required this.onTap,
     required this.tapValue,
     this.iconSize,
+    this.autofocusOnEmpty = true,
   });
 
   final UserItemListVariant variant;
@@ -236,6 +244,7 @@ class _UserListRow extends StatelessWidget {
   final void Function(String? p1)? onTap;
   final String? tapValue;
   final double? iconSize;
+  final bool autofocusOnEmpty;
 
   @override
   Widget build(BuildContext context) {
@@ -252,6 +261,7 @@ class _UserListRow extends StatelessWidget {
           textController: textController,
           textOnChanged: textOnChanged,
           textFocusNode: textFocusNode,
+          autofocusOnEmpty: autofocusOnEmpty,
         ),
         _TrailingWidget(
           variant: variant,
@@ -274,6 +284,7 @@ class _MainWidget extends StatelessWidget {
   final TextEditingController? textController;
   final void Function(String?, String?)? textOnChanged;
   final FocusNode? textFocusNode;
+  final bool autofocusOnEmpty;
 
   const _MainWidget({
     required this.variant,
@@ -284,6 +295,7 @@ class _MainWidget extends StatelessWidget {
     this.textController,
     this.textOnChanged,
     this.textFocusNode,
+    this.autofocusOnEmpty = true,
   });
 
   @override
@@ -311,7 +323,7 @@ class _MainWidget extends StatelessWidget {
               child: TextField(
                 controller: textController!,
                 focusNode: textFocusNode,
-                autofocus: textController!.text.isEmpty,
+                autofocus: autofocusOnEmpty ? textController!.text.isEmpty : false,
                 decoration: InputDecoration(
                   hintText: label!,
                   hintStyle: theme.typo.main.bodyDefaultMedium.copyWith(
