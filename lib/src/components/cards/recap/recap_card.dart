@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 enum RecapCardVariant {
   blocked,
   active,
-  generated;
+  generated,
+  onlyTitle;
 
   bool get isBlocked => this == RecapCardVariant.blocked;
   bool get isActive => this == RecapCardVariant.active;
   bool get isGenerated => this == RecapCardVariant.generated;
+  bool get isOnlyTitle => this == RecapCardVariant.onlyTitle;
 }
 
 class RecapCard extends StatelessWidget {
@@ -129,6 +131,19 @@ class RecapCard extends StatelessWidget {
     title: title,
   );
 
+  factory RecapCard.onlyTitle({
+    required double width,
+    required ImageProvider imageProvider,
+    ImageErrorWidgetBuilder? errorBuilder,
+    ImageProvider? textImageProvider,
+  }) => RecapCard._(
+    variant: RecapCardVariant.active,
+    width: width,
+    imageProvider: imageProvider,
+    textImageProvider: textImageProvider,
+    errorBuilder: errorBuilder,
+  );
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -237,7 +252,7 @@ class RecapCard extends StatelessWidget {
                     createdBy: createdBy,
                     albumName: albumName,
                   )
-                : DotsMainButton(
+                : buttonText == null ? const SizedBox.shrink() : DotsMainButton(
                     content: buttonText ?? '',
                     variant: DotsMainButtonVariant.main,
                     expand: false,
