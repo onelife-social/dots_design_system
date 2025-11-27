@@ -5,12 +5,14 @@ class DotsToast extends StatelessWidget {
   final bool isAction;
   final String title;
   final DotsToastVariant variant;
+  final Color? customIconColor;
 
   const DotsToast({
     super.key,
     required this.title,
     required this.variant,
     required this.isAction,
+    this.customIconColor,
   });
 
   Color iconColor(DotsTheme theme) {
@@ -60,7 +62,7 @@ class DotsToast extends StatelessWidget {
           children: [
             DotsIcon(
               iconData: iconData(variant, isAction),
-              color: iconColor(theme),
+              color: customIconColor ?? iconColor(theme),
               size: 24,
             ),
             Text(
@@ -80,7 +82,7 @@ class DotsToast extends StatelessWidget {
           children: [
             DotsIcon(
               iconData: iconData(variant, isAction),
-              color: iconColor(theme),
+              color: customIconColor ?? iconColor(theme),
               size: 20,
             ),
             Flexible(

@@ -57,15 +57,45 @@ class DotsTextField extends StatefulWidget {
   /// Defaults to `true`.
   final bool background;
 
-  /// The text for the right button.
+  /// The text for the end button.
   ///
   /// Defaults to null.
   final String? endButtonText;
 
+  /// The text color of the end button.
+  ///
+  /// Defaults to [DotsColorsModel.labelHighlight].
+  final Color? endButtonTextColor;
+
   /// Callback when the right button text is tapped.
   ///
   /// If null, the right button will not be tappable.
-  final Function()? onEndButtonTap;
+  final VoidCallback? onEndButtonTap;
+
+  /// Whether to show a check icon after the text.
+  ///
+  /// Defaults to false.
+  final DotsIconData? suffixIcon;
+
+  /// The color of the suffix icon.
+  ///
+  /// Defaults to null.
+  final Color? suffixIconColor;
+
+  /// Whether the TextField is enabled.
+  ///
+  /// Defaults to true.
+  final bool enabled;
+
+  /// Whether to apply the error color to the TextField.
+  ///
+  /// Defaults to true.
+  final bool applyErrorColor;
+
+  /// Whether to apply the error asterisk to the error text.
+  ///
+  /// Defaults to true.
+  final bool applyErrorAsterisk;
 
   const DotsTextField({
     super.key,
@@ -84,7 +114,13 @@ class DotsTextField extends StatefulWidget {
     this.focusNode,
     this.background = true,
     this.endButtonText,
+    this.endButtonTextColor,
     this.onEndButtonTap,
+    this.suffixIcon,
+    this.suffixIconColor,
+    this.enabled = true,
+    this.applyErrorColor = true,
+    this.applyErrorAsterisk = true,
   });
 
   @override
@@ -170,7 +206,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
                       maxLength: widget.maxTextLength,
                       textAlign: textAlign,
                       style: theme.typo.main.bodyDefaultMedium.copyWith(
-                        color: widget.isError
+                        color: widget.applyErrorColor && widget.isError
                             ? theme.colors.labelDestructive
                             : theme.colors.textPrimary,
                       ),
@@ -186,7 +222,13 @@ class _DotsTextFieldState extends State<DotsTextField> {
                         ),
                         isDense: true,
                         contentPadding: const EdgeInsets.symmetric(vertical: 12),
-                        suffixIcon: showClear
+                        suffixIcon: widget.suffixIcon != null
+                            ? DotsIcon(
+                                iconData: widget.suffixIcon!,
+                                color: widget.suffixIconColor ?? theme.colors.labelHighlight,
+                                size: 16,
+                              )
+                            : showClear
                             ? DotsCloseButton(
                                 icon: widget.iconDataButton,
                                 variant: widget.buttonVariant,
@@ -200,6 +242,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
                         ),
                       ),
                       onChanged: widget.onChanged,
+                      enabled: widget.enabled,
                     ),
                   ),
                   if (widget.endButtonText != null) ...[
@@ -212,7 +255,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
                       ),
                       child: Container(
                         width: 0.5,
-                        color: theme.colors.labelSecondary.dotsWithOpacity(0.3),
+                        color: theme.colors.textDisabled,
                       ),
                     ),
                     InkWell(
@@ -224,8 +267,8 @@ class _DotsTextFieldState extends State<DotsTextField> {
                         alignment: Alignment.center,
                         child: Text(
                           widget.endButtonText!,
-                          style: theme.typo.main.bodyDefaultBold.copyWith(
-                            color: theme.colors.labelHighlight,
+                          style: theme.typo.main.bodyDefaultMedium.copyWith(
+                            color: widget.endButtonTextColor ?? theme.colors.labelHighlight,
                           ),
                         ),
                       ),
@@ -239,7 +282,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
-                  '* ${widget.errorText}',
+                  widget.applyErrorAsterisk ? '* ${widget.errorText}' : widget.errorText ?? '',
                   style: theme.typo.main.labelDefaultRegular.copyWith(
                     color: theme.colors.labelDestructive,
                   ),
