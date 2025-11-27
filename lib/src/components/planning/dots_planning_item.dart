@@ -69,7 +69,6 @@ class _DotsPlanningItemState extends State<DotsPlanningItem> {
                   if (widget.mainItem != null)
                     DotsPlanningItemRow(
                       item: widget.mainItem!,
-                      theme: theme,
                     ),
         
                   AnimatedSwitcher(
@@ -81,8 +80,7 @@ class _DotsPlanningItemState extends State<DotsPlanningItem> {
                         ? Column(
                             key: const ValueKey("expanded"),
                             children: widget.subItems
-                                .map((item) => DotsPlanningItemRow(
-                                    item: item, theme: theme))
+                                .map((item) => DotsPlanningItemRow(item: item))
                                 .toList(),
                           )
                         : const SizedBox.shrink(key: ValueKey("collapsed")),
