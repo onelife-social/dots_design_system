@@ -71,6 +71,12 @@ class UserInfo extends StatelessWidget {
                     if (loadingProgress == null) return child;
                     return defaultImage;
                   },
+                  frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+                    if (wasSynchronouslyLoaded || frame != null) {
+                      return child;
+                    }
+                    return defaultImage;
+                  },
                   errorBuilder: (context, error, stackTrace) {
                     if (data.imageOnError != null) data.imageOnError!(error, stackTrace);
                     return defaultImage;
