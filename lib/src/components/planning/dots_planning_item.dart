@@ -41,6 +41,7 @@ class _DotsPlanningItemState extends State<DotsPlanningItem> {
   bool expanded = false;
 
   void _toggleExpanded() {
+    if (!mounted) return;
     setState(() => expanded = !expanded);
   }
 
@@ -58,33 +59,30 @@ class _DotsPlanningItemState extends State<DotsPlanningItem> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildImage(theme),
+            _PlanningImage(
+              image: widget.sectionImage,
+              onError: widget.onError,
+              theme: theme,
+            ),
             const SizedBox(width: 15),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildTitle(theme, expanded ? mainIconActive : mainIcon),
+                  _PlanningTitle(
+                    text: widget.mainText,
+                    icon: expanded ? mainIconActive : mainIcon,
+                    theme: theme,
+                  ),
                   const SizedBox(height: 4),
-        
                   if (widget.mainItem != null)
                     DotsPlanningItemRow(
                       item: widget.mainItem!,
                     ),
-        
-                  AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 200),
-                    switchInCurve: Curves.easeOut,
-                    switchOutCurve: Curves.easeIn,
-                    transitionBuilder: _animatedTransition,
-                    child: expanded
-                        ? Column(
-                            key: const ValueKey("expanded"),
-                            children: widget.subItems
-                                .map((item) => DotsPlanningItemRow(item: item))
-                                .toList(),
-                          )
-                        : const SizedBox.shrink(key: ValueKey("collapsed")),
+                  _PlanningAnimatedSwitcher(
+                    expanded: expanded,
+                    subItems: widget.subItems,
+                    theme: theme,
                   ),
                 ],
               ),
@@ -94,8 +92,21 @@ class _DotsPlanningItemState extends State<DotsPlanningItem> {
       ),
     );
   }
+}
 
-  Widget _buildImage(DotsTheme theme) {
+class _PlanningImage extends StatelessWidget {
+  final ImageProvider image;
+  final void Function(Object exception, StackTrace? stackTrace)? onError;
+  final DotsTheme theme;
+
+  const _PlanningImage({
+    required this.image,
+    required this.onError,
+    required this.theme,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return DotsDecoratedBox(
       styleType: context.dotsTheme.styles.squircle16,
       decoration: BoxDecoration(
@@ -113,12 +124,12 @@ class _DotsPlanningItemState extends State<DotsPlanningItem> {
             child: ClipRRect(
               borderRadius: DotsBorderRadius.r16,
               child: Image(
-                image: widget.sectionImage,
+                image: image,
                 fit: BoxFit.cover,
                 width: 52,
                 height: 52,
                 errorBuilder: (context, err, trace) {
-                  widget.onError?.call(err, trace);
+                  onError?.call(err, trace);
                   return Image.asset(
                     ImagesPaths.defaultSectionPlanning,
                     fit: BoxFit.cover,
@@ -146,13 +157,26 @@ class _DotsPlanningItemState extends State<DotsPlanningItem> {
       ),
     );
   }
+}
 
-  Widget _buildTitle(DotsTheme theme, DotsIconData icon) {
+class _PlanningTitle extends StatelessWidget {
+  final String text;
+  final DotsIconData icon;
+  final DotsTheme theme;
+
+  const _PlanningTitle({
+    required this.text,
+    required this.icon,
+    required this.theme,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
           child: Text(
-            widget.mainText,
+            text,
             style: theme.typo.main.bodyLargeMedium.copyWith(
               color: theme.colors.textPrimary,
             ),
@@ -164,6 +188,36 @@ class _DotsPlanningItemState extends State<DotsPlanningItem> {
           color: theme.colors.textQuarternary,
         ),
       ],
+    );
+  }
+}
+
+class _PlanningAnimatedSwitcher extends StatelessWidget {
+  final bool expanded;
+  final List<DotsPlanningInfoItem> subItems;
+  final DotsTheme theme;
+
+  const _PlanningAnimatedSwitcher({
+    required this.expanded,
+    required this.subItems,
+    required this.theme,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 200),
+      switchInCurve: Curves.easeOut,
+      switchOutCurve: Curves.easeIn,
+      transitionBuilder: _animatedTransition,
+      child: expanded
+          ? Column(
+              key: const ValueKey("expanded"),
+              children: subItems
+                  .map((item) => DotsPlanningItemRow(item: item))
+                  .toList(),
+            )
+          : const SizedBox.shrink(key: ValueKey("collapsed")),
     );
   }
 

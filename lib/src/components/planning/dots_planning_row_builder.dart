@@ -15,8 +15,9 @@ class DotsPlanningItemRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    if (item.text == null || item.text!.trim().isEmpty) return const SizedBox.shrink();
-    if (item.icon == null) return const SizedBox.shrink();
+    if (item.text == null || item.text!.trim().isEmpty || item.icon == null) {
+      return const SizedBox.shrink();
+    }
     return Padding(
       padding: const EdgeInsets.only(bottom: 4),
       child: Row(
