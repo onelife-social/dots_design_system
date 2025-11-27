@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../dots_design_system.dart';
+import '../../core/values/paths/images_paths.dart';
 
 class DotsPlanningItem extends StatefulWidget {
   /// The image to be displayed in the section.
@@ -118,7 +119,12 @@ class _DotsPlanningItemState extends State<DotsPlanningItem> {
                 height: 52,
                 errorBuilder: (context, err, trace) {
                   widget.onError?.call(err, trace);
-                  return const Center(child: Icon(Icons.error));
+                  return Image.asset(
+                    ImagesPaths.defaultSectionPlanning,
+                    fit: BoxFit.cover,
+                    width: 52,
+                    height: 52,
+                  );
                 },
               ),
             ),
