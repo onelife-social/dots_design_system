@@ -23,14 +23,25 @@ List<Story> get planningStories => [
             mainIcon: DotsIconData.chevronDown,
             mainIconActive: DotsIconData.chevronUp,
             mainText: context.knobs.text(label: 'Main Text', initial: 'Título principal'),
-            dateTimeIcon: DotsIconData.clockOutline,
-            dateTimeText: context.knobs.text(label: 'Start time', initial: '18:00'),
-            durationIcon: DotsIconData.clockTimer,
-            durationText: context.knobs.text(label: 'Duration', initial: '2h of duration'),
-            ubicationIcon: DotsIconData.locationPin,
-            ubicationText: context.knobs.text(label: 'Location', initial: 'Madrid, Spain'),
-            descriptionIcon: DotsIconData.text,
-            descriptionText: context.knobs.text(label: 'Description', initial: 'La entrada al local está en la calle Juan de Austria. '),
+            mainItem:DotsPlanningInfoItem(
+                icon: DotsIconData.clockOutline,
+                text: context.knobs.text(label: 'Start time', initial: '18:00'),
+              ),
+            subItems: [
+              DotsPlanningInfoItem(
+                icon: DotsIconData.clockTimer,
+                text: context.knobs.text(label: 'Duration', initial: '2h of duration'),
+              ),
+              DotsPlanningInfoItem(
+                icon: DotsIconData.locationPin,
+                text: context.knobs.text(label: 'Location', initial: 'Madrid, Spain'),
+                underline: true,
+              ),
+              DotsPlanningInfoItem(
+                icon: DotsIconData.text,
+                text: context.knobs.text(label: 'Description', initial: 'La entrada al local está en la calle Juan de Austria. '),
+              ),
+            ],
           ),
         ),
       );
