@@ -36,7 +36,6 @@ import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 import '../components/linear_gradient_blur_container_demo_page.dart';
-import '../components/settings_item.dart';
 
 List<Story> get allStories => [
       ...actionSheetStories,
@@ -366,6 +365,13 @@ List<Story> get allStories => [
             ),
             background: context.knobs.boolean(label: 'Background?', initial: true),
             endButtonText: context.knobs.nullable.text(label: 'End Button Text', initial: 'Submit'),
+            suffixIcon: context.knobs.nullable.options<DotsIconData>(
+              label: 'Suffix Icon',
+              initial: DotsIconData.checkCircle,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+            suffixIconColor: basicColorSelector(context, 'Suffix Icon Color'),
           ),
         ),
       ),
@@ -683,6 +689,7 @@ List<Story> get allStories => [
                       .map((item) => Option(label: item.name, value: item))
                       .toList(),
                 ),
+                onTap: () {},
               ),
             ),
           ],
