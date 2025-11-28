@@ -191,7 +191,7 @@ class _UsersListState extends State<UsersList> {
           return widget.applyBounceIn &&
                   item is UsersItemList &&
                   item.variant == UserItemListVariant.textfield &&
-                  (item.textController?.text.isEmpty ?? true)
+                  (item.textController?.text.trim().isEmpty ?? true)
               ? BounceIn(duration: const Duration(milliseconds: 1000), child: item)
               : item;
         },
