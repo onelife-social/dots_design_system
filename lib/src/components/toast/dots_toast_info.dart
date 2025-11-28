@@ -5,11 +5,22 @@ import 'package:flutter/material.dart';
 class DotsToastInfo extends StatelessWidget {
   final String title;
   final DotsToastVariant variant;
+  final Color? customIconColor;
 
-  const DotsToastInfo({super.key, required this.title, required this.variant});
+  const DotsToastInfo({
+    super.key,
+    required this.title,
+    required this.variant,
+    this.customIconColor,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return DotsToast(title: title, variant: variant, isAction: false);
+    return DotsToast(
+      title: title,
+      variant: variant,
+      isAction: false,
+      customIconColor: customIconColor,
+    );
   }
 }
