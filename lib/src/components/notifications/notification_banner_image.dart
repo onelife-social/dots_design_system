@@ -36,7 +36,7 @@ class NotificationBannerImage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    return Container(
+    final container = Container(
       decoration: BoxDecoration(
         color: theme.colors.bgContainerSecondaryOnBackground,
         borderRadius: BorderRadius.circular(24),
@@ -93,5 +93,12 @@ class NotificationBannerImage extends StatelessWidget {
         ],
       ),
     );
+
+    return onActionTap != null
+        ? GestureDetector(
+            onTap: onActionTap,
+            child: container,
+          )
+        : container;
   }
 }
