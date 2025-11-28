@@ -6,6 +6,8 @@ class NotificationBannerImage extends StatelessWidget {
     super.key,
     required this.imageProvider,
     required this.title,
+    this.description,
+    this.appendedDescription,
     required this.actionButtonText,
     this.onActionTap,
     this.onClose,
@@ -17,6 +19,12 @@ class NotificationBannerImage extends StatelessWidget {
 
   /// The title text shown in the banner.
   final String title;
+
+  /// The description text shown in the banner.
+  final String? description;
+
+  /// An optional appended description.
+  final String? appendedDescription;
 
   /// The text for the action button.
   final String actionButtonText;
@@ -48,13 +56,13 @@ class NotificationBannerImage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
+              spacing: 12,
               children: [
                 Image(
                   image: imageProvider,
                   fit: BoxFit.cover,
                   errorBuilder: (_, __, ___) => SizedBox(),
                 ),
-                const SizedBox(height: 8),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 28),
                   child: Text(
@@ -65,7 +73,27 @@ class NotificationBannerImage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 12),
+               if (description != null)
+                  RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: description!,
+                          style: theme.typo.main.bodyDefaultRegular.copyWith(
+                            color: theme.colors.textTertiary,
+                          ),
+                        ),
+                        if (appendedDescription != null)
+                          TextSpan(
+                            text: ' ${appendedDescription!}',
+                            style: theme.typo.main.bodyDefaultRegular.copyWith(
+                              color: theme.colors.labelHighlight,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
                 Center(
                   child: DotsMainButton(
                     content: actionButtonText,
