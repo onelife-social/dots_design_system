@@ -100,6 +100,9 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [aliasLabelImageText] is the text for the alias label image in the user variant.
   final String? aliasLabelImageText;
 
+  /// The [padding] is the padding for the action sheet container.
+  final EdgeInsets? padding;
+
   const DotsActionSheetInput({
     super.key,
     this.variant = ActionSheetInputVariant.main,
@@ -129,6 +132,7 @@ class DotsActionSheetInput extends StatelessWidget {
     this.image,
     this.userLabel,
     this.aliasLabelImageText,
+    this.padding = const EdgeInsets.all(16),
   });
 
   @override
@@ -137,6 +141,7 @@ class DotsActionSheetInput extends StatelessWidget {
       bottomPosition: bottomPosition,
       onClose: onClose,
       applyHorizontalPadding: false,
+      containerPadding: padding,
       child: DotsActionSheetInputContent(
         variant: variant,
         title: title,
