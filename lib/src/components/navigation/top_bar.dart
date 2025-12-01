@@ -38,7 +38,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   final bool hideBackground;
 
   /// Whether to use the big status bar style.
-  final bool? bigStatusBar;
+  final bool bigStatusBar;
 
   /// Call to action title for the top bar.
   final String? ctaLabel;
@@ -90,7 +90,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.subtitle,
     this.leftIcon,
     this.rightIcon,
-    this.bigStatusBar,
+    this.bigStatusBar = true,
     this.onTapBack,
     this.imageTitle,
     this.onErrorImageTitle,
@@ -112,7 +112,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.child,
     this.leftIcon,
     this.rightIcon,
-    this.bigStatusBar,
+    this.bigStatusBar = true,
     this.onTapBack,
     this.showCircleBackButton = false,
     this.color,
@@ -135,7 +135,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.title,
     this.imageTitle,
     this.onErrorImageTitle,
-    this.bigStatusBar,
+    this.bigStatusBar = true,
     this.onTapBack,
     this.ctaLabel,
     this.onCtaTap,
@@ -157,7 +157,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize {
-    if (bigStatusBar ?? true) {
+    if (bigStatusBar) {
       return Size.fromHeight(kTopBarBigHeight);
     } else {
       return Size.fromHeight(kTopBarNormalHeight);
@@ -178,7 +178,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
               height: 50,
               width: double.infinity,
             ),
-            if (bigStatusBar ?? true) ...[
+            if (bigStatusBar) ...[
               Expanded(
                 child: Stack(
                   children: [
