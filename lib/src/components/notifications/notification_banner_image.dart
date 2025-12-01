@@ -8,7 +8,7 @@ class NotificationBannerImage extends StatelessWidget {
     required this.title,
     this.description,
     this.appendedDescription,
-    required this.actionButtonText,
+    this.actionButtonText,
     this.onActionTap,
     this.onClose,
     this.showCloseButton = true,
@@ -27,7 +27,7 @@ class NotificationBannerImage extends StatelessWidget {
   final String? appendedDescription;
 
   /// The text for the action button.
-  final String actionButtonText;
+  final String? actionButtonText;
 
   /// Callback when the action button is tapped.
   final VoidCallback? onActionTap;
@@ -73,7 +73,7 @@ class NotificationBannerImage extends StatelessWidget {
                     ),
                   ),
                 ),
-               if (description != null)
+                if (description?.isNotEmpty == true)
                   RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
@@ -84,7 +84,7 @@ class NotificationBannerImage extends StatelessWidget {
                             color: theme.colors.textTertiary,
                           ),
                         ),
-                        if (appendedDescription != null)
+                        if (appendedDescription?.isNotEmpty == true)
                           TextSpan(
                             text: ' ${appendedDescription!}',
                             style: theme.typo.main.bodyDefaultRegular.copyWith(
@@ -94,15 +94,16 @@ class NotificationBannerImage extends StatelessWidget {
                       ],
                     ),
                   ),
-                Center(
-                  child: DotsMainButton(
-                    content: actionButtonText,
-                    onTap: onActionTap,
-                    size: DotsMainButtonSize.medium,
-                    variant: DotsMainButtonVariant.main,
-                    expand: false,
+                if (actionButtonText?.isNotEmpty == true)
+                  Center(
+                    child: DotsMainButton(
+                      content: actionButtonText!,
+                      onTap: onActionTap,
+                      size: DotsMainButtonSize.medium,
+                      variant: DotsMainButtonVariant.main,
+                      expand: false,
+                    ),
                   ),
-                ),
               ],
             ),
           ),
