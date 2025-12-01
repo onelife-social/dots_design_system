@@ -181,7 +181,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if ((_hideWidgets && !bigStatusBar) || (!_hideWidgets && bigStatusBar))
+             if (_hideWidgets != bigStatusBar)
               SizedBox(
                 height: 50,
                 width: double.infinity,
