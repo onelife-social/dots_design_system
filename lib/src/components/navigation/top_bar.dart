@@ -40,6 +40,9 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// Whether to use the big status bar style.
   final bool bigStatusBar;
 
+  /// Whether to hide all widgets inside the top bar.
+  final bool _hideWidgets;
+
   /// Call to action title for the top bar.
   final String? ctaLabel;
 
@@ -74,6 +77,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
         rightIcon = null,
         onTapBack = null,
         bigStatusBar = false,
+        _hideWidgets = true,
         ctaLabel = null,
         onCtaTap = null,
         ctaEnabled = false,
@@ -101,6 +105,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
           'leftIcon cannot be used with onTapBack',
         ),
         child = null,
+        _hideWidgets = false,
         ctaLabel = null,
         onCtaTap = null,
         ctaEnabled = false;
@@ -123,6 +128,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
         title = null,
         subtitle = null,
         ctaLabel = null,
+        _hideWidgets = false,
         ctaEnabled = false,
         imageTitle = null,
         onErrorImageTitle = null,
@@ -153,6 +159,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
         child = null,
         subtitle = null,
         leftIcon = null,
+        _hideWidgets = false,
         rightIcon = null;
 
   @override
@@ -178,7 +185,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
               height: 50,
               width: double.infinity,
             ),
-            if (bigStatusBar) ...[
+            if (!_hideWidgets) ...[
               Expanded(
                 child: Stack(
                   children: [
