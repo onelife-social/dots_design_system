@@ -6,7 +6,9 @@ class NotificationBannerImage extends StatelessWidget {
     super.key,
     required this.imageProvider,
     required this.title,
-    required this.actionButtonText,
+    this.description,
+    this.appendedDescription,
+    this.actionButtonText,
     this.onActionTap,
     this.onClose,
     this.showCloseButton = true,
@@ -18,8 +20,14 @@ class NotificationBannerImage extends StatelessWidget {
   /// The title text shown in the banner.
   final String title;
 
+  /// The description text shown in the banner.
+  final String? description;
+
+  /// An optional appended description.
+  final String? appendedDescription;
+
   /// The text for the action button.
-  final String actionButtonText;
+  final String? actionButtonText;
 
   /// Callback when the action button is tapped.
   final VoidCallback? onActionTap;
@@ -36,7 +44,7 @@ class NotificationBannerImage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    return Container(
+    final container = Container(
       decoration: BoxDecoration(
         color: theme.colors.bgContainerSecondaryOnBackground,
         borderRadius: BorderRadius.circular(24),
@@ -48,13 +56,13 @@ class NotificationBannerImage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
+              spacing: 12,
               children: [
                 Image(
                   image: imageProvider,
                   fit: BoxFit.cover,
                   errorBuilder: (_, __, ___) => SizedBox(),
                 ),
-                const SizedBox(height: 8),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 28),
                   child: Text(
@@ -65,16 +73,37 @@ class NotificationBannerImage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 12),
-                Center(
-                  child: DotsMainButton(
-                    content: actionButtonText,
-                    onTap: onActionTap,
-                    size: DotsMainButtonSize.medium,
-                    variant: DotsMainButtonVariant.main,
-                    expand: false,
+                if (description?.isNotEmpty == true)
+                  RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: description!,
+                          style: theme.typo.main.bodyDefaultRegular.copyWith(
+                            color: theme.colors.textTertiary,
+                          ),
+                        ),
+                        if (appendedDescription?.isNotEmpty == true)
+                          TextSpan(
+                            text: ' ${appendedDescription!}',
+                            style: theme.typo.main.bodyDefaultRegular.copyWith(
+                              color: theme.colors.labelHighlight,
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
-                ),
+                if (actionButtonText?.isNotEmpty == true)
+                  Center(
+                    child: DotsMainButton(
+                      content: actionButtonText!,
+                      onTap: onActionTap,
+                      size: DotsMainButtonSize.medium,
+                      variant: DotsMainButtonVariant.main,
+                      expand: false,
+                    ),
+                  ),
               ],
             ),
           ),
@@ -93,5 +122,12 @@ class NotificationBannerImage extends StatelessWidget {
         ],
       ),
     );
+
+    return onActionTap != null
+        ? GestureDetector(
+            onTap: onActionTap,
+            child: container,
+          )
+        : container;
   }
 }
