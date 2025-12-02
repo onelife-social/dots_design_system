@@ -106,57 +106,18 @@ class _PlanningImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DotsDecoratedBox(
-      styleType: context.dotsTheme.styles.squircle16,
-      decoration: BoxDecoration(
-        color: Colors.black.withAlpha(25),
-        border: Border.all(
-          color: theme.colors.bgBtnImage.withOpacity(0.6),
-          width: 1,
-        ),
-      ),
-      child: Stack(
-        children: [
-          SizedBox(
-            width: 52,
-            height: 52,
-            child: ClipRRect(
-              borderRadius: DotsBorderRadius.r16,
-              child: Image(
-                image: image,
-                fit: BoxFit.cover,
-                width: 52,
-                height: 52,
-                errorBuilder: (context, err, trace) {
-                  onError?.call(err, trace);
-                  return Image.asset(
-                    ImagesPaths.defaultSectionPlanning,
-                    fit: BoxFit.cover,
-                    width: 52,
-                    height: 52,
-                  );
-                },
-              ),
-            ),
-          ),
-          Positioned.fill(
-            child: IgnorePointer(
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: theme.colors.bgBtnImage.withOpacity(0.6),
-                    width: 1,
-                  ),
-                  borderRadius: DotsBorderRadius.r16,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+    return DotsSquircleImage(
+      image: image,
+      defaultImagePath: ImagesPaths.defaultSectionPlanning,
+      squircleStyle: theme.styles.squircle16,
+      size: 52,
+      onError: onError,
+      hideBorder: false,
     );
   }
 }
+
+
 
 class _PlanningTitle extends StatelessWidget {
   final String text;

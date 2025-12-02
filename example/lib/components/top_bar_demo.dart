@@ -28,6 +28,7 @@ class TopBarDemo extends StatelessWidget {
     this.showCircleBackButton = false,
     this.imageTitle,
     this.onErrorImageTitle,
+    this.showBottomBorder = false,
   });
 
   final TobBarVariant variant;
@@ -42,6 +43,7 @@ class TopBarDemo extends StatelessWidget {
   final ImageProvider? imageTitle;
   final void Function(Object exception, StackTrace? stackTrace)? onErrorImageTitle;
   final bool showCircleBackButton;
+  final bool showBottomBorder;
 
   DotsIconButton? get leftIcon => showLeftIcon
       ? DotsIconButton(
@@ -79,6 +81,7 @@ class TopBarDemo extends StatelessWidget {
           showCircleBackButton: showCircleBackButton,
           imageTitle: imageTitle,
           onErrorImageTitle: onErrorImageTitle,
+          showBottomBorder: showBottomBorder,
         );
       case TobBarVariant.segmentedControl:
         return DotsTopBar.widget(
@@ -87,6 +90,7 @@ class TopBarDemo extends StatelessWidget {
           rightIcon: rightIcon,
           onTapBack: onTapBack,
           showCircleBackButton: showCircleBackButton,
+          showBottomBorder: showBottomBorder,
           child: SegmentedControl(
             leftOptionName: 'Option 1',
             rightOptionName: 'Option 2',
@@ -105,10 +109,14 @@ class TopBarDemo extends StatelessWidget {
           showCircleBackButton: showCircleBackButton,
           imageTitle: imageTitle,
           onErrorImageTitle: onErrorImageTitle,
+          showBottomBorder: showBottomBorder,
         );
 
       default:
-        return DotsTopBar.onlyStatusBar();
+        return DotsTopBar.onlyStatusBar(
+          hideBackground: hideBackground,
+          showBottomBorder: showBottomBorder,
+        );
     }
   }
 }
