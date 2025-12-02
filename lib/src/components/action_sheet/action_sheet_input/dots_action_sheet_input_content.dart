@@ -18,6 +18,7 @@ class DotsActionSheetInputContent extends StatelessWidget {
   final String? dateValue;
   final Function()? onDateTap;
   final DotsIconData? dateIconData;
+  final String? textVariantTitle;
   final TextEditingController textFieldController;
   final FocusNode? focus;
   final ValueChanged<String>? onChanged;
@@ -46,6 +47,7 @@ class DotsActionSheetInputContent extends StatelessWidget {
     this.dateValue,
     this.onDateTap,
     this.dateIconData,
+    this.textVariantTitle,
     this.onTapTextFieldBtn,
     required this.textFieldController,
     this.focus,
@@ -108,6 +110,7 @@ class DotsActionSheetInputContent extends StatelessWidget {
             dateValue: dateValue,
             onDateTap: onDateTap,
             dateIconData: dateIconData,
+            textVariantTitle: textVariantTitle,
             textFieldController: textFieldController,
             focus: focus,
             onTapTextFieldBtn: onTapTextFieldBtn,
@@ -197,6 +200,7 @@ class _Body extends StatelessWidget {
   final String? dateValue;
   final Function()? onDateTap;
   final DotsIconData? dateIconData;
+  final String? textVariantTitle;
   final TextEditingController? textFieldController;
   final FocusNode? focus;
   final VoidCallback? onTapTextFieldBtn;
@@ -220,6 +224,7 @@ class _Body extends StatelessWidget {
     this.dateValue,
     this.onDateTap,
     this.dateIconData = DotsIconData.calendar,
+    this.textVariantTitle,
     this.textFieldController,
     this.focus,
     this.onTapTextFieldBtn,
@@ -258,6 +263,16 @@ class _Body extends StatelessWidget {
             color: selectedColor?.getColor(context) ?? theme.colors.textQuarternary,
           ),
           SizedBox(height: elementsGap),
+        ],
+        if (variant.isText) ...[
+          Text(
+            textVariantTitle ?? '',
+            style: theme.typo.main.bodyDefaultRegular.copyWith(
+              color: theme.colors.textPrimary,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 10),
         ],
         if (variant.isUser) ...[
           ImageWithIcon(
