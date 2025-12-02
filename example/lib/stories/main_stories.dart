@@ -23,7 +23,7 @@ import 'package:example/stories/stories_by_folder/group_cards_stories.dart';
 import 'package:example/stories/stories_by_folder/memory_details.dart';
 import 'package:example/stories/stories_by_folder/miscellaneous_stories.dart';
 import 'package:example/stories/stories_by_folder/notifications_stories.dart';
-import 'package:example/stories/stories_by_folder/profile_photo_stories.dart';
+import 'package:example/stories/stories_by_folder/photos_stories.dart';
 import 'package:example/stories/stories_by_folder/segmented_control_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/separators_demo.dart';
@@ -32,6 +32,7 @@ import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:example/stories/stories_by_folder/toast_stories.dart';
 import 'package:example/stories/stories_by_folder/top_bar_stories.dart';
 import 'package:example/stories/stories_by_folder/planning_stories.dart';
+import 'package:example/stories/stories_by_folder/memory_upload_stories.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
@@ -49,7 +50,7 @@ List<Story> get allStories => [
       ...memoryDetailsStories,
       ...miscellaneousStories,
       ...notificationsStories,
-      ...profilePhotoStories,
+      ...photoStories,
       ...segmentedControlStories,
       ...selectorRadioButtonStories,
       ...separatorStories,
@@ -58,6 +59,7 @@ List<Story> get allStories => [
       ...toastStories,
       ...topBarStories,
       ...planningStories,
+      ...memoryUploadStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
