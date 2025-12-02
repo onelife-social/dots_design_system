@@ -28,6 +28,7 @@ List<Story> get topBarStories => [
               hideBackground: context.knobs.boolean(label: 'Hide background', initial: false),
               ctaLabel: context.knobs.nullable.text(label: 'CTA title', initial: 'Call to Action'),
               ctaEnabled: context.knobs.boolean(label: 'CTA enabled', initial: true),
+              showBottomBorder: context.knobs.boolean(label: 'Show bottom border', initial: false),
               showCircleBackButton:
                   context.knobs.boolean(label: 'Show circle back button', initial: false),
               imageTitle: context.knobs.nullable.text(
