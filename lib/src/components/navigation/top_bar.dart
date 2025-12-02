@@ -66,10 +66,14 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// If it's provided, ignores the [hideBackground] property.
   final Color? color;
 
+  /// Whether to show a bottom border in the top bar.
+  final bool showBottomBorder;
+
   /// Only status bar, no title or segmented control.
   const DotsTopBar.onlyStatusBar({
     super.key,
     this.hideBackground = false,
+    this.showBottomBorder = false,
   })  : title = null,
         subtitle = null,
         child = null,
@@ -100,6 +104,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.onErrorImageTitle,
     this.showCircleBackButton = false,
     this.color,
+    this.showBottomBorder = false,
   })  : assert(
           (leftIcon == null || onTapBack == null),
           'leftIcon cannot be used with onTapBack',
@@ -121,6 +126,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.onTapBack,
     this.showCircleBackButton = false,
     this.color,
+    this.showBottomBorder = false,
   })  : assert(
           (leftIcon == null || onTapBack == null),
           'leftIcon cannot be used with onTapBack',
@@ -148,6 +154,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.ctaEnabled = true,
     this.showCircleBackButton = false,
     this.color,
+    this.showBottomBorder = false,
   })  : assert(
           onCtaTap == null || ctaLabel != null,
           'ctaLabel is required when onCtaTap is provided',
@@ -174,101 +181,113 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    return ColoredBox(
-      color: color ?? (hideBackground ? Colors.transparent : theme.colors.bgContainerPrimary),
-      child: ConstrainedBox(
-        constraints: BoxConstraints.tightFor(height: preferredSize.height),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-             if (_hideWidgets != bigStatusBar)
-              SizedBox(
-                height: 50,
-                width: double.infinity,
-              ),
-            if (!_hideWidgets) ...[
-              Expanded(
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                        child: Center(
-                      child: child ??
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  if (imageTitle != null) ...[
-                                    DotsProfilePhoto(
-                                      imageProvider: imageTitle!,
-                                      width: 20,
-                                      height: 20,
-                                      onError: onErrorImageTitle,
-                                    ),
-                                    SizedBox(width: 6)
-                                  ],
-                                  Text(
-                                    title ?? '',
-                                    style: theme.typo.main.titleH6.copyWith(
-                                      color: theme.colors.textPrimary,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              if (subtitle != null)
-                                Text(
-                                  subtitle ?? '',
-                                  style: theme.typo.main.labelSmallRegular.copyWith(
-                                    color: theme.colors.textSecondary,
-                                  ),
-                                ),
-                            ],
-                          ),
-                    )),
-                    Positioned.fill(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          if (onTapBack != null) ...[
-                            SizedBox(width: showCircleBackButton ? 16 : 8),
-                            DotsIconButton(
-                              icon: DotsIconData.chevronLeft,
-                              size: DotsIconButtonSize.medium,
-                              variant: showCircleBackButton
-                                  ? DotsIconButtonVariant.solid
-                                  : DotsIconButtonVariant.noBackground,
-                              onTap: onTapBack,
-                            ),
-                          ],
-                          if (leftIcon != null) ...[
-                            SizedBox(width: 16),
-                            leftIcon ?? SizedBox(),
-                          ],
-                          Spacer(),
-                          if (rightIcon != null) ...[
-                            rightIcon ?? SizedBox(),
-                            SizedBox(width: 16),
-                          ],
-                          if (ctaLabel != null && onCtaTap != null) ...[
-                            DotsMainButton(
-                              content: ctaLabel!,
-                              onTap: onCtaTap,
-                              variant: DotsMainButtonVariant.main,
-                              size: DotsMainButtonSize.small,
-                              expand: false,
-                              enabled: ctaEnabled,
-                            ),
-                            SizedBox(width: 16),
-                          ],
-                        ],
-                      ),
-                    ),
-                  ],
+    return Container(
+      decoration: showBottomBorder
+          ? BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Colors.black.withOpacity(0.2),
+                  width: 1,
                 ),
-              )
-            ]
-          ],
+              ),
+            )
+          : null,
+      child: ColoredBox(
+        color: color ?? (hideBackground ? Colors.transparent : theme.colors.bgContainerPrimary),
+        child: ConstrainedBox(
+          constraints: BoxConstraints.tightFor(height: preferredSize.height),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+               if (_hideWidgets != bigStatusBar)
+                SizedBox(
+                  height: 50,
+                  width: double.infinity,
+                ),
+              if (!_hideWidgets) ...[
+                Expanded(
+                  child: Stack(
+                    children: [
+                      Positioned.fill(
+                          child: Center(
+                        child: child ??
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    if (imageTitle != null) ...[
+                                      DotsProfilePhoto(
+                                        imageProvider: imageTitle!,
+                                        width: 20,
+                                        height: 20,
+                                        onError: onErrorImageTitle,
+                                      ),
+                                      SizedBox(width: 6)
+                                    ],
+                                    Text(
+                                      title ?? '',
+                                      style: theme.typo.main.titleH6.copyWith(
+                                        color: theme.colors.textPrimary,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                if (subtitle != null)
+                                  Text(
+                                    subtitle ?? '',
+                                    style: theme.typo.main.labelSmallRegular.copyWith(
+                                      color: theme.colors.textSecondary,
+                                    ),
+                                  ),
+                              ],
+                            ),
+                      )),
+                      Positioned.fill(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            if (onTapBack != null) ...[
+                              SizedBox(width: showCircleBackButton ? 16 : 8),
+                              DotsIconButton(
+                                icon: DotsIconData.chevronLeft,
+                                size: DotsIconButtonSize.medium,
+                                variant: showCircleBackButton
+                                    ? DotsIconButtonVariant.solid
+                                    : DotsIconButtonVariant.noBackground,
+                                onTap: onTapBack,
+                              ),
+                            ],
+                            if (leftIcon != null) ...[
+                              SizedBox(width: 16),
+                              leftIcon ?? SizedBox(),
+                            ],
+                            Spacer(),
+                            if (rightIcon != null) ...[
+                              rightIcon ?? SizedBox(),
+                              SizedBox(width: 16),
+                            ],
+                            if (ctaLabel != null && onCtaTap != null) ...[
+                              DotsMainButton(
+                                content: ctaLabel!,
+                                onTap: onCtaTap,
+                                variant: DotsMainButtonVariant.main,
+                                size: DotsMainButtonSize.small,
+                                expand: false,
+                                enabled: ctaEnabled,
+                              ),
+                              SizedBox(width: 16),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ]
+            ],
+          ),
         ),
       ),
     );

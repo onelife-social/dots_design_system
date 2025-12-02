@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 enum ActionSheetInputVariant {
   main,
   colors,
+  text,
   date,
   user;
 
   bool get isMain => this == ActionSheetInputVariant.main;
   bool get isColors => this == ActionSheetInputVariant.colors;
+  bool get isText => this == ActionSheetInputVariant.text;
   bool get isDate => this == ActionSheetInputVariant.date;
   bool get isUser => this == ActionSheetInputVariant.user;
 }
@@ -17,6 +19,7 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [variant] parameter determines the type of action sheet.
   /// - [ActionSheetInputVariant.main] is the default variant.
   /// - [ActionSheetInputVariant.colors] is for color selection.
+  /// - [ActionSheetInputVariant.text] is for text above the input.
   /// - [ActionSheetInputVariant.date] is for date selection.
   /// - [ActionSheetInputVariant.user] is for user atributes input.
   final ActionSheetInputVariant variant;
@@ -72,6 +75,9 @@ class DotsActionSheetInput extends StatelessWidget {
   /// The [dateIconData] is the icon for the date input.
   final DotsIconData? dateIconData;
 
+  /// The [textVariantTitle] is the text displayed above the input field at the text variant.
+  final String? textVariantTitle;
+
   /// The [textFieldController] is the controller for the text field.
   /// The controller must have an initial value set as the name of the folder.
   final TextEditingController textFieldController;
@@ -123,6 +129,7 @@ class DotsActionSheetInput extends StatelessWidget {
     this.dateValue,
     this.onDateTap,
     this.dateIconData,
+    this.textVariantTitle,
     this.onTapTextFieldBtn,
     required this.textFieldController,
     this.focus,
@@ -159,6 +166,7 @@ class DotsActionSheetInput extends StatelessWidget {
         dateValue: dateValue,
         onDateTap: onDateTap,
         dateIconData: dateIconData,
+        textVariantTitle: textVariantTitle,
         textFieldController: textFieldController,
         focus: focus,
         onChanged: onChanged,
