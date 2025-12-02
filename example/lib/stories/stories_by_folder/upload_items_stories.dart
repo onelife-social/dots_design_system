@@ -2,10 +2,10 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/widgets.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-List<Story> get memoryUploadStories => [
+List<Story> get uploadItemsStories => [
       Story(
-        name: 'Memory Upload/upload item state',
-        description: 'Demo page for Memory upload item state',
+        name: 'Upload Items/upload item state',
+        description: 'Demo page for Upload item state',
         builder: (context) => ColoredBox(
           color: context.dotsTheme.colors.bgContainerSecondary,
           child: Padding(
