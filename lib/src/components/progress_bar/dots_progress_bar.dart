@@ -25,7 +25,7 @@ class DotsProgressBar extends StatelessWidget {
     super.key,
     required this.percentage,
     this.parts = 3,
-    this.width = 110,
+    this.width = double.infinity,
     this.spaceBetween = 5,
     this.barColor,
     this.bgColor,
