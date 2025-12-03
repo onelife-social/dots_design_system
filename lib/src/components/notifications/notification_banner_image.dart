@@ -5,6 +5,7 @@ class NotificationBannerImage extends StatelessWidget {
   const NotificationBannerImage({
     super.key,
     required this.imageProvider,
+    this.imageSize,
     required this.title,
     this.description,
     this.appendedDescription,
@@ -12,10 +13,13 @@ class NotificationBannerImage extends StatelessWidget {
     this.onActionTap,
     this.onClose,
     this.showCloseButton = true,
+    this.isBtnActive = true,
   });
 
   /// The image to display in the notification banner.
   final ImageProvider imageProvider;
+
+  final double? imageSize;
 
   /// The title text shown in the banner.
   final String title;
@@ -28,6 +32,9 @@ class NotificationBannerImage extends StatelessWidget {
 
   /// The text for the action button.
   final String? actionButtonText;
+
+  /// Whether the action button is active (default `true`).
+  final bool isBtnActive;
 
   /// Callback when the action button is tapped.
   final VoidCallback? onActionTap;
@@ -58,11 +65,19 @@ class NotificationBannerImage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               spacing: 12,
               children: [
-                Image(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => SizedBox(),
-                ),
+                imageSize != null
+                  ? Image(
+                      image: imageProvider,
+                      width: imageSize,
+                      height: imageSize,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) => const SizedBox(),
+                    )
+                  : Image(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) => const SizedBox(),
+                    ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 28),
                   child: Text(
@@ -100,7 +115,9 @@ class NotificationBannerImage extends StatelessWidget {
                       content: actionButtonText!,
                       onTap: onActionTap,
                       size: DotsMainButtonSize.medium,
-                      variant: DotsMainButtonVariant.main,
+                      variant: isBtnActive ? 
+                        DotsMainButtonVariant.main : 
+                        DotsMainButtonVariant.secondary,
                       expand: false,
                     ),
                   ),
