@@ -111,6 +111,8 @@ class DotsUploadItem extends StatelessWidget {
                       style: theme.typo.main.labelDefaultRegular.copyWith(
                         color: theme.colors.textSecondary,
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
@@ -140,6 +142,8 @@ class DotsUploadItem extends StatelessWidget {
                     style: theme.typo.main.labelDefaultRegular.copyWith(
                       color: theme.colors.textQuarternary,
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   )
                 ],
               ],
