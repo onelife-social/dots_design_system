@@ -24,6 +24,7 @@ import 'package:example/stories/stories_by_folder/memory_details.dart';
 import 'package:example/stories/stories_by_folder/miscellaneous_stories.dart';
 import 'package:example/stories/stories_by_folder/notifications_stories.dart';
 import 'package:example/stories/stories_by_folder/photos_stories.dart';
+import 'package:example/stories/stories_by_folder/progress_bar_stories.dart';
 import 'package:example/stories/stories_by_folder/segmented_control_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/separators_demo.dart';
@@ -51,6 +52,8 @@ List<Story> get allStories => [
       ...miscellaneousStories,
       ...notificationsStories,
       ...photoStories,
+      ...planningStories,
+      ...progressBarStories,
       ...segmentedControlStories,
       ...selectorRadioButtonStories,
       ...separatorStories,
@@ -58,7 +61,6 @@ List<Story> get allStories => [
       ...themeStories,
       ...toastStories,
       ...topBarStories,
-      ...planningStories,
       ...uploadItemsStories,
       Story(
         name: 'Container',
@@ -95,31 +97,6 @@ List<Story> get allStories => [
                 : null,
           );
         },
-      ),
-      Story(
-        name: 'Progress Bar',
-        builder: (context) => DotsProgressBar(
-          percentage: context.knobs.slider(
-            label: 'Percentage',
-            initial: 0.5,
-            min: 0,
-            max: 1,
-          ),
-          parts: context.knobs
-              .slider(
-                label: 'Parts',
-                initial: 2,
-                min: 1,
-                max: 3,
-              )
-              .toInt(),
-          width: context.knobs.slider(
-            label: 'Width',
-            initial: 110,
-            min: 50,
-            max: 300,
-          ),
-        ),
       ),
       Story(
         name: 'Menu',
