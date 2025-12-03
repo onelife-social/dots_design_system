@@ -7,7 +7,7 @@ class DotsSquircleImage extends StatelessWidget {
   final ImageProvider image;
 
   /// Default image path to be used when the image fails to load.
-  final String defaultImagePath;
+  final String? defaultImagePath;
 
   /// Callback for image load errors.
   final void Function(Object exception, StackTrace? stackTrace)? onError;
@@ -37,7 +37,7 @@ class DotsSquircleImage extends StatelessWidget {
     super.key,
     required this.image,
     this.onError,
-    required this.defaultImagePath,
+    this.defaultImagePath,
     required this.squircleStyle,
     this.hideBorder = true,
     this.borderColor,
@@ -68,7 +68,7 @@ class DotsSquircleImage extends StatelessWidget {
                 errorBuilder: (context, err, trace) {
                   onError?.call(err, trace);
                   return Image.asset(
-                    ImagesPaths.defaultSectionPlanning,
+                    defaultImagePath ?? ImagesPaths.defaultSectionPlanning,
                     fit: BoxFit.cover,
                   );
                 },

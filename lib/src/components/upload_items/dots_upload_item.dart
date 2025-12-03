@@ -8,7 +8,7 @@ class DotsUploadItem extends StatelessWidget {
   final ImageProvider image;
 
   /// Default image path to be used when the image fails to load.
-  final String defaultImagePath;
+  final String? defaultImagePath;
 
   /// Callback for image load errors.
   final void Function(Object exception, StackTrace? stackTrace)? onError;
@@ -37,7 +37,7 @@ class DotsUploadItem extends StatelessWidget {
   const DotsUploadItem({
     super.key,
     required this.image,
-    required this.defaultImagePath,
+    this.defaultImagePath,
     required this.variant,
     this.onError,
     this.textDate,
@@ -111,6 +111,8 @@ class DotsUploadItem extends StatelessWidget {
                       style: theme.typo.main.labelDefaultRegular.copyWith(
                         color: theme.colors.textSecondary,
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
@@ -140,6 +142,8 @@ class DotsUploadItem extends StatelessWidget {
                     style: theme.typo.main.labelDefaultRegular.copyWith(
                       color: theme.colors.textQuarternary,
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   )
                 ],
               ],
