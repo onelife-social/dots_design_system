@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../dots_design_system.dart';
 
-class ImageWithProgressAround extends StatelessWidget {
+class ImageWithProgressAround extends StatefulWidget {
   /// The progress value, between 0.0 and 1.0
   final double progress;
 
@@ -37,6 +37,49 @@ class ImageWithProgressAround extends StatelessWidget {
   static const double kSmallAspectRatio = 3 / 4;
 
   @override
+  State<ImageWithProgressAround> createState() => _ImageWithProgressAroundState();
+}
+
+class _ImageWithProgressAroundState extends State<ImageWithProgressAround>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _progressAnimation;
+  double _previousProgress = 0.0;
+  final animationDuration = const Duration(milliseconds: 300);
+  final animationCurve = Curves.easeInOut;
+
+  @override
+  void initState() {
+    super.initState();
+    _previousProgress = widget.progress;
+    _animationController = AnimationController(duration: animationDuration, vsync: this);
+    _progressAnimation = Tween<double>(
+      begin: _previousProgress,
+      end: widget.progress,
+    ).animate(CurvedAnimation(parent: _animationController, curve: animationCurve));
+    _animationController.value = 1.0; // Start at the end since we already have the initial value
+  }
+
+  @override
+  void didUpdateWidget(ImageWithProgressAround oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.progress != widget.progress) {
+      _previousProgress = _progressAnimation.value;
+      _progressAnimation = Tween<double>(
+        begin: _previousProgress,
+        end: widget.progress,
+      ).animate(CurvedAnimation(parent: _animationController, curve: animationCurve));
+      _animationController.forward(from: 0.0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     const progressBarColors = [
       Color(0xFFEF5FC1),
@@ -50,36 +93,48 @@ class ImageWithProgressAround extends StatelessWidget {
     ];
 
     return SizedBox(
-      width: width,
+      width: widget.width,
       child: AspectRatio(
-        aspectRatio: context.isSmallScreen ? kSmallAspectRatio : kStandardAspectRatio,
+        aspectRatio: context.isSmallScreen
+            ? ImageWithProgressAround.kSmallAspectRatio
+            : ImageWithProgressAround.kStandardAspectRatio,
         child: Stack(
           fit: StackFit.expand,
           children: [
             Container(
-              padding: EdgeInsets.all(innerPadding + progressBarWidth),
+              padding: EdgeInsets.all(widget.innerPadding + widget.progressBarWidth),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(borderRadius),
+                borderRadius: BorderRadius.circular(widget.borderRadius),
                 child: Stack(
                   children: [
-                    _MemoryImage(imageProvider: imageProvider),
+                    _MemoryImage(imageProvider: widget.imageProvider),
                     Container(
                       color: Colors.black.dotsWithOpacity(0.2),
-                      child: _ProgressText(progress: progress),
+                      child: AnimatedBuilder(
+                        animation: _progressAnimation,
+                        builder: (context, child) {
+                          return _ProgressText(progress: _progressAnimation.value);
+                        },
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
-            CustomPaint(
-              painter: _BorderProgressPainter(
-                progress: progress,
-                strokeWidth: progressBarWidth,
-                gradient: progressBarColors,
-                backgroundColor: context.dotsTheme.colors.bgSecondaryBtn,
-                borderRadius: borderRadius,
-                padding: innerPadding,
-              ),
+            AnimatedBuilder(
+              animation: _progressAnimation,
+              builder: (context, child) {
+                return CustomPaint(
+                  painter: _BorderProgressPainter(
+                    progress: _progressAnimation.value,
+                    strokeWidth: widget.progressBarWidth,
+                    gradient: progressBarColors,
+                    backgroundColor: context.dotsTheme.colors.bgSecondaryBtn,
+                    borderRadius: widget.borderRadius,
+                    padding: widget.innerPadding,
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -118,9 +173,7 @@ class _ProgressText extends StatelessWidget {
     return Center(
       child: Text(
         '${(progress * 100).toStringAsFixed(0)}%',
-        style: theme.typo.main.titleH3.copyWith(
-          color: theme.colors.labelAlwaysWhite,
-        ),
+        style: theme.typo.main.titleH3.copyWith(color: theme.colors.labelAlwaysWhite),
       ),
     );
   }
@@ -180,9 +233,7 @@ class _BorderProgressPainter extends CustomPainter {
         ..strokeWidth = strokeWidth
         ..strokeCap = StrokeCap.round;
 
-      progressPaint.shader = SweepGradient(
-        colors: gradient,
-      ).createShader(rect);
+      progressPaint.shader = SweepGradient(colors: gradient).createShader(rect);
 
       // Calculate the path length (perimeter of rounded rectangle)
       // Calculate exactly as the path is built, segment by segment
@@ -250,11 +301,7 @@ class _BorderProgressPainter extends CustomPainter {
       radius * 2,
     );
     if (currentLength + cornerLength <= progressLength) {
-      path.addArc(
-        topRightCornerRect,
-        -pi / 2,
-        pi / 2,
-      );
+      path.addArc(topRightCornerRect, -pi / 2, pi / 2);
       currentLength += cornerLength;
     } else {
       final remaining = progressLength - currentLength;
@@ -334,12 +381,7 @@ class _BorderProgressPainter extends CustomPainter {
 
     // 8. Top-left corner (clockwise, back to center)
     // The arc center is at (rect.left + radius, rect.top + radius)
-    final topLeftCornerRect = Rect.fromLTWH(
-      rect.left,
-      rect.top,
-      radius * 2,
-      radius * 2,
-    );
+    final topLeftCornerRect = Rect.fromLTWH(rect.left, rect.top, radius * 2, radius * 2);
     if (currentLength + cornerLength <= progressLength) {
       path.addArc(topLeftCornerRect, pi, pi / 2);
       currentLength += cornerLength;
