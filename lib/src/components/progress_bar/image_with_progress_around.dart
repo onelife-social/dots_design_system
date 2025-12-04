@@ -147,7 +147,7 @@ class _ImageWithProgressAroundState extends State<ImageWithProgressAround>
   }
 }
 
-class _MemoryImage extends StatelessWidget {
+class _MemoryImage extends StatefulWidget {
   final ImageProvider? imageProvider;
   final Duration animationDuration;
   final Curve animationCurve;
@@ -159,25 +159,93 @@ class _MemoryImage extends StatelessWidget {
   });
 
   @override
+  State<_MemoryImage> createState() => _MemoryImageState();
+}
+
+class _MemoryImageState extends State<_MemoryImage> {
+  ImageProvider? _currentImageProvider;
+  ImageProvider? _displayedImageProvider;
+  ImageStream? _imageStream;
+  ImageStreamListener? _imageStreamListener;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentImageProvider = widget.imageProvider;
+    _displayedImageProvider = widget.imageProvider;
+    if (widget.imageProvider != null) {
+      _preloadImage(widget.imageProvider!);
+    }
+  }
+
+  @override
+  void didUpdateWidget(_MemoryImage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.imageProvider != widget.imageProvider) {
+      if (widget.imageProvider != null) {
+        _currentImageProvider = widget.imageProvider;
+        _preloadImage(widget.imageProvider!);
+      } else {
+        _currentImageProvider = null;
+        _displayedImageProvider = null;
+        _disposeImageStream();
+      }
+    }
+  }
+
+  void _preloadImage(ImageProvider imageProvider) {
+    _disposeImageStream();
+
+    final ImageStream stream = imageProvider.resolve(createLocalImageConfiguration(context));
+    _imageStream = stream;
+
+    _imageStreamListener = ImageStreamListener(
+      (_, _) {
+        if (mounted && _currentImageProvider == imageProvider) {
+          setState(() => _displayedImageProvider = imageProvider);
+          _disposeImageStream();
+        }
+      },
+      onError: (_, _) {
+        // On error, keep the previous image visible and dispose the stream
+        if (mounted && _currentImageProvider == imageProvider) {
+          _disposeImageStream();
+        }
+      },
+    );
+
+    stream.addListener(_imageStreamListener!);
+  }
+
+  void _disposeImageStream() {
+    _imageStream?.removeListener(_imageStreamListener!);
+    _imageStream = null;
+    _imageStreamListener = null;
+  }
+
+  @override
+  void dispose() {
+    _disposeImageStream();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Positioned.fill(
       child: AnimatedSwitcher(
-        duration: animationDuration,
+        duration: widget.animationDuration,
         transitionBuilder: (Widget child, Animation<double> animation) {
           return FadeTransition(
-            opacity: CurvedAnimation(
-              parent: animation,
-              curve: animationCurve,
-            ),
+            opacity: CurvedAnimation(parent: animation, curve: widget.animationCurve),
             child: child,
           );
         },
-        child: imageProvider == null
+        child: _displayedImageProvider == null
             ? SizedBox.shrink(key: const ValueKey(null))
             : SizedBox.expand(
-                key: ValueKey(imageProvider),
+                key: ValueKey(_displayedImageProvider),
                 child: Image(
-                  image: imageProvider!,
+                  image: _displayedImageProvider!,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) => SizedBox.shrink(),
                 ),
