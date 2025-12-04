@@ -57,7 +57,7 @@ class _ImageWithProgressAroundState extends State<ImageWithProgressAround>
       begin: _previousProgress,
       end: widget.progress,
     ).animate(CurvedAnimation(parent: _animationController, curve: animationCurve));
-    _animationController.value = 1.0; // Start at the end since we already have the initial value
+    _animationController.value = 1.0;
   }
 
   @override
@@ -107,7 +107,11 @@ class _ImageWithProgressAroundState extends State<ImageWithProgressAround>
                 borderRadius: BorderRadius.circular(widget.borderRadius),
                 child: Stack(
                   children: [
-                    _MemoryImage(imageProvider: widget.imageProvider),
+                    _MemoryImage(
+                      imageProvider: widget.imageProvider,
+                      animationDuration: animationDuration,
+                      animationCurve: animationCurve,
+                    ),
                     Container(
                       color: Colors.black.dotsWithOpacity(0.2),
                       child: AnimatedBuilder(
@@ -145,18 +149,39 @@ class _ImageWithProgressAroundState extends State<ImageWithProgressAround>
 
 class _MemoryImage extends StatelessWidget {
   final ImageProvider? imageProvider;
+  final Duration animationDuration;
+  final Curve animationCurve;
 
-  const _MemoryImage({this.imageProvider});
+  const _MemoryImage({
+    this.imageProvider,
+    required this.animationDuration,
+    required this.animationCurve,
+  });
 
   @override
   Widget build(BuildContext context) {
-    if (imageProvider == null) return SizedBox.shrink();
-
     return Positioned.fill(
-      child: Image(
-        image: imageProvider!,
-        fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) => SizedBox.shrink(),
+      child: AnimatedSwitcher(
+        duration: animationDuration,
+        transitionBuilder: (Widget child, Animation<double> animation) {
+          return FadeTransition(
+            opacity: CurvedAnimation(
+              parent: animation,
+              curve: animationCurve,
+            ),
+            child: child,
+          );
+        },
+        child: imageProvider == null
+            ? SizedBox.shrink(key: const ValueKey(null))
+            : SizedBox.expand(
+                key: ValueKey(imageProvider),
+                child: Image(
+                  image: imageProvider!,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => SizedBox.shrink(),
+                ),
+              ),
       ),
     );
   }
