@@ -70,104 +70,107 @@ class DotsUploadItem extends StatelessWidget {
         break;
     }
 
-    return Row(
-      children: [
-        DotsSquircleImage(
-          image: image,
-          defaultImagePath: defaultImagePath,
-          squircleStyle: theme.styles.squircle16,
-          size: 64,
-          onError: onError,
-          uploadError: variant.isError,
-        ),
-        SizedBox(width: 12),
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.only(right: variant.isProcessing ? 10 : 0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  textDate ?? '',
-                  style: theme.typo.main.bodyDefaultMedium.copyWith(
-                    color: theme.colors.textPrimary,
-                  ),
-                ),
-                SizedBox(height: 6),
-                Row(
-                  children: [
-                    _RotatingIcon(
-                      animate: variant.isProcessing,
-                      child: DotsIcon(
-                        iconData: iconData,
-                        size: 14,
-                        color: iconColor,
-                      ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        children: [
+          DotsSquircleImage(
+            image: image,
+            defaultImagePath: defaultImagePath,
+            squircleStyle: theme.styles.squircle16,
+            size: 64,
+            onError: onError,
+            uploadError: variant.isError,
+          ),
+          SizedBox(width: 12),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(right: variant.isProcessing ? 10 : 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    textDate ?? '',
+                    style: theme.typo.main.bodyDefaultMedium.copyWith(
+                      color: theme.colors.textPrimary,
                     ),
-                    SizedBox(width: 3),
+                  ),
+                  SizedBox(height: 6),
+                  Row(
+                    children: [
+                      _RotatingIcon(
+                        animate: variant.isProcessing,
+                        child: DotsIcon(
+                          iconData: iconData,
+                          size: 14,
+                          color: iconColor,
+                        ),
+                      ),
+                      SizedBox(width: 3),
+                      Text(
+                        processText ?? '',
+                        style: theme.typo.main.labelDefaultRegular.copyWith(
+                          color: theme.colors.textSecondary,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                  if (variant.isProcessing) ...[
+                    Row(
+                      children: [
+                        Expanded(
+                          child: DotsProgressBar(
+                            percentage: percentage ?? 1,
+                            parts: 1,
+                          ),
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          percentage != null ? '${(percentage! * 100).toStringAsFixed(0)}%' : '',
+                          style: theme.typo.main.labelDefaultRegular.copyWith(
+                            color: theme.colors.textQuarternary,
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                  if (variant.isSuccess) ...[
+                    SizedBox(height: 4),
                     Text(
-                      processText ?? '',
+                      timeElapsed ?? '',
                       style: theme.typo.main.labelDefaultRegular.copyWith(
-                        color: theme.colors.textSecondary,
+                        color: theme.colors.textQuarternary,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                    ),
+                    )
                   ],
-                ),
-                if (variant.isProcessing) ...[
-                  Row(
-                    children: [
-                      Expanded(
-                        child: DotsProgressBar(
-                          percentage: percentage ?? 1,
-                          parts: 1,
-                        ),
-                      ),
-                      SizedBox(width: 8),
-                      Text(
-                        percentage != null ? '${(percentage! * 100).toStringAsFixed(0)}%' : '',
-                        style: theme.typo.main.labelDefaultRegular.copyWith(
-                          color: theme.colors.textQuarternary,
-                        ),
-                      )
-                    ],
-                  ),
                 ],
-                if (variant.isSuccess) ...[
-                  SizedBox(height: 4),
-                  Text(
-                    timeElapsed ?? '',
-                    style: theme.typo.main.labelDefaultRegular.copyWith(
-                      color: theme.colors.textQuarternary,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  )
-                ],
-              ],
+              ),
             ),
           ),
-        ),
-        if (!variant.isProcessing)...[
-          SizedBox(width: 12),
-          if (variant.isSuccess)
-            DotsMainButton(
-              content: btnText ?? '',
-              variant: DotsMainButtonVariant.secondary,
-              size: DotsMainButtonSize.medium,
-              onTap: btnOnTap,
-            )
-          else 
-            DotsMainButton(
-              content: btnText ?? '',
-              variant: DotsMainButtonVariant.main,
-              size: DotsMainButtonSize.medium,
-              onTap: btnOnTap,
-            )
+          if (!variant.isProcessing)...[
+            SizedBox(width: 12),
+            if (variant.isSuccess)
+              DotsMainButton(
+                content: btnText ?? '',
+                variant: DotsMainButtonVariant.secondary,
+                size: DotsMainButtonSize.medium,
+                onTap: btnOnTap,
+              )
+            else 
+              DotsMainButton(
+                content: btnText ?? '',
+                variant: DotsMainButtonVariant.main,
+                size: DotsMainButtonSize.medium,
+                onTap: btnOnTap,
+              )
+          ],
         ],
-      ],
+      ),
     );
   }
 }
