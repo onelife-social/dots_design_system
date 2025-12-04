@@ -11,9 +11,14 @@ List<Story> get progressBarStories => [
           progress: context.knobs.slider(label: 'Progress', initial: 0.5, min: 0, max: 1),
           imageProvider: NetworkImage(
               context.knobs.text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9')),
-          progressBarWidth: context.knobs.slider(label: 'Progress bar width', initial: 6, min: 0, max: 20),
+          progressBarWidth:
+              context.knobs.slider(label: 'Progress bar width', initial: 6, min: 0, max: 20),
           innerPadding: context.knobs.slider(label: 'Inner padding', initial: 8, min: 0, max: 40),
           borderRadius: context.knobs.slider(label: 'Border radius', initial: 45, min: 0, max: 100),
+          animationDuration: Duration(
+              seconds: context.knobs
+                  .slider(label: 'Animation duration', initial: 1.8, min: 0.0, max: 3.0)
+                  .toInt()),
         ),
       ),
       Story(

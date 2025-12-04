@@ -23,6 +23,12 @@ class ImageWithProgressAround extends StatefulWidget {
   /// The border radius for the rounded corners of the image and progress bar.
   final double borderRadius;
 
+  /// The duration of the animation.
+  final Duration animationDuration;
+
+  /// The curve of the animation.
+  final Curve animationCurve;
+
   const ImageWithProgressAround({
     super.key,
     required this.width,
@@ -31,6 +37,8 @@ class ImageWithProgressAround extends StatefulWidget {
     this.progressBarWidth = 6.0,
     this.innerPadding = 8.0,
     this.borderRadius = 45.0,
+    this.animationDuration = const Duration(milliseconds: 800),
+    this.animationCurve = Curves.easeInOut,
   });
 
   static const double kStandardAspectRatio = 9 / 16;
@@ -45,18 +53,16 @@ class _ImageWithProgressAroundState extends State<ImageWithProgressAround>
   late AnimationController _animationController;
   late Animation<double> _progressAnimation;
   double _previousProgress = 0.0;
-  final animationDuration = const Duration(milliseconds: 300);
-  final animationCurve = Curves.easeInOut;
 
   @override
   void initState() {
     super.initState();
     _previousProgress = widget.progress;
-    _animationController = AnimationController(duration: animationDuration, vsync: this);
+    _animationController = AnimationController(duration: widget.animationDuration, vsync: this);
     _progressAnimation = Tween<double>(
       begin: _previousProgress,
       end: widget.progress,
-    ).animate(CurvedAnimation(parent: _animationController, curve: animationCurve));
+    ).animate(CurvedAnimation(parent: _animationController, curve: widget.animationCurve));
     _animationController.value = 1.0;
   }
 
@@ -68,7 +74,7 @@ class _ImageWithProgressAroundState extends State<ImageWithProgressAround>
       _progressAnimation = Tween<double>(
         begin: _previousProgress,
         end: widget.progress,
-      ).animate(CurvedAnimation(parent: _animationController, curve: animationCurve));
+      ).animate(CurvedAnimation(parent: _animationController, curve: widget.animationCurve));
       _animationController.forward(from: 0.0);
     }
   }
@@ -109,8 +115,8 @@ class _ImageWithProgressAroundState extends State<ImageWithProgressAround>
                   children: [
                     _MemoryImage(
                       imageProvider: widget.imageProvider,
-                      animationDuration: animationDuration,
-                      animationCurve: animationCurve,
+                      animationDuration: widget.animationDuration,
+                      animationCurve: widget.animationCurve,
                     ),
                     Container(
                       color: Colors.black.dotsWithOpacity(0.2),
@@ -167,13 +173,20 @@ class _MemoryImageState extends State<_MemoryImage> {
   ImageProvider? _displayedImageProvider;
   ImageStream? _imageStream;
   ImageStreamListener? _imageStreamListener;
+  bool _hasInitialized = false;
 
   @override
   void initState() {
     super.initState();
     _currentImageProvider = widget.imageProvider;
     _displayedImageProvider = widget.imageProvider;
-    if (widget.imageProvider != null) {
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_hasInitialized && widget.imageProvider != null) {
+      _hasInitialized = true;
       _preloadImage(widget.imageProvider!);
     }
   }
