@@ -53,12 +53,13 @@ class DotsActionSheetStandardContent extends StatelessWidget {
               topWidget,
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    const SizedBox(height: 4),
                     SizedBox(
                       width: double.infinity,
                       child: Text(
@@ -79,6 +80,7 @@ class DotsActionSheetStandardContent extends StatelessWidget {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 10),
                     ],
                   ],
                 ),
@@ -118,7 +120,7 @@ double _calculateButtonAreaHeight({
   required Widget? primaryButton,
   required Widget? secondaryButton,
 }) {
-  final double noButtons = 16;
+  final double noButtons = 0;
   final double oneButton = DotsMainButtonSize.mainAction.height + 16;
   final double twoButtons = DotsMainButtonSize.mainAction.height * 2 + 32;
 
@@ -229,4 +231,3 @@ class _BackdropFilterMask extends StatelessWidget {
     );
   }
 }
-
