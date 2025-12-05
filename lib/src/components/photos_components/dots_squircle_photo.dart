@@ -52,59 +52,62 @@ class DotsSquircleImage extends StatelessWidget {
     final theme = context.dotsTheme;
 
     return DotsDecoratedBox(
-      styleType: squircleStyle,
-      child: Stack(
-        children: [
-          SizedBox(
-            width: size,
-            height: size,
-            child: ClipRRect(
-              borderRadius: borderRadius,
-              child: Image(
-                image: image,
-                fit: BoxFit.cover,
-                width: size,
-                height: size,
-                errorBuilder: (context, err, trace) {
-                  onError?.call(err, trace);
-                  return Image.asset(
-                    defaultImagePath ?? ImagesPaths.defaultSectionPlanning,
-                    fit: BoxFit.cover,
-                  );
-                },
+      styleType: theme.styles.defaultShadow,
+      child: DotsDecoratedBox(
+        styleType: squircleStyle,
+        child: Stack(
+          children: [
+            SizedBox(
+              width: size,
+              height: size,
+              child: ClipRRect(
+                borderRadius: borderRadius,
+                child: Image(
+                  image: image,
+                  fit: BoxFit.cover,
+                  width: size,
+                  height: size,
+                  errorBuilder: (context, err, trace) {
+                    onError?.call(err, trace);
+                    return Image.asset(
+                      defaultImagePath ?? ImagesPaths.defaultSectionPlanning,
+                      fit: BoxFit.cover,
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-          if (!hideBorder)
-            Positioned.fill(
-              child: IgnorePointer(
+            if (!hideBorder)
+              Positioned.fill(
+                child: IgnorePointer(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: borderColor ?? theme.colors.bgBtnImage.withOpacity(0.6),
+                        width: 1,
+                      ),
+                      borderRadius: borderRadius,
+                    ),
+                  ),
+                ),
+              ),
+            if (uploadError)
+              Positioned.fill(
                 child: Container(
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      color: borderColor ?? theme.colors.bgBtnImage.withOpacity(0.6),
-                      width: 1,
+                    color: Colors.black.withOpacity(0.2),
+                  ),
+                  child: Center(
+                    child: DotsIcon(
+                      iconData: uploadErrorIcon,
+                      color: theme.colors.labelAlwaysWhite,
+                      size: 24,
                     ),
-                    borderRadius: borderRadius,
                   ),
                 ),
               ),
-            ),
-          if (uploadError)
-            Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.2),
-                ),
-                child: Center(
-                  child: DotsIcon(
-                    iconData: uploadErrorIcon,
-                    color: theme.colors.labelAlwaysWhite,
-                    size: 24,
-                  ),
-                ),
-              ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
