@@ -19,3 +19,5 @@ export 'btn_folder/btn_folder.dart';
 export 'dots_toggle.dart';
 
 export 'dots_selector.dart';
+
+export 'dots_rich_button/dots_rich_button.dart';
