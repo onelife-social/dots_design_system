@@ -83,9 +83,6 @@ class DotsRichButton extends StatelessWidget {
           child: Container(
             height: size.height,
             width: size.width,
-            // decoration: BoxDecoration(
-            //   borderRadius: borderRadius,
-            // ),
             color: theme.colors.bgContainerSecondary,
             padding: EdgeInsets.symmetric(
               horizontal: 24,
@@ -97,14 +94,12 @@ class DotsRichButton extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 image != null
-                    ? Positioned.fill(
-                        child: Image(
-                          image: image!,
-                          width: 32,
-                          height: 32,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) => const SizedBox.shrink(),
-                        ),
+                    ? Image(
+                        image: image!,
+                        width: 32,
+                        height: 32,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, _, _) => const SizedBox.shrink(),
                       )
                     : icon != null
                     ? DotsIcon(
