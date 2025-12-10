@@ -315,4 +315,45 @@ List<Story> get buttonStories => [
           ),
         ),
       ),
+      Story(
+        name: 'Buttons/Rich button',
+        description: 'Demo page for Rich button',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Center(
+            child: DotsRichButton(
+              size: context.knobs.options<DotsRichButtonSize>(
+                label: 'Size',
+                initial: DotsRichButtonSize.large,
+                options: DotsRichButtonSize.values
+                    .map((item) => Option(label: item.name, value: item))
+                    .toList(),
+              ),
+              textSize: context.knobs.options<DotsRichButtonTextSize>(
+                label: 'Text Size',
+                initial: DotsRichButtonTextSize.large,
+                options: DotsRichButtonTextSize.values
+                    .map((item) => Option(label: item.name, value: item))
+                    .toList(),
+              ),
+              image: context.knobs.boolean(label: 'Show leading image?', initial: true)
+                  ? NetworkImage('https://picsum.photos/250?image=9')
+                  : null,
+              icon: context.knobs.nullable.options<DotsIconData>(
+                label: 'Icon',
+                initial: DotsIconData.search,
+                options: DotsIconData.values
+                    .map((item) => Option(label: item.name, value: item))
+                    .toList(),
+              ),
+              content: context.knobs.text(label: 'Content', initial: 'Button Content'),
+              details: context.knobs.nullable.text(label: 'Details', initial: 'Details'),
+              trailingText: context.knobs.nullable
+                  .text(label: 'Trailing Text', initial: '0/4', enabled: false),
+              onTap: () =>
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('On tap!'))),
+            ),
+          ),
+        ),
+      ),
     ];
