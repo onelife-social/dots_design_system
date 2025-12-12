@@ -25,7 +25,7 @@ List<Story> get toastStories => [
           builder: (context) => Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: DotsToastInfo(
-                  title: context.knobs.text(label: 'Title', initial: 'Title'),
+                  title: context.knobs.text(label: 'Title', initial: 'Tus archivos se están subiendo'),
                   variant: context.knobs.options<DotsToastVariant>(
                     label: 'Variant',
                     initial: DotsToastVariant.success,
@@ -33,6 +33,9 @@ List<Story> get toastStories => [
                         .map((item) => Option(label: item.name, value: item))
                         .toList(),
                   ),
+                  btnTitle: context.knobs
+                      .text(label: 'Button Title', initial: 'See progress'
+                      ),
                 ),
               )),
     ];
