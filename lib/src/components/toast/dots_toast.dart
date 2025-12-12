@@ -2,11 +2,23 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class DotsToast extends StatelessWidget {
+
+  // Indicates if the toast is an action type
   final bool isAction;
+
+  // Title of the toast
   final String title;
+
+  // Variant of the toast
   final DotsToastVariant variant;
+
+  // Custom color for the icon
   final Color? customIconColor;
+
+  // Callback for tap events
   final Function()? onTap;
+
+  // Button title for info toasts
   final String? btnTitle;
 
   const DotsToast({
