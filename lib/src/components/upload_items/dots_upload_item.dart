@@ -108,13 +108,15 @@ class DotsUploadItem extends StatelessWidget {
                         ),
                       ),
                       SizedBox(width: 3),
-                      Text(
-                        processText ?? '',
-                        style: theme.typo.main.labelDefaultRegular.copyWith(
-                          color: theme.colors.textSecondary,
+                      Expanded(
+                        child: Text(
+                          processText ?? '',
+                          style: theme.typo.main.labelDefaultRegular.copyWith(
+                            color: theme.colors.textSecondary,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
