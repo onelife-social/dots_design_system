@@ -99,7 +99,7 @@ class DotsToast extends StatelessWidget {
         width: 358,
         onTap: onTap,
         child: Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           spacing: 12,
           children: [
             if (variant == DotsToastVariant.progress)
@@ -115,7 +115,7 @@ class DotsToast extends StatelessWidget {
                 color: customIconColor ?? iconColor(theme),
                 size: 20,
               ),
-            Flexible(
+            Expanded(
               child: Text(
                 title,
                 textAlign: TextAlign.start,
@@ -127,6 +127,7 @@ class DotsToast extends StatelessWidget {
                 content: btnTitle!,
                 variant: DotsMainButtonVariant.ghost,
                 size: DotsMainButtonSize.medium,
+                adaptPaddingForText: true,
               )
           ],
         ),
