@@ -25,6 +25,7 @@ import 'package:example/stories/stories_by_folder/miscellaneous_stories.dart';
 import 'package:example/stories/stories_by_folder/notifications_stories.dart';
 import 'package:example/stories/stories_by_folder/photos_stories.dart';
 import 'package:example/stories/stories_by_folder/progress_bar_stories.dart';
+import 'package:example/stories/stories_by_folder/rating_stories.dart';
 import 'package:example/stories/stories_by_folder/segmented_control_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/separators_demo.dart';
@@ -62,6 +63,7 @@ List<Story> get allStories => [
       ...toastStories,
       ...topBarStories,
       ...uploadItemsStories,
+      ...ratingStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
