@@ -45,3 +45,4 @@ export 'users_list/users_list.dart';
 export 'common/settings_item.dart';
 export 'planning/planning_lib.dart';
 export 'upload_items/upload_lib.dart';
+export 'rating/rating_lib.dart';
