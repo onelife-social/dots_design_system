@@ -112,7 +112,7 @@ class RecapCardLocked extends StatelessWidget {
             children: [
               blurImageProvider
                   ? ImageFiltered(
-                      imageFilter: ImageFilter.blur(sigmaX: 150, sigmaY: 150),
+                      imageFilter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
                       child: imageWidget,
                     )
                   : imageWidget,
