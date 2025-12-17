@@ -119,6 +119,7 @@ class RecapCard extends StatelessWidget {
     ImageErrorWidgetBuilder? errorBuilder,
     String? title,
     ImageProvider? textImageProvider,
+    String? badgeText,
   }) => RecapCard._(
     variant: RecapCardVariant.generated,
     width: width,
@@ -129,6 +130,7 @@ class RecapCard extends StatelessWidget {
     onTap: onTap,
     errorBuilder: errorBuilder,
     title: title,
+    badgeText: badgeText,
   );
 
   factory RecapCard.onlyTitle({
