@@ -21,6 +21,9 @@ class DotsSquircleImage extends StatelessWidget {
   /// Whether to hide the border around the image.
   final bool hideBorder;
 
+  /// Size of the border.
+  final double borderSize;
+
   /// Border radius of the image.
   final BorderRadius borderRadius;
 
@@ -42,6 +45,7 @@ class DotsSquircleImage extends StatelessWidget {
     this.hideBorder = true,
     this.borderColor,
     this.size = 52,
+    this.borderSize = 1,
     this.borderRadius = DotsBorderRadius.r16,
     this.uploadError = false,
     this.uploadErrorIcon = DotsIconData.cloudFail,
@@ -84,7 +88,7 @@ class DotsSquircleImage extends StatelessWidget {
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: borderColor ?? theme.colors.bgBtnImage.withOpacity(0.6),
-                        width: 1,
+                        width: borderSize,
                       ),
                       borderRadius: borderRadius,
                     ),

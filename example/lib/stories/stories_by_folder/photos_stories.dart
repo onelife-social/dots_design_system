@@ -64,4 +64,28 @@ List<Story> get photoStories => [
           ),
         ),
       ),
+      Story(
+        name: 'Photo components/ Squircle photo tag',
+        description: 'Demo page for Squircle photo tag',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: DotsSquircleImageTag(
+            image: NetworkImage(
+              context.knobs.text(
+                label: 'Image URL',
+                initial: 'https://picsum.photos/250?image=9',
+              ),
+            ),
+            defaultImagePath: ImagesPaths.defaultSectionPlanning,
+            squircleStyle: context.dotsTheme.styles.squircle16,
+            borderRadius: DotsBorderRadius.r24,
+            icon: context.knobs.options<DotsIconData>(
+              label: 'Icon Data',
+              initial: DotsIconData.calendarCheck,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+          ),
+        ),
+      ),
     ];
