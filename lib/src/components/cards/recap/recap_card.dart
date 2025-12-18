@@ -116,7 +116,7 @@ class RecapCard extends StatelessWidget {
     required String createdBy,
     required String albumName,
     required Function()? onTap,
-    required Function()? onInfoTap,
+    required Function() onInfoTap,
     ImageErrorWidgetBuilder? errorBuilder,
     String? title,
     ImageProvider? textImageProvider,
