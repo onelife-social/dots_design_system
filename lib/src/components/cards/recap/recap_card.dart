@@ -116,6 +116,7 @@ class RecapCard extends StatelessWidget {
     required String createdBy,
     required String albumName,
     required Function()? onTap,
+    required Function()? onInfoTap,
     ImageErrorWidgetBuilder? errorBuilder,
     String? title,
     ImageProvider? textImageProvider,
@@ -128,6 +129,7 @@ class RecapCard extends StatelessWidget {
     createdBy: createdBy,
     albumName: albumName,
     onTap: onTap,
+    onInfoTap: onInfoTap,
     errorBuilder: errorBuilder,
     title: title,
     badgeText: badgeText,
@@ -231,6 +233,15 @@ class RecapCard extends StatelessWidget {
                     variant: BadgeLabelVariant.premium,
                     size: BadgeLabelSize.large,
                   ),
+                if (variant.isGenerated && badgeText == null)
+                  DotsIconButton(
+                    icon: DotsIconData.share,
+                    onTap: onInfoTap,
+                    style: DotsIconButtonStyle.floating,
+                    size: DotsIconButtonSize.large,
+                    state: DotsIconButtonState.defaultState,
+                    color: theme.colors.textPrimary,
+                  ),
                 if (variant.isBlocked)
                   DotsIconButton(
                     icon: DotsIconData.lock,
@@ -254,7 +265,9 @@ class RecapCard extends StatelessWidget {
                     createdBy: createdBy,
                     albumName: albumName,
                   )
-                : buttonText == null ? const SizedBox.shrink() : DotsMainButton(
+                : buttonText == null
+                ? const SizedBox.shrink()
+                : DotsMainButton(
                     content: buttonText ?? '',
                     variant: DotsMainButtonVariant.main,
                     expand: false,
