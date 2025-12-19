@@ -1,26 +1,40 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
+enum SettingsItemVariant {
+  icon,
+  toggle;
+
+  bool get isIcon => this == SettingsItemVariant.icon;
+  bool get isToggle => this == SettingsItemVariant.toggle;
+}
+
 class SettingsItem extends StatelessWidget {
+  final SettingsItemVariant variant;
+  final String label;
+  final DotsIconData? startIcon;
+  final DotsIconData? endIcon;
+  final VoidCallback? onTap;
+  final bool? toggleValue;
+  final Function()? onToggleTap;
+
   const SettingsItem({
     super.key,
+    required this.variant,
     required this.label,
-    required this.startIcon,
-    required this.endIcon,
-    required this.onTap,
+    this.startIcon,
+    this.endIcon,
+    this.onTap,
+    this.toggleValue,
+    this.onToggleTap,
   });
-
-  final String label;
-  final DotsIconData startIcon;
-  final DotsIconData endIcon;
-  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       highlightColor: Colors.transparent,
       splashColor: Colors.transparent,
-      onTap: onTap,
+      onTap: onTap ?? onToggleTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 12,
@@ -30,11 +44,12 @@ class SettingsItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           spacing: 8,
           children: [
-            DotsIcon(
-              iconData: startIcon,
-              size: 20,
-              color: context.dotsTheme.colors.textTertiary,
-            ),
+            if (startIcon != null)
+              DotsIcon(
+                iconData: startIcon!,
+                size: 20,
+                color: context.dotsTheme.colors.textTertiary,
+              ),
             Expanded(
               child: Text(
                 label,
@@ -43,14 +58,24 @@ class SettingsItem extends StatelessWidget {
                 ),
               ),
             ),
-            DotsIcon(
-              iconData: endIcon,
-              size: 20,
-              color: context.dotsTheme.colors.textTertiary,
-            ),
+            _buildTrailing(context),
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildTrailing(BuildContext context) {
+    switch (variant) {
+      case SettingsItemVariant.icon:
+        return DotsIcon(
+          iconData: endIcon!,
+          size: 20,
+          color: context.dotsTheme.colors.textTertiary,
+        );
+
+      case SettingsItemVariant.toggle:
+        return DotsToggle(isSelected: toggleValue!, onChanged: onToggleTap!());
+    }
   }
 }

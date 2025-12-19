@@ -650,31 +650,53 @@ List<Story> get allStories => [
       Story(
         name: 'Settings Item',
         description: 'Demo page for Settings Item',
-        builder: (context) => Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: SettingsItem(
-                label: context.knobs.text(label: 'Label', initial: 'Label'),
-                startIcon: context.knobs.options<DotsIconData>(
-                  label: 'Start Icon',
-                  initial: DotsIconData.home,
-                  options: DotsIconData.values
-                      .map((item) => Option(label: item.name, value: item))
-                      .toList(),
-                ),
-                endIcon: context.knobs.options<DotsIconData>(
-                  label: 'End Icon',
-                  initial: DotsIconData.chevronRight,
-                  options: DotsIconData.values
-                      .map((item) => Option(label: item.name, value: item))
-                      .toList(),
-                ),
-                onTap: () {},
-              ),
-            ),
-          ],
-        ),
+        builder: (context) {
+          bool isSelected = false;
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: SettingsItem(
+                      variant: context.knobs.options<SettingsItemVariant>(
+                        label: 'Variant',
+                        initial: SettingsItemVariant.icon,
+                        options: SettingsItemVariant.values
+                            .map((item) => Option(label: item.name, value: item))
+                            .toList(),
+                      ),
+                      label: context.knobs.text(label: 'Label', initial: 'Label'),
+                      startIcon: context.knobs.options<DotsIconData>(
+                        label: 'Start Icon',
+                        initial: DotsIconData.home,
+                        options: DotsIconData.values
+                            .map((item) => Option(label: item.name, value: item))
+                            .toList(),
+                      ),
+                      endIcon: context.knobs.options<DotsIconData>(
+                        label: 'End Icon',
+                        initial: DotsIconData.chevronRight,
+                        options: DotsIconData.values
+                            .map((item) => Option(label: item.name, value: item))
+                            .toList(),
+                      ),
+                      onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Settings item tapped')),
+                      ),
+                      toggleValue: isSelected,
+                      onToggleTap: () {
+                        setState(() => isSelected = !isSelected);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Toggle switched to $isSelected')),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
+        },
       ),
-      
     ];
