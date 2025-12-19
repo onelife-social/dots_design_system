@@ -114,6 +114,13 @@ List<Story> get cards => [
               ),
             );
           },
+          onInfoTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('onInfoTap'),
+              ),
+            );
+          },
           imageProvider: NetworkImage(
             context.knobs.text(
                 label: 'Container background image', initial: 'https://picsum.photos/250?image=9'),
