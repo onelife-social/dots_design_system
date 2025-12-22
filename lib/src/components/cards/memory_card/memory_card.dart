@@ -3,11 +3,11 @@ import 'package:dots_design_system/src/core/borders/gradient_box_border.dart';
 import 'package:flutter/material.dart';
 
 enum MemoryCardVariant {
-  update,
-  dotsIntelligence;
+  memory,
+  recap;
 
-  bool get isUpdate => this == MemoryCardVariant.update;
-  bool get isDotsIntelligence => this == MemoryCardVariant.dotsIntelligence;
+  bool get isMemory => this == MemoryCardVariant.memory;
+  bool get isRecap => this == MemoryCardVariant.recap;
 }
 
 class MemoryCard extends StatelessWidget {
@@ -38,9 +38,7 @@ class MemoryCard extends StatelessWidget {
             Stack(
               alignment: Alignment.center,
               children: [
-                variant == MemoryCardVariant.update
-                    ? const _UpdatedBorder()
-                    : _DotsIntelligenceBorder(),
+                variant == MemoryCardVariant.memory ? const _MemoryBorder() : const _RecapBorder(),
                 _Card(image: image, onError: onError),
               ],
             ),
@@ -86,8 +84,7 @@ class _GroupName extends StatelessWidget {
     final theme = context.dotsTheme;
     return Text(
       groupName,
-      style: theme.typo.main.labelDefaultMedium
-          .copyWith(color: theme.colors.textSecondary),
+      style: theme.typo.main.labelDefaultMedium.copyWith(color: theme.colors.textSecondary),
       overflow: TextOverflow.ellipsis,
       maxLines: 1,
       textAlign: TextAlign.center,
@@ -95,8 +92,8 @@ class _GroupName extends StatelessWidget {
   }
 }
 
-class _UpdatedBorder extends StatelessWidget {
-  const _UpdatedBorder();
+class _MemoryBorder extends StatelessWidget {
+  const _MemoryBorder();
 
   @override
   Widget build(BuildContext context) {
@@ -128,18 +125,11 @@ class _UpdatedBorder extends StatelessWidget {
   }
 }
 
-class _DotsIntelligenceBorder extends StatelessWidget {
-  const _DotsIntelligenceBorder();
+class _RecapBorder extends StatelessWidget {
+  const _RecapBorder();
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 87.39,
-      width: 57.7,
-      child: Image.asset(
-        'assets/images/filter_generated_memory.png',
-        fit: BoxFit.cover,
-      ),
-    );
+    return Container();
   }
 }
