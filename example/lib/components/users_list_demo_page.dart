@@ -19,6 +19,7 @@ class _UsersListStoryState extends State<UsersListStory> {
 
     members.addAll([
       MemberInfo(
+        id: '11',
         userInfoData: UserInfoData(
           imageProvider: NetworkImage('https://picsum.photos/250?image=1'),
           name: 'Carlos',
@@ -26,6 +27,7 @@ class _UsersListStoryState extends State<UsersListStory> {
         memberType: MemberType.creator,
       ),
       MemberInfo(
+        id: '13',
         userInfoData: UserInfoData(
           imageProvider: NetworkImage('https://picsum.photos/250?image=2'),
           name: 'Admin 1',
@@ -33,6 +35,7 @@ class _UsersListStoryState extends State<UsersListStory> {
         memberType: MemberType.admin,
       ),
       MemberInfo(
+        id: '0',
         userInfoData: UserInfoData(
           imageProvider: NetworkImage('https://picsum.photos/250?image=3'),
           name: 'Admin 2',
@@ -67,8 +70,8 @@ class _UsersListStoryState extends State<UsersListStory> {
       MemberInfo(
         id: '3',
         userInfoData: UserInfoData(
-          imageProvider: NetworkImage('https://picsum.photos/250?image=6'),
           name: 'Esther',
+          aliasLabelImageText: 'E',
           details: 'Amigo de Dots',
         ),
         memberType: MemberType.friend,
@@ -118,62 +121,68 @@ class _UsersListStoryState extends State<UsersListStory> {
 
   @override
   Widget build(BuildContext context) {
-    return UsersList(
-      members: members,
-      creatorLabel: 'Creador',
-      adminLabel: 'Admin',
-      memberOnTap: (id) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Friend tapped: $id')),
-        );
-      },
-      textfieldLabel: 'Nombre del participante...',
-      textControllers: textControllers,
-      focusNodes: focusNodes,
-      textOnChanged: (id, value) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Alias changed: $id -> $value')),
-        );
-
-        final index = members.indexWhere((m) => m.id == id);
-        if (index != -1) {
-          final old = members[index];
-          members[index] = MemberInfo(
-            id: old.id,
-            userInfoData: UserInfoData(
-              imageProvider: old.userInfoData.imageProvider,
-              name: value ?? '',
-              details: old.userInfoData.details,
-            ),
-            memberType: old.memberType,
-          );
-        }
-      },
-      addParticipantLabel: 'Añadir otro participante',
-      addParticipantOnTap: (id) {
-        if (textControllers.values.any((c) => c.text.trim().isEmpty)) return;
-
-        final newId = tempId();
-        setState(() {
-          textControllers[newId] = TextEditingController(text: '');
-          focusNodes[newId] = FocusNode();
-
-          members.add(
-            MemberInfo(
-              id: newId,
-              userInfoData: UserInfoData(name: ''),
-              memberType: MemberType.alias,
-            ),
-          );
-        });
-      },
-      addFriendLabel: 'Añadir amigo de Dots',
-      addFriendOnTap: (_) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Tapped add friend')),
-        );
-      },
-      showAddFriendButton: true,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          UsersList(
+            members: members,
+            creatorLabel: 'Creador',
+            adminLabel: 'Admin',
+            memberOnTap: (id) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Friend tapped: $id')),
+              );
+            },
+            textfieldLabel: 'Nombre del participante...',
+            textControllers: textControllers,
+            focusNodes: focusNodes,
+            textOnChanged: (id, value) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Alias changed: $id -> $value')),
+              );
+          
+              final index = members.indexWhere((m) => m.id == id);
+              if (index != -1) {
+                final old = members[index];
+                members[index] = MemberInfo(
+                  id: old.id,
+                  userInfoData: UserInfoData(
+                    imageProvider: old.userInfoData.imageProvider,
+                    name: value ?? '',
+                    details: old.userInfoData.details,
+                  ),
+                  memberType: old.memberType,
+                );
+              }
+            },
+            addParticipantLabel: 'Añadir otro participante',
+            addParticipantOnTap: (id) {
+              if (textControllers.values.any((c) => c.text.trim().isEmpty)) return;
+          
+              final newId = tempId();
+              setState(() {
+                textControllers[newId] = TextEditingController(text: '');
+                focusNodes[newId] = FocusNode();
+          
+                members.add(
+                  MemberInfo(
+                    id: newId,
+                    userInfoData: UserInfoData(name: ''),
+                    memberType: MemberType.alias,
+                  ),
+                );
+              });
+            },
+            addFriendLabel: 'Añadir amigo de Dots',
+            addFriendOnTap: (_) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Tapped add friend')),
+              );
+            },
+            showAddFriendButton: true,
+          ),
+        ],
+      ),
     );
   }
 }

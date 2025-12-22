@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +25,11 @@ class RecapCardLocked extends StatelessWidget {
 
   /// The image provider for the background image
   final ImageProvider imageProvider;
+
+  /// Whether to blur the image provider.
+  ///
+  /// Defaults to `false`.
+  final bool blurImageProvider;
 
   /// The default image provider for the background image.
   final ImageProvider defaultImage;
@@ -64,6 +71,7 @@ class RecapCardLocked extends StatelessWidget {
     super.key,
     required this.variant,
     required this.imageProvider,
+    this.blurImageProvider = false,
     required this.defaultImage,
     required this.title,
     this.width,
@@ -83,6 +91,17 @@ class RecapCardLocked extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
+    final Widget imageWidget = Image(
+      image: imageProvider,
+      fit: BoxFit.cover,
+      width: double.infinity,
+      height: double.infinity,
+      errorBuilder: (context, error, stackTrace) {
+        if (onError != null) onError!(error, stackTrace);
+        return Image(image: defaultImage);
+      },
+    );
+
     return SizedBox(
       width: width,
       child: AspectRatio(
@@ -91,16 +110,12 @@ class RecapCardLocked extends StatelessWidget {
           styleType: theme.styles.squircle52,
           child: Stack(
             children: [
-              Image(
-                image: imageProvider,
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: double.infinity,
-                errorBuilder: (context, error, stackTrace) {
-                  if (onError != null) onError!(error, stackTrace);
-                  return Image(image: defaultImage);
-                },
-              ),
+              blurImageProvider
+                  ? ImageFiltered(
+                      imageFilter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                      child: imageWidget,
+                    )
+                  : imageWidget,
               Padding(
                 padding: EdgeInsets.all(20),
                 child: Stack(

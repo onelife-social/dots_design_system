@@ -448,6 +448,10 @@ List<Story> get actionSheetStories => [
                       ),
                     );
                   },
+                  textVariantTitle: context.knobs.nullable.text(
+                    label: 'Text Variant Title',
+                    initial: 'This is a text above the input',
+                  ),
                   textFieldController: textFieldController,
                   onMainButtonTap: () {
                     ScaffoldMessenger.of(context).showSnackBar(

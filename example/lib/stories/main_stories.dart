@@ -23,7 +23,9 @@ import 'package:example/stories/stories_by_folder/group_cards_stories.dart';
 import 'package:example/stories/stories_by_folder/memory_details.dart';
 import 'package:example/stories/stories_by_folder/miscellaneous_stories.dart';
 import 'package:example/stories/stories_by_folder/notifications_stories.dart';
-import 'package:example/stories/stories_by_folder/profile_photo_stories.dart';
+import 'package:example/stories/stories_by_folder/photos_stories.dart';
+import 'package:example/stories/stories_by_folder/progress_bar_stories.dart';
+import 'package:example/stories/stories_by_folder/rating_stories.dart';
 import 'package:example/stories/stories_by_folder/segmented_control_stories.dart';
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/separators_demo.dart';
@@ -32,6 +34,7 @@ import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:example/stories/stories_by_folder/toast_stories.dart';
 import 'package:example/stories/stories_by_folder/top_bar_stories.dart';
 import 'package:example/stories/stories_by_folder/planning_stories.dart';
+import 'package:example/stories/stories_by_folder/upload_items_stories.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
@@ -49,7 +52,9 @@ List<Story> get allStories => [
       ...memoryDetailsStories,
       ...miscellaneousStories,
       ...notificationsStories,
-      ...profilePhotoStories,
+      ...photoStories,
+      ...planningStories,
+      ...progressBarStories,
       ...segmentedControlStories,
       ...selectorRadioButtonStories,
       ...separatorStories,
@@ -57,7 +62,8 @@ List<Story> get allStories => [
       ...themeStories,
       ...toastStories,
       ...topBarStories,
-      ...planningStories,
+      ...uploadItemsStories,
+      ...ratingStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
@@ -93,31 +99,6 @@ List<Story> get allStories => [
                 : null,
           );
         },
-      ),
-      Story(
-        name: 'Progress Bar',
-        builder: (context) => DotsProgressBar(
-          percentage: context.knobs.slider(
-            label: 'Percentage',
-            initial: 0.5,
-            min: 0,
-            max: 1,
-          ),
-          parts: context.knobs
-              .slider(
-                label: 'Parts',
-                initial: 2,
-                min: 1,
-                max: 3,
-              )
-              .toInt(),
-          width: context.knobs.slider(
-            label: 'Width',
-            initial: 110,
-            min: 50,
-            max: 300,
-          ),
-        ),
       ),
       Story(
         name: 'Menu',

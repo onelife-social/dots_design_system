@@ -196,6 +196,15 @@ List<Story> get notificationsStories => [
               label: 'Title',
               initial: 'Formato de notificación fija',
             ),
+            description: context.knobs.text(
+              label: 'Description',
+              initial:
+                  'Este texto sirve para que una notificación importante que se tiene que quedar fija.',
+            ),
+            appendedDescription: context.knobs.text(
+              label: 'Appended Description',
+              initial: 'Ver ejemplo',
+            ),
             actionButtonText: context.knobs.text(
               label: 'Action Button Text',
               initial: 'Botón acción',
