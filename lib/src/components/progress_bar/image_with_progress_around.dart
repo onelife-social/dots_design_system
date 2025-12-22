@@ -87,16 +87,7 @@ class _ImageWithProgressAroundState extends State<ImageWithProgressAround>
 
   @override
   Widget build(BuildContext context) {
-    const progressBarColors = [
-      Color(0xFFEF5FC1),
-      Color(0xFFC982F7),
-      Color(0xFF15ABF3),
-      Color(0xFFB295B6),
-      Color(0xFFF5784D),
-      Color(0xFFEF9C5F),
-      Color(0xFFF44E69),
-      Color(0xFFEF5FC1),
-    ];
+    final progressBarColors = DotsColors.recapGradientColors;
 
     return SizedBox(
       width: widget.width,

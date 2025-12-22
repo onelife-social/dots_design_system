@@ -38,7 +38,7 @@ class MemoryCard extends StatelessWidget {
             Stack(
               alignment: Alignment.center,
               children: [
-                variant == MemoryCardVariant.memory ? const _MemoryBorder() : const _RecapBorder(),
+                _MemoryCardBorder(variant: variant),
                 _Card(image: image, onError: onError),
               ],
             ),
@@ -92,11 +92,30 @@ class _GroupName extends StatelessWidget {
   }
 }
 
-class _MemoryBorder extends StatelessWidget {
-  const _MemoryBorder();
+class _MemoryCardBorder extends StatelessWidget {
+  final MemoryCardVariant variant;
+
+  const _MemoryCardBorder({required this.variant});
 
   @override
   Widget build(BuildContext context) {
+    Gradient gradient;
+
+    if (variant.isMemory) {
+      gradient = LinearGradient(
+        colors: [
+          DotsColors.light.gradientInitialLinealGreen,
+          DotsColors.light.gradientFinalLinealGreen,
+        ],
+        stops: const [0.0, 1.0],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      );
+    } else {
+      gradient = const SweepGradient(
+        colors: DotsColors.recapGradientColors,
+      );
+    }
     return Container(
       width: 67.53,
       height: 87.39,
@@ -104,15 +123,7 @@ class _MemoryBorder extends StatelessWidget {
         borderRadius: DotsBorderRadius.r18,
         border: GradientBoxBorder(
           width: 1.45,
-          gradient: LinearGradient(
-            colors: [
-              DotsColors.light.gradientInitialLinealGreen,
-              DotsColors.light.gradientFinalLinealGreen,
-            ],
-            stops: const [0.0, 1.0],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
+          gradient: gradient,
         ),
       ),
       child: Container(
@@ -122,14 +133,5 @@ class _MemoryBorder extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class _RecapBorder extends StatelessWidget {
-  const _RecapBorder();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
