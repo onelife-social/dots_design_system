@@ -8,6 +8,7 @@ class DotsToastInfo extends StatelessWidget {
   final Color? customIconColor;
   final Function()? onTap;
   final String? btnTitle;
+  final DotsIconData? customIconData;
 
   const DotsToastInfo({
     super.key,
@@ -16,6 +17,7 @@ class DotsToastInfo extends StatelessWidget {
     this.customIconColor,
     this.onTap,
     this.btnTitle,
+    this.customIconData,
   });
 
   @override
@@ -27,6 +29,7 @@ class DotsToastInfo extends StatelessWidget {
       customIconColor: customIconColor,
       btnTitle: btnTitle,
       onTap: onTap,
+      customIconData: customIconData,
     );
   }
 }

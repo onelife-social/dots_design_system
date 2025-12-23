@@ -11,7 +11,8 @@ enum UserItemListVariant {
   join,
   waiting,
   basic,
-  existingAlias;
+  existingAlias,
+  pendingMember;
 
   bool get isMain => this == UserItemListVariant.main;
   bool get isLabel => this == UserItemListVariant.label;
@@ -22,6 +23,7 @@ enum UserItemListVariant {
   bool get isWaiting => this == UserItemListVariant.waiting;
   bool get isBasic => this == UserItemListVariant.basic;
   bool get isExistingAlias => this == UserItemListVariant.existingAlias;
+  bool get isPendingMember => this == UserItemListVariant.pendingMember;
 }
 
 class UsersItemList extends StatelessWidget {
@@ -58,6 +60,18 @@ class UsersItemList extends StatelessWidget {
   /// *(Only for `text` variant)* Whether to autofocus on empty textfield.
   final bool autofocusOnEmpty;
 
+  /// *(Only for `pendingMember` variant)* On tap callback for button 1.
+  final void Function(String?)? onTapButton1;
+
+  /// *(Only for `pendingMember` variant)* On tap callback for button 2.
+  final void Function(String?)? onTapButton2;
+
+  /// *(Only for `pendingMember` variant)* Button label for button 1.
+  final String? buttonLabel1;
+
+  /// *(Only for `pendingMember` variant)* Button label for button 2.
+  final String? buttonLabel2;
+
   const UsersItemList._({
     super.key,
     this.id,
@@ -71,6 +85,10 @@ class UsersItemList extends StatelessWidget {
     this.textFocusNode,
     this.iconSize,
     this.autofocusOnEmpty = true,
+    this.onTapButton1,
+    this.onTapButton2,
+    this.buttonLabel1,
+    this.buttonLabel2,
   });
 
   factory UsersItemList.main({
@@ -145,6 +163,25 @@ class UsersItemList extends StatelessWidget {
     onTap: onTap,
   );
 
+  factory UsersItemList.pendingMember({
+    Key? key,
+    String? id,
+    required UserInfoData data,
+    required void Function(String?)? onTapButton1,
+    required void Function(String?)? onTapButton2,
+    required String? buttonLabel1,
+    required String? buttonLabel2,
+  }) => UsersItemList._(
+    key: key,
+    id: id,
+    variant: UserItemListVariant.pendingMember,
+    data: data,
+    onTapButton1: onTapButton1,
+    onTapButton2: onTapButton2,
+    buttonLabel1: buttonLabel1,
+    buttonLabel2: buttonLabel2,
+  );
+
   factory UsersItemList.existingAlias({Key? key, String? id, required UserInfoData data}) =>
       UsersItemList._(key: key, id: id, variant: UserItemListVariant.existingAlias, data: data);
 
@@ -202,6 +239,10 @@ class UsersItemList extends StatelessWidget {
         tapValue: tapValue,
         iconSize: iconSize,
         autofocusOnEmpty: autofocusOnEmpty,
+        onTapButton1: onTapButton1,
+        onTapButton2: onTapButton2,
+        buttonLabel1: buttonLabel1,
+        buttonLabel2: buttonLabel2,
       ),
     );
 
@@ -231,6 +272,10 @@ class _UserListRow extends StatelessWidget {
     required this.tapValue,
     this.iconSize,
     this.autofocusOnEmpty = true,
+    this.onTapButton1,
+    this.onTapButton2,
+    this.buttonLabel1,
+    this.buttonLabel2,
   });
 
   final UserItemListVariant variant;
@@ -245,6 +290,10 @@ class _UserListRow extends StatelessWidget {
   final String? tapValue;
   final double? iconSize;
   final bool autofocusOnEmpty;
+  final void Function(String?)? onTapButton1;
+  final void Function(String?)? onTapButton2;
+  final String? buttonLabel1;
+  final String? buttonLabel2;
 
   @override
   Widget build(BuildContext context) {
@@ -269,6 +318,10 @@ class _UserListRow extends StatelessWidget {
           tapValue: tapValue,
           label: label,
           iconSize: iconSize,
+          onTapButton1: onTapButton1,
+          onTapButton2: onTapButton2,
+          buttonLabel1: buttonLabel1,
+          buttonLabel2: buttonLabel2,
         ),
       ],
     );
@@ -310,9 +363,12 @@ class _MainWidget extends StatelessWidget {
       case UserItemListVariant.waiting:
       case UserItemListVariant.basic:
       case UserItemListVariant.existingAlias:
+      case UserItemListVariant.pendingMember:
         return UserInfo(
           data: data!,
-          size: variant.isWaiting ? UserInfoSize.large : UserInfoSize.small,
+          size: variant.isWaiting || variant.isPendingMember
+              ? UserInfoSize.large
+              : UserInfoSize.small,
         );
 
       case UserItemListVariant.textfield:
@@ -371,6 +427,10 @@ class _TrailingWidget extends StatelessWidget {
   final String? tapValue;
   final String? label;
   final double? iconSize;
+  final void Function(String?)? onTapButton1;
+  final void Function(String?)? onTapButton2;
+  final String? buttonLabel1;
+  final String? buttonLabel2;
 
   const _TrailingWidget({
     required this.variant,
@@ -378,6 +438,10 @@ class _TrailingWidget extends StatelessWidget {
     this.tapValue,
     this.label,
     this.iconSize,
+    this.onTapButton1,
+    this.onTapButton2,
+    this.buttonLabel1,
+    this.buttonLabel2,
   });
 
   @override
@@ -406,6 +470,25 @@ class _TrailingWidget extends StatelessWidget {
         return Text(
           label!,
           style: theme.typo.main.labelSmallMedium.copyWith(color: theme.colors.labelActive),
+        );
+
+      case UserItemListVariant.pendingMember:
+        return Row(
+          spacing: 4,
+          children: [
+            DotsMainButton(
+              onTap: () => onTapButton1?.call(tapValue),
+              content: buttonLabel1!,
+              size: DotsMainButtonSize.small,
+              variant: DotsMainButtonVariant.main,
+            ),
+            DotsMainButton(
+              onTap: () => onTapButton2?.call(tapValue),
+              content: buttonLabel2!,
+              size: DotsMainButtonSize.small,
+              variant: DotsMainButtonVariant.secondary,
+            ),
+          ],
         );
 
       case UserItemListVariant.button:
