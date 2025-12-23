@@ -20,6 +20,9 @@ class DotsToast extends StatelessWidget {
   // Button title for info toasts
   final String? btnTitle;
 
+  // Custom icon data
+  final DotsIconData? customIconData;
+
   const DotsToast({
     super.key,
     required this.title,
@@ -28,6 +31,7 @@ class DotsToast extends StatelessWidget {
     this.customIconColor,
     this.onTap,
     this.btnTitle,
+    this.customIconData,
   });
 
   Color iconColor(DotsTheme theme) {
@@ -52,6 +56,9 @@ class DotsToast extends StatelessWidget {
       case DotsToastVariant.success:
         return DotsIconData.checkCircle;
       case DotsToastVariant.error:
+        if (isAction) {
+          return DotsIconData.trash;
+        }
         return DotsIconData.crossCircle;
       case DotsToastVariant.info:
         return DotsIconData.alertCircle;
@@ -78,7 +85,7 @@ class DotsToast extends StatelessWidget {
           spacing: 4,
           children: [
             DotsIcon(
-              iconData: iconData(variant, isAction),
+              iconData: customIconData ?? iconData(variant, isAction),
               color: customIconColor ?? iconColor(theme),
               size: variant == DotsToastVariant.progress ? 20 : 24,
             ),
@@ -99,10 +106,12 @@ class DotsToast extends StatelessWidget {
           spacing: 12,
           children: [
             if (variant == DotsToastVariant.progress)
-              _RotatingIcon(child: DotsIcon(iconData: iconData(variant, isAction), size: 24))
+              _RotatingIcon(
+                child: DotsIcon(iconData: customIconData ?? iconData(variant, isAction), size: 24),
+              )
             else
               DotsIcon(
-                iconData: iconData(variant, isAction),
+                iconData: customIconData ?? iconData(variant, isAction),
                 color: customIconColor ?? iconColor(theme),
                 size: 20,
               ),
