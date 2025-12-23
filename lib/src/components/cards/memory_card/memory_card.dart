@@ -3,11 +3,11 @@ import 'package:dots_design_system/src/core/borders/gradient_box_border.dart';
 import 'package:flutter/material.dart';
 
 enum MemoryCardVariant {
-  update,
-  dotsIntelligence;
+  memory,
+  recap;
 
-  bool get isUpdate => this == MemoryCardVariant.update;
-  bool get isDotsIntelligence => this == MemoryCardVariant.dotsIntelligence;
+  bool get isMemory => this == MemoryCardVariant.memory;
+  bool get isRecap => this == MemoryCardVariant.recap;
 }
 
 class MemoryCard extends StatelessWidget {
@@ -38,9 +38,7 @@ class MemoryCard extends StatelessWidget {
             Stack(
               alignment: Alignment.center,
               children: [
-                variant == MemoryCardVariant.update
-                    ? const _UpdatedBorder()
-                    : _DotsIntelligenceBorder(),
+                _MemoryCardBorder(variant: variant),
                 _Card(image: image, onError: onError),
               ],
             ),
@@ -86,8 +84,7 @@ class _GroupName extends StatelessWidget {
     final theme = context.dotsTheme;
     return Text(
       groupName,
-      style: theme.typo.main.labelDefaultMedium
-          .copyWith(color: theme.colors.textSecondary),
+      style: theme.typo.main.labelDefaultMedium.copyWith(color: theme.colors.textSecondary),
       overflow: TextOverflow.ellipsis,
       maxLines: 1,
       textAlign: TextAlign.center,
@@ -95,11 +92,30 @@ class _GroupName extends StatelessWidget {
   }
 }
 
-class _UpdatedBorder extends StatelessWidget {
-  const _UpdatedBorder();
+class _MemoryCardBorder extends StatelessWidget {
+  final MemoryCardVariant variant;
+
+  const _MemoryCardBorder({required this.variant});
 
   @override
   Widget build(BuildContext context) {
+    Gradient gradient;
+
+    if (variant.isMemory) {
+      gradient = LinearGradient(
+        colors: [
+          DotsColors.light.gradientInitialLinealGreen,
+          DotsColors.light.gradientFinalLinealGreen,
+        ],
+        stops: const [0.0, 1.0],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      );
+    } else {
+      gradient = const SweepGradient(
+        colors: DotsColors.recapGradientColors,
+      );
+    }
     return Container(
       width: 67.53,
       height: 87.39,
@@ -107,15 +123,7 @@ class _UpdatedBorder extends StatelessWidget {
         borderRadius: DotsBorderRadius.r18,
         border: GradientBoxBorder(
           width: 1.45,
-          gradient: LinearGradient(
-            colors: [
-              DotsColors.light.gradientInitialLinealGreen,
-              DotsColors.light.gradientFinalLinealGreen,
-            ],
-            stops: const [0.0, 1.0],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
+          gradient: gradient,
         ),
       ),
       child: Container(
@@ -123,22 +131,6 @@ class _UpdatedBorder extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: DotsBorderRadius.r18,
         ),
-      ),
-    );
-  }
-}
-
-class _DotsIntelligenceBorder extends StatelessWidget {
-  const _DotsIntelligenceBorder();
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 87.39,
-      width: 57.7,
-      child: Image.asset(
-        'assets/images/filter_generated_memory.png',
-        fit: BoxFit.cover,
       ),
     );
   }

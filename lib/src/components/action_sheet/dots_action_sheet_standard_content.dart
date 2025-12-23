@@ -65,7 +65,7 @@ class DotsActionSheetStandardContent extends StatelessWidget {
                       child: Text(
                         title,
                         textAlign: TextAlign.center,
-                        style: theme.typo.secondary.title02H6,
+                        style: theme.typo.secondary.title02H5,
                       ),
                     ),
                     if (description != null && description!.isNotEmpty) ...[
@@ -75,7 +75,7 @@ class DotsActionSheetStandardContent extends StatelessWidget {
                         child: Text(
                           description!,
                           textAlign: TextAlign.center,
-                          style: theme.typo.main.labelDefaultRegular.copyWith(
+                          style: theme.typo.main.bodyDefaultRegular.copyWith(
                             color: theme.colors.textSecondary,
                           ),
                         ),
