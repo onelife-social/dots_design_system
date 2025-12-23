@@ -2,7 +2,6 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class DotsToast extends StatelessWidget {
-
   // Indicates if the toast is an action type
   final bool isAction;
 
@@ -53,9 +52,6 @@ class DotsToast extends StatelessWidget {
       case DotsToastVariant.success:
         return DotsIconData.checkCircle;
       case DotsToastVariant.error:
-        if (isAction) {
-          return DotsIconData.trash;
-        }
         return DotsIconData.crossCircle;
       case DotsToastVariant.info:
         return DotsIconData.alertCircle;
@@ -103,12 +99,7 @@ class DotsToast extends StatelessWidget {
           spacing: 12,
           children: [
             if (variant == DotsToastVariant.progress)
-              _RotatingIcon(
-                child: DotsIcon(
-                  iconData: iconData(variant, isAction),
-                  size: 24,
-                ),
-              )
+              _RotatingIcon(child: DotsIcon(iconData: iconData(variant, isAction), size: 24))
             else
               DotsIcon(
                 iconData: iconData(variant, isAction),
@@ -128,7 +119,7 @@ class DotsToast extends StatelessWidget {
                 variant: DotsMainButtonVariant.ghost,
                 size: DotsMainButtonSize.medium,
                 adaptPaddingForText: true,
-              )
+              ),
           ],
         ),
       );
@@ -149,10 +140,7 @@ class _ToastContainer extends StatelessWidget {
     final decoration = BoxDecoration(
       color: context.dotsTheme.colors.bgContainerPrimary,
       borderRadius: BorderRadius.circular(24),
-      border: Border.all(
-        width: 1.40,
-        color: theme.colors.borderAlert,
-      ),
+      border: Border.all(width: 1.40, color: theme.colors.borderAlert),
     );
 
     return GestureDetector(
@@ -166,10 +154,7 @@ class _ToastContainer extends StatelessWidget {
           child: DotsDecoratedBox(
             styleType: context.dotsTheme.styles.squircle24,
             decoration: decoration,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: child,
-            ),
+            child: Padding(padding: const EdgeInsets.all(16), child: child),
           ),
         ),
       ),
@@ -185,17 +170,13 @@ class _RotatingIcon extends StatefulWidget {
   State<_RotatingIcon> createState() => _RotatingIconState();
 }
 
-class _RotatingIconState extends State<_RotatingIcon>
-    with SingleTickerProviderStateMixin {
+class _RotatingIconState extends State<_RotatingIcon> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 1),
-    )..repeat();
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 1))..repeat();
   }
 
   @override
@@ -206,10 +187,6 @@ class _RotatingIconState extends State<_RotatingIcon>
 
   @override
   Widget build(BuildContext context) {
-    return RotationTransition(
-      turns: _controller,
-      child: widget.child,
-    );
+    return RotationTransition(turns: _controller, child: widget.child);
   }
 }
-
