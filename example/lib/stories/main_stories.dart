@@ -688,7 +688,7 @@ List<Story> get allStories => [
                             .toList(),
                       ),
                       onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Settings item tapped')),
+                        SnackBar(content: const Text('Settings item tapped')),
                       ),
                       toggleValue: isSelected,
                       onToggleTap: () {

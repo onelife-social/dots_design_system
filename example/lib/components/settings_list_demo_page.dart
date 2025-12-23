@@ -92,6 +92,11 @@ class _SettingsListDemoPageState extends State<SettingsListDemoPage> {
                     label: 'Push Notifications',
                     startIcon: DotsIconData.notification,
                     toggleValue: _notificationsEnabled,
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Push Notifications tapped')),
+                      );
+                    },
                     onToggleTap: () {
                       setState(() {
                         _notificationsEnabled = !_notificationsEnabled;

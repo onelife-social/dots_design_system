@@ -16,7 +16,7 @@ class SettingsItem extends StatelessWidget {
   final DotsIconData? endIcon;
   final VoidCallback? onTap;
   final bool? toggleValue;
-  final Function()? onToggleTap;
+  final VoidCallback? onToggleTap;
 
   const SettingsItem({
     super.key,
