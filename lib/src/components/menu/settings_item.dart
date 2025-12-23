@@ -36,9 +36,9 @@ class SettingsItem extends StatelessWidget {
       splashColor: Colors.transparent,
       onTap: onTap ?? onToggleTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 12,
-          horizontal: 8,
+        padding: EdgeInsets.symmetric(
+          vertical: variant.isToggle ? 4 : 12,
+          horizontal: 16,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,14 +68,19 @@ class SettingsItem extends StatelessWidget {
   Widget _buildTrailing(BuildContext context) {
     switch (variant) {
       case SettingsItemVariant.icon:
-        return DotsIcon(
-          iconData: endIcon!,
-          size: 20,
-          color: context.dotsTheme.colors.textTertiary,
-        );
+        return endIcon == null
+            ? const SizedBox.shrink()
+            : DotsIcon(
+                iconData: endIcon!,
+                size: 16,
+                color: context.dotsTheme.colors.textTertiary,
+              );
 
       case SettingsItemVariant.toggle:
-        return DotsToggle(isSelected: toggleValue!, onChanged: onToggleTap!());
+        return DotsToggle(
+          isSelected: toggleValue ?? false,
+          onChanged: (_) => onToggleTap?.call(),
+        );
     }
   }
 }

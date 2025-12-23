@@ -236,6 +236,7 @@ enum DotsIconData {
   search('ic-search.svg', DotsIconGroup.system),
   selector('ic-selector.svg', DotsIconGroup.system),
   settings('ic-settings.svg', DotsIconGroup.system),
+  shield('ic-shield.svg', DotsIconGroup.system),
 
   // Home
   editField('ic-add-field.svg', DotsIconGroup.home);
