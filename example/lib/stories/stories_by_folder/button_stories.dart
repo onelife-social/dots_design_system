@@ -46,7 +46,7 @@ List<Story> get buttonStories => [
           padding: const EdgeInsets.all(16.0),
           child: DotsSystemButton(
             content: context.knobs.text(label: 'Content', initial: 'System button'),
-            icon: context.knobs.options<DotsIconData>(
+            icon: context.knobs.nullable.options<DotsIconData>(
                 label: 'Icon',
                 initial: DotsIconData.draw,
                 options: DotsIconData.values
