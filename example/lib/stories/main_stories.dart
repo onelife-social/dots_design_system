@@ -9,6 +9,7 @@ import 'package:example/components/empty_state_card_demo.dart';
 import 'package:example/components/folder_carrousel_demo_page.dart';
 import 'package:example/components/item_input_demo.dart';
 import 'package:example/components/memory_card_demo_page.dart';
+import 'package:example/components/settings_list_demo_page.dart';
 import 'package:example/components/users_list_demo_page.dart';
 import 'package:example/stories/helpers/color_knob_options.dart';
 import 'package:example/stories/helpers/linear_gradient_options.dart';
@@ -24,6 +25,7 @@ import 'package:example/stories/stories_by_folder/memory_details.dart';
 import 'package:example/stories/stories_by_folder/miscellaneous_stories.dart';
 import 'package:example/stories/stories_by_folder/notifications_stories.dart';
 import 'package:example/stories/stories_by_folder/photos_stories.dart';
+import 'package:example/stories/stories_by_folder/planning_stories.dart';
 import 'package:example/stories/stories_by_folder/progress_bar_stories.dart';
 import 'package:example/stories/stories_by_folder/rating_stories.dart';
 import 'package:example/stories/stories_by_folder/segmented_control_stories.dart';
@@ -33,7 +35,6 @@ import 'package:example/stories/stories_by_folder/spinner_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:example/stories/stories_by_folder/toast_stories.dart';
 import 'package:example/stories/stories_by_folder/top_bar_stories.dart';
-import 'package:example/stories/stories_by_folder/planning_stories.dart';
 import 'package:example/stories/stories_by_folder/upload_items_stories.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
@@ -115,6 +116,11 @@ List<Story> get allStories => [
             ),
           ),
         ),
+      ),
+      Story(
+        name: 'Settings List',
+        description: 'Demo page for Settings List',
+        builder: (context) => const SettingsListDemoPage(),
       ),
       Story(
         name: 'Memory Card',
@@ -650,30 +656,53 @@ List<Story> get allStories => [
       Story(
         name: 'Settings Item',
         description: 'Demo page for Settings Item',
-        builder: (context) => Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: SettingsItem(
-                label: context.knobs.text(label: 'Label', initial: 'Label'),
-                startIcon: context.knobs.options<DotsIconData>(
-                  label: 'Start Icon',
-                  initial: DotsIconData.home,
-                  options: DotsIconData.values
-                      .map((item) => Option(label: item.name, value: item))
-                      .toList(),
-                ),
-                endIcon: context.knobs.options<DotsIconData>(
-                  label: 'End Icon',
-                  initial: DotsIconData.chevronRight,
-                  options: DotsIconData.values
-                      .map((item) => Option(label: item.name, value: item))
-                      .toList(),
-                ),
-                onTap: () {},
-              ),
-            ),
-          ],
-        ),
+        builder: (context) {
+          bool isSelected = false;
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: SettingsItem(
+                      variant: context.knobs.options<SettingsItemVariant>(
+                        label: 'Variant',
+                        initial: SettingsItemVariant.icon,
+                        options: SettingsItemVariant.values
+                            .map((item) => Option(label: item.name, value: item))
+                            .toList(),
+                      ),
+                      label: context.knobs.text(label: 'Label', initial: 'Label'),
+                      startIcon: context.knobs.options<DotsIconData>(
+                        label: 'Start Icon',
+                        initial: DotsIconData.home,
+                        options: DotsIconData.values
+                            .map((item) => Option(label: item.name, value: item))
+                            .toList(),
+                      ),
+                      endIcon: context.knobs.options<DotsIconData>(
+                        label: 'End Icon',
+                        initial: DotsIconData.chevronRight,
+                        options: DotsIconData.values
+                            .map((item) => Option(label: item.name, value: item))
+                            .toList(),
+                      ),
+                      onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: const Text('Settings item tapped')),
+                      ),
+                      toggleValue: isSelected,
+                      onToggleTap: () {
+                        setState(() => isSelected = !isSelected);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Toggle switched to $isSelected')),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
+        },
       ),
     ];
