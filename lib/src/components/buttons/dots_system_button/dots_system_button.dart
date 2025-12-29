@@ -1,21 +1,20 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-import 'dots_system_button_enums.dart';
 import 'dots_system_button_theme.dart';
 
 class DotsSystemButton extends StatelessWidget {
   const DotsSystemButton({
     super.key,
     required this.content,
-    required this.icon,
+    this.icon,
     this.size = DotsSystemButtonSize.medium,
     this.variant = DotsSystemButtonVariant.active,
     this.onTap,
   });
 
   final String content;
-  final DotsIconData icon;
+  final DotsIconData? icon;
   final DotsSystemButtonSize size;
   final DotsSystemButtonVariant variant;
   final Function()? onTap;
@@ -30,8 +29,8 @@ class DotsSystemButton extends StatelessWidget {
 
     final borderRadius = DotsBorderRadius.r16;
 
-    final Widget iconWidget = DotsIcon(
-      iconData: icon,
+    final Widget? iconWidget = icon == null ? null : DotsIcon(
+      iconData: icon!,
       size: size.iconSize,
       color: buttonTheme.iconColor,
     );
@@ -61,7 +60,7 @@ class DotsSystemButton extends StatelessWidget {
             spacing: size.spacing,
             mainAxisSize: MainAxisSize.max,
             children: [
-              iconWidget,
+              if (iconWidget != null) iconWidget,
               text,
             ],
           ),
