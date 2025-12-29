@@ -8,6 +8,7 @@ class AlbumGroupCardDemoPage extends StatelessWidget {
   final DotsIconData? tagIconData;
   final double blurSigma;
   final double edgeSize;
+  final bool isBlocked;
 
   const AlbumGroupCardDemoPage({
     super.key,
@@ -17,6 +18,7 @@ class AlbumGroupCardDemoPage extends StatelessWidget {
     this.tagIconData,
     required this.blurSigma,
     required this.edgeSize,
+    this.isBlocked = false,
   });
 
   @override
@@ -27,54 +29,62 @@ class AlbumGroupCardDemoPage extends StatelessWidget {
             children: [
               Expanded(
                 child: AlbumGroupCard(
-                    imageProvider: imageProvider,
-                    title: title,
-                    variant: variant,
-                    tagIconData: tagIconData,
-                    onTap: () {},
-                    onError: (exception, stackTrace) {},
-                    blurSigma: blurSigma,
-                    edgeSize: edgeSize),
+                  imageProvider: imageProvider,
+                  title: title,
+                  variant: variant,
+                  tagIconData: tagIconData,
+                  onTap: () {},
+                  onError: (exception, stackTrace) {},
+                  blurSigma: blurSigma,
+                  edgeSize: edgeSize,
+                  isBlocked: isBlocked,
+                ),
               ),
               SizedBox(
                 width: 20.0,
               ),
               Expanded(
                 child: AlbumGroupCard(
-                    imageProvider: imageProvider,
-                    title: title,
-                    variant: variant,
-                    tagIconData: tagIconData,
-                    onTap: () {},
-                    onError: (exception, stackTrace) {},
-                    blurSigma: blurSigma,
-                    edgeSize: edgeSize),
+                  imageProvider: imageProvider,
+                  title: title,
+                  variant: variant,
+                  tagIconData: tagIconData,
+                  onTap: () {},
+                  onError: (exception, stackTrace) {},
+                  blurSigma: blurSigma,
+                  edgeSize: edgeSize,
+                  isBlocked: isBlocked,
+                ),
               ),
             ],
           )
         : Column(
             children: [
               AlbumGroupCard(
-                  imageProvider: imageProvider,
-                  title: title,
-                  variant: variant,
-                  tagIconData: tagIconData,
-                  onTap: () {},
-                  onError: (exception, stackTrace) {},
-                  blurSigma: blurSigma,
-                  edgeSize: edgeSize),
+                imageProvider: imageProvider,
+                title: title,
+                variant: variant,
+                tagIconData: tagIconData,
+                onTap: () {},
+                onError: (exception, stackTrace) {},
+                blurSigma: blurSigma,
+                edgeSize: edgeSize,
+                isBlocked: isBlocked,
+              ),
               SizedBox(
                 height: 20.0,
               ),
               AlbumGroupCard(
-                  imageProvider: imageProvider,
-                  title: title,
-                  variant: variant,
-                  tagIconData: tagIconData,
-                  onTap: () {},
-                  onError: (exception, stackTrace) {},
-                  blurSigma: blurSigma,
-                  edgeSize: edgeSize),
+                imageProvider: imageProvider,
+                title: title,
+                variant: variant,
+                tagIconData: tagIconData,
+                onTap: () {},
+                onError: (exception, stackTrace) {},
+                blurSigma: blurSigma,
+                edgeSize: edgeSize,
+                isBlocked: isBlocked,
+              ),
             ],
           );
   }

@@ -45,6 +45,9 @@ class EventGroupCard extends StatelessWidget {
   /// The actions to display in the card menu.
   final List<GroupEventCardModel> actions;
 
+  /// Indicates if the group is blocked.
+  final bool isBlocked;
+
   const EventGroupCard({
     this.variant = EventGroupCardVariant.small,
     required this.imageProvider,
@@ -55,6 +58,7 @@ class EventGroupCard extends StatelessWidget {
     this.onTap,
     this.onSecondaryTap,
     this.onError,
+    this.isBlocked = false,
     super.key,
   });
 
@@ -101,9 +105,9 @@ class EventGroupCard extends StatelessWidget {
                           ControlPoint(
                             position: 1,
                             type: ControlPointType.transparent,
-                          )
+                          ),
                         ],
-                      )
+                      ),
                     ],
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(32),
@@ -148,7 +152,7 @@ class EventGroupCard extends StatelessWidget {
                             child: _Title(title: title, variant: variant),
                           ),
                         ),
-                      if (tagIconData != null)
+                      if (!isBlocked && tagIconData != null)
                         Positioned(
                           left: 0,
                           top: 0,
@@ -156,6 +160,16 @@ class EventGroupCard extends StatelessWidget {
                             iconData: tagIconData!,
                             size: 28,
                             iconSize: 20,
+                          ),
+                        ),
+                      if (isBlocked)
+                        Positioned.fill(
+                          child: Center(
+                            child: DotsIcon(
+                              iconData: DotsIconData.lock,
+                              size: 48,
+                              color: theme.colors.labelAlwaysWhite,
+                            ),
                           ),
                         ),
                       if (!variant.isSmall) ...[
@@ -179,8 +193,9 @@ class EventGroupCard extends StatelessWidget {
                                             width: 3,
                                             height: 3,
                                             decoration: ShapeDecoration(
-                                              color: theme.colors.labelAlwaysWhite
-                                                  .dotsWithOpacity(0.7),
+                                              color: theme.colors.labelAlwaysWhite.dotsWithOpacity(
+                                                0.7,
+                                              ),
                                               shape: OvalBorder(),
                                             ),
                                           ),
@@ -188,8 +203,10 @@ class EventGroupCard extends StatelessWidget {
                                           Text(
                                             secondaryText,
                                             style: theme.typo.main.labelSmallRegular.copyWith(
-                                                color: theme.colors.labelAlwaysWhite
-                                                    .dotsWithOpacity(0.7)),
+                                              color: theme.colors.labelAlwaysWhite.dotsWithOpacity(
+                                                0.7,
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -213,7 +230,7 @@ class EventGroupCard extends StatelessWidget {
                             actions: actions,
                           ),
                         ),
-                      ]
+                      ],
                     ],
                   ),
                 ),
@@ -303,8 +320,9 @@ class _MenuEvent extends StatelessWidget {
                         child: Text(
                           action.text,
                           textAlign: TextAlign.center,
-                          style: theme.typo.main.labelSmallRegular
-                              .copyWith(color: theme.colors.labelAlwaysWhite),
+                          style: theme.typo.main.labelSmallRegular.copyWith(
+                            color: theme.colors.labelAlwaysWhite,
+                          ),
                         ),
                       ),
                     ],
