@@ -35,6 +35,9 @@ class AlbumGroupCard extends StatelessWidget {
   /// The size of the edge blur effect.
   final double? edgeSize;
 
+  /// Indicates if the group is blocked.
+  final bool isBlocked;
+
   const AlbumGroupCard({
     super.key,
     required this.imageProvider,
@@ -45,6 +48,7 @@ class AlbumGroupCard extends StatelessWidget {
     this.onError,
     this.blurSigma,
     this.edgeSize,
+    this.isBlocked = false,
   });
 
   @override
@@ -80,9 +84,9 @@ class AlbumGroupCard extends StatelessWidget {
                         ControlPoint(
                           position: 1,
                           type: ControlPointType.transparent,
-                        )
+                        ),
                       ],
-                    )
+                    ),
                   ],
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(variant.isLarge ? 52 : 32),
@@ -107,15 +111,16 @@ class AlbumGroupCard extends StatelessWidget {
                         child: Text(
                           title,
                           textAlign: TextAlign.center,
-                          style: (variant.isSmall
-                                  ? theme.typo.main.bodyDefaultMedium
-                                  : theme.typo.main.bodyLargeMedium)
-                              .copyWith(color: theme.colors.labelAlwaysWhite),
+                          style:
+                              (variant.isSmall
+                                      ? theme.typo.main.bodyDefaultMedium
+                                      : theme.typo.main.bodyLargeMedium)
+                                  .copyWith(color: theme.colors.labelAlwaysWhite),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                         ),
                       ),
-                      if (tagIconData != null)
+                      if (!isBlocked && tagIconData != null)
                         Positioned(
                           left: 0,
                           top: 0,
@@ -123,6 +128,16 @@ class AlbumGroupCard extends StatelessWidget {
                             iconData: tagIconData!,
                             size: variant.isSmall ? 24 : 28,
                             iconSize: variant.isSmall ? 16 : 20,
+                          ),
+                        ),
+                      if (isBlocked)
+                        Positioned.fill(
+                          child: Center(
+                            child: DotsIcon(
+                              iconData: DotsIconData.lock,
+                              size: 48,
+                              color: theme.colors.labelAlwaysWhite,
+                            ),
                           ),
                         ),
                     ],

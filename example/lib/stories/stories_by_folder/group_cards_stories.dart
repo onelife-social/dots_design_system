@@ -162,6 +162,7 @@ List<Story> get cards => [
             edgeSize: context.knobs
                 .sliderInt(label: 'Edge Size', initial: 100, min: 0, max: 500)
                 .toDouble(),
+            isBlocked: context.knobs.boolean(label: 'Is Blocked', initial: false),
           ),
         ),
       ),
@@ -217,6 +218,7 @@ List<Story> get cards => [
                   label: 'Button Text',
                   initial: 'Reducir tamaño',
                 ),
+                isBlocked: context.knobs.boolean(label: 'Is Blocked', initial: false),
               ),
             ),
           );
