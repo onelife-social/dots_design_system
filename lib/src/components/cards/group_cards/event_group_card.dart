@@ -167,7 +167,7 @@ class EventGroupCard extends StatelessWidget {
                           child: Center(
                             child: DotsIcon(
                               iconData: DotsIconData.lock,
-                              size: 48,
+                              size: 32,
                               color: theme.colors.labelAlwaysWhite,
                             ),
                           ),
