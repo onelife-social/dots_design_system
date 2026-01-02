@@ -109,6 +109,7 @@ class DotsTooltip extends StatelessWidget {
                     child: DotsCloseButton(
                       size: DotsCloseButtonSize.small,
                       variant: DotsCloseButtonVariant.softContrast,
+                      addBlur: false,
                       onTap: () => onClose?.call(),
                     ),
                   )
