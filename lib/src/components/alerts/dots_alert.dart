@@ -53,6 +53,9 @@ class DotsAlert extends StatelessWidget {
   /// Whether to show a close button in the top-right corner.
   final bool showCloseButton;
 
+  /// Whether to show a blur background behind the alert.
+  final bool showBlurBackground;
+
   const DotsAlert._({
     super.key,
     this.variant = DotsAlertVariant.noButtons,
@@ -70,6 +73,7 @@ class DotsAlert extends StatelessWidget {
     this.secondaryButtonText,
     this.secondaryButtonOnTap,
     required this.showCloseButton,
+    required this.showBlurBackground,
   });
 
   factory DotsAlert.noButtons({
@@ -81,6 +85,7 @@ class DotsAlert extends StatelessWidget {
     bool enableCloseOnTapOutside = true,
     bool showCloseButton = false,
     ImageProvider? iconImage,
+    bool showBlurBackground = true,
   }) => DotsAlert._(
     key: key,
     variant: DotsAlertVariant.noButtons,
@@ -91,6 +96,7 @@ class DotsAlert extends StatelessWidget {
     onClose: onClose,
     enableCloseOnTapOutside: enableCloseOnTapOutside,
     showCloseButton: showCloseButton,
+    showBlurBackground: showBlurBackground,
   );
 
   factory DotsAlert.oneButton({
@@ -104,6 +110,7 @@ class DotsAlert extends StatelessWidget {
     required VoidCallback mainButtonOnTap,
     bool showCloseButton = false,
     ImageProvider? iconImage,
+    bool showBlurBackground = true,
   }) => DotsAlert._(
     key: key,
     variant: DotsAlertVariant.oneButton,
@@ -116,6 +123,7 @@ class DotsAlert extends StatelessWidget {
     mainButtonText: mainButtonText,
     mainButtonOnTap: mainButtonOnTap,
     showCloseButton: showCloseButton,
+    showBlurBackground: showBlurBackground,
   );
 
   factory DotsAlert.twoHorizontalButtons({
@@ -131,6 +139,7 @@ class DotsAlert extends StatelessWidget {
     required VoidCallback secondaryButtonOnTap,
     bool showCloseButton = false,
     ImageProvider? iconImage,
+    bool showBlurBackground = true,
   }) => DotsAlert._(
     key: key,
     variant: DotsAlertVariant.twoHorizontalButtons,
@@ -145,6 +154,7 @@ class DotsAlert extends StatelessWidget {
     secondaryButtonText: secondaryButtonText,
     secondaryButtonOnTap: secondaryButtonOnTap,
     showCloseButton: showCloseButton,
+    showBlurBackground: showBlurBackground,
   );
   factory DotsAlert.twoHorizontalButtonsDestructive({
     Key? key,
@@ -159,6 +169,7 @@ class DotsAlert extends StatelessWidget {
     required VoidCallback secondaryButtonOnTap,
     bool showCloseButton = false,
     ImageProvider? iconImage,
+    bool showBlurBackground = true,
   }) => DotsAlert._(
     key: key,
     variant: DotsAlertVariant.twoHorizontalButtonsDestructive,
@@ -173,6 +184,7 @@ class DotsAlert extends StatelessWidget {
     secondaryButtonText: secondaryButtonText,
     secondaryButtonOnTap: secondaryButtonOnTap,
     showCloseButton: showCloseButton,
+    showBlurBackground: showBlurBackground,
   );
 
   factory DotsAlert.twoVerticalButtons({
@@ -188,6 +200,7 @@ class DotsAlert extends StatelessWidget {
     required VoidCallback secondaryButtonOnTap,
     bool showCloseButton = false,
     ImageProvider? iconImage,
+    bool showBlurBackground = true,
   }) => DotsAlert._(
     key: key,
     variant: DotsAlertVariant.twoVerticalButtons,
@@ -202,6 +215,7 @@ class DotsAlert extends StatelessWidget {
     secondaryButtonText: secondaryButtonText,
     secondaryButtonOnTap: secondaryButtonOnTap,
     showCloseButton: showCloseButton,
+    showBlurBackground: showBlurBackground,
   );
 
   factory DotsAlert.twoVerticalButtonsDestructive({
@@ -217,6 +231,7 @@ class DotsAlert extends StatelessWidget {
     required VoidCallback secondaryButtonOnTap,
     bool showCloseButton = false,
     ImageProvider? iconImage,
+    bool showBlurBackground = true,
   }) => DotsAlert._(
     key: key,
     variant: DotsAlertVariant.twoVerticalButtonsDestructive,
@@ -231,6 +246,7 @@ class DotsAlert extends StatelessWidget {
     secondaryButtonText: secondaryButtonText,
     secondaryButtonOnTap: secondaryButtonOnTap,
     showCloseButton: showCloseButton,
+    showBlurBackground: showBlurBackground,
   );
 
   factory DotsAlert.input({
@@ -247,6 +263,7 @@ class DotsAlert extends StatelessWidget {
     required VoidCallback secondaryButtonOnTap,
     bool showCloseButton = false,
     ImageProvider? iconImage,
+    bool showBlurBackground = true,
   }) => DotsAlert._(
     key: key,
     variant: DotsAlertVariant.input,
@@ -262,6 +279,7 @@ class DotsAlert extends StatelessWidget {
     secondaryButtonText: secondaryButtonText,
     secondaryButtonOnTap: secondaryButtonOnTap,
     showCloseButton: showCloseButton,
+    showBlurBackground: showBlurBackground,
   );
 
   factory DotsAlert.selector({
@@ -278,6 +296,7 @@ class DotsAlert extends StatelessWidget {
     required VoidCallback secondaryButtonOnTap,
     bool showCloseButton = false,
     ImageProvider? iconImage,
+    bool showBlurBackground = true,
   }) => DotsAlert._(
     key: key,
     variant: DotsAlertVariant.selector,
@@ -293,11 +312,74 @@ class DotsAlert extends StatelessWidget {
     secondaryButtonText: secondaryButtonText,
     secondaryButtonOnTap: secondaryButtonOnTap,
     showCloseButton: showCloseButton,
+    showBlurBackground: showBlurBackground,
   );
 
   @override
   Widget build(BuildContext context) {
     final DotsTheme theme = context.dotsTheme;
+
+    final content = Material(
+      child: Container(
+        width: 320,
+        decoration: BoxDecoration(
+          color: theme.colors.bgContainerSecondary,
+          borderRadius: BorderRadius.circular(32),
+          border: Border.all(
+            color: theme.colors.borderAlert,
+            width: 1.4,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (showCloseButton) SizedBox(width: DotsCloseButtonSize.medium.size),
+                  Expanded(
+                    child: Center(child: _icon(theme)),
+                  ),
+                  if (showCloseButton)
+                    DotsCloseButton(
+                      icon: DotsIconData.cross,
+                      size: DotsCloseButtonSize.medium,
+                      variant: DotsCloseButtonVariant.softContrast,
+                      onTap: onClose,
+                    ),
+                ],
+              ),
+              Padding(
+                padding: variant.isInput
+                    ? const EdgeInsets.symmetric(vertical: 16)
+                    : variant.isSelector
+                    ? const EdgeInsets.only(top: 16)
+                    : const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      title,
+                      textAlign: TextAlign.center,
+                      style: theme.typo.main.bodyLargeBold,
+                    ),
+                    const SizedBox(height: 8),
+                    _description(theme),
+                  ],
+                ),
+              ),
+              if (!variant.isNoButtons) ...[
+                SizedBox(height: variant.isSelector ? 16 : 8),
+                _actions(),
+              ],
+            ],
+          ),
+        ),
+      ),
+    );
 
     return Stack(
       children: [
@@ -311,70 +393,9 @@ class DotsAlert extends StatelessWidget {
         Center(
           child: ClipRRect(
             borderRadius: BorderRadius.circular(32),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-              child: Material(
-                child: Container(
-                  width: 320,
-                  decoration: BoxDecoration(
-                    color: theme.colors.bgContainerSecondary,
-                    borderRadius: BorderRadius.circular(32),
-                    border: Border.all(
-                      color: theme.colors.borderAlert,
-                      width: 1.4,
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            if (showCloseButton) SizedBox(width: DotsCloseButtonSize.medium.size),
-                            Expanded(
-                              child: Center(child: _icon(theme)),
-                            ),
-                            if (showCloseButton)
-                              DotsCloseButton(
-                                icon: DotsIconData.cross,
-                                size: DotsCloseButtonSize.medium,
-                                variant: DotsCloseButtonVariant.softContrast,
-                                onTap: onClose,
-                              ),
-                          ],
-                        ),
-                        Padding(
-                          padding: variant.isInput
-                              ? const EdgeInsets.symmetric(vertical: 16)
-                              : variant.isSelector
-                              ? const EdgeInsets.only(top: 16)
-                              : const EdgeInsets.all(16),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                title,
-                                textAlign: TextAlign.center,
-                                style: theme.typo.main.bodyLargeBold,
-                              ),
-                              const SizedBox(height: 8),
-                              _description(theme),
-                            ],
-                          ),
-                        ),
-                        if (!variant.isNoButtons) ...[
-                          SizedBox(height: variant.isSelector ? 16 : 8),
-                          _actions(),
-                        ],
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            child: showBlurBackground
+                ? BackdropFilter(filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50), child: content)
+                : content,
           ),
         ),
       ],

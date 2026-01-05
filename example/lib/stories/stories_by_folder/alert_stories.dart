@@ -65,6 +65,11 @@ List<Story> get alertStories => [
               final iconImage =
                   NetworkImage(context.knobs.text(label: 'Icon Image URL', initial: ''));
 
+              final showBlurBackground = context.knobs.boolean(
+                label: 'Show blur background',
+                initial: true,
+              );
+
               switch (variant) {
                 case DotsAlertVariant.oneButton:
                   return DotsAlert.oneButton(
@@ -84,6 +89,7 @@ List<Story> get alertStories => [
                     },
                     showCloseButton: showCloseButton,
                     iconImage: iconImage,
+                    showBlurBackground: showBlurBackground,
                   );
 
                 case DotsAlertVariant.twoHorizontalButtons:
@@ -110,6 +116,7 @@ List<Story> get alertStories => [
                     },
                     showCloseButton: showCloseButton,
                     iconImage: iconImage,
+                    showBlurBackground: showBlurBackground,
                   );
                 case DotsAlertVariant.twoHorizontalButtonsDestructive:
                   return DotsAlert.twoHorizontalButtonsDestructive(
@@ -135,6 +142,7 @@ List<Story> get alertStories => [
                     },
                     showCloseButton: showCloseButton,
                     iconImage: iconImage,
+                    showBlurBackground: showBlurBackground,
                   );
 
                 case DotsAlertVariant.twoVerticalButtons:
@@ -160,6 +168,7 @@ List<Story> get alertStories => [
                       );
                     },
                     showCloseButton: showCloseButton,
+                    showBlurBackground: showBlurBackground,
                   );
 
                 case DotsAlertVariant.twoVerticalButtonsDestructive:
@@ -185,6 +194,7 @@ List<Story> get alertStories => [
                       );
                     },
                     showCloseButton: showCloseButton,
+                    showBlurBackground: showBlurBackground,
                   );
 
                 case DotsAlertVariant.input:
@@ -212,6 +222,7 @@ List<Story> get alertStories => [
                     },
                     showCloseButton: showCloseButton,
                     iconImage: iconImage,
+                    showBlurBackground: showBlurBackground,
                   );
 
                 case DotsAlertVariant.selector:
@@ -262,6 +273,7 @@ List<Story> get alertStories => [
                     },
                     showCloseButton: showCloseButton,
                     iconImage: iconImage,
+                    showBlurBackground: showBlurBackground,
                   );
 
                 case DotsAlertVariant.noButtons:
@@ -276,6 +288,7 @@ List<Story> get alertStories => [
                     },
                     showCloseButton: showCloseButton,
                     iconImage: iconImage,
+                    showBlurBackground: showBlurBackground,
                   );
               }
             },
