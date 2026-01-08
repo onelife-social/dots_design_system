@@ -159,7 +159,6 @@ class DotsActionSheetStandardButtons extends StatelessWidget {
         ? Column(
             children: [
               primaryButton,
-              if (secondaryButton != null) const SizedBox(height: 15),
               if (secondaryButton != null) secondaryButton!,
             ],
           )
