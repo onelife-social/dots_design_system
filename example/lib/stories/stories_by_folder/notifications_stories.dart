@@ -186,12 +186,28 @@ List<Story> get notificationsStories => [
             maxWidth: 358,
           ),
           child: NotificationBannerImage(
+            showCloseButton: context.knobs.boolean(
+              label: 'Show Close Button',
+              initial: true,
+            ),
             imageProvider: NetworkImage(
               context.knobs.text(
                 label: 'Image URL',
                 initial: 'https://picsum.photos/400/200?image=1',
               ),
             ),
+            imageSize: double.tryParse(
+              context.knobs.text(
+                label: 'Image Size',
+                initial: '100',
+              ),
+            ),
+            imagePadding: double.tryParse(
+              context.knobs.text(
+                label: 'Image Padding',
+                initial: '20',
+              ),
+            )!,
             title: context.knobs.text(
               label: 'Title',
               initial: 'Formato de notificación fija',

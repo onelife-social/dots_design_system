@@ -6,10 +6,12 @@ class NotificationBannerImage extends StatelessWidget {
     super.key,
     required this.imageProvider,
     this.imageSize,
+    this.imagePadding = 20,
     required this.title,
     this.description,
     this.appendedDescription,
     this.actionButtonText,
+    this.actionButtonSize = DotsMainButtonSize.medium,
     this.onActionTap,
     this.onClose,
     this.showCloseButton = true,
@@ -19,7 +21,11 @@ class NotificationBannerImage extends StatelessWidget {
   /// The image to display in the notification banner.
   final ImageProvider imageProvider;
 
+  /// The size of the image (width and height).
   final double? imageSize;
+
+  /// The horizontal padding around the image.
+  final double imagePadding ;
 
   /// The title text shown in the banner.
   final String title;
@@ -32,6 +38,9 @@ class NotificationBannerImage extends StatelessWidget {
 
   /// The text for the action button.
   final String? actionButtonText;
+
+  /// The size of the action button (default `DotsMainButtonSize.medium`).
+  final DotsMainButtonSize actionButtonSize;
 
   /// Whether the action button is active (default `true`).
   final bool isBtnActive;
@@ -59,68 +68,81 @@ class NotificationBannerImage extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 20.0, bottom: 16.0, left: 20.0, right: 20.0),
+            padding: const EdgeInsets.only(top: 20.0, bottom: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               spacing: 12,
               children: [
-                imageSize != null
-                  ? Image(
-                      image: imageProvider,
-                      width: imageSize,
-                      height: imageSize,
-                      fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => const SizedBox(),
-                    )
-                  : Image(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => const SizedBox(),
-                    ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 28),
-                  child: Text(
-                    title,
-                    textAlign: TextAlign.center,
-                    style: theme.typo.main.titleH6.copyWith(
-                      color: theme.colors.textPrimary,
-                    ),
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: imagePadding),
+                  child: imageSize != null
+                    ? Image(
+                        image: imageProvider,
+                        width: imageSize,
+                        height: imageSize,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                      )
+                    : Image(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                      ),
                 ),
-                if (description?.isNotEmpty == true)
-                  RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: description!,
-                          style: theme.typo.main.bodyDefaultRegular.copyWith(
-                            color: theme.colors.textTertiary,
+                Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: 12,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 28),
+                        child: Text(
+                          title,
+                          textAlign: TextAlign.center,
+                          style: theme.typo.main.titleH6.copyWith(
+                            color: theme.colors.textPrimary,
                           ),
                         ),
-                        if (appendedDescription?.isNotEmpty == true)
-                          TextSpan(
-                            text: ' ${appendedDescription!}',
-                            style: theme.typo.main.bodyDefaultRegular.copyWith(
-                              color: theme.colors.labelHighlight,
-                            ),
+                      ),
+                      if (description?.isNotEmpty == true)
+                        RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: description!,
+                                style: theme.typo.main.bodyDefaultRegular.copyWith(
+                                  color: theme.colors.textTertiary,
+                                ),
+                              ),
+                              if (appendedDescription?.isNotEmpty == true)
+                                TextSpan(
+                                  text: ' ${appendedDescription!}',
+                                  style: theme.typo.main.bodyDefaultRegular.copyWith(
+                                    color: theme.colors.labelHighlight,
+                                  ),
+                                ),
+                            ],
                           ),
-                      ],
-                    ),
+                        ),
+                      if (actionButtonText?.isNotEmpty == true)
+                        Center(
+                          child: DotsMainButton(
+                            content: actionButtonText!,
+                            onTap: onActionTap,
+                            size: actionButtonSize,
+                            variant: isBtnActive ? 
+                              DotsMainButtonVariant.main : 
+                              DotsMainButtonVariant.secondary,
+                            expand: false,
+                          ),
+                        ),
+                    ],
                   ),
-                if (actionButtonText?.isNotEmpty == true)
-                  Center(
-                    child: DotsMainButton(
-                      content: actionButtonText!,
-                      onTap: onActionTap,
-                      size: DotsMainButtonSize.medium,
-                      variant: isBtnActive ? 
-                        DotsMainButtonVariant.main : 
-                        DotsMainButtonVariant.secondary,
-                      expand: false,
-                    ),
-                  ),
+                ),
               ],
             ),
           ),
