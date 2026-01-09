@@ -6,12 +6,12 @@ class NotificationBannerImage extends StatelessWidget {
     super.key,
     required this.imageProvider,
     this.imageSize,
-    this.imgPadding = 20,
+    this.imagePadding = 20,
     required this.title,
     this.description,
     this.appendedDescription,
     this.actionButtonText,
-    this.actionBtnSize = DotsMainButtonSize.medium,
+    this.actionButtonSize = DotsMainButtonSize.medium,
     this.onActionTap,
     this.onClose,
     this.showCloseButton = true,
@@ -25,7 +25,7 @@ class NotificationBannerImage extends StatelessWidget {
   final double? imageSize;
 
   /// The horizontal padding around the image.
-  final double imgPadding ;
+  final double imagePadding ;
 
   /// The title text shown in the banner.
   final String title;
@@ -40,7 +40,7 @@ class NotificationBannerImage extends StatelessWidget {
   final String? actionButtonText;
 
   /// The size of the action button (default `DotsMainButtonSize.medium`).
-  final DotsMainButtonSize actionBtnSize;
+  final DotsMainButtonSize actionButtonSize;
 
   /// Whether the action button is active (default `true`).
   final bool isBtnActive;
@@ -75,19 +75,19 @@ class NotificationBannerImage extends StatelessWidget {
               spacing: 12,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: imgPadding),
+                  padding: EdgeInsets.symmetric(horizontal: imagePadding),
                   child: imageSize != null
                     ? Image(
                         image: imageProvider,
                         width: imageSize,
                         height: imageSize,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => const SizedBox(),
+                        errorBuilder: (_, __, ___) => const SizedBox.shrink(),
                       )
                     : Image(
                         image: imageProvider,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => const SizedBox(),
+                        errorBuilder: (_, __, ___) => const SizedBox.shrink(),
                       ),
                 ),
                 Padding(
@@ -133,7 +133,7 @@ class NotificationBannerImage extends StatelessWidget {
                           child: DotsMainButton(
                             content: actionButtonText!,
                             onTap: onActionTap,
-                            size: actionBtnSize,
+                            size: actionButtonSize,
                             variant: isBtnActive ? 
                               DotsMainButtonVariant.main : 
                               DotsMainButtonVariant.secondary,

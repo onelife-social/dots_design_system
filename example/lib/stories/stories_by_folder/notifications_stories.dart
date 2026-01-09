@@ -202,7 +202,7 @@ List<Story> get notificationsStories => [
                 initial: '100',
               ),
             ),
-            imgPadding: double.tryParse(
+            imagePadding: double.tryParse(
               context.knobs.text(
                 label: 'Image Padding',
                 initial: '20',
