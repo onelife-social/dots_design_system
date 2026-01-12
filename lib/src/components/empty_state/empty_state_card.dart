@@ -19,6 +19,12 @@ class DotsEmptyStateCard extends StatelessWidget {
   /// Description of the empty state card.
   final String description;
 
+  /// Title color of the empty state card.
+  final Color? titleColor;
+
+  /// Description color of the empty state card.
+  final Color? descriptionColor;
+
   /// Icon to display in the empty state card.
   final DotsMainButton? button;
 
@@ -35,6 +41,8 @@ class DotsEmptyStateCard extends StatelessWidget {
     this.icon,
     required this.title,
     required this.description,
+    this.titleColor,
+    this.descriptionColor,
     this.button,
     this.extraSpaceAfterImage = 0,
     this.imageWidth,
@@ -66,7 +74,7 @@ class DotsEmptyStateCard extends StatelessWidget {
             child: Text(
               title,
               style: theme.typo.secondary.title02H5.copyWith(
-                color: theme.colors.textPrimary,
+                color: titleColor ?? theme.colors.textPrimary,
               ),
               textAlign: TextAlign.center,
               maxLines: 2,
@@ -76,7 +84,7 @@ class DotsEmptyStateCard extends StatelessWidget {
           Text(
             description,
             style: theme.typo.main.bodyDefaultRegular.copyWith(
-              color: theme.colors.textQuarternary,
+              color: descriptionColor ?? theme.colors.textQuarternary,
             ),
             textAlign: TextAlign.center,
           ),
