@@ -4,13 +4,7 @@ import 'package:flutter/material.dart';
 import 'dots_shader_mask.dart';
 
 class DotsStyleText extends StatelessWidget {
-  const DotsStyleText({
-    super.key,
-    this.styleType,
-    required this.text,
-    this.style,
-    this.textAlign,
-  });
+  const DotsStyleText({super.key, this.styleType, required this.text, this.style, this.textAlign});
 
   /// Creates a text widget with optional style type and text alignment.
   final DotsStyleType? styleType;
@@ -33,7 +27,9 @@ class DotsStyleText extends StatelessWidget {
       styleType: styleType,
       child: Text(
         text,
-        style: (style ?? TextStyle()).copyWith(color: Colors.white),
+        style: (style ?? const TextStyle()).copyWith(
+          color: styleType != null ? Colors.white : null,
+        ),
         textAlign: textAlign,
       ),
     );

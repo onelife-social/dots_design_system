@@ -5,11 +5,7 @@ class DotsTypoModel {
   final DotsTypoNumberModel number;
   final DotsTypoSecondaryModel secondary;
 
-  const DotsTypoModel({
-    required this.main,
-    required this.number,
-    required this.secondary,
-  });
+  const DotsTypoModel({required this.main, required this.number, required this.secondary});
 
   DotsTypoModel lerp(DotsTypoModel? other, double t) {
     return DotsTypoModel(
@@ -43,6 +39,7 @@ class DotsTypoMainModel {
   final TextStyle labelDefaultBold;
   final TextStyle labelSmallRegular;
   final TextStyle labelSmallMedium;
+  final TextStyle labelSmallBold;
 
   DotsTypoMainModel({
     required this.titleH1,
@@ -62,6 +59,7 @@ class DotsTypoMainModel {
     required this.labelDefaultBold,
     required this.labelSmallRegular,
     required this.labelSmallMedium,
+    required this.labelSmallBold,
   });
 
   DotsTypoMainModel lerp(DotsTypoMainModel? other, double t) {
@@ -93,6 +91,7 @@ class DotsTypoMainModel {
           TextStyle.lerp(labelSmallRegular, other?.labelSmallRegular, t) ?? labelSmallRegular,
       labelSmallMedium:
           TextStyle.lerp(labelSmallMedium, other?.labelSmallMedium, t) ?? labelSmallMedium,
+      labelSmallBold: TextStyle.lerp(labelSmallBold, other?.labelSmallBold, t) ?? labelSmallBold,
     );
   }
 }

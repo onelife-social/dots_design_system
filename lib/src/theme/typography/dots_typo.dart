@@ -4,11 +4,7 @@ import 'package:flutter/widgets.dart';
 
 class DotsTypo {
   static DotsTypoModel all(Color color) {
-    return DotsTypoModel(
-      main: main(color),
-      number: number(color),
-      secondary: secondary(color),
-    );
+    return DotsTypoModel(main: main(color), number: number(color), secondary: secondary(color));
   }
 
   static DotsTypoMainModel main(Color color) {
@@ -156,6 +152,15 @@ class DotsTypo {
         letterSpacing: 0.01,
       ),
       labelSmallMedium: TextStyle(
+        color: color,
+        package: dotsDesignSystemPackage,
+        fontSize: 11,
+        fontFamily: 'Inter',
+        fontWeight: FontWeight.w600,
+        height: 1.27,
+        letterSpacing: 0.01,
+      ),
+      labelSmallBold: TextStyle(
         color: color,
         package: dotsDesignSystemPackage,
         fontSize: 11,
