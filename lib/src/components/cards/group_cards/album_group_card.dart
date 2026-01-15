@@ -126,8 +126,8 @@ class AlbumGroupCard extends StatelessWidget {
                           top: 0,
                           child: CardTag(
                             iconData: tagIconData!,
-                            size: variant.isSmall ? 24 : 28,
-                            iconSize: variant.isSmall ? 16 : 20,
+                            size: 28,
+                            iconSize: 20,
                           ),
                         ),
                       if (isBlocked)
