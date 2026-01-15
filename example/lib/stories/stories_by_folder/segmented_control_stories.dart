@@ -59,4 +59,17 @@ List<Story> get segmentedControlStories => [
           );
         },
       ),
+      Story(
+        name: 'Segmented Control/Segmented control single',
+        description: 'Demo page for Segmented control with a single button',
+        builder: (context) {
+          return SegmentedControlSingle(
+            key: ValueKey('SegmentedControlSingle'),
+            buttonName: context.knobs.text(label: 'Button name', initial: 'Button'),
+            selectedColor: knobColorSelector(context, 'Selected color'),
+            backgroundColor: knobColorSelector(context, 'Background color'),
+            buttonTag: context.knobs.text(label: 'Button tag', initial: '1'),
+          );
+        },
+      ),
     ];
