@@ -77,6 +77,7 @@ class _BackSegmentedSingle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    var boxConstraints = BoxConstraints();
     return DotsDecoratedBox(
       styleType: theme.styles.bgBlur,
       decoration: ShapeDecoration(
@@ -93,17 +94,14 @@ class _BackSegmentedSingle extends StatelessWidget {
             borderRadius: DotsBorderRadius.r1000,
           ),
         ),
-        child: ConstrainedBox(
-          constraints: BoxConstraints(minHeight: double.infinity),
-          child: Padding(
-            padding: _textPadding,
-            child: Center(
-              child: Text(
-                buttonName,
-                textAlign: TextAlign.center,
-                style: theme.typo.main.labelDefaultMedium.copyWith(
-                  color: theme.colors.labelSecondary,
-                ),
+        child: Padding(
+          padding: _textPadding,
+          child: Center(
+            child: Text(
+              buttonName,
+              textAlign: TextAlign.center,
+              style: theme.typo.main.labelDefaultMedium.copyWith(
+                color: theme.colors.labelSecondary,
               ),
             ),
           ),
