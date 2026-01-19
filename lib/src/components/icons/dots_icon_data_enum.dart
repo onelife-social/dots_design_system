@@ -152,7 +152,7 @@ enum DotsIconData {
   picHeart('ic-pic--heart.svg', DotsIconGroup.media),
   picUpload('ic-pic--upload.svg', DotsIconGroup.media),
   pics('ic-pics.svg', DotsIconGroup.media),
-  picsSlashed('ic-pics-slashed.svg', DotsIconGroup.media),
+  picsSlashed('ic-pics--slashed.svg', DotsIconGroup.media),
   planner('ic-planner.svg', DotsIconGroup.media),
   play('ic-play.svg', DotsIconGroup.media),
   playCircle('ic-play-circle.svg', DotsIconGroup.media),
