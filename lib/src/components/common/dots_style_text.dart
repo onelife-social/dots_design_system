@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 import 'dots_shader_mask.dart';
 
 class DotsStyleText extends StatelessWidget {
-  const DotsStyleText({super.key, this.styleType, required this.text, this.style, this.textAlign});
+  const DotsStyleText({
+    super.key,
+    this.styleType,
+    required this.text,
+    this.style,
+    this.textAlign,
+  });
 
   /// Creates a text widget with optional style type and text alignment.
   final DotsStyleType? styleType;
