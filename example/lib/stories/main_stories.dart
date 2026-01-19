@@ -265,7 +265,9 @@ List<Story> get allStories => [
                 )!)
               : null,
           title: context.knobs.text(label: 'Title', initial: 'No data available'),
+          titleColor: knobColorSelector(context, 'Title color'),
           description: context.knobs.text(label: 'Description', initial: 'Please try again later'),
+          descriptionColor: knobColorSelector(context, 'Description color'),
           button: context.knobs.boolean(label: 'Show Button', initial: true)
               ? DotsMainButton(
                   size: DotsMainButtonSize.medium,
