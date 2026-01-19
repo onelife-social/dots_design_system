@@ -33,7 +33,9 @@ class DotsStyleText extends StatelessWidget {
       styleType: styleType,
       child: Text(
         text,
-        style: (style ?? TextStyle()).copyWith(color: Colors.white),
+        style: (style ?? const TextStyle()).copyWith(
+          color: styleType != null ? Colors.white : null,
+        ),
         textAlign: textAlign,
       ),
     );
