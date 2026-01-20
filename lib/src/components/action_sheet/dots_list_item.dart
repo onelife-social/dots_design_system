@@ -4,13 +4,36 @@ import 'package:flutter/material.dart';
 class DotsListItem extends StatelessWidget {
   final Widget icon;
   final String text;
+  final bool showLockIcon;
   final Function()? onTap;
 
-  const DotsListItem({super.key, required this.icon, required this.text, this.onTap});
+  const DotsListItem({
+    super.key,
+    required this.icon,
+    required this.text,
+    this.showLockIcon = false,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+
+    final groupName = Text(text, style: theme.typo.main.bodyLargeBold);
+    final fullGroupName = showLockIcon == true
+        ? Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              groupName,
+              const SizedBox(width: 4),
+              DotsIcon(
+                iconData: DotsIconData.lock,
+                color: context.dotsTheme.colors.textSecondary,
+                size: 14,
+              ),
+            ],
+          )
+        : groupName;
 
     return GestureDetector(
       onTap: onTap,
@@ -31,7 +54,7 @@ class DotsListItem extends StatelessWidget {
                 child: icon,
               ),
             ),
-            Expanded(child: Text(text, style: theme.typo.main.bodyLargeBold)),
+            Expanded(child: fullGroupName),
           ],
         ),
       ),
