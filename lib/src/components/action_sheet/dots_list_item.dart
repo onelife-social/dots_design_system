@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 class DotsListItem extends StatelessWidget {
   final Widget icon;
   final String text;
-  final bool? isGroupBlocked;
+  final bool showLockIcon;
   final Function()? onTap;
 
   const DotsListItem({
     super.key,
     required this.icon,
     required this.text,
-    this.isGroupBlocked = false,
+    this.showLockIcon = false,
     this.onTap,
   });
 
@@ -20,7 +20,7 @@ class DotsListItem extends StatelessWidget {
     final theme = context.dotsTheme;
 
     final groupName = Text(text, style: theme.typo.main.bodyLargeBold);
-    final fullGroupName = isGroupBlocked == true
+    final fullGroupName = showLockIcon == true
         ? Row(
             mainAxisSize: MainAxisSize.min,
             children: [
