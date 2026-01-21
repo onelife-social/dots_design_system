@@ -88,6 +88,9 @@ class DotsActionSheetList extends StatelessWidget {
   /// The [isLabelButtonAvailable] is a boolean to determine the label button is available.
   final bool isLabelButtonAvailable;
 
+  /// The [isMainButtonAvailable] is a boolean to determine the main button is available.
+  final bool isMainButtonAvailable;
+
   /// The [listTitle] is the title for the list of items in the action sheet.
   final String? listTitle;
 
@@ -153,6 +156,7 @@ class DotsActionSheetList extends StatelessWidget {
     this.onBtnChipTap,
     this.isScrolled = false,
     this.isLabelButtonAvailable = false,
+    this.isMainButtonAvailable = false,
     this.listTitle,
     this.listItems,
     this.emptyListTitle,
@@ -195,6 +199,7 @@ class DotsActionSheetList extends StatelessWidget {
         onBtnChipTap: onBtnChipTap,
         isScrolled: isScrolled,
         isLabelButtonAvailable: isLabelButtonAvailable,
+        isMainButtonAvailable: isMainButtonAvailable,
         searchBtnHide: searchBtnHide,
         searchBtnIcon: searchBtnIcon,
         onSearchBtnTap: onSearchBtnTap,

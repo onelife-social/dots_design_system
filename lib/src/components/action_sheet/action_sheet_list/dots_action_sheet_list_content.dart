@@ -19,6 +19,7 @@ class DotsActionSheetListContent extends StatelessWidget {
   final Function(int)? onBtnChipTap;
   final bool isScrolled;
   final bool isLabelButtonAvailable;
+  final bool isMainButtonAvailable;
   final bool searchBtnHide;
   final DotsIconData searchBtnIcon;
   final Function()? onSearchBtnTap;
@@ -58,6 +59,7 @@ class DotsActionSheetListContent extends StatelessWidget {
     this.onBtnChipTap,
     this.isScrolled = false,
     this.isLabelButtonAvailable = false,
+    this.isMainButtonAvailable = false,
     this.listTitle,
     this.listItems,
     this.emptyListTitle,
@@ -156,7 +158,7 @@ class DotsActionSheetListContent extends StatelessWidget {
             mainButtonText: mainButtonText,
             onMainButtonTap: onMainButtonTap,
             mainButtonIcon: mainButtonIcon,
-            enabled: selectedItemNames?.isNotEmpty == true,
+            enabled: isMainButtonAvailable,
           ),
         ],
       ),
@@ -244,7 +246,7 @@ class _Header extends StatelessWidget {
                       children: [
                         if (onBackButtonTap != null)
                           Container(
-                            width: 36,
+                            width: 80,
                             alignment: Alignment.centerLeft,
                             child: DotsIconButton(
                               icon: DotsIconData.chevronLeft,
@@ -255,7 +257,7 @@ class _Header extends StatelessWidget {
                           )
                         else
                           const SizedBox(
-                            width: 36,
+                            width: 80,
                           ),
                         Expanded(
                           child: Text(
@@ -265,19 +267,28 @@ class _Header extends StatelessWidget {
                           ),
                         ),
                         (onLabelButtonTap != null && (variant.isGhost || onCloseButtonTap == null))
-                            ? SizedBox(
+                            ?  SizedBox(
                                 width: 80,
-                                child: DotsMainButton(
-                                  content: labelButtonText ?? '',
-                                  variant: DotsMainButtonVariant.main,
-                                  size: DotsMainButtonSize.small,
-                                  enabled: isLabelButtonAvailable,
-                                  onTap: onLabelButtonTap,
-                                  expand: false,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    const Spacer(),
+                                    Container(
+                                      constraints: BoxConstraints(maxWidth: 80),
+                                      child: DotsMainButton(
+                                        content: labelButtonText ?? '',
+                                        variant: DotsMainButtonVariant.main,
+                                        size: DotsMainButtonSize.small,
+                                        enabled: isLabelButtonAvailable,
+                                        onTap: onLabelButtonTap,
+                                        expand: false,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               )
                             : const SizedBox(
-                                width: 36,
+                                width: 80,
                               ),
                       ],
                     ),
