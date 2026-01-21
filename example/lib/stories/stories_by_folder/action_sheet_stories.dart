@@ -543,11 +543,20 @@ List<Story> get actionSheetStories => [
                           .toList(),
                     ),
                     isLabelButtonAvailable:
-                        context.knobs.boolean(label: 'Is Available', initial: false),
+                        context.knobs.boolean(label: 'Is Label Available', initial: false),
+                    isMainButtonAvailable:
+                        context.knobs.boolean(label: 'Is Main Button Available', initial: false),
                     title: context.knobs.text(label: 'Title', initial: 'Select an album'),
                     description:
                         context.knobs.text(label: 'Description', initial: 'This is a description'),
                     onClose: () {},
+                    onLabelButtonTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('label button tapped!'),
+                        ),
+                      );
+                    },
                     onBackButtonTap: () {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
@@ -607,9 +616,9 @@ List<Story> get actionSheetStories => [
                               items[i] = DotsListItemModel(
                                 label: items[i].label,
                                 image: items[i].image,
-                                variant: items[i].variant == DotsListsItemVariant.radioButton
+                                variant: items[i].variant == DotsListsItemVariant.check
                                     ? DotsListsItemVariant.selector
-                                    : DotsListsItemVariant.radioButton,
+                                    : DotsListsItemVariant.check,
                               );
                             });
                           },
