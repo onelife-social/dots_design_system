@@ -17,10 +17,7 @@ class DotsStyles {
       startColor: Color(0xFFE9C058),
       endColor: Color(0xFFB48D2D),
     ),
-    bgPremium: DotsStyleColorGradient(
-      startColor: Color(0xFFC88EFF),
-      endColor: Color(0xFF8B84F7),
-    ),
+    bgPremium: DotsStyleColorGradient(startColor: Color(0xFFC88EFF), endColor: Color(0xFF8B84F7)),
     textPremiumPlus: DotsStyleColorGradient(
       startColor: Color(0xFFDDA61C),
       endColor: Color(0xFFA37F28),
@@ -43,27 +40,13 @@ class DotsStyles {
       beginAlignment: Alignment(0.01, 0.51),
       endAlignment: Alignment(0.69, 0.51),
     ),
-    bgBlur: DotsStyleBlur(
-      blur: 50,
-    ),
-    blur50: DotsStyleBlur(
-      blur: 50,
-    ),
-    blur40: DotsStyleBlur(
-      blur: 40,
-    ),
-    blur30: DotsStyleBlur(
-      blur: 30,
-    ),
-    blur20: DotsStyleBlur(
-      blur: 20,
-    ),
-    blur12: DotsStyleBlur(
-      blur: 12,
-    ),
-    blur10: DotsStyleBlur(
-      blur: 10,
-    ),
+    bgBlur: DotsStyleBlur(blur: 50),
+    blur50: DotsStyleBlur(blur: 50),
+    blur40: DotsStyleBlur(blur: 40),
+    blur30: DotsStyleBlur(blur: 30),
+    blur20: DotsStyleBlur(blur: 20),
+    blur12: DotsStyleBlur(blur: 12),
+    blur10: DotsStyleBlur(blur: 10),
     floatingBtnShadow: DotsStyleShadow(
       color: Color(0x26000000),
       blurRadius: 15,
@@ -74,47 +57,17 @@ class DotsStyles {
       blurRadius: 20,
       blurStyle: BlurStyle.outer,
     ),
-    defaultShadow: DotsStyleShadow(
-      color: Color(0x1A000000),
-      blurRadius: 20,
-      offset: Offset(0, 6),
-    ),
-    defaultSquircle: DotsStyleSquircle(
-      radius: 16,
-      cornerSmoothing: 0.5,
-    ),
-    squircle8: DotsStyleSquircle(
-      radius: 8,
-      cornerSmoothing: 0.5,
-    ),
-    squircle12: DotsStyleSquircle(
-      radius: 12,
-      cornerSmoothing: 0.5,
-    ),
-    squircle15: DotsStyleSquircle(
-      radius: 15,
-      cornerSmoothing: 0.5,
-    ),
-    squircle16: DotsStyleSquircle(
-      radius: 16,
-      cornerSmoothing: 0.5,
-    ),
-    squircle20: DotsStyleSquircle(
-      radius: 20,
-      cornerSmoothing: 0.5,
-    ),
-    squircle24: DotsStyleSquircle(
-      radius: 24,
-      cornerSmoothing: 0.5,
-    ),
-    squircle32: DotsStyleSquircle(
-      radius: 32,
-      cornerSmoothing: 0.5,
-    ),
-    squircle52: DotsStyleSquircle(
-      radius: 52,
-      cornerSmoothing: 0.5,
-    ),
+    defaultShadow: DotsStyleShadow(color: Color(0x1A000000), blurRadius: 20, offset: Offset(0, 6)),
+    defaultSquircle: DotsStyleSquircle(radius: 16, cornerSmoothing: 0.5),
+    squircle8: DotsStyleSquircle(radius: 8, cornerSmoothing: 0.5),
+    squircle12: DotsStyleSquircle(radius: 12, cornerSmoothing: 0.5),
+    squircle15: DotsStyleSquircle(radius: 15, cornerSmoothing: 0.5),
+    squircle16: DotsStyleSquircle(radius: 16, cornerSmoothing: 0.5),
+    squircle20: DotsStyleSquircle(radius: 20, cornerSmoothing: 0.5),
+    squircle24: DotsStyleSquircle(radius: 24, cornerSmoothing: 0.5),
+    squircle28: DotsStyleSquircle(radius: 28, cornerSmoothing: 0.5),
+    squircle32: DotsStyleSquircle(radius: 32, cornerSmoothing: 0.5),
+    squircle52: DotsStyleSquircle(radius: 52, cornerSmoothing: 0.5),
   );
 
   static final dark = DotsStylesModel(
@@ -132,10 +85,7 @@ class DotsStyles {
       startColor: Color(0xFFE9C058),
       endColor: Color(0xFFB48D2D),
     ),
-    bgPremium: DotsStyleColorGradient(
-      startColor: Color(0xFFC88EFF),
-      endColor: Color(0xFF8B84F7),
-    ),
+    bgPremium: DotsStyleColorGradient(startColor: Color(0xFFC88EFF), endColor: Color(0xFF8B84F7)),
     textPremiumPlus: DotsStyleColorGradient(
       startColor: Color(0xFFE9C058),
       endColor: Color(0xFFB48D2D),
@@ -158,27 +108,13 @@ class DotsStyles {
       beginAlignment: Alignment(0.01, 0.51),
       endAlignment: Alignment(0.69, 0.51),
     ),
-    bgBlur: DotsStyleBlur(
-      blur: 50,
-    ),
-    blur50: DotsStyleBlur(
-      blur: 50,
-    ),
-    blur40: DotsStyleBlur(
-      blur: 40,
-    ),
-    blur30: DotsStyleBlur(
-      blur: 30,
-    ),
-    blur20: DotsStyleBlur(
-      blur: 20,
-    ),
-    blur12: DotsStyleBlur(
-      blur: 12,
-    ),
-    blur10: DotsStyleBlur(
-      blur: 10,
-    ),
+    bgBlur: DotsStyleBlur(blur: 50),
+    blur50: DotsStyleBlur(blur: 50),
+    blur40: DotsStyleBlur(blur: 40),
+    blur30: DotsStyleBlur(blur: 30),
+    blur20: DotsStyleBlur(blur: 20),
+    blur12: DotsStyleBlur(blur: 12),
+    blur10: DotsStyleBlur(blur: 10),
     floatingBtnShadow: DotsStyleShadow(
       color: Color(0x26000000),
       blurRadius: 15,
@@ -189,46 +125,16 @@ class DotsStyles {
       blurRadius: 20,
       blurStyle: BlurStyle.outer,
     ),
-    defaultShadow: DotsStyleShadow(
-      color: Color(0x1A000000),
-      blurRadius: 20,
-      offset: Offset(0, 6),
-    ),
-    defaultSquircle: DotsStyleSquircle(
-      radius: 16,
-      cornerSmoothing: 0.5,
-    ),
-    squircle8: DotsStyleSquircle(
-      radius: 8,
-      cornerSmoothing: 0.5,
-    ),
-    squircle12: DotsStyleSquircle(
-      radius: 12,
-      cornerSmoothing: 0.5,
-    ),
-    squircle15: DotsStyleSquircle(
-      radius: 15,
-      cornerSmoothing: 0.5,
-    ),
-    squircle16: DotsStyleSquircle(
-      radius: 16,
-      cornerSmoothing: 0.5,
-    ),
-    squircle20: DotsStyleSquircle(
-      radius: 20,
-      cornerSmoothing: 0.5,
-    ),
-    squircle24: DotsStyleSquircle(
-      radius: 24,
-      cornerSmoothing: 0.5,
-    ),
-    squircle32: DotsStyleSquircle(
-      radius: 32,
-      cornerSmoothing: 0.5,
-    ),
-    squircle52: DotsStyleSquircle(
-      radius: 52,
-      cornerSmoothing: 0.5,
-    ),
+    defaultShadow: DotsStyleShadow(color: Color(0x1A000000), blurRadius: 20, offset: Offset(0, 6)),
+    defaultSquircle: DotsStyleSquircle(radius: 16, cornerSmoothing: 0.5),
+    squircle8: DotsStyleSquircle(radius: 8, cornerSmoothing: 0.5),
+    squircle12: DotsStyleSquircle(radius: 12, cornerSmoothing: 0.5),
+    squircle15: DotsStyleSquircle(radius: 15, cornerSmoothing: 0.5),
+    squircle16: DotsStyleSquircle(radius: 16, cornerSmoothing: 0.5),
+    squircle20: DotsStyleSquircle(radius: 20, cornerSmoothing: 0.5),
+    squircle24: DotsStyleSquircle(radius: 24, cornerSmoothing: 0.5),
+    squircle28: DotsStyleSquircle(radius: 28, cornerSmoothing: 0.5),
+    squircle32: DotsStyleSquircle(radius: 32, cornerSmoothing: 0.5),
+    squircle52: DotsStyleSquircle(radius: 52, cornerSmoothing: 0.5),
   );
 }

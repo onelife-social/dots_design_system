@@ -26,6 +26,7 @@ class DotsStylesModel {
   final DotsStyleSquircle squircle16;
   final DotsStyleSquircle squircle20;
   final DotsStyleSquircle squircle24;
+  final DotsStyleSquircle squircle28;
   final DotsStyleSquircle squircle32;
   final DotsStyleSquircle squircle52;
 
@@ -55,6 +56,7 @@ class DotsStylesModel {
     required this.squircle16,
     required this.squircle20,
     required this.squircle24,
+    required this.squircle28,
     required this.squircle32,
     required this.squircle52,
   });
@@ -88,6 +90,7 @@ class DotsStylesModel {
       squircle16: squircle16.lerp(other.squircle16, t) ?? squircle16,
       squircle20: squircle20.lerp(other.squircle20, t) ?? squircle20,
       squircle24: squircle24.lerp(other.squircle24, t) ?? squircle24,
+      squircle28: squircle28.lerp(other.squircle28, t) ?? squircle28,
       squircle32: squircle32.lerp(other.squircle32, t) ?? squircle32,
       squircle52: squircle52.lerp(other.squircle52, t) ?? squircle52,
     );
