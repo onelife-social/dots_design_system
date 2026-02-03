@@ -66,6 +66,9 @@ class DotsNotificationItem extends StatelessWidget {
   /// Action image text
   final String? actionImageText;
 
+  /// Whether the notification title and description should be displayed in the same line.
+  final bool inline;
+
   const DotsNotificationItem({
     super.key,
     required this.variant,
@@ -84,6 +87,7 @@ class DotsNotificationItem extends StatelessWidget {
     this.date,
     this.maxLines,
     this.actionImageText,
+    this.inline = false,
   });
 
   @override
@@ -111,6 +115,7 @@ class DotsNotificationItem extends StatelessWidget {
                 description: description,
                 date: date,
                 maxLines: maxLines,
+                inline: inline,
               ),
             ),
             const SizedBox(width: 12),
@@ -169,6 +174,7 @@ class _Info extends StatelessWidget {
   final String? description;
   final String? date;
   final int? maxLines;
+  final bool inline;
 
   const _Info({
     required this.variant,
@@ -176,13 +182,14 @@ class _Info extends StatelessWidget {
     this.description,
     this.date,
     this.maxLines,
+    this.inline = false,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    if (variant.isMain) {
+    if (variant.isMain && !inline) {
       return Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
