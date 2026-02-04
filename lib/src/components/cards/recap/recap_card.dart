@@ -3,16 +3,16 @@ import 'dart:ui';
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-enum RecapCardVariant {
+enum MilestoneVariant {
   blocked,
   active,
   generated,
   onlyTitle;
 
-  bool get isBlocked => this == RecapCardVariant.blocked;
-  bool get isActive => this == RecapCardVariant.active;
-  bool get isGenerated => this == RecapCardVariant.generated;
-  bool get isOnlyTitle => this == RecapCardVariant.onlyTitle;
+  bool get isBlocked => this == MilestoneVariant.blocked;
+  bool get isActive => this == MilestoneVariant.active;
+  bool get isGenerated => this == MilestoneVariant.generated;
+  bool get isOnlyTitle => this == MilestoneVariant.onlyTitle;
 }
 
 class RecapCard extends StatelessWidget {
@@ -20,7 +20,7 @@ class RecapCard extends StatelessWidget {
   final double width;
 
   /// The variant of the group card.
-  final RecapCardVariant variant;
+  final MilestoneVariant variant;
 
   /// The image provider for the background image
   final ImageProvider imageProvider;
@@ -78,7 +78,7 @@ class RecapCard extends StatelessWidget {
     String? title,
     ImageProvider? textImageProvider,
   }) => RecapCard._(
-    variant: RecapCardVariant.blocked,
+    variant: MilestoneVariant.blocked,
     width: width,
     imageProvider: imageProvider,
     textImageProvider: textImageProvider,
@@ -99,7 +99,7 @@ class RecapCard extends StatelessWidget {
     String? badgeText,
     ImageProvider? textImageProvider,
   }) => RecapCard._(
-    variant: RecapCardVariant.active,
+    variant: MilestoneVariant.active,
     width: width,
     imageProvider: imageProvider,
     textImageProvider: textImageProvider,
@@ -122,7 +122,7 @@ class RecapCard extends StatelessWidget {
     ImageProvider? textImageProvider,
     String? badgeText,
   }) => RecapCard._(
-    variant: RecapCardVariant.generated,
+    variant: MilestoneVariant.generated,
     width: width,
     imageProvider: imageProvider,
     textImageProvider: textImageProvider,
@@ -141,7 +141,7 @@ class RecapCard extends StatelessWidget {
     ImageErrorWidgetBuilder? errorBuilder,
     ImageProvider? textImageProvider,
   }) => RecapCard._(
-    variant: RecapCardVariant.active,
+    variant: MilestoneVariant.active,
     width: width,
     imageProvider: imageProvider,
     textImageProvider: textImageProvider,
