@@ -1,7 +1,8 @@
-import 'dart:ui';
-
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:figma_squircle/figma_squircle.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:vector_graphics/vector_graphics.dart';
 
 class MilestoneCard extends StatelessWidget {
   /// The width of the card.
@@ -29,108 +30,34 @@ class MilestoneCard extends StatelessWidget {
   final bool showEdit;
 
   /// Callback when the edit button is tapped.
-  final VoidCallback? onEdit;
+  final VoidCallback? onTapEdit;
 
-  const MilestoneCard._({
+  const MilestoneCard({
+    super.key,
     required this.width,
     required this.imageProvider,
     this.errorBuilder,
     this.title,
     this.date,
     this.onTap,
-    
+    this.showBadge = false,
+    this.showEdit = false,
+    this.onTapEdit,
   });
-
-  factory MilestoneCard.blocked({
-    required double width,
-    required ImageProvider imageProvider,
-    required String buttonText,
-    required Function()? onTap,
-    required Function()? onInfoTap,
-    ImageErrorWidgetBuilder? errorBuilder,
-    String? title,
-    ImageProvider? textImageProvider,
-  }) => MilestoneCard._(
-    variant: MilestoneVariant.blocked,
-    width: width,
-    imageProvider: imageProvider,
-    textImageProvider: textImageProvider,
-    buttonText: buttonText,
-    onTap: onTap,
-    onInfoTap: onInfoTap,
-    errorBuilder: errorBuilder,
-    title: title,
-  );
-
-  factory MilestoneCard.active({
-    required double width,
-    required ImageProvider imageProvider,
-    required String buttonText,
-    required Function()? onTap,
-    ImageErrorWidgetBuilder? errorBuilder,
-    String? title,
-    String? badgeText,
-    ImageProvider? textImageProvider,
-  }) => MilestoneCard._(
-    variant: MilestoneVariant.active,
-    width: width,
-    imageProvider: imageProvider,
-    textImageProvider: textImageProvider,
-    buttonText: buttonText,
-    onTap: onTap,
-    errorBuilder: errorBuilder,
-    title: title,
-    badgeText: badgeText,
-  );
-
-  factory MilestoneCard.generated({
-    required double width,
-    required ImageProvider imageProvider,
-    required String createdBy,
-    required String albumName,
-    required Function()? onTap,
-    required Function() onInfoTap,
-    ImageErrorWidgetBuilder? errorBuilder,
-    String? title,
-    ImageProvider? textImageProvider,
-    String? badgeText,
-  }) => MilestoneCard._(
-    variant: MilestoneVariant.generated,
-    width: width,
-    imageProvider: imageProvider,
-    textImageProvider: textImageProvider,
-    createdBy: createdBy,
-    albumName: albumName,
-    onTap: onTap,
-    onInfoTap: onInfoTap,
-    errorBuilder: errorBuilder,
-    title: title,
-    badgeText: badgeText,
-  );
-
-  factory MilestoneCard.onlyTitle({
-    required double width,
-    required ImageProvider imageProvider,
-    ImageErrorWidgetBuilder? errorBuilder,
-    ImageProvider? textImageProvider,
-  }) => MilestoneCard._(
-    variant: MilestoneVariant.active,
-    width: width,
-    imageProvider: imageProvider,
-    textImageProvider: textImageProvider,
-    errorBuilder: errorBuilder,
-  );
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    final imageWidget = Image(
-      image: imageProvider,
-      fit: BoxFit.cover,
-      width: double.infinity,
-      height: double.infinity,
-      errorBuilder: errorBuilder,
+    final imageWidget = ClipSmoothRect(
+      radius: SmoothBorderRadius(cornerRadius: 32, cornerSmoothing: 0.5),
+      child: Image(
+        image: imageProvider,
+        fit: BoxFit.cover,
+        width: double.infinity,
+        height: double.infinity,
+        errorBuilder: errorBuilder,
+      ),
     );
 
     return GestureDetector(
@@ -138,44 +65,28 @@ class MilestoneCard extends StatelessWidget {
       child: SizedBox(
         width: width,
         child: AspectRatio(
-          aspectRatio: 4 / 5,
+          aspectRatio: 3 / 4,
           child: DotsDecoratedBox(
-            styleType: theme.styles.defaultShadow,
+            styleType: theme.styles.floatingBtnShadow,
             child: DotsDecoratedBox(
-              styleType: theme.styles.squircle52,
+              styleType: theme.styles.squircle32,
               child: Stack(
                 children: [
-                  variant.isBlocked
-                      ? ImageFiltered(
-                          imageFilter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                          child: imageWidget,
-                        )
+                  title?.isNotEmpty == true && date?.isNotEmpty == true
+                      ? _CardWithBlur(imageWidget: imageWidget)
                       : imageWidget,
+
                   Container(
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
-                        borderRadius: DotsBorderRadius.r52,
+                        borderRadius: DotsBorderRadius.r32,
                         side: BorderSide(
-                          color: theme.colors.borderButton,
-                          width: 2,
-                          strokeAlign: BorderSide.strokeAlignInside,
+                          color: theme.colors.labelAlwaysWhite,
+                          width: 3,
                         ),
                       ),
-                      color: Colors.black.withValues(alpha: 0.3),
                     ),
-                    child: Stack(
-                      children: [
-                        if (textImageProvider != null)
-                          Positioned.fill(
-                            child: Image(
-                              image: textImageProvider!,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) => const SizedBox.shrink(),
-                            ),
-                          ),
-                        _buildContent(context),
-                      ],
-                    ),
+                    child: _buildContent(context),
                   ),
                 ],
               ),
@@ -187,66 +98,76 @@ class MilestoneCard extends StatelessWidget {
   }
 
   Widget _buildContent(BuildContext context) {
+    Widget content = const SizedBox();
+    if (title?.isNotEmpty == true && date?.isNotEmpty == true) {
+      content = _CardTitle(title: title!, date: date!);
+    } else if (showBadge) {
+      content = const _CardBadge();
+    } else if (showEdit) {
+      content = _BtnEdit(onTap: onTapEdit);
+    }
+
+    return SizedBox.expand(child: content);
+  }
+}
+
+class _CardWithBlur extends StatelessWidget {
+  final Widget imageWidget;
+
+  const _CardWithBlur({required this.imageWidget});
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final h = constraints.maxHeight.isFinite ? constraints.maxHeight : 0;
+        final stop = h > 0 ? (108.0 / h).clamp(0.0, 1.0) : 0.0;
+        return DotsLinearGradientBlur(
+          sigma: 15,
+          linearGradientBlur: LinearGradientBlur(
+            values: const [1, 0],
+            stops: [0, stop],
+            start: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+          tintColor: Colors.black.dotsWithOpacity(0.35),
+          child: imageWidget,
+        );
+      },
+    );
+  }
+}
+
+class _CardTitle extends StatelessWidget {
+  final String title;
+  final String date;
+
+  const _CardTitle({
+    required this.title,
+    required this.date,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+
     return Padding(
-      padding: EdgeInsets.all(24),
-      child: Stack(
+      padding: const EdgeInsets.only(top: 20, left: 36, right: 36),
+      child: Column(
         children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _RecapCardTitle(title: title),
-                if (!variant.isBlocked && badgeText != null && badgeText!.isNotEmpty)
-                  BadgeLabel(
-                    content: badgeText!,
-                    variant: BadgeLabelVariant.premium,
-                    size: BadgeLabelSize.large,
-                  ),
-                if (variant.isGenerated && badgeText == null)
-                  DotsIconButton(
-                    icon: DotsIconData.share,
-                    onTap: onInfoTap,
-                    style: DotsIconButtonStyle.floating,
-                    size: DotsIconButtonSize.large,
-                    state: DotsIconButtonState.defaultState,
-                    color: theme.colors.textPrimary,
-                  ),
-                if (variant.isBlocked)
-                  DotsIconButton(
-                    icon: DotsIconData.lock,
-                    onTap: onInfoTap,
-                    style: DotsIconButtonStyle.floating,
-                    size: DotsIconButtonSize.large,
-                    state: DotsIconButtonState.defaultState,
-                    color: theme.colors.textPrimary,
-                    backgroundColor: theme.colors.bgBtnImage.withValues(
-                      alpha: 0.5,
-                    ),
-                  ),
-              ],
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: theme.typo.main.bodyLargeMedium.copyWith(
+              color: theme.colors.labelAlwaysWhite,
             ),
           ),
-
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: variant.isGenerated
-                ? _CreatedByText(
-                    createdBy: createdBy,
-                    albumName: albumName,
-                  )
-                : buttonText == null
-                ? const SizedBox.shrink()
-                : DotsMainButton(
-                    content: buttonText ?? '',
-                    variant: DotsMainButtonVariant.main,
-                    expand: false,
-                    onTap: onTap,
-                    shouldApplyBlur: true,
-                  ),
+          Text(
+            date,
+            textAlign: TextAlign.center,
+            style: theme.typo.main.bodyDefaultRegular.copyWith(
+              color: theme.colors.labelAlwaysWhite,
+            ),
           ),
         ],
       ),
@@ -254,77 +175,42 @@ class MilestoneCard extends StatelessWidget {
   }
 }
 
-class _RecapCardTitle extends StatelessWidget {
-  final String? title;
-
-  const _RecapCardTitle({
-    required this.title,
-  });
+class _CardBadge extends StatelessWidget {
+  const _CardBadge();
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-    return title == null || title!.isEmpty
-        ? const SizedBox.shrink()
-        : Row(
-            mainAxisSize: MainAxisSize.min,
-            spacing: 4,
-            children: [
-              DotsIcon(
-                iconData: DotsIconData.clockTimer,
-                size: 16,
-                color: theme.colors.labelAlwaysWhite,
-              ),
-              Text(
-                title!,
-                textAlign: TextAlign.center,
-                style: theme.typo.main.bodyDefaultMedium.copyWith(
-                  color: theme.colors.labelAlwaysWhite,
-                ),
-              ),
-            ],
-          );
+    return Align(
+      alignment: Alignment.topRight,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 5, right: 5),
+        child: SvgPicture(
+          AssetBytesLoader(
+            'packages/dots_design_system/assets/images/milestones/badge-milestone-1.svg.vec',
+          ),
+        ),
+      ),
+    );
   }
 }
 
-class _CreatedByText extends StatelessWidget {
-  final String? createdBy;
-  final String? albumName;
+class _BtnEdit extends StatelessWidget {
+  final VoidCallback? onTap;
 
-  const _CreatedByText({
-    required this.createdBy,
-    required this.albumName,
-  });
+  const _BtnEdit({required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        if (albumName != null && albumName!.isNotEmpty)
-          Text(
-            albumName!,
-            textAlign: TextAlign.center,
-            style: theme.typo.main.bodyDefaultMedium.copyWith(
-              color: theme.colors.labelAlwaysWhite,
-            ),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-          ),
-        if (createdBy != null && createdBy!.isNotEmpty)
-          Text(
-            createdBy!,
-            textAlign: TextAlign.center,
-            style: theme.typo.main.bodyDefaultMedium.copyWith(
-              color: theme.colors.labelAlwaysWhite,
-            ),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-          ),
-      ],
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 5, right: 5),
+        child: DotsIconButton(
+          icon: DotsIconData.pencil,
+          backgroundColor: context.dotsTheme.colors.bgBtnImage,
+          onTap: onTap,
+        ),
+      ),
     );
   }
 }

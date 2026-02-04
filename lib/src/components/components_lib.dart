@@ -46,3 +46,4 @@ export 'menu/settings_item.dart';
 export 'planning/planning_lib.dart';
 export 'upload_items/upload_lib.dart';
 export 'rating/rating_lib.dart';
+export 'milestones/milestones_lib.dart';
