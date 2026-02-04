@@ -160,6 +160,7 @@ enum DotsIconData {
   video('ic-video.svg', DotsIconGroup.media),
   videoOff('ic-video--off.svg', DotsIconGroup.media),
   visualization('ic-visualization.svg', DotsIconGroup.media),
+  squareArrowDownOnSquareFill('ic-square-arrow-down-on-square-fill.svg', DotsIconGroup.media),
 
   // Premium
   creditCardAlert('ic-creditcard-alert.svg', DotsIconGroup.premium),
