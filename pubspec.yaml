@@ -35,7 +35,8 @@ flutter:
     - assets/icons/system/
     - assets/icons/home/
     - assets/images/
-    - assets/social_media/
+    - assets/images/social_media/
+    - assets/images/milestones/
 
   # Shaders
   shaders:
