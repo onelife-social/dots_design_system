@@ -1,6 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:dots_design_system/src/components/common/dots_shader_mask.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_progress_indicator/widget/gradient_progress_indicator_widget.dart';
 
 import 'dots_main_button_theme.dart';
 
@@ -24,6 +25,7 @@ class DotsMainButton extends StatelessWidget {
     this.splashColor,
     this.textStyle,
     this.highlightColor,
+    this.isLoading = false,
   });
 
   /// The text to display on the button.
@@ -88,6 +90,9 @@ class DotsMainButton extends StatelessWidget {
   /// Optional highlight color to override the default one.
   final Color? highlightColor;
 
+  /// Whether the button is in loading state.
+  final bool isLoading;
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -141,21 +146,35 @@ class DotsMainButton extends StatelessWidget {
       child: InkWell(
         splashColor: splashColor,
         highlightColor: highlightColor,
-        onTap: enabled ? onTap : null,
+        onTap: (enabled && !isLoading) ? onTap : null,
         borderRadius: borderRadius,
         child: Container(
           decoration: BoxDecoration(borderRadius: borderRadius),
           height: size.height,
           padding: adaptPaddingForText ? EdgeInsets.symmetric(horizontal: 7) : size.padding,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: size.spacing,
-            mainAxisSize: expand ? MainAxisSize.max : MainAxisSize.min,
-            children: [
-              if (iconPosition.isLeft) ...[iconWidget, text],
-              if (iconPosition.isRight) ...[text, iconWidget],
-            ],
-          ),
+          child: isLoading
+              ? Center(
+                  child: GradientProgressIndicator(
+                    radius: (size.height - 25) / 2,
+                    duration: 1,
+                    strokeWidth: 3.0,
+                    gradientStops: const [0.0001, 1.0],
+                    gradientColors: [
+                      (foregroundColor ?? context.dotsTheme.colors.labelAlwaysWhite).withOpacity(0),
+                      (foregroundColor ?? context.dotsTheme.colors.labelAlwaysWhite),
+                    ],
+                    child: const SizedBox.shrink(),
+                  ),
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: size.spacing,
+                  mainAxisSize: expand ? MainAxisSize.max : MainAxisSize.min,
+                  children: [
+                    if (iconPosition.isLeft) ...[iconWidget, text],
+                    if (iconPosition.isRight) ...[text, iconWidget],
+                  ],
+                ),
         ),
       ),
     );

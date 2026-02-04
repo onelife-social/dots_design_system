@@ -35,6 +35,11 @@ BadgeLabelTheme getBadgeLabelThemeByTagVariant(DotsTheme theme, BadgeLabelVarian
         backgroundColor: theme.colors.labelActive,
         foregroundColor: theme.colors.labelAlwaysWhite,
       );
+    case BadgeLabelVariant.greenMaterial:
+      return BadgeLabelTheme(
+        backgroundColor: theme.colors.bgActive,
+        foregroundColor: theme.colors.labelActive,
+      );
     case BadgeLabelVariant.premiumPlus:
       return BadgeLabelTheme(
         foregroundColor: theme.colors.labelAlwaysWhite,
