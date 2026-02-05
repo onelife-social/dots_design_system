@@ -20,9 +20,7 @@ class BadgeMilestone extends StatelessWidget {
   /// Defaults to [BadgeMilestoneVariant.main].
   final BadgeMilestoneVariant variant;
 
-  static const double _height = 36;
   static const double _borderRadius = 22;
-  static const EdgeInsets _padding = EdgeInsets.symmetric(horizontal: 12);
 
   @override
   Widget build(BuildContext context) {
@@ -41,22 +39,13 @@ class BadgeMilestone extends StatelessWidget {
               )
             : null,
       ),
-      height: _height,
-      padding: _padding,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Flexible(
-            child: Text(
-              content,
-              overflow: TextOverflow.ellipsis,
-              style: theme.typo.main.labelDefaultRegular.copyWith(
-                color: badgeMilestoneTheme.foregroundColor,
-              ),
-            ),
-          ),
-        ],
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: badgeMilestoneTheme.verticalPadding),
+      child: Text(
+        content,
+        overflow: TextOverflow.ellipsis,
+        style: theme.typo.main.labelDefaultRegular.copyWith(
+          color: badgeMilestoneTheme.foregroundColor,
+        ),
       ),
     );
 
