@@ -6,6 +6,7 @@ class BadgeLabelTheme {
   final Color? foregroundColor;
   final DotsStyleColorGradient? backgroundGradient;
   final DotsStyleColorGradient? foregroundGradient;
+  final Color? borderColor;
 
   final bool blur;
 
@@ -14,6 +15,7 @@ class BadgeLabelTheme {
     this.foregroundColor,
     this.backgroundGradient,
     this.foregroundGradient,
+    this.borderColor,
     this.blur = true,
   });
 }
@@ -34,6 +36,12 @@ BadgeLabelTheme getBadgeLabelThemeByTagVariant(DotsTheme theme, BadgeLabelVarian
       return BadgeLabelTheme(
         backgroundColor: theme.colors.labelActive,
         foregroundColor: theme.colors.labelAlwaysWhite,
+      );
+    case BadgeLabelVariant.white:
+      return BadgeLabelTheme(
+        backgroundColor: theme.colors.bgContainerPrimary,
+        foregroundColor: theme.colors.textPrimary,
+        borderColor: theme.colors.borderButton,
       );
     case BadgeLabelVariant.greenMaterial:
       return BadgeLabelTheme(
