@@ -1,6 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 List<Story> get dotBookStories => [
@@ -36,8 +35,21 @@ List<Story> get dotBookStories => [
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: DotBookImagePlaceholder(
-              imageProvider: const NetworkImage('https://picsum.photos/250?image=3'),
-              sizeText: context.knobs.text(label: 'Badge text', initial: '19 x 25 cm'),
+              media: const Image(
+                image: NetworkImage('https://picsum.photos/250?image=3'),
+                fit: BoxFit.cover,
+              ),
+              badgeText: context.knobs.text(label: 'Badge text', initial: '19 x 25 cm'),
+              badgeIcon:  context.knobs.options<DotsIconData?>(
+                label: 'Badge Icon',
+                initial: null,
+                options: [
+                  const Option(label: 'None', value: null),
+                  ...DotsIconData.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList(),
+                ],
+              ),
               onBackPressed: context.knobs.boolean(
                         label: 'Show back button',
                         initial: true,
@@ -48,6 +60,69 @@ List<Story> get dotBookStories => [
                       );
                     }
                   : null,
+            ),
+          ),
+        ),
+      ),
+      Story(
+        name: 'DotBook Components/ book feature text item',
+        description: 'Demo page for book feature text item',
+        builder: (context) => ColoredBox(
+          color: context.dotsTheme.colors.bgContainerSecondary,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: BookFeatureTextItem(
+              icon: DotsIconData.star,
+              title: context.knobs.text(label: 'Title', initial: 'High quality paper'),
+              description: context.knobs.text(
+                label: 'Description',
+                initial: 'Our books are made with high quality paper that ensures durability and a pleasant reading experience.',
+              ),
+            ),
+          ),
+        ),
+      ),
+      Story(
+        name: 'DotBook Components/toggle buttons',
+        description: 'Demo page for toggle buttons',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: DotBookToggleButton(
+                    title: context.knobs.text(label: 'Left title', initial: 'Standard'),
+                    subtitle: context.knobs.text(label: 'Left subtitle', initial: '20 x 30 cm'),
+                    isSelected: context.knobs.boolean(
+                      label: 'Left selected',
+                      initial: true,
+                    ),
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Left tapped')),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: DotBookToggleButton(
+                    title: context.knobs.text(label: 'Right title', initial: 'Large'),
+                    subtitle: context.knobs.text(label: 'Right subtitle', initial: '30 x 40 cm'),
+                    isSelected: context.knobs.boolean(
+                      label: 'Right selected',
+                      initial: false,
+                    ),
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Right tapped')),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         ),
