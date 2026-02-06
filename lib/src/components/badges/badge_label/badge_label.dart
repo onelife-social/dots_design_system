@@ -8,6 +8,7 @@ class BadgeLabel extends StatelessWidget {
   const BadgeLabel({
     super.key,
     required this.content,
+    this.badgeIcon,
     this.size = BadgeLabelSize.medium,
     this.variant = BadgeLabelVariant.main,
   });
@@ -24,6 +25,12 @@ class BadgeLabel extends StatelessWidget {
   ///
   /// Defaults to [BadgeLabelVariant.main].
   final BadgeLabelVariant variant;
+
+  /// Optional icon to display alongside the text in the badge label.
+  ///
+  /// If provided, the icon will be displayed to the left of the text.
+  /// Defaults to null (no icon).
+  final DotsIconData? badgeIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +54,13 @@ class BadgeLabel extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
+              if (badgeIcon != null) ...[
+                DotsIcon(
+                  iconData: badgeIcon!, 
+                  size: 16
+                ),
+                const SizedBox(width: 5),
+              ],
               Flexible(
                 child: Text(
                   content,
