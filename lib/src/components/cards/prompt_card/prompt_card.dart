@@ -31,9 +31,7 @@ class PromptCard extends StatelessWidget {
   final VoidCallback? onTap;
   static const double _height = 112;
   static const double _borderRadius = 24;
-  static const double _iconContainerSize = 36;
   static const double _iconSize = 32;
-  static const double _iconContainerIconSize = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -78,10 +76,13 @@ class PromptCard extends StatelessWidget {
             Positioned(
               right: 11,
               top: 11,
-              child: _IconContainer(
+              child: DotsIconButton(
                 icon: DotsIconData.add,
-                size: _iconContainerSize,
-                iconSize: _iconContainerIconSize,
+                size: DotsIconButtonSize.medium,
+                backgroundColor: theme.colors.bgBtnImage.dotsWithOpacity(0.4),
+                color: theme.colors.labelAlwaysWhite,
+                state: DotsIconButtonState.disabled,
+                onTap: onTap,
               ),
             ),
           ],
@@ -91,35 +92,3 @@ class PromptCard extends StatelessWidget {
   }
 }
 
-class _IconContainer extends StatelessWidget {
-  const _IconContainer({
-    required this.icon,
-    required this.size,
-    required this.iconSize,
-  });
-
-  final DotsIconData icon;
-  final double size;
-  final double iconSize;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        color: theme.colors.bgBtnImage.dotsWithOpacity(0.4),
-        borderRadius: BorderRadius.circular(size),
-      ),
-      child: Center(
-        child: DotsIcon(
-          iconData: icon,
-          color: theme.colors.labelAlwaysWhite,
-          size: iconSize,
-        ),
-      ),
-    );
-  }
-}
