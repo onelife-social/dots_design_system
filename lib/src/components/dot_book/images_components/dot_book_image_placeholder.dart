@@ -14,12 +14,6 @@ class DotBookImagePlaceholder extends StatelessWidget {
   /// Optional badge text to display over the image (bottom-left).
   final String? sizeText;
 
-  /// Optional background color for the badge. Defaults to semi-transparent black.
-  final Color? badgeBackgroundColor;
-
-  /// Optional border color for the badge. Defaults to white.
-  final Color? badgeBorderColor;
-
   /// Optional handler for back button tap. Defaults to `Navigator.maybePop`.
   final Function()? onBackPressed;
 
@@ -32,8 +26,6 @@ class DotBookImagePlaceholder extends StatelessWidget {
     this.onError,
     this.borderRadius = const BorderRadius.all(Radius.circular(32.0)),
     this.sizeText,
-    this.badgeBackgroundColor,
-    this.badgeBorderColor,
     this.onBackPressed,
     this.backIcon,
   });

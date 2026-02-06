@@ -14,16 +14,12 @@ class PageControl extends StatelessWidget {
   /// Color for the active dot. Defaults to the theme's primary color.
   final Color? activeColor;
 
-  /// Padding around the row. Defaults to 18 vertical and 12 horizontal.
-  final EdgeInsetsGeometry padding;
-
   const PageControl({
     super.key,
     required this.count,
     this.activeIndex = 0,
     this.dotColor,
     this.activeColor,
-    this.padding = const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
   });
 
   @override
@@ -35,13 +31,13 @@ class PageControl extends StatelessWidget {
 
     if (count <= 0) {
       return Padding(
-        padding: padding,
+        padding: EdgeInsets.symmetric(vertical: 18, horizontal: 12),
         child: const SizedBox(width: double.infinity, height: 8),
       );
     }
 
     return Padding(
-      padding: padding,
+      padding: EdgeInsets.symmetric(vertical: 18, horizontal: 12),
       child: SizedBox(
         width: double.infinity,
         child: Row(
