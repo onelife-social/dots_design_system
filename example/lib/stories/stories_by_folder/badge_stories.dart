@@ -49,6 +49,16 @@ List<Story> get badgeStories => [
               options: BadgeLabelVariant.values
                   .map((item) => Option(label: item.name, value: item))
                   .toList()),
+          badgeIcon:  context.knobs.options<DotsIconData?>(
+            label: 'Badge Icon',
+            initial: null,
+            options: [
+              const Option(label: 'None', value: null),
+              ...DotsIconData.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ],
+          ),
         ),
       ),
       Story(
