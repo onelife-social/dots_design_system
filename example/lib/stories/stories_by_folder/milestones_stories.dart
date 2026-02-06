@@ -33,6 +33,62 @@ List<Story> get milestonesStories => [
       Story(
         name: 'Milestones/Milestones List',
         description: 'Demo page for Milestones List',
-        builder: (context) => SizedBox(),
+        builder: (context) {
+          final List<dynamic> list = [
+            'FEB 2026',
+            MilestoneCard(
+              width: 244,
+              imageProvider: CachedNetworkImageProvider('https://picsum.photos/250?image=1'),
+              title: 'Primeros pasos',
+              date: '2 años y 1 mes',
+              showBadge: false,
+              showEdit: false,
+            ),
+            'DIC 2025',
+            MilestoneCard(
+              width: 244,
+              imageProvider: CachedNetworkImageProvider('https://picsum.photos/250?image=2'),
+              title: 'Primeros pasos',
+              date: '2 años y 1 mes',
+              showBadge: false,
+              showEdit: false,
+            ),
+            MilestoneCard(
+              width: 244,
+              imageProvider: CachedNetworkImageProvider('https://picsum.photos/250?image=3'),
+              title: 'Primeros pasos',
+              date: '2 años y 1 mes',
+              showBadge: false,
+              showEdit: false,
+            ),
+            'JUL 2025',
+            MilestoneCard(
+              width: 244,
+              imageProvider: CachedNetworkImageProvider('https://picsum.photos/250?image=4'),
+              title: 'Primeros pasos',
+              date: '2 años y 1 mes',
+              showBadge: false,
+              showEdit: false,
+            ),
+            MilestoneCard(
+              width: 244,
+              imageProvider: CachedNetworkImageProvider('https://picsum.photos/250?image=5'),
+              title: 'Primeros pasos',
+              date: '2 años y 1 mes',
+              showBadge: false,
+              showEdit: false,
+            ),
+            MilestoneCard(
+              width: 244,
+              imageProvider: CachedNetworkImageProvider('https://picsum.photos/250?image=6'),
+              title: 'Primeros pasos',
+              date: '2 años y 1 mes',
+              showBadge: false,
+              showEdit: false,
+            ),
+          ];
+
+          return MilestonesList(list: list);
+        },
       ),
     ];
