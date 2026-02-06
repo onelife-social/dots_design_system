@@ -40,6 +40,7 @@ import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 import '../components/linear_gradient_blur_container_demo_page.dart';
+import 'stories_by_folder/dot_book_stories.dart';
 
 List<Story> get allStories => [
       ...actionSheetStories,
@@ -65,6 +66,7 @@ List<Story> get allStories => [
       ...topBarStories,
       ...uploadItemsStories,
       ...ratingStories,
+      ...dotBookStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',

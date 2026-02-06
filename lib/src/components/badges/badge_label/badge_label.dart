@@ -31,8 +31,9 @@ class BadgeLabel extends StatelessWidget {
     final badgeLabelTheme = getBadgeLabelThemeByTagVariant(theme, variant);
     final borderRadius = BorderRadius.circular(size.height);
 
-    final foregroundColor =
-        badgeLabelTheme.foregroundGradient == null ? badgeLabelTheme.foregroundColor : Colors.white;
+    final foregroundColor = badgeLabelTheme.foregroundGradient == null
+        ? badgeLabelTheme.foregroundColor
+        : Colors.white;
     Widget badgeLabel = Material(
       color: badgeLabelTheme.backgroundColor ?? Colors.transparent,
       borderRadius: borderRadius,
@@ -50,7 +51,9 @@ class BadgeLabel extends StatelessWidget {
                 child: Text(
                   content,
                   overflow: TextOverflow.ellipsis,
-                  style: size.getTextStyle(theme).copyWith(
+                  style: size
+                      .getTextStyle(theme)
+                      .copyWith(
                         color: foregroundColor,
                       ),
                 ),
@@ -74,6 +77,17 @@ class BadgeLabel extends StatelessWidget {
         styleType: theme.styles.bgBlur,
         decoration: BoxDecoration(
           borderRadius: borderRadius,
+        ),
+        child: badgeLabel,
+      );
+    }
+
+    // Apply optional border only if a color is provided.
+    if (badgeLabelTheme.borderColor != null) {
+      badgeLabel = Container(
+        decoration: BoxDecoration(
+          borderRadius: borderRadius,
+          border: Border.all(color: badgeLabelTheme.borderColor!, width: 1),
         ),
         child: badgeLabel,
       );
