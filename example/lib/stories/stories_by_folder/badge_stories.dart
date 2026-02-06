@@ -59,4 +59,17 @@ List<Story> get badgeStories => [
           max: context.knobs.slider(label: 'Max', initial: 100, min: 0, max: 500).toInt(),
         ),
       ),
+      Story(
+        name: 'Badges/Badge milestone',
+        description: 'Demo page for badge milestone',
+        builder: (context) => BadgeMilestone(
+          content: context.knobs.text(label: 'Content', initial: 'Label'),
+          variant: context.knobs.options<BadgeMilestoneVariant>(
+              label: 'Variant',
+              initial: BadgeMilestoneVariant.main,
+              options: BadgeMilestoneVariant.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList()),
+        ),
+      ),
     ];
