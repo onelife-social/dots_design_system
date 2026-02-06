@@ -2,17 +2,17 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class DotBookImagePlaceholder extends StatelessWidget {
-  /// Image provider to display in the card.
-  final ImageProvider imageProvider;
-
-  /// Callback when an error occurs while loading the image.
-  final void Function(Object exception, StackTrace? stackTrace)? onError;
+  /// Media widget to display in the card (image or video).
+  final Widget media;
 
   /// Border radius, by default 32.
   final BorderRadius borderRadius;
 
   /// Optional badge text to display over the image (bottom-left).
-  final String? sizeText;
+  final String? badgeText;
+
+  /// Optional icon for the badge. Defaults to null (no icon).
+  final DotsIconData? badgeIcon; 
 
   /// Optional handler for back button tap. Defaults to `Navigator.maybePop`.
   final Function()? onBackPressed;
@@ -22,10 +22,10 @@ class DotBookImagePlaceholder extends StatelessWidget {
 
   const DotBookImagePlaceholder({
     super.key,
-    required this.imageProvider,
-    this.onError,
+    required this.media,
     this.borderRadius = const BorderRadius.all(Radius.circular(32.0)),
-    this.sizeText,
+    this.badgeText,
+    this.badgeIcon,
     this.onBackPressed,
     this.backIcon,
   });
@@ -41,14 +41,7 @@ class DotBookImagePlaceholder extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              Image(
-                image: imageProvider,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  if (onError != null) onError!(error, stackTrace);
-                  return const SizedBox();
-                },
-              ),
+              Positioned.fill(child: media),
               if (onBackPressed != null)
                 Positioned(
                   left: 12,
@@ -61,12 +54,13 @@ class DotBookImagePlaceholder extends StatelessWidget {
                     onTap: onBackPressed
                   ),
                 ),
-              if (sizeText != null && sizeText!.isNotEmpty)
+              if (badgeText != null && badgeText!.isNotEmpty)
                 Positioned(
                   left: 16,
                   bottom: 16,
                   child: BadgeLabel(
-                    content: sizeText!,
+                    content: badgeText!,
+                    badgeIcon: badgeIcon,
                     variant: BadgeLabelVariant.white,
                     size: BadgeLabelSize.large,
                   ),
