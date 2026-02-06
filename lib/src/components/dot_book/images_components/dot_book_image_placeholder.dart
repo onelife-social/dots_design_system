@@ -14,7 +14,7 @@ class DotBookImagePlaceholder extends StatelessWidget {
   /// Optional icon for the badge. Defaults to null (no icon).
   final DotsIconData? badgeIcon; 
 
-  /// Optional handler for back button tap. Defaults to `Navigator.maybePop`.
+  /// Optional handler for back button tap. If null, no back button is shown.
   final Function()? onBackPressed;
 
   /// Optional icon for the back button. Defaults to `DotsIconData.chevronLeft`.

@@ -2,10 +2,10 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class BookFeatureTextItem extends StatelessWidget {
-  /// Icono a mostrar (del sistema de iconos de Dots).
+  /// Icon to display on the left side of the item.
   final DotsIconData icon;
 
-  /// title of book feature.
+  /// Title of book feature.
   final String title;
 
   /// Description of book feature.

@@ -65,7 +65,7 @@ List<Story> get dotBookStories => [
         ),
       ),
       Story(
-        name: 'DotBook Components/ book feature text item',
+        name: 'DotBook Components/book feature text item',
         description: 'Demo page for book feature text item',
         builder: (context) => ColoredBox(
           color: context.dotsTheme.colors.bgContainerSecondary,
