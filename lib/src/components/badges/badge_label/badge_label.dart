@@ -56,7 +56,8 @@ class BadgeLabel extends StatelessWidget {
             children: [
               if (badgeIcon != null) ...[
                 DotsIcon(
-                  iconData: badgeIcon!, 
+                  iconData: badgeIcon!,
+                  color: foregroundColor,
                   size: 16
                 ),
                 const SizedBox(width: 5),
