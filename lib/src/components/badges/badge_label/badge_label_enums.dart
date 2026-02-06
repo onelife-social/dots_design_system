@@ -38,12 +38,14 @@ enum BadgeLabelVariant {
   main,
   secondary,
   green,
+  greenMaterial,
   premiumPlus,
   premium;
 
   bool get isMedium => this == BadgeLabelVariant.main;
   bool get isSecondary => this == BadgeLabelVariant.secondary;
   bool get isGreen => this == BadgeLabelVariant.green;
+  bool get isGreenMaterial => this == BadgeLabelVariant.greenMaterial;
   bool get isPremium => this == BadgeLabelVariant.premium;
   bool get isPremiumPlus => this == BadgeLabelVariant.premiumPlus;
 }
