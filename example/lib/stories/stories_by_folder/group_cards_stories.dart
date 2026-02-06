@@ -225,44 +225,61 @@ List<Story> get cards => [
         },
       ),
       Story(
-        name: 'Cards/Prompt Card',
-        description: 'Demo page for prompt cards',
+        name: 'Cards/Create Card',
+        description: 'Demo page for create cards',
         builder: (context) {
           final theme = context.dotsTheme;
+          final variant = context.knobs.options<CreateCardVariant>(
+            label: 'Variant',
+            initial: CreateCardVariant.label,
+            options: CreateCardVariant.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          );
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Center(
-              child: PromptCard(
-                title: context.knobs.text(label: 'Title', initial: 'Su primer día en casa'),
-                icon: context.knobs.options<DotsIconData>(
-                  label: 'Icon',
-                  initial: DotsIconData.house,
-                  options: DotsIconData.values
-                      .map((item) => Option(label: item.name, value: item))
-                      .toList(),
+              child: CreateCard(
+                title: context.knobs.text(
+                  label: 'Title',
+                  initial: variant.isButton ? 'Crear un nuevo hito' : 'Su primer día en casa',
                 ),
-                primaryColor: context.knobs.options<Color>(
-                  label: 'Primary Color',
-                  initial: theme.colors.friends001,
-                  options: [
-                    Option(label: 'Orange (friends001)', value: theme.colors.friends001),
-                    Option(label: 'Blue (child001)', value: theme.colors.child001),
-                    Option(label: 'Green (family001)', value: theme.colors.family001),
-                    Option(label: 'Pink (birthday007)', value: theme.colors.birthday007),
-                    Option(label: 'Purple (hobby001)', value: theme.colors.hobby001),
-                  ],
-                ),
-                secondaryColor: context.knobs.options<Color>(
-                  label: 'Secondary Color',
-                  initial: theme.colors.friends008,
-                  options: [
-                    Option(label: 'Orange (friends008)', value: theme.colors.friends008),
-                    Option(label: 'Blue (child006)', value: theme.colors.child006),
-                    Option(label: 'Green (family004)', value: theme.colors.family004),
-                    Option(label: 'Pink (birthday003)', value: theme.colors.birthday003),
-                    Option(label: 'Purple (hobby002)', value: theme.colors.hobby002),
-                  ],
-                ),
+                variant: variant,
+                icon: variant.isLabel
+                    ? context.knobs.options<DotsIconData>(
+                        label: 'Icon',
+                        initial: DotsIconData.house,
+                        options: DotsIconData.values
+                            .map((item) => Option(label: item.name, value: item))
+                            .toList(),
+                      )
+                    : null,
+                primaryColor: variant.isLabel
+                    ? context.knobs.options<Color>(
+                        label: 'Primary Color',
+                        initial: theme.colors.friends001,
+                        options: [
+                          Option(label: 'Orange (friends001)', value: theme.colors.friends001),
+                          Option(label: 'Blue (child001)', value: theme.colors.child001),
+                          Option(label: 'Green (family001)', value: theme.colors.family001),
+                          Option(label: 'Pink (birthday007)', value: theme.colors.birthday007),
+                          Option(label: 'Purple (hobby001)', value: theme.colors.hobby001),
+                        ],
+                      )
+                    : null,
+                secondaryColor: variant.isLabel
+                    ? context.knobs.options<Color>(
+                        label: 'Secondary Color',
+                        initial: theme.colors.friends008,
+                        options: [
+                          Option(label: 'Orange (friends008)', value: theme.colors.friends008),
+                          Option(label: 'Blue (child006)', value: theme.colors.child006),
+                          Option(label: 'Green (family004)', value: theme.colors.family004),
+                          Option(label: 'Pink (birthday003)', value: theme.colors.birthday003),
+                          Option(label: 'Purple (hobby002)', value: theme.colors.hobby002),
+                        ],
+                      )
+                    : null,
                 onTap: () {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Card tapped')),

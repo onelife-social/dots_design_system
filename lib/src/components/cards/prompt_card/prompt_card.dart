@@ -1,37 +1,36 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class PromptCard extends StatelessWidget {
-  const PromptCard({
+enum CreateCardVariant {
+  label,
+  button;
+
+  bool get isLabel => this == CreateCardVariant.label;
+  bool get isButton => this == CreateCardVariant.button;
+}
+
+class CreateCard extends StatelessWidget {
+  const CreateCard({
     super.key,
     required this.title,
-    required this.icon,
-    required this.primaryColor,
-    required this.secondaryColor,
+    this.icon,
+    this.primaryColor,
+    this.secondaryColor,
     this.width = 164,
+    this.variant = CreateCardVariant.label,
     this.onTap,
   });
 
-  /// The text to display at the bottom of the card.
   final String title;
-
-  /// The icon to display in the top-left corner.
-  final DotsIconData icon;
-
-  /// The primary color for the gradient (left).
-  final Color primaryColor;
-
-  /// The secondary color for the gradient (right).
-  final Color secondaryColor;
-
-  /// The width of the card.
+  final DotsIconData? icon;
+  final Color? primaryColor;
+  final Color? secondaryColor;
   final double width;
-
-  /// Callback when the card is tapped.
+  final CreateCardVariant variant;
   final VoidCallback? onTap;
+
   static const double _height = 112;
   static const double _borderRadius = 24;
-  static const double _iconSize = 32;
 
   @override
   Widget build(BuildContext context) {
@@ -44,51 +43,103 @@ class PromptCard extends StatelessWidget {
         height: _height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(_borderRadius),
-          gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            colors: [primaryColor, secondaryColor],
-          ),
+          color: variant.isButton ? theme.colors.bgContainerSecondaryOnBackground : null,
+          gradient: variant.isLabel && primaryColor != null
+              ? LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [primaryColor!, secondaryColor ?? primaryColor!],
+                )
+              : null,
         ),
-        child: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  DotsIcon(
-                    iconData: icon,
-                    size: _iconSize,
-                  ),
-                  const Spacer(),
-                  Text(
-                    title,
-                    style: theme.typo.main.bodyLargeMedium.copyWith(
-                      color: theme.colors.labelAlwaysWhite,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              right: 11,
-              top: 11,
-              child: DotsIconButton(
-                icon: DotsIconData.add,
-                size: DotsIconButtonSize.medium,
-                backgroundColor: theme.colors.bgBtnImage.dotsWithOpacity(0.4),
-                color: theme.colors.labelAlwaysWhite,
-                state: DotsIconButtonState.disabled,
-                onTap: onTap,
-              ),
-            ),
-          ],
-        ),
+        child: variant.isButton
+            ? _PromptCardCreateContent(title: title)
+            : _PromptCardSuggestionContent(title: title, icon: icon!),
       ),
     );
   }
 }
 
+class _PromptCardSuggestionContent extends StatelessWidget {
+  const _PromptCardSuggestionContent({
+    required this.title,
+    required this.icon,
+  });
+
+  final String title;
+  final DotsIconData icon;
+
+  static const double _iconSize = 32;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+
+    return Stack(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DotsIcon(
+                iconData: icon,
+                size: _iconSize,
+              ),
+              const Spacer(),
+              Text(
+                title,
+                style: theme.typo.main.bodyLargeMedium.copyWith(
+                  color: theme.colors.labelAlwaysWhite,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          right: 11,
+          top: 11,
+          child: DotsIconButton(
+            icon: DotsIconData.add,
+            size: DotsIconButtonSize.medium,
+            backgroundColor: theme.colors.bgBtnImage.dotsWithOpacity(0.4),
+            color: theme.colors.labelAlwaysWhite,
+            state: DotsIconButtonState.disabled,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _PromptCardCreateContent extends StatelessWidget {
+  const _PromptCardCreateContent({
+    required this.title,
+  });
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      child: Center(
+        child: DotsIconButton(
+          icon: DotsIconData.add,
+          size: DotsIconButtonSize.large,
+          direction: DotsIconButtonDirection.column,
+          backgroundColor: theme.colors.bgContainerSecondaryOnBackground,
+          color: theme.colors.textPrimary,
+          label: title,
+          labelStyle: theme.typo.main.labelDefaultRegular.copyWith(
+            color: theme.colors.textPrimary,
+          ),
+        ),
+      ),
+    );
+  }
+}
