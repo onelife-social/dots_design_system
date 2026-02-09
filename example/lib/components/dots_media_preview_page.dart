@@ -23,7 +23,6 @@ class DotsMediaPreviewPage extends StatelessWidget {
           label: label,
           variant: variant,
           onTap: () {},
-          onError: null,
         ),
       ],
     );

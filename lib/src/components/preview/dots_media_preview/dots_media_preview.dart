@@ -15,8 +15,8 @@ class DotsMediaPreview extends StatelessWidget {
   final String label;
   final DotsMediaPreviewVariant variant;
   final VoidCallback onTap;
-  final void Function(Object exception, StackTrace? stackTrace)? onError;
   final double width;
+  final double boxWidth;
 
   const DotsMediaPreview({
     super.key,
@@ -24,8 +24,8 @@ class DotsMediaPreview extends StatelessWidget {
     required this.label,
     required this.variant,
     required this.onTap,
-    required this.onError,
     this.width = 68,
+    this.boxWidth = 100,
   });
 
   @override
@@ -33,7 +33,7 @@ class DotsMediaPreview extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
-        width: width,
+        width: boxWidth,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -41,7 +41,7 @@ class DotsMediaPreview extends StatelessWidget {
               alignment: Alignment.center,
               children: [
                 _MemoryCardBorder(variant: variant, width: width),
-                _Card(image: image, onError: onError, width: width),
+                _Card(image: image, width: width),
               ],
             ),
             const SizedBox(height: 8),
@@ -55,12 +55,10 @@ class DotsMediaPreview extends StatelessWidget {
 
 class _Card extends StatelessWidget {
   final Widget image;
-  final void Function(Object exception, StackTrace? stackTrace)? onError;
   final double width;
 
   const _Card({
     required this.image,
-    required this.onError,
     required this.width,
   });
 
