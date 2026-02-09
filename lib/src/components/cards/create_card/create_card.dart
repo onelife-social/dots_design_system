@@ -85,6 +85,7 @@ class _PromptCardSuggestionContent extends StatelessWidget {
               DotsIcon(
                 iconData: icon,
                 size: _iconSize,
+                color: theme.colors.labelAlwaysWhite,
               ),
               const Spacer(),
               Text(
