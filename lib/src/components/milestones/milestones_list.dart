@@ -67,7 +67,7 @@ class MilestonesList extends StatelessWidget {
                           } else if (item is MilestoneCard) {
                             return item;
                           } else {
-                            return Offstage();
+                            return const Offstage();
                           }
                         },
                       ),
