@@ -57,7 +57,7 @@ class _Image extends StatelessWidget {
     };
 
     return Image.asset(
-      'packages/dots_design_system/assets/social_media/$file',
+      'packages/dots_design_system/assets/images/social_media/$file',
       height: size.size,
       width: size.size,
     );

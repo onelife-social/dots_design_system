@@ -22,6 +22,7 @@ import 'package:example/stories/stories_by_folder/countdown_stories.dart';
 import 'package:example/stories/stories_by_folder/dropdown_stories.dart';
 import 'package:example/stories/stories_by_folder/group_cards_stories.dart';
 import 'package:example/stories/stories_by_folder/memory_details.dart';
+import 'package:example/stories/stories_by_folder/milestones_stories.dart';
 import 'package:example/stories/stories_by_folder/miscellaneous_stories.dart';
 import 'package:example/stories/stories_by_folder/notifications_stories.dart';
 import 'package:example/stories/stories_by_folder/photos_stories.dart';
@@ -66,6 +67,7 @@ List<Story> get allStories => [
       ...topBarStories,
       ...uploadItemsStories,
       ...ratingStories,
+      ...milestonesStories,
       ...dotBookStories,
       Story(
         name: 'Container',
