@@ -31,13 +31,13 @@ class PageControl extends StatelessWidget {
 
     if (count <= 0) {
       return Padding(
-        padding: EdgeInsets.symmetric(vertical: 18, horizontal: 12),
+        padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
         child: const SizedBox(width: double.infinity, height: 8),
       );
     }
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 18, horizontal: 12),
+      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
       child: SizedBox(
         width: double.infinity,
         child: Row(
