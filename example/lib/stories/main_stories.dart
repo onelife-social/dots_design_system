@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/components/blur_container_demo_page.dart';
 import 'package:example/components/carrousel_demo_page.dart';
+import 'package:example/components/dots_media_preview_page.dart';
 import 'package:example/components/dots_menu_demo_page.dart';
 import 'package:example/components/dots_slider_demo.dart';
 import 'package:example/components/dots_text_animations_demo_page.dart';
@@ -137,6 +138,27 @@ List<Story> get allStories => [
               label: 'Variant',
               initial: MemoryCardVariant.memory,
               options: MemoryCardVariant.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
+            image: CachedNetworkImage(
+              imageUrl: context.knobs
+                  .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
+            ),
+          ),
+        ),
+      ),
+      Story(
+        name: 'Dots Media Preview Card',
+        description: 'Demo page for Dots Media Preview Card',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: DotsMediaPreviewPage(
+            label: context.knobs.text(label: 'Boda', initial: 'Boda'),
+            variant: context.knobs.options<DotsMediaPreviewVariant>(
+              label: 'Variant',
+              initial: DotsMediaPreviewVariant.active,
+              options: DotsMediaPreviewVariant.values
                   .map((item) => Option(label: item.name, value: item))
                   .toList(),
             ),

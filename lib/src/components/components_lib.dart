@@ -48,3 +48,4 @@ export 'upload_items/upload_lib.dart';
 export 'rating/rating_lib.dart';
 export 'milestones/milestones_lib.dart';
 export 'dot_book/dot_book_lib.dart';
+export 'preview/preview.dart';
