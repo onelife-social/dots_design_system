@@ -58,6 +58,7 @@ enum DotsIconData {
   business('ic-business.svg', DotsIconGroup.album),
   car('ic-car.svg', DotsIconGroup.album),
   cat('ic-cat.svg', DotsIconGroup.album),
+  christmasTree('ic-christmas-tree.svg', DotsIconGroup.album),
   dog('ic-dog.svg', DotsIconGroup.album),
   earth('ic-earth.svg', DotsIconGroup.album),
   fish('ic-fish.svg', DotsIconGroup.album),
@@ -138,6 +139,7 @@ enum DotsIconData {
   archive('ic-archive.svg', DotsIconGroup.media),
   bookOpen('ic-book-open.svg', DotsIconGroup.media),
   bookOpenFilled('ic-book-open--filled.svg', DotsIconGroup.media),
+  bookmarkFill('ic-bookmark-fill.svg', DotsIconGroup.media),
   camera('ic-camera.svg', DotsIconGroup.media),
   cameraFrame('ic-camera--frame.svg', DotsIconGroup.media),
   cloud('ic-cloud.svg', DotsIconGroup.media),
@@ -181,6 +183,7 @@ enum DotsIconData {
   // Social
   chat('ic-chat.svg', DotsIconGroup.social),
   chatLock('ic-chat-lock.svg', DotsIconGroup.social),
+  ellipsisMessage('ic-ellipsis-message.svg', DotsIconGroup.social),
   emojiLove('ic-emoji-love.svg', DotsIconGroup.social),
   fire('ic-fire.svg', DotsIconGroup.social),
   group('ic-group.svg', DotsIconGroup.social),
