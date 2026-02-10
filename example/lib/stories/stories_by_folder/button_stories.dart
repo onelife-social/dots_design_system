@@ -356,4 +356,49 @@ List<Story> get buttonStories => [
           ),
         ),
       ),
+      Story(
+        name: 'Buttons/toggle buttons',
+        description: 'Demo page for toggle buttons',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: DotBookToggleButton(
+                    title: context.knobs.text(label: 'Left title', initial: 'Standard'),
+                    subtitle: context.knobs.text(label: 'Left subtitle', initial: '20 x 30 cm'),
+                    isSelected: context.knobs.boolean(
+                      label: 'Left selected',
+                      initial: true,
+                    ),
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Left tapped')),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: DotBookToggleButton(
+                    title: context.knobs.text(label: 'Right title', initial: 'Large'),
+                    subtitle: context.knobs.text(label: 'Right subtitle', initial: '30 x 40 cm'),
+                    isSelected: context.knobs.boolean(
+                      label: 'Right selected',
+                      initial: false,
+                    ),
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Right tapped')),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     ];

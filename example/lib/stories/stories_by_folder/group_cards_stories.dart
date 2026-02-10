@@ -290,4 +290,44 @@ List<Story> get cards => [
           );
         },
       ),
+      Story(
+        name: 'Cards/DotBook Feature Card',
+        description: 'Demo page for DotBook feature card',
+        builder: (context) => Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: DotBookFeatureCard(
+              imageCard: NetworkImage(context.knobs.text(
+                  label: 'Feature image', initial: 'https://picsum.photos/250?image=9')),
+              imageHeight: context.knobs.slider(label: 'Image Height', initial: 80, min: 50, max: 200),
+              width: context.knobs.slider(label: 'Card Width', initial: 185, min: 100, max: 300),
+              title: context.knobs.text(label: 'Title', initial: 'High quality paper'),
+              description: context.knobs.text(
+                label: 'Description',
+                initial: 'Our books are made with high quality paper that ensures durability and a pleasant reading experience.',
+              ),
+            ),
+          ),
+      ),
+      Story(
+        name: 'Cards/Testimonial card',
+        description: 'Demo page for book feature text item',
+         builder: (context) => 
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: DotBookTestimonialCard(
+              imageCard: NetworkImage(context.knobs.text(
+                  label: 'Testimonial image', initial: 'https://picsum.photos/250?image=9')),
+              imageProfile: NetworkImage(context.knobs.text(
+                  label: 'Profile image', initial: 'https://picsum.photos/250?image=10')),
+              imageHeight: context.knobs.slider(label: 'Image Height', initial: 170, min: 50, max: 300),
+              width: context.knobs.slider(label: 'Card Width', initial: 300, min: 100, max: 600),
+              title: context.knobs.text(label: 'Title', initial: 'John Doe'),
+              description: context.knobs.text(
+                label: 'Description',
+                initial: 'I absolutely love this book! The quality is amazing and it has become my go-to for all my reading needs.',
+              ),
+              username: context.knobs.text(label: 'Username', initial: '@johndoe'),
+            ),
+          ),
+      ),
     ];
