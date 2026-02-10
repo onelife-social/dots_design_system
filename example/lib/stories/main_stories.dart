@@ -38,6 +38,7 @@ import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:example/stories/stories_by_folder/toast_stories.dart';
 import 'package:example/stories/stories_by_folder/top_bar_stories.dart';
 import 'package:example/stories/stories_by_folder/upload_items_stories.dart';
+import 'package:example/stories/stories_by_folder/accordion_stories.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
@@ -70,6 +71,7 @@ List<Story> get allStories => [
       ...ratingStories,
       ...milestonesStories,
       ...dotBookStories,
+      ...accordionStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
