@@ -17,6 +17,9 @@ class MilestoneCard extends StatelessWidget {
   /// Title of the card.
   final String? title;
 
+  /// Whether to limit the title to a single line with ellipsis.
+  final bool limitTitle;
+
   /// The date of the milestone.
   final String? date;
 
@@ -38,6 +41,7 @@ class MilestoneCard extends StatelessWidget {
     required this.imageProvider,
     this.errorBuilder,
     this.title,
+    this.limitTitle = false,
     this.date,
     this.onTap,
     this.showBadge = false,
@@ -102,7 +106,7 @@ class MilestoneCard extends StatelessWidget {
   Widget _buildContent(BuildContext context) {
     Widget content = const SizedBox();
     if (title?.isNotEmpty == true) {
-      content = _CardTitle(title: title!, date: date);
+      content = _CardTitle(title: title!, limitTitle: limitTitle, date: date);
     } else if (showBadge) {
       content = const _CardBadge();
     } else if (showEdit) {
@@ -142,28 +146,39 @@ class _CardWithBlur extends StatelessWidget {
 
 class _CardTitle extends StatelessWidget {
   final String title;
+  final bool limitTitle;
   final String? date;
 
   const _CardTitle({
     required this.title,
+    this.limitTitle = false,
     this.date,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    final titleStyle = theme.typo.main.bodyLargeMedium.copyWith(
+      color: theme.colors.labelAlwaysWhite,
+    );
 
     return Padding(
       padding: const EdgeInsets.only(top: 20, left: 36, right: 36),
       child: Column(
         children: [
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: theme.typo.main.bodyLargeMedium.copyWith(
-              color: theme.colors.labelAlwaysWhite,
-            ),
-          ),
+          limitTitle
+              ? Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: titleStyle,
+                )
+              : Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: titleStyle,
+                ),
           if (date?.isNotEmpty == true)
             Text(
               date!,
