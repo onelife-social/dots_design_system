@@ -140,6 +140,11 @@ List<Story> get dotBookStories => [
                 label: 'Description',
                 initial: 'Our books are made with high quality paper that ensures durability and a pleasant reading experience.',
               ),
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Card tapped')),
+                );
+              },
             ),
           ),
       ),
@@ -160,6 +165,11 @@ List<Story> get dotBookStories => [
                 initial: 'I absolutely love this book! The quality is amazing and it has become my go-to for all my reading needs.',
               ),
               username: context.knobs.text(label: 'Username', initial: '@johndoe'),
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Card tapped')),
+                );
+              },
             ),
           ),
       ),

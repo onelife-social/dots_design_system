@@ -15,7 +15,7 @@ class DotBookFeatureCard extends StatelessWidget {
 	final String? description;
 
 	/// Optional tap callback.
-	final VoidCallback? onTap;
+	final Function()? onTap;
 
 	/// Optional width for the card.
 	final double width;
@@ -39,51 +39,54 @@ class DotBookFeatureCard extends StatelessWidget {
 	Widget build(BuildContext context) {
 		final theme = context.dotsTheme;
 
-		return SizedBox(
-			width: width,
-			child: Container(
-				padding: EdgeInsets.all(20),
-				decoration: BoxDecoration(
-					color: theme.colors.bgContainerSecondary,
-					borderRadius: DotsBorderRadius.r32,
-				),
-				child: Column(
-					spacing: 12,
-					mainAxisSize: MainAxisSize.min,
-					crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-					children: [
-            if (imageCard != null)
-              ClipRRect(
-                  borderRadius: DotsBorderRadius.r24,
-                  child: Image(
-                      image: imageCard!,
-                      height: imageHeight,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                          if (onError != null) onError!(error, stackTrace);
-                          return const SizedBox();
-                      },
+    return GestureDetector(
+      onTap: onTap,
+      child: SizedBox(
+        width: width,
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: theme.colors.bgContainerSecondary,
+            borderRadius: DotsBorderRadius.r32,
+          ),
+          child: Column(
+            spacing: 12,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+                  if (imageCard != null)
+                    ClipRRect(
+                        borderRadius: DotsBorderRadius.r24,
+                        child: Image(
+                            image: imageCard!,
+                            height: imageHeight,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                                if (onError != null) onError!(error, stackTrace);
+                                return const SizedBox();
+                            },
+                        ),
+                    ),
+                  if (title != null && title!.isNotEmpty)
+                    Text(
+                      title!,
+                      style: theme.typo.main.titleH6.copyWith(
+                        color: theme.colors.textPrimary,
+                      ),
+                    ),
+              if (description != null && description!.isNotEmpty)
+                Text(
+                  description!,
+                  style: theme.typo.main.bodyDefaultRegular.copyWith(
+                    color: theme.colors.textTertiary,
                   ),
-              ),
-            if (title != null && title!.isNotEmpty)
-              Text(
-                title!,
-                style: theme.typo.main.titleH6.copyWith(
-                  color: theme.colors.textPrimary,
                 ),
-              ),
-						if (description != null && description!.isNotEmpty)
-							Text(
-								description!,
-								style: theme.typo.main.bodyDefaultRegular.copyWith(
-									color: theme.colors.textTertiary,
-								),
-						  ),
-          ],
-				),
-			),
-		);
+                ],
+          ),
+        ),
+      ),
+    );
 	}
 }

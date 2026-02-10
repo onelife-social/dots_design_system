@@ -357,7 +357,7 @@ List<Story> get buttonStories => [
         ),
       ),
       Story(
-        name: 'Buttons/toggle buttons',
+        name: 'Buttons/Toggle Buttons',
         description: 'Demo page for toggle buttons',
         builder: (context) => Padding(
           padding: const EdgeInsets.all(16.0),
