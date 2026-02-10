@@ -1,6 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
+/// Accordion component for Dots Design System.
 class DotsAccordionSection {
   final String title;
   final Widget content;
@@ -52,7 +53,8 @@ class _DotsAccordionState extends State<DotsAccordion> with TickerProviderStateM
   @override
   void didUpdateWidget(covariant DotsAccordion oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.sections != widget.sections) {
+    if (oldWidget.sections != widget.sections ||
+        oldWidget.sections.length != widget.sections.length) {
       _expanded = widget.sections.map((s) => s.expanded).toList();
     }
   }
