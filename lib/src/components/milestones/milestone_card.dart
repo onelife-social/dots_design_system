@@ -72,9 +72,7 @@ class MilestoneCard extends StatelessWidget {
               styleType: theme.styles.squircle32,
               child: Stack(
                 children: [
-                  title?.isNotEmpty == true && date?.isNotEmpty == true
-                      ? _CardWithBlur(imageWidget: imageWidget)
-                      : imageWidget,
+                  title?.isNotEmpty == true ? _CardWithBlur(imageWidget: imageWidget) : imageWidget,
 
                   Container(
                     decoration: ShapeDecoration(
@@ -99,8 +97,8 @@ class MilestoneCard extends StatelessWidget {
 
   Widget _buildContent(BuildContext context) {
     Widget content = const SizedBox();
-    if (title?.isNotEmpty == true && date?.isNotEmpty == true) {
-      content = _CardTitle(title: title!, date: date!);
+    if (title?.isNotEmpty == true) {
+      content = _CardTitle(title: title!, date: date);
     } else if (showBadge) {
       content = const _CardBadge();
     } else if (showEdit) {
@@ -140,11 +138,11 @@ class _CardWithBlur extends StatelessWidget {
 
 class _CardTitle extends StatelessWidget {
   final String title;
-  final String date;
+  final String? date;
 
   const _CardTitle({
     required this.title,
-    required this.date,
+    this.date,
   });
 
   @override
@@ -162,13 +160,14 @@ class _CardTitle extends StatelessWidget {
               color: theme.colors.labelAlwaysWhite,
             ),
           ),
-          Text(
-            date,
-            textAlign: TextAlign.center,
-            style: theme.typo.main.bodyDefaultRegular.copyWith(
-              color: theme.colors.labelAlwaysWhite,
+          if (date != null)
+            Text(
+              date!,
+              textAlign: TextAlign.center,
+              style: theme.typo.main.bodyDefaultRegular.copyWith(
+                color: theme.colors.labelAlwaysWhite,
+              ),
             ),
-          ),
         ],
       ),
     );
