@@ -72,7 +72,11 @@ class MilestoneCard extends StatelessWidget {
               styleType: theme.styles.squircle32,
               child: Stack(
                 children: [
-                  title?.isNotEmpty == true ? _CardWithBlur(imageWidget: imageWidget) : imageWidget,
+                  title?.isNotEmpty == true
+                      ? _CardWithBlur(
+                          imageWidget: imageWidget,
+                        )
+                      : imageWidget,
 
                   Container(
                     decoration: ShapeDecoration(
@@ -160,7 +164,7 @@ class _CardTitle extends StatelessWidget {
               color: theme.colors.labelAlwaysWhite,
             ),
           ),
-          if (date != null)
+          if (date?.isNotEmpty == true)
             Text(
               date!,
               textAlign: TextAlign.center,
