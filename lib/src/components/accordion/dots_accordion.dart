@@ -58,15 +58,17 @@ class _DotsAccordionState extends State<DotsAccordion> with TickerProviderStateM
   }
 
   void _toggle(int index) {
-    setState(() {
-      if (widget.singleOpen) {
-        for (int i = 0; i < _expanded.length; i++) {
-          _expanded[i] = i == index ? !_expanded[i] : false;
+    if (mounted) {
+      setState(() {
+        if (widget.singleOpen) {
+          for (int i = 0; i < _expanded.length; i++) {
+            _expanded[i] = i == index ? !_expanded[i] : false;
+          }
+        } else {
+          _expanded[index] = !_expanded[index];
         }
-      } else {
-        _expanded[index] = !_expanded[index];
-      }
-    });
+      });
+    }
   }
 
   @override
