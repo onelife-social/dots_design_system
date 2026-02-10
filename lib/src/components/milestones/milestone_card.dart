@@ -158,27 +158,20 @@ class _CardTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    final titleStyle = theme.typo.main.bodyLargeMedium.copyWith(
-      color: theme.colors.labelAlwaysWhite,
-    );
 
     return Padding(
       padding: const EdgeInsets.only(top: 20, left: 36, right: 36),
       child: Column(
         children: [
-          limitTitle
-              ? Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: titleStyle,
-                )
-              : Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: titleStyle,
-                ),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            maxLines: limitTitle ? 1 : null,
+            overflow: limitTitle ? TextOverflow.ellipsis : null,
+            style: theme.typo.main.bodyLargeMedium.copyWith(
+              color: theme.colors.labelAlwaysWhite,
+            ),
+          ),
           if (date?.isNotEmpty == true)
             Text(
               date!,
