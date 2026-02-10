@@ -83,8 +83,10 @@ class _DotsAccordionState extends State<DotsAccordion> with TickerProviderStateM
         for (int i = 0; i < widget.sections.length; i++) ...[
           Divider(
             height: 3,
-            color: theme.colors.labelSecondary,
+            color: theme.colors.labelSecondary.dotsWithOpacity(0.5),
+            thickness: 0.2,
           ),
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: _SectionHeader(
