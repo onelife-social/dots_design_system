@@ -104,16 +104,29 @@ class MilestoneCard extends StatelessWidget {
   }
 
   Widget _buildContent(BuildContext context) {
-    Widget content = const SizedBox();
+    final List<Widget> content = [];
+
     if (title?.isNotEmpty == true) {
-      content = _CardTitle(title: title!, limitTitle: limitTitle, date: date);
-    } else if (showBadge) {
-      content = const _CardBadge();
-    } else if (showEdit) {
-      content = _BtnEdit(onTap: onTapEdit);
+      content.add(
+        SizedBox.expand(
+          child: _CardTitle(title: title!, limitTitle: limitTitle, date: date),
+        ),
+      );
     }
 
-    return SizedBox.expand(child: content);
+    if (showBadge) {
+      content.add(const _CardBadge());
+    }
+
+    if (showEdit) {
+      content.add(_BtnEdit(onTap: onTapEdit));
+    }
+
+    return SizedBox.expand(
+      child: Stack(
+        children: content.isEmpty ? const [SizedBox()] : content,
+      ),
+    );
   }
 }
 

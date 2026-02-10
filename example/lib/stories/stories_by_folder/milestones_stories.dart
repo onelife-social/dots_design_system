@@ -69,7 +69,7 @@ List<Story> get milestonesStories => [
               title: 'Primeros pasos asdf asdf asdf asdf asdf asdf asdf asdf dfgh dfgh dfgh ',
               date: '2 años y 1 mes',
               showBadge: false,
-              showEdit: false,
+              showEdit: true,
             ),
             MilestoneCard(
               width: 244,
@@ -78,7 +78,7 @@ List<Story> get milestonesStories => [
               limitTitle: true,
               date: '2 años y 1 mes',
               showBadge: false,
-              showEdit: false,
+              showEdit: true,
             ),
           ];
 
