@@ -179,6 +179,9 @@ enum DotsIconData {
   volume('ic-volume.svg', DotsIconGroup.premium),
   volumeOff('ic-volume--off.svg', DotsIconGroup.premium),
   tag('ic-tag.svg', DotsIconGroup.premium),
+  cartBadgeQuestionmark('ic-cart-badge-questionmark.svg', DotsIconGroup.premium),
+  creditCard('ic-creditcard.svg', DotsIconGroup.premium),
+  truckBadgeClock('ic-truck-badge-clock.svg', DotsIconGroup.premium),
 
   // Social
   chat('ic-chat.svg', DotsIconGroup.social),
