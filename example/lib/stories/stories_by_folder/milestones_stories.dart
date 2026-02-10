@@ -68,7 +68,6 @@ List<Story> get milestonesStories => [
               width: 244,
               imageProvider: CachedNetworkImageProvider('https://picsum.photos/250?image=5'),
               title: 'Primeros pasos',
-              date: '2 años y 1 mes',
               showBadge: false,
               showEdit: false,
             ),
