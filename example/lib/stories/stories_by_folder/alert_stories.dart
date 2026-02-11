@@ -197,6 +197,32 @@ List<Story> get alertStories => [
                     showBlurBackground: showBlurBackground,
                   );
 
+                case DotsAlertVariant.twoVerticalButtonsNoActive:
+                  return DotsAlert.twoVerticalButtonsNoActive(
+                    iconData: iconData,
+                    title: title,
+                    mainButtonText: mainButtonText,
+                    mainButtonOnTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Main button tapped!')),
+                      );
+                    },
+                    secondaryButtonText: secondaryButtonText,
+                    secondaryButtonOnTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Secondary button tapped!')),
+                      );
+                    },
+                    onClose: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Close button tapped!')),
+                      );
+                    },
+                    showCloseButton: showCloseButton,
+                    iconImage: iconImage,
+                    showBlurBackground: showBlurBackground,
+                  );
+
                 case DotsAlertVariant.input:
                   return DotsAlert.input(
                     iconData: iconData,
