@@ -1,20 +1,20 @@
-import 'package:dots_design_system/dots_design_system.dart';
+import '../../../dots_design_system.dart';
 import 'package:flutter/material.dart';
-
-import '../../core/values/paths/images_paths.dart';
 
 enum DotsListsItemVariant {
   main,
   selector,
   icon,
   check,
-  radioButton;
+  radioButton,
+  divider;
 
   bool get isMain => this == DotsListsItemVariant.main;
   bool get isSelector => this == DotsListsItemVariant.selector;
   bool get isIcon => this == DotsListsItemVariant.icon;
   bool get isCheck => this == DotsListsItemVariant.check;
   bool get isRadioButton => this == DotsListsItemVariant.radioButton;
+  bool get isDivider => this == DotsListsItemVariant.divider;
 }
 
 enum DotsListsItemPicType {
@@ -87,6 +87,28 @@ class DotsListsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+
+    if (variant.isDivider) {
+      return Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                label ?? '',
+                style: theme.typo.main.labelSmallMedium.copyWith(color: theme.colors.textSecondary),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Divider(
+            height: 3,
+            color: theme.colors.labelSecondary.dotsWithOpacity(0.5),
+            thickness: 0.2,
+          ),
+        ],
+      );
+    }
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
