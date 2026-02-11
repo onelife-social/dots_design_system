@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class MilestonesList extends StatelessWidget {
   final List<dynamic> list;
+  final int seed;
 
   final double cardHeight = 326;
   final double badgeHeight = 17;
@@ -13,6 +14,7 @@ class MilestonesList extends StatelessWidget {
   const MilestonesList({
     super.key,
     required this.list,
+    required this.seed,
   });
 
   @override
@@ -27,7 +29,13 @@ class MilestonesList extends StatelessWidget {
 
     final double topPadding = badgeHeight / 2; // first item is always a badge
     final double bottomPadding = cardHeight / 2 + tailExtension; // last item is always a card
-    final double totalHeight = _totalHeight(list, topPadding, bottomPadding);
+    final Random random = Random(seed);
+    final double totalHeight = _totalHeight(
+      list,
+      topPadding,
+      bottomPadding,
+      random,
+    );
 
     return SingleChildScrollView(
       child: SizedBox(
@@ -35,7 +43,7 @@ class MilestonesList extends StatelessWidget {
         child: LayoutBuilder(
           builder: (_, constraints) {
             final double centerX = constraints.maxWidth / 2;
-            final List<Offset> points = _generatePoints(list, count, centerX, topPadding);
+            final List<Offset> points = _generatePoints(list, count, centerX, topPadding, random);
 
             return Stack(
               children: [
@@ -81,24 +89,29 @@ class MilestonesList extends StatelessWidget {
     );
   }
 
-  double _totalHeight(List<dynamic> items, double topPadding, double bottomPadding) {
+  double _totalHeight(
+    List<dynamic> items,
+    double topPadding,
+    double bottomPadding,
+    Random random,
+  ) {
     double totalHeight = topPadding;
 
     for (int i = 0; i < items.length - 1; i++) {
-      totalHeight += _verticalSpacing(items[i], items[i + 1], i);
+      totalHeight += _verticalSpacing(items[i], items[i + 1], random);
     }
 
     return totalHeight + bottomPadding;
   }
 
-  double _verticalSpacing(Object curr, Object next, int index) {
+  double _verticalSpacing(Object curr, Object next, Random random) {
     final bool currIsCard = curr is MilestoneCard;
     final bool nextIsCard = next is MilestoneCard;
 
     final double currHeight = currIsCard ? cardHeight : badgeHeight;
     final double nextHeight = nextIsCard ? cardHeight : badgeHeight;
     // gap = random 8-20 between cards, 64 between badge and card or card and badge
-    final double gap = (currIsCard && nextIsCard) ? (8.0 + Random().nextInt(13)) : 64.0;
+    final double gap = (currIsCard && nextIsCard) ? (8.0 + random.nextInt(13)) : 64.0;
 
     return (currHeight / 2) + gap + (nextHeight / 2);
   }
@@ -108,6 +121,7 @@ class MilestonesList extends StatelessWidget {
     int count,
     double centerX,
     double topPadding,
+    Random random,
   ) {
     final List<int> pattern1 = [0, -23, 37, 16, -38];
     final List<int> pattern2 = [0, -38, 37, -39, 29, 37];
@@ -119,7 +133,7 @@ class MilestonesList extends StatelessWidget {
         xPositions.add(x);
         if (xPositions.length == count) break;
       }
-      selectedPattern = Random().nextBool() ? pattern1 : pattern2;
+      selectedPattern = random.nextBool() ? pattern1 : pattern2;
     }
 
     final List<Offset> finalPoints = [];
@@ -127,7 +141,7 @@ class MilestonesList extends StatelessWidget {
     for (int i = 0; i < count; i++) {
       finalPoints.add(Offset(centerX + xPositions[i], accumulatedYPosition));
       if (i < count - 1) {
-        accumulatedYPosition += _verticalSpacing(items[i], items[i + 1], i);
+        accumulatedYPosition += _verticalSpacing(items[i], items[i + 1], random);
       }
     }
 

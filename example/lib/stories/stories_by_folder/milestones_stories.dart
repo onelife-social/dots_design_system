@@ -82,7 +82,7 @@ List<Story> get milestonesStories => [
             ),
           ];
 
-          return MilestonesList(list: list);
+          return MilestonesList(list: list, seed: 1);
         },
       ),
     ];
