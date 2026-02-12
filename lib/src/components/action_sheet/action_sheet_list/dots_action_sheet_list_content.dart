@@ -267,7 +267,7 @@ class _Header extends StatelessWidget {
                           ),
                         ),
                         (onLabelButtonTap != null && (variant.isGhost || onCloseButtonTap == null))
-                            ?  SizedBox(
+                            ? SizedBox(
                                 width: 80,
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -340,7 +340,7 @@ class _Header extends StatelessWidget {
                             right: 16,
                             bottom: 16,
                           ),
-                          child: DotsTextField(
+                          child: DotsTextFieldButton(
                             controller: textFieldController,
                             focusNode: focus,
                             onTapBtn: onTapTextFieldBtn,
@@ -654,4 +654,3 @@ class _Footer extends StatelessWidget {
     );
   }
 }
-

@@ -131,7 +131,7 @@ class _DotsActionSheetSearchHeader extends StatelessWidget {
                 ),
               ),
             ),
-            DotsTextField(
+            DotsTextFieldButton(
               controller: textFieldController,
               focusNode: focus,
               iconData: DotsIconData.search,

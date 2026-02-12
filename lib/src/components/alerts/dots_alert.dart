@@ -410,7 +410,7 @@ class DotsAlert extends StatelessWidget {
   Widget _inputField() {
     return Row(
       children: [
-        DotsTextField(
+        DotsTextFieldButton(
           iconData: DotsIconData.search,
           hintText: inputHint,
           onChanged: onInputChanged,

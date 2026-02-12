@@ -1,7 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class DotsTextField extends StatefulWidget {
+class DotsTextFieldButton extends StatefulWidget {
   /// The icon data for the TextField.
   ///
   /// If null, no icon will be displayed.
@@ -39,7 +39,7 @@ class DotsTextField extends StatefulWidget {
   /// Whether the TextField is in an error state.
   final bool isError;
 
-  /// Creates a DotsTextFields widget.
+  /// Creates a DotsTextFieldButton widget.
   final String? errorText;
 
   /// Whether to align the text in the center.
@@ -100,7 +100,7 @@ class DotsTextField extends StatefulWidget {
   /// Defaults to true.
   final bool applyErrorAsterisk;
 
-  const DotsTextField({
+  const DotsTextFieldButton({
     super.key,
     this.iconData,
     this.onTapBtn,
@@ -128,10 +128,10 @@ class DotsTextField extends StatefulWidget {
   });
 
   @override
-  State<DotsTextField> createState() => _DotsTextFieldState();
+  State<DotsTextFieldButton> createState() => _DotsTextFieldButtonState();
 }
 
-class _DotsTextFieldState extends State<DotsTextField> {
+class _DotsTextFieldButtonState extends State<DotsTextFieldButton> {
   late final TextEditingController _controller = widget.controller ?? TextEditingController();
   late final FocusNode _focusNode = widget.focusNode ?? FocusNode();
   final ValueNotifier<bool> _showClearButton = ValueNotifier(false);
