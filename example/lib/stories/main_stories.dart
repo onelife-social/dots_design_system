@@ -19,6 +19,7 @@ import 'package:example/stories/stories_by_folder/alert_stories.dart';
 import 'package:example/stories/stories_by_folder/badge_stories.dart';
 import 'package:example/stories/stories_by_folder/button_stories.dart';
 import 'package:example/stories/stories_by_folder/chat_stories.dart';
+import 'package:example/stories/stories_by_folder/color_widgets_stories.dart';
 import 'package:example/stories/stories_by_folder/countdown_stories.dart';
 import 'package:example/stories/stories_by_folder/dropdown_stories.dart';
 import 'package:example/stories/stories_by_folder/group_cards_stories.dart';
@@ -72,6 +73,7 @@ List<Story> get allStories => [
       ...milestonesStories,
       ...dotBookStories,
       ...accordionStories,
+      ...colorWidgetsStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',

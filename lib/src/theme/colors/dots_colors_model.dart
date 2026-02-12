@@ -265,6 +265,15 @@ class DotsColorsModel {
   final Color textPremiumPlusStart;
   final Color textPremiumPlusEnd;
 
+  // DotBook
+  final Color dotbookSand;
+  final Color dotbookBeigeCraft;
+  final Color dotbookOlive; 
+  final Color dotbookCloud;
+  final Color dotbookPeach;
+  final Color dotbookStone; 
+  final Color dotbookCharcoal;
+
   const DotsColorsModel({
     required this.bgBase,
     required this.bgBaseContrast,
@@ -459,6 +468,13 @@ class DotsColorsModel {
     required this.textPremiumEnd,
     required this.textPremiumPlusStart,
     required this.textPremiumPlusEnd,
+    required this.dotbookSand,
+    required this.dotbookBeigeCraft,
+    required this.dotbookOlive,
+    required this.dotbookCloud,
+    required this.dotbookPeach ,
+    required this.dotbookStone,
+    required this.dotbookCharcoal,
   });
 
   DotsColorsModel lerp(DotsColorsModel? other, double t) {
@@ -682,6 +698,13 @@ class DotsColorsModel {
           Color.lerp(textPremiumPlusStart, other?.textPremiumPlusStart, t) ?? textPremiumPlusStart,
       textPremiumPlusEnd:
           Color.lerp(textPremiumPlusEnd, other?.textPremiumPlusEnd, t) ?? textPremiumPlusEnd,
+      dotbookSand: Color.lerp(dotbookSand, other?.dotbookSand, t) ?? dotbookSand,
+      dotbookBeigeCraft: Color.lerp(dotbookBeigeCraft, other?.dotbookBeigeCraft, t) ?? dotbookBeigeCraft,
+      dotbookCloud: Color.lerp(dotbookCloud, other?.dotbookCloud, t) ?? dotbookCloud,
+      dotbookOlive:Color.lerp(dotbookOlive, other?.dotbookOlive, t) ?? dotbookOlive,
+      dotbookPeach: Color.lerp(dotbookPeach, other?.dotbookPeach, t) ?? dotbookPeach,
+      dotbookStone: Color.lerp(dotbookStone, other?.dotbookStone, t) ?? dotbookStone,
+      dotbookCharcoal: Color.lerp(dotbookCharcoal, other?.dotbookCharcoal, t) ?? dotbookCharcoal,
     );
   }
 }
