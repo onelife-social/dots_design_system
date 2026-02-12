@@ -57,31 +57,12 @@ class DotsTextFieldDate extends StatelessWidget {
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: theme.colors.bgSecondaryBtn,
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: DotsBorderRadius.r24,
           ),
           child: Text(
             text!,
             style: theme.typo.main.bodyDefaultMedium.copyWith(
               color: isError ? theme.colors.labelDestructive : theme.colors.textPrimary,
-            ),
-          ),
-        ),
-      );
-
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Padding(
-          padding: const EdgeInsets.all(4),
-          child: Container(
-            decoration: BoxDecoration(
-              color: theme.colors.bgSecondaryBtn,
-              borderRadius: BorderRadius.circular(24),
-            ),
-            child: Text(
-              text!,
-              style: theme.typo.main.bodyDefaultMedium.copyWith(
-                color: isError ? theme.colors.labelDestructive : theme.colors.textPrimary,
-              ),
             ),
           ),
         ),
