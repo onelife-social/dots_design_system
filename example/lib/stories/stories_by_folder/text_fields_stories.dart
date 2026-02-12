@@ -5,6 +5,28 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 List<Story> get textFieldStories => [
       Story(
+        name: 'TextFields/TextField',
+        description: 'Demo page for plain text field',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: DotsTextField(
+            controller: TextEditingController(),
+            focusNode: FocusNode(),
+            iconData: context.knobs.nullable.options<DotsIconData>(
+              label: 'Icon',
+              initial: DotsIconData.search,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+            hintText: context.knobs.text(label: 'Hint Text', initial: 'Enter text'),
+            isError: context.knobs.boolean(label: 'Is Error', initial: false),
+            errorText: context.knobs.nullable.text(label: 'Error Text', initial: 'Error message'),
+            background: context.knobs.boolean(label: 'Background?', initial: true),
+            alignCenter: context.knobs.boolean(label: 'Align Center?', initial: false),
+          ),
+        ),
+      ),
+      Story(
         name: 'TextFields/TextFieldButton',
         description: 'Demo page for text field with button',
         builder: (context) => Padding(
