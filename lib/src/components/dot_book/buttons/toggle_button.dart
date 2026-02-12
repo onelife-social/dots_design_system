@@ -6,7 +6,7 @@ class DotBookToggleButton extends StatelessWidget {
 	final String title;
 
 	/// Secondary text displayed below the title.
-	final String subtitle;
+	final String? subtitle;
 
 	/// Whether the button is selected.
 	final bool isSelected;
@@ -17,7 +17,7 @@ class DotBookToggleButton extends StatelessWidget {
 	const DotBookToggleButton({
 		super.key,
 		required this.title,
-		required this.subtitle,
+		this.subtitle,
 		this.isSelected = false,
 		this.onTap,
 	});
@@ -64,13 +64,14 @@ class DotBookToggleButton extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 2),
-                Text(
-                  subtitle,
-                  textAlign: TextAlign.center,
-                  style: theme.typo.main.labelDefaultRegular.copyWith(
-                    color: theme.colors.textQuarternary,
+                if (subtitle != null)
+                  Text(
+                    subtitle!,
+                    textAlign: TextAlign.center,
+                    style: theme.typo.main.labelDefaultRegular.copyWith(
+                      color: theme.colors.textQuarternary,
+                    ),
                   ),
-                ),
               ],
             ),
 					),
