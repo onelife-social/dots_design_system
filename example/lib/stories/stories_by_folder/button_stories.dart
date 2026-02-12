@@ -368,7 +368,8 @@ List<Story> get buttonStories => [
                 Expanded(
                   child: DotBookToggleButton(
                     title: context.knobs.text(label: 'Left title', initial: 'Standard'),
-                    subtitle: context.knobs.text(label: 'Left subtitle', initial: '20 x 30 cm'),
+                    subtitle:
+                        context.knobs.nullable.text(label: 'Left subtitle', initial: '20 x 30 cm'),
                     isSelected: context.knobs.boolean(
                       label: 'Left selected',
                       initial: true,
@@ -384,7 +385,8 @@ List<Story> get buttonStories => [
                 Expanded(
                   child: DotBookToggleButton(
                     title: context.knobs.text(label: 'Right title', initial: 'Large'),
-                    subtitle: context.knobs.text(label: 'Right subtitle', initial: '30 x 40 cm'),
+                    subtitle:
+                        context.knobs.nullable.text(label: 'Right subtitle', initial: '30 x 40 cm'),
                     isSelected: context.knobs.boolean(
                       label: 'Right selected',
                       initial: false,
