@@ -40,7 +40,7 @@ List<Story> get dotBookStories => [
                 fit: BoxFit.cover,
               ),
               badgeText: context.knobs.text(label: 'Badge text', initial: '19 x 25 cm'),
-              badgeIcon:  context.knobs.options<DotsIconData?>(
+              badgeIcon: context.knobs.options<DotsIconData?>(
                 label: 'Badge Icon',
                 initial: null,
                 options: [
@@ -51,9 +51,9 @@ List<Story> get dotBookStories => [
                 ],
               ),
               onBackPressed: context.knobs.boolean(
-                        label: 'Show back button',
-                        initial: true,
-                      )
+                label: 'Show back button',
+                initial: true,
+              )
                   ? () {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('On tap!')),
@@ -76,7 +76,8 @@ List<Story> get dotBookStories => [
               title: context.knobs.text(label: 'Title', initial: 'High quality paper'),
               description: context.knobs.text(
                 label: 'Description',
-                initial: 'Our books are made with high quality paper that ensures durability and a pleasant reading experience.',
+                initial:
+                    'Our books are made with high quality paper that ensures durability and a pleasant reading experience.',
               ),
             ),
           ),
@@ -94,7 +95,8 @@ List<Story> get dotBookStories => [
                 Expanded(
                   child: DotBookToggleButton(
                     title: context.knobs.text(label: 'Left title', initial: 'Standard'),
-                    subtitle: context.knobs.text(label: 'Left subtitle', initial: '20 x 30 cm'),
+                    subtitle:
+                        context.knobs.nullable.text(label: 'Left subtitle', initial: '20 x 30 cm'),
                     isSelected: context.knobs.boolean(
                       label: 'Left selected',
                       initial: true,
@@ -110,7 +112,8 @@ List<Story> get dotBookStories => [
                 Expanded(
                   child: DotBookToggleButton(
                     title: context.knobs.text(label: 'Right title', initial: 'Large'),
-                    subtitle: context.knobs.text(label: 'Right subtitle', initial: '30 x 40 cm'),
+                    subtitle:
+                        context.knobs.nullable.text(label: 'Right subtitle', initial: '30 x 40 cm'),
                     isSelected: context.knobs.boolean(
                       label: 'Right selected',
                       initial: false,
@@ -130,47 +133,47 @@ List<Story> get dotBookStories => [
       Story(
         name: 'DotBook Components/Feature card',
         description: 'Demo page for book feature text item',
-        builder: (context) => 
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: DotBookFeatureCard(
-              imageCard: NetworkImage('https://picsum.photos/250?image=3'),
-              title: context.knobs.text(label: 'Title', initial: 'High quality paper'),
-              description: context.knobs.text(
-                label: 'Description',
-                initial: 'Our books are made with high quality paper that ensures durability and a pleasant reading experience.',
-              ),
-              onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Card tapped')),
-                );
-              },
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: DotBookFeatureCard(
+            imageCard: NetworkImage('https://picsum.photos/250?image=3'),
+            title: context.knobs.text(label: 'Title', initial: 'High quality paper'),
+            description: context.knobs.text(
+              label: 'Description',
+              initial:
+                  'Our books are made with high quality paper that ensures durability and a pleasant reading experience.',
             ),
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Card tapped')),
+              );
+            },
           ),
+        ),
       ),
       Story(
         name: 'DotBook Components/Testimonial card',
         description: 'Demo page for book feature text item',
-         builder: (context) => 
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: DotBookTestimonialCard(
-              imageCard: NetworkImage(context.knobs.text(
-                  label: 'Testimonial image', initial: 'https://picsum.photos/250?image=9')),
-              imageProfile: NetworkImage(context.knobs.text(
-                  label: 'Profile image', initial: 'https://picsum.photos/250?image=10')),
-              title: context.knobs.text(label: 'Title', initial: 'John Doe'),
-              description: context.knobs.text(
-                label: 'Description',
-                initial: 'I absolutely love this book! The quality is amazing and it has become my go-to for all my reading needs.',
-              ),
-              username: context.knobs.text(label: 'Username', initial: '@johndoe'),
-              onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Card tapped')),
-                );
-              },
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: DotBookTestimonialCard(
+            imageCard: NetworkImage(context.knobs
+                .text(label: 'Testimonial image', initial: 'https://picsum.photos/250?image=9')),
+            imageProfile: NetworkImage(context.knobs
+                .text(label: 'Profile image', initial: 'https://picsum.photos/250?image=10')),
+            title: context.knobs.text(label: 'Title', initial: 'John Doe'),
+            description: context.knobs.text(
+              label: 'Description',
+              initial:
+                  'I absolutely love this book! The quality is amazing and it has become my go-to for all my reading needs.',
             ),
+            username: context.knobs.text(label: 'Username', initial: '@johndoe'),
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Card tapped')),
+              );
+            },
           ),
+        ),
       ),
     ];
