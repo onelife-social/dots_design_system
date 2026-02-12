@@ -33,6 +33,9 @@ class DotsTextField extends StatefulWidget {
   /// Callback when the text in the TextField changes.
   final ValueChanged<String>? onChanged;
 
+  /// Callback when the user submits the TextField (e.g., by pressing the enter key on the keyboard).
+  final ValueChanged<String>? onSubmitted;
+
   /// Whether the TextField is in an error state.
   final bool isError;
 
@@ -107,6 +110,7 @@ class DotsTextField extends StatefulWidget {
     this.buttonVariant = DotsCloseButtonVariant.inverted,
     this.buttonSize = DotsCloseButtonSize.extraSmall,
     this.onChanged,
+    this.onSubmitted,
     this.isError = false,
     this.errorText,
     this.alignCenter = false,
@@ -242,6 +246,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
                         ),
                       ),
                       onChanged: widget.onChanged,
+                      onSubmitted: widget.onSubmitted,
                       enabled: widget.enabled,
                     ),
                   ),
