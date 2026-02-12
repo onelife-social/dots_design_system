@@ -39,7 +39,7 @@ class DotsTextFieldButton extends StatefulWidget {
   /// Whether the TextField is in an error state.
   final bool isError;
 
-  /// Creates a DotsTextFieldButton widget.
+  /// Text displayed as error.
   final String? errorText;
 
   /// Whether to align the text in the center.

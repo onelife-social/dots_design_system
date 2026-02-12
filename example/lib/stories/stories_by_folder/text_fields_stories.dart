@@ -19,7 +19,7 @@ List<Story> get textFieldStories => [
                   DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
             ),
             hintText: context.knobs.text(label: 'Hint Text', initial: 'Enter text'),
-            isError: context.knobs.boolean(label: 'Is Error', initial: false),
+            isError: context.knobs.boolean(label: 'Is Error?', initial: false),
             errorText: context.knobs.nullable.text(label: 'Error Text', initial: 'Error message'),
             background: context.knobs.boolean(label: 'Background?', initial: true),
             alignCenter: context.knobs.boolean(label: 'Align Center?', initial: false),
@@ -45,7 +45,7 @@ List<Story> get textFieldStories => [
             hintText: context.knobs.nullable.text(label: 'Hint Text', initial: 'Enter text') ??
                 'Enter text',
             onChanged: (value) {},
-            isError: context.knobs.boolean(label: 'Is Error', initial: false),
+            isError: context.knobs.boolean(label: 'Is Error?', initial: false),
             errorText: context.knobs.nullable.text(label: 'Error Text', initial: 'Error message'),
             iconDataButton: context.knobs.options<DotsIconData>(
               label: 'Close Button Icon',
@@ -76,6 +76,28 @@ List<Story> get textFieldStories => [
                   DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
             ),
             suffixIconColor: basicColorSelector(context, 'Suffix Icon Color'),
+          ),
+        ),
+      ),
+      Story(
+        name: 'TextFields/TextFieldDate',
+        description: 'Demo page for date and time picker',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: DotsTextFieldDate(
+            iconData: context.knobs.nullable.options<DotsIconData>(
+              label: 'Icon',
+              initial: DotsIconData.calendar,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+            label: context.knobs.nullable.text(label: 'Label', initial: 'Label'),
+            date: "12 ENE 2026",
+            time: "18:00",
+            onTap: () {},
+            isError: context.knobs.boolean(label: 'Is Error?', initial: false),
+            errorText: context.knobs.nullable.text(label: 'Error Text', initial: 'Error message'),
+            background: context.knobs.boolean(label: 'Background?', initial: true),
           ),
         ),
       ),
