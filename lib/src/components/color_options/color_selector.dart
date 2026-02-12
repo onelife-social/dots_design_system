@@ -1,44 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
-
-enum DotsColorOptionSelector {
-  white,
-  sand,
-  tan,
-  sage,
-  mist,
-  peach,
-  dune,
-  stone,
-  charcoal
-}
-
-extension DotsColorOptionSelectorExtension on DotsColorOptionSelector {
-  Color getColor(BuildContext context) {
-    final theme = context.dotsTheme;
-    switch (this) {
-      case DotsColorOptionSelector.white:
-        return theme.colors.labelAlwaysWhite;
-      case DotsColorOptionSelector.sand:
-        return theme.colors.dotbookSand;
-      case DotsColorOptionSelector.tan:
-        return theme.colors.dotbookTan;
-      case DotsColorOptionSelector.sage:
-        return theme.colors.dotbookSage;
-      case DotsColorOptionSelector.mist:
-        return theme.colors.dotbookMist;
-      case DotsColorOptionSelector.peach:
-        return theme.colors.dotbookPeach;
-      case DotsColorOptionSelector.dune:
-        return theme.colors.dotbookDune;
-      case DotsColorOptionSelector.stone:
-        return theme.colors.dotbookStone;
-      case DotsColorOptionSelector.charcoal:
-        return theme.colors.dotbookCharcoal;
-    }
-  }
-}
-
 class DotsColorSelectorRow extends StatelessWidget {
   /// Colors to display
   final List<Color> colors;
@@ -48,9 +9,6 @@ class DotsColorSelectorRow extends StatelessWidget {
 
   /// Spacing between color circles
   final double spacing;
-
-  /// Horizontal padding for the row
-  final EdgeInsets padding;
 
   /// Currently selected color
   final Color? selectedColor;
@@ -63,7 +21,6 @@ class DotsColorSelectorRow extends StatelessWidget {
     required this.colors,
     this.size = 32,
     this.spacing = 12,
-    this.padding = const EdgeInsets.symmetric(horizontal: 16),
     this.selectedColor,
     this.onColorSelected,
   });
@@ -117,20 +74,19 @@ class DotsColorSelectorRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Padding(
-        padding: padding,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            for (int i = 0; i < colors.length; i++) ...[
-              GestureDetector(
-                onTap: onColorSelected != null ? () => onColorSelected!(colors[i]) : null,
-                child: _colorItem(context, colors[i], selectedColor == colors[i]),
-              ),
-              if (i != colors.length - 1) SizedBox(width: spacing),
-            ],
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          for (int i = 0; i < colors.length; i++) ...[
+            if (i == 0) SizedBox(width: 16),
+            GestureDetector(
+              onTap: onColorSelected != null ? () => onColorSelected!(colors[i]) : null,
+              child: _colorItem(context, colors[i], selectedColor == colors[i]),
+            ),
+            if (i != colors.length - 1) SizedBox(width: spacing),
+            if (i == colors.length - 1) SizedBox(width: 16),
           ],
-        ),
+        ],
       ),
     );
   }

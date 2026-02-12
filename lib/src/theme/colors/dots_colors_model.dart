@@ -267,11 +267,10 @@ class DotsColorsModel {
 
   // DotBook
   final Color dotbookSand;
-  final Color dotbookTan;
-  final Color dotbookSage;
-  final Color dotbookMist;
+  final Color dotbookBeigeCraft;
+  final Color dotbookOlive; 
+  final Color dotbookCloud;
   final Color dotbookPeach;
-  final Color dotbookDune;
   final Color dotbookStone; 
   final Color dotbookCharcoal;
 
@@ -470,11 +469,10 @@ class DotsColorsModel {
     required this.textPremiumPlusStart,
     required this.textPremiumPlusEnd,
     required this.dotbookSand,
-    required this.dotbookTan,
-    required this.dotbookSage,
-    required this.dotbookMist,
-    required this.dotbookPeach,
-    required this.dotbookDune,
+    required this.dotbookBeigeCraft,
+    required this.dotbookOlive,
+    required this.dotbookCloud,
+    required this.dotbookPeach ,
     required this.dotbookStone,
     required this.dotbookCharcoal,
   });
@@ -701,11 +699,10 @@ class DotsColorsModel {
       textPremiumPlusEnd:
           Color.lerp(textPremiumPlusEnd, other?.textPremiumPlusEnd, t) ?? textPremiumPlusEnd,
       dotbookSand: Color.lerp(dotbookSand, other?.dotbookSand, t) ?? dotbookSand,
-      dotbookTan: Color.lerp(dotbookTan, other?.dotbookTan, t) ?? dotbookTan,
-      dotbookSage: Color.lerp(dotbookSage, other?.dotbookSage, t) ?? dotbookSage,
-      dotbookMist:Color.lerp(dotbookMist, other?.dotbookMist, t) ?? dotbookMist,
+      dotbookBeigeCraft: Color.lerp(dotbookBeigeCraft, other?.dotbookBeigeCraft, t) ?? dotbookBeigeCraft,
+      dotbookCloud: Color.lerp(dotbookCloud, other?.dotbookCloud, t) ?? dotbookCloud,
+      dotbookOlive:Color.lerp(dotbookOlive, other?.dotbookOlive, t) ?? dotbookOlive,
       dotbookPeach: Color.lerp(dotbookPeach, other?.dotbookPeach, t) ?? dotbookPeach,
-      dotbookDune: Color.lerp(dotbookDune, other?.dotbookDune, t) ?? dotbookDune,
       dotbookStone: Color.lerp(dotbookStone, other?.dotbookStone, t) ?? dotbookStone,
       dotbookCharcoal: Color.lerp(dotbookCharcoal, other?.dotbookCharcoal, t) ?? dotbookCharcoal,
     );

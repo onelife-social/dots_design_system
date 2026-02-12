@@ -35,11 +35,10 @@ class _ColorSelectorRowStoryState extends State<_ColorSelectorRowStory> {
     final colors = [
       theme.colors.labelAlwaysWhite,
       theme.colors.dotbookSand,
-      theme.colors.dotbookTan,
-      theme.colors.dotbookSage,
-      theme.colors.dotbookMist,
+      theme.colors.dotbookBeigeCraft,
+      theme.colors.dotbookOlive, 
+      theme.colors.dotbookCloud,
       theme.colors.dotbookPeach,
-      theme.colors.dotbookDune,
       theme.colors.dotbookStone,
       theme.colors.dotbookCharcoal,
     ];
