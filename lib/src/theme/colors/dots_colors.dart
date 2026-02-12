@@ -197,6 +197,14 @@ class DotsColors {
     textPremiumEnd: Color(0xFF8C84F7),
     textPremiumPlusStart: Color(0xFFDDA61C),
     textPremiumPlusEnd: Color(0xFFA37F28),
+    dotbookSand: Color(0xFFECE7DD),
+    dotbookTan: Color(0xFFCEBB9E), 
+    dotbookSage: Color(0xFFACAE99), 
+    dotbookMist: Color(0xFFA2BBC0), 
+    dotbookPeach: Color(0xFFE7AF9F), 
+    dotbookDune: Color(0xFFE7DCD0),
+    dotbookStone: Color(0xFF7D7C7A),
+    dotbookCharcoal: Color(0xFF3E3D3A)
   );
   static const dark = DotsColorsModel(
     bgBase: Color(0xFF191919),
@@ -392,6 +400,14 @@ class DotsColors {
     textPremiumEnd: Color(0xFF8C84F7),
     textPremiumPlusStart: Color(0xFFE9C058),
     textPremiumPlusEnd: Color(0xFFB48D2D),
+    dotbookSand: Color(0xFFECE7DD),
+    dotbookTan: Color(0xFFCEBB9E), 
+    dotbookSage: Color(0xFFACAE99), 
+    dotbookMist: Color(0xFFA2BBC0), 
+    dotbookPeach: Color(0xFFE7AF9F), 
+    dotbookDune: Color(0xFFE7DCD0),
+    dotbookStone: Color(0xFF7D7C7A),
+    dotbookCharcoal: Color(0xFF3E3D3A)
   );
   static const recapGradientColors = [
     Color(0xFFEF5FC1),
