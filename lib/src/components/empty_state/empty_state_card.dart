@@ -77,7 +77,6 @@ class DotsEmptyStateCard extends StatelessWidget {
                 color: titleColor ?? theme.colors.textPrimary,
               ),
               textAlign: TextAlign.center,
-              maxLines: 2,
             ),
           ),
           const SizedBox(height: 8),
