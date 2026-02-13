@@ -27,8 +27,12 @@ class DotsColorSelectorRow extends StatelessWidget {
 
   Widget _colorItem(BuildContext context, Color color, bool isSelected) {
     final theme = context.dotsTheme;
-    final outterBorderColor = isSelected ? theme.colors.labelHighlight : Colors.transparent;
-    final innerBorderColor = isSelected ? Colors.black.dotsWithOpacity(0.25) : Colors.transparent;
+    final outerBorderColor = isSelected
+        ? theme.colors.labelHighlight
+        : Colors.transparent;
+    final innerBorderColor = isSelected
+        ? Colors.black.dotsWithOpacity(0.25)
+        : Colors.transparent;
 
     return SizedBox(
       width: size,
@@ -39,7 +43,7 @@ class DotsColorSelectorRow extends StatelessWidget {
           height: size,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(color: outterBorderColor, width: 1.5),
+            border: Border.all(color: outerBorderColor, width: 1.5),
           ),
           child: Padding(
             padding: const EdgeInsets.all(2.5),
@@ -48,6 +52,10 @@ class DotsColorSelectorRow extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   Container(color: color),
+                  Image.asset(
+                    ImagesPaths.colorSelectorShadow,
+                    fit: BoxFit.cover,
+                  ),
                   Positioned.fill(
                     child: DecoratedBox(
                       decoration: ShapeDecoration(
@@ -80,7 +88,9 @@ class DotsColorSelectorRow extends StatelessWidget {
           for (int i = 0; i < colors.length; i++) ...[
             if (i == 0) SizedBox(width: 16),
             GestureDetector(
-              onTap: onColorSelected != null ? () => onColorSelected!(colors[i]) : null,
+              onTap: onColorSelected != null
+                  ? () => onColorSelected!(colors[i])
+                  : null,
               child: _colorItem(context, colors[i], selectedColor == colors[i]),
             ),
             if (i != colors.length - 1) SizedBox(width: spacing),
