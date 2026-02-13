@@ -27,7 +27,7 @@ class DotsColorSelectorRow extends StatelessWidget {
 
   Widget _colorItem(BuildContext context, Color color, bool isSelected) {
     final theme = context.dotsTheme;
-    final outterBorderColor = isSelected
+    final outerBorderColor = isSelected
         ? theme.colors.labelHighlight
         : Colors.transparent;
     final innerBorderColor = isSelected
@@ -43,7 +43,7 @@ class DotsColorSelectorRow extends StatelessWidget {
           height: size,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(color: outterBorderColor, width: 1.5),
+            border: Border.all(color: outerBorderColor, width: 1.5),
           ),
           child: Padding(
             padding: const EdgeInsets.all(2.5),
@@ -52,8 +52,8 @@ class DotsColorSelectorRow extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   Container(color: color),
-                  Image(
-                    image: AssetImage(ImagesPaths.colorSelectorShadow),
+                  Image.asset(
+                    ImagesPaths.colorSelectorShadow,
                     fit: BoxFit.cover,
                   ),
                   Positioned.fill(
