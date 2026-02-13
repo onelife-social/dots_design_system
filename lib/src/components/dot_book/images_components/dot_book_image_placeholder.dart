@@ -5,6 +5,9 @@ class DotBookImagePlaceholder extends StatelessWidget {
   /// Media widget to display in the card (image or video).
   final Widget media;
 
+  /// Aspect ratio for the media. Defaults to 6:7.
+  final double mediaAspectRatio;
+
   /// Border radius, by default 32.
   final BorderRadius borderRadius;
 
@@ -23,6 +26,7 @@ class DotBookImagePlaceholder extends StatelessWidget {
   const DotBookImagePlaceholder({
     super.key,
     required this.media,
+    this.mediaAspectRatio = 6 / 7,
     this.borderRadius = const BorderRadius.all(Radius.circular(32.0)),
     this.badgeText,
     this.badgeIcon,
@@ -35,7 +39,7 @@ class DotBookImagePlaceholder extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: AspectRatio(
-        aspectRatio: 6 / 7,
+        aspectRatio: mediaAspectRatio,
         child: ClipRRect(
           borderRadius: borderRadius,
           child: Stack(
