@@ -47,7 +47,7 @@ class DotsTextFieldDate extends StatelessWidget {
     final theme = context.dotsTheme;
 
     Widget buildTextWidget(String? text) {
-      if (text?.isEmpty == true) return Offstage();
+      if (text == null || text.isEmpty) return Offstage();
 
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
@@ -60,7 +60,7 @@ class DotsTextFieldDate extends StatelessWidget {
             borderRadius: DotsBorderRadius.r24,
           ),
           child: Text(
-            text!,
+            text,
             style: theme.typo.main.bodyDefaultMedium.copyWith(
               color: isError ? theme.colors.labelDestructive : theme.colors.textPrimary,
             ),
