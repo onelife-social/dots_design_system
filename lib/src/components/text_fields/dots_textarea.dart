@@ -21,6 +21,12 @@ class DotsTextArea extends StatelessWidget {
   /// The hint text to display in the TextField.
   final String? hintText;
 
+  /// Callback when the text in the TextArea changes.
+  final ValueChanged<String>? onChanged;
+
+  /// Callback when the user submits the TextArea (e.g., by pressing the enter key on the keyboard).
+  final ValueChanged<String>? onSubmitted;
+
   /// The maximum length of text that can be entered in the TextField.
   final int? maxTextLength;
 
@@ -43,6 +49,8 @@ class DotsTextArea extends StatelessWidget {
     this.label,
     this.iconData,
     this.hintText,
+    this.onChanged,
+    this.onSubmitted,
     this.maxTextLength,
     this.minHeight,
     this.maxHeight,
@@ -92,6 +100,8 @@ class DotsTextArea extends StatelessWidget {
           isDense: true,
           contentPadding: EdgeInsets.zero,
         ),
+        onChanged: onChanged,
+        onSubmitted: onSubmitted,
       );
     }
 
