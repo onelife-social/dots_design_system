@@ -24,7 +24,7 @@ class DotsTextArea extends StatelessWidget {
   /// Callback when the text in the TextArea changes.
   final ValueChanged<String>? onChanged;
 
-  /// Callback when the user submits the TextArea (e.g., by pressing the enter key on the keyboard).
+  /// Callback when the user submits the TextArea
   final ValueChanged<String>? onSubmitted;
 
   /// The maximum length of text that can be entered in the TextField.
