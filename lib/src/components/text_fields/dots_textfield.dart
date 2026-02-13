@@ -30,7 +30,7 @@ class DotsTextField extends StatefulWidget {
   /// Whether the TextField is in an error state.
   final bool isError;
 
-  /// Creates a DotsTextFieldButton widget.
+  /// The error text to display below the TextField.
   final String? errorText;
 
   /// Whether the TextField is enabled.
@@ -79,6 +79,21 @@ class _DotsTextFieldState extends State<DotsTextField> {
     _focusNode = widget.focusNode;
     _controller.addListener(_handleTextOrFocusChange);
     _focusNode.addListener(_handleTextOrFocusChange);
+  }
+
+  @override
+  void didUpdateWidget(covariant DotsTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.controller != widget.controller) {
+      _controller.removeListener(_handleTextOrFocusChange);
+      _controller = widget.controller;
+      _controller.addListener(_handleTextOrFocusChange);
+    }
+    if (oldWidget.focusNode != widget.focusNode) {
+      _focusNode.removeListener(_handleTextOrFocusChange);
+      _focusNode = widget.focusNode;
+      _focusNode.addListener(_handleTextOrFocusChange);
+    }
   }
 
   @override

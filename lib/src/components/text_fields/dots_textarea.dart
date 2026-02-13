@@ -33,7 +33,7 @@ class DotsTextArea extends StatelessWidget {
   /// Whether the TextField is in an error state.
   final bool isError;
 
-  /// Creates a DotsTextFieldButton widget.
+  /// The error text to display when the TextField is in an error state.
   final String? errorText;
 
   const DotsTextArea({
@@ -141,7 +141,7 @@ class DotsTextArea extends StatelessWidget {
       children: [
         Container(
           constraints: BoxConstraints(
-            minHeight: minHeight?.toDouble() ?? maxHeight?.toDouble() ?? double.infinity,
+            minHeight: minHeight?.toDouble() ?? maxHeight?.toDouble() ?? 50,
             maxHeight: maxHeight?.toDouble() ?? double.infinity,
           ),
           clipBehavior: Clip.antiAlias,
@@ -169,7 +169,7 @@ class DotsTextArea extends StatelessWidget {
                       return Text(
                         '$remaining',
                         style: theme.typo.main.labelSmallRegular.copyWith(
-                          color:  theme.colors.textQuarternary,
+                          color: theme.colors.textQuarternary,
                         ),
                       );
                     },
