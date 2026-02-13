@@ -35,6 +35,7 @@ import 'package:example/stories/stories_by_folder/segmented_control_stories.dart
 import 'package:example/stories/stories_by_folder/selector_radio_button_stories.dart';
 import 'package:example/stories/stories_by_folder/separators_demo.dart';
 import 'package:example/stories/stories_by_folder/spinner_stories.dart';
+import 'package:example/stories/stories_by_folder/text_fields_stories.dart';
 import 'package:example/stories/stories_by_folder/theme_stories.dart';
 import 'package:example/stories/stories_by_folder/toast_stories.dart';
 import 'package:example/stories/stories_by_folder/top_bar_stories.dart';
@@ -74,6 +75,7 @@ List<Story> get allStories => [
       ...dotBookStories,
       ...accordionStories,
       ...colorWidgetsStories,
+      ...textFieldStories,
       Story(
         name: 'Container',
         description: 'Demo page for container',
@@ -338,59 +340,6 @@ List<Story> get allStories => [
                 onTap: context.knobs.boolean(label: 'Has onTap', initial: true) ? () {} : null,
               ),
             ],
-          ),
-        ),
-      ),
-      Story(
-        name: 'DotsTextFields',
-        description: 'Demo page for DotsTextFields',
-        builder: (context) => Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: DotsTextField(
-            alignCenter: context.knobs.boolean(
-              label: 'Align Center',
-              initial: false,
-            ),
-            iconData: context.knobs.nullable.options<DotsIconData>(
-              label: 'Icon Data',
-              initial: DotsIconData.search,
-              options:
-                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
-            ),
-            hintText: context.knobs.nullable.text(label: 'Hint Text', initial: 'Enter text') ??
-                'Enter text',
-            onChanged: (value) {},
-            isError: context.knobs.boolean(label: 'Is Error', initial: false),
-            errorText: context.knobs.nullable.text(label: 'Error Text', initial: 'Error message'),
-            iconDataButton: context.knobs.options<DotsIconData>(
-              label: 'Close Button Icon',
-              initial: DotsIconData.cross,
-              options:
-                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
-            ),
-            buttonVariant: context.knobs.options<DotsCloseButtonVariant>(
-              label: 'Close Button Variant',
-              initial: DotsCloseButtonVariant.inverted,
-              options: DotsCloseButtonVariant.values
-                  .map((item) => Option(label: item.name, value: item))
-                  .toList(),
-            ),
-            buttonSize: context.knobs.options<DotsCloseButtonSize>(
-              label: 'Close Button Size',
-              initial: DotsCloseButtonSize.extraSmall,
-              options: DotsCloseButtonSize.values
-                  .map((item) => Option(label: item.name, value: item))
-                  .toList(),
-            ),
-            background: context.knobs.boolean(label: 'Background?', initial: true),
-            endButtonText: context.knobs.nullable.text(label: 'End Button Text', initial: 'Submit'),
-            suffixIcon: context.knobs.nullable.options<DotsIconData>(
-              label: 'Suffix Icon',
-              initial: DotsIconData.checkCircle,
-              options:
-                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
-            ),
-            suffixIconColor: basicColorSelector(context, 'Suffix Icon Color'),
           ),
         ),
       ),

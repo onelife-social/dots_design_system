@@ -297,7 +297,7 @@ class _Body extends StatelessWidget {
             height: elementsGap,
           ),
         ],
-        DotsTextField(
+        DotsTextFieldButton(
           controller: textFieldController,
           focusNode: focus,
           alignCenter: true,
