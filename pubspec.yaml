@@ -38,6 +38,7 @@ flutter:
     - assets/images/
     - assets/images/social_media/
     - assets/images/milestones/
+    - assets/images/dotbook/
 
   # Shaders
   shaders:
