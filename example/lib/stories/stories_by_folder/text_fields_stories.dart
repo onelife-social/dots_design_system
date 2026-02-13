@@ -101,4 +101,28 @@ List<Story> get textFieldStories => [
           ),
         ),
       ),
+      Story(
+        name: 'TextFields/TextArea',
+        description: 'Demo page for TextArea',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: DotsTextArea(
+            controller: TextEditingController(),
+            focusNode: FocusNode(),
+            iconData: context.knobs.nullable.options<DotsIconData>(
+              label: 'Icon',
+              initial: DotsIconData.text,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+            label: context.knobs.text(label: 'Label', initial: 'Label'),
+            hintText: context.knobs.text(label: 'Hint Text', initial: 'Enter a description'),
+            maxTextLength: 80,
+            minHeight: 100,
+            maxHeight: 300,
+            isError: context.knobs.boolean(label: 'Is Error?', initial: false),
+            errorText: context.knobs.nullable.text(label: 'Error Text', initial: 'Error message'),
+          ),
+        ),
+      ),
     ];
