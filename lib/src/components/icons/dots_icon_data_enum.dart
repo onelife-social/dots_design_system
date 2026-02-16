@@ -224,6 +224,7 @@ enum DotsIconData {
   grid('ic-grid.svg', DotsIconGroup.system),
   gridOutline('ic-grid-outline.svg', DotsIconGroup.system),
   hand('ic-hand.svg', DotsIconGroup.system),
+  handTap('ic-hand-tap.svg', DotsIconGroup.system),
   helpCircle('ic-help-circle.svg', DotsIconGroup.system),
   helpCircleOutline('ic-help-circle-outline.svg', DotsIconGroup.system),
   home('ic-home.svg', DotsIconGroup.system),
