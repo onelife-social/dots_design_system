@@ -4,7 +4,7 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 List<Story> get toastStories => [
       Story(
-          name: 'Toast/Action',
+          name: 'Toast/ToastAction',
           description: 'Demo page for Toast action',
           builder: (context) => Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -20,12 +20,13 @@ List<Story> get toastStories => [
                 ),
               )),
       Story(
-          name: 'Toast/Info',
+          name: 'Toast/Toast Info',
           description: 'Demo page for Toast information',
           builder: (context) => Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: DotsToastInfo(
-                  title: context.knobs.text(label: 'Title', initial: 'Tus archivos se están subiendo'),
+                  title:
+                      context.knobs.text(label: 'Title', initial: 'Tus archivos se están subiendo'),
                   variant: context.knobs.options<DotsToastVariant>(
                     label: 'Variant',
                     initial: DotsToastVariant.success,
@@ -33,9 +34,7 @@ List<Story> get toastStories => [
                         .map((item) => Option(label: item.name, value: item))
                         .toList(),
                   ),
-                  btnTitle: context.knobs
-                      .text(label: 'Button Title', initial: 'See progress'
-                      ),
+                  btnTitle: context.knobs.text(label: 'Button Title', initial: 'See progress'),
                 ),
               )),
     ];
