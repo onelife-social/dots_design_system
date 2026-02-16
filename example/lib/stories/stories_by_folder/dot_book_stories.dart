@@ -193,13 +193,37 @@ List<Story> get dotBookStories => [
                   Option(label: 'Printed Circle', value: DotBookCoverType.printedCircle),
                 ],
               ),
-              bottomText: context.knobs.text(label: 'Bottom text', initial: 'My DotBook'),
-              overlayImage: NetworkImage(
-                context.knobs.text(
-                  label: 'Overlay image',
-                  initial: 'https://picsum.photos/600/900?image=22',
-                ),
+              color: context.knobs.options(
+                label: 'Cover color',
+                initial: DotBookCoverColor.white,
+                options: const [
+                  Option(label: 'White', value: DotBookCoverColor.white),
+                  Option(label: 'Stone', value: DotBookCoverColor.stone),
+                  Option(label: 'Charcoal', value: DotBookCoverColor.charcoal),
+                  Option(label: 'Cloud', value: DotBookCoverColor.cloud),
+                  Option(label: 'Olive', value: DotBookCoverColor.olive),
+                  Option(label: 'Peach', value: DotBookCoverColor.peach),
+                  Option(label: 'Sand', value: DotBookCoverColor.sand),
+                  Option(label: 'Beige Craft', value: DotBookCoverColor.beigeCraft),
+                ],
               ),
+              bottomText: context.knobs.text(label: 'Bottom text', initial: 'My DotBook'),
+              onOverlayTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Overlay tapped')),
+                );
+              },
+              overlayImage: context.knobs.boolean(
+                label: 'Use overlay image',
+                initial: true,
+              )
+                  ? NetworkImage(
+                      context.knobs.text(
+                        label: 'Overlay image',
+                        initial: 'https://picsum.photos/600/900?image=22',
+                      ),
+                    )
+                  : null,
             ),
           ),
         ),

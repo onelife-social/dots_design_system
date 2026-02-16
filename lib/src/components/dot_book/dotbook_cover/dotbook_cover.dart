@@ -1,50 +1,38 @@
 import 'package:dots_design_system/dots_design_system.dart';
-import 'package:dots_design_system/src/core/values/paths/paths_lib.dart';
 import 'package:flutter/material.dart';
 
-enum DotBookCoverType {
-  linen,
-  printedSquare,
-  printedCircle,
-}
 
 class DotBookCover extends StatelessWidget {
   final DotBookCoverType variant;
 
+	/// Color enum that determines which main cover asset path is used.
+	final DotBookCoverColor color;
+
 	/// Image rendered above the base cover.
 	final ImageProvider? overlayImage;
 
-	/// Horizontal padding used for [DotBookCoverType.printedSquare] overlay.
-	final double printedSquareHorizontalPadding;
-
-	/// Bottom padding used for [DotBookCoverType.printedSquare] overlay.
-	final double printedSquareBottomPadding;
+	/// Tap callback for all overlay variants.
+	final Function()? onOverlayTap;
 
 	/// Text shown according to variant positioning rules.
 	final String bottomText;
 
-	/// Optional style for [bottomText].
-	final TextStyle? bottomTextStyle;
 
 	const DotBookCover({
 		super.key,
     required this.variant,
+		this.color = DotBookCoverColor.white,
 		this.overlayImage,
-		this.printedSquareHorizontalPadding = 16,
-		this.printedSquareBottomPadding = 16,
+		this.onOverlayTap,
 		this.bottomText = '',
-		this.bottomTextStyle,
 	});
 
 	@override
 	Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+
 		final double width = MediaQuery.sizeOf(context).width * 0.85;
 		final double imageHeight = width * (5 / 4);
-		final TextStyle resolvedTextStyle =
-				bottomTextStyle ??
-				context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
-						color: Colors.white,
-					);
 
 		return Center(
 			child: SizedBox(
@@ -54,7 +42,7 @@ class DotBookCover extends StatelessWidget {
 					fit: StackFit.expand,
 					children: [
 						Image.asset(
-							ImagesPaths.dotbookCover,
+							_mainImagePath,
 							width: width,
 							height: imageHeight,
 							fit: BoxFit.cover,
@@ -69,98 +57,59 @@ class DotBookCover extends StatelessWidget {
 									textAlign: TextAlign.center,
 									maxLines: 1,
 									overflow: TextOverflow.ellipsis,
-									style: resolvedTextStyle,
+									style: context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
+                    color: theme.colors.labelAlwaysWhite,
+                  ),
 								),
 							),
-						if (overlayImage != null) _buildOverlay(context, width, imageHeight),
+						DotBookCoverOverlay(
+							variant: variant,
+							imageWidth: width,
+							imageHeight: imageHeight,
+							overlayImage: overlayImage,
+							onTap: onOverlayTap,
+							bottomText: bottomText,
+						),
 					],
 				),
 			),
 		);
 	}
 
-	Widget _buildOverlay(BuildContext context, double imageWidth, double imageHeight) {
-		final Image overlay = Image(
-			image: overlayImage!,
-			fit: BoxFit.cover,
-		);
-		final TextStyle resolvedTextStyle =
-				bottomTextStyle ??
-				context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
-						color: Colors.white,
-					);
-
+	String get _mainImagePath {
 		switch (variant) {
 			case DotBookCoverType.linen:
-				return Center(
-					child: SizedBox(
-						width: imageWidth,
-						height: imageHeight / 3,
-						child: Stack(
-							fit: StackFit.expand,
-							children: [
-								overlay,
-								Container(
-									color: Colors.black.dotsWithOpacity(0.2),
-								),
-								if (bottomText.isNotEmpty)
-									Positioned(
-										left: 8,
-										right: 8,
-										bottom: 13,
-										child: Text(
-											bottomText,
-											textAlign: TextAlign.center,
-											maxLines: 1,
-											overflow: TextOverflow.ellipsis,
-											style: resolvedTextStyle,
-										),
-									),
-							],
-						),
-					),
-				);
+				switch (color) {
+					case DotBookCoverColor.stone:
+						return ImagesPaths.dotbookCoverLinenStone;
+					case DotBookCoverColor.charcoal:
+						return ImagesPaths.dotbookCoverLinenCharcoal;
+					case DotBookCoverColor.white:
+					case DotBookCoverColor.cloud:
+					case DotBookCoverColor.olive:
+					case DotBookCoverColor.peach:
+					case DotBookCoverColor.sand:
+					case DotBookCoverColor.beigeCraft:
+						return ImagesPaths.dotbookCoverLinenWhite;
+				}
 			case DotBookCoverType.printedSquare:
-				return Positioned(
-					left: printedSquareHorizontalPadding,
-					right: printedSquareHorizontalPadding,
-					bottom: printedSquareBottomPadding,
-					child: SizedBox(
-						height: imageHeight * (2 / 3),
-						child: Stack(
-							fit: StackFit.expand,
-							children: [
-								overlay,
-								if (bottomText.isNotEmpty)
-									Positioned(
-										left: 8,
-										right: 8,
-										bottom: 13,
-										child: Text(
-											bottomText,
-											textAlign: TextAlign.center,
-											maxLines: 1,
-											overflow: TextOverflow.ellipsis,
-											style: resolvedTextStyle,
-										),
-									),
-							],
-						),
-					),
-				);
 			case DotBookCoverType.printedCircle:
-				return Center(
-					child: Padding(
-						padding: EdgeInsets.symmetric(horizontal: imageWidth * 0.2),
-						child: SizedBox(
-							height: imageHeight * 0.4,
-							child: AspectRatio(
-								aspectRatio: 1,
-								child: ClipOval(child: overlay),
-							),
-						),
-					),
-				);
+				switch (color) {
+					case DotBookCoverColor.cloud:
+						return ImagesPaths.dotbookCoverPrintedCloud;
+					case DotBookCoverColor.olive:
+						return ImagesPaths.dotbookCoverPrintedOlive;
+					case DotBookCoverColor.peach:
+						return ImagesPaths.dotbookCoverPrintedPeach;
+					case DotBookCoverColor.sand:
+						return ImagesPaths.dotbookCoverPrintedSand;
+					case DotBookCoverColor.beigeCraft:
+						return ImagesPaths.dotbookCoverPrintedBeigeCraft;
+					case DotBookCoverColor.white:
+					case DotBookCoverColor.stone:
+					case DotBookCoverColor.charcoal:
+						return ImagesPaths.dotbookCoverPrintedWhite;
+				}
 		}
 	}
 }
