@@ -176,4 +176,56 @@ List<Story> get dotBookStories => [
           ),
         ),
       ),
+      Story(
+        name: 'DotBook Components/DotBook cover',
+        description: 'Demo page for DotBook cover',
+        builder: (context) => ColoredBox(
+          color: context.dotsTheme.colors.bgContainerSecondary,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: DotBookCover(
+              variant: context.knobs.options(
+                label: 'Cover variant',
+                initial: DotBookCoverType.linen,
+                options: const [
+                  Option(label: 'Linen', value: DotBookCoverType.linen),
+                  Option(label: 'Printed Square', value: DotBookCoverType.printedSquare),
+                  Option(label: 'Printed Circle', value: DotBookCoverType.printedCircle),
+                ],
+              ),
+              bottomText: context.knobs.text(label: 'Bottom text', initial: 'My DotBook'),
+              overlayImage: NetworkImage(
+                context.knobs.text(
+                  label: 'Overlay image',
+                  initial: 'https://picsum.photos/600/900?image=22',
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+      Story(
+        name: 'DotBook Components/DotBook titles editor',
+        description: 'Demo page for DotBook titles editor',
+        builder: (context) => ColoredBox(
+          color: context.dotsTheme.colors.bgContainerSecondary,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: DotBookTitlesEditor(
+              width: 300,
+              height: 150,
+              variant: context.knobs.options(
+                label: 'Editor variant',
+                initial: DotBookTitlesEditorVariant.defaultVariant,
+                options: const [
+                  Option(label: 'Default', value: DotBookTitlesEditorVariant.defaultVariant),
+                  Option(label: 'Printed Square', value: DotBookTitlesEditorVariant.printedSquare),
+                ],
+              ),
+              title: context.knobs.text(label: 'Title', initial: 'My DotBook'),
+              date: context.knobs.text(label: 'Date', initial: 'June 2024'),
+            ),
+          ),
+        ),
+      ),
     ];
