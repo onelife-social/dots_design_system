@@ -131,6 +131,8 @@ class _DotsTextFieldState extends State<DotsTextField> {
         controller: _controller,
         focusNode: _focusNode,
         maxLength: widget.maxTextLength,
+        minLines: 1,
+        maxLines: 1,
         textAlign: textAlign,
         style: theme.typo.main.bodyDefaultMedium.copyWith(
           color: widget.isError && !widget.background
@@ -175,7 +177,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
                   child: Align(
                     alignment: widget.alignCenter ? Alignment.center : Alignment.centerLeft,
                     child: Row(
-                      mainAxisSize: widget.alignCenter ? MainAxisSize.min : MainAxisSize.max,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                         if (widget.iconData != null) ...[
                           DotsIcon(
@@ -187,17 +189,9 @@ class _DotsTextFieldState extends State<DotsTextField> {
                           ),
                           const SizedBox(width: 6),
                         ],
-                        if (widget.alignCenter)
-                          IntrinsicWidth(
-                            child: ConstrainedBox(
-                              constraints: const BoxConstraints(minWidth: 0),
-                              child: buildTextField(),
-                            ),
-                          )
-                        else
-                          Expanded(
-                            child: buildTextField(),
-                          ),
+                        Expanded(
+                          child: buildTextField(),
+                        ),
                       ],
                     ),
                   ),
