@@ -14,6 +14,15 @@ class DotBookCover extends StatelessWidget {
 	/// Tap callback for all overlay variants.
 	final Function()? onOverlayTap;
 
+  /// Default image to show when no overlay image is provided.
+  final ImageProvider? defaultOverlayImage;
+
+	/// If true, shows the editing dashed border above the text editor.
+	final bool isEditingMode;
+
+	/// Tap callback for the editing dashed border.
+	final VoidCallback? onEditingBorderTap;
+
 	/// Text shown at the bottom of the cover.
 	final String dotsTitle;
 
@@ -29,7 +38,10 @@ class DotBookCover extends StatelessWidget {
     required this.variant,
 		this.color = DotBookCoverColor.white,
 		this.overlayImage,
+    this.defaultOverlayImage,
 		this.onOverlayTap,
+		this.isEditingMode = false,
+		this.onEditingBorderTap,
 		this.dotsTitle = 'DotBook',
 		this.editorTitle = '',
 		this.editorSubtitle,
@@ -60,7 +72,10 @@ class DotBookCover extends StatelessWidget {
 							imageWidth: width,
 							imageHeight: imageHeight,
 							overlayImage: overlayImage,
+              defaultOverlayImage: defaultOverlayImage,
 							onTap: onOverlayTap,
+							isEditingMode: isEditingMode,
+							onEditingBorderTap: onEditingBorderTap,
 							dotsTitle: dotsTitle,
 							editorTitle: editorTitle,
 							editorSubtitle: editorSubtitle,

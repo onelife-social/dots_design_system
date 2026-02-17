@@ -20,10 +20,16 @@ class DotBookCoverOverlay extends StatelessWidget {
   final ImageProvider? overlayImage;
 
   /// Default image to show when no overlay image is provided.
-  final ImageProvider? defaultImage;
+  final ImageProvider? defaultOverlayImage;
 
   /// Tap callback for the overlay.
   final VoidCallback? onTap;
+
+  /// Shows editing border above the text editor when true.
+  final bool isEditingMode;
+
+  /// Tap callback for the editing border.
+  final VoidCallback? onEditingBorderTap;
 
   /// Text shown with the company branding.
   final String dotsTitle;
@@ -41,8 +47,10 @@ class DotBookCoverOverlay extends StatelessWidget {
     required this.imageWidth,
     required this.imageHeight,
     this.overlayImage,
-    this.defaultImage,
+    this.defaultOverlayImage,
     this.onTap,
+    this.isEditingMode = false,
+    this.onEditingBorderTap,
     required this.dotsTitle,
     required this.editorTitle,
     this.editorSubtitle,
@@ -52,16 +60,17 @@ class DotBookCoverOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     final _DotBookCoverOverlayImage overlay = _DotBookCoverOverlayImage(
       image: overlayImage,
-      defaultImage: defaultImage ?? AssetImage(ImagesPaths.defaultSectionPlanning),
+      defaultOverlayImage: defaultOverlayImage ?? AssetImage(ImagesPaths.defaultSectionPlanning),
       onTap: onTap,
       icon: DotsIconData.add,
     );
 
     return Stack(
+      clipBehavior: Clip.none,
       fit: StackFit.expand,
       children: [
         _buildOverlayByVariant(context, overlay),
-        if (_hasEditorContent) _buildTextEditorByVariant(),
+        if (_hasEditorContent) _buildTextEditorByVariant(context),
         if (dotsTitle.isNotEmpty) _buildBottomTextByVariant(context),
       ],
     );
@@ -135,7 +144,7 @@ class DotBookCoverOverlay extends StatelessWidget {
     }
   }
 
-  Widget _buildTextEditorByVariant() {
+  Widget _buildTextEditorByVariant(BuildContext context) {
     switch (variant) {
       case DotBookCoverType.printedCircle:
         final double editorWidth = imageWidth * 0.67;
@@ -143,11 +152,15 @@ class DotBookCoverOverlay extends StatelessWidget {
           top: imageHeight * 0.075,
           left: (imageWidth - editorWidth) / 2,
           width: editorWidth,
-          child: DotBookTextEditor(
-            coverVariant: variant,
-            color: coverColor,
-            title: editorTitle,
-            subtitle: editorSubtitle,
+          child: _editorWithEditingBorder(
+            context: context,
+            child: DotBookTextEditor(
+              variant: variant,
+              coverVariant: variant,
+              color: coverColor,
+              title: editorTitle,
+              subtitle: editorSubtitle,
+            ),
           ),
         );
 
@@ -164,13 +177,17 @@ class DotBookCoverOverlay extends StatelessWidget {
           left: horizontalInset,
           right: horizontalInset,
           height: editorHeight,
-          child: DotBookTextEditor(
-            variant: DotBookTextEditorVariant.printedSquare,
-            coverVariant: variant,
-            color: coverColor,
-            title: editorTitle,
-            subtitle: editorSubtitle,
-            xtraInfo: dotsTitle,
+          child: _editorWithEditingBorder(
+            context: context,
+            child: DotBookTextEditor(
+              variant: variant,
+              height: editorHeight,
+              coverVariant: variant,
+              color: coverColor,
+              title: editorTitle,
+              subtitle: editorSubtitle,
+              xtraInfo: dotsTitle,
+            ),
           ),
         );
 
@@ -178,21 +195,50 @@ class DotBookCoverOverlay extends StatelessWidget {
         final double overlayHeight = imageHeight * 0.395;
         final double overlayTop = (imageHeight - overlayHeight) / 2;
         final double editorWidth = imageWidth * 0.6;
-        final double editorHeight = overlayHeight * 0.6;
 
         return Positioned(
           top: overlayTop + (overlayHeight * 0.05),
           left: (imageWidth - editorWidth) / 2,
           width: editorWidth,
-          height: editorHeight,
-          child: DotBookTextEditor(
-            coverVariant: variant,
-            color: coverColor,
-            title: editorTitle,
-            subtitle: editorSubtitle,
+          child: _editorWithEditingBorder(
+            context: context,
+            child: DotBookTextEditor(
+              width: editorWidth,
+              variant: variant,
+              coverVariant: variant,
+              color: coverColor,
+              title: editorTitle,
+              subtitle: editorSubtitle,
+            ),
           ),
         );
     }
+  }
+
+  Widget _editorWithEditingBorder({
+    required BuildContext context,
+    required Widget child,
+  }) {
+    if (!isEditingMode) {
+      return child;
+    }
+
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        child,
+        Positioned(
+          top: -4,
+          left: -4,
+          right: -4,
+          bottom: -4,
+          child: DotBookTextEditorBorder(
+            color: context.dotsTheme.colors.labelSecondary,
+            onTap: onEditingBorderTap ?? onTap,
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _buildBottomTextByVariant(BuildContext context) {
@@ -248,13 +294,13 @@ class DotBookCoverOverlay extends StatelessWidget {
 
 class _DotBookCoverOverlayImage extends StatelessWidget {
   final ImageProvider? image;
-  final ImageProvider defaultImage;
+  final ImageProvider defaultOverlayImage;
   final VoidCallback? onTap;
   final DotsIconData icon;
 
   const _DotBookCoverOverlayImage({
     this.image,
-    required this.defaultImage,
+    required this.defaultOverlayImage,
     this.onTap,
     this.icon = DotsIconData.add,
   });
@@ -264,7 +310,7 @@ class _DotBookCoverOverlayImage extends StatelessWidget {
     final theme = context.dotsTheme;
 
     final bool showDefault = image == null;
-    final ImageProvider effectiveImage = image ?? defaultImage;
+    final ImageProvider effectiveImage = image ?? defaultOverlayImage;
     final Widget currentImage = Image(
       image: effectiveImage,
       fit: BoxFit.cover,

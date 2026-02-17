@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../dots_design_system.dart';
 
-enum DotBookTextEditorVariant {
-	defaultVariant,
-	printedSquare,
-}
 
 class DotBookTextEditor extends StatelessWidget {
 
   /// Variant of the text editor to determine layout and content arrangement.
-  final DotBookTextEditorVariant variant;
+  final DotBookCoverType variant;
 
   /// Cover color used to derive text color from theme context.
   final DotBookCoverType coverVariant;
@@ -41,7 +37,7 @@ class DotBookTextEditor extends StatelessWidget {
 		super.key,
 		this.width,
 		this.height,
-		this.variant = DotBookTextEditorVariant.defaultVariant,
+		this.variant = DotBookCoverType.printedSquare,
     required this.coverVariant,
     required this.color,
     required this.title,
@@ -59,43 +55,53 @@ class DotBookTextEditor extends StatelessWidget {
       child: SizedBox(
         width: width,
         height: height,
-        child: variant == DotBookTextEditorVariant.printedSquare
+        child: variant == DotBookCoverType.printedSquare
           ? Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    if (xtraInfo != null)
+                    if (xtraInfo != null) ...[
                       Text(
                         xtraInfo!,
-                        style: theme.typo.main.bodyDefaultBold.copyWith(
+                        style: theme.typo.secondary.title02H1.copyWith(
                           color: color.textColor(context, coverVariant),
+                          fontSize: 6.8,
                         ),
                         textAlign: TextAlign.left,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
+                      const SizedBox(width: 12),
+                    ],
                     if (subtitle != null)
-                      Text(
-                        subtitle!,
-                        style: theme.typo.main.bodyDefaultBold.copyWith(
-                          color: color.textColor(context, coverVariant),
+                      Expanded(
+                        child: Text(
+                          subtitle!,
+                          style: theme.typo.secondary.title02H1.copyWith(
+                            color: color.textColor(context, coverVariant),
+                            fontSize: 6.8,
+                          ),
+                          textAlign: TextAlign.right,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
-                        textAlign: TextAlign.right,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
                       ),
                   ],
                 ),
                 const Spacer(),
-                Text(
-                  title,
-                  style: theme.typo.main.bodyDefaultBold.copyWith(
-                    color: color.textColor(context, coverVariant),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    title,
+                    style: theme.typo.secondary.title02H1.copyWith(
+                      color: color.textColor(context, coverVariant),
+                      fontSize: 65,
+                    ),
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
                 ),
               ],
             )
@@ -106,19 +112,23 @@ class DotBookTextEditor extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: theme.typo.main.bodyDefaultBold.copyWith(
+                    style: theme.typo.secondary.title02H1.copyWith(
                       color: color.textColor(context, coverVariant),
+                      fontSize: variant == DotBookCoverType.linen ? 15.35 : 16,
                     ),
                     textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),
                   if (subtitle != null)
                     Text(
                       subtitle!,
-                      style: theme.typo.main.bodyDefaultBold.copyWith(
+                      style: theme.typo.secondary.title02H1.copyWith(
                         color: color.textColor(context, coverVariant),
+                        fontSize: 5.7,
                       ),
                       textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     )
                 ],

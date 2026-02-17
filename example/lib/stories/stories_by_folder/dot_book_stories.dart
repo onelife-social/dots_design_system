@@ -208,12 +208,21 @@ List<Story> get dotBookStories => [
                 ],
               ),
               dotsTitle: context.knobs.text(label: 'Bottom text', initial: 'DotBook'),
-              editorTitle: context.knobs.text(label: 'Editor title', initial: 'CAROLINA & JOSELUIS'),
+              editorTitle: context.knobs.text(label: 'Editor title', initial: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'),
               editorSubtitle:
-                  context.knobs.nullable.text(label: 'Editor subtitle', initial: 'Discover the journey behind our brand'),
+                  context.knobs.nullable.text(label: 'Editor subtitle', initial: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'),
+              isEditingMode: context.knobs.boolean(
+                label: 'Is editing mode',
+                initial: false,
+              ),
               onOverlayTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Overlay tapped')),
+                );
+              },
+              onEditingBorderTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Border tapped')),
                 );
               },
               overlayImage: context.knobs.boolean(
@@ -246,10 +255,11 @@ List<Story> get dotBookStories => [
               xtraInfo: context.knobs.nullable.text(label: 'Extra info', initial: '20 x 30 cm'),
               variant: context.knobs.options(
                 label: 'Text editor variant',
-                initial: DotBookTextEditorVariant.defaultVariant,
+                initial: DotBookCoverType.printedSquare,
                 options: const [
-                  Option(label: 'Default', value: DotBookTextEditorVariant.defaultVariant),
-                  Option(label: 'Printed Square', value: DotBookTextEditorVariant.printedSquare),
+                  Option(label: 'Printed Square', value: DotBookCoverType.printedSquare),
+                  Option(label: 'Printed Circle', value: DotBookCoverType.printedCircle),
+                  Option(label: 'Linen', value: DotBookCoverType.linen),
                 ],
               ),
               coverVariant: context.knobs.options(

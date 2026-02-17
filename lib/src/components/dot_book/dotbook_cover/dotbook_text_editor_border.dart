@@ -17,6 +17,9 @@ class DotBookTextEditorBorder extends StatelessWidget {
   /// Gap between each dash in the border.
   final double dashGap;
 
+  /// Tap callback for the border layer.
+  final Function()? onTap;
+
   const DotBookTextEditorBorder({
     super.key,
     required this.color,
@@ -24,17 +27,26 @@ class DotBookTextEditorBorder extends StatelessWidget {
     this.strokeWidth = 2,
     this.dashLength = 10,
     this.dashGap = 2,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      painter: _DashedRRectPainter(
-        color: color,
-        radius: radius,
-        strokeWidth: strokeWidth,
-        dashLength: dashLength,
-        dashGap: dashGap,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(radius),
+        child: CustomPaint(
+          painter: _DashedRRectPainter(
+            color: color,
+            radius: radius,
+            strokeWidth: strokeWidth,
+            dashLength: dashLength,
+            dashGap: dashGap,
+          ),
+          child: const SizedBox.expand(),
+        ),
       ),
     );
   }
