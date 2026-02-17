@@ -12,14 +12,13 @@ class DotBookTextEditor extends StatelessWidget {
   final DotBookCoverType coverVariant;
 
   /// Color of the text, used to derive text color from theme context.
-  final DotBookCoverColor color;
+  final Color textColor;
 
   /// Width of the text editor, used to set its size.
 	final double? width;
 
   /// Height of the text editor, used to set its size.
 	final double? height;
-
 
   /// Title text to display.
 	final String title;
@@ -39,7 +38,7 @@ class DotBookTextEditor extends StatelessWidget {
 		this.height,
 		this.variant = DotBookCoverType.printedSquare,
     required this.coverVariant,
-    required this.color,
+    required this.textColor,
     required this.title,
     this.subtitle,
     this.xtraInfo,
@@ -65,7 +64,7 @@ class DotBookTextEditor extends StatelessWidget {
                       Text(
                         xtraInfo!,
                         style: theme.typo.secondary.title02H1.copyWith(
-                          color: color.textColor(context, coverVariant),
+                          color: textColor,
                           fontSize: 6.8,
                         ),
                         textAlign: TextAlign.left,
@@ -79,7 +78,7 @@ class DotBookTextEditor extends StatelessWidget {
                         child: Text(
                           subtitle!,
                           style: theme.typo.secondary.title02H1.copyWith(
-                            color: color.textColor(context, coverVariant),
+                            color: textColor,
                             fontSize: 6.8,
                           ),
                           textAlign: TextAlign.right,
@@ -95,7 +94,7 @@ class DotBookTextEditor extends StatelessWidget {
                   child: Text(
                     title,
                     style: theme.typo.secondary.title02H1.copyWith(
-                      color: color.textColor(context, coverVariant),
+                      color: textColor,
                       fontSize: 65,
                     ),
                     textAlign: TextAlign.center,
@@ -113,7 +112,7 @@ class DotBookTextEditor extends StatelessWidget {
                   Text(
                     title,
                     style: theme.typo.secondary.title02H1.copyWith(
-                      color: color.textColor(context, coverVariant),
+                      color: textColor,
                       fontSize: variant == DotBookCoverType.linen ? 15.35 : 16,
                     ),
                     textAlign: TextAlign.center,
@@ -124,7 +123,7 @@ class DotBookTextEditor extends StatelessWidget {
                     Text(
                       subtitle!,
                       style: theme.typo.secondary.title02H1.copyWith(
-                        color: color.textColor(context, coverVariant),
+                        color: textColor,
                         fontSize: 5.7,
                       ),
                       textAlign: TextAlign.center,

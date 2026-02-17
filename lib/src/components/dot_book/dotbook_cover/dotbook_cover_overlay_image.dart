@@ -7,8 +7,8 @@ class DotBookCoverOverlay extends StatelessWidget {
   /// Variant of the cover to determine the overlay's position and size.
   final DotBookCoverType variant;
 
-  /// Cover color used to derive text color from theme context.
-  final DotBookCoverColor coverColor;
+  /// Text color used for overlay elements.
+  final Color textColor;
 
   /// Width of the cover image, used to calculate overlay dimensions.
   final double imageWidth;
@@ -43,7 +43,7 @@ class DotBookCoverOverlay extends StatelessWidget {
   const DotBookCoverOverlay({
     super.key,
     required this.variant,
-    required this.coverColor,
+    required this.textColor,
     required this.imageWidth,
     required this.imageHeight,
     this.overlayImage,
@@ -69,26 +69,51 @@ class DotBookCoverOverlay extends StatelessWidget {
       clipBehavior: Clip.none,
       fit: StackFit.expand,
       children: [
-        _buildOverlayByVariant(context, overlay),
-        if (_hasEditorContent) _buildTextEditorByVariant(context),
-        if (dotsTitle.isNotEmpty) _buildBottomTextByVariant(context),
+        _DotBookCoverOverlayLayer(
+          variant: variant,
+          imageWidth: imageWidth,
+          imageHeight: imageHeight,
+          overlay: overlay,
+        ),
+        _DotBookCoverEditorLayer(
+          variant: variant,
+          textColor: textColor,
+          imageWidth: imageWidth,
+          imageHeight: imageHeight,
+          isEditingMode: isEditingMode,
+          onTap: onTap,
+          onEditingBorderTap: onEditingBorderTap,
+          editorTitle: editorTitle,
+          editorSubtitle: editorSubtitle,
+          dotsTitle: dotsTitle,
+        ),
+        if (dotsTitle.isNotEmpty)
+          _DotBookCoverBottomTitleLayer(
+            variant: variant,
+            textColor: textColor,
+            imageHeight: imageHeight,
+            dotsTitle: dotsTitle,
+          ),
       ],
     );
   }
+}
 
-  bool get _hasEditorContent {
-    switch (variant) {
-      case DotBookCoverType.printedSquare:
-        return editorTitle.isNotEmpty ||
-            (editorSubtitle?.isNotEmpty ?? false) ||
-            dotsTitle.isNotEmpty;
-      case DotBookCoverType.linen:
-      case DotBookCoverType.printedCircle:
-        return editorTitle.isNotEmpty || (editorSubtitle?.isNotEmpty ?? false);
-    }
-  }
+class _DotBookCoverOverlayLayer extends StatelessWidget {
+  final DotBookCoverType variant;
+  final double imageWidth;
+  final double imageHeight;
+  final Widget overlay;
 
-  Widget _buildOverlayByVariant(BuildContext context, Widget overlay) {
+  const _DotBookCoverOverlayLayer({
+    required this.variant,
+    required this.imageWidth,
+    required this.imageHeight,
+    required this.overlay,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     switch (variant) {
       case DotBookCoverType.linen:
         return Center(
@@ -143,8 +168,36 @@ class DotBookCoverOverlay extends StatelessWidget {
         );
     }
   }
+}
 
-  Widget _buildTextEditorByVariant(BuildContext context) {
+class _DotBookCoverEditorLayer extends StatelessWidget {
+  final DotBookCoverType variant;
+  final Color textColor;
+  final double imageWidth;
+  final double imageHeight;
+  final bool isEditingMode;
+  final VoidCallback? onTap;
+  final VoidCallback? onEditingBorderTap;
+  final String editorTitle;
+  final String? editorSubtitle;
+  final String dotsTitle;
+
+
+  const _DotBookCoverEditorLayer({
+    required this.variant,
+    required this.textColor,
+    required this.imageWidth,
+    required this.imageHeight,
+    required this.isEditingMode,
+    required this.onTap,
+    required this.onEditingBorderTap,
+    required this.editorTitle,
+    required this.editorSubtitle,
+    required this.dotsTitle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     switch (variant) {
       case DotBookCoverType.printedCircle:
         final double editorWidth = imageWidth * 0.67;
@@ -152,12 +205,14 @@ class DotBookCoverOverlay extends StatelessWidget {
           top: imageHeight * 0.075,
           left: (imageWidth - editorWidth) / 2,
           width: editorWidth,
-          child: _editorWithEditingBorder(
-            context: context,
+          child: _DotBookEditorWithEditingBorder(
+            isEditingMode: isEditingMode,
+            borderColor: context.dotsTheme.colors.labelSecondary,
+            onBorderTap: onEditingBorderTap ?? onTap,
             child: DotBookTextEditor(
               variant: variant,
               coverVariant: variant,
-              color: coverColor,
+              textColor: textColor,
               title: editorTitle,
               subtitle: editorSubtitle,
             ),
@@ -177,13 +232,15 @@ class DotBookCoverOverlay extends StatelessWidget {
           left: horizontalInset,
           right: horizontalInset,
           height: editorHeight,
-          child: _editorWithEditingBorder(
-            context: context,
+          child: _DotBookEditorWithEditingBorder(
+            isEditingMode: isEditingMode,
+            borderColor: context.dotsTheme.colors.labelSecondary,
+            onBorderTap: onEditingBorderTap ?? onTap,
             child: DotBookTextEditor(
               variant: variant,
               height: editorHeight,
               coverVariant: variant,
-              color: coverColor,
+              textColor: textColor,
               title: editorTitle,
               subtitle: editorSubtitle,
               xtraInfo: dotsTitle,
@@ -200,13 +257,15 @@ class DotBookCoverOverlay extends StatelessWidget {
           top: overlayTop + (overlayHeight * 0.05),
           left: (imageWidth - editorWidth) / 2,
           width: editorWidth,
-          child: _editorWithEditingBorder(
-            context: context,
+          child: _DotBookEditorWithEditingBorder(
+            isEditingMode: isEditingMode,
+            borderColor: context.dotsTheme.colors.labelSecondary,
+            onBorderTap: onEditingBorderTap ?? onTap,
             child: DotBookTextEditor(
               width: editorWidth,
               variant: variant,
               coverVariant: variant,
-              color: coverColor,
+              textColor: textColor,
               title: editorTitle,
               subtitle: editorSubtitle,
             ),
@@ -214,11 +273,23 @@ class DotBookCoverOverlay extends StatelessWidget {
         );
     }
   }
+}
 
-  Widget _editorWithEditingBorder({
-    required BuildContext context,
-    required Widget child,
-  }) {
+class _DotBookEditorWithEditingBorder extends StatelessWidget {
+  final Widget child;
+  final bool isEditingMode;
+  final Color borderColor;
+  final VoidCallback? onBorderTap;
+
+  const _DotBookEditorWithEditingBorder({
+    required this.child,
+    required this.isEditingMode,
+    required this.borderColor,
+    required this.onBorderTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     if (!isEditingMode) {
       return child;
     }
@@ -233,15 +304,30 @@ class DotBookCoverOverlay extends StatelessWidget {
           right: -4,
           bottom: -4,
           child: DotBookTextEditorBorder(
-            color: context.dotsTheme.colors.labelSecondary,
-            onTap: onEditingBorderTap ?? onTap,
+            color: borderColor,
+            onTap: onBorderTap,
           ),
         ),
       ],
     );
   }
+}
 
-  Widget _buildBottomTextByVariant(BuildContext context) {
+class _DotBookCoverBottomTitleLayer extends StatelessWidget {
+  final DotBookCoverType variant;
+  final Color textColor;
+  final double imageHeight;
+  final String dotsTitle;
+
+  const _DotBookCoverBottomTitleLayer({
+    required this.variant,
+    required this.textColor,
+    required this.imageHeight,
+    required this.dotsTitle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
     switch (variant) {
@@ -280,7 +366,7 @@ class DotBookCoverOverlay extends StatelessWidget {
               textAlign: TextAlign.center,
               maxLines: 1,
               style: context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
-                color: coverColor.textColor(context, variant),
+                color: theme.colors.labelAlwaysWhite,
               ),
             ),
           ),

@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 class DotBookCover extends StatelessWidget {
   final DotBookCoverType variant;
 
-	/// Color enum that determines which main cover asset path is used.
-	final DotBookCoverColor color;
+  /// Main base cover image.
+  final ImageProvider mainImage;
+
+	/// Text color as hexadecimal Color.
+	final Color textColor;
 
 	/// Image rendered above the base cover.
 	final ImageProvider? overlayImage;
@@ -36,7 +39,8 @@ class DotBookCover extends StatelessWidget {
 	const DotBookCover({
 		super.key,
     required this.variant,
-		this.color = DotBookCoverColor.white,
+		required this.mainImage,
+		this.textColor = const Color(0xFF3C3C3B),
 		this.overlayImage,
     this.defaultOverlayImage,
 		this.onOverlayTap,
@@ -60,15 +64,15 @@ class DotBookCover extends StatelessWidget {
 				child: Stack(
 					fit: StackFit.expand,
 					children: [
-						Image.asset(
-							_mainImagePath,
+						Image(
+							image: mainImage,
 							width: width,
 							height: imageHeight,
 							fit: BoxFit.cover,
 						),
 						DotBookCoverOverlay(
 							variant: variant,
-							coverColor: color,
+							textColor: textColor,
 							imageWidth: width,
 							imageHeight: imageHeight,
 							overlayImage: overlayImage,
@@ -84,42 +88,5 @@ class DotBookCover extends StatelessWidget {
 				),
 			),
 		);
-	}
-
-	String get _mainImagePath {
-		switch (variant) {
-			case DotBookCoverType.linen:
-				switch (color) {
-					case DotBookCoverColor.stone:
-						return ImagesPaths.dotbookCoverLinenStone;
-					case DotBookCoverColor.charcoal:
-						return ImagesPaths.dotbookCoverLinenCharcoal;
-					case DotBookCoverColor.white:
-					case DotBookCoverColor.cloud:
-					case DotBookCoverColor.olive:
-					case DotBookCoverColor.peach:
-					case DotBookCoverColor.sand:
-					case DotBookCoverColor.beigeCraft:
-						return ImagesPaths.dotbookCoverLinenWhite;
-				}
-			case DotBookCoverType.printedSquare:
-			case DotBookCoverType.printedCircle:
-				switch (color) {
-					case DotBookCoverColor.cloud:
-						return ImagesPaths.dotbookCoverPrintedCloud;
-					case DotBookCoverColor.olive:
-						return ImagesPaths.dotbookCoverPrintedOlive;
-					case DotBookCoverColor.peach:
-						return ImagesPaths.dotbookCoverPrintedPeach;
-					case DotBookCoverColor.sand:
-						return ImagesPaths.dotbookCoverPrintedSand;
-					case DotBookCoverColor.beigeCraft:
-						return ImagesPaths.dotbookCoverPrintedBeigeCraft;
-					case DotBookCoverColor.white:
-					case DotBookCoverColor.stone:
-					case DotBookCoverColor.charcoal:
-						return ImagesPaths.dotbookCoverPrintedWhite;
-				}
-		}
 	}
 }
