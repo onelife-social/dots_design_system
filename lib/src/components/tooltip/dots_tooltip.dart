@@ -10,6 +10,7 @@ class DotsTooltip extends StatelessWidget {
   final bool showCloseButton;
 
   final DotsToolTipTailPosition tailPosition;
+  final double maxWidth;
 
   const DotsTooltip({
     super.key,
@@ -20,6 +21,7 @@ class DotsTooltip extends StatelessWidget {
     this.showCloseButton = true,
     required this.tailPosition,
     this.onClose,
+    this.maxWidth = 288,
   });
 
   BorderRadiusGeometry get _borderRadius {
@@ -76,7 +78,7 @@ class DotsTooltip extends StatelessWidget {
             ClipRRect(
               borderRadius: _borderRadius,
               child: Container(
-                constraints: BoxConstraints(maxWidth: 288, minWidth: 185, minHeight: height),
+                constraints: BoxConstraints(maxWidth: maxWidth, minWidth: 185, minHeight: height),
                 padding: const EdgeInsets.all(16).copyWith(right: 52),
                 decoration: BoxDecoration(
                   color: bgColor,
