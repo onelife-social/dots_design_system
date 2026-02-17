@@ -2,6 +2,48 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
+enum DotBookStoryTextColorOption {
+  white,
+  stone,
+  charcoal,
+  cloud,
+  olive,
+  peach,
+  sand,
+  beigeCraft,
+}
+
+Color _dotBookStoryTextColor(
+  BuildContext context,
+  DotBookCoverType variant,
+  DotBookStoryTextColorOption option,
+) {
+  final theme = context.dotsTheme;
+
+  if (variant == DotBookCoverType.linen) {
+    return theme.colors.labelAlwaysWhite;
+  }
+
+  switch (option) {
+    case DotBookStoryTextColorOption.white:
+      return const Color(0xFF3C3C3B);
+    case DotBookStoryTextColorOption.stone:
+      return theme.colors.labelAlwaysWhite;
+    case DotBookStoryTextColorOption.charcoal:
+      return theme.colors.labelAlwaysWhite;
+    case DotBookStoryTextColorOption.cloud:
+      return const Color(0xFF3E585E);
+    case DotBookStoryTextColorOption.olive:
+      return const Color(0xFF52572F);
+    case DotBookStoryTextColorOption.peach:
+      return const Color(0xFFA88692);
+    case DotBookStoryTextColorOption.sand:
+      return const Color(0xFFA89E91);
+    case DotBookStoryTextColorOption.beigeCraft:
+      return const Color(0xFF88683A);
+  }
+}
+
 List<Story> get dotBookStories => [
       Story(
         name: 'DotBook Components/page control',
@@ -173,6 +215,171 @@ List<Story> get dotBookStories => [
                 const SnackBar(content: Text('Card tapped')),
               );
             },
+          ),
+        ),
+      ),
+      Story(
+        name: 'DotBook Components/DotBook cover',
+        description: 'Demo page for DotBook cover',
+        builder: (context) => ColoredBox(
+          color: context.dotsTheme.colors.bgContainerSecondary,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Builder(builder: (context) {
+              final variant = context.knobs.options(
+                label: 'Cover variant',
+                initial: DotBookCoverType.linen,
+                options: const [
+                  Option(label: 'Linen', value: DotBookCoverType.linen),
+                  Option(label: 'Printed Square', value: DotBookCoverType.printedSquare),
+                  Option(label: 'Printed Circle', value: DotBookCoverType.printedCircle),
+                ],
+              );
+              final colorOption = context.knobs.options(
+                label: 'Text color preset',
+                initial: DotBookStoryTextColorOption.white,
+                options: const [
+                  Option(label: 'White', value: DotBookStoryTextColorOption.white),
+                  Option(label: 'Stone', value: DotBookStoryTextColorOption.stone),
+                  Option(label: 'Charcoal', value: DotBookStoryTextColorOption.charcoal),
+                  Option(label: 'Cloud', value: DotBookStoryTextColorOption.cloud),
+                  Option(label: 'Olive', value: DotBookStoryTextColorOption.olive),
+                  Option(label: 'Peach', value: DotBookStoryTextColorOption.peach),
+                  Option(label: 'Sand', value: DotBookStoryTextColorOption.sand),
+                  Option(label: 'Beige Craft', value: DotBookStoryTextColorOption.beigeCraft),
+                ],
+              );
+
+              return DotBookCover(
+                variant: variant,
+              mainImage: context.knobs.options<ImageProvider>(
+                label: 'Main image asset',
+                initial: AssetImage(ImagesPaths.dotbookCoverLinenWhite),
+                options: [
+                  Option(
+                    label: 'Linen White',
+                    value: AssetImage(ImagesPaths.dotbookCoverLinenWhite),
+                  ),
+                  Option(
+                    label: 'Linen Stone',
+                    value: AssetImage(ImagesPaths.dotbookCoverLinenStone),
+                  ),
+                  Option(
+                    label: 'Linen Charcoal',
+                    value: AssetImage(ImagesPaths.dotbookCoverLinenCharcoal),
+                  ),
+                  Option(
+                    label: 'Printed White',
+                    value: AssetImage(ImagesPaths.dotbookCoverPrintedWhite),
+                  ),
+                  Option(
+                    label: 'Printed Cloud',
+                    value: AssetImage(ImagesPaths.dotbookCoverPrintedCloud),
+                  ),
+                  Option(
+                    label: 'Printed Olive',
+                    value: AssetImage(ImagesPaths.dotbookCoverPrintedOlive),
+                  ),
+                  Option(
+                    label: 'Printed Peach',
+                    value: AssetImage(ImagesPaths.dotbookCoverPrintedPeach),
+                  ),
+                  Option(
+                    label: 'Printed Sand',
+                    value: AssetImage(ImagesPaths.dotbookCoverPrintedSand),
+                  ),
+                  Option(
+                    label: 'Printed Beige Craft',
+                    value: AssetImage(ImagesPaths.dotbookCoverPrintedBeigeCraft),
+                  ),
+                ],
+              ),
+              textColor: _dotBookStoryTextColor(context, variant, colorOption),
+              dotsTitle: context.knobs.text(label: 'Bottom text', initial: 'DotBook'),
+              editorTitle: context.knobs.text(label: 'Editor title', initial: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'),
+              editorSubtitle:
+                  context.knobs.nullable.text(label: 'Editor subtitle', initial: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'),
+              isEditingMode: context.knobs.boolean(
+                label: 'Is editing mode',
+                initial: false,
+              ),
+              onOverlayTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Overlay tapped')),
+                );
+              },
+              onEditingBorderTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Border tapped')),
+                );
+              },
+              overlayImage: context.knobs.boolean(
+                label: 'Use overlay image',
+                initial: true,
+              )
+                  ? NetworkImage(
+                      context.knobs.text(
+                        label: 'Overlay image',
+                        initial: 'https://picsum.photos/600/900?image=22',
+                      ),
+                    )
+                  : null,
+              );
+            }),
+          ),
+        ),
+      ),
+      Story(
+        name: 'DotBook Components/DotBook text editor',
+        description: 'Demo page for DotBook text editor',
+        builder: (context) => ColoredBox(
+          color: context.dotsTheme.colors.bgContainerSecondary,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Builder(builder: (context) {
+              final coverVariant = context.knobs.options(
+                label: 'Cover variant',
+                initial: DotBookCoverType.linen,
+                options: const [
+                  Option(label: 'Linen', value: DotBookCoverType.linen),
+                  Option(label: 'Printed Square', value: DotBookCoverType.printedSquare),
+                  Option(label: 'Printed Circle', value: DotBookCoverType.printedCircle),
+                ],
+              );
+              final colorOption = context.knobs.options(
+                label: 'Editor text color preset',
+                initial: DotBookStoryTextColorOption.white,
+                options: const [
+                  Option(label: 'White', value: DotBookStoryTextColorOption.white),
+                  Option(label: 'Stone', value: DotBookStoryTextColorOption.stone),
+                  Option(label: 'Charcoal', value: DotBookStoryTextColorOption.charcoal),
+                  Option(label: 'Cloud', value: DotBookStoryTextColorOption.cloud),
+                  Option(label: 'Olive', value: DotBookStoryTextColorOption.olive),
+                  Option(label: 'Peach', value: DotBookStoryTextColorOption.peach),
+                  Option(label: 'Sand', value: DotBookStoryTextColorOption.sand),
+                  Option(label: 'Beige Craft', value: DotBookStoryTextColorOption.beigeCraft),
+                ],
+              );
+
+              return DotBookTextEditor(
+                width: 300,
+                height: 150,
+                title: context.knobs.text(label: 'Text', initial: 'My DotBook'),
+                subtitle: context.knobs.nullable.text(label: 'Subtitle', initial: 'A great book'),
+                xtraInfo: context.knobs.nullable.text(label: 'Extra info', initial: '20 x 30 cm'),
+                variant: context.knobs.options(
+                  label: 'Text editor variant',
+                  initial: DotBookCoverType.printedSquare,
+                  options: const [
+                    Option(label: 'Printed Square', value: DotBookCoverType.printedSquare),
+                    Option(label: 'Printed Circle', value: DotBookCoverType.printedCircle),
+                    Option(label: 'Linen', value: DotBookCoverType.linen),
+                  ],
+                ),
+                coverVariant: coverVariant,
+                textColor: _dotBookStoryTextColor(context, coverVariant, colorOption),
+              );
+            }),
           ),
         ),
       ),
