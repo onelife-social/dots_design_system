@@ -131,6 +131,8 @@ class _DotsTextFieldState extends State<DotsTextField> {
         controller: _controller,
         focusNode: _focusNode,
         maxLength: widget.maxTextLength,
+        minLines: 1,
+        maxLines: 1,
         textAlign: textAlign,
         style: theme.typo.main.bodyDefaultMedium.copyWith(
           color: widget.isError && !widget.background
@@ -142,9 +144,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
           border: InputBorder.none,
           counterText: '',
           hintText: widget.hintText,
-          hintStyle: TextStyle(
-            color: widget.isError ? theme.colors.labelDestructive : theme.colors.textQuarternary,
-          ),
+          hintStyle: TextStyle(color: theme.colors.textQuarternary),
           isDense: true,
           contentPadding: const EdgeInsets.symmetric(vertical: 13),
         ),
@@ -158,57 +158,65 @@ class _DotsTextFieldState extends State<DotsTextField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          height: 44,
-          clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: widget.background ? theme.colors.bgContainerSecondaryOnBackground : null,
-            shape: RoundedRectangleBorder(borderRadius: DotsBorderRadius.r1000),
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Align(
-                  alignment: widget.alignCenter ? Alignment.center : Alignment.centerLeft,
-                  child: Row(
-                    mainAxisSize: widget.alignCenter ? MainAxisSize.min : MainAxisSize.max,
-                    children: [
-                      if (widget.iconData != null) ...[
-                        DotsIcon(
-                          iconData: widget.iconData!,
-                          color: !widget.background && widget.isError
-                              ? theme.colors.labelDestructive
-                              : theme.colors.textTertiary,
-                          size: 20,
-                        ),
-                        const SizedBox(width: 6),
-                      ],
-                      if (widget.alignCenter)
-                        IntrinsicWidth(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(minWidth: 0),
-                            child: buildTextField(),
+        GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: widget.enabled ? () => _focusNode.requestFocus() : null,
+          child: Container(
+            height: 44,
+            clipBehavior: Clip.antiAlias,
+            decoration: ShapeDecoration(
+              color: widget.background ? theme.colors.bgContainerSecondaryOnBackground : null,
+              shape: RoundedRectangleBorder(borderRadius: DotsBorderRadius.r1000),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                if (widget.alignCenter) const SizedBox(width: 36),
+                Expanded(
+                  child: Align(
+                    alignment: widget.alignCenter ? Alignment.center : Alignment.centerLeft,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        if (widget.iconData != null) ...[
+                          DotsIcon(
+                            iconData: widget.iconData!,
+                            color: !widget.background && widget.isError
+                                ? theme.colors.labelDestructive
+                                : theme.colors.textTertiary,
+                            size: 20,
                           ),
-                        )
-                      else
+                          const SizedBox(width: 6),
+                        ],
                         Expanded(
                           child: buildTextField(),
                         ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              if (_showClearButton)
-                DotsCloseButton(
-                  size: DotsCloseButtonSize.extraSmall,
-                  variant: widget.background
-                      ? DotsCloseButtonVariant.inverted
-                      : DotsCloseButtonVariant.softContrast,
-                  onTap: _clearText,
+                SizedBox(
+                  width: 36,
+                  height: 36,
+                  child: _showClearButton
+                      ? GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onTap: _clearText,
+                          child: Center(
+                            child: DotsCloseButton(
+                              size: DotsCloseButtonSize.extraSmall,
+                              variant: widget.background
+                                  ? DotsCloseButtonVariant.inverted
+                                  : DotsCloseButtonVariant.softContrast,
+                              onTap: _clearText,
+                            ),
+                          ),
+                        )
+                      : null,
                 ),
-            ],
+              ],
+            ),
           ),
         ),
         if (widget.background && widget.isError && widget.errorText?.isNotEmpty == true) ...[

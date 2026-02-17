@@ -121,8 +121,9 @@ double _calculateButtonAreaHeight({
   required Widget? secondaryButton,
 }) {
   final double noButtons = 0;
-  final double oneButton = DotsMainButtonSize.mainAction.height + 16;
-  final double twoButtons = DotsMainButtonSize.mainAction.height * 2 + 32;
+  final double oneButton = _calculateButtonHeight(primaryButton) + 16;
+  final double twoButtons =
+      _calculateButtonHeight(primaryButton) + _calculateButtonHeight(secondaryButton) + 16;
 
   if (buttonPositioning == DotsActionSheetButtonPositioning.column) {
     if (primaryButton != null && secondaryButton != null) {
@@ -139,6 +140,12 @@ double _calculateButtonAreaHeight({
       return noButtons;
     }
   }
+}
+
+double _calculateButtonHeight(Widget? button) {
+  if (button == null) return 0;
+  if (button is DotsMainButton) return button.size.height;
+  return DotsMainButtonSize.mainAction.height;
 }
 
 class DotsActionSheetStandardButtons extends StatelessWidget {

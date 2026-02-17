@@ -149,43 +149,47 @@ class DotsTextArea extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          constraints: BoxConstraints(
-            minHeight: minHeight?.toDouble() ?? maxHeight?.toDouble() ?? 50,
-            maxHeight: maxHeight?.toDouble() ?? double.infinity,
-          ),
-          clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: theme.colors.bgContainerSecondaryOnBackground,
-            shape: RoundedRectangleBorder(borderRadius: DotsBorderRadius.r24),
-          ),
-          child: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-                child: buildBody(),
-              ),
-              if (maxTextLength != null)
-                Positioned(
-                  right: 16,
-                  bottom: 10,
-                  child: ValueListenableBuilder<TextEditingValue>(
-                    valueListenable: controller,
-                    builder: (context, value, child) {
-                      final remaining = (maxTextLength! - value.text.length).clamp(
-                        0,
-                        maxTextLength!,
-                      );
-                      return Text(
-                        '$remaining',
-                        style: theme.typo.main.labelSmallRegular.copyWith(
-                          color: theme.colors.textQuarternary,
-                        ),
-                      );
-                    },
-                  ),
+        GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () => focusNode.requestFocus(),
+          child: Container(
+            constraints: BoxConstraints(
+              minHeight: minHeight?.toDouble() ?? maxHeight?.toDouble() ?? 50,
+              maxHeight: maxHeight?.toDouble() ?? double.infinity,
+            ),
+            clipBehavior: Clip.antiAlias,
+            decoration: ShapeDecoration(
+              color: theme.colors.bgContainerSecondaryOnBackground,
+              shape: RoundedRectangleBorder(borderRadius: DotsBorderRadius.r24),
+            ),
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+                  child: buildBody(),
                 ),
-            ],
+                if (maxTextLength != null)
+                  Positioned(
+                    right: 16,
+                    bottom: 10,
+                    child: ValueListenableBuilder<TextEditingValue>(
+                      valueListenable: controller,
+                      builder: (context, value, child) {
+                        final remaining = (maxTextLength! - value.text.length).clamp(
+                          0,
+                          maxTextLength!,
+                        );
+                        return Text(
+                          '$remaining',
+                          style: theme.typo.main.labelSmallRegular.copyWith(
+                            color: theme.colors.textQuarternary,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
         if (isError && errorText?.isNotEmpty == true) ...[

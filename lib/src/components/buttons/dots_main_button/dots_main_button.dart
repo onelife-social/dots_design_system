@@ -20,6 +20,7 @@ class DotsMainButton extends StatelessWidget {
     this.adaptPaddingForText = false,
     this.textColor,
     this.iconColor,
+    this.backgroundColor,
     this.shouldApplyBlur = false,
     this.iconPosition = DotsMainButtonIconPosition.left,
     this.splashColor,
@@ -74,6 +75,9 @@ class DotsMainButton extends StatelessWidget {
 
   /// Optional icon color to override the default one from the theme.
   final Color? iconColor;
+
+  /// Optional background color to override the default one from the theme.
+  final Color? backgroundColor;
 
   /// Optional text style to override the default one from the theme.
   final TextStyle? textStyle;
@@ -141,7 +145,7 @@ class DotsMainButton extends StatelessWidget {
     );
 
     Widget button = Material(
-      color: buttonTheme.backgroundColor ?? Colors.transparent,
+      color: backgroundColor ?? buttonTheme.backgroundColor ?? Colors.transparent,
       borderRadius: borderRadius,
       child: InkWell(
         splashColor: splashColor,
@@ -178,7 +182,7 @@ class DotsMainButton extends StatelessWidget {
         ),
       ),
     );
-    if (buttonTheme.backgroundGradient != null) {
+    if (buttonTheme.backgroundGradient != null && backgroundColor == null) {
       button = DotsDecoratedBox(
         styleType: buttonTheme.backgroundGradient,
         decoration: BoxDecoration(borderRadius: borderRadius),
