@@ -207,7 +207,10 @@ List<Story> get dotBookStories => [
                   Option(label: 'Beige Craft', value: DotBookCoverColor.beigeCraft),
                 ],
               ),
-              bottomText: context.knobs.text(label: 'Bottom text', initial: 'My DotBook'),
+              dotsTitle: context.knobs.text(label: 'Bottom text', initial: 'DotBook'),
+              editorTitle: context.knobs.text(label: 'Editor title', initial: 'CAROLINA & JOSELUIS'),
+              editorSubtitle:
+                  context.knobs.nullable.text(label: 'Editor subtitle', initial: 'Discover the journey behind our brand'),
               onOverlayTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Overlay tapped')),

@@ -14,8 +14,14 @@ class DotBookCover extends StatelessWidget {
 	/// Tap callback for all overlay variants.
 	final Function()? onOverlayTap;
 
-	/// Text shown according to variant positioning rules.
-	final String bottomText;
+	/// Text shown at the bottom of the cover.
+	final String dotsTitle;
+
+	/// Main text for DotBookTextEditor.
+	final String editorTitle;
+
+	/// Secondary text for DotBookTextEditor.
+	final String? editorSubtitle;
 
 
 	const DotBookCover({
@@ -24,7 +30,9 @@ class DotBookCover extends StatelessWidget {
 		this.color = DotBookCoverColor.white,
 		this.overlayImage,
 		this.onOverlayTap,
-		this.bottomText = '',
+		this.dotsTitle = 'DotBook',
+		this.editorTitle = '',
+		this.editorSubtitle,
 	});
 
 	@override
@@ -46,21 +54,6 @@ class DotBookCover extends StatelessWidget {
 							height: imageHeight,
 							fit: BoxFit.cover,
 						),
-						if (variant == DotBookCoverType.printedCircle && bottomText.isNotEmpty)
-							Positioned(
-								left: 8,
-								right: 8,
-								bottom: 13,
-								child: Text(
-									bottomText,
-									textAlign: TextAlign.center,
-									maxLines: 1,
-									overflow: TextOverflow.ellipsis,
-									style: context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
-										color: color.textColor(context, variant),
-                  ),
-								),
-							),
 						DotBookCoverOverlay(
 							variant: variant,
 							coverColor: color,
@@ -68,7 +61,9 @@ class DotBookCover extends StatelessWidget {
 							imageHeight: imageHeight,
 							overlayImage: overlayImage,
 							onTap: onOverlayTap,
-							bottomText: bottomText,
+							dotsTitle: dotsTitle,
+							editorTitle: editorTitle,
+							editorSubtitle: editorSubtitle,
 						),
 					],
 				),

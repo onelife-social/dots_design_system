@@ -25,8 +25,14 @@ class DotBookCoverOverlay extends StatelessWidget {
   /// Tap callback for the overlay.
   final VoidCallback? onTap;
 
-  /// Text shown according to variant positioning rules.
-  final String bottomText;
+  /// Text shown with the company branding.
+  final String dotsTitle;
+
+  /// Main text for DotBookTextEditor.
+  final String editorTitle;
+
+  /// Secondary text for DotBookTextEditor.
+  final String? editorSubtitle;
 
   const DotBookCoverOverlay({
     super.key,
@@ -37,13 +43,13 @@ class DotBookCoverOverlay extends StatelessWidget {
     this.overlayImage,
     this.defaultImage,
     this.onTap,
-    this.bottomText = '',
+    required this.dotsTitle,
+    required this.editorTitle,
+    this.editorSubtitle,
   });
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-    
     final _DotBookCoverOverlayImage overlay = _DotBookCoverOverlayImage(
       image: overlayImage,
       defaultImage: defaultImage ?? AssetImage(ImagesPaths.defaultSectionPlanning),
@@ -51,6 +57,29 @@ class DotBookCoverOverlay extends StatelessWidget {
       icon: DotsIconData.add,
     );
 
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        _buildOverlayByVariant(context, overlay),
+        if (_hasEditorContent) _buildTextEditorByVariant(),
+        if (dotsTitle.isNotEmpty) _buildBottomTextByVariant(context),
+      ],
+    );
+  }
+
+  bool get _hasEditorContent {
+    switch (variant) {
+      case DotBookCoverType.printedSquare:
+        return editorTitle.isNotEmpty ||
+            (editorSubtitle?.isNotEmpty ?? false) ||
+            dotsTitle.isNotEmpty;
+      case DotBookCoverType.linen:
+      case DotBookCoverType.printedCircle:
+        return editorTitle.isNotEmpty || (editorSubtitle?.isNotEmpty ?? false);
+    }
+  }
+
+  Widget _buildOverlayByVariant(BuildContext context, Widget overlay) {
     switch (variant) {
       case DotBookCoverType.linen:
         return Center(
@@ -66,24 +95,6 @@ class DotBookCoverOverlay extends StatelessWidget {
                     color: Colors.black.dotsWithOpacity(0.2),
                   ),
                 ),
-                if (bottomText.isNotEmpty)
-                  Positioned(
-                    left: 8,
-                    right: 8,
-                    bottom: 13,
-                    child: IgnorePointer(
-                      child: Text(
-                        bottomText,
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
-                          color: theme.colors.labelAlwaysWhite,
-                          
-                        ),
-                      ),
-                    ),
-                  ),
               ],
             ),
           ),
@@ -108,23 +119,6 @@ class DotBookCoverOverlay extends StatelessWidget {
                         color: Colors.black.dotsWithOpacity(0.2),
                       ),
                     ),
-                    if (bottomText.isNotEmpty)
-                      Positioned(
-                        left: 8,
-                        right: 8,
-                        bottom: overlayHeight * 0.04,
-                        child: IgnorePointer(
-                          child: Text(
-                            bottomText,
-                            textAlign: TextAlign.center,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
-                              color: coverColor.textColor(context, variant),
-                            ),
-                          ),
-                        ),
-                      ),
                   ],
                 ),
               );
@@ -138,6 +132,116 @@ class DotBookCoverOverlay extends StatelessWidget {
             child: ClipOval(child: overlay),
           ),
         );
+    }
+  }
+
+  Widget _buildTextEditorByVariant() {
+    switch (variant) {
+      case DotBookCoverType.printedCircle:
+        final double editorWidth = imageWidth * 0.67;
+        return Positioned(
+          top: imageHeight * 0.075,
+          left: (imageWidth - editorWidth) / 2,
+          width: editorWidth,
+          child: DotBookTextEditor(
+            coverVariant: variant,
+            color: coverColor,
+            title: editorTitle,
+            subtitle: editorSubtitle,
+          ),
+        );
+
+      case DotBookCoverType.printedSquare:
+        final double horizontalInset = imageWidth * 0.04;
+        final double overlayWidth = imageWidth - (horizontalInset * 2);
+        final double overlayHeight = overlayWidth * (36 / 37);
+        final double overlayTop = imageHeight - (imageHeight * 0.04) - overlayHeight;
+        final double editorTop = imageHeight * 0.04;
+        final double editorHeight = (overlayTop - editorTop).clamp(0.0, imageHeight);
+
+        return Positioned(
+          top: editorTop,
+          left: horizontalInset,
+          right: horizontalInset,
+          height: editorHeight,
+          child: DotBookTextEditor(
+            variant: DotBookTextEditorVariant.printedSquare,
+            coverVariant: variant,
+            color: coverColor,
+            title: editorTitle,
+            subtitle: editorSubtitle,
+            xtraInfo: dotsTitle,
+          ),
+        );
+
+      case DotBookCoverType.linen:
+        final double overlayHeight = imageHeight * 0.395;
+        final double overlayTop = (imageHeight - overlayHeight) / 2;
+        final double editorWidth = imageWidth * 0.6;
+        final double editorHeight = overlayHeight * 0.6;
+
+        return Positioned(
+          top: overlayTop + (overlayHeight * 0.05),
+          left: (imageWidth - editorWidth) / 2,
+          width: editorWidth,
+          height: editorHeight,
+          child: DotBookTextEditor(
+            coverVariant: variant,
+            color: coverColor,
+            title: editorTitle,
+            subtitle: editorSubtitle,
+          ),
+        );
+    }
+  }
+
+  Widget _buildBottomTextByVariant(BuildContext context) {
+    final theme = context.dotsTheme;
+
+    switch (variant) {
+      case DotBookCoverType.linen:
+        final double overlayHeight = imageHeight * 0.395;
+        return Positioned(
+          left: 8,
+          right: 8,
+          bottom: overlayHeight * 0.04,
+          child: IgnorePointer(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: overlayHeight * 0.04),
+                child: Text(
+                  dotsTitle,
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  style: context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
+                    color: theme.colors.labelAlwaysWhite,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+
+      case DotBookCoverType.printedCircle:
+        return Positioned(
+          left: 8,
+          right: 8,
+          bottom: imageHeight * 0.04,
+          child: IgnorePointer(
+            child: Text(
+              dotsTitle,
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              style: context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
+                color: coverColor.textColor(context, variant),
+              ),
+            ),
+          ),
+        );
+
+      case DotBookCoverType.printedSquare:
+        return const SizedBox.shrink();
     }
   }
 }

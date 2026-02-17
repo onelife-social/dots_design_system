@@ -59,74 +59,71 @@ class DotBookTextEditor extends StatelessWidget {
       child: SizedBox(
         width: width,
         height: height,
-        child: Padding(
-          padding: const EdgeInsets.all(5),
-          child: variant == DotBookTextEditorVariant.printedSquare
-              ? Column(
+        child: variant == DotBookTextEditorVariant.printedSquare
+          ? Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        if (xtraInfo != null)
-                          Text(
-                            xtraInfo!,
-                            style: theme.typo.main.bodyDefaultBold.copyWith(
-                              color: color.textColor(context, coverVariant),
-                            ),
-                            textAlign: TextAlign.left,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        if (subtitle != null)
-                          Text(
-                            subtitle!,
-                            style: theme.typo.main.bodyDefaultBold.copyWith(
-                              color: color.textColor(context, coverVariant),
-                            ),
-                            textAlign: TextAlign.right,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                      ],
+                    if (xtraInfo != null)
+                      Text(
+                        xtraInfo!,
+                        style: theme.typo.main.bodyDefaultBold.copyWith(
+                          color: color.textColor(context, coverVariant),
+                        ),
+                        textAlign: TextAlign.left,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    if (subtitle != null)
+                      Text(
+                        subtitle!,
+                        style: theme.typo.main.bodyDefaultBold.copyWith(
+                          color: color.textColor(context, coverVariant),
+                        ),
+                        textAlign: TextAlign.right,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                  ],
+                ),
+                const Spacer(),
+                Text(
+                  title,
+                  style: theme.typo.main.bodyDefaultBold.copyWith(
+                    color: color.textColor(context, coverVariant),
+                  ),
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+              ],
+            )
+          : Center(
+              child: Column(
+                spacing: 8,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    style: theme.typo.main.bodyDefaultBold.copyWith(
+                      color: color.textColor(context, coverVariant),
                     ),
-                    const Spacer(),
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                  ),
+                  if (subtitle != null)
                     Text(
-                      title,
+                      subtitle!,
                       style: theme.typo.main.bodyDefaultBold.copyWith(
                         color: color.textColor(context, coverVariant),
                       ),
                       textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
                       maxLines: 1,
-                    ),
-                  ],
-                )
-              : Center(
-                  child: Column(
-                    spacing: 8,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        title,
-                        style: theme.typo.main.bodyDefaultBold.copyWith(
-                          color: color.textColor(context, coverVariant),
-                        ),
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                      ),
-                      if (subtitle != null)
-                        Text(
-                          subtitle!,
-                          style: theme.typo.main.bodyDefaultBold.copyWith(
-                            color: color.textColor(context, coverVariant),
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                        )
-                    ],
-                  ),
-                ),
-        ),
+                    )
+                ],
+              ),
+            ),
       ),
     );
 	}

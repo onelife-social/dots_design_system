@@ -28,21 +28,21 @@ extension DotBookCoverColorTextExtension on DotBookCoverColor {
 
     switch (this) {
       case DotBookCoverColor.white:
-        return theme.colors.textPrimary;
+        return Color(0xFF3C3C3B);
       case DotBookCoverColor.stone:
-        return theme.colors.textPrimary;
+        return theme.colors.labelAlwaysWhite;
       case DotBookCoverColor.charcoal:
         return theme.colors.labelAlwaysWhite;
       case DotBookCoverColor.cloud:
-        return theme.colors.textPrimary;
+        return Color(0xFF3E585E);
       case DotBookCoverColor.olive:
-        return theme.colors.labelAlwaysWhite;
+        return Color(0xFF52572F);
       case DotBookCoverColor.peach:
-        return theme.colors.textPrimary;
+        return Color(0xFFA88692);
       case DotBookCoverColor.sand:
-        return theme.colors.textPrimary;
+        return Color(0xFFA89E91);
       case DotBookCoverColor.beigeCraft:
-        return theme.colors.textPrimary;
+        return Color(0xFF88683A);
     }
   }
 }
