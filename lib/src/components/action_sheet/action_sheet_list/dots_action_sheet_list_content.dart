@@ -614,7 +614,6 @@ class _Footer extends StatelessWidget {
   final bool enabled;
 
   const _Footer({
-    super.key,
     required this.variant,
     required this.mainButtonText,
     required this.onMainButtonTap,

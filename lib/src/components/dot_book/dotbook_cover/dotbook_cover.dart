@@ -29,7 +29,6 @@ class DotBookCover extends StatelessWidget {
 
 	@override
 	Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
 
 		final double width = MediaQuery.sizeOf(context).width * 0.85;
 		final double imageHeight = width * (5 / 4);
@@ -58,12 +57,13 @@ class DotBookCover extends StatelessWidget {
 									maxLines: 1,
 									overflow: TextOverflow.ellipsis,
 									style: context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
-                    color: theme.colors.labelAlwaysWhite,
+										color: color.textColor(context, variant),
                   ),
 								),
 							),
 						DotBookCoverOverlay(
 							variant: variant,
+							coverColor: color,
 							imageWidth: width,
 							imageHeight: imageHeight,
 							overlayImage: overlayImage,

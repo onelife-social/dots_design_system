@@ -229,25 +229,49 @@ List<Story> get dotBookStories => [
         ),
       ),
       Story(
-        name: 'DotBook Components/DotBook titles editor',
-        description: 'Demo page for DotBook titles editor',
+        name: 'DotBook Components/DotBook text editor',
+        description: 'Demo page for DotBook text editor',
         builder: (context) => ColoredBox(
           color: context.dotsTheme.colors.bgContainerSecondary,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: DotBookTitlesEditor(
+            child: DotBookTextEditor(
               width: 300,
               height: 150,
+              title: context.knobs.text(label: 'Text', initial: 'My DotBook'),
+              subtitle: context.knobs.nullable.text(label: 'Subtitle', initial: 'A great book'),
+              xtraInfo: context.knobs.nullable.text(label: 'Extra info', initial: '20 x 30 cm'),
               variant: context.knobs.options(
-                label: 'Editor variant',
-                initial: DotBookTitlesEditorVariant.defaultVariant,
+                label: 'Text editor variant',
+                initial: DotBookTextEditorVariant.defaultVariant,
                 options: const [
-                  Option(label: 'Default', value: DotBookTitlesEditorVariant.defaultVariant),
-                  Option(label: 'Printed Square', value: DotBookTitlesEditorVariant.printedSquare),
+                  Option(label: 'Default', value: DotBookTextEditorVariant.defaultVariant),
+                  Option(label: 'Printed Square', value: DotBookTextEditorVariant.printedSquare),
                 ],
               ),
-              title: context.knobs.text(label: 'Title', initial: 'My DotBook'),
-              date: context.knobs.text(label: 'Date', initial: 'June 2024'),
+              coverVariant: context.knobs.options(
+                label: 'Cover variant',
+                initial: DotBookCoverType.linen,
+                options: const [
+                  Option(label: 'Linen', value: DotBookCoverType.linen),
+                  Option(label: 'Printed Square', value: DotBookCoverType.printedSquare),
+                  Option(label: 'Printed Circle', value: DotBookCoverType.printedCircle),
+                ],
+              ),
+              color: context.knobs.options(
+                label: 'Cover color',
+                initial: DotBookCoverColor.white,
+                options: const [
+                  Option(label: 'White', value: DotBookCoverColor.white),
+                  Option(label: 'Stone', value: DotBookCoverColor.stone),
+                  Option(label: 'Charcoal', value: DotBookCoverColor.charcoal),
+                  Option(label: 'Cloud', value: DotBookCoverColor.cloud),
+                  Option(label: 'Olive', value: DotBookCoverColor.olive),
+                  Option(label: 'Peach', value: DotBookCoverColor.peach),
+                  Option(label: 'Sand', value: DotBookCoverColor.sand),
+                  Option(label: 'Beige Craft', value: DotBookCoverColor.beigeCraft),
+                ],
+              ),
             ),
           ),
         ),

@@ -7,6 +7,9 @@ class DotBookCoverOverlay extends StatelessWidget {
   /// Variant of the cover to determine the overlay's position and size.
   final DotBookCoverType variant;
 
+  /// Cover color used to derive text color from theme context.
+  final DotBookCoverColor coverColor;
+
   /// Width of the cover image, used to calculate overlay dimensions.
   final double imageWidth;
 
@@ -28,6 +31,7 @@ class DotBookCoverOverlay extends StatelessWidget {
   const DotBookCoverOverlay({
     super.key,
     required this.variant,
+    required this.coverColor,
     required this.imageWidth,
     required this.imageHeight,
     this.overlayImage,
@@ -39,7 +43,7 @@ class DotBookCoverOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-
+    
     final _DotBookCoverOverlayImage overlay = _DotBookCoverOverlayImage(
       image: overlayImage,
       defaultImage: defaultImage ?? AssetImage(ImagesPaths.defaultSectionPlanning),
@@ -75,6 +79,7 @@ class DotBookCoverOverlay extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
                           color: theme.colors.labelAlwaysWhite,
+                          
                         ),
                       ),
                     ),
@@ -115,7 +120,7 @@ class DotBookCoverOverlay extends StatelessWidget {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
-                              color: Colors.white,
+                              color: coverColor.textColor(context, variant),
                             ),
                           ),
                         ),
