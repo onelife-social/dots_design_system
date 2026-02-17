@@ -158,57 +158,24 @@ class _DotsTextFieldState extends State<DotsTextField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          height: 44,
-          clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: widget.background ? theme.colors.bgContainerSecondaryOnBackground : null,
-            shape: RoundedRectangleBorder(borderRadius: DotsBorderRadius.r1000),
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Align(
-                  alignment: widget.alignCenter ? Alignment.center : Alignment.centerLeft,
-                  child: Row(
-                    mainAxisSize: widget.alignCenter ? MainAxisSize.min : MainAxisSize.max,
-                    children: [
-                      if (widget.iconData != null) ...[
-                        DotsIcon(
-                          iconData: widget.iconData!,
-                          color: !widget.background && widget.isError
-                              ? theme.colors.labelDestructive
-                              : theme.colors.textTertiary,
-                          size: 20,
+                if (_showClearButton)
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: _clearText,
+                    child: SizedBox(
+                      width: 36,
+                      height: 36,
+                      child: Center(
+                        child: DotsCloseButton(
+                          size: DotsCloseButtonSize.extraSmall,
+                          variant: widget.background
+                              ? DotsCloseButtonVariant.inverted
+                              : DotsCloseButtonVariant.softContrast,
+                          onTap: _clearText,
                         ),
-                        const SizedBox(width: 6),
-                      ],
-                      if (widget.alignCenter)
-                        IntrinsicWidth(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(minWidth: 0),
-                            child: buildTextField(),
-                          ),
-                        )
-                      else
-                        Expanded(
-                          child: buildTextField(),
-                        ),
-                    ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              if (_showClearButton)
-                DotsCloseButton(
-                  size: DotsCloseButtonSize.extraSmall,
-                  variant: widget.background
-                      ? DotsCloseButtonVariant.inverted
-                      : DotsCloseButtonVariant.softContrast,
-                  onTap: _clearText,
-                ),
-            ],
           ),
         ),
         if (widget.background && widget.isError && widget.errorText?.isNotEmpty == true) ...[
