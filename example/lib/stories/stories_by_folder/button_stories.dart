@@ -32,6 +32,7 @@ List<Story> get buttonStories => [
                 options: DotsMainButtonVariant.values
                     .map((item) => Option(label: item.name, value: item))
                     .toList()),
+            backgroundColor: knobColorSelector(context, 'Background color'),
             onTap: () {},
             expand: context.knobs.boolean(label: 'Expand', initial: true),
             adaptPaddingForText:
