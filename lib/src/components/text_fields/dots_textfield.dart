@@ -170,6 +170,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                if (widget.alignCenter) const SizedBox(width: 36),
                 Expanded(
                   child: Align(
                     alignment: widget.alignCenter ? Alignment.center : Alignment.centerLeft,
@@ -201,24 +202,25 @@ class _DotsTextFieldState extends State<DotsTextField> {
                     ),
                   ),
                 ),
-                if (_showClearButton)
-                  GestureDetector(
-                    behavior: HitTestBehavior.opaque,
-                    onTap: _clearText,
-                    child: SizedBox(
-                      width: 36,
-                      height: 36,
-                      child: Center(
-                        child: DotsCloseButton(
-                          size: DotsCloseButtonSize.extraSmall,
-                          variant: widget.background
-                              ? DotsCloseButtonVariant.inverted
-                              : DotsCloseButtonVariant.softContrast,
+                SizedBox(
+                  width: 36,
+                  height: 36,
+                  child: _showClearButton
+                      ? GestureDetector(
+                          behavior: HitTestBehavior.opaque,
                           onTap: _clearText,
-                        ),
-                      ),
-                    ),
-                  ),
+                          child: Center(
+                            child: DotsCloseButton(
+                              size: DotsCloseButtonSize.extraSmall,
+                              variant: widget.background
+                                  ? DotsCloseButtonVariant.inverted
+                                  : DotsCloseButtonVariant.softContrast,
+                              onTap: _clearText,
+                            ),
+                          ),
+                        )
+                      : null,
+                ),
               ],
             ),
           ),
