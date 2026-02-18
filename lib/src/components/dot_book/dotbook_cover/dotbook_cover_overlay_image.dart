@@ -150,9 +150,9 @@ class _DotBookCoverOverlayImageLayer extends StatelessWidget {
         );
       case DotBookCoverType.printedSquare:
         return Positioned(
-          left: imageWidth * 0.05,
-          right: imageWidth * 0.05,
-          bottom: imageHeight * 0.05,
+          left: imageWidth * 0.0373,
+          right: imageWidth * 0.0373,
+          bottom: imageHeight * 0.0347,
           child: LayoutBuilder(
             builder: (context, constraints) {
               final double overlayWidth = constraints.maxWidth;
@@ -232,17 +232,18 @@ class _DotBookCoverTextEditorLayer extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (variant) {
       case DotBookCoverType.printedCircle:
-        final double editorWidth = coverImageWidth * 0.514;
+        final double editorWidth = coverImageWidth * 0.4806;
         return Positioned(
-          top: coverImageHeight * 0.075,
+          top: coverImageHeight * 0.0867,
           left: (coverImageWidth - editorWidth) / 2,
           width: editorWidth,
           child: _DotBookEditorWithEditingBorder(
             isEditingMode: isEditingMode,
-            borderColor: editingBorderColor ?? context.dotsTheme.colors.labelSecondary,
+            borderColor: editingBorderColor ?? const Color(0x33000000),
             onBorderTap: onEditingBorderTap,
             child: DotBookTextEditor(
               coverImageWidth: coverImageWidth,
+              coverImageHeight: coverImageHeight,
               variant: variant,
               coverVariant: variant,
               textColor: textColor,
@@ -253,12 +254,13 @@ class _DotBookCoverTextEditorLayer extends StatelessWidget {
         );
 
       case DotBookCoverType.printedSquare:
-        final double horizontalInset = coverImageWidth * 0.05;
+        final double horizontalInset = coverImageWidth * 0.0373;
         final double overlayWidth = coverImageWidth - (horizontalInset * 2);
         final double overlayHeight = overlayWidth * (36 / 37);
-        final double overlayTop = coverImageHeight - (coverImageHeight * 0.05) - overlayHeight;
-        final double editorTop = coverImageHeight * 0.04;
-        final double editorHeight = (overlayTop - editorTop).clamp(0.0, coverImageHeight);
+        final double overlayTop = coverImageHeight - (coverImageHeight * 0.0347) - overlayHeight;
+        final double editorTop = coverImageHeight * 0.0347;
+        final double editorBottomPadding = coverImageHeight * 0.0145;
+        final double editorHeight = (overlayTop - editorTop - editorBottomPadding).clamp(0.0, coverImageHeight);
 
         return Positioned(
           top: editorTop,
@@ -267,16 +269,17 @@ class _DotBookCoverTextEditorLayer extends StatelessWidget {
           height: editorHeight,
           child: _DotBookEditorWithEditingBorder(
             isEditingMode: isEditingMode,
-            borderColor: editingBorderColor ?? context.dotsTheme.colors.labelSecondary,
+            borderColor: editingBorderColor ?? const Color(0x33000000),
             onBorderTap: onEditingBorderTap,
             child: DotBookTextEditor(
+              coverImageWidth: coverImageWidth,
+              coverImageHeight: coverImageHeight,
               variant: variant,
               height: editorHeight,
               coverVariant: variant,
               textColor: textColor,
               title: editorTitle,
               subtitle: editorSubtitle,
-              coverImageWidth: coverImageWidth,
               xtraInfo: dotsTitle,
             ),
           ),
@@ -285,17 +288,18 @@ class _DotBookCoverTextEditorLayer extends StatelessWidget {
       case DotBookCoverType.linen:
         final double overlayHeight = coverImageHeight * 0.395;
         final double overlayTop = (coverImageHeight - overlayHeight) / 2;
-        final double editorWidth = coverImageWidth * 0.514;
+        final double editorWidth = coverImageWidth * 0.4806;
         return Positioned(
-          top: overlayTop + (coverImageHeight * 0.029),
+          top: overlayTop + (coverImageHeight * 0.0353),
           left: (coverImageWidth - editorWidth) / 2,
           width: editorWidth,
           child: _DotBookEditorWithEditingBorder(
             isEditingMode: isEditingMode,
-            borderColor: editingBorderColor ?? context.dotsTheme.colors.labelSecondary,
+            borderColor: editingBorderColor ?? const Color(0x33000000),
             onBorderTap: onEditingBorderTap,
             child: DotBookTextEditor(
               coverImageWidth: coverImageWidth,
+              coverImageHeight: coverImageHeight,
               width: editorWidth,
               variant: variant,
               coverVariant: variant,
@@ -386,7 +390,7 @@ class _DotBookCoverBottomTitleLayer extends StatelessWidget {
       case DotBookCoverType.linen:
         final double overlayHeight = coverImageHeight * 0.395;
         final double overlayTop = (coverImageHeight - overlayHeight) / 2;
-        final double bottomInset = coverImageHeight * 0.029;
+        final double bottomInset = coverImageHeight * 0.0345;
         return Positioned(
           left: 8,
           right: 8,
@@ -398,13 +402,14 @@ class _DotBookCoverBottomTitleLayer extends StatelessWidget {
                 dotsTitle,
                 textAlign: TextAlign.center,
                 maxLines: 1,
-                style: context.dotsTheme.typo.secondary.title02H1.copyWith(
+                style: context.dotsTheme.typo.secondary.title02H2.copyWith(
                   color: theme.colors.labelAlwaysWhite,
                   fontSize: DotsTextUtils.scaledFontSize(
-                    referenceFontSize: 6.8,
+                    referenceFontSize: 6.84,
                     imageWidth: coverImageWidth,
                     referenceWidth: kCoverImageWidth,
                   ),
+                  height: null,
                 ),
               ),
             ),
@@ -415,19 +420,20 @@ class _DotBookCoverBottomTitleLayer extends StatelessWidget {
         return Positioned(
           left: 8,
           right: 8,
-          bottom: coverImageHeight * 0.04,
+          bottom: coverImageHeight * 0.0345,
           child: IgnorePointer(
             child: Text(
               dotsTitle,
               textAlign: TextAlign.center,
               maxLines: 1,
-              style: context.dotsTheme.typo.secondary.title02H1.copyWith(
+              style: context.dotsTheme.typo.secondary.title02H2.copyWith(
                 color: textColor,
                 fontSize: DotsTextUtils.scaledFontSize(
-                  referenceFontSize: 6.8,
+                  referenceFontSize: 5.8,
                   imageWidth: coverImageWidth,
                   referenceWidth: kCoverImageWidth,
                 ),
+                height: null,
               ),
             ),
           ),

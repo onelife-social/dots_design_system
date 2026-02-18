@@ -28,7 +28,7 @@ class DotBookTextEditorBorder extends StatelessWidget {
   const DotBookTextEditorBorder({
     super.key,
     required this.color,
-    this.radius = 16,
+    this.radius = 8,
     this.strokeWidth = 2,
     this.dashLength = 10,
     this.dashGap = 2,
