@@ -1,7 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class TextUtils {
+class DotsTextUtils {
   /// Builds TextSpan list that separates emojis from regular text
   /// Emojis maintain full opacity while regular text uses the theme color
   List<TextSpan> buildTextWithEmojiSpans({

@@ -206,7 +206,7 @@ class _Info extends StatelessWidget {
           if (description != null && description!.isNotEmpty)
             Text.rich(
               TextSpan(
-                children: TextUtils().buildTextWithEmojiSpans(
+                children: DotsTextUtils().buildTextWithEmojiSpans(
                   text: description!,
                   baseStyle: theme.typo.main.bodyDefaultRegular.copyWith(
                     color: theme.colors.textSecondary,
@@ -232,7 +232,7 @@ class _Info extends StatelessWidget {
             TextSpan(
               children: [
                 if (description != null && description!.isNotEmpty)
-                  ...TextUtils().buildTextWithEmojiSpans(
+                  ...DotsTextUtils().buildTextWithEmojiSpans(
                     text: description!,
                     baseStyle: theme.typo.main.bodyDefaultRegular.copyWith(
                       color: theme.colors.textSecondary,
