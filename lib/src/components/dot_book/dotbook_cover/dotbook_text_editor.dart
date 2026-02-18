@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../dots_design_system.dart';
+import '../../../../utils/utils.dart';
 
 
 class DotBookTextEditor extends StatelessWidget {
@@ -69,7 +70,7 @@ class DotBookTextEditor extends StatelessWidget {
                         xtraInfo!,
                         style: theme.typo.secondary.title02H1.copyWith(
                           color: textColor,
-                          fontSize: TextUtils.scaledFontSize(
+                          fontSize: DotsTextUtils.scaledFontSize(
                             referenceFontSize: 6.8,
                             imageWidth: coverImageWidth,
                             referenceWidth: kCoverImageWidth,
@@ -87,7 +88,7 @@ class DotBookTextEditor extends StatelessWidget {
                         subtitle!,
                         style: theme.typo.secondary.title02H1.copyWith(
                           color: textColor,
-                          fontSize: TextUtils.scaledFontSize(
+                          fontSize: DotsTextUtils.scaledFontSize(
                             referenceFontSize: 6.8,
                             imageWidth: coverImageWidth,
                             referenceWidth: kCoverImageWidth,
@@ -107,7 +108,7 @@ class DotBookTextEditor extends StatelessWidget {
                     title,
                     style: theme.typo.secondary.title02H1.copyWith(
                       color: textColor,
-                      fontSize: TextUtils.scaledFontSize(
+                      fontSize: DotsTextUtils.scaledFontSize(
                         referenceFontSize: 60,
                         imageWidth: coverImageWidth,
                         referenceWidth: kCoverImageWidth,
@@ -129,7 +130,7 @@ class DotBookTextEditor extends StatelessWidget {
                     title,
                     style: theme.typo.secondary.title02H1.copyWith(
                       color: textColor,
-                      fontSize: TextUtils.scaledFontSize(
+                      fontSize: DotsTextUtils.scaledFontSize(
                         referenceFontSize: 15.35,
                         imageWidth: coverImageWidth,
                         referenceWidth: kCoverImageWidth,
@@ -144,7 +145,7 @@ class DotBookTextEditor extends StatelessWidget {
                       subtitle!,
                       style: theme.typo.secondary.title02H1.copyWith(
                         color: textColor,
-                        fontSize: TextUtils.scaledFontSize(
+                        fontSize: DotsTextUtils.scaledFontSize(
                           referenceFontSize: 5.7,
                           imageWidth: coverImageWidth,
                           referenceWidth: kCoverImageWidth,

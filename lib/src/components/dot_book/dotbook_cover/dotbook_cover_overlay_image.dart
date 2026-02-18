@@ -400,7 +400,7 @@ class _DotBookCoverBottomTitleLayer extends StatelessWidget {
                 maxLines: 1,
                 style: context.dotsTheme.typo.secondary.title02H1.copyWith(
                   color: theme.colors.labelAlwaysWhite,
-                  fontSize: TextUtils.scaledFontSize(
+                  fontSize: DotsTextUtils.scaledFontSize(
                     referenceFontSize: 6.8,
                     imageWidth: coverImageWidth,
                     referenceWidth: kCoverImageWidth,
@@ -423,7 +423,7 @@ class _DotBookCoverBottomTitleLayer extends StatelessWidget {
               maxLines: 1,
               style: context.dotsTheme.typo.secondary.title02H1.copyWith(
                 color: textColor,
-                fontSize: TextUtils.scaledFontSize(
+                fontSize: DotsTextUtils.scaledFontSize(
                   referenceFontSize: 6.8,
                   imageWidth: coverImageWidth,
                   referenceWidth: kCoverImageWidth,

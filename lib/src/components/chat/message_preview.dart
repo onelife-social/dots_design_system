@@ -186,7 +186,7 @@ class _ChatContent extends StatelessWidget {
                     );
                 }
                 spans.addAll(
-                  TextUtils().buildTextWithEmojiSpans(
+                  DotsTextUtils().buildTextWithEmojiSpans(
                     text: message,
                     baseStyle: textStyle,
                   ),
