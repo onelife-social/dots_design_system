@@ -19,36 +19,80 @@ class DotsTextUtils {
     for (final match in emojiRegex.allMatches(text)) {
       // Add text before emoji
       if (match.start > lastEnd) {
-        spans.add(TextSpan(
-          text: text.substring(lastEnd, match.start),
-          style: baseStyle,
-        ));
+        spans.add(
+          TextSpan(
+            text: text.substring(lastEnd, match.start),
+            style: baseStyle,
+          ),
+        );
       }
 
       // Add emoji with full opacity
-      spans.add(TextSpan(
-        text: match.group(0),
-        style: baseStyle.copyWith(
-          color: baseStyle.color?.dotsWithOpacity(1.0),
+      spans.add(
+        TextSpan(
+          text: match.group(0),
+          style: baseStyle.copyWith(
+            color: baseStyle.color?.dotsWithOpacity(1.0),
+          ),
         ),
-      ));
+      );
 
       lastEnd = match.end;
     }
 
     // Add remaining text after last emoji
     if (lastEnd < text.length) {
-      spans.add(TextSpan(
-        text: text.substring(lastEnd),
-        style: baseStyle,
-      ));
+      spans.add(
+        TextSpan(
+          text: text.substring(lastEnd),
+          style: baseStyle,
+        ),
+      );
     }
 
     return spans;
   }
 
   /// Utility function to scale font size based on image width
-  static double scaledFontSize({required double referenceFontSize, required double imageWidth, required double referenceWidth}) {
+  static double scaledFontSize({
+    required double referenceFontSize,
+    required double imageWidth,
+    required double referenceWidth,
+  }) {
     return referenceFontSize * (imageWidth / referenceWidth);
+  }
+
+  /// Adds soft-hyphen break opportunities to long words.
+  ///
+  /// Soft hyphens (`\u00AD`) only render when a line break happens,
+  /// allowing wrapped words to show a hyphen instead of ellipsis.
+  static String withSoftHyphenBreaks(
+    String text, {
+    int minWordLength = 8,
+    int interval = 3,
+  }) {
+    if (text.isEmpty) {
+      return text;
+    }
+
+    return text.replaceAllMapped(RegExp(r'\S+'), (match) {
+      final String word = match.group(0)!;
+
+      if (word.contains('\u00AD') || word.length < minWordLength) {
+        return word;
+      }
+
+      final StringBuffer buffer = StringBuffer();
+      for (int i = 0; i < word.length; i++) {
+        buffer.write(word[i]);
+
+        final bool isLastChar = i == word.length - 1;
+        if (!isLastChar && (i + 1) % interval == 0) {
+          buffer.write('\u00AD');
+        }
+      }
+
+      return buffer.toString();
+    });
   }
 }

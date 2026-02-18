@@ -2,17 +2,7 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-enum DotBookStoryTextColorOption {
-  white,
-  bone,
-  sand,
-  olive,
-  ice,
-  rose,
-  natural,
-  graphite,
-  black
-}
+enum DotBookStoryTextColorOption { white, bone, sand, olive, ice, rose, natural, graphite, black }
 
 Color _dotBookStoryTextColor(
   BuildContext context,
@@ -45,6 +35,22 @@ Color _dotBookStoryTextColor(
     case DotBookStoryTextColorOption.black:
       return theme.colors.labelAlwaysWhite;
   }
+}
+
+String _max30(String value) {
+  if (value.length <= 30) {
+    return value;
+  }
+
+  return value.substring(0, 30);
+}
+
+String? _max30Nullable(String? value) {
+  if (value == null) {
+    return null;
+  }
+
+  return _max30(value);
 }
 
 List<Story> get dotBookStories => [
@@ -257,78 +263,87 @@ List<Story> get dotBookStories => [
               return DotBookCover(
                 variant: variant,
                 containerWidth: MediaQuery.sizeOf(context).width,
-              mainImage: context.knobs.options<ImageProvider>(
-                label: 'Main image asset',
-                initial: AssetImage(ImagesPaths.dotbookCoverLinenWhite),
-                options: [
-                  Option(
-                    label: 'Linen Natural',
-                    value: AssetImage(ImagesPaths.dotbookCoverLinenWhite),
+                mainImage: context.knobs.options<ImageProvider>(
+                  label: 'Main image asset',
+                  initial: AssetImage(ImagesPaths.dotbookCoverLinenWhite),
+                  options: [
+                    Option(
+                      label: 'Linen Natural',
+                      value: AssetImage(ImagesPaths.dotbookCoverLinenWhite),
+                    ),
+                    Option(
+                      label: 'Linen Graphite',
+                      value: AssetImage(ImagesPaths.dotbookCoverLinenStone),
+                    ),
+                    Option(
+                      label: 'Linen Black',
+                      value: AssetImage(ImagesPaths.dotbookCoverLinenCharcoal),
+                    ),
+                    Option(
+                      label: 'Printed White',
+                      value: AssetImage(ImagesPaths.dotbookCoverPrintedWhite),
+                    ),
+                    Option(
+                      label: 'Printed Ice',
+                      value: AssetImage(ImagesPaths.dotbookCoverPrintedCloud),
+                    ),
+                    Option(
+                      label: 'Printed Olive',
+                      value: AssetImage(ImagesPaths.dotbookCoverPrintedOlive),
+                    ),
+                    Option(
+                      label: 'Printed Rose',
+                      value: AssetImage(ImagesPaths.dotbookCoverPrintedPeach),
+                    ),
+                    Option(
+                      label: 'Printed Bone',
+                      value: AssetImage(ImagesPaths.dotbookCoverPrintedSand),
+                    ),
+                    Option(
+                      label: 'Printed Sand',
+                      value: AssetImage(ImagesPaths.dotbookCoverPrintedBeigeCraft),
+                    ),
+                  ],
+                ),
+                textColor: _dotBookStoryTextColor(context, variant, colorOption),
+                dotsTitle: context.knobs.text(label: 'Bottom text', initial: 'DotBook'),
+                editorTitle: _max30(
+                  context.knobs.text(
+                    label: 'Editor title',
+                    initial: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
                   ),
-                  Option(
-                    label: 'Linen Graphite',
-                    value: AssetImage(ImagesPaths.dotbookCoverLinenStone),
+                ),
+                editorSubtitle: _max30Nullable(
+                  context.knobs.nullable.text(
+                    label: 'Editor subtitle',
+                    initial: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
                   ),
-                  Option(
-                    label: 'Linen Black',
-                    value: AssetImage(ImagesPaths.dotbookCoverLinenCharcoal),
-                  ),
-                  Option(
-                    label: 'Printed White',
-                    value: AssetImage(ImagesPaths.dotbookCoverPrintedWhite),
-                  ),
-                  Option(
-                    label: 'Printed Ice',
-                    value: AssetImage(ImagesPaths.dotbookCoverPrintedCloud),
-                  ),
-                  Option(
-                    label: 'Printed Olive',
-                    value: AssetImage(ImagesPaths.dotbookCoverPrintedOlive),
-                  ),
-                  Option(
-                    label: 'Printed Rose',
-                    value: AssetImage(ImagesPaths.dotbookCoverPrintedPeach),
-                  ),
-                  Option(
-                    label: 'Printed Bone',
-                    value: AssetImage(ImagesPaths.dotbookCoverPrintedSand),
-                  ),
-                  Option(
-                    label: 'Printed Sand',
-                    value: AssetImage(ImagesPaths.dotbookCoverPrintedBeigeCraft),
-                  ),
-                ],
-              ),
-              textColor: _dotBookStoryTextColor(context, variant, colorOption),
-              dotsTitle: context.knobs.text(label: 'Bottom text', initial: 'DotBook'),
-              editorTitle: context.knobs.text(label: 'Editor title', initial: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'),
-              editorSubtitle:
-                  context.knobs.nullable.text(label: 'Editor subtitle', initial: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'),
-              isEditingMode: context.knobs.boolean(
-                label: 'Is editing mode',
-                initial: false,
-              ),
-              onOverlayTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Overlay tapped')),
-                );
-              },
-              onEditingBorderTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Border tapped')),
-                );
-              },
-              overlayImage: context.knobs.boolean(
-                label: 'Use overlay image',
-                initial: true,
-              )
-                  ? NetworkImage(
-                      context.knobs.text(
-                        label: 'Overlay image',
-                        initial: 'https://picsum.photos/600/900?image=22',
-                      ),
-                    )
-                  : null,
+                ),
+                isEditingMode: context.knobs.boolean(
+                  label: 'Is editing mode',
+                  initial: false,
+                ),
+                onOverlayTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Overlay tapped')),
+                  );
+                },
+                onEditingBorderTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Border tapped')),
+                  );
+                },
+                overlayImage: context.knobs.boolean(
+                  label: 'Use overlay image',
+                  initial: true,
+                )
+                    ? NetworkImage(
+                        context.knobs.text(
+                          label: 'Overlay image',
+                          initial: 'https://picsum.photos/600/900?image=22',
+                        ),
+                      )
+                    : null,
               );
             }),
           ),
@@ -385,6 +400,7 @@ List<Story> get dotBookStories => [
                 coverVariant: coverVariant,
                 textColor: _dotBookStoryTextColor(context, coverVariant, colorOption),
                 coverImageWidth: 323,
+                coverImageHeight: 415,
               );
             }),
           ),

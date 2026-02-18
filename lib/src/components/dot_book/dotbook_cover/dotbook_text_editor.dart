@@ -15,6 +15,9 @@ class DotBookTextEditor extends StatelessWidget {
   /// Width of the image, used to scale text size.
   final double coverImageWidth;
 
+  /// Height of the image, used to scale text size.
+  final double coverImageHeight;
+
   /// Color of the text, used to derive text color from theme context.
   final Color textColor;
 
@@ -42,6 +45,7 @@ class DotBookTextEditor extends StatelessWidget {
 		this.height,
 		this.variant = DotBookCoverType.printedSquare,
     required this.coverImageWidth,
+    required this.coverImageHeight,
     required this.coverVariant,
     required this.textColor,
     required this.title,
@@ -77,7 +81,6 @@ class DotBookTextEditor extends StatelessWidget {
                           ),
                         ),
                         textAlign: TextAlign.left,
-                        overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
                       const SizedBox(width: 12),
@@ -89,13 +92,12 @@ class DotBookTextEditor extends StatelessWidget {
                         style: theme.typo.secondary.title02H1.copyWith(
                           color: textColor,
                           fontSize: DotsTextUtils.scaledFontSize(
-                            referenceFontSize: 6.8,
+                            referenceFontSize: 6,
                             imageWidth: coverImageWidth,
                             referenceWidth: kCoverImageWidth,
                           ),
                         ),
                         textAlign: TextAlign.right,
-                        overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
                     ),
@@ -109,13 +111,13 @@ class DotBookTextEditor extends StatelessWidget {
                     style: theme.typo.secondary.title02H1.copyWith(
                       color: textColor,
                       fontSize: DotsTextUtils.scaledFontSize(
-                        referenceFontSize: 60,
+                        referenceFontSize: 70,
                         imageWidth: coverImageWidth,
                         referenceWidth: kCoverImageWidth,
                       ),
+                      height: 0.95,
                     ),
                     textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
                 ),
@@ -123,7 +125,7 @@ class DotBookTextEditor extends StatelessWidget {
             )
           : Center(
               child: Column(
-                spacing: 8,
+                spacing: coverImageHeight * 0.0072,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
@@ -131,7 +133,7 @@ class DotBookTextEditor extends StatelessWidget {
                     style: theme.typo.secondary.title02H1.copyWith(
                       color: textColor,
                       fontSize: DotsTextUtils.scaledFontSize(
-                        referenceFontSize: 15.35,
+                        referenceFontSize: 14,
                         imageWidth: coverImageWidth,
                         referenceWidth: kCoverImageWidth,
                       ),
@@ -146,13 +148,12 @@ class DotBookTextEditor extends StatelessWidget {
                       style: theme.typo.secondary.title02H1.copyWith(
                         color: textColor,
                         fontSize: DotsTextUtils.scaledFontSize(
-                          referenceFontSize: 5.7,
+                          referenceFontSize: 5,
                           imageWidth: coverImageWidth,
                           referenceWidth: kCoverImageWidth,
                         ),
                       ),
                       textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     )
                 ],
