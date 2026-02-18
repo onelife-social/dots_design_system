@@ -2,6 +2,8 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../utils/utils.dart';
+
 class DotBookCoverOverlay extends StatelessWidget {
 
   /// Variant of the cover to determine the overlay's position and size.
