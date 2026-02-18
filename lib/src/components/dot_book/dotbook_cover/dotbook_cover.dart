@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 
 
 class DotBookCover extends StatelessWidget {
+
+  /// Variant of the cover to determine layout and content arrangement.
   final DotBookCoverType variant;
+
+  /// Width of the entire cover container, used to scale content size.
+  final double containerWidth;
 
   /// Main base cover image.
   final ImageProvider mainImage;
@@ -23,6 +28,9 @@ class DotBookCover extends StatelessWidget {
 	/// If true, shows the editing dashed border above the text editor.
 	final bool isEditingMode;
 
+	/// Optional color for the editing dashed border.
+	final Color? editingBorderColor;
+
 	/// Tap callback for the editing dashed border.
 	final VoidCallback? onEditingBorderTap;
 
@@ -39,12 +47,14 @@ class DotBookCover extends StatelessWidget {
 	const DotBookCover({
 		super.key,
     required this.variant,
+    required this.containerWidth,
 		required this.mainImage,
 		this.textColor = const Color(0xFF3C3C3B),
 		this.overlayImage,
     this.defaultOverlayImage,
 		this.onOverlayTap,
 		this.isEditingMode = false,
+		this.editingBorderColor,
 		this.onEditingBorderTap,
 		this.dotsTitle = 'DotBook',
 		this.editorTitle = '',
@@ -54,7 +64,7 @@ class DotBookCover extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 
-		final double width = MediaQuery.sizeOf(context).width * 0.85;
+		final double width = containerWidth * 0.85;
 		final double imageHeight = width * (5 / 4);
 
 		return Center(
@@ -73,12 +83,13 @@ class DotBookCover extends StatelessWidget {
 						DotBookCoverOverlay(
 							variant: variant,
 							textColor: textColor,
-							imageWidth: width,
-							imageHeight: imageHeight,
+							coverImageWidth: width,
+							coverImageHeight: imageHeight,
 							overlayImage: overlayImage,
               defaultOverlayImage: defaultOverlayImage,
 							onTap: onOverlayTap,
 							isEditingMode: isEditingMode,
+							editingBorderColor: editingBorderColor,
 							onEditingBorderTap: onEditingBorderTap,
 							dotsTitle: dotsTitle,
 							editorTitle: editorTitle,

@@ -34,13 +34,14 @@ class _ColorSelectorRowStoryState extends State<_ColorSelectorRowStory> {
     final theme = context.dotsTheme;
     final colors = [
       theme.colors.labelAlwaysWhite,
-      theme.colors.dotbookSand,
-      theme.colors.dotbookBeigeCraft,
-      theme.colors.dotbookOlive, 
-      theme.colors.dotbookCloud,
-      theme.colors.dotbookPeach,
-      theme.colors.dotbookStone,
-      theme.colors.dotbookCharcoal,
+      theme.colors.bgDotbookBone,
+      theme.colors.bgDotbookSand,
+      theme.colors.bgDotbookOlive, 
+      theme.colors.bgDotbookIce,
+      theme.colors.bgDotbookRose,
+      theme.colors.bgDotbookNatural,
+      theme.colors.bgDotbookGraphite,
+      theme.colors.bgDotbookBlack,
     ];
     _selectedColor ??= colors.first;
 

@@ -266,13 +266,21 @@ class DotsColorsModel {
   final Color textPremiumPlusEnd;
 
   // DotBook
-  final Color dotbookSand;
-  final Color dotbookBeigeCraft;
-  final Color dotbookOlive; 
-  final Color dotbookCloud;
-  final Color dotbookPeach;
-  final Color dotbookStone; 
-  final Color dotbookCharcoal;
+  final Color bgDotbookWhite;
+  final Color bgDotbookBone;
+  final Color bgDotbookSand;
+  final Color bgDotbookOlive; 
+  final Color bgDotbookIce;
+  final Color bgDotbookRose;
+  final Color bgDotbookNatural;
+  final Color bgDotbookGraphite; 
+  final Color bgDotbookBlack;
+  final Color textDotbookWhite;
+  final Color textDotbookBone;
+  final Color textDotbookSand;
+  final Color textDotbookOlive; 
+  final Color textDotbookIce;
+  final Color textDotbookRose;
 
   const DotsColorsModel({
     required this.bgBase,
@@ -468,13 +476,21 @@ class DotsColorsModel {
     required this.textPremiumEnd,
     required this.textPremiumPlusStart,
     required this.textPremiumPlusEnd,
-    required this.dotbookSand,
-    required this.dotbookBeigeCraft,
-    required this.dotbookOlive,
-    required this.dotbookCloud,
-    required this.dotbookPeach ,
-    required this.dotbookStone,
-    required this.dotbookCharcoal,
+    required this.bgDotbookWhite,
+    required this.bgDotbookBone,
+    required this.bgDotbookSand,
+    required this.bgDotbookOlive,
+    required this.bgDotbookIce,
+    required this.bgDotbookRose,
+    required this.bgDotbookNatural,
+    required this.bgDotbookGraphite,
+    required this.bgDotbookBlack,
+    required this.textDotbookWhite,
+    required this.textDotbookBone,
+    required this.textDotbookSand,
+    required this.textDotbookOlive,
+    required this.textDotbookIce,
+    required this.textDotbookRose,
   });
 
   DotsColorsModel lerp(DotsColorsModel? other, double t) {
@@ -698,13 +714,21 @@ class DotsColorsModel {
           Color.lerp(textPremiumPlusStart, other?.textPremiumPlusStart, t) ?? textPremiumPlusStart,
       textPremiumPlusEnd:
           Color.lerp(textPremiumPlusEnd, other?.textPremiumPlusEnd, t) ?? textPremiumPlusEnd,
-      dotbookSand: Color.lerp(dotbookSand, other?.dotbookSand, t) ?? dotbookSand,
-      dotbookBeigeCraft: Color.lerp(dotbookBeigeCraft, other?.dotbookBeigeCraft, t) ?? dotbookBeigeCraft,
-      dotbookCloud: Color.lerp(dotbookCloud, other?.dotbookCloud, t) ?? dotbookCloud,
-      dotbookOlive:Color.lerp(dotbookOlive, other?.dotbookOlive, t) ?? dotbookOlive,
-      dotbookPeach: Color.lerp(dotbookPeach, other?.dotbookPeach, t) ?? dotbookPeach,
-      dotbookStone: Color.lerp(dotbookStone, other?.dotbookStone, t) ?? dotbookStone,
-      dotbookCharcoal: Color.lerp(dotbookCharcoal, other?.dotbookCharcoal, t) ?? dotbookCharcoal,
+      bgDotbookWhite: Color.lerp(bgDotbookWhite, other?.bgDotbookWhite, t) ?? bgDotbookWhite,
+      bgDotbookBone: Color.lerp(bgDotbookBone, other?.bgDotbookBone, t) ?? bgDotbookBone,
+      bgDotbookSand: Color.lerp(bgDotbookSand, other?.bgDotbookSand, t) ?? bgDotbookSand,
+      bgDotbookOlive: Color.lerp(bgDotbookOlive, other?.bgDotbookOlive, t) ?? bgDotbookOlive,
+      bgDotbookIce: Color.lerp(bgDotbookIce, other?.bgDotbookIce, t) ?? bgDotbookIce,
+      bgDotbookRose: Color.lerp(bgDotbookRose, other?.bgDotbookRose, t) ?? bgDotbookRose,
+      bgDotbookNatural: Color.lerp(bgDotbookNatural, other?.bgDotbookNatural, t) ?? bgDotbookNatural,
+      bgDotbookGraphite: Color.lerp(bgDotbookGraphite, other?.bgDotbookGraphite, t) ?? bgDotbookGraphite,
+      bgDotbookBlack: Color.lerp(bgDotbookBlack, other?.bgDotbookBlack, t) ?? bgDotbookBlack,
+      textDotbookWhite: Color.lerp(textDotbookWhite, other?.textDotbookWhite, t) ?? textDotbookWhite,
+      textDotbookBone: Color.lerp(textDotbookBone, other?.textDotbookBone, t) ?? textDotbookBone,
+      textDotbookSand: Color.lerp(textDotbookSand, other?.textDotbookSand, t) ?? textDotbookSand,
+      textDotbookOlive: Color.lerp(textDotbookOlive, other?.textDotbookOlive, t) ?? textDotbookOlive,
+      textDotbookIce: Color.lerp(textDotbookIce, other?.textDotbookIce, t) ?? textDotbookIce,
+      textDotbookRose: Color.lerp(textDotbookRose, other?.textDotbookRose, t) ?? textDotbookRose,
     );
   }
 }
