@@ -95,4 +95,61 @@ class DotsTextUtils {
       return buffer.toString();
     });
   }
+
+  /// Splits long words (>15 chars) with a hyphen when they would wrap
+  /// entirely to line 2. Measures using [TextPainter] to detect the
+  /// actual wrap point at the given [maxWidth].
+  static String hyphenateIfNeeded(String text, TextStyle style, double maxWidth) {
+    final List<String> words = text.split(' ');
+
+    final TextPainter painter = TextPainter(
+      textDirection: TextDirection.ltr,
+      maxLines: 1,
+    );
+
+    // Find which word causes the wrap to line 2
+    String line1 = '';
+    int wrapWordIndex = -1;
+
+    for (int i = 0; i < words.length; i++) {
+      final String candidate = line1.isEmpty ? words[i] : '$line1 ${words[i]}';
+      painter.text = TextSpan(text: candidate, style: style);
+      painter.layout(maxWidth: maxWidth);
+
+      if (painter.didExceedMaxLines) {
+        wrapWordIndex = i;
+        break;
+      }
+      line1 = candidate;
+    }
+
+    // No wrap or the wrapping word is <= 15 chars → let Flutter wrap naturally
+    if (wrapWordIndex == -1) return text;
+    final String wrapWord = words[wrapWordIndex];
+    if (wrapWord.length <= 15) return text;
+
+    // Find how many chars of the long word still fit on line 1
+    final String prefix = line1.isEmpty ? '' : '$line1 ';
+    int splitAt = 1;
+
+    for (int i = 1; i < wrapWord.length; i++) {
+      final String candidate = '$prefix${wrapWord.substring(0, i)}-';
+      painter.text = TextSpan(text: candidate, style: style);
+      painter.layout(maxWidth: maxWidth);
+
+      if (painter.didExceedMaxLines) {
+        splitAt = (i - 1).clamp(1, wrapWord.length - 1);
+        break;
+      }
+      splitAt = i;
+    }
+
+    final String part1 = wrapWord.substring(0, splitAt);
+    final String part2 = wrapWord.substring(splitAt);
+
+    final String remaining = words.sublist(wrapWordIndex + 1).join(' ');
+    final String secondLine = remaining.isEmpty ? part2 : '$part2 $remaining';
+
+    return line1.isEmpty ? '$part1-\n$secondLine' : '$line1 $part1-\n$secondLine';
+  }
 }
