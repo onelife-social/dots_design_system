@@ -239,7 +239,7 @@ class _DotBookCoverTextEditorLayer extends StatelessWidget {
           width: editorWidth,
           child: _DotBookEditorWithEditingBorder(
             isEditingMode: isEditingMode,
-            borderColor: editingBorderColor ?? context.dotsTheme.colors.labelSecondary,
+            borderColor: editingBorderColor ?? const Color(0x33000000),
             onBorderTap: onEditingBorderTap,
             child: DotBookTextEditor(
               coverImageWidth: coverImageWidth,
@@ -269,7 +269,7 @@ class _DotBookCoverTextEditorLayer extends StatelessWidget {
           height: editorHeight,
           child: _DotBookEditorWithEditingBorder(
             isEditingMode: isEditingMode,
-            borderColor: editingBorderColor ?? context.dotsTheme.colors.labelSecondary,
+            borderColor: editingBorderColor ?? const Color(0x33000000),
             onBorderTap: onEditingBorderTap,
             child: DotBookTextEditor(
               coverImageWidth: coverImageWidth,
@@ -295,7 +295,7 @@ class _DotBookCoverTextEditorLayer extends StatelessWidget {
           width: editorWidth,
           child: _DotBookEditorWithEditingBorder(
             isEditingMode: isEditingMode,
-            borderColor: editingBorderColor ?? context.dotsTheme.colors.labelSecondary,
+            borderColor: editingBorderColor ?? const Color(0x33000000),
             onBorderTap: onEditingBorderTap,
             child: DotBookTextEditor(
               coverImageWidth: coverImageWidth,
@@ -402,13 +402,14 @@ class _DotBookCoverBottomTitleLayer extends StatelessWidget {
                 dotsTitle,
                 textAlign: TextAlign.center,
                 maxLines: 1,
-                style: context.dotsTheme.typo.secondary.title02H1.copyWith(
+                style: context.dotsTheme.typo.secondary.title02H2.copyWith(
                   color: theme.colors.labelAlwaysWhite,
                   fontSize: DotsTextUtils.scaledFontSize(
                     referenceFontSize: 6.84,
                     imageWidth: coverImageWidth,
                     referenceWidth: kCoverImageWidth,
                   ),
+                  height: null,
                 ),
               ),
             ),
@@ -425,13 +426,14 @@ class _DotBookCoverBottomTitleLayer extends StatelessWidget {
               dotsTitle,
               textAlign: TextAlign.center,
               maxLines: 1,
-              style: context.dotsTheme.typo.secondary.title02H1.copyWith(
+              style: context.dotsTheme.typo.secondary.title02H2.copyWith(
                 color: textColor,
                 fontSize: DotsTextUtils.scaledFontSize(
                   referenceFontSize: 5.8,
                   imageWidth: coverImageWidth,
                   referenceWidth: kCoverImageWidth,
                 ),
+                height: null,
               ),
             ),
           ),

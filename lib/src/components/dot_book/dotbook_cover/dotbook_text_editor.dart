@@ -70,13 +70,14 @@ class DotBookTextEditor extends StatelessWidget {
                       if (xtraInfo != null) ...[
                         Text(
                           xtraInfo!,
-                          style: theme.typo.secondary.title02H1.copyWith(
+                          style: theme.typo.secondary.title02H2.copyWith(
                             color: textColor,
                             fontSize: DotsTextUtils.scaledFontSize(
                               referenceFontSize: 6.8,
                               imageWidth: coverImageWidth,
                               referenceWidth: kCoverImageWidth,
                             ),
+                            height: null,
                           ),
                           textAlign: TextAlign.left,
                           maxLines: 1,
@@ -87,13 +88,14 @@ class DotBookTextEditor extends StatelessWidget {
                         Expanded(
                           child: Text(
                             subtitle!,
-                            style: theme.typo.secondary.title02H1.copyWith(
+                            style: theme.typo.secondary.title02H2.copyWith(
                               color: textColor,
                               fontSize: DotsTextUtils.scaledFontSize(
                                 referenceFontSize: 6,
                                 imageWidth: coverImageWidth,
                                 referenceWidth: kCoverImageWidth,
                               ),
+                              height: null,
                             ),
                             textAlign: TextAlign.right,
                             maxLines: 1,
@@ -106,13 +108,14 @@ class DotBookTextEditor extends StatelessWidget {
                     fit: BoxFit.scaleDown,
                     child: Text(
                       title,
-                      style: theme.typo.secondary.title02H1.copyWith(
+                      style: theme.typo.secondary.title02H2.copyWith(
                         color: textColor,
                         fontSize: DotsTextUtils.scaledFontSize(
                           referenceFontSize: 70,
                           imageWidth: coverImageWidth,
                           referenceWidth: kCoverImageWidth,
                         ),
+                        letterSpacing: 0,
                         height: 0.95,
                       ),
                       textAlign: TextAlign.center,
@@ -128,13 +131,14 @@ class DotBookTextEditor extends StatelessWidget {
                   children: [
                     LayoutBuilder(
                       builder: (context, constraints) {
-                        final TextStyle titleStyle = theme.typo.secondary.title02H1.copyWith(
+                        final TextStyle titleStyle = theme.typo.secondary.title02H2.copyWith(
                           color: textColor,
                           fontSize: DotsTextUtils.scaledFontSize(
                             referenceFontSize: 14,
                             imageWidth: coverImageWidth,
                             referenceWidth: kCoverImageWidth,
                           ),
+                          height: null,
                         );
                         final String processedTitle = DotsTextUtils.hyphenateIfNeeded(
                           title,
@@ -152,13 +156,15 @@ class DotBookTextEditor extends StatelessWidget {
                     if (subtitle != null)
                       Text(
                         subtitle!,
-                        style: theme.typo.secondary.title02H1.copyWith(
+                        style: theme.typo.secondary.title02H2.copyWith(
                           color: textColor,
                           fontSize: DotsTextUtils.scaledFontSize(
                             referenceFontSize: 5,
                             imageWidth: coverImageWidth,
                             referenceWidth: kCoverImageWidth,
                           ),
+                          letterSpacing: 0,
+                          height: null,
                         ),
                         textAlign: TextAlign.center,
                         maxLines: 1,
