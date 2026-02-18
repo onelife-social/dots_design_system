@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../dots_design_system.dart';
+
 class DotBookTextEditorBorder extends StatelessWidget {
 
   /// Color of the dashed border.
@@ -20,6 +22,9 @@ class DotBookTextEditorBorder extends StatelessWidget {
   /// Tap callback for the border layer.
   final Function()? onTap;
 
+  /// Icon shown at the top-right corner.
+  final DotsIconData cornerIcon;
+
   const DotBookTextEditorBorder({
     super.key,
     required this.color,
@@ -28,24 +33,45 @@ class DotBookTextEditorBorder extends StatelessWidget {
     this.dashLength = 10,
     this.dashGap = 2,
     this.onTap,
+    this.cornerIcon = DotsIconData.edit,
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+
     return Material(
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(radius),
-        child: CustomPaint(
-          painter: _DashedRRectPainter(
-            color: color,
-            radius: radius,
-            strokeWidth: strokeWidth,
-            dashLength: dashLength,
-            dashGap: dashGap,
-          ),
-          child: const SizedBox.expand(),
+        child: Stack(
+          clipBehavior: Clip.none,
+          fit: StackFit.expand,
+          children: [
+            CustomPaint(
+              painter: _DashedRRectPainter(
+                color: color,
+                radius: radius,
+                strokeWidth: strokeWidth,
+                dashLength: dashLength,
+                dashGap: dashGap,
+              ),
+              child: const SizedBox.expand(),
+            ),
+            Positioned(
+              top: -10,
+              right: -10,
+              child: DotsIconButton(
+                icon: cornerIcon,
+                size: DotsIconButtonSize.small,
+                style: DotsIconButtonStyle.floating,
+                state: DotsIconButtonState.defaultState,
+                color: theme.colors.textPrimary,
+                onTap: onTap,
+              ),
+            ),
+          ],
         ),
       ),
     );

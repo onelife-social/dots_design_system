@@ -5,3 +5,5 @@ const kNormalHeight = ds.kTopBarNormalHeight;
 
 @Deprecated('Use kTopBarBigHeight on dots_design_system')
 const kBigHeight = ds.kTopBarBigHeight;
+
+const kCoverImageWidth = 332.84;

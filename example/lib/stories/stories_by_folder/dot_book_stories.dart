@@ -4,13 +4,14 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 enum DotBookStoryTextColorOption {
   white,
-  stone,
-  charcoal,
-  cloud,
-  olive,
-  peach,
+  bone,
   sand,
-  beigeCraft,
+  olive,
+  ice,
+  rose,
+  natural,
+  graphite,
+  black
 }
 
 Color _dotBookStoryTextColor(
@@ -26,21 +27,23 @@ Color _dotBookStoryTextColor(
 
   switch (option) {
     case DotBookStoryTextColorOption.white:
-      return const Color(0xFF3C3C3B);
-    case DotBookStoryTextColorOption.stone:
-      return theme.colors.labelAlwaysWhite;
-    case DotBookStoryTextColorOption.charcoal:
-      return theme.colors.labelAlwaysWhite;
-    case DotBookStoryTextColorOption.cloud:
-      return const Color(0xFF3E585E);
-    case DotBookStoryTextColorOption.olive:
-      return const Color(0xFF52572F);
-    case DotBookStoryTextColorOption.peach:
-      return const Color(0xFFA88692);
+      return theme.colors.textDotbookWhite;
+    case DotBookStoryTextColorOption.bone:
+      return theme.colors.textDotbookBone;
     case DotBookStoryTextColorOption.sand:
-      return const Color(0xFFA89E91);
-    case DotBookStoryTextColorOption.beigeCraft:
-      return const Color(0xFF88683A);
+      return theme.colors.textDotbookSand;
+    case DotBookStoryTextColorOption.ice:
+      return theme.colors.textDotbookIce;
+    case DotBookStoryTextColorOption.olive:
+      return theme.colors.textDotbookOlive;
+    case DotBookStoryTextColorOption.rose:
+      return theme.colors.textDotbookRose;
+    case DotBookStoryTextColorOption.natural:
+      return theme.colors.labelAlwaysWhite;
+    case DotBookStoryTextColorOption.graphite:
+      return theme.colors.labelAlwaysWhite;
+    case DotBookStoryTextColorOption.black:
+      return theme.colors.labelAlwaysWhite;
   }
 }
 
@@ -240,32 +243,34 @@ List<Story> get dotBookStories => [
                 initial: DotBookStoryTextColorOption.white,
                 options: const [
                   Option(label: 'White', value: DotBookStoryTextColorOption.white),
-                  Option(label: 'Stone', value: DotBookStoryTextColorOption.stone),
-                  Option(label: 'Charcoal', value: DotBookStoryTextColorOption.charcoal),
-                  Option(label: 'Cloud', value: DotBookStoryTextColorOption.cloud),
-                  Option(label: 'Olive', value: DotBookStoryTextColorOption.olive),
-                  Option(label: 'Peach', value: DotBookStoryTextColorOption.peach),
+                  Option(label: 'Bone', value: DotBookStoryTextColorOption.bone),
                   Option(label: 'Sand', value: DotBookStoryTextColorOption.sand),
-                  Option(label: 'Beige Craft', value: DotBookStoryTextColorOption.beigeCraft),
+                  Option(label: 'Ice', value: DotBookStoryTextColorOption.ice),
+                  Option(label: 'Olive', value: DotBookStoryTextColorOption.olive),
+                  Option(label: 'Rose', value: DotBookStoryTextColorOption.rose),
+                  Option(label: 'Natural', value: DotBookStoryTextColorOption.natural),
+                  Option(label: 'Graphite', value: DotBookStoryTextColorOption.graphite),
+                  Option(label: 'Black', value: DotBookStoryTextColorOption.black),
                 ],
               );
 
               return DotBookCover(
                 variant: variant,
+                containerWidth: MediaQuery.sizeOf(context).width,
               mainImage: context.knobs.options<ImageProvider>(
                 label: 'Main image asset',
                 initial: AssetImage(ImagesPaths.dotbookCoverLinenWhite),
                 options: [
                   Option(
-                    label: 'Linen White',
+                    label: 'Linen Natural',
                     value: AssetImage(ImagesPaths.dotbookCoverLinenWhite),
                   ),
                   Option(
-                    label: 'Linen Stone',
+                    label: 'Linen Graphite',
                     value: AssetImage(ImagesPaths.dotbookCoverLinenStone),
                   ),
                   Option(
-                    label: 'Linen Charcoal',
+                    label: 'Linen Black',
                     value: AssetImage(ImagesPaths.dotbookCoverLinenCharcoal),
                   ),
                   Option(
@@ -273,7 +278,7 @@ List<Story> get dotBookStories => [
                     value: AssetImage(ImagesPaths.dotbookCoverPrintedWhite),
                   ),
                   Option(
-                    label: 'Printed Cloud',
+                    label: 'Printed Ice',
                     value: AssetImage(ImagesPaths.dotbookCoverPrintedCloud),
                   ),
                   Option(
@@ -281,15 +286,15 @@ List<Story> get dotBookStories => [
                     value: AssetImage(ImagesPaths.dotbookCoverPrintedOlive),
                   ),
                   Option(
-                    label: 'Printed Peach',
+                    label: 'Printed Rose',
                     value: AssetImage(ImagesPaths.dotbookCoverPrintedPeach),
                   ),
                   Option(
-                    label: 'Printed Sand',
+                    label: 'Printed Bone',
                     value: AssetImage(ImagesPaths.dotbookCoverPrintedSand),
                   ),
                   Option(
-                    label: 'Printed Beige Craft',
+                    label: 'Printed Sand',
                     value: AssetImage(ImagesPaths.dotbookCoverPrintedBeigeCraft),
                   ),
                 ],
@@ -351,13 +356,14 @@ List<Story> get dotBookStories => [
                 initial: DotBookStoryTextColorOption.white,
                 options: const [
                   Option(label: 'White', value: DotBookStoryTextColorOption.white),
-                  Option(label: 'Stone', value: DotBookStoryTextColorOption.stone),
-                  Option(label: 'Charcoal', value: DotBookStoryTextColorOption.charcoal),
-                  Option(label: 'Cloud', value: DotBookStoryTextColorOption.cloud),
-                  Option(label: 'Olive', value: DotBookStoryTextColorOption.olive),
-                  Option(label: 'Peach', value: DotBookStoryTextColorOption.peach),
+                  Option(label: 'Bone', value: DotBookStoryTextColorOption.bone),
                   Option(label: 'Sand', value: DotBookStoryTextColorOption.sand),
-                  Option(label: 'Beige Craft', value: DotBookStoryTextColorOption.beigeCraft),
+                  Option(label: 'Ice', value: DotBookStoryTextColorOption.ice),
+                  Option(label: 'Olive', value: DotBookStoryTextColorOption.olive),
+                  Option(label: 'Rose', value: DotBookStoryTextColorOption.rose),
+                  Option(label: 'Natural', value: DotBookStoryTextColorOption.natural),
+                  Option(label: 'Graphite', value: DotBookStoryTextColorOption.graphite),
+                  Option(label: 'Black', value: DotBookStoryTextColorOption.black),
                 ],
               );
 
@@ -378,6 +384,7 @@ List<Story> get dotBookStories => [
                 ),
                 coverVariant: coverVariant,
                 textColor: _dotBookStoryTextColor(context, coverVariant, colorOption),
+                coverImageWidth: 323,
               );
             }),
           ),

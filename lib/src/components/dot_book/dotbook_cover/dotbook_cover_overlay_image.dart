@@ -11,10 +11,10 @@ class DotBookCoverOverlay extends StatelessWidget {
   final Color textColor;
 
   /// Width of the cover image, used to calculate overlay dimensions.
-  final double imageWidth;
+  final double coverImageWidth;
 
   /// Height of the cover image, used to calculate overlay dimensions.
-  final double imageHeight;
+  final double coverImageHeight;
 
   /// Image rendered above the base cover.
   final ImageProvider? overlayImage;
@@ -23,13 +23,16 @@ class DotBookCoverOverlay extends StatelessWidget {
   final ImageProvider? defaultOverlayImage;
 
   /// Tap callback for the overlay.
-  final VoidCallback? onTap;
+  final Function()? onTap;
 
   /// Shows editing border above the text editor when true.
   final bool isEditingMode;
 
+  /// Optional color for the editing dashed border.
+  final Color? editingBorderColor;
+
   /// Tap callback for the editing border.
-  final VoidCallback? onEditingBorderTap;
+  final Function()? onEditingBorderTap;
 
   /// Text shown with the company branding.
   final String dotsTitle;
@@ -44,13 +47,14 @@ class DotBookCoverOverlay extends StatelessWidget {
     super.key,
     required this.variant,
     required this.textColor,
-    required this.imageWidth,
-    required this.imageHeight,
+    required this.coverImageWidth,
+    required this.coverImageHeight,
     this.overlayImage,
     this.defaultOverlayImage,
     this.onTap,
     this.isEditingMode = false,
     this.onEditingBorderTap,
+    this.editingBorderColor,
     required this.dotsTitle,
     required this.editorTitle,
     this.editorSubtitle,
@@ -60,8 +64,9 @@ class DotBookCoverOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     final _DotBookCoverOverlayImage overlay = _DotBookCoverOverlayImage(
       image: overlayImage,
-      defaultOverlayImage: defaultOverlayImage ?? AssetImage(ImagesPaths.defaultSectionPlanning),
-      onTap: onTap,
+      defaultImage: defaultOverlayImage ?? AssetImage(ImagesPaths.defaultSectionPlanning),
+      overlayOnTap: onTap,
+      isEditingMode: isEditingMode,
       icon: DotsIconData.add,
     );
 
@@ -69,18 +74,19 @@ class DotBookCoverOverlay extends StatelessWidget {
       clipBehavior: Clip.none,
       fit: StackFit.expand,
       children: [
-        _DotBookCoverOverlayLayer(
+        _DotBookCoverOverlayImageLayer(
           variant: variant,
-          imageWidth: imageWidth,
-          imageHeight: imageHeight,
+          imageWidth: coverImageWidth,
+          imageHeight: coverImageHeight,
           overlay: overlay,
         ),
-        _DotBookCoverEditorLayer(
+        _DotBookCoverTextEditorLayer(
           variant: variant,
           textColor: textColor,
-          imageWidth: imageWidth,
-          imageHeight: imageHeight,
+          coverImageWidth: coverImageWidth,
+          coverImageHeight: coverImageHeight,
           isEditingMode: isEditingMode,
+          editingBorderColor: editingBorderColor,
           onTap: onTap,
           onEditingBorderTap: onEditingBorderTap,
           editorTitle: editorTitle,
@@ -91,7 +97,8 @@ class DotBookCoverOverlay extends StatelessWidget {
           _DotBookCoverBottomTitleLayer(
             variant: variant,
             textColor: textColor,
-            imageHeight: imageHeight,
+            coverImageWidth: coverImageWidth,
+            coverImageHeight: coverImageHeight,
             dotsTitle: dotsTitle,
           ),
       ],
@@ -99,13 +106,19 @@ class DotBookCoverOverlay extends StatelessWidget {
   }
 }
 
-class _DotBookCoverOverlayLayer extends StatelessWidget {
+class _DotBookCoverOverlayImageLayer extends StatelessWidget {
+
+  /// Variant of the cover to determine the overlay's position and size.
   final DotBookCoverType variant;
+
+  /// Width & height of the cover image, used to calculate overlay dimensions.
   final double imageWidth;
   final double imageHeight;
+
+  /// Widget to display as the overlay image.
   final Widget overlay;
 
-  const _DotBookCoverOverlayLayer({
+  const _DotBookCoverOverlayImageLayer({
     required this.variant,
     required this.imageWidth,
     required this.imageHeight,
@@ -135,9 +148,9 @@ class _DotBookCoverOverlayLayer extends StatelessWidget {
         );
       case DotBookCoverType.printedSquare:
         return Positioned(
-          left: imageWidth * 0.04,
-          right: imageWidth * 0.04,
-          bottom: imageHeight * 0.04,
+          left: imageWidth * 0.05,
+          right: imageWidth * 0.05,
+          bottom: imageHeight * 0.05,
           child: LayoutBuilder(
             builder: (context, constraints) {
               final double overlayWidth = constraints.maxWidth;
@@ -170,24 +183,41 @@ class _DotBookCoverOverlayLayer extends StatelessWidget {
   }
 }
 
-class _DotBookCoverEditorLayer extends StatelessWidget {
+class _DotBookCoverTextEditorLayer extends StatelessWidget {
+
+  /// Variant of the cover to determine the editor's position and size.
   final DotBookCoverType variant;
+
+  /// Text color used for the editor text.
   final Color textColor;
-  final double imageWidth;
-  final double imageHeight;
+
+  /// Optional color for the editing border.
+  final Color? editingBorderColor;
+
+  /// Width & height of the cover image.
+  final double coverImageWidth;
+  final double coverImageHeight;
+
+  /// Shows editing border above the text editor when true.
   final bool isEditingMode;
-  final VoidCallback? onTap;
-  final VoidCallback? onEditingBorderTap;
+
+  /// Callback when the editor is tapped.
+  final Function()? onTap;
+
+  /// Callback when the editing border is tapped.
+  final Function()? onEditingBorderTap;
+
   final String editorTitle;
   final String? editorSubtitle;
   final String dotsTitle;
 
 
-  const _DotBookCoverEditorLayer({
+  const _DotBookCoverTextEditorLayer({
     required this.variant,
     required this.textColor,
-    required this.imageWidth,
-    required this.imageHeight,
+    this.editingBorderColor,
+    required this.coverImageWidth,
+    required this.coverImageHeight,
     required this.isEditingMode,
     required this.onTap,
     required this.onEditingBorderTap,
@@ -200,16 +230,17 @@ class _DotBookCoverEditorLayer extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (variant) {
       case DotBookCoverType.printedCircle:
-        final double editorWidth = imageWidth * 0.67;
+        final double editorWidth = coverImageWidth * 0.514;
         return Positioned(
-          top: imageHeight * 0.075,
-          left: (imageWidth - editorWidth) / 2,
+          top: coverImageHeight * 0.075,
+          left: (coverImageWidth - editorWidth) / 2,
           width: editorWidth,
           child: _DotBookEditorWithEditingBorder(
             isEditingMode: isEditingMode,
-            borderColor: context.dotsTheme.colors.labelSecondary,
-            onBorderTap: onEditingBorderTap ?? onTap,
+            borderColor: editingBorderColor ?? context.dotsTheme.colors.labelSecondary,
+            onBorderTap: onEditingBorderTap,
             child: DotBookTextEditor(
+              coverImageWidth: coverImageWidth,
               variant: variant,
               coverVariant: variant,
               textColor: textColor,
@@ -220,12 +251,12 @@ class _DotBookCoverEditorLayer extends StatelessWidget {
         );
 
       case DotBookCoverType.printedSquare:
-        final double horizontalInset = imageWidth * 0.04;
-        final double overlayWidth = imageWidth - (horizontalInset * 2);
+        final double horizontalInset = coverImageWidth * 0.05;
+        final double overlayWidth = coverImageWidth - (horizontalInset * 2);
         final double overlayHeight = overlayWidth * (36 / 37);
-        final double overlayTop = imageHeight - (imageHeight * 0.04) - overlayHeight;
-        final double editorTop = imageHeight * 0.04;
-        final double editorHeight = (overlayTop - editorTop).clamp(0.0, imageHeight);
+        final double overlayTop = coverImageHeight - (coverImageHeight * 0.05) - overlayHeight;
+        final double editorTop = coverImageHeight * 0.04;
+        final double editorHeight = (overlayTop - editorTop).clamp(0.0, coverImageHeight);
 
         return Positioned(
           top: editorTop,
@@ -234,8 +265,8 @@ class _DotBookCoverEditorLayer extends StatelessWidget {
           height: editorHeight,
           child: _DotBookEditorWithEditingBorder(
             isEditingMode: isEditingMode,
-            borderColor: context.dotsTheme.colors.labelSecondary,
-            onBorderTap: onEditingBorderTap ?? onTap,
+            borderColor: editingBorderColor ?? context.dotsTheme.colors.labelSecondary,
+            onBorderTap: onEditingBorderTap,
             child: DotBookTextEditor(
               variant: variant,
               height: editorHeight,
@@ -243,25 +274,26 @@ class _DotBookCoverEditorLayer extends StatelessWidget {
               textColor: textColor,
               title: editorTitle,
               subtitle: editorSubtitle,
+              coverImageWidth: coverImageWidth,
               xtraInfo: dotsTitle,
             ),
           ),
         );
 
       case DotBookCoverType.linen:
-        final double overlayHeight = imageHeight * 0.395;
-        final double overlayTop = (imageHeight - overlayHeight) / 2;
-        final double editorWidth = imageWidth * 0.6;
-
+        final double overlayHeight = coverImageHeight * 0.395;
+        final double overlayTop = (coverImageHeight - overlayHeight) / 2;
+        final double editorWidth = coverImageWidth * 0.514;
         return Positioned(
-          top: overlayTop + (overlayHeight * 0.05),
-          left: (imageWidth - editorWidth) / 2,
+          top: overlayTop + (coverImageHeight * 0.029),
+          left: (coverImageWidth - editorWidth) / 2,
           width: editorWidth,
           child: _DotBookEditorWithEditingBorder(
             isEditingMode: isEditingMode,
-            borderColor: context.dotsTheme.colors.labelSecondary,
-            onBorderTap: onEditingBorderTap ?? onTap,
+            borderColor: editingBorderColor ?? context.dotsTheme.colors.labelSecondary,
+            onBorderTap: onEditingBorderTap,
             child: DotBookTextEditor(
+              coverImageWidth: coverImageWidth,
               width: editorWidth,
               variant: variant,
               coverVariant: variant,
@@ -276,10 +308,18 @@ class _DotBookCoverEditorLayer extends StatelessWidget {
 }
 
 class _DotBookEditorWithEditingBorder extends StatelessWidget {
+
+  /// Child widget to be wrapped with the editing border.
   final Widget child;
+
+  /// Indicates whether the editor is in editing mode.
   final bool isEditingMode;
+
+  /// Color of the editing border.
   final Color borderColor;
-  final VoidCallback? onBorderTap;
+
+  /// Callback triggered when the border container is tapped.
+  final Function()? onBorderTap;
 
   const _DotBookEditorWithEditingBorder({
     required this.child,
@@ -314,15 +354,25 @@ class _DotBookEditorWithEditingBorder extends StatelessWidget {
 }
 
 class _DotBookCoverBottomTitleLayer extends StatelessWidget {
+
+  /// Variant of the cover to determine the title's position and size.
   final DotBookCoverType variant;
+
+  /// Text color used for the title text.
   final Color textColor;
-  final double imageHeight;
+
+  /// Width & height of the cover image.
+  final double coverImageWidth;
+  final double coverImageHeight;
+
+  /// Text shown with the company branding.
   final String dotsTitle;
 
   const _DotBookCoverBottomTitleLayer({
     required this.variant,
     required this.textColor,
-    required this.imageHeight,
+    required this.coverImageWidth,
+    required this.coverImageHeight,
     required this.dotsTitle,
   });
 
@@ -332,22 +382,26 @@ class _DotBookCoverBottomTitleLayer extends StatelessWidget {
 
     switch (variant) {
       case DotBookCoverType.linen:
-        final double overlayHeight = imageHeight * 0.395;
+        final double overlayHeight = coverImageHeight * 0.395;
+        final double overlayTop = (coverImageHeight - overlayHeight) / 2;
+        final double bottomInset = coverImageHeight * 0.029;
         return Positioned(
           left: 8,
           right: 8,
-          bottom: overlayHeight * 0.04,
+          bottom: overlayTop + bottomInset,
           child: IgnorePointer(
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: EdgeInsets.only(bottom: overlayHeight * 0.04),
-                child: Text(
-                  dotsTitle,
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  style: context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
-                    color: theme.colors.labelAlwaysWhite,
+              child: Text(
+                dotsTitle,
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                style: context.dotsTheme.typo.secondary.title02H1.copyWith(
+                  color: theme.colors.labelAlwaysWhite,
+                  fontSize: TextUtils.scaledFontSize(
+                    referenceFontSize: 6.8,
+                    imageWidth: coverImageWidth,
+                    referenceWidth: kCoverImageWidth,
                   ),
                 ),
               ),
@@ -359,14 +413,19 @@ class _DotBookCoverBottomTitleLayer extends StatelessWidget {
         return Positioned(
           left: 8,
           right: 8,
-          bottom: imageHeight * 0.04,
+          bottom: coverImageHeight * 0.04,
           child: IgnorePointer(
             child: Text(
               dotsTitle,
               textAlign: TextAlign.center,
               maxLines: 1,
-              style: context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
-                color: theme.colors.labelAlwaysWhite,
+              style: context.dotsTheme.typo.secondary.title02H1.copyWith(
+                color: textColor,
+                fontSize: TextUtils.scaledFontSize(
+                  referenceFontSize: 6.8,
+                  imageWidth: coverImageWidth,
+                  referenceWidth: kCoverImageWidth,
+                ),
               ),
             ),
           ),
@@ -379,15 +438,27 @@ class _DotBookCoverBottomTitleLayer extends StatelessWidget {
 }
 
 class _DotBookCoverOverlayImage extends StatelessWidget {
+
+  /// Image rendered above the base cover.
   final ImageProvider? image;
-  final ImageProvider defaultOverlayImage;
-  final VoidCallback? onTap;
+
+  /// Default image to show when no overlay image is provided.
+  final ImageProvider defaultImage;
+
+  /// Tap callback for the overlay image.
+  final Function()? overlayOnTap;
+
+  /// indicates if the cover is in editing mode to determine whether to show the default image with an icon or not.
+  final bool isEditingMode;
+
+  /// Icon to display when no overlay image is provided and is not in editing mode.
   final DotsIconData icon;
 
   const _DotBookCoverOverlayImage({
     this.image,
-    required this.defaultOverlayImage,
-    this.onTap,
+    required this.defaultImage,
+    this.overlayOnTap,
+    this.isEditingMode = false,
     this.icon = DotsIconData.add,
   });
 
@@ -396,7 +467,7 @@ class _DotBookCoverOverlayImage extends StatelessWidget {
     final theme = context.dotsTheme;
 
     final bool showDefault = image == null;
-    final ImageProvider effectiveImage = image ?? defaultOverlayImage;
+    final ImageProvider effectiveImage = image ?? defaultImage;
     final Widget currentImage = Image(
       image: effectiveImage,
       fit: BoxFit.cover,
@@ -405,7 +476,7 @@ class _DotBookCoverOverlayImage extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: onTap,
+        onTap: overlayOnTap,
         child: Stack(
           fit: StackFit.expand,
           children: [
@@ -416,13 +487,14 @@ class _DotBookCoverOverlayImage extends StatelessWidget {
               Container(
                 color: Colors.black.dotsWithOpacity(0.05),
               ),
-              Center(
-                child: DotsIcon(
-                  iconData: icon,
-                  color: theme.colors.labelAlwaysWhite,
-                  size: 32,
+              if (isEditingMode)
+                Center(
+                  child: DotsIcon(
+                    iconData: icon,
+                    color: theme.colors.labelAlwaysWhite,
+                    size: 32,
+                  ),
                 ),
-              ),
             ]
           ],
         ),

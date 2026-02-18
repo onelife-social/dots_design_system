@@ -46,4 +46,9 @@ class TextUtils {
 
     return spans;
   }
+
+  /// Utility function to scale font size based on image width
+  static double scaledFontSize({required double referenceFontSize, required double imageWidth, required double referenceWidth}) {
+    return referenceFontSize * (imageWidth / referenceWidth);
+  }
 }
