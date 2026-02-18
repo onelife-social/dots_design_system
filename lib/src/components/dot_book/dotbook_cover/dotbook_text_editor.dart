@@ -11,6 +11,9 @@ class DotBookTextEditor extends StatelessWidget {
   /// Cover color used to derive text color from theme context.
   final DotBookCoverType coverVariant;
 
+  /// Width of the image, used to scale text size.
+  final double coverImageWidth;
+
   /// Color of the text, used to derive text color from theme context.
   final Color textColor;
 
@@ -37,6 +40,7 @@ class DotBookTextEditor extends StatelessWidget {
 		this.width,
 		this.height,
 		this.variant = DotBookCoverType.printedSquare,
+    required this.coverImageWidth,
     required this.coverVariant,
     required this.textColor,
     required this.title,
@@ -65,7 +69,11 @@ class DotBookTextEditor extends StatelessWidget {
                         xtraInfo!,
                         style: theme.typo.secondary.title02H1.copyWith(
                           color: textColor,
-                          fontSize: 6.8,
+                          fontSize: TextUtils.scaledFontSize(
+                            referenceFontSize: 6.8,
+                            imageWidth: coverImageWidth,
+                            referenceWidth: kCoverImageWidth,
+                          ),
                         ),
                         textAlign: TextAlign.left,
                         overflow: TextOverflow.ellipsis,
@@ -75,17 +83,21 @@ class DotBookTextEditor extends StatelessWidget {
                     ],
                     if (subtitle != null)
                       Expanded(
-                        child: Text(
-                          subtitle!,
-                          style: theme.typo.secondary.title02H1.copyWith(
-                            color: textColor,
-                            fontSize: 6.8,
+                      child: Text(
+                        subtitle!,
+                        style: theme.typo.secondary.title02H1.copyWith(
+                          color: textColor,
+                          fontSize: TextUtils.scaledFontSize(
+                            referenceFontSize: 6.8,
+                            imageWidth: coverImageWidth,
+                            referenceWidth: kCoverImageWidth,
                           ),
-                          textAlign: TextAlign.right,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
                         ),
+                        textAlign: TextAlign.right,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
+                    ),
                   ],
                 ),
                 const Spacer(),
@@ -95,7 +107,11 @@ class DotBookTextEditor extends StatelessWidget {
                     title,
                     style: theme.typo.secondary.title02H1.copyWith(
                       color: textColor,
-                      fontSize: 65,
+                      fontSize: TextUtils.scaledFontSize(
+                        referenceFontSize: 60,
+                        imageWidth: coverImageWidth,
+                        referenceWidth: kCoverImageWidth,
+                      ),
                     ),
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
@@ -113,7 +129,11 @@ class DotBookTextEditor extends StatelessWidget {
                     title,
                     style: theme.typo.secondary.title02H1.copyWith(
                       color: textColor,
-                      fontSize: variant == DotBookCoverType.linen ? 15.35 : 16,
+                      fontSize: TextUtils.scaledFontSize(
+                        referenceFontSize: 15.35,
+                        imageWidth: coverImageWidth,
+                        referenceWidth: kCoverImageWidth,
+                      ),
                     ),
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
@@ -124,7 +144,11 @@ class DotBookTextEditor extends StatelessWidget {
                       subtitle!,
                       style: theme.typo.secondary.title02H1.copyWith(
                         color: textColor,
-                        fontSize: 5.7,
+                        fontSize: TextUtils.scaledFontSize(
+                          referenceFontSize: 5.7,
+                          imageWidth: coverImageWidth,
+                          referenceWidth: kCoverImageWidth,
+                        ),
                       ),
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
