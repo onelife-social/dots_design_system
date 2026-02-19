@@ -35,7 +35,7 @@ class DotBookCover extends StatelessWidget {
 	final bool isCreateMode;
 
   /// Progress value to show when in create mode (0-100).
-  final String? createprogress;
+  final String createprogress;
 
 	/// Optional color for the editing dashed border.
 	final Color? editingBorderColor;
@@ -65,7 +65,7 @@ class DotBookCover extends StatelessWidget {
 		this.onOverlayTap,
 		this.isEditingMode = false,
     this.isCreateMode = false,
-    this.createprogress,
+    this.createprogress = '',
 		this.editingBorderColor,
 		this.onEditingBorderTap,
 		this.dotsTitle = 'DotBook',
