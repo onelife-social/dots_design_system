@@ -20,4 +20,8 @@ class ImagesPaths {
   static final String dotbookCoverPrintedPeach = '$_images/dotbook/printed_peach.webp';
   static final String dotbookCoverPrintedSand = '$_images/dotbook/printed_sand.webp';
   static final String dotbookCoverPrintedBeigeCraft = '$_images/dotbook/printed_beigeCraft.webp';
+
+  static final String dotbookDefaulOverlayImageLinen = '$_images/dotbook/default_overlay_linen.webp';
+  static final String dotbookDefaulOverlayImageSquare = '$_images/dotbook/default_overlay_square.webp';
+  static final String dotbookDefaultOverlayImageCircle = '$_images/dotbook/default_overlay_circle.webp';
 }
