@@ -30,6 +30,12 @@ class DotBookCoverOverlay extends StatelessWidget {
   /// Shows editing border above the text editor when true.
   final bool isEditingMode;
 
+  /// Shows % over imageOverlay when true.
+  final bool isCreateMode;
+
+  /// Progress value to show when in create mode (0-100).
+  final String? createprogress;
+
   /// Optional color for the editing dashed border.
   final Color? editingBorderColor;
 
@@ -55,6 +61,8 @@ class DotBookCoverOverlay extends StatelessWidget {
     this.defaultOverlayImage,
     this.onTap,
     this.isEditingMode = false,
+    this.isCreateMode = false,
+    this.createprogress,
     this.onEditingBorderTap,
     this.editingBorderColor,
     required this.dotsTitle,
@@ -65,10 +73,13 @@ class DotBookCoverOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _DotBookCoverOverlayImage overlay = _DotBookCoverOverlayImage(
+      variant: variant,
       image: overlayImage,
       defaultImage: defaultOverlayImage ?? AssetImage(_defaultOverlayImage(variant)),
       overlayOnTap: onTap,
       isEditingMode: isEditingMode,
+      isCreateMode: isCreateMode,
+      createprogress: createprogress,
       icon: DotsIconData.add,
     );
 
@@ -150,11 +161,6 @@ class _DotBookCoverOverlayImageLayer extends StatelessWidget {
               fit: StackFit.expand,
               children: [
                 overlay,
-                IgnorePointer(
-                  child: Container(
-                    color: Colors.black.dotsWithOpacity(0.2),
-                  ),
-                ),
               ],
             ),
           ),
@@ -174,11 +180,6 @@ class _DotBookCoverOverlayImageLayer extends StatelessWidget {
                   fit: StackFit.expand,
                   children: [
                     overlay,
-                    IgnorePointer(
-                      child: Container(
-                        color: Colors.black.dotsWithOpacity(0.2),
-                      ),
-                    ),
                   ],
                 ),
               );
@@ -458,6 +459,9 @@ class _DotBookCoverBottomTitleLayer extends StatelessWidget {
 
 class _DotBookCoverOverlayImage extends StatelessWidget {
 
+  /// Variant of the cover to determine the title's position and size.
+  final DotBookCoverType variant;
+
   /// Image rendered above the base cover.
   final ImageProvider? image;
 
@@ -470,14 +474,23 @@ class _DotBookCoverOverlayImage extends StatelessWidget {
   /// indicates if the cover is in editing mode to determine whether to show the default image with an icon or not.
   final bool isEditingMode;
 
+  /// Shows % over imageOverlay when true.
+  final bool isCreateMode;
+
+  /// Progress value to show when in create mode (0-100).
+  final String? createprogress;
+
   /// Icon to display when no overlay image is provided and is not in editing mode.
   final DotsIconData icon;
 
   const _DotBookCoverOverlayImage({
+    required this.variant,
     this.image,
     required this.defaultImage,
     this.overlayOnTap,
     this.isEditingMode = false,
+    this.createprogress = '',
+    this.isCreateMode = false,
     this.icon = DotsIconData.add,
   });
 
@@ -499,14 +512,31 @@ class _DotBookCoverOverlayImage extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            if (!showDefault)
-              currentImage
-            else ...[
+            if (!showDefault)...[
               currentImage,
-              Container(
-                color: Colors.black.dotsWithOpacity(0.05),
-              ),
-              if (isEditingMode)
+              if (variant == DotBookCoverType.linen)
+                Container(
+                  color: Colors.black.dotsWithOpacity(0.2),
+                ),
+              if (isCreateMode & createprogress!.isNotEmpty) ...[
+                Container(
+                  color: Colors.black.dotsWithOpacity(0.2),
+                ),
+                Center(
+                  child: Text(
+                    '$createprogress%',
+                    style: theme.typo.main.titleH3.copyWith(
+                      color: theme.colors.labelAlwaysWhite,
+                    ),
+                  ),
+                ),
+              ]
+            ] else ...[
+              currentImage,
+              if (isEditingMode) ...[
+                Container(
+                  color: Colors.black.dotsWithOpacity(0.05),
+                ),
                 Center(
                   child: DotsIcon(
                     iconData: icon,
@@ -514,6 +544,7 @@ class _DotBookCoverOverlayImage extends StatelessWidget {
                     size: 32,
                   ),
                 ),
+              ],
             ]
           ],
         ),

@@ -323,6 +323,18 @@ List<Story> get dotBookStories => [
                   label: 'Is editing mode',
                   initial: false,
                 ),
+                isCreateMode: context.knobs.boolean(
+                  label: 'Is create mode',
+                  initial: false,
+                ),
+                createprogress: context.knobs
+                    .sliderInt(
+                      label: 'Create progress',
+                      initial: 50,
+                      min: 0,
+                      max: 100,
+                    )
+                    .toString(),
                 onOverlayTap: () {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Overlay tapped')),
