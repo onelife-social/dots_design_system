@@ -219,26 +219,20 @@ class _DotsTextFieldState extends State<DotsTextField> {
             ),
           ),
         ),
-        if (widget.background && widget.isError && widget.errorText?.isNotEmpty == true) ...[
-          const SizedBox(height: 4),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: widget.alignCenter
-                ? MainAxisAlignment.center
-                : MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text(
-                  widget.errorText!,
-                  style: theme.typo.main.labelDefaultRegular.copyWith(
-                    color: theme.colors.labelDestructive,
-                  ),
+        if (widget.background && widget.isError && widget.errorText?.isNotEmpty == true)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(top: 4),
+            child: SizedBox(
+              width: double.infinity,
+              child: Text(
+                widget.errorText!,
+                textAlign: textAlign,
+                style: theme.typo.main.labelDefaultRegular.copyWith(
+                  color: theme.colors.labelDestructive,
                 ),
               ),
-            ],
+            ),
           ),
-        ],
       ],
     );
   }
