@@ -20,6 +20,9 @@ class ImageWithProgressAround extends StatefulWidget {
   /// The padding between the inner image and the progress bar.
   final double innerPadding;
 
+  /// The colors to use for the progress bar gradient.
+  final List<Color> progressBarColors;
+
   /// The border radius for the rounded corners of the image and progress bar.
   final double borderRadius;
 
@@ -36,6 +39,7 @@ class ImageWithProgressAround extends StatefulWidget {
     this.imageProvider,
     this.progressBarWidth = 6.0,
     this.innerPadding = 8.0,
+    this.progressBarColors = DotsColors.recapGradientColors,
     this.borderRadius = 45.0,
     this.animationDuration = const Duration(milliseconds: 800),
     this.animationCurve = Curves.easeInOut,
@@ -87,7 +91,6 @@ class _ImageWithProgressAroundState extends State<ImageWithProgressAround>
 
   @override
   Widget build(BuildContext context) {
-    final progressBarColors = DotsColors.recapGradientColors;
 
     return SizedBox(
       width: widget.width,
@@ -129,7 +132,7 @@ class _ImageWithProgressAroundState extends State<ImageWithProgressAround>
                   painter: _BorderProgressPainter(
                     progress: _progressAnimation.value,
                     strokeWidth: widget.progressBarWidth,
-                    gradient: progressBarColors,
+                    gradient: widget.progressBarColors,
                     backgroundColor: context.dotsTheme.colors.bgSecondaryBtn,
                     borderRadius: widget.borderRadius,
                     padding: widget.innerPadding,
