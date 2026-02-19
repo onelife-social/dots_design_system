@@ -1,11 +1,9 @@
-
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/utils.dart';
 
 class DotBookCoverOverlay extends StatelessWidget {
-
   /// Variant of the cover to determine the overlay's position and size.
   final DotBookCoverType variant;
 
@@ -131,7 +129,6 @@ class DotBookCoverOverlay extends StatelessWidget {
 }
 
 class _DotBookCoverOverlayImageLayer extends StatelessWidget {
-
   /// Variant of the cover to determine the overlay's position and size.
   final DotBookCoverType variant;
 
@@ -198,7 +195,6 @@ class _DotBookCoverOverlayImageLayer extends StatelessWidget {
 }
 
 class _DotBookCoverTextEditorLayer extends StatelessWidget {
-
   /// Variant of the cover to determine the editor's position and size.
   final DotBookCoverType variant;
 
@@ -224,7 +220,6 @@ class _DotBookCoverTextEditorLayer extends StatelessWidget {
   final String editorTitle;
   final String? editorSubtitle;
   final String dotsTitle;
-
 
   const _DotBookCoverTextEditorLayer({
     required this.variant,
@@ -272,7 +267,10 @@ class _DotBookCoverTextEditorLayer extends StatelessWidget {
         final double overlayTop = coverImageHeight - (coverImageHeight * 0.0347) - overlayHeight;
         final double editorTop = coverImageHeight * 0.0347;
         final double editorBottomPadding = coverImageHeight * 0.0145;
-        final double editorHeight = (overlayTop - editorTop - editorBottomPadding).clamp(0.0, coverImageHeight);
+        final double editorHeight = (overlayTop - editorTop - editorBottomPadding).clamp(
+          0.0,
+          coverImageHeight,
+        );
 
         return Positioned(
           top: editorTop,
@@ -326,7 +324,6 @@ class _DotBookCoverTextEditorLayer extends StatelessWidget {
 }
 
 class _DotBookEditorWithEditingBorder extends StatelessWidget {
-
   /// Child widget to be wrapped with the editing border.
   final Widget child;
 
@@ -372,7 +369,6 @@ class _DotBookEditorWithEditingBorder extends StatelessWidget {
 }
 
 class _DotBookCoverBottomTitleLayer extends StatelessWidget {
-
   /// Variant of the cover to determine the title's position and size.
   final DotBookCoverType variant;
 
@@ -458,7 +454,6 @@ class _DotBookCoverBottomTitleLayer extends StatelessWidget {
 }
 
 class _DotBookCoverOverlayImage extends StatelessWidget {
-
   /// Variant of the cover to determine the title's position and size.
   final DotBookCoverType variant;
 
@@ -499,6 +494,8 @@ class _DotBookCoverOverlayImage extends StatelessWidget {
     final theme = context.dotsTheme;
 
     final bool showDefault = image == null;
+    final String progressValue = createprogress ?? '';
+    final bool showCreateProgress = isCreateMode && progressValue.isNotEmpty;
     final ImageProvider effectiveImage = image ?? defaultImage;
     final Widget currentImage = Image(
       image: effectiveImage,
@@ -512,25 +509,25 @@ class _DotBookCoverOverlayImage extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            if (!showDefault)...[
+            if (!showDefault) ...[
               currentImage,
               if (variant == DotBookCoverType.linen)
                 Container(
                   color: Colors.black.dotsWithOpacity(0.2),
                 ),
-              if (isCreateMode & createprogress!.isNotEmpty) ...[
+              if (showCreateProgress) ...[
                 Container(
                   color: Colors.black.dotsWithOpacity(0.2),
                 ),
                 Center(
                   child: Text(
-                    '$createprogress%',
+                    progressValue,
                     style: theme.typo.main.titleH3.copyWith(
                       color: theme.colors.labelAlwaysWhite,
                     ),
                   ),
                 ),
-              ]
+              ],
             ] else ...[
               currentImage,
               if (isEditingMode) ...[
@@ -545,7 +542,7 @@ class _DotBookCoverOverlayImage extends StatelessWidget {
                   ),
                 ),
               ],
-            ]
+            ],
           ],
         ),
       ),
