@@ -201,7 +201,7 @@ class DotsColors {
     bgDotbookBone: Color(0xFFEFECE8),
     bgDotbookSand: Color(0xFFEADBCA),
     bgDotbookOlive: Color(0xFFC8C9B9),
-    bgDotbookIce: Color(0xFFAFC0C1),
+    bgDotbookIce: Color(0xFFC6D3D3),
     bgDotbookRose: Color(0xFFEAD9D6),
     bgDotbookNatural: Color(0xFFE7DFD5),
     bgDotbookGraphite: Color(0xFF949494),

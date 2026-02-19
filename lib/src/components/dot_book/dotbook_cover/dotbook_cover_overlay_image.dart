@@ -66,7 +66,7 @@ class DotBookCoverOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     final _DotBookCoverOverlayImage overlay = _DotBookCoverOverlayImage(
       image: overlayImage,
-      defaultImage: defaultOverlayImage ?? AssetImage(ImagesPaths.defaultSectionPlanning),
+      defaultImage: defaultOverlayImage ?? AssetImage(_defaultOverlayImage(variant)),
       overlayOnTap: onTap,
       isEditingMode: isEditingMode,
       icon: DotsIconData.add,
@@ -105,6 +105,17 @@ class DotBookCoverOverlay extends StatelessWidget {
           ),
       ],
     );
+  }
+
+  static String _defaultOverlayImage(DotBookCoverType variant) {
+    switch (variant) {
+      case DotBookCoverType.linen:
+        return ImagesPaths.dotbookDefaulOverlayImageLinen;
+      case DotBookCoverType.printedSquare:
+        return ImagesPaths.dotbookDefaulOverlayImageSquare;
+      case DotBookCoverType.printedCircle:
+        return ImagesPaths.dotbookDefaultOverlayImageCircle;
+    }
   }
 }
 
