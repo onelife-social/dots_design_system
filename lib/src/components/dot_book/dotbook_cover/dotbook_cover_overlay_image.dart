@@ -32,7 +32,7 @@ class DotBookCoverOverlay extends StatelessWidget {
   final bool isCreateMode;
 
   /// Progress value to show when in create mode (0-100).
-  final String? createprogress;
+  final String createprogress;
 
   /// Optional color for the editing dashed border.
   final Color? editingBorderColor;
@@ -60,7 +60,7 @@ class DotBookCoverOverlay extends StatelessWidget {
     this.onTap,
     this.isEditingMode = false,
     this.isCreateMode = false,
-    this.createprogress,
+    this.createprogress = '',
     this.onEditingBorderTap,
     this.editingBorderColor,
     required this.dotsTitle,
@@ -473,7 +473,7 @@ class _DotBookCoverOverlayImage extends StatelessWidget {
   final bool isCreateMode;
 
   /// Progress value to show when in create mode (0-100).
-  final String? createprogress;
+  final String createprogress;
 
   /// Icon to display when no overlay image is provided and is not in editing mode.
   final DotsIconData icon;
@@ -494,8 +494,6 @@ class _DotBookCoverOverlayImage extends StatelessWidget {
     final theme = context.dotsTheme;
 
     final bool showDefault = image == null;
-    final String progressValue = createprogress ?? '';
-    final bool showCreateProgress = isCreateMode && progressValue.isNotEmpty;
     final ImageProvider effectiveImage = image ?? defaultImage;
     final Widget currentImage = Image(
       image: effectiveImage,
@@ -515,13 +513,13 @@ class _DotBookCoverOverlayImage extends StatelessWidget {
                 Container(
                   color: Colors.black.dotsWithOpacity(0.2),
                 ),
-              if (showCreateProgress) ...[
+              if (isCreateMode && createprogress.isNotEmpty) ...[
                 Container(
                   color: Colors.black.dotsWithOpacity(0.2),
                 ),
                 Center(
                   child: Text(
-                    progressValue,
+                    createprogress,
                     style: theme.typo.main.titleH3.copyWith(
                       color: theme.colors.labelAlwaysWhite,
                     ),
