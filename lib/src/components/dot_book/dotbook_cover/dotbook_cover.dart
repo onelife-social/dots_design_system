@@ -10,6 +10,9 @@ class DotBookCover extends StatelessWidget {
   /// Width of the entire cover container, used to scale content size.
   final double containerWidth;
 
+  /// Factor to scale the width of the cover image relative to the container width.
+  final double widthFactor;
+
   /// Main base cover image.
   final ImageProvider mainImage;
 
@@ -27,6 +30,12 @@ class DotBookCover extends StatelessWidget {
 
 	/// If true, shows the editing dashed border above the text editor.
 	final bool isEditingMode;
+
+  /// If true, shows % over imageOverlay.
+	final bool isCreateMode;
+
+  /// Progress value to show when in create mode (0-100).
+  final String? createprogress;
 
 	/// Optional color for the editing dashed border.
 	final Color? editingBorderColor;
@@ -48,12 +57,15 @@ class DotBookCover extends StatelessWidget {
 		super.key,
     required this.variant,
     required this.containerWidth,
-		required this.mainImage,
+		this.widthFactor = 0.85,
+    required this.mainImage,
 		this.textColor = const Color(0xFF3C3C3B),
 		this.overlayImage,
     this.defaultOverlayImage,
 		this.onOverlayTap,
 		this.isEditingMode = false,
+    this.isCreateMode = false,
+    this.createprogress,
 		this.editingBorderColor,
 		this.onEditingBorderTap,
 		this.dotsTitle = 'DotBook',
@@ -64,7 +76,7 @@ class DotBookCover extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 
-		final double width = containerWidth * 0.85;
+		final double width = containerWidth * widthFactor;
 		final double imageHeight = width * (5 / 4);
 
 		return Center(
@@ -89,6 +101,8 @@ class DotBookCover extends StatelessWidget {
               defaultOverlayImage: defaultOverlayImage,
 							onTap: onOverlayTap,
 							isEditingMode: isEditingMode,
+              isCreateMode: isCreateMode,
+              createprogress: createprogress,
 							editingBorderColor: editingBorderColor,
 							onEditingBorderTap: onEditingBorderTap,
 							dotsTitle: dotsTitle,
