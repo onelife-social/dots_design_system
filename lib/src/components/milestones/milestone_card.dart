@@ -85,21 +85,23 @@ class _MilestoneCardState extends State<MilestoneCard> {
           child: VisibilityDetector(
             key: Key(UniqueKey().toString()),
             onVisibilityChanged: (info) {
-              final forceWithoutBlur = info.visibleFraction == 0;
-              setState(() {
-                _content = _MilestoneItem(
-                  theme: theme,
-                  title: widget.title,
-                  imageProvider: widget.imageProvider,
-                  imageWidget: imageWidget,
-                  limitTitle: widget.limitTitle,
-                  date: widget.date,
-                  showBadge: widget.showBadge,
-                  showEdit: widget.showEdit,
-                  onTapEdit: widget.onTapEdit,
-                  forceWithoutBlur: forceWithoutBlur,
-                );
-              });
+              if (mounted) {
+                final forceWithoutBlur = info.visibleFraction == 0;
+                setState(() {
+                  _content = _MilestoneItem(
+                    theme: theme,
+                    title: widget.title,
+                    imageProvider: widget.imageProvider,
+                    imageWidget: imageWidget,
+                    limitTitle: widget.limitTitle,
+                    date: widget.date,
+                    showBadge: widget.showBadge,
+                    showEdit: widget.showEdit,
+                    onTapEdit: widget.onTapEdit,
+                    forceWithoutBlur: forceWithoutBlur,
+                  );
+                });
+              }
             },
             child: _content,
           ),
