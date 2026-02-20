@@ -55,11 +55,8 @@ class MilestoneCard extends StatefulWidget {
 }
 
 class _MilestoneCardState extends State<MilestoneCard> {
-  Widget _content = Container(
-    color: Colors.transparent,
-    width: 244,
-    height: 326,
-  );
+  bool _forceWithoutBlur = false;
+  static const String _visibilityKey = 'milestone_card_visibility_key';
 
   @override
   Widget build(BuildContext context) {
@@ -76,34 +73,34 @@ class _MilestoneCardState extends State<MilestoneCard> {
       ),
     );
 
-    return GestureDetector(
-      onTap: widget.onTap,
-      child: SizedBox(
-        width: widget.width,
-        child: AspectRatio(
-          aspectRatio: 3 / 4,
-          child: VisibilityDetector(
-            key: Key(UniqueKey().toString()),
-            onVisibilityChanged: (info) {
-              if (mounted) {
-                final forceWithoutBlur = info.visibleFraction == 0;
+    return SizedBox(
+      width: widget.width,
+      child: AspectRatio(
+        aspectRatio: 3 / 4,
+        child: VisibilityDetector(
+          key: const Key(_visibilityKey),
+          onVisibilityChanged: (info) {
+            if (mounted) {
+              final forceWithoutBlur = info.visibleFraction == 0;
+              if (_forceWithoutBlur != forceWithoutBlur) {
                 setState(() {
-                  _content = _MilestoneItem(
-                    theme: theme,
-                    title: widget.title,
-                    imageProvider: widget.imageProvider,
-                    imageWidget: imageWidget,
-                    limitTitle: widget.limitTitle,
-                    date: widget.date,
-                    showBadge: widget.showBadge,
-                    showEdit: widget.showEdit,
-                    onTapEdit: widget.onTapEdit,
-                    forceWithoutBlur: forceWithoutBlur,
-                  );
+                  _forceWithoutBlur = forceWithoutBlur;
                 });
               }
-            },
-            child: _content,
+            }
+          },
+          child: _MilestoneItem(
+            theme: theme,
+            title: widget.title,
+            imageProvider: widget.imageProvider,
+            imageWidget: imageWidget,
+            limitTitle: widget.limitTitle,
+            date: widget.date,
+            showBadge: widget.showBadge,
+            showEdit: widget.showEdit,
+            onTapEdit: widget.onTapEdit,
+            forceWithoutBlur: _forceWithoutBlur,
+            onTap: widget.onTap,
           ),
         ),
       ),
@@ -112,6 +109,18 @@ class _MilestoneCardState extends State<MilestoneCard> {
 }
 
 class _MilestoneItem extends StatelessWidget {
+  final DotsTheme theme;
+  final String? title;
+  final ImageProvider<Object> imageProvider;
+  final ClipSmoothRect imageWidget;
+  final bool limitTitle;
+  final String? date;
+  final bool showBadge;
+  final bool showEdit;
+  final VoidCallback? onTapEdit;
+  final bool forceWithoutBlur;
+  final VoidCallback? onTap;
+
   const _MilestoneItem({
     required this.theme,
     required this.title,
@@ -123,18 +132,8 @@ class _MilestoneItem extends StatelessWidget {
     required this.showEdit,
     required this.onTapEdit,
     required this.forceWithoutBlur,
+    required this.onTap,
   });
-
-  final DotsTheme theme;
-  final String? title;
-  final ImageProvider<Object> imageProvider;
-  final ClipSmoothRect imageWidget;
-  final bool limitTitle;
-  final String? date;
-  final bool showBadge;
-  final bool showEdit;
-  final VoidCallback? onTapEdit;
-  final bool forceWithoutBlur;
 
   @override
   Widget build(BuildContext context) {
@@ -142,86 +141,66 @@ class _MilestoneItem extends StatelessWidget {
       styleType: theme.styles.floatingBtnShadow,
       child: DotsDecoratedBox(
         styleType: theme.styles.squircle32,
-        child: Stack(
-          children: [
-            title?.isNotEmpty == true && !forceWithoutBlur
-                ? RepaintBoundary(
-                    key: ValueKey(imageProvider),
-                    child: _CardWithBlur(
-                      imageWidget: imageWidget,
+        child: ClipSmoothRect(
+          radius: SmoothBorderRadius(cornerRadius: 32, cornerSmoothing: 0.5),
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: GestureDetector(
+                  onTap: onTap,
+                  behavior: HitTestBehavior.opaque,
+                  child: title?.isNotEmpty == true && !forceWithoutBlur
+                      ? RepaintBoundary(
+                          key: ValueKey(imageProvider),
+                          child: _CardWithBlur(
+                            imageWidget: imageWidget,
+                          ),
+                        )
+                      : imageWidget,
+                ),
+              ),
+              Positioned.fill(
+                child: IgnorePointer(
+                  child: Container(
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: DotsBorderRadius.r32,
+                        side: BorderSide(
+                          color: theme.colors.labelAlwaysWhite,
+                          width: 3,
+                        ),
+                      ),
                     ),
-                  )
-                : imageWidget,
-
-            Container(
-              decoration: ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                  borderRadius: DotsBorderRadius.r32,
-                  side: BorderSide(
-                    color: theme.colors.labelAlwaysWhite,
-                    width: 3,
                   ),
                 ),
               ),
-              child: _MilestoneContent(
-                title: title,
-                limitTitle: limitTitle,
-                date: date,
-                showBadge: showBadge,
-                showEdit: showEdit,
-                onTapEdit: onTapEdit,
-                context: context,
-              ),
-            ),
-          ],
+              if (title?.isNotEmpty == true)
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: _CardTitle(
+                      title: title!,
+                      limitTitle: limitTitle,
+                      date: date,
+                    ),
+                  ),
+                ),
+              if (showBadge)
+                Positioned(
+                  top: 5,
+                  right: 5,
+                  child: IgnorePointer(
+                    child: _CardBadge(),
+                  ),
+                ),
+              if (showEdit)
+                Positioned(
+                  bottom: 5,
+                  right: 5,
+                  child: _BtnEdit(onTap: onTapEdit),
+                ),
+            ],
+          ),
         ),
-      ),
-    );
-  }
-}
-
-class _MilestoneContent extends StatelessWidget {
-  const _MilestoneContent({
-    required this.title,
-    required this.limitTitle,
-    required this.date,
-    required this.showBadge,
-    required this.showEdit,
-    required this.onTapEdit,
-    required this.context,
-  });
-
-  final String? title;
-  final bool limitTitle;
-  final String? date;
-  final bool showBadge;
-  final bool showEdit;
-  final VoidCallback? onTapEdit;
-  final BuildContext context;
-
-  @override
-  Widget build(BuildContext context) {
-    final List<Widget> content = [];
-
-    if (title?.isNotEmpty == true) {
-      content.add(
-        SizedBox.expand(
-          child: _CardTitle(title: title!, limitTitle: limitTitle, date: date),
-        ),
-      );
-    }
-
-    if (showBadge) {
-      content.add(const _CardBadge());
-    }
-
-    if (showEdit) {
-      content.add(_BtnEdit(onTap: onTapEdit));
-    }
-
-    return SizedBox.expand(
-      child: Stack(
-        children: content.isEmpty ? const [SizedBox()] : content,
       ),
     );
   }
