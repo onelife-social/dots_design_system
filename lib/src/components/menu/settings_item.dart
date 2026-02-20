@@ -17,6 +17,8 @@ class SettingsItem extends StatelessWidget {
   final VoidCallback? onTap;
   final bool? toggleValue;
   final VoidCallback? onToggleTap;
+  final Color? textColor;
+  final TextAlign textAlignment;
 
   const SettingsItem({
     super.key,
@@ -27,6 +29,8 @@ class SettingsItem extends StatelessWidget {
     this.onTap,
     this.toggleValue,
     this.onToggleTap,
+    this.textColor,
+    this.textAlignment = TextAlign.left,
   });
 
   @override
@@ -53,8 +57,9 @@ class SettingsItem extends StatelessWidget {
             Expanded(
               child: Text(
                 label,
+                textAlign: textAlignment,
                 style: context.dotsTheme.typo.main.bodyDefaultMedium.copyWith(
-                  color: context.dotsTheme.colors.textPrimary,
+                  color: textColor ?? context.dotsTheme.colors.textPrimary,
                 ),
               ),
             ),
