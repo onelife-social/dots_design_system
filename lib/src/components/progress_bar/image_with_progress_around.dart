@@ -11,6 +11,9 @@ class ImageWithProgressAround extends StatefulWidget {
   /// The image provider to display in the center of the progress indicator.
   final ImageProvider? imageProvider;
 
+  /// The text style for the percentage text displayed in the center of the image.
+  final TextStyle? percentageTextStyle;
+
   /// The width of the widget.
   final double width;
 
@@ -40,6 +43,7 @@ class ImageWithProgressAround extends StatefulWidget {
     this.progressBarWidth = 6.0,
     this.innerPadding = 8.0,
     this.progressBarColors = DotsColors.recapGradientColors,
+    this.percentageTextStyle,
     this.borderRadius = 45.0,
     this.animationDuration = const Duration(milliseconds: 800),
     this.animationCurve = Curves.easeInOut,
@@ -117,7 +121,10 @@ class _ImageWithProgressAroundState extends State<ImageWithProgressAround>
                       child: AnimatedBuilder(
                         animation: _progressAnimation,
                         builder: (context, child) {
-                          return _ProgressText(progress: _progressAnimation.value);
+                          return _ProgressText(
+                            progress: _progressAnimation.value,
+                            textStyle: widget.percentageTextStyle,
+                          );
                         },
                       ),
                     ),
@@ -264,8 +271,12 @@ class _MemoryImageState extends State<_MemoryImage> {
 
 class _ProgressText extends StatelessWidget {
   final double progress;
+  final TextStyle? textStyle;
 
-  const _ProgressText({required this.progress});
+  const _ProgressText({
+    required this.progress,
+    this.textStyle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -273,7 +284,8 @@ class _ProgressText extends StatelessWidget {
     return Center(
       child: Text(
         '${(progress * 100).toStringAsFixed(0)}%',
-        style: theme.typo.main.titleH3.copyWith(color: theme.colors.labelAlwaysWhite),
+        style: textStyle?.copyWith(color: theme.colors.labelAlwaysWhite) 
+          ?? theme.typo.main.titleH3.copyWith(color: theme.colors.labelAlwaysWhite),
       ),
     );
   }
