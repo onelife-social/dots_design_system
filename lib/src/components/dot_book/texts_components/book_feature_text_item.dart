@@ -44,8 +44,8 @@ class BookFeatureTextItem extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        title ,
-                        style: theme.typo.main.bodyDefaultMedium.copyWith(
+                        title,
+                        style: theme.typo.main.bodyLargeMedium.copyWith(
                           color: theme.colors.textPrimary,
                         ),
                       ),
