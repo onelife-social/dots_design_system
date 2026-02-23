@@ -29,11 +29,11 @@ class DotBookTextEditorBorder extends StatelessWidget {
     super.key,
     required this.color,
     this.radius = 8,
-    this.strokeWidth = 2,
-    this.dashLength = 10,
-    this.dashGap = 2,
+    this.strokeWidth = 1.5,
+    this.dashLength = 5.75,
+    this.dashGap = 4,
     this.onTap,
-    this.cornerIcon = DotsIconData.edit,
+    this.cornerIcon = DotsIconData.pencil,
   });
 
   @override
