@@ -182,6 +182,7 @@ enum DotsIconData {
   cartBadgeQuestionmark('ic-cart-badge-questionmark.svg', DotsIconGroup.premium),
   creditCard('ic-creditcard.svg', DotsIconGroup.premium),
   truckBadgeClock('ic-truck-badge-clock.svg', DotsIconGroup.premium),
+  truck('ic-truck.svg', DotsIconGroup.premium),
 
   // Social
   chat('ic-chat.svg', DotsIconGroup.social),
