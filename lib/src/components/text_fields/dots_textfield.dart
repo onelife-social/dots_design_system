@@ -204,7 +204,6 @@ class _DotsTextFieldState extends State<DotsTextField> {
                   ),
                 ),
                 SizedBox(
-                  width: 36,
                   height: 36,
                   child: _showClearButton
                       ? GestureDetector(
