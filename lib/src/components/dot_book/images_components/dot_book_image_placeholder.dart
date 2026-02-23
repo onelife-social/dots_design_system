@@ -15,7 +15,7 @@ class DotBookImagePlaceholder extends StatelessWidget {
   final String? badgeText;
 
   /// Optional icon for the badge. Defaults to null (no icon).
-  final DotsIconData? badgeIcon; 
+  final DotsIconData? badgeIcon;
 
   /// Optional handler for back button tap. If null, no back button is shown.
   final Function()? onBackPressed;
@@ -26,7 +26,7 @@ class DotBookImagePlaceholder extends StatelessWidget {
   const DotBookImagePlaceholder({
     super.key,
     required this.media,
-    this.mediaAspectRatio = 6 / 7,
+    this.mediaAspectRatio = 4 / 5,
     this.borderRadius = const BorderRadius.all(Radius.circular(32.0)),
     this.badgeText,
     this.badgeIcon,
@@ -55,7 +55,7 @@ class DotBookImagePlaceholder extends StatelessWidget {
                     size: DotsIconButtonSize.medium,
                     style: DotsIconButtonStyle.floating,
                     state: DotsIconButtonState.defaultState,
-                    onTap: onBackPressed
+                    onTap: onBackPressed,
                   ),
                 ),
               if (badgeText != null && badgeText!.isNotEmpty)
