@@ -15,7 +15,7 @@ class DotsColors {
     bgFloatingBtn: Color(0xB3303030),
     bgBtnImage: Color(0x99F3F3F3),
     bgBtnDisabled: Color(0x66C8C8C8),
-    bgbBtnDisabledOpaque: Color(0xFFE9E9E9),
+    bgbBtnDisabledOpaque: Color(0xFFD8D8D8),
     bgToastLight: Color(0xA5383838),
     bgChip: Color(0x99303030),
     bgAlert: Color(0xD1B2B2B2),
