@@ -447,4 +447,52 @@ List<Story> get dotBookStories => [
           ),
         ),
       ),
+      Story(
+        name: 'DotBook Components/DotBook Price Summary',
+        description: 'Demo page for DotBook Price Summary',
+        builder: (context) => Builder(
+          builder: (context) {
+            int quantity = 1;
+            final minQuantity = 1;
+            final maxQuantity = 5;
+
+            return StatefulBuilder(
+              builder: (context, setState) {
+                return Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: DotbookPriceSummary(
+                    imageProvider: NetworkImage('https://picsum.photos/250?image=9'),
+                    title: 'Tu Dotbook',
+                    quantityLabel: 'Cantidad',
+                    quantity: quantity,
+                    minQuantity: minQuantity,
+                    maxQuantity: maxQuantity,
+                    onDecrement: () {
+                      if (quantity <= minQuantity) return;
+                      setState(() => quantity--);
+                    },
+                    onIncrement: context.knobs.boolean(
+                      label: 'Add input?',
+                      initial: true,
+                    )
+                        ? () {
+                            if (quantity >= maxQuantity) return;
+                            setState(() => quantity++);
+                          }
+                        : null,
+                    products: {
+                      'Dotbook Printed Cover': '29,95€',
+                      '100 páginas extra (x0,90€)': '90,00€',
+                      'Impuestos (IVA)': '12,14€',
+                    },
+                    totalLabel: 'Total',
+                    taxesIncludedLabel: '(IVA incluido)',
+                    totalPrice: '132,09€',
+                  ),
+                );
+              },
+            );
+          },
+        ),
+      ),
     ];
