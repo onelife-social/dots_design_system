@@ -12,6 +12,9 @@ class MilestoneCard extends StatefulWidget {
   /// The image provider for the background image
   final ImageProvider imageProvider;
 
+  /// The default image to show while the main image is loading or if it fails to load.
+  final ImageProvider defaultImage;
+
   /// Callback when an error occurs while loading the image.
   final ImageErrorWidgetBuilder? errorBuilder;
 
@@ -40,6 +43,7 @@ class MilestoneCard extends StatefulWidget {
     super.key,
     required this.width,
     required this.imageProvider,
+    required this.defaultImage,
     this.errorBuilder,
     this.title,
     this.limitTitle = false,
@@ -70,6 +74,18 @@ class _MilestoneCardState extends State<MilestoneCard> {
         width: double.infinity,
         height: double.infinity,
         errorBuilder: widget.errorBuilder,
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) {
+            return child;
+          }
+
+          return Image(
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+            image: widget.defaultImage,
+          );
+        },
       ),
     );
 
