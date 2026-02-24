@@ -12,6 +12,10 @@ List<Story> get milestonesStories => [
           imageProvider: CachedNetworkImageProvider(
             context.knobs.text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9'),
           ),
+          defaultImage: CachedNetworkImageProvider(
+            context.knobs
+                .text(label: 'Default Image URL', initial: 'https://picsum.photos/250?image=9'),
+          ),
           title: context.knobs.text(label: 'Title', initial: 'Primeros pasos'),
           date: context.knobs.text(label: 'Date', initial: '2 años y 1 mes'),
           showBadge: context.knobs.boolean(label: 'Show Badge?', initial: false),
@@ -33,6 +37,7 @@ List<Story> get milestonesStories => [
             MilestoneCard(
               width: 244,
               imageProvider: CachedNetworkImageProvider('https://picsum.photos/250?image=1'),
+              defaultImage: CachedNetworkImageProvider('https://picsum.photos/250?image=5'),
               title: 'Primeros pasos',
               date: '2 años y 1 mes',
               showBadge: false,
@@ -42,6 +47,7 @@ List<Story> get milestonesStories => [
             MilestoneCard(
               width: 244,
               imageProvider: CachedNetworkImageProvider('https://picsum.photos/250?image=2'),
+              defaultImage: CachedNetworkImageProvider('https://picsum.photos/250?image=5'),
               title: 'Primeros pasos',
               date: '2 años y 1 mes',
               showBadge: false,
@@ -50,6 +56,7 @@ List<Story> get milestonesStories => [
             MilestoneCard(
               width: 244,
               imageProvider: CachedNetworkImageProvider('https://picsum.photos/250?image=3'),
+              defaultImage: CachedNetworkImageProvider('https://picsum.photos/250?image=5'),
               title: 'Primeros pasos',
               date: '2 años y 1 mes',
               showBadge: false,
@@ -59,6 +66,7 @@ List<Story> get milestonesStories => [
             MilestoneCard(
               width: 244,
               imageProvider: CachedNetworkImageProvider('https://picsum.photos/250?image=4'),
+              defaultImage: CachedNetworkImageProvider('https://picsum.photos/250?image=5'),
               title: 'Primeros pasos',
               showBadge: false,
               showEdit: false,
@@ -66,6 +74,7 @@ List<Story> get milestonesStories => [
             MilestoneCard(
               width: 244,
               imageProvider: CachedNetworkImageProvider('https://picsum.photos/250?image=5'),
+              defaultImage: CachedNetworkImageProvider('https://picsum.photos/250?image=5'),
               title: 'Primeros pasos asdf asdf asdf asdf asdf asdf asdf asdf dfgh dfgh dfgh ',
               date: '2 años y 1 mes',
               showBadge: false,
@@ -74,6 +83,7 @@ List<Story> get milestonesStories => [
             MilestoneCard(
               width: 244,
               imageProvider: CachedNetworkImageProvider('https://picsum.photos/250?image=6'),
+              defaultImage: CachedNetworkImageProvider('https://picsum.photos/250?image=5'),
               title: 'Primeros pasos asdf fasdf asdf asdf asdf asdf dfgh dfgh dfgh dfgh',
               limitTitle: true,
               date: '2 años y 1 mes',
