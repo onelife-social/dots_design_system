@@ -228,6 +228,35 @@ List<Story> get dotBookStories => [
         ),
       ),
       Story(
+        name: 'DotBook Components/Delivery card',
+        description: 'Demo page for book delivery card',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: DotBookDeliveryCard(
+            image: NetworkImage(context.knobs
+                .text(label: 'Delivery image', initial: 'https://picsum.photos/250?image=11')),
+            imageWidth: context.knobs.slider(label: 'Image width', initial: 53, min: 20, max: 200),
+            title: context.knobs.text(label: 'Title', initial: 'Delivery Information'),
+            standarText: context.knobs.text(
+              label: 'Standard delivery text',
+              initial: 'Standard Delivery',
+            ),
+            standarDate: context.knobs.text(
+              label: 'Standard delivery date',
+              initial: 'Estimated delivery: 5-7 business days',
+            ),
+            expressText: context.knobs.text(
+              label: 'Express delivery text',
+              initial: 'Express Delivery',
+            ),
+            expressDate: context.knobs.text(
+              label: 'Express delivery date',
+              initial: 'Estimated delivery: 1-2 business days',
+            ),
+          ),
+        ),
+      ),
+      Story(
         name: 'DotBook Components/DotBook cover',
         description: 'Demo page for DotBook cover',
         builder: (context) => ColoredBox(
