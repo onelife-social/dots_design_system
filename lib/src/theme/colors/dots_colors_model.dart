@@ -24,6 +24,7 @@ class DotsColorsModel {
   final Color bgFloatingBase;
   final Color bgBtnImage;
   final Color bgBtnDisabled;
+  final Color bgbBtnDisabledOpaque;
 
   // Components
   final Color bgChip;
@@ -269,16 +270,16 @@ class DotsColorsModel {
   final Color bgDotbookWhite;
   final Color bgDotbookBone;
   final Color bgDotbookSand;
-  final Color bgDotbookOlive; 
+  final Color bgDotbookOlive;
   final Color bgDotbookIce;
   final Color bgDotbookRose;
   final Color bgDotbookNatural;
-  final Color bgDotbookGraphite; 
+  final Color bgDotbookGraphite;
   final Color bgDotbookBlack;
   final Color textDotbookWhite;
   final Color textDotbookBone;
   final Color textDotbookSand;
-  final Color textDotbookOlive; 
+  final Color textDotbookOlive;
   final Color textDotbookIce;
   final Color textDotbookRose;
 
@@ -294,6 +295,7 @@ class DotsColorsModel {
     required this.bgFloatingBtn,
     required this.bgBtnImage,
     required this.bgBtnDisabled,
+    required this.bgbBtnDisabledOpaque,
     required this.bgToastLight,
     required this.bgChip,
     required this.bgAlert,
@@ -503,8 +505,12 @@ class DotsColorsModel {
           Color.lerp(bgContainerPrimary, other?.bgContainerPrimary, t) ?? bgContainerPrimary,
       bgContainerSecondary:
           Color.lerp(bgContainerSecondary, other?.bgContainerSecondary, t) ?? bgContainerSecondary,
-      bgContainerSecondaryOnBackground: Color.lerp(
-              bgContainerSecondaryOnBackground, other?.bgContainerSecondaryOnBackground, t) ??
+      bgContainerSecondaryOnBackground:
+          Color.lerp(
+            bgContainerSecondaryOnBackground,
+            other?.bgContainerSecondaryOnBackground,
+            t,
+          ) ??
           bgContainerSecondaryOnBackground,
       bgContainerTertiary:
           Color.lerp(bgContainerTertiary, other?.bgContainerTertiary, t) ?? bgContainerTertiary,
@@ -513,6 +519,8 @@ class DotsColorsModel {
       bgFloatingBtn: Color.lerp(bgFloatingBtn, other?.bgFloatingBtn, t) ?? bgFloatingBtn,
       bgBtnImage: Color.lerp(bgBtnImage, other?.bgBtnImage, t) ?? bgBtnImage,
       bgBtnDisabled: Color.lerp(bgBtnDisabled, other?.bgBtnDisabled, t) ?? bgBtnDisabled,
+      bgbBtnDisabledOpaque:
+          Color.lerp(bgbBtnDisabledOpaque, other?.bgbBtnDisabledOpaque, t) ?? bgbBtnDisabledOpaque,
       bgChip: Color.lerp(bgChip, other?.bgChip, t) ?? bgChip,
       bgAlert: Color.lerp(bgAlert, other?.bgAlert, t) ?? bgAlert,
       bgStrong: Color.lerp(bgStrong, other?.bgStrong, t) ?? bgStrong,
@@ -679,28 +687,29 @@ class DotsColorsModel {
       hobby008: Color.lerp(hobby008, other?.hobby008, t) ?? hobby008,
       hobby009: Color.lerp(hobby009, other?.hobby009, t) ?? hobby009,
       hobby010: Color.lerp(hobby010, other?.hobby010, t) ?? hobby010,
-      gradientInitialLineal: Color.lerp(gradientInitialLineal, other?.gradientInitialLineal, t) ??
+      gradientInitialLineal:
+          Color.lerp(gradientInitialLineal, other?.gradientInitialLineal, t) ??
           gradientInitialLineal,
       gradientFinalLineal:
           Color.lerp(gradientFinalLineal, other?.gradientFinalLineal, t) ?? gradientFinalLineal,
       gradientInitialLinealGreen:
           Color.lerp(gradientInitialLinealGreen, other?.gradientInitialLinealGreen, t) ??
-              gradientInitialLinealGreen,
+          gradientInitialLinealGreen,
       gradientFinalLinealGreen:
           Color.lerp(gradientFinalLinealGreen, other?.gradientFinalLinealGreen, t) ??
-              gradientFinalLinealGreen,
+          gradientFinalLinealGreen,
       gradientInitialLinealPurple:
           Color.lerp(gradientInitialLinealPurple, other?.gradientInitialLinealPurple, t) ??
-              gradientInitialLinealPurple,
+          gradientInitialLinealPurple,
       gradientFinalLinealPurple:
           Color.lerp(gradientFinalLinealPurple, other?.gradientFinalLinealPurple, t) ??
-              gradientFinalLinealPurple,
+          gradientFinalLinealPurple,
       gradientInitialPremiumHeader:
           Color.lerp(gradientInitialPremiumHeader, other?.gradientInitialPremiumHeader, t) ??
-              gradientInitialPremiumHeader,
+          gradientInitialPremiumHeader,
       gradientMiddlePremiumHeader:
           Color.lerp(gradientMiddlePremiumHeader, other?.gradientMiddlePremiumHeader, t) ??
-              gradientMiddlePremiumHeader,
+          gradientMiddlePremiumHeader,
       transparent: Color.lerp(transparent, other?.transparent, t) ?? transparent,
       borderAlert: Color.lerp(borderAlert, other?.borderAlert, t) ?? borderAlert,
       borderLabel: Color.lerp(borderLabel, other?.borderLabel, t) ?? borderLabel,
@@ -720,13 +729,17 @@ class DotsColorsModel {
       bgDotbookOlive: Color.lerp(bgDotbookOlive, other?.bgDotbookOlive, t) ?? bgDotbookOlive,
       bgDotbookIce: Color.lerp(bgDotbookIce, other?.bgDotbookIce, t) ?? bgDotbookIce,
       bgDotbookRose: Color.lerp(bgDotbookRose, other?.bgDotbookRose, t) ?? bgDotbookRose,
-      bgDotbookNatural: Color.lerp(bgDotbookNatural, other?.bgDotbookNatural, t) ?? bgDotbookNatural,
-      bgDotbookGraphite: Color.lerp(bgDotbookGraphite, other?.bgDotbookGraphite, t) ?? bgDotbookGraphite,
+      bgDotbookNatural:
+          Color.lerp(bgDotbookNatural, other?.bgDotbookNatural, t) ?? bgDotbookNatural,
+      bgDotbookGraphite:
+          Color.lerp(bgDotbookGraphite, other?.bgDotbookGraphite, t) ?? bgDotbookGraphite,
       bgDotbookBlack: Color.lerp(bgDotbookBlack, other?.bgDotbookBlack, t) ?? bgDotbookBlack,
-      textDotbookWhite: Color.lerp(textDotbookWhite, other?.textDotbookWhite, t) ?? textDotbookWhite,
+      textDotbookWhite:
+          Color.lerp(textDotbookWhite, other?.textDotbookWhite, t) ?? textDotbookWhite,
       textDotbookBone: Color.lerp(textDotbookBone, other?.textDotbookBone, t) ?? textDotbookBone,
       textDotbookSand: Color.lerp(textDotbookSand, other?.textDotbookSand, t) ?? textDotbookSand,
-      textDotbookOlive: Color.lerp(textDotbookOlive, other?.textDotbookOlive, t) ?? textDotbookOlive,
+      textDotbookOlive:
+          Color.lerp(textDotbookOlive, other?.textDotbookOlive, t) ?? textDotbookOlive,
       textDotbookIce: Color.lerp(textDotbookIce, other?.textDotbookIce, t) ?? textDotbookIce,
       textDotbookRose: Color.lerp(textDotbookRose, other?.textDotbookRose, t) ?? textDotbookRose,
     );
