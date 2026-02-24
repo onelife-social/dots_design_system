@@ -56,7 +56,7 @@ class DotBookToggleButton extends StatelessWidget {
                     title,
                     textAlign: TextAlign.center,
                     style: theme.typo.main.bodyLargeMedium.copyWith(
-                      color: isSelected ? theme.colors.textPrimary : theme.colors.textQuarternary,
+                      color: isSelected ? theme.colors.textPrimary : theme.colors.textTertiary,
                     ),
                   )
                 : Column(
@@ -68,8 +68,7 @@ class DotBookToggleButton extends StatelessWidget {
                         title,
                         textAlign: TextAlign.center,
                         style: theme.typo.main.bodyLargeMedium.copyWith(
-                          color:
-                              isSelected ? theme.colors.textPrimary : theme.colors.textQuarternary,
+                          color: isSelected ? theme.colors.textPrimary : theme.colors.textTertiary,
                         ),
                       ),
                       const SizedBox(height: 2),
@@ -77,7 +76,9 @@ class DotBookToggleButton extends StatelessWidget {
                         subtitle!,
                         textAlign: TextAlign.center,
                         style: theme.typo.main.labelDefaultRegular.copyWith(
-                          color: theme.colors.textQuarternary,
+                          color: isSelected
+                              ? theme.colors.textSecondary
+                              : theme.colors.textQuarternary,
                         ),
                       ),
                     ],
