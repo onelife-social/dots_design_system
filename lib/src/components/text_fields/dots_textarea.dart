@@ -85,7 +85,7 @@ class DotsTextArea extends StatelessWidget {
         keyboardType: TextInputType.multiline,
         minLines: 1,
         maxLines: null,
-        textAlign: TextAlign.justify,
+        textAlign: TextAlign.start,
         style: theme.typo.main.bodyLargeRegular.copyWith(
           color: theme.colors.textPrimary,
         ),
