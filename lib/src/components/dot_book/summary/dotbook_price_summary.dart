@@ -210,15 +210,21 @@ class _PriceRow extends StatelessWidget {
     final theme = context.dotsTheme;
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text(
-          label,
-          style: theme.typo.main.bodyDefaultRegular.copyWith(color: theme.colors.textSecondary),
+        Expanded(
+          child: Text(
+            label,
+            style: theme.typo.main.bodyDefaultRegular.copyWith(color: theme.colors.textSecondary),
+          ),
         ),
-        Text(
-          price,
-          style: theme.typo.main.bodyDefaultMedium.copyWith(color: theme.colors.textSecondary),
+        SizedBox(
+          width: 100,
+          child: Text(
+            price,
+            textAlign: TextAlign.right,
+            style: theme.typo.main.bodyDefaultMedium.copyWith(color: theme.colors.textSecondary),
+          ),
         ),
       ],
     );
