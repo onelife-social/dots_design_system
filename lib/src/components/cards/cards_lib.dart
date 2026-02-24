@@ -4,3 +4,4 @@ export 'recap/recap_lib.dart';
 export 'create_card/create_card_lib.dart';
 export 'dot_book_cards/feature_card.dart';
 export 'dot_book_cards/testimonial_card.dart';
+export 'dot_book_cards/delivery_card.dart';
