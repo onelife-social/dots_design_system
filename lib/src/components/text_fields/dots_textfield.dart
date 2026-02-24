@@ -179,7 +179,6 @@ class _DotsTextFieldState extends State<DotsTextField> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                if (widget.alignCenter) const SizedBox(width: 36),
                 Expanded(
                   child: Align(
                     alignment: widget.alignCenter ? Alignment.center : Alignment.centerLeft,
