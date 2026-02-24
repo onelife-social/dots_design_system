@@ -102,7 +102,7 @@ class DotsMainButton extends StatelessWidget {
     final theme = context.dotsTheme;
     final buttonTheme = getButtonThemeByButtonVariant(
       theme,
-      enabled ? variant : DotsMainButtonVariant.disabled,
+      variant,
       size,
       textColor,
       iconColor,
