@@ -21,3 +21,5 @@ export 'dots_toggle.dart';
 export 'dots_selector.dart';
 
 export 'dots_rich_button/dots_rich_button.dart';
+
+export 'dots_input_stepper.dart';
