@@ -182,6 +182,7 @@ enum DotsIconData {
   cartBadgeQuestionmark('ic-cart-badge-questionmark.svg', DotsIconGroup.premium),
   creditCard('ic-creditcard.svg', DotsIconGroup.premium),
   truckBadgeClock('ic-truck-badge-clock.svg', DotsIconGroup.premium),
+  truck('ic-truck.svg', DotsIconGroup.premium),
 
   // Social
   chat('ic-chat.svg', DotsIconGroup.social),
@@ -246,6 +247,9 @@ enum DotsIconData {
   selector('ic-selector.svg', DotsIconGroup.system),
   settings('ic-settings.svg', DotsIconGroup.system),
   shield('ic-shield.svg', DotsIconGroup.system),
+  bell('ic-bell.svg', DotsIconGroup.system),
+  pencilLine('ic-pencil--line.svg', DotsIconGroup.system),
+  web('ic-web.svg', DotsIconGroup.system),
 
   // Home
   editField('ic-add-field.svg', DotsIconGroup.home);

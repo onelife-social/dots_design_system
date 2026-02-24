@@ -49,6 +49,9 @@ List<Story> get progressBarStories => [
           return ImageWithProgressAround(
             width: context.knobs.slider(label: 'Width', initial: 300, min: 50, max: 400),
             progress: context.knobs.slider(label: 'Progress', initial: 0.5, min: 0, max: 1),
+            percentageTextStyle: context.knobs.boolean(label: 'Show percentage text style', initial: true)
+              ? theme.typo.main.titleH6
+              : null,
             imageProvider: NetworkImage(context.knobs
                 .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9')),
             progressBarWidth:

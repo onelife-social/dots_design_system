@@ -18,6 +18,7 @@ dependencies:
   gradient_progress_indicator: ^1.0.0+5
   vector_graphics: ^1.1.19
   animate_do: ^4.2.0
+  visibility_detector: 0.4.0+2
 
 dev_dependencies:
   flutter_test:

@@ -48,6 +48,11 @@ class DotsTextField extends StatefulWidget {
   /// Defaults to `false`.
   final bool alignCenter;
 
+  /// Custom text style for the input text.
+  ///
+  /// Defaults to `theme.typo.main.bodyDefaultMedium`.
+  final TextStyle? textStyle;
+
   const DotsTextField({
     super.key,
     required this.controller,
@@ -62,6 +67,7 @@ class DotsTextField extends StatefulWidget {
     this.enabled = true,
     this.background = true,
     this.alignCenter = false,
+    this.textStyle,
   });
 
   @override
@@ -125,6 +131,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     final textAlign = widget.alignCenter ? TextAlign.center : TextAlign.left;
+    final inputTextStyle = widget.textStyle ?? theme.typo.main.bodyDefaultMedium;
 
     Widget buildTextField() {
       return TextField(
@@ -134,7 +141,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
         minLines: 1,
         maxLines: 1,
         textAlign: textAlign,
-        style: theme.typo.main.bodyDefaultMedium.copyWith(
+        style: inputTextStyle.copyWith(
           color: widget.isError && !widget.background
               ? theme.colors.labelDestructive
               : theme.colors.textPrimary,
@@ -172,7 +179,6 @@ class _DotsTextFieldState extends State<DotsTextField> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                if (widget.alignCenter) const SizedBox(width: 36),
                 Expanded(
                   child: Align(
                     alignment: widget.alignCenter ? Alignment.center : Alignment.centerLeft,
@@ -197,7 +203,6 @@ class _DotsTextFieldState extends State<DotsTextField> {
                   ),
                 ),
                 SizedBox(
-                  width: 36,
                   height: 36,
                   child: _showClearButton
                       ? GestureDetector(
@@ -219,26 +224,20 @@ class _DotsTextFieldState extends State<DotsTextField> {
             ),
           ),
         ),
-        if (widget.background && widget.isError && widget.errorText?.isNotEmpty == true) ...[
-          const SizedBox(height: 4),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: widget.alignCenter
-                ? MainAxisAlignment.center
-                : MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text(
-                  widget.errorText!,
-                  style: theme.typo.main.labelDefaultRegular.copyWith(
-                    color: theme.colors.labelDestructive,
-                  ),
+        if (widget.background && widget.isError && widget.errorText?.isNotEmpty == true)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(top: 4),
+            child: SizedBox(
+              width: double.infinity,
+              child: Text(
+                widget.errorText!,
+                textAlign: textAlign,
+                style: theme.typo.main.labelDefaultRegular.copyWith(
+                  color: theme.colors.labelDestructive,
                 ),
               ),
-            ],
+            ),
           ),
-        ],
       ],
     );
   }
