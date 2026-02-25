@@ -2,20 +2,48 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class DotbookPriceSummary extends StatelessWidget {
+  /// Product image shown in the summary header.
   final ImageProvider imageProvider;
+
+  /// Optional widget builder used when `imageProvider` fails to load.
   final ImageErrorWidgetBuilder? errorBuilder;
 
+  /// Product title shown next to the image.
   final String title;
+
+  /// Label used for the quantity row.
   final String quantityLabel;
+
+  /// Current selected quantity.
   final int quantity;
+
+  /// Whether the quantity input stepper is displayed.
+  /// 
+  /// Defaults to `true`.
+  final bool showQuantityInput;
+
+  /// Minimum quantity allowed in the stepper.
   final int? minQuantity;
+
+  /// Maximum quantity allowed in the stepper.
   final int? maxQuantity;
+
+  /// Callback invoked when quantity is incremented.
   final VoidCallback? onIncrement;
+
+  /// Callback invoked when quantity is decremented.
   final VoidCallback? onDecrement;
 
+  /// Product price rows where key is label and value is formatted price.
   final Map<String, String> products;
+
+  /// Label for the total row.
   final String totalLabel;
+
+  /// Optional supplementary label, e.g. "IVA included".
   final String? taxesIncludedLabel;
+
+  /// Formatted total price value.
   final String totalPrice;
 
   const DotbookPriceSummary({
@@ -25,6 +53,7 @@ class DotbookPriceSummary extends StatelessWidget {
     required this.title,
     required this.quantityLabel,
     required this.quantity,
+    this.showQuantityInput = true,
     this.minQuantity,
     this.maxQuantity,
     this.onIncrement,
@@ -60,6 +89,7 @@ class DotbookPriceSummary extends StatelessWidget {
                 title: title,
                 quantityLabel: quantityLabel,
                 quantity: quantity,
+                showQuantityInput: showQuantityInput,
                 minQuantity: minQuantity,
                 maxQuantity: maxQuantity,
                 onIncrement: onIncrement,
@@ -91,6 +121,7 @@ class _TitleAndQuantity extends StatelessWidget {
     required this.title,
     required this.quantityLabel,
     required this.quantity,
+    required this.showQuantityInput,
     required this.minQuantity,
     required this.maxQuantity,
     required this.onIncrement,
@@ -102,6 +133,7 @@ class _TitleAndQuantity extends StatelessWidget {
   final String title;
   final String quantityLabel;
   final int quantity;
+  final bool showQuantityInput;
   final int? minQuantity;
   final int? maxQuantity;
   final VoidCallback? onIncrement;
@@ -110,9 +142,6 @@ class _TitleAndQuantity extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-
-    final bool addInput =
-        minQuantity != null && maxQuantity != null && onIncrement != null && onDecrement != null;
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -140,14 +169,14 @@ class _TitleAndQuantity extends StatelessWidget {
               ),
             ),
             Text(
-              addInput ? '$quantityLabel:' : '$quantityLabel: $quantity',
+              showQuantityInput ? '$quantityLabel:' : '$quantityLabel: $quantity',
               style: theme.typo.main.labelDefaultRegular.copyWith(
                 color: theme.colors.textTertiary,
               ),
             ),
           ],
         ),
-        if (addInput) ...[
+        if (showQuantityInput) ...[
           const Spacer(),
           DotsInputStepper(
             value: quantity,

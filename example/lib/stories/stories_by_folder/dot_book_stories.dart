@@ -465,21 +465,20 @@ List<Story> get dotBookStories => [
                     title: 'Tu Dotbook',
                     quantityLabel: 'Cantidad',
                     quantity: quantity,
+                    showQuantityInput: context.knobs.boolean(
+                      label: 'Show quantity input?',
+                      initial: true,
+                    ),
                     minQuantity: minQuantity,
                     maxQuantity: maxQuantity,
                     onDecrement: () {
                       if (quantity <= minQuantity) return;
                       setState(() => quantity--);
                     },
-                    onIncrement: context.knobs.boolean(
-                      label: 'Add input?',
-                      initial: true,
-                    )
-                        ? () {
-                            if (quantity >= maxQuantity) return;
-                            setState(() => quantity++);
-                          }
-                        : null,
+                    onIncrement: () {
+                      if (quantity >= maxQuantity) return;
+                      setState(() => quantity++);
+                    },
                     products: {
                       'Dotbook Printed Cover': '29,95€',
                       '100 páginas extra (x0,90€)': '90,00€',

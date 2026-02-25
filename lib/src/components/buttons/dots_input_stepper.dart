@@ -2,10 +2,19 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class DotsInputStepper extends StatelessWidget {
+  /// Current value displayed by the stepper.
   final int value;
+
+  /// Minimum allowed value.
   final int minValue;
+
+  /// Maximum allowed value.
   final int maxValue;
+
+  /// Callback triggered when the increment button is tapped.
   final VoidCallback onIncrement;
+
+  /// Callback triggered when the decrement button is tapped.
   final VoidCallback onDecrement;
 
   const DotsInputStepper({
