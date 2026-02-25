@@ -2,7 +2,6 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class DotsActivityGroupHeader extends StatelessWidget {
-
   /// The text to display in the separator.
   final String text;
 
@@ -20,25 +19,15 @@ class DotsActivityGroupHeader extends StatelessWidget {
     this.topLineSeparator = false,
   });
 
-
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    final baseStyle = number != null
-        ? theme.typo.main.bodyLargeBold
-        : theme.typo.main.titleH5;
+    final baseStyle = number != null ? theme.typo.main.bodyLargeBold : theme.typo.main.titleH5;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (topLineSeparator)
-          Divider(
-            color: theme.colors.labelSecondary,
-            height: 0.5,
-            thickness: 1,
-            endIndent: 0,
-            indent: 0,
-          ),
+        if (topLineSeparator) DotsDivider(),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
           child: Row(
@@ -54,7 +43,7 @@ class DotsActivityGroupHeader extends StatelessWidget {
                   number.toString(),
                   style: theme.typo.main.bodyLargeBold.copyWith(
                     color: theme.colors.textQuarternary,
-                    height: 1
+                    height: 1,
                   ),
                 ),
               ],

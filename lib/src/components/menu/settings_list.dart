@@ -52,12 +52,9 @@ class SettingsList extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               padding: EdgeInsets.zero,
               itemCount: items.length,
-              separatorBuilder: (_, __) => Divider(
-                color: theme.colors.labelSecondary,
-                thickness: 0.5,
-                height: 0,
-                indent: 44,
-                endIndent: 16,
+              separatorBuilder: (_, __) => Padding(
+                padding: const EdgeInsets.only(left: 44, right: 16),
+                child: DotsDivider(),
               ),
               itemBuilder: (_, index) => items[index],
             ),

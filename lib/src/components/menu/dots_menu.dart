@@ -131,8 +131,10 @@ class _DotsMenuContainer<T> extends StatelessWidget {
     return Container(
       width: 250,
       padding: EdgeInsets.all(8.0),
-      decoration:
-          BoxDecoration(color: theme.colors.bgBaseContrast, borderRadius: DotsBorderRadius.r20),
+      decoration: BoxDecoration(
+        color: theme.colors.bgBaseContrast,
+        borderRadius: DotsBorderRadius.r20,
+      ),
       child: _MenuContainerScrollable(
         isScrollable: mainItem.subItems.length > 7,
         header: Column(
@@ -148,12 +150,9 @@ class _DotsMenuContainer<T> extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 4),
-              child: Divider(
-                height: 4,
-                color: theme.colors.labelSecondary,
-                indent: 8,
-                endIndent: 8,
-                thickness: 0.5,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: DotsDivider(),
               ),
             ),
           ],
@@ -183,12 +182,9 @@ class _DotsMenuContainer<T> extends StatelessWidget {
       final isLast = i == subs.length - 1;
       if (item.addDivider && !isLast) {
         children.add(
-          Divider(
-            height: 4,
-            color: theme.colors.labelSecondary,
-            indent: 8,
-            endIndent: 8,
-            thickness: 0.5,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: DotsDivider(),
           ),
         );
         children.add(const SizedBox(height: 4));
@@ -201,8 +197,11 @@ class _DotsMenuContainer<T> extends StatelessWidget {
 }
 
 class _MenuContainerScrollable extends StatelessWidget {
-  const _MenuContainerScrollable(
-      {required this.isScrollable, required this.header, required this.list});
+  const _MenuContainerScrollable({
+    required this.isScrollable,
+    required this.header,
+    required this.list,
+  });
 
   final bool isScrollable;
   final Widget header;
@@ -297,8 +296,9 @@ class _MenuItem extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: DotsBorderRadius.r12,
           ),
-          padding: EdgeInsets.all(8.0)
-              .add(item.details != null ? EdgeInsets.only(bottom: 2) : EdgeInsets.zero),
+          padding: EdgeInsets.all(
+            8.0,
+          ).add(item.details != null ? EdgeInsets.only(bottom: 2) : EdgeInsets.zero),
           child: Row(
             spacing: 6,
             children: [
@@ -315,14 +315,16 @@ class _MenuItem extends StatelessWidget {
                   children: [
                     Text(
                       item.label,
-                      style: theme.typo.main.bodyDefaultMedium
-                          .copyWith(color: textColorOverride(theme)),
+                      style: theme.typo.main.bodyDefaultMedium.copyWith(
+                        color: textColorOverride(theme),
+                      ),
                     ),
                     if (item.details != null)
                       Text(
                         item.details!,
-                        style: theme.typo.main.labelDefaultRegular
-                            .copyWith(color: textColorOverride(theme) ?? theme.colors.textTertiary),
+                        style: theme.typo.main.labelDefaultRegular.copyWith(
+                          color: textColorOverride(theme) ?? theme.colors.textTertiary,
+                        ),
                       ),
                   ],
                 ),
