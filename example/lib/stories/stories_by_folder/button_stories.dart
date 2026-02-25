@@ -404,4 +404,50 @@ List<Story> get buttonStories => [
           ),
         ),
       ),
+      Story(
+        name: 'Buttons/Input Stepper',
+        description: 'Demo page for Input Stepper',
+        builder: (context) => Builder(
+          builder: (context) {
+            final minValue = context.knobs.sliderInt(
+              label: 'Min value',
+              initial: 0,
+              min: 0,
+              max: 10,
+            );
+            final maxValue = context.knobs.sliderInt(
+              label: 'Max value',
+              initial: 10,
+              min: 1,
+              max: 20,
+            );
+            final safeMaxValue = maxValue < minValue ? minValue : maxValue;
+            final initialValue = context.knobs.sliderInt(
+              label: 'Initial value',
+              initial: 1,
+              min: 0,
+              max: 20,
+            );
+            int value = initialValue.clamp(minValue, safeMaxValue).toInt();
+
+            return StatefulBuilder(
+              builder: (context, setState) {
+                return DotsInputStepper(
+                  value: value,
+                  minValue: minValue,
+                  maxValue: safeMaxValue,
+                  onDecrement: () {
+                    if (value <= minValue) return;
+                    setState(() => value--);
+                  },
+                  onIncrement: () {
+                    if (value >= safeMaxValue) return;
+                    setState(() => value++);
+                  },
+                );
+              },
+            );
+          },
+        ),
+      ),
     ];

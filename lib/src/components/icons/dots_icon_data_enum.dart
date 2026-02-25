@@ -110,6 +110,7 @@ enum DotsIconData {
   add('ic-add.svg', DotsIconGroup.editingTools),
   addCircle('ic-add-circle.svg', DotsIconGroup.editingTools),
   addCircleOutline('ic-add-circle-outline.svg', DotsIconGroup.editingTools),
+  rest('ic-rest.svg', DotsIconGroup.editingTools),
   copy('ic-copy.svg', DotsIconGroup.editingTools),
   crop('ic-crop.svg', DotsIconGroup.editingTools),
   draw('ic-draw.svg', DotsIconGroup.editingTools),
