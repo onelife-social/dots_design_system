@@ -153,7 +153,6 @@ class _DotsTextFieldState extends State<DotsTextField> {
           hintText: widget.hintText,
           hintStyle: TextStyle(color: theme.colors.textQuarternary),
           isDense: true,
-          contentPadding: const EdgeInsets.symmetric(vertical: 13),
         ),
         onChanged: widget.onChanged,
         onSubmitted: widget.onSubmitted,
