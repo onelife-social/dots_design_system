@@ -103,11 +103,11 @@ List<Story> get textFieldStories => [
         ),
       ),
       Story(
-        name: 'TextFields/TextFieldPhone',
+        name: 'TextFields/DotsTextFieldPhone',
         description: 'Phone number field with country code selector (flag + dial code + chevron)',
         builder: (context) => Padding(
           padding: const EdgeInsets.all(16.0),
-          child: TextFieldPhone(
+          child: DotsTextFieldPhone(
             controller: TextEditingController(),
             focusNode: FocusNode(),
             countryCode: const PhoneCountryCode(dialCode: '+34', flagEmoji: '🇪🇸'),

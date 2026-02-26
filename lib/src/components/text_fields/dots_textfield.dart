@@ -50,7 +50,7 @@ class DotsTextField extends StatefulWidget {
 
   /// Whether to show the underline when [background] is false.
   ///
-  /// Defaults to `true`.
+  /// Defaults to `false`.
   final bool showUnderline;
 
   /// Whether to align the text in the center.

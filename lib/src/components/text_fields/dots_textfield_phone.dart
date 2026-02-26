@@ -15,7 +15,7 @@ class PhoneCountryCode {
 
 /// Text field for phone numbers with a leading country code selector
 /// (flag + dial code + chevron). Uses [DotsTextField] with [leading].
-class TextFieldPhone extends StatelessWidget {
+class DotsTextFieldPhone extends StatelessWidget {
   /// The controller for the phone number input.
   final TextEditingController controller;
 
@@ -60,7 +60,7 @@ class TextFieldPhone extends StatelessWidget {
   /// Defaults to `false`.
   final bool showUnderline;
 
-  const TextFieldPhone({
+  const DotsTextFieldPhone({
     super.key,
     required this.controller,
     required this.focusNode,
