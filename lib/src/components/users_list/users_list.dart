@@ -184,7 +184,8 @@ class _UsersListState extends State<UsersList> {
         padding: EdgeInsets.zero,
         shrinkWrap: true,
         itemCount: items.length,
-        separatorBuilder: (_, __) => DotsDivider(),
+        separatorBuilder: (_, __) =>
+            Divider(color: theme.colors.labelSecondary.dotsWithOpacity(0.3), thickness: 0.2),
         itemBuilder: (_, index) {
           final item = items[index];
           return widget.applyBounceIn &&

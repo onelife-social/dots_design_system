@@ -101,7 +101,11 @@ class DotsListsItem extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          DotsDivider(),
+          Divider(
+            height: 3,
+            color: theme.colors.labelSecondary.dotsWithOpacity(0.5),
+            thickness: 0.2,
+          ),
         ],
       );
     }
