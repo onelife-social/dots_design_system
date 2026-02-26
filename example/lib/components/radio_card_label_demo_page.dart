@@ -2,7 +2,9 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class RadioCardLabelDemoScreen extends StatefulWidget {
-  const RadioCardLabelDemoScreen({super.key});
+  const RadioCardLabelDemoScreen({super.key, required this.variant, this.value});
+  final RadioCardLabelVariant variant;
+  final String? value;
 
   @override
   State<RadioCardLabelDemoScreen> createState() => _RadioCardLabelDemoScreenState();
@@ -48,6 +50,8 @@ class _RadioCardLabelDemoScreenState extends State<RadioCardLabelDemoScreen> {
                     selectedIndex = index;
                   });
                 },
+                variant: widget.variant,
+                value: widget.value,
               ),
             ),
           );
