@@ -121,7 +121,7 @@ class DotsIconButton extends StatelessWidget {
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
-              spacing: style.isNoBackground ? 6 : 8,
+              spacing: style.isNoBackground ? 4 : 8,
               children: [
                 ..._getChildren(buttonTheme, borderRadius, context),
               ],
