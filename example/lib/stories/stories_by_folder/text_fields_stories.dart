@@ -103,6 +103,28 @@ List<Story> get textFieldStories => [
         ),
       ),
       Story(
+        name: 'TextFields/TextFieldPhone',
+        description: 'Phone number field with country code selector (flag + dial code + chevron)',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: TextFieldPhone(
+            controller: TextEditingController(),
+            focusNode: FocusNode(),
+            countryCode: const PhoneCountryCode(dialCode: '+34', flagEmoji: '🇪🇸'),
+            onCountryTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Country selector tapped')),
+              );
+            },
+            hintText: context.knobs.text(label: 'Hint', initial: 'Input content'),
+            isError: context.knobs.boolean(label: 'Is Error?', initial: false),
+            errorText: context.knobs.nullable.text(label: 'Error Text', initial: 'Error message'),
+            background: context.knobs.boolean(label: 'Background?', initial: true),
+            showUnderline: context.knobs.boolean(label: 'Show Underline?', initial: false),
+          ),
+        ),
+      ),
+      Story(
         name: 'TextFields/TextArea',
         description: 'Demo page for TextArea',
         builder: (context) => Padding(

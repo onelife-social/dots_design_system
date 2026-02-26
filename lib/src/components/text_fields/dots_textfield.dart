@@ -15,6 +15,10 @@ class DotsTextField extends StatefulWidget {
   /// If null, no icon will be displayed.
   final DotsIconData? iconData;
 
+  /// Optional leading widget (e.g. country selector for phone).
+  /// When set, it is shown on the left of the input.
+  final Widget? leading;
+
   /// The hint text to display in the TextField.
   final String? hintText;
 
@@ -58,11 +62,15 @@ class DotsTextField extends StatefulWidget {
   /// Defaults to `theme.typo.main.bodyDefaultMedium`.
   final TextStyle? textStyle;
 
+  /// The type of keyboard to show for the TextField.
+  final TextInputType? keyboardType;
+
   const DotsTextField({
     super.key,
     required this.controller,
     required this.focusNode,
     this.iconData,
+    this.leading,
     this.hintText,
     this.onChanged,
     this.onSubmitted,
@@ -74,6 +82,7 @@ class DotsTextField extends StatefulWidget {
     this.showUnderline = false,
     this.alignCenter = false,
     this.textStyle,
+    this.keyboardType,
   });
 
   @override
@@ -145,43 +154,42 @@ class _DotsTextFieldState extends State<DotsTextField> {
             shape: RoundedRectangleBorder(borderRadius: DotsBorderRadius.r1000),
           )
         : widget.showUnderline
-            ? BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: widget.isError
-                        ? theme.colors.labelDestructive
-                        : theme.colors.labelSecondary,
-                    width: 0.5,
-                  ),
-                ),
-              )
-            : null;
+        ? BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: theme.colors.labelSecondary,
+                width: 0.5,
+              ),
+            ),
+          )
+        : null;
 
     Widget buildTextField() {
       return TextField(
-          controller: _controller,
-          focusNode: _focusNode,
-          maxLength: widget.maxTextLength,
-          minLines: 1,
-          maxLines: 1,
-          textAlign: textAlign,
-          style: inputTextStyle.copyWith(
-            color: widget.isError && !widget.background
-                ? theme.colors.labelDestructive
-                : theme.colors.textPrimary,
-          ),
-          cursorColor: theme.colors.labelHighlight,
-          decoration: InputDecoration(
+        controller: _controller,
+        focusNode: _focusNode,
+        maxLength: widget.maxTextLength,
+        minLines: 1,
+        maxLines: 1,
+        textAlign: textAlign,
+        keyboardType: widget.keyboardType,
+        style: inputTextStyle.copyWith(
+          color: widget.isError && !widget.background
+              ? theme.colors.labelDestructive
+              : theme.colors.textPrimary,
+        ),
+        cursorColor: theme.colors.labelHighlight,
+        decoration: InputDecoration(
           border: InputBorder.none,
-            counterText: '',
-            hintText: widget.hintText,
-            hintStyle: TextStyle(color: theme.colors.textQuarternary),
-            isDense: true,
-          ),
-          onChanged: widget.onChanged,
-          onSubmitted: widget.onSubmitted,
-          enabled: widget.enabled,
-        );
+          counterText: '',
+          hintText: widget.hintText,
+          hintStyle: TextStyle(color: theme.colors.textQuarternary),
+          isDense: true,
+        ),
+        onChanged: widget.onChanged,
+        onSubmitted: widget.onSubmitted,
+        enabled: widget.enabled,
+      );
     }
 
     return Column(
@@ -195,7 +203,9 @@ class _DotsTextFieldState extends State<DotsTextField> {
             height: 44,
             clipBehavior: decoration != null ? Clip.antiAlias : Clip.none,
             decoration: decoration,
-            padding: widget.background ? const EdgeInsets.symmetric(horizontal: 16) : EdgeInsets.zero,
+            padding: widget.background
+                ? const EdgeInsets.symmetric(horizontal: 16)
+                : EdgeInsets.zero,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -205,6 +215,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
+                        if (widget.leading != null) widget.leading!,
                         if (widget.iconData != null) ...[
                           DotsIcon(
                             iconData: widget.iconData!,
