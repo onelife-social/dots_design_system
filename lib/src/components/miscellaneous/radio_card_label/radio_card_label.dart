@@ -102,7 +102,7 @@ class RadioCardLabel extends StatelessWidget {
                       Text(
                         value!,
                         style: theme.typo.main.bodyLargeMedium.copyWith(
-                          color: theme.colors.textTertiary,
+                          color: theme.colors.textPrimary,
                         ),
                       ),
                     ],
