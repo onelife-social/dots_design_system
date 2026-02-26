@@ -149,11 +149,8 @@ class _DotsMenuContainer<T> extends StatelessWidget {
               isInitialItem: isInitialItem,
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 4),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: DotsDivider(),
-              ),
+              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 4),
+              child: DotsDivider(),
             ),
           ],
         ),
