@@ -1,12 +1,10 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /// Represents a country code for phone input (dial code + flag).
 class PhoneCountryCode {
-  const PhoneCountryCode({
-    required this.dialCode,
-    required this.flagEmoji,
-  });
+  const PhoneCountryCode({required this.dialCode, required this.flagEmoji});
 
   /// International dial code, e.g. "+34".
   final String dialCode;
@@ -90,11 +88,15 @@ class TextFieldPhone extends StatelessWidget {
           children: [
             Text(
               '${countryCode.flagEmoji} (${countryCode.dialCode})',
-              style: theme.typo.main.bodyDefaultMedium.copyWith(
-                color: theme.colors.textSecondary,
-              ),
+              style: theme.typo.main.bodyDefaultMedium.copyWith(color: theme.colors.textSecondary),
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: 6),
+            DotsIcon(
+              iconData: DotsIconData.chevronDown,
+              size: 14,
+              color: theme.colors.textSecondary,
+            ),
+            const SizedBox(width: 6),
             Container(width: 0.5, color: theme.colors.labelSecondary),
             const SizedBox(width: 12),
           ],
@@ -116,6 +118,7 @@ class TextFieldPhone extends StatelessWidget {
       background: background,
       showUnderline: showUnderline,
       keyboardType: TextInputType.phone,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
     );
   }
 }

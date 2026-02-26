@@ -1,5 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class DotsTextField extends StatefulWidget {
   /// The controller for the TextField.
@@ -65,6 +66,9 @@ class DotsTextField extends StatefulWidget {
   /// The type of keyboard to show for the TextField.
   final TextInputType? keyboardType;
 
+  /// Optional list of input formatters (e.g. to restrict to digits only).
+  final List<TextInputFormatter>? inputFormatters;
+
   const DotsTextField({
     super.key,
     required this.controller,
@@ -83,6 +87,7 @@ class DotsTextField extends StatefulWidget {
     this.alignCenter = false,
     this.textStyle,
     this.keyboardType,
+    this.inputFormatters,
   });
 
   @override
@@ -173,6 +178,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
         maxLines: 1,
         textAlign: textAlign,
         keyboardType: widget.keyboardType,
+        inputFormatters: widget.inputFormatters,
         style: inputTextStyle.copyWith(
           color: widget.isError && !widget.background
               ? theme.colors.labelDestructive
