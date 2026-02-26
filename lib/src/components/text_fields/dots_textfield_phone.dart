@@ -52,6 +52,9 @@ class TextFieldPhone extends StatelessWidget {
   /// Whether to display a background color.
   final bool background;
 
+  /// The text style for the country code.
+  final TextStyle? textStyle;
+
   /// Whether to show the underline when [background] is false.
   ///
   /// Defaults to `false`.
@@ -63,6 +66,7 @@ class TextFieldPhone extends StatelessWidget {
     required this.focusNode,
     required this.countryCode,
     required this.onCountryTap,
+    this.textStyle,
     this.hintText,
     this.onChanged,
     this.onSubmitted,
@@ -88,11 +92,13 @@ class TextFieldPhone extends StatelessWidget {
           children: [
             Text(
               countryCode.flagEmoji,
-              style: theme.typo.main.bodyDefaultMedium.copyWith(color: Colors.black),
+              style: textStyle ?? theme.typo.main.bodyDefaultMedium.copyWith(color: Colors.black),
             ),
             Text(
               ' (${countryCode.dialCode})',
-              style: theme.typo.main.bodyDefaultMedium.copyWith(color: theme.colors.textSecondary),
+              style:
+                  textStyle ??
+                  theme.typo.main.bodyDefaultMedium.copyWith(color: theme.colors.textSecondary),
             ),
             const SizedBox(width: 6),
             DotsIcon(
@@ -116,6 +122,7 @@ class TextFieldPhone extends StatelessWidget {
       onChanged: onChanged,
       onSubmitted: onSubmitted,
       maxTextLength: maxTextLength,
+      textStyle: textStyle,
       isError: isError,
       errorText: errorText,
       enabled: enabled,
