@@ -1,5 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class DotsTextField extends StatefulWidget {
   /// The controller for the TextField.
@@ -14,6 +15,10 @@ class DotsTextField extends StatefulWidget {
   ///
   /// If null, no icon will be displayed.
   final DotsIconData? iconData;
+
+  /// Optional leading widget (e.g. country selector for phone).
+  /// When set, it is shown on the left of the input.
+  final Widget? leading;
 
   /// The hint text to display in the TextField.
   final String? hintText;
@@ -43,6 +48,11 @@ class DotsTextField extends StatefulWidget {
   /// Defaults to `true`.
   final bool background;
 
+  /// Whether to show the underline when [background] is false.
+  ///
+  /// Defaults to `false`.
+  final bool showUnderline;
+
   /// Whether to align the text in the center.
   ///
   /// Defaults to `false`.
@@ -53,11 +63,18 @@ class DotsTextField extends StatefulWidget {
   /// Defaults to `theme.typo.main.bodyDefaultMedium`.
   final TextStyle? textStyle;
 
+  /// The type of keyboard to show for the TextField.
+  final TextInputType? keyboardType;
+
+  /// Optional list of input formatters (e.g. to restrict to digits only).
+  final List<TextInputFormatter>? inputFormatters;
+
   const DotsTextField({
     super.key,
     required this.controller,
     required this.focusNode,
     this.iconData,
+    this.leading,
     this.hintText,
     this.onChanged,
     this.onSubmitted,
@@ -66,8 +83,11 @@ class DotsTextField extends StatefulWidget {
     this.errorText,
     this.enabled = true,
     this.background = true,
+    this.showUnderline = false,
     this.alignCenter = false,
     this.textStyle,
+    this.keyboardType,
+    this.inputFormatters,
   });
 
   @override
@@ -133,6 +153,22 @@ class _DotsTextFieldState extends State<DotsTextField> {
     final textAlign = widget.alignCenter ? TextAlign.center : TextAlign.left;
     final inputTextStyle = widget.textStyle ?? theme.typo.main.bodyDefaultMedium;
 
+    final decoration = widget.background
+        ? ShapeDecoration(
+            color: theme.colors.bgContainerSecondaryOnBackground,
+            shape: RoundedRectangleBorder(borderRadius: DotsBorderRadius.r1000),
+          )
+        : widget.showUnderline
+        ? BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: theme.colors.labelSecondary.dotsWithOpacity(0.3, multiplyWithExisting: true),
+                width: 0.5,
+              ),
+            ),
+          )
+        : null;
+
     Widget buildTextField() {
       return TextField(
         controller: _controller,
@@ -141,6 +177,8 @@ class _DotsTextFieldState extends State<DotsTextField> {
         minLines: 1,
         maxLines: 1,
         textAlign: textAlign,
+        keyboardType: widget.keyboardType,
+        inputFormatters: widget.inputFormatters,
         style: inputTextStyle.copyWith(
           color: widget.isError && !widget.background
               ? theme.colors.labelDestructive
@@ -169,12 +207,11 @@ class _DotsTextFieldState extends State<DotsTextField> {
           onTap: widget.enabled ? () => _focusNode.requestFocus() : null,
           child: Container(
             height: 44,
-            clipBehavior: Clip.antiAlias,
-            decoration: ShapeDecoration(
-              color: widget.background ? theme.colors.bgContainerSecondaryOnBackground : null,
-              shape: RoundedRectangleBorder(borderRadius: DotsBorderRadius.r1000),
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            clipBehavior: decoration != null ? Clip.antiAlias : Clip.none,
+            decoration: decoration,
+            padding: widget.background
+                ? const EdgeInsets.symmetric(horizontal: 16)
+                : EdgeInsets.zero,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -184,6 +221,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
+                        if (widget.leading != null) widget.leading!,
                         if (widget.iconData != null) ...[
                           DotsIcon(
                             iconData: widget.iconData!,
@@ -194,9 +232,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
                           ),
                           const SizedBox(width: 6),
                         ],
-                        Expanded(
-                          child: buildTextField(),
-                        ),
+                        Expanded(child: buildTextField()),
                       ],
                     ),
                   ),
