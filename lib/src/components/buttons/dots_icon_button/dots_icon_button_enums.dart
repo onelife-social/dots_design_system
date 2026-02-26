@@ -1,10 +1,10 @@
 enum DotsIconButtonSize {
-  enormous(size: 56, iconSize: 32, spacing: 4),
-  extraLarge(size: 52, iconSize: 32, spacing: 4),
-  large(size: 48, iconSize: 24, spacing: 2),
+  enormous(size: 56, iconSize: 32, spacing: 2),
+  extraLarge(size: 52, iconSize: 32, spacing: 2),
+  large(size: 44, iconSize: 24, spacing: 2),
   medium(size: 36, iconSize: 20, spacing: 2),
-  small(size: 28, iconSize: 14, spacing: 4),
-  extraSmall(size: 22, iconSize: 14, spacing: 4);
+  small(size: 28, iconSize: 14, spacing: 2),
+  extraSmall(size: 22, iconSize: 14, spacing: 0);
 
   final double size;
   final double iconSize;
