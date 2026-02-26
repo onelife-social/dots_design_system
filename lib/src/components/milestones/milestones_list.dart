@@ -110,8 +110,8 @@ class MilestonesList extends StatelessWidget {
 
     final double currHeight = currIsCard ? cardHeight : badgeHeight;
     final double nextHeight = nextIsCard ? cardHeight : badgeHeight;
-    // gap = random 8-20 between cards, 64 between badge and card or card and badge
-    final double gap = (currIsCard && nextIsCard) ? (8.0 + random.nextInt(13)) : 64.0;
+    // gap = random 20-34 between cards, 64 between badge and card or card and badge
+    final double gap = (currIsCard && nextIsCard) ? (20.0 + random.nextInt(15)) : 64.0;
 
     return (currHeight / 2) + gap + (nextHeight / 2);
   }
