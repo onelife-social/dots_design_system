@@ -162,7 +162,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
         ? BoxDecoration(
             border: Border(
               bottom: BorderSide(
-                color: theme.colors.labelSecondary,
+                color: theme.colors.labelSecondary.dotsWithOpacity(0.3, multiplyWithExisting: true),
                 width: 0.5,
               ),
             ),

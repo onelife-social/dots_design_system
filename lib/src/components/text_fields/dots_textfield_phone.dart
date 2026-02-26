@@ -101,7 +101,7 @@ class TextFieldPhone extends StatelessWidget {
               color: theme.colors.textSecondary,
             ),
             const SizedBox(width: 6),
-            Container(width: 0.5, color: theme.colors.labelSecondary),
+            Opacity(opacity: 0.3, child: Container(width: 0.5, color: theme.colors.labelSecondary)),
             const SizedBox(width: 12),
           ],
         ),
