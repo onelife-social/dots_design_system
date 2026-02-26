@@ -686,4 +686,11 @@ List<Story> get allStories => [
           );
         },
       ),
+      Story(
+        name: 'Divider',
+        description: 'Demo page for DotsDivider',
+        builder: (context) {
+          return DotsDivider(width: 250);
+        },
+      ),
     ];

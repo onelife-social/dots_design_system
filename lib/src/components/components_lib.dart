@@ -51,3 +51,4 @@ export 'milestones/milestones_lib.dart';
 export 'dot_book/dot_book_lib.dart';
 export 'preview/preview.dart';
 export 'accordion/accordion.dart';
+export 'divider/dots_divider.dart';

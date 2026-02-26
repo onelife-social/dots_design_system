@@ -18,7 +18,7 @@ class DotbookPriceSummary extends StatelessWidget {
   final int quantity;
 
   /// Whether the quantity input stepper is displayed.
-  /// 
+  ///
   /// Defaults to `true`.
   final bool showQuantityInput;
 
@@ -95,11 +95,7 @@ class DotbookPriceSummary extends StatelessWidget {
                 onIncrement: onIncrement,
                 onDecrement: onDecrement,
               ),
-              Divider(
-                height: 3,
-                color: theme.colors.labelSecondary.dotsWithOpacity(0.5),
-                thickness: 0.2,
-              ),
+              DotsDivider(),
               _Info(
                 products: products,
                 totalLabel: totalLabel,
