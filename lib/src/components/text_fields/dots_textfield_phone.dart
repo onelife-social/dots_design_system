@@ -87,7 +87,11 @@ class TextFieldPhone extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              '${countryCode.flagEmoji} (${countryCode.dialCode})',
+              countryCode.flagEmoji,
+              style: theme.typo.main.bodyDefaultMedium.copyWith(color: Colors.black),
+            ),
+            Text(
+              ' (${countryCode.dialCode})',
               style: theme.typo.main.bodyDefaultMedium.copyWith(color: theme.colors.textSecondary),
             ),
             const SizedBox(width: 6),
