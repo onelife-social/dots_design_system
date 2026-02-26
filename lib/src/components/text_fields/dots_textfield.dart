@@ -43,6 +43,11 @@ class DotsTextField extends StatefulWidget {
   /// Defaults to `true`.
   final bool background;
 
+  /// Whether to show the underline when [background] is false.
+  ///
+  /// Defaults to `true`.
+  final bool showUnderline;
+
   /// Whether to align the text in the center.
   ///
   /// Defaults to `false`.
@@ -66,6 +71,7 @@ class DotsTextField extends StatefulWidget {
     this.errorText,
     this.enabled = true,
     this.background = true,
+    this.showUnderline = false,
     this.alignCenter = false,
     this.textStyle,
   });
@@ -133,31 +139,49 @@ class _DotsTextFieldState extends State<DotsTextField> {
     final textAlign = widget.alignCenter ? TextAlign.center : TextAlign.left;
     final inputTextStyle = widget.textStyle ?? theme.typo.main.bodyDefaultMedium;
 
+    final decoration = widget.background
+        ? ShapeDecoration(
+            color: theme.colors.bgContainerSecondaryOnBackground,
+            shape: RoundedRectangleBorder(borderRadius: DotsBorderRadius.r1000),
+          )
+        : widget.showUnderline
+            ? BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: widget.isError
+                        ? theme.colors.labelDestructive
+                        : theme.colors.labelSecondary,
+                    width: 0.5,
+                  ),
+                ),
+              )
+            : null;
+
     Widget buildTextField() {
       return TextField(
-        controller: _controller,
-        focusNode: _focusNode,
-        maxLength: widget.maxTextLength,
-        minLines: 1,
-        maxLines: 1,
-        textAlign: textAlign,
-        style: inputTextStyle.copyWith(
-          color: widget.isError && !widget.background
-              ? theme.colors.labelDestructive
-              : theme.colors.textPrimary,
-        ),
-        cursorColor: theme.colors.labelHighlight,
-        decoration: InputDecoration(
+          controller: _controller,
+          focusNode: _focusNode,
+          maxLength: widget.maxTextLength,
+          minLines: 1,
+          maxLines: 1,
+          textAlign: textAlign,
+          style: inputTextStyle.copyWith(
+            color: widget.isError && !widget.background
+                ? theme.colors.labelDestructive
+                : theme.colors.textPrimary,
+          ),
+          cursorColor: theme.colors.labelHighlight,
+          decoration: InputDecoration(
           border: InputBorder.none,
-          counterText: '',
-          hintText: widget.hintText,
-          hintStyle: TextStyle(color: theme.colors.textQuarternary),
-          isDense: true,
-        ),
-        onChanged: widget.onChanged,
-        onSubmitted: widget.onSubmitted,
-        enabled: widget.enabled,
-      );
+            counterText: '',
+            hintText: widget.hintText,
+            hintStyle: TextStyle(color: theme.colors.textQuarternary),
+            isDense: true,
+          ),
+          onChanged: widget.onChanged,
+          onSubmitted: widget.onSubmitted,
+          enabled: widget.enabled,
+        );
     }
 
     return Column(
@@ -169,12 +193,9 @@ class _DotsTextFieldState extends State<DotsTextField> {
           onTap: widget.enabled ? () => _focusNode.requestFocus() : null,
           child: Container(
             height: 44,
-            clipBehavior: Clip.antiAlias,
-            decoration: ShapeDecoration(
-              color: widget.background ? theme.colors.bgContainerSecondaryOnBackground : null,
-              shape: RoundedRectangleBorder(borderRadius: DotsBorderRadius.r1000),
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            clipBehavior: decoration != null ? Clip.antiAlias : Clip.none,
+            decoration: decoration,
+            padding: widget.background ? const EdgeInsets.symmetric(horizontal: 16) : EdgeInsets.zero,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -194,9 +215,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
                           ),
                           const SizedBox(width: 6),
                         ],
-                        Expanded(
-                          child: buildTextField(),
-                        ),
+                        Expanded(child: buildTextField()),
                       ],
                     ),
                   ),

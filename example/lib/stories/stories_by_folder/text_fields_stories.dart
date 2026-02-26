@@ -22,6 +22,7 @@ List<Story> get textFieldStories => [
             isError: context.knobs.boolean(label: 'Is Error?', initial: false),
             errorText: context.knobs.nullable.text(label: 'Error Text', initial: 'Error message'),
             background: context.knobs.boolean(label: 'Background?', initial: true),
+            showUnderline: context.knobs.boolean(label: 'Show Underline?', initial: true),
             alignCenter: context.knobs.boolean(label: 'Align Center?', initial: false),
           ),
         ),
