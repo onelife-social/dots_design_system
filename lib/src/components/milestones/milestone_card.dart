@@ -210,8 +210,8 @@ class _MilestoneItem extends StatelessWidget {
                 ),
               if (showEdit)
                 Positioned(
-                  bottom: 5,
-                  right: 5,
+                  bottom: 16,
+                  right: 16,
                   child: _BtnEdit(onTap: onTapEdit),
                 ),
             ],
@@ -319,13 +319,10 @@ class _BtnEdit extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomRight,
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 5, right: 5),
-        child: DotsIconButton(
-          icon: DotsIconData.pencil,
-          backgroundColor: context.dotsTheme.colors.bgBtnImage,
-          onTap: onTap,
-        ),
+      child: DotsIconButton(
+        icon: DotsIconData.pencil,
+        backgroundColor: context.dotsTheme.colors.bgBtnImage,
+        onTap: onTap,
       ),
     );
   }
