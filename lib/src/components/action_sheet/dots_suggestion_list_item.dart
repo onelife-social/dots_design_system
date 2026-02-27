@@ -33,9 +33,12 @@ class DotsSuggestionListItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        color: type.isMain
-            ? theme.colors.transparent
-            : theme.colors.bgContainerSecondaryOnBackground,
+        decoration: BoxDecoration(
+          color: type.isMain
+              ? theme.colors.transparent
+              : theme.colors.bgContainerSecondaryOnBackground,
+          borderRadius: DotsBorderRadius.r16,
+        ),
         height: 60.0,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
@@ -44,8 +47,10 @@ class DotsSuggestionListItem extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: theme.colors.bgContainerSecondaryOnBackground,
-                  borderRadius: DotsBorderRadius.r16,
+                  color: type.isMain
+                      ? theme.colors.bgContainerSecondaryOnBackground
+                      : theme.colors.transparent,
+                  borderRadius: DotsBorderRadius.r12,
                 ),
                 width: 40,
                 height: 40,
