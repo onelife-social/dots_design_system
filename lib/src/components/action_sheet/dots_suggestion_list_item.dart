@@ -59,24 +59,30 @@ class DotsSuggestionListItem extends StatelessWidget {
                   child: icon,
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    text,
-                    style: theme.typo.main.bodyLargeMedium.copyWith(
-                      color: theme.colors.textPrimary,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      text,
+                      style: theme.typo.main.bodyLargeMedium.copyWith(
+                        color: theme.colors.textPrimary,
+                      ),
+                      textAlign: TextAlign.left,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
-                    textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    subtext,
-                    style: theme.typo.main.bodyDefaultRegular.copyWith(
-                      color: theme.colors.textTertiary,
+                    Text(
+                      subtext,
+                      style: theme.typo.main.bodyDefaultRegular.copyWith(
+                        color: theme.colors.textTertiary,
+                      ),
+                      textAlign: TextAlign.left,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
-                    textAlign: TextAlign.left,
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
