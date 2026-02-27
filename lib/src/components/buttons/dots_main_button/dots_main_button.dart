@@ -97,16 +97,21 @@ class DotsMainButton extends StatelessWidget {
   /// Whether the button is in loading state.
   final bool isLoading;
 
+  // The disabled variant of the button, used when [enabled] is false.
+  final disabledVariant = DotsMainButtonVariant.disabled;
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+
     final buttonTheme = getButtonThemeByButtonVariant(
       theme,
-      variant,
+      enabled ? variant : disabledVariant,
       size,
       textColor,
       iconColor,
     );
+
     final borderRadius = BorderRadius.circular(size.height);
     final foregroundColor =
         textColor ??
