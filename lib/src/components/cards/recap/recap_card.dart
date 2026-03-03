@@ -25,6 +25,9 @@ class RecapCard extends StatelessWidget {
   /// The image provider for the background image
   final ImageProvider imageProvider;
 
+  /// The default image to show while the main image is loading.
+  final ImageProvider? defaultImage;
+
   /// Button text that will be displayed at the bottom of the card.
   final String? buttonText;
 
@@ -57,6 +60,7 @@ class RecapCard extends StatelessWidget {
     required this.variant,
     required this.width,
     required this.imageProvider,
+    this.defaultImage,
     this.textImageProvider,
     this.buttonText,
     this.badgeText,
@@ -71,6 +75,7 @@ class RecapCard extends StatelessWidget {
   factory RecapCard.blocked({
     required double width,
     required ImageProvider imageProvider,
+    ImageProvider? defaultImage,
     required String buttonText,
     required Function()? onTap,
     required Function()? onInfoTap,
@@ -81,6 +86,7 @@ class RecapCard extends StatelessWidget {
     variant: RecapCardVariant.blocked,
     width: width,
     imageProvider: imageProvider,
+    defaultImage: defaultImage,
     textImageProvider: textImageProvider,
     buttonText: buttonText,
     onTap: onTap,
@@ -92,6 +98,7 @@ class RecapCard extends StatelessWidget {
   factory RecapCard.active({
     required double width,
     required ImageProvider imageProvider,
+    ImageProvider? defaultImage,
     required String buttonText,
     required Function()? onTap,
     ImageErrorWidgetBuilder? errorBuilder,
@@ -102,6 +109,7 @@ class RecapCard extends StatelessWidget {
     variant: RecapCardVariant.active,
     width: width,
     imageProvider: imageProvider,
+    defaultImage: defaultImage,
     textImageProvider: textImageProvider,
     buttonText: buttonText,
     onTap: onTap,
@@ -113,6 +121,7 @@ class RecapCard extends StatelessWidget {
   factory RecapCard.generated({
     required double width,
     required ImageProvider imageProvider,
+    ImageProvider? defaultImage,
     required String createdBy,
     required String albumName,
     required Function()? onTap,
@@ -125,6 +134,7 @@ class RecapCard extends StatelessWidget {
     variant: RecapCardVariant.generated,
     width: width,
     imageProvider: imageProvider,
+    defaultImage: defaultImage,
     textImageProvider: textImageProvider,
     createdBy: createdBy,
     albumName: albumName,
@@ -138,12 +148,14 @@ class RecapCard extends StatelessWidget {
   factory RecapCard.onlyTitle({
     required double width,
     required ImageProvider imageProvider,
+    ImageProvider? defaultImage,
     ImageErrorWidgetBuilder? errorBuilder,
     ImageProvider? textImageProvider,
   }) => RecapCard._(
     variant: RecapCardVariant.active,
     width: width,
     imageProvider: imageProvider,
+    defaultImage: defaultImage,
     textImageProvider: textImageProvider,
     errorBuilder: errorBuilder,
   );
@@ -158,6 +170,18 @@ class RecapCard extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       errorBuilder: errorBuilder,
+      loadingBuilder: defaultImage == null
+          ? null
+          : (context, child, loadingProgress) {
+              if (loadingProgress == null) return child;
+              return Image(
+                image: defaultImage!,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: double.infinity,
+                errorBuilder: errorBuilder ?? (_, __, ___) => child,
+              );
+            },
     );
 
     return GestureDetector(
