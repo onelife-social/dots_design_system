@@ -25,7 +25,7 @@ class RecapCard extends StatelessWidget {
   /// The image provider for the background image
   final ImageProvider imageProvider;
 
-  /// The default image to show while the main image is loading or if it fails to load.
+  /// The default image to show while the main image is loading.
   final ImageProvider? defaultImage;
 
   /// Button text that will be displayed at the bottom of the card.
