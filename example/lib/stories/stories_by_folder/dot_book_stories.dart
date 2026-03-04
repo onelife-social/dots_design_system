@@ -5,8 +5,11 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 enum DotBookStoryTextColorOption { white, bone, sand, olive, ice, rose, natural, graphite, black }
 
 Color _dotBookStoryTextColor(
-    BuildContext context, DotBookCoverType variant, DotBookStoryTextColorOption option,
-    {bool isForTitle = false}) {
+  BuildContext context,
+  DotBookCoverType variant,
+  DotBookStoryTextColorOption option, {
+  bool isForTitle = false,
+}) {
   final theme = context.dotsTheme;
 
   if (variant == DotBookCoverType.linen) {
