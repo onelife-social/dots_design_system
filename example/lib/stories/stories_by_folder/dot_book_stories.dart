@@ -5,17 +5,15 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 enum DotBookStoryTextColorOption { white, bone, sand, olive, ice, rose, natural, graphite, black }
 
 Color _dotBookStoryTextColor(
-  BuildContext context,
-  DotBookCoverType variant,
-  DotBookStoryTextColorOption option,
-) {
+    BuildContext context, DotBookCoverType variant, DotBookStoryTextColorOption option,
+    {bool isForTitle = false}) {
   final theme = context.dotsTheme;
 
   if (variant == DotBookCoverType.linen) {
     return theme.colors.labelAlwaysWhite;
   }
 
-  if (variant == DotBookCoverType.printedCircle) {
+  if (variant == DotBookCoverType.printedCircle && isForTitle) {
     return theme.colors.textDotbookWhite;
   }
 
@@ -338,7 +336,9 @@ List<Story> get dotBookStories => [
                     ),
                   ],
                 ),
-                textColor: _dotBookStoryTextColor(context, variant, colorOption),
+                titleTextColor:
+                    _dotBookStoryTextColor(context, variant, colorOption, isForTitle: true),
+                subtitleTextColor: _dotBookStoryTextColor(context, variant, colorOption),
                 dotsTitle: context.knobs.text(label: 'Bottom text', initial: 'DotBook'),
                 editorTitle: _max30(
                   context.knobs.text(
@@ -443,7 +443,9 @@ List<Story> get dotBookStories => [
                   ],
                 ),
                 coverVariant: coverVariant,
-                textColor: _dotBookStoryTextColor(context, coverVariant, colorOption),
+                titleTextColor:
+                    _dotBookStoryTextColor(context, coverVariant, colorOption, isForTitle: true),
+                subtitleTextColor: _dotBookStoryTextColor(context, coverVariant, colorOption),
                 coverImageWidth: 323,
                 coverImageHeight: 415,
               );

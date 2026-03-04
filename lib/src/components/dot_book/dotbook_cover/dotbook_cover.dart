@@ -1,9 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-
 class DotBookCover extends StatelessWidget {
-
   /// Variant of the cover to determine layout and content arrangement.
   final DotBookCoverType variant;
 
@@ -16,102 +14,105 @@ class DotBookCover extends StatelessWidget {
   /// Main base cover image.
   final ImageProvider mainImage;
 
-	/// Text color as hexadecimal Color.
-	final Color textColor;
+  /// Title text color as hexadecimal Color.
+  final Color titleTextColor;
 
-	/// Image rendered above the base cover.
-	final ImageProvider? overlayImage;
+  /// Subtitle text color as hexadecimal Color.
+  final Color subtitleTextColor;
 
-	/// Tap callback for all overlay variants.
-	final Function()? onOverlayTap;
+  /// Image rendered above the base cover.
+  final ImageProvider? overlayImage;
+
+  /// Tap callback for all overlay variants.
+  final Function()? onOverlayTap;
 
   /// Default image to show when no overlay image is provided.
   final ImageProvider? defaultOverlayImage;
 
-	/// If true, shows the editing dashed border above the text editor.
-	final bool isEditingMode;
+  /// If true, shows the editing dashed border above the text editor.
+  final bool isEditingMode;
 
   /// If true, shows % over imageOverlay.
-	final bool isCreateMode;
+  final bool isCreateMode;
 
   /// Progress value to show when in create mode (0-100).
   final String createprogress;
 
-	/// Optional color for the editing dashed border.
-	final Color? editingBorderColor;
+  /// Optional color for the editing dashed border.
+  final Color? editingBorderColor;
 
-	/// Tap callback for the editing dashed border.
-	final VoidCallback? onEditingBorderTap;
+  /// Tap callback for the editing dashed border.
+  final VoidCallback? onEditingBorderTap;
 
-	/// Text shown at the bottom of the cover.
-	final String dotsTitle;
+  /// Text shown at the bottom of the cover.
+  final String dotsTitle;
 
-	/// Main text for DotBookTextEditor.
-	final String editorTitle;
+  /// Main text for DotBookTextEditor.
+  final String editorTitle;
 
-	/// Secondary text for DotBookTextEditor.
-	final String? editorSubtitle;
+  /// Secondary text for DotBookTextEditor.
+  final String? editorSubtitle;
 
-
-	const DotBookCover({
-		super.key,
+  const DotBookCover({
+    super.key,
     required this.variant,
     required this.containerWidth,
-		this.widthFactor = 0.85,
+    this.widthFactor = 0.85,
     required this.mainImage,
-		this.textColor = const Color(0xFF3C3C3B),
-		this.overlayImage,
+    this.titleTextColor = const Color(0xFF3C3C3B),
+    this.subtitleTextColor = const Color(0xFF3C3C3B),
+    this.overlayImage,
     this.defaultOverlayImage,
-		this.onOverlayTap,
-		this.isEditingMode = false,
+    this.onOverlayTap,
+    this.isEditingMode = false,
     this.isCreateMode = false,
     this.createprogress = '',
-		this.editingBorderColor,
-		this.onEditingBorderTap,
-		this.dotsTitle = 'DotBook',
-		this.editorTitle = '',
-		this.editorSubtitle,
-	});
+    this.editingBorderColor,
+    this.onEditingBorderTap,
+    this.dotsTitle = 'DotBook',
+    this.editorTitle = '',
+    this.editorSubtitle,
+  });
 
-	@override
-	Widget build(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
+    final double width = containerWidth * widthFactor;
+    final double imageHeight = width * (5 / 4);
 
-		final double width = containerWidth * widthFactor;
-		final double imageHeight = width * (5 / 4);
-
-		return Center(
-			child: SizedBox(
-				width: width,
-				height: imageHeight,
-				child: Stack(
-					fit: StackFit.expand,
-					children: [
-						Image(
-							image: mainImage,
-							width: width,
-							height: imageHeight,
-							fit: BoxFit.cover,
-						),
-						DotBookCoverOverlay(
-							variant: variant,
-							textColor: textColor,
-							coverImageWidth: width,
-							coverImageHeight: imageHeight,
-							overlayImage: overlayImage,
+    return Center(
+      child: SizedBox(
+        width: width,
+        height: imageHeight,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image(
+              image: mainImage,
+              width: width,
+              height: imageHeight,
+              fit: BoxFit.cover,
+            ),
+            DotBookCoverOverlay(
+              variant: variant,
+              titleTextColor: titleTextColor,
+              subtitleTextColor: subtitleTextColor,
+              coverImageWidth: width,
+              coverImageHeight: imageHeight,
+              overlayImage: overlayImage,
               defaultOverlayImage: defaultOverlayImage,
-							onTap: onOverlayTap,
-							isEditingMode: isEditingMode,
+              onTap: onOverlayTap,
+              isEditingMode: isEditingMode,
               isCreateMode: isCreateMode,
               createprogress: createprogress,
-							editingBorderColor: editingBorderColor,
-							onEditingBorderTap: onEditingBorderTap,
-							dotsTitle: dotsTitle,
-							editorTitle: editorTitle,
-							editorSubtitle: editorSubtitle,
-						),
-					],
-				),
-			),
-		);
-	}
+              editingBorderColor: editingBorderColor,
+              onEditingBorderTap: onEditingBorderTap,
+              dotsTitle: dotsTitle,
+              editorTitle: editorTitle,
+              editorSubtitle: editorSubtitle,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
