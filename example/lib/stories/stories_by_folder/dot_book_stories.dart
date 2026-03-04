@@ -15,6 +15,10 @@ Color _dotBookStoryTextColor(
     return theme.colors.labelAlwaysWhite;
   }
 
+  if (variant == DotBookCoverType.printedCircle) {
+    return theme.colors.textDotbookWhite;
+  }
+
   switch (option) {
     case DotBookStoryTextColorOption.white:
       return theme.colors.textDotbookWhite;
