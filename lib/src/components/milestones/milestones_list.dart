@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-class MilestonesList extends StatelessWidget {
+class MilestonesList extends StatefulWidget {
   final List<dynamic> list;
   final int seed;
 
@@ -18,32 +18,94 @@ class MilestonesList extends StatelessWidget {
   });
 
   @override
+  State<MilestonesList> createState() => _MilestonesListState();
+}
+
+class _MilestonesListState extends State<MilestonesList> {
+  late List<GlobalKey> _itemKeys;
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _itemKeys = List.generate(widget.list.length, (index) => GlobalKey());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollToSelectedItem();
+    });
+  }
+
+  @override
+  void didUpdateWidget(MilestonesList oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.list.length != widget.list.length) {
+      _itemKeys = List.generate(widget.list.length, (index) => GlobalKey());
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollToSelectedItem();
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollToSelectedItem() {
+    for (int i = 0; i < widget.list.length; i++) {
+      final item = widget.list[i];
+      if (item is MilestoneCard && item.isSelected) {
+        final context = _itemKeys[i].currentContext;
+        if (context != null) {
+          Scrollable.ensureVisible(
+            context,
+            duration: const Duration(milliseconds: 50),
+            curve: Curves.easeInOut,
+            alignment: 0.5,
+          );
+          break;
+        }
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    final int count = list.length;
+    final int count = widget.list.length;
 
     final Color lineColor = theme.colors.labelSecondary;
     final double lineWidth = 2;
     final double lineDotsSpacing = 8;
 
-    final double topPadding = badgeHeight / 2; // first item is always a badge
-    final double bottomPadding = cardHeight / 2 + tailExtension; // last item is always a card
-    final Random random = Random(seed);
+    final double topPadding = widget.badgeHeight / 2; // first item is always a badge
+    final double bottomPadding =
+        widget.cardHeight / 2 + widget.tailExtension; // last item is always a card
+    final Random random = Random(widget.seed);
     final double totalHeight = _totalHeight(
-      list,
+      widget.list,
       topPadding,
       bottomPadding,
       random,
     );
 
     return SingleChildScrollView(
+      controller: _scrollController,
       child: SizedBox(
         height: totalHeight,
         child: LayoutBuilder(
           builder: (_, constraints) {
             final double centerX = constraints.maxWidth / 2;
-            final List<Offset> points = _generatePoints(list, count, centerX, topPadding, random);
+            final List<Offset> points = _generatePoints(
+              widget.list,
+              count,
+              centerX,
+              topPadding,
+              random,
+            );
 
             return Stack(
               children: [
@@ -60,13 +122,14 @@ class MilestonesList extends StatelessWidget {
 
                 for (int i = 0; i < count; i++)
                   Positioned(
+                    key: _itemKeys[i],
                     left: points[i].dx,
                     top: points[i].dy,
                     child: FractionalTranslation(
                       translation: const Offset(-0.5, -0.5),
                       child: Builder(
                         builder: (_) {
-                          final item = list[i];
+                          final item = widget.list[i];
                           if (item is String) {
                             return BadgeMilestone(
                               content: item,
@@ -108,8 +171,8 @@ class MilestonesList extends StatelessWidget {
     final bool currIsCard = curr is MilestoneCard;
     final bool nextIsCard = next is MilestoneCard;
 
-    final double currHeight = currIsCard ? cardHeight : badgeHeight;
-    final double nextHeight = nextIsCard ? cardHeight : badgeHeight;
+    final double currHeight = currIsCard ? widget.cardHeight : widget.badgeHeight;
+    final double nextHeight = nextIsCard ? widget.cardHeight : widget.badgeHeight;
     // gap = random 20-34 between cards, 64 between badge and card or card and badge
     final double gap = (currIsCard && nextIsCard) ? (20.0 + random.nextInt(15)) : 64.0;
 
@@ -147,7 +210,7 @@ class MilestonesList extends StatelessWidget {
 
     // Extend the line, assuming a fake last card
     if (count > 0) {
-      final double extraY = accumulatedYPosition + (cardHeight / 2) + tailExtension;
+      final double extraY = accumulatedYPosition + (widget.cardHeight / 2) + widget.tailExtension;
       final double lastX = centerX + xPositions[count - 1];
       finalPoints.add(Offset(lastX, extraY));
     }
@@ -200,6 +263,9 @@ class _BezierTimelinePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _BezierTimelinePainter oldDelegate) {
-    return false;
+    return oldDelegate.lineColor != lineColor ||
+        oldDelegate.dotRadius != dotRadius ||
+        oldDelegate.spacing != spacing ||
+        oldDelegate.points != points;
   }
 }
