@@ -39,6 +39,9 @@ class MilestoneCard extends StatefulWidget {
   /// Callback when the edit button is tapped.
   final VoidCallback? onTapEdit;
 
+  /// Whether this card is selected (used for scroll positioning).
+  final bool isSelected;
+
   const MilestoneCard({
     super.key,
     required this.width,
@@ -52,6 +55,7 @@ class MilestoneCard extends StatefulWidget {
     this.showBadge = false,
     this.showEdit = false,
     this.onTapEdit,
+    this.isSelected = false,
   });
 
   @override
