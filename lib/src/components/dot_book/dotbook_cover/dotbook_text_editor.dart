@@ -16,8 +16,11 @@ class DotBookTextEditor extends StatelessWidget {
   /// Height of the image, used to scale text size.
   final double coverImageHeight;
 
-  /// Color of the text, used to derive text color from theme context.
-  final Color textColor;
+  /// Title text color used for the editor text.
+  final Color titleTextColor;
+
+  /// Subtitle text color used for the editor text.
+  final Color subtitleTextColor;
 
   /// Width of the text editor, used to set its size.
   final double? width;
@@ -45,7 +48,8 @@ class DotBookTextEditor extends StatelessWidget {
     required this.coverImageWidth,
     required this.coverImageHeight,
     required this.coverVariant,
-    required this.textColor,
+    required this.titleTextColor,
+    required this.subtitleTextColor,
     required this.title,
     this.subtitle,
     this.xtraInfo,
@@ -71,7 +75,7 @@ class DotBookTextEditor extends StatelessWidget {
                         Text(
                           xtraInfo!,
                           style: theme.typo.secondary.title02H2.copyWith(
-                            color: textColor,
+                            color: titleTextColor,
                             fontSize: DotsTextUtils.scaledFontSize(
                               referenceFontSize: 6.8,
                               imageWidth: coverImageWidth,
@@ -89,7 +93,7 @@ class DotBookTextEditor extends StatelessWidget {
                           child: Text(
                             subtitle!,
                             style: theme.typo.secondary.title02H2.copyWith(
-                              color: textColor,
+                              color: subtitleTextColor,
                               fontSize: DotsTextUtils.scaledFontSize(
                                 referenceFontSize: 6,
                                 imageWidth: coverImageWidth,
@@ -109,7 +113,7 @@ class DotBookTextEditor extends StatelessWidget {
                     child: Text(
                       title,
                       style: theme.typo.secondary.title02H2.copyWith(
-                        color: textColor,
+                        color: titleTextColor,
                         fontSize: DotsTextUtils.scaledFontSize(
                           referenceFontSize: 70,
                           imageWidth: coverImageWidth,
@@ -132,7 +136,7 @@ class DotBookTextEditor extends StatelessWidget {
                     LayoutBuilder(
                       builder: (context, constraints) {
                         final TextStyle titleStyle = theme.typo.secondary.title02H2.copyWith(
-                          color: textColor,
+                          color: titleTextColor,
                           fontSize: DotsTextUtils.scaledFontSize(
                             referenceFontSize: 14,
                             imageWidth: coverImageWidth,
@@ -157,7 +161,7 @@ class DotBookTextEditor extends StatelessWidget {
                       Text(
                         subtitle!,
                         style: theme.typo.secondary.title02H2.copyWith(
-                          color: textColor,
+                          color: subtitleTextColor,
                           fontSize: DotsTextUtils.scaledFontSize(
                             referenceFontSize: 5,
                             imageWidth: coverImageWidth,
