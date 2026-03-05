@@ -196,7 +196,12 @@ class DotsActionSheetStandardButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return buttonPositioning == DotsActionSheetButtonPositioning.column
-        ? Column(children: [primaryButton, if (secondaryButton != null) secondaryButton!])
+        ? Column(
+            children: [
+              primaryButton,
+              if (secondaryButton != null) secondaryButton!,
+            ],
+          )
         : secondaryButton != null
         ? Row(
             children: [
@@ -252,7 +257,10 @@ class _BackdropFilterMask extends StatelessWidget {
         borderRadius: DotsBorderRadius.bottom32,
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 2, sigmaY: 12),
-          child: Container(height: totalHeight / 2, color: context.dotsTheme.colors.transparent),
+          child: Container(
+            height: totalHeight / 2,
+            color: context.dotsTheme.colors.transparent,
+          ),
         ),
       ),
     );
