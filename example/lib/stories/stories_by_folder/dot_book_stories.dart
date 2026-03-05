@@ -258,6 +258,10 @@ List<Story> get dotBookStories => [
               label: 'Express delivery date',
               initial: 'Estimated delivery: 1-2 business days',
             ),
+            onTapTitle: context.knobs.nullable.text(
+              label: 'On tap title',
+              initial: 'Check shipping to other countries',
+            ),
           ),
         ),
       ),
