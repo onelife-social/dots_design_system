@@ -35,6 +35,7 @@ class DotsActionSheetStandardContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     final double spacing = bigAspectRatio ? 20 : 16;
+    final bool hasTopWidgetHeight = _hasExplicitPositiveHeight(topWidget);
 
     return Stack(
       children: [
@@ -44,13 +45,14 @@ class DotsActionSheetStandardContent extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
-            spacing: spacing,
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 16),
                 child: Grabber(),
               ),
+              if (hasTopWidgetHeight) SizedBox(height: spacing),
               topWidget,
+              SizedBox(height: spacing),
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -59,7 +61,7 @@ class DotsActionSheetStandardContent extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 4),
+                    if (hasTopWidgetHeight) const SizedBox(height: 4),
                     SizedBox(
                       width: double.infinity,
                       child: Text(
@@ -85,8 +87,15 @@ class DotsActionSheetStandardContent extends StatelessWidget {
                   ],
                 ),
               ),
-              if (bottomWidget != null) bottomWidget!,
-              if (stepProgress > 0) DotsProgressBar(percentage: stepProgress),
+              if (bottomWidget != null) ...[
+                SizedBox(height: spacing),
+                bottomWidget!,
+              ],
+              if (stepProgress > 0) ...[
+                SizedBox(height: spacing),
+                DotsProgressBar(percentage: stepProgress),
+              ],
+              SizedBox(height: spacing),
               SizedBox(
                 height: _calculateButtonAreaHeight(
                   buttonPositioning: buttonPositioning,
@@ -113,6 +122,30 @@ class DotsActionSheetStandardContent extends StatelessWidget {
       ],
     );
   }
+}
+
+bool _hasExplicitPositiveHeight(Widget widget) {
+  if (widget is SizedBox) {
+    return (widget.height ?? 0) > 0;
+  }
+
+  if (widget is Container) {
+    final constraints = widget.constraints;
+    if (constraints == null) return false;
+    if (constraints.maxHeight.isFinite) {
+      return constraints.maxHeight > 0;
+    }
+    return constraints.minHeight > 0;
+  }
+
+  if (widget is ConstrainedBox) {
+    if (widget.constraints.maxHeight.isFinite) {
+      return widget.constraints.maxHeight > 0;
+    }
+    return widget.constraints.minHeight > 0;
+  }
+
+  return false;
 }
 
 double _calculateButtonAreaHeight({
@@ -163,21 +196,12 @@ class DotsActionSheetStandardButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return buttonPositioning == DotsActionSheetButtonPositioning.column
-        ? Column(
-            children: [
-              primaryButton,
-              if (secondaryButton != null) secondaryButton!,
-            ],
-          )
+        ? Column(children: [primaryButton, if (secondaryButton != null) secondaryButton!])
         : secondaryButton != null
         ? Row(
             children: [
-              Expanded(
-                child: secondaryButton!,
-              ),
-              const SizedBox(
-                width: 15,
-              ),
+              Expanded(child: secondaryButton!),
+              const SizedBox(width: 15),
               Expanded(child: primaryButton),
             ],
           )
@@ -228,10 +252,7 @@ class _BackdropFilterMask extends StatelessWidget {
         borderRadius: DotsBorderRadius.bottom32,
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 2, sigmaY: 12),
-          child: Container(
-            height: totalHeight / 2,
-            color: context.dotsTheme.colors.transparent,
-          ),
+          child: Container(height: totalHeight / 2, color: context.dotsTheme.colors.transparent),
         ),
       ),
     );
