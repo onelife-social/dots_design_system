@@ -5,6 +5,7 @@ export 'dots_action_sheet_search_content.dart';
 export 'dots_action_sheet_standard.dart';
 export 'dots_action_sheet_standard_content.dart';
 export 'dots_list_item.dart';
+export 'dots_suggestion_list_item.dart';
 export 'dots_action_sheet_base.dart';
 export 'action_sheet_input/dots_action_sheet_input.dart';
 export 'action_sheet_input/dots_action_sheet_input_content.dart';

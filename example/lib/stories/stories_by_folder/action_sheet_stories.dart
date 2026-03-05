@@ -850,4 +850,32 @@ List<Story> get actionSheetStories => [
           );
         },
       ),
+      Story(
+        name: 'Action Sheet/Dots suggestion list item',
+        description: 'Demo page for suggestion list items',
+        builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            child: DotsSuggestionListItem(
+              text: context.knobs.text(label: 'Title', initial: 'Text example'),
+              subtext: context.knobs.text(label: 'Subtext', initial: 'Subtext example'),
+              icon: Icon(Icons.album),
+              type: context.knobs.options<DotsSuggestionListItemVariant>(
+                label: 'Type',
+                initial: DotsSuggestionListItemVariant.main,
+                options: DotsSuggestionListItemVariant.values
+                    .map((item) => Option(label: item.name, value: item))
+                    .toList(),
+              ),
+              onTap: context.knobs.boolean(label: 'On tile tap', initial: true)
+                  ? () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Tile tapped')),
+                      );
+                    }
+                  : null,
+            ),
+          );
+        },
+      ),
     ];
