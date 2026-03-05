@@ -145,7 +145,7 @@ bool _hasExplicitPositiveHeight(Widget widget) {
     return widget.constraints.minHeight > 0;
   }
 
-  return false;
+  return true;
 }
 
 double _calculateButtonAreaHeight({
