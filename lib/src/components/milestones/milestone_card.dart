@@ -39,6 +39,11 @@ class MilestoneCard extends StatefulWidget {
   /// Callback when the edit button is tapped.
   final VoidCallback? onTapEdit;
 
+  /// The radius of the card's corners.
+  ///
+  /// Defaults to `32`.
+  final double radius;
+
   const MilestoneCard({
     super.key,
     required this.width,
@@ -51,6 +56,7 @@ class MilestoneCard extends StatefulWidget {
     this.onTap,
     this.showBadge = false,
     this.showEdit = false,
+    this.radius = 32,
     this.onTapEdit,
   });
 
@@ -67,7 +73,7 @@ class _MilestoneCardState extends State<MilestoneCard> {
     final theme = context.dotsTheme;
 
     final imageWidget = ClipSmoothRect(
-      radius: SmoothBorderRadius(cornerRadius: 32, cornerSmoothing: 0.5),
+      radius: SmoothBorderRadius(cornerRadius: widget.radius, cornerSmoothing: 0.5),
       child: Image(
         image: widget.imageProvider,
         fit: BoxFit.cover,
