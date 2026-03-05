@@ -33,9 +33,12 @@ class DotsSuggestionListItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        color: type.isMain
-            ? theme.colors.transparent
-            : theme.colors.bgContainerSecondaryOnBackground,
+        decoration: BoxDecoration(
+          color: type.isMain
+              ? theme.colors.transparent
+              : theme.colors.bgContainerSecondaryOnBackground,
+          borderRadius: DotsBorderRadius.r16,
+        ),
         height: 60.0,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
@@ -44,8 +47,10 @@ class DotsSuggestionListItem extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: theme.colors.bgContainerSecondaryOnBackground,
-                  borderRadius: DotsBorderRadius.r16,
+                  color: type.isMain
+                      ? theme.colors.bgContainerSecondaryOnBackground
+                      : theme.colors.transparent,
+                  borderRadius: DotsBorderRadius.r12,
                 ),
                 width: 40,
                 height: 40,
@@ -54,24 +59,30 @@ class DotsSuggestionListItem extends StatelessWidget {
                   child: icon,
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    text,
-                    style: theme.typo.main.bodyLargeMedium.copyWith(
-                      color: theme.colors.textPrimary,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      text,
+                      style: theme.typo.main.bodyLargeMedium.copyWith(
+                        color: theme.colors.textPrimary,
+                      ),
+                      textAlign: TextAlign.left,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
-                    textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    subtext,
-                    style: theme.typo.main.bodyDefaultRegular.copyWith(
-                      color: theme.colors.textTertiary,
+                    Text(
+                      subtext,
+                      style: theme.typo.main.bodyDefaultRegular.copyWith(
+                        color: theme.colors.textTertiary,
+                      ),
+                      textAlign: TextAlign.left,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
-                    textAlign: TextAlign.left,
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

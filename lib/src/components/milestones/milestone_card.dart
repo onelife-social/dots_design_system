@@ -39,6 +39,9 @@ class MilestoneCard extends StatefulWidget {
   /// Callback when the edit button is tapped.
   final VoidCallback? onTapEdit;
 
+  /// Whether this card is selected (used for scroll positioning).
+  final bool isSelected;
+
   const MilestoneCard({
     super.key,
     required this.width,
@@ -52,6 +55,7 @@ class MilestoneCard extends StatefulWidget {
     this.showBadge = false,
     this.showEdit = false,
     this.onTapEdit,
+    this.isSelected = false,
   });
 
   @override
@@ -66,8 +70,10 @@ class _MilestoneCardState extends State<MilestoneCard> {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
+    final bool isBig = widget.width > 150;
+
     final imageWidget = ClipSmoothRect(
-      radius: SmoothBorderRadius(cornerRadius: 32, cornerSmoothing: 0.5),
+      radius: SmoothBorderRadius(cornerRadius: isBig ? 32 : 24, cornerSmoothing: 0.5),
       child: Image(
         image: widget.imageProvider,
         fit: BoxFit.cover,
@@ -117,6 +123,7 @@ class _MilestoneCardState extends State<MilestoneCard> {
             onTapEdit: widget.onTapEdit,
             forceWithoutBlur: _forceWithoutBlur,
             onTap: widget.onTap,
+            isBig: isBig,
           ),
         ),
       ),
@@ -136,6 +143,7 @@ class _MilestoneItem extends StatelessWidget {
   final VoidCallback? onTapEdit;
   final bool forceWithoutBlur;
   final VoidCallback? onTap;
+  final bool isBig;
 
   const _MilestoneItem({
     required this.theme,
@@ -149,6 +157,7 @@ class _MilestoneItem extends StatelessWidget {
     required this.onTapEdit,
     required this.forceWithoutBlur,
     required this.onTap,
+    required this.isBig,
   });
 
   @override
@@ -156,9 +165,9 @@ class _MilestoneItem extends StatelessWidget {
     return DotsDecoratedBox(
       styleType: theme.styles.floatingBtnShadow,
       child: DotsDecoratedBox(
-        styleType: theme.styles.squircle32,
+        styleType: isBig ? theme.styles.squircle32 : theme.styles.squircle24,
         child: ClipSmoothRect(
-          radius: SmoothBorderRadius(cornerRadius: 32, cornerSmoothing: 0.5),
+          radius: SmoothBorderRadius(cornerRadius: isBig ? 32 : 24, cornerSmoothing: 0.5),
           child: Stack(
             children: [
               Positioned.fill(
@@ -180,7 +189,7 @@ class _MilestoneItem extends StatelessWidget {
                   child: Container(
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
-                        borderRadius: DotsBorderRadius.r32,
+                        borderRadius: isBig ? DotsBorderRadius.r32 : DotsBorderRadius.r24,
                         side: BorderSide(
                           color: theme.colors.labelAlwaysWhite,
                           width: 3,

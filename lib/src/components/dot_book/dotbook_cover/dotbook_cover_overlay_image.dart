@@ -7,8 +7,11 @@ class DotBookCoverOverlay extends StatelessWidget {
   /// Variant of the cover to determine the overlay's position and size.
   final DotBookCoverType variant;
 
-  /// Text color used for overlay elements.
-  final Color textColor;
+  /// Title text color used for overlay elements.
+  final Color titleTextColor;
+
+  /// Subtitle text color used for overlay elements.
+  final Color subtitleTextColor;
 
   /// Width of the cover image, used to calculate overlay dimensions.
   final double coverImageWidth;
@@ -52,7 +55,8 @@ class DotBookCoverOverlay extends StatelessWidget {
   const DotBookCoverOverlay({
     super.key,
     required this.variant,
-    required this.textColor,
+    required this.titleTextColor,
+    required this.subtitleTextColor,
     required this.coverImageWidth,
     required this.coverImageHeight,
     this.overlayImage,
@@ -93,7 +97,8 @@ class DotBookCoverOverlay extends StatelessWidget {
         ),
         _DotBookCoverTextEditorLayer(
           variant: variant,
-          textColor: textColor,
+          titleTextColor: titleTextColor,
+          subtitleTextColor: subtitleTextColor,
           coverImageWidth: coverImageWidth,
           coverImageHeight: coverImageHeight,
           isEditingMode: isEditingMode,
@@ -107,7 +112,7 @@ class DotBookCoverOverlay extends StatelessWidget {
         if (dotsTitle.isNotEmpty)
           _DotBookCoverBottomTitleLayer(
             variant: variant,
-            textColor: textColor,
+            textColor: subtitleTextColor,
             coverImageWidth: coverImageWidth,
             coverImageHeight: coverImageHeight,
             dotsTitle: dotsTitle,
@@ -198,8 +203,11 @@ class _DotBookCoverTextEditorLayer extends StatelessWidget {
   /// Variant of the cover to determine the editor's position and size.
   final DotBookCoverType variant;
 
-  /// Text color used for the editor text.
-  final Color textColor;
+  /// Title text color used for the editor text.
+  final Color titleTextColor;
+
+  /// Subtitle text color used for the editor text.
+  final Color subtitleTextColor;
 
   /// Optional color for the editing border.
   final Color? editingBorderColor;
@@ -223,7 +231,8 @@ class _DotBookCoverTextEditorLayer extends StatelessWidget {
 
   const _DotBookCoverTextEditorLayer({
     required this.variant,
-    required this.textColor,
+    required this.titleTextColor,
+    required this.subtitleTextColor,
     this.editingBorderColor,
     required this.coverImageWidth,
     required this.coverImageHeight,
@@ -253,7 +262,8 @@ class _DotBookCoverTextEditorLayer extends StatelessWidget {
               coverImageHeight: coverImageHeight,
               variant: variant,
               coverVariant: variant,
-              textColor: textColor,
+              titleTextColor: titleTextColor,
+              subtitleTextColor: subtitleTextColor,
               title: editorTitle,
               subtitle: editorSubtitle,
             ),
@@ -287,7 +297,8 @@ class _DotBookCoverTextEditorLayer extends StatelessWidget {
               variant: variant,
               height: editorHeight,
               coverVariant: variant,
-              textColor: textColor,
+              titleTextColor: titleTextColor,
+              subtitleTextColor: subtitleTextColor,
               title: editorTitle,
               subtitle: editorSubtitle,
               xtraInfo: dotsTitle,
@@ -313,7 +324,8 @@ class _DotBookCoverTextEditorLayer extends StatelessWidget {
               width: editorWidth,
               variant: variant,
               coverVariant: variant,
-              textColor: textColor,
+              titleTextColor: titleTextColor,
+              subtitleTextColor: subtitleTextColor,
               title: editorTitle,
               subtitle: editorSubtitle,
             ),
