@@ -9,10 +9,10 @@ class DotsSuggestionListItem extends StatelessWidget {
   final Widget icon;
 
   // Main text shown on the tile
-  final String text;
+  final String? text;
 
   // Subtext shown below the main text on the tile
-  final String subtext;
+  final String? subtext;
 
   // Function triggered when tile is tapped
   final Function()? onTap;
@@ -20,8 +20,8 @@ class DotsSuggestionListItem extends StatelessWidget {
   const DotsSuggestionListItem({
     super.key,
     required this.icon,
-    required this.text,
-    required this.subtext,
+    this.text,
+    this.subtext,
     this.onTap,
     this.type = DotsSuggestionListItemVariant.main,
   });
@@ -39,7 +39,6 @@ class DotsSuggestionListItem extends StatelessWidget {
               : theme.colors.bgContainerSecondaryOnBackground,
           borderRadius: DotsBorderRadius.r16,
         ),
-        height: 60.0,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
           child: Row(
@@ -56,31 +55,31 @@ class DotsSuggestionListItem extends StatelessWidget {
                 height: 40,
                 child: ClipRRect(
                   borderRadius: DotsBorderRadius.r12,
-                  child: icon,
+                  child: Center(
+                    child: icon
+                  ),
                 ),
               ),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      text,
-                      style: theme.typo.main.bodyLargeMedium.copyWith(
-                        color: theme.colors.textPrimary,
+                    if (text != null && text!.isNotEmpty)
+                      Text(
+                        text!,
+                        style: theme.typo.main.bodyLargeMedium.copyWith(
+                          color: theme.colors.textPrimary,
+                        ),
+                        textAlign: TextAlign.left,
                       ),
-                      textAlign: TextAlign.left,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                    Text(
-                      subtext,
-                      style: theme.typo.main.bodyDefaultRegular.copyWith(
-                        color: theme.colors.textTertiary,
+                    if (subtext != null && subtext!.isNotEmpty)
+                      Text(
+                        subtext!,
+                        style: theme.typo.main.bodyDefaultRegular.copyWith(
+                          color: theme.colors.textTertiary,
+                        ),
+                        textAlign: TextAlign.left,
                       ),
-                      textAlign: TextAlign.left,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
                   ],
                 ),
               ),

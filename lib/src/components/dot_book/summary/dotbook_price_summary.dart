@@ -83,7 +83,7 @@ class DotbookPriceSummary extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 16,
             children: [
-              _TitleAndQuantity(
+              SummaryTitleAndQuantity(
                 imageProvider: imageProvider,
                 errorBuilder: errorBuilder,
                 title: title,
@@ -96,7 +96,7 @@ class DotbookPriceSummary extends StatelessWidget {
                 onDecrement: onDecrement,
               ),
               DotsDivider(),
-              _Info(
+              SummaryInfo(
                 products: products,
                 totalLabel: totalLabel,
                 taxesIncludedLabel: taxesIncludedLabel,
@@ -110,18 +110,19 @@ class DotbookPriceSummary extends StatelessWidget {
   }
 }
 
-class _TitleAndQuantity extends StatelessWidget {
-  const _TitleAndQuantity({
+class SummaryTitleAndQuantity extends StatelessWidget {
+  const SummaryTitleAndQuantity({
+    super.key,
     required this.imageProvider,
-    required this.errorBuilder,
+    this.errorBuilder,
     required this.title,
     required this.quantityLabel,
     required this.quantity,
-    required this.showQuantityInput,
-    required this.minQuantity,
-    required this.maxQuantity,
-    required this.onIncrement,
-    required this.onDecrement,
+    this.showQuantityInput = false,
+    this.minQuantity,
+    this.maxQuantity,
+    this.onIncrement,
+    this.onDecrement,
   });
 
   final ImageProvider imageProvider;
@@ -188,13 +189,14 @@ class _TitleAndQuantity extends StatelessWidget {
   }
 }
 
-class _Info extends StatelessWidget {
+class SummaryInfo extends StatelessWidget {
   final Map<String, String> products;
   final String totalLabel;
   final String? taxesIncludedLabel;
   final String totalPrice;
 
-  const _Info({
+  const SummaryInfo({
+    super.key,
     required this.products,
     required this.totalLabel,
     this.taxesIncludedLabel,
@@ -209,9 +211,9 @@ class _Info extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         spacing: 8,
         children: [
-          ...products.entries.map((entry) => _PriceRow(label: entry.key, price: entry.value)),
+          ...products.entries.map((entry) => PriceRow(label: entry.key, price: entry.value)),
 
-          _TotalPriceRow(
+          TotalPriceRow(
             totalLabel: totalLabel,
             taxesIncludedLabel: taxesIncludedLabel,
             totalPrice: totalPrice,
@@ -222,11 +224,12 @@ class _Info extends StatelessWidget {
   }
 }
 
-class _PriceRow extends StatelessWidget {
+class PriceRow extends StatelessWidget {
   final String label;
   final String price;
 
-  const _PriceRow({
+  const PriceRow({
+    super.key,
     required this.label,
     required this.price,
   });
@@ -236,6 +239,7 @@ class _PriceRow extends StatelessWidget {
     final theme = context.dotsTheme;
 
     return Row(
+      spacing: 10,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Expanded(
@@ -257,12 +261,13 @@ class _PriceRow extends StatelessWidget {
   }
 }
 
-class _TotalPriceRow extends StatelessWidget {
+class TotalPriceRow extends StatelessWidget {
   final String totalLabel;
   final String? taxesIncludedLabel;
   final String totalPrice;
 
-  const _TotalPriceRow({
+  const TotalPriceRow({
+    super.key,
     required this.totalLabel,
     required this.taxesIncludedLabel,
     required this.totalPrice,
