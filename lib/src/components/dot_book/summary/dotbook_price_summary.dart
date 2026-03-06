@@ -142,7 +142,6 @@ class SummaryTitleAndQuantity extends StatelessWidget {
 
     return Row(
       mainAxisSize: MainAxisSize.min,
-      spacing: 12,
       children: [
         ClipRRect(
           borderRadius: DotsBorderRadius.r16,
@@ -154,6 +153,7 @@ class SummaryTitleAndQuantity extends StatelessWidget {
             errorBuilder: errorBuilder,
           ),
         ),
+        const SizedBox(width: 12),
         Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,6 +173,7 @@ class SummaryTitleAndQuantity extends StatelessWidget {
             ),
           ],
         ),
+        const SizedBox(width: 6),
         if (showQuantityInput) ...[
           const Spacer(),
           DotsInputStepper(

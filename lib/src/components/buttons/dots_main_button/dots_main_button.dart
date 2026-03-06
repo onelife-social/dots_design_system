@@ -27,6 +27,7 @@ class DotsMainButton extends StatelessWidget {
     this.textStyle,
     this.highlightColor,
     this.isLoading = false,
+    this.disabledVariant = DotsMainButtonVariant.disabled,
   });
 
   /// The text to display on the button.
@@ -97,8 +98,8 @@ class DotsMainButton extends StatelessWidget {
   /// Whether the button is in loading state.
   final bool isLoading;
 
-  // The disabled variant of the button, used when [enabled] is false.
-  final disabledVariant = DotsMainButtonVariant.disabled;
+  /// The disabled variant of the button, used when [enabled] is false.
+  final DotsMainButtonVariant disabledVariant;
 
   @override
   Widget build(BuildContext context) {
