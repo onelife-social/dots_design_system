@@ -23,11 +23,17 @@ class DotsTextField extends StatefulWidget {
   /// The hint text to display in the TextField.
   final String? hintText;
 
+  /// Whether to add hint text color error.
+  final bool? addHintTextColorError;
+
   /// Callback when the text in the TextField changes.
   final ValueChanged<String>? onChanged;
 
   /// Callback when the user submits the TextField (e.g., by pressing the enter key on the keyboard).
   final ValueChanged<String>? onSubmitted;
+
+  /// Callback when the TextField loses focus.
+  final ValueChanged<String>? onFocusLost;
 
   /// The maximum length of text that can be entered in the TextField.
   final int? maxTextLength;
@@ -78,6 +84,7 @@ class DotsTextField extends StatefulWidget {
     this.hintText,
     this.onChanged,
     this.onSubmitted,
+    this.onFocusLost,
     this.maxTextLength,
     this.isError = false,
     this.errorText,
@@ -88,6 +95,7 @@ class DotsTextField extends StatefulWidget {
     this.textStyle,
     this.keyboardType,
     this.inputFormatters,
+    this.addHintTextColorError,
   });
 
   @override
@@ -97,12 +105,14 @@ class DotsTextField extends StatefulWidget {
 class _DotsTextFieldState extends State<DotsTextField> {
   late TextEditingController _controller;
   late FocusNode _focusNode;
+  late bool _hasFocus;
 
   @override
   void initState() {
     super.initState();
     _controller = widget.controller;
     _focusNode = widget.focusNode;
+    _hasFocus = _focusNode.hasFocus;
     _controller.addListener(_handleTextOrFocusChange);
     _focusNode.addListener(_handleTextOrFocusChange);
   }
@@ -118,6 +128,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
     if (oldWidget.focusNode != widget.focusNode) {
       _focusNode.removeListener(_handleTextOrFocusChange);
       _focusNode = widget.focusNode;
+      _hasFocus = _focusNode.hasFocus;
       _focusNode.addListener(_handleTextOrFocusChange);
     }
   }
@@ -130,6 +141,13 @@ class _DotsTextFieldState extends State<DotsTextField> {
   }
 
   void _handleTextOrFocusChange() {
+    final hasLostFocus = _hasFocus && !_focusNode.hasFocus;
+    _hasFocus = _focusNode.hasFocus;
+
+    if (hasLostFocus) {
+      widget.onFocusLost?.call(_controller.text);
+    }
+
     if (mounted) {
       setState(() {});
     }
@@ -180,7 +198,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
         keyboardType: widget.keyboardType,
         inputFormatters: widget.inputFormatters,
         style: inputTextStyle.copyWith(
-          color: widget.isError && !widget.background
+          color: widget.isError && !widget.background && !_focusNode.hasFocus
               ? theme.colors.labelDestructive
               : theme.colors.textPrimary,
         ),
@@ -189,7 +207,11 @@ class _DotsTextFieldState extends State<DotsTextField> {
           border: InputBorder.none,
           counterText: '',
           hintText: widget.hintText,
-          hintStyle: TextStyle(color: theme.colors.textQuarternary),
+          hintStyle: TextStyle(
+            color: widget.addHintTextColorError == true && widget.isError && !_focusNode.hasFocus
+                ? theme.colors.labelDestructive
+                : theme.colors.textQuarternary,
+          ),
           isDense: true,
         ),
         onChanged: widget.onChanged,
