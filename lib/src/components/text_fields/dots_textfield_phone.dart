@@ -31,11 +31,17 @@ class DotsTextFieldPhone extends StatelessWidget {
   /// The hint text to display in the TextField.
   final String? hintText;
 
+  /// Whether to add hint text color error.
+  final bool? addHintTextColorError;
+
   /// Callback when the text in the TextField changes.
   final ValueChanged<String>? onChanged;
 
   /// Callback when the user submits the TextField.
   final ValueChanged<String>? onSubmitted;
+
+  /// Callback when the TextField loses focus.
+  final ValueChanged<String>? onFocusLost;
 
   /// The maximum length of the phone number (digits only).
   final int? maxTextLength;
@@ -70,12 +76,14 @@ class DotsTextFieldPhone extends StatelessWidget {
     this.hintText,
     this.onChanged,
     this.onSubmitted,
+    this.onFocusLost,
     this.maxTextLength,
     this.isError = false,
     this.errorText,
     this.enabled = true,
     this.background = true,
     this.showUnderline = false,
+    this.addHintTextColorError,
   });
 
   @override
@@ -121,6 +129,7 @@ class DotsTextFieldPhone extends StatelessWidget {
       hintText: hintText,
       onChanged: onChanged,
       onSubmitted: onSubmitted,
+      onFocusLost: onFocusLost,
       maxTextLength: maxTextLength,
       textStyle: textStyle,
       isError: isError,
@@ -130,6 +139,7 @@ class DotsTextFieldPhone extends StatelessWidget {
       showUnderline: showUnderline,
       keyboardType: TextInputType.phone,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      addHintTextColorError: addHintTextColorError,
     );
   }
 }
