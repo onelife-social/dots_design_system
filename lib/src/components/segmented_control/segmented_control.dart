@@ -1,8 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-import 'segmented_control_variant.dart';
-
 const _textPadding = EdgeInsets.symmetric(horizontal: 15);
 const _itemPadding = EdgeInsets.all(4);
 
@@ -207,7 +205,7 @@ class _SelectedSegment extends StatelessWidget {
         height: 28,
         padding: _textPadding,
         decoration: ShapeDecoration(
-          color:  selectedColor ?? theme.colors.bgSecondaryBtn,
+          color: selectedColor ?? theme.colors.bgSecondaryBtn,
           shape: RoundedRectangleBorder(borderRadius: DotsBorderRadius.r1000),
         ),
         child: Center(
