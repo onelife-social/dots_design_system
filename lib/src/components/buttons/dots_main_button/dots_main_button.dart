@@ -2,6 +2,8 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:dots_design_system/src/components/common/dots_shader_mask.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_progress_indicator/widget/gradient_progress_indicator_widget.dart';
+import 'package:easy_debounce/easy_debounce.dart';
+
 
 import 'dots_main_button_theme.dart';
 
@@ -28,6 +30,8 @@ class DotsMainButton extends StatelessWidget {
     this.highlightColor,
     this.isLoading = false,
     this.disabledVariant = DotsMainButtonVariant.disabled,
+    this.useDebounce = false,
+    this.debounceDuration = const Duration(milliseconds: 400),
   });
 
   /// The text to display on the button.
@@ -101,6 +105,27 @@ class DotsMainButton extends StatelessWidget {
   /// The disabled variant of the button, used when [enabled] is false.
   final DotsMainButtonVariant disabledVariant;
 
+  /// Whether to use debounce for the onTap callback.
+  final bool useDebounce;
+
+  /// The duration for the debounce when [useDebounce] is true.
+  final Duration debounceDuration;
+
+  void _handleTap() {
+    if (onTap == null) return;
+
+    if (useDebounce) {
+      EasyDebounce.debounce(
+        'dots_main_button_${content.hashCode}',
+        debounceDuration,
+        () => onTap!(),
+      );
+    } else {
+      onTap!();
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -156,7 +181,7 @@ class DotsMainButton extends StatelessWidget {
       child: InkWell(
         splashColor: splashColor,
         highlightColor: highlightColor,
-        onTap: (enabled && !isLoading) ? onTap : null,
+        onTap: (enabled && !isLoading) ? _handleTap : null,
         borderRadius: borderRadius,
         child: Container(
           decoration: BoxDecoration(borderRadius: borderRadius),

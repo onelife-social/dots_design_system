@@ -19,6 +19,7 @@ dependencies:
   vector_graphics: ^1.1.19
   animate_do: ^4.2.0
   visibility_detector: 0.4.0+2
+  easy_debounce: ^2.0.3
 
 dev_dependencies:
   flutter_test:
