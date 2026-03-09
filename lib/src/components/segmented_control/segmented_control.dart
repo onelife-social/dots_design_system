@@ -1,6 +1,8 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
+import 'segmented_control_variant.dart';
+
 const _textPadding = EdgeInsets.symmetric(horizontal: 15);
 const _itemPadding = EdgeInsets.all(4);
 
@@ -23,6 +25,9 @@ class SegmentedControl extends StatelessWidget {
   /// The background color of the segmented control.
   final Color? backgroundColor;
 
+  /// The variant of the segmented control.
+  final SegmentedControlVariant variant;
+
   /// Callback when an option is tapped.
   final void Function(SegmentedControlOption optionTaped) onTapOption;
 
@@ -35,6 +40,7 @@ class SegmentedControl extends StatelessWidget {
     this.backgroundColor,
     required this.onTapOption,
     this.rightOptionTag,
+    this.variant = SegmentedControlVariant.main,
   });
 
   @override
@@ -44,6 +50,7 @@ class SegmentedControl extends StatelessWidget {
       fit: StackFit.loose,
       children: [
         _BackSegmented(
+          variant: variant,
           leftOptionName: leftOptionName,
           rightOptionName: rightOptionName,
           backgroundColor: backgroundColor,
@@ -55,6 +62,7 @@ class SegmentedControl extends StatelessWidget {
           child: Padding(
             padding: _itemPadding,
             child: _SelectedSegment(
+              variant: variant,
               optionName: selectedOptionName,
               selectedColor: selectedColor,
               onTap: () => onTapOption(selectedOption),
@@ -93,31 +101,33 @@ class _BackSegmented extends StatelessWidget {
     required this.rightOptionName,
     required this.backgroundColor,
     required this.onTapOption,
+    required this.variant,
   });
 
   final String leftOptionName;
   final String rightOptionName;
   final Color? backgroundColor;
   final Function(SegmentedControlOption optionTaped) onTapOption;
+  final SegmentedControlVariant variant;
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    final defaultBackgroundColor = variant.isCamera
+        ? theme.colors.bgChip
+        : theme.colors.bgContainerSecondaryOnBackground;
+
     return DotsDecoratedBox(
       styleType: theme.styles.bgBlur,
       decoration: ShapeDecoration(
-        shape: RoundedRectangleBorder(
-          borderRadius: DotsBorderRadius.r1000,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: DotsBorderRadius.r1000),
       ),
       child: Container(
         height: 36,
         padding: _itemPadding,
         decoration: ShapeDecoration(
-          color: backgroundColor ?? theme.colors.bgContainerSecondaryOnBackground,
-          shape: RoundedRectangleBorder(
-            borderRadius: DotsBorderRadius.r1000,
-          ),
+          color: backgroundColor ?? defaultBackgroundColor,
+          shape: RoundedRectangleBorder(borderRadius: DotsBorderRadius.r1000),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -137,7 +147,9 @@ class _BackSegmented extends StatelessWidget {
                       leftOptionName,
                       textAlign: TextAlign.center,
                       style: theme.typo.main.labelDefaultMedium.copyWith(
-                        color: theme.colors.labelSecondary,
+                        color: variant.isCamera
+                            ? theme.colors.labelAlwaysWhite
+                            : theme.colors.labelSecondary,
                       ),
                     ),
                   ),
@@ -156,7 +168,9 @@ class _BackSegmented extends StatelessWidget {
                       rightOptionName,
                       textAlign: TextAlign.center,
                       style: theme.typo.main.labelDefaultMedium.copyWith(
-                        color: theme.colors.labelSecondary,
+                        color: variant.isCamera
+                            ? theme.colors.labelAlwaysWhite
+                            : theme.colors.labelSecondary,
                       ),
                     ),
                   ),
@@ -175,11 +189,13 @@ class _SelectedSegment extends StatelessWidget {
     required this.optionName,
     required this.selectedColor,
     required this.onTap,
+    required this.variant,
   });
 
   final String optionName;
   final Color? selectedColor;
   final Function() onTap;
+  final SegmentedControlVariant variant;
 
   @override
   Widget build(BuildContext context) {
@@ -191,16 +207,16 @@ class _SelectedSegment extends StatelessWidget {
         height: 28,
         padding: _textPadding,
         decoration: ShapeDecoration(
-          color: selectedColor ?? theme.colors.bgSecondaryBtn,
-          shape: RoundedRectangleBorder(
-            borderRadius: DotsBorderRadius.r1000,
-          ),
+          color:  selectedColor ?? theme.colors.bgSecondaryBtn,
+          shape: RoundedRectangleBorder(borderRadius: DotsBorderRadius.r1000),
         ),
         child: Center(
           child: Text(
             optionName,
             textAlign: TextAlign.center,
-            style: theme.typo.main.labelDefaultMedium.copyWith(color: theme.colors.labelPrimary),
+            style: theme.typo.main.labelDefaultMedium.copyWith(
+              color: variant.isCamera ? theme.colors.class005 : theme.colors.labelPrimary,
+            ),
           ),
         ),
       ),
