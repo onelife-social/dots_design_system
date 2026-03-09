@@ -30,18 +30,6 @@ enum DotsRichButtonTextSize {
 }
 
 class DotsRichButton extends StatelessWidget {
-  const DotsRichButton({
-    super.key,
-    required this.size,
-    required this.textSize,
-    this.icon,
-    this.image,
-    required this.content,
-    this.details,
-    this.trailingText,
-    this.onTap,
-  });
-
   /// The size of the button.
   final DotsRichButtonSize size;
 
@@ -50,6 +38,11 @@ class DotsRichButton extends StatelessWidget {
 
   /// The icon to display on the button (leading).
   final DotsIconData? icon;
+
+  /// Optional color for the leading icon.
+  ///
+  /// Defaults to `textSecondary` if not provided.
+  final Color? iconColor;
 
   /// The image to display on the button (leading).
   final ImageProvider? image;
@@ -68,11 +61,25 @@ class DotsRichButton extends StatelessWidget {
   /// Callback when the button is tapped.
   final Function()? onTap;
 
+  const DotsRichButton({
+    super.key,
+    required this.size,
+    required this.textSize,
+    this.icon,
+    this.iconColor,
+    this.image,
+    required this.content,
+    this.details,
+    this.trailingText,
+    this.onTap,
+  });
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
     final borderRadius = BorderRadius.circular(size.isLarge ? 100 : 32);
+    final iconColor = this.iconColor ?? theme.colors.textSecondary;
 
     return ClipRRect(
       borderRadius: borderRadius,
@@ -105,7 +112,7 @@ class DotsRichButton extends StatelessWidget {
                     ? DotsIcon(
                         iconData: icon!,
                         size: 24,
-                        color: theme.colors.textSecondary,
+                        color: iconColor,
                       )
                     : const SizedBox.shrink(),
 

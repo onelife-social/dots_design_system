@@ -347,6 +347,7 @@ List<Story> get buttonStories => [
                     .map((item) => Option(label: item.name, value: item))
                     .toList(),
               ),
+              iconColor: knobColorSelector(context, 'Icon color'),
               content: context.knobs.text(label: 'Content', initial: 'Button Content'),
               details: context.knobs.nullable.text(label: 'Details', initial: 'Details'),
               trailingText: context.knobs.nullable
