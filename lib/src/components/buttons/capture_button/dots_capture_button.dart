@@ -138,8 +138,6 @@ class _DotsCaptureButtonState extends State<DotsCaptureButton> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-
     return GestureDetector(
       onTapDown: (_) => _onTapDown(),
       child: SizedBox(
@@ -148,16 +146,10 @@ class _DotsCaptureButtonState extends State<DotsCaptureButton> {
         child: widget.type.isPhoto || widget.state.isActive
             ? _ActiveButton(
                 innerDiameter: _innerDiameter,
-                backgroundColor: theme.colors.bgContainerSecondary,
-                innerColor: widget.type.isPhoto
-                    ? theme.colors.labelAlwaysWhite
-                    : theme.colors.labelDestructive,
+                type: widget.type,
               )
             : _RecordingButton(
                 progress: _recordingProgress,
-                backgroundColor: theme.colors.bgContainerSecondary,
-                progressColor: theme.colors.labelAlwaysWhite,
-                stopIconColor: theme.colors.labelDestructive,
               ),
       ),
     );
@@ -173,16 +165,19 @@ class _DotsCaptureButtonState extends State<DotsCaptureButton> {
 class _ActiveButton extends StatelessWidget {
   const _ActiveButton({
     required this.innerDiameter,
-    required this.backgroundColor,
-    required this.innerColor,
+    required this.type,
   });
 
   final double innerDiameter;
-  final Color backgroundColor;
-  final Color innerColor;
+  final DotsCaptureButtonType type;
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+    final backgroundColor = theme.colors.bgContainerSecondary;
+    final innerColor =
+        type.isPhoto ? theme.colors.labelAlwaysWhite : theme.colors.labelDestructive;
+
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -210,21 +205,20 @@ class _ActiveButton extends StatelessWidget {
 class _RecordingButton extends StatelessWidget {
   const _RecordingButton({
     required this.progress,
-    required this.backgroundColor,
-    required this.progressColor,
-    required this.stopIconColor,
   });
 
   final double progress;
-  final Color backgroundColor;
-  final Color progressColor;
-  final Color stopIconColor;
 
   static const double _kStopIconSize = 32.0;
   static const double _kStopIconRadius = 8.0;
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+    final backgroundColor = theme.colors.bgContainerSecondary;
+    final progressColor = theme.colors.labelAlwaysWhite;
+    final stopIconColor = theme.colors.labelDestructive;
+
     return Stack(
       alignment: Alignment.center,
       children: [
