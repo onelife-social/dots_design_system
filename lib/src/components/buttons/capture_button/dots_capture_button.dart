@@ -43,7 +43,10 @@ class DotsCaptureButton extends StatefulWidget {
     this.onTakePicture,
     this.onStartRecording,
     this.onStopRecording,
-  });
+  }) : assert(
+         maxTimeRecording > 0,
+         'maxTimeRecording must be greater than 0',
+       );
 
   @override
   State<DotsCaptureButton> createState() => _DotsCaptureButtonState();
@@ -52,6 +55,7 @@ class DotsCaptureButton extends StatefulWidget {
 class _DotsCaptureButtonState extends State<DotsCaptureButton> {
   Timer? timerCircularProgress;
   double recordingProgress = 0.0;
+  DateTime? _recordingStartTime;
 
   double get _innerDiameter => (widget.type.isPhoto && widget.state.isRecording)
       ? _kCaptureButtonInnerDiameterRecording
@@ -61,6 +65,7 @@ class _DotsCaptureButtonState extends State<DotsCaptureButton> {
     setState(() {
       timerCircularProgress?.cancel();
       recordingProgress = 0;
+      _recordingStartTime = null;
     });
   }
 
@@ -68,12 +73,20 @@ class _DotsCaptureButtonState extends State<DotsCaptureButton> {
     setState(() {
       timerCircularProgress?.cancel();
       recordingProgress = 0.0;
+      _recordingStartTime = DateTime.now();
       timerCircularProgress = Timer.periodic(
-        const Duration(milliseconds: 10),
+        const Duration(milliseconds: 50),
         (Timer timer) {
           if (!mounted) return;
           setState(() {
-            recordingProgress += 0.01 / widget.maxTimeRecording;
+            final startTime = _recordingStartTime;
+            if (startTime == null) return;
+
+            final elapsed = DateTime.now().difference(startTime);
+            final total = Duration(seconds: widget.maxTimeRecording);
+            final progress = (elapsed.inMilliseconds / total.inMilliseconds).clamp(0.0, 1.0);
+
+            recordingProgress = progress;
             if (recordingProgress >= 1.0) {
               stopAnimations();
               widget.onStopRecording?.call();
@@ -87,8 +100,7 @@ class _DotsCaptureButtonState extends State<DotsCaptureButton> {
   @override
   void didUpdateWidget(covariant DotsCaptureButton oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.type != widget.type ||
-        oldWidget.state.isRecording && !widget.state.isRecording) {
+    if (oldWidget.type != widget.type || oldWidget.state.isRecording && !widget.state.isRecording) {
       stopAnimations();
     }
   }
