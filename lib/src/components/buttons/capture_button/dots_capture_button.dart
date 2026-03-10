@@ -24,6 +24,7 @@ class DotsCaptureButton extends StatefulWidget {
   final DotsCaptureButtonState state;
 
   /// The maximum time of recording in seconds (used for progress when recording).
+  /// Only used when [type] is video. Defaults to 60 when omitted.
   final int maxTimeRecording;
 
   /// Called when the user triggers take picture (photo mode only).
@@ -39,7 +40,7 @@ class DotsCaptureButton extends StatefulWidget {
     super.key,
     required this.type,
     required this.state,
-    required this.maxTimeRecording,
+    this.maxTimeRecording = 60,
     this.onTakePicture,
     this.onStartRecording,
     this.onStopRecording,
@@ -53,45 +54,60 @@ class DotsCaptureButton extends StatefulWidget {
 }
 
 class _DotsCaptureButtonState extends State<DotsCaptureButton> {
-  Timer? timerCircularProgress;
-  double recordingProgress = 0.0;
+  Timer? _timer;
+  double _recordingProgress = 0.0;
   DateTime? _recordingStartTime;
 
   double get _innerDiameter => (widget.type.isPhoto && widget.state.isRecording)
       ? _kCaptureButtonInnerDiameterRecording
       : _kCaptureButtonInnerDiameter;
 
-  void stopAnimations() {
+  @override
+  void initState() {
+    super.initState();
+    if (widget.type.isVideo && widget.state.isRecording) {
+      _startAnimations();
+    }
+  }
+
+  void _stopAnimations() {
     setState(() {
-      timerCircularProgress?.cancel();
-      recordingProgress = 0;
+      _timer?.cancel();
+      _recordingProgress = 0;
       _recordingStartTime = null;
     });
   }
 
-  void startAnimations() {
+  void _startAnimations() {
     setState(() {
-      timerCircularProgress?.cancel();
-      recordingProgress = 0.0;
+      _timer?.cancel();
+      _recordingProgress = 0.0;
       _recordingStartTime = DateTime.now();
-      timerCircularProgress = Timer.periodic(
+      _timer = Timer.periodic(
         const Duration(milliseconds: 50),
         (Timer timer) {
           if (!mounted) return;
+          final startTime = _recordingStartTime;
+          if (startTime == null) return;
+
+          final elapsed = DateTime.now().difference(startTime);
+          final total = Duration(seconds: widget.maxTimeRecording);
+          final rawProgress =
+              (elapsed.inMilliseconds / total.inMilliseconds).clamp(0.0, 1.0);
+
+          final isFinished = rawProgress >= 1.0;
+
           setState(() {
-            final startTime = _recordingStartTime;
-            if (startTime == null) return;
-
-            final elapsed = DateTime.now().difference(startTime);
-            final total = Duration(seconds: widget.maxTimeRecording);
-            final progress = (elapsed.inMilliseconds / total.inMilliseconds).clamp(0.0, 1.0);
-
-            recordingProgress = progress;
-            if (recordingProgress >= 1.0) {
-              stopAnimations();
-              widget.onStopRecording?.call();
+            _recordingProgress = rawProgress;
+            if (isFinished) {
+              _timer?.cancel();
+              _recordingStartTime = null;
             }
           });
+
+          if (isFinished) {
+            widget.onStopRecording?.call();
+          }
         },
       );
     });
@@ -101,7 +117,7 @@ class _DotsCaptureButtonState extends State<DotsCaptureButton> {
   void didUpdateWidget(covariant DotsCaptureButton oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.type != widget.type || oldWidget.state.isRecording && !widget.state.isRecording) {
-      stopAnimations();
+      _stopAnimations();
     }
   }
 
@@ -110,13 +126,13 @@ class _DotsCaptureButtonState extends State<DotsCaptureButton> {
       widget.onTakePicture?.call();
       return;
     }
-    final isRecording = widget.state.isRecording || recordingProgress > 0;
+    final isRecording = widget.state.isRecording || _recordingProgress > 0;
     if (isRecording) {
-      stopAnimations();
+      _stopAnimations();
       widget.onStopRecording?.call();
       return;
     }
-    startAnimations();
+    _startAnimations();
     widget.onStartRecording?.call();
   }
 
@@ -138,7 +154,7 @@ class _DotsCaptureButtonState extends State<DotsCaptureButton> {
                     : theme.colors.labelDestructive,
               )
             : _RecordingButton(
-                progress: recordingProgress,
+                progress: _recordingProgress,
                 backgroundColor: theme.colors.bgContainerSecondary,
                 progressColor: theme.colors.labelAlwaysWhite,
                 stopIconColor: theme.colors.labelDestructive,
@@ -149,7 +165,7 @@ class _DotsCaptureButtonState extends State<DotsCaptureButton> {
 
   @override
   void dispose() {
-    timerCircularProgress?.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 }
