@@ -18,6 +18,13 @@ List<Story> get segmentedControlStories => [
               selectedColor: knobColorSelector(context, 'Selected color'),
               backgroundColor: knobColorSelector(context, 'Background color'),
               rightOptionTag: context.knobs.text(label: 'Option 2 tag', initial: '2'),
+              variant: context.knobs.options<SegmentedControlVariant>(
+                label: 'Variant',
+                initial: SegmentedControlVariant.main,
+                options: SegmentedControlVariant.values
+                    .map((item) => Option(label: item.name, value: item))
+                    .toList(),
+              ),
             ),
           );
         },

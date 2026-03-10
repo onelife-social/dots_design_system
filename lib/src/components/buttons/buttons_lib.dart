@@ -23,3 +23,7 @@ export 'dots_selector.dart';
 export 'dots_rich_button/dots_rich_button.dart';
 
 export 'dots_input_stepper.dart';
+
+export 'capture_button/dots_capture_button.dart';
+export 'capture_button/dots_capture_button_type.dart';
+export 'capture_button/dots_capture_button_state.dart';

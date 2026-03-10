@@ -1,0 +1,292 @@
+import 'dart:async';
+import 'dart:math' as math;
+
+import 'package:dots_design_system/dots_design_system.dart';
+import 'package:flutter/material.dart';
+
+/// Diameter of the capture button in logical pixels.
+const double _kCaptureButtonDiameter = 80.0;
+
+/// Inner circle diameter in video mode (active state).
+const double _kCaptureButtonInnerDiameter = 68.0;
+
+/// Inner circle diameter only when mode is photo and state is recording (both at once).
+const double _kCaptureButtonInnerDiameterRecording = 60.0;
+
+/// Stroke width of the ring in logical pixels.
+const double _kCaptureButtonRingStroke = 6.0;
+
+class DotsCaptureButton extends StatefulWidget {
+  /// The type of capture button to display (photo or video).
+  final DotsCaptureButtonType type;
+
+  /// The state of the capture button (active or recording).
+  final DotsCaptureButtonState state;
+
+  /// The maximum time of recording in seconds (used for progress when recording).
+  /// Only used when [type] is video. Defaults to 60 when omitted.
+  final int maxTimeRecording;
+
+  /// Called when the user triggers take picture (photo mode only).
+  final VoidCallback? onTakePicture;
+
+  /// Called when the user triggers start recording (video mode only).
+  final VoidCallback? onStartRecording;
+
+  /// Called when the user triggers stop recording, or when max time is reached.
+  final VoidCallback? onStopRecording;
+
+  const DotsCaptureButton({
+    super.key,
+    required this.type,
+    required this.state,
+    this.maxTimeRecording = 60,
+    this.onTakePicture,
+    this.onStartRecording,
+    this.onStopRecording,
+  }) : assert(
+         maxTimeRecording > 0,
+         'maxTimeRecording must be greater than 0',
+       );
+
+  @override
+  State<DotsCaptureButton> createState() => _DotsCaptureButtonState();
+}
+
+class _DotsCaptureButtonState extends State<DotsCaptureButton> {
+  Timer? _timer;
+  double _recordingProgress = 0.0;
+  DateTime? _recordingStartTime;
+
+  double get _innerDiameter => (widget.type.isPhoto && widget.state.isRecording)
+      ? _kCaptureButtonInnerDiameterRecording
+      : _kCaptureButtonInnerDiameter;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.type.isVideo && widget.state.isRecording) {
+      _startAnimations();
+    }
+  }
+
+  void _stopAnimations() {
+    setState(() {
+      _timer?.cancel();
+      _recordingProgress = 0;
+      _recordingStartTime = null;
+    });
+  }
+
+  void _startAnimations() {
+    setState(() {
+      _timer?.cancel();
+      _recordingProgress = 0.0;
+      _recordingStartTime = DateTime.now();
+      _timer = Timer.periodic(
+        const Duration(milliseconds: 50),
+        (Timer timer) {
+          if (!mounted) return;
+          final startTime = _recordingStartTime;
+          if (startTime == null) return;
+
+          final elapsed = DateTime.now().difference(startTime);
+          final total = Duration(seconds: widget.maxTimeRecording);
+          final rawProgress =
+              (elapsed.inMilliseconds / total.inMilliseconds).clamp(0.0, 1.0);
+
+          final isFinished = rawProgress >= 1.0;
+
+          setState(() {
+            _recordingProgress = rawProgress;
+            if (isFinished) {
+              _timer?.cancel();
+              _recordingStartTime = null;
+            }
+          });
+
+          if (isFinished) {
+            widget.onStopRecording?.call();
+          }
+        },
+      );
+    });
+  }
+
+  @override
+  void didUpdateWidget(covariant DotsCaptureButton oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.type != widget.type || oldWidget.state.isRecording && !widget.state.isRecording) {
+      _stopAnimations();
+    }
+  }
+
+  void _onTapDown() {
+    if (widget.type.isPhoto) {
+      widget.onTakePicture?.call();
+      return;
+    }
+    final isRecording = widget.state.isRecording || _recordingProgress > 0;
+    if (isRecording) {
+      _stopAnimations();
+      widget.onStopRecording?.call();
+      return;
+    }
+    _startAnimations();
+    widget.onStartRecording?.call();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: (_) => _onTapDown(),
+      child: SizedBox(
+        width: _kCaptureButtonDiameter,
+        height: _kCaptureButtonDiameter,
+        child: widget.type.isPhoto || widget.state.isActive
+            ? _ActiveButton(
+                innerDiameter: _innerDiameter,
+                type: widget.type,
+              )
+            : _RecordingButton(
+                progress: _recordingProgress,
+              ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+}
+
+class _ActiveButton extends StatelessWidget {
+  const _ActiveButton({
+    required this.innerDiameter,
+    required this.type,
+  });
+
+  final double innerDiameter;
+  final DotsCaptureButtonType type;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+    final backgroundColor = theme.colors.bgContainerSecondary;
+    final innerColor =
+        type.isPhoto ? theme.colors.labelAlwaysWhite : theme.colors.labelDestructive;
+
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Container(
+          width: _kCaptureButtonDiameter,
+          height: _kCaptureButtonDiameter,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: backgroundColor,
+          ),
+        ),
+        Container(
+          width: innerDiameter,
+          height: innerDiameter,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: innerColor,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _RecordingButton extends StatelessWidget {
+  const _RecordingButton({
+    required this.progress,
+  });
+
+  final double progress;
+
+  static const double _kStopIconSize = 32.0;
+  static const double _kStopIconRadius = 8.0;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+    final backgroundColor = theme.colors.bgContainerSecondary;
+    final progressColor = theme.colors.labelAlwaysWhite;
+    final stopIconColor = theme.colors.labelDestructive;
+
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Container(
+          width: _kCaptureButtonDiameter,
+          height: _kCaptureButtonDiameter,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: backgroundColor,
+          ),
+        ),
+        CustomPaint(
+          size: const Size(_kCaptureButtonDiameter, _kCaptureButtonDiameter),
+          painter: _InnerStrokeProgressPainter(
+            progress: progress,
+            color: progressColor,
+            strokeWidth: _kCaptureButtonRingStroke,
+          ),
+        ),
+        Container(
+          width: _kStopIconSize,
+          height: _kStopIconSize,
+          decoration: BoxDecoration(
+            color: stopIconColor,
+            borderRadius: BorderRadius.circular(_kStopIconRadius),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _InnerStrokeProgressPainter extends CustomPainter {
+  _InnerStrokeProgressPainter({
+    required this.progress,
+    required this.color,
+    required this.strokeWidth,
+  });
+
+  final double progress;
+  final Color color;
+  final double strokeWidth;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double inset = strokeWidth / 2;
+    final Rect rect = Rect.fromLTWH(
+      inset,
+      inset,
+      size.width - 2 * inset,
+      size.height - 2 * inset,
+    );
+
+    final Paint paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth
+      ..strokeCap = StrokeCap.round;
+
+    const double startAngle = -math.pi / 2;
+    final double sweepAngle = 2 * math.pi * progress;
+    canvas.drawArc(rect, startAngle, sweepAngle, false, paint);
+  }
+
+  @override
+  bool shouldRepaint(_InnerStrokeProgressPainter oldDelegate) {
+    return oldDelegate.progress != progress ||
+        oldDelegate.color != color ||
+        oldDelegate.strokeWidth != strokeWidth;
+  }
+}

@@ -173,6 +173,34 @@ List<Story> get buttonStories => [
         ),
       ),
       Story(
+        name: 'Buttons/Capture button',
+        description: 'Demo page for capture button (photo/video)',
+        builder: (context) {
+          final type = context.knobs.options<DotsCaptureButtonType>(
+            label: 'Type',
+            initial: DotsCaptureButtonType.photo,
+            options: DotsCaptureButtonType.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          );
+          final maxTime = context.knobs.sliderInt(
+            label: 'Max recording (s)',
+            initial: 10,
+            min: 5,
+            max: 60,
+          );
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Center(
+              child: _CaptureButtonStory(
+                type: type,
+                maxTimeRecording: maxTime,
+              ),
+            ),
+          );
+        },
+      ),
+      Story(
         name: 'Buttons/Btn Folder',
         description: 'Demo page for Btn Folder',
         builder: (context) => BtnFolderDemoPage(
@@ -452,3 +480,58 @@ List<Story> get buttonStories => [
         ),
       ),
     ];
+
+class _CaptureButtonStory extends StatefulWidget {
+  const _CaptureButtonStory({
+    required this.type,
+    required this.maxTimeRecording,
+  });
+
+  final DotsCaptureButtonType type;
+  final int maxTimeRecording;
+
+  @override
+  State<_CaptureButtonStory> createState() => _CaptureButtonStoryState();
+}
+
+class _CaptureButtonStoryState extends State<_CaptureButtonStory> {
+  late DotsCaptureButtonState _state;
+
+  @override
+  void initState() {
+    super.initState();
+    _state = DotsCaptureButtonState.active;
+  }
+
+  @override
+  void didUpdateWidget(covariant _CaptureButtonStory oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.type != widget.type) {
+      _state = DotsCaptureButtonState.active;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return DotsCaptureButton(
+      type: widget.type,
+      state: _state,
+      maxTimeRecording: widget.maxTimeRecording,
+      onTakePicture: () => ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Photo taken')),
+      ),
+      onStartRecording: () {
+        setState(() => _state = DotsCaptureButtonState.recording);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Recording started')),
+        );
+      },
+      onStopRecording: () {
+        setState(() => _state = DotsCaptureButtonState.active);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Recording stopped')),
+        );
+      },
+    );
+  }
+}

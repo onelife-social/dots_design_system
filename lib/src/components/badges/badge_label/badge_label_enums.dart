@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 enum BadgeLabelSize {
   large(
     padding: EdgeInsets.symmetric(horizontal: 12),
-    height: 30,
+    height: 34,
   ),
   medium(
     padding: EdgeInsets.symmetric(horizontal: 8),
@@ -40,6 +40,7 @@ enum BadgeLabelVariant {
   green,
   white,
   greenMaterial,
+  red,
   premiumPlus,
   premium;
 
@@ -48,6 +49,7 @@ enum BadgeLabelVariant {
   bool get isGreen => this == BadgeLabelVariant.green;
   bool get isWhite => this == BadgeLabelVariant.white;
   bool get isGreenMaterial => this == BadgeLabelVariant.greenMaterial;
+  bool get isRed => this == BadgeLabelVariant.red;
   bool get isPremium => this == BadgeLabelVariant.premium;
   bool get isPremiumPlus => this == BadgeLabelVariant.premiumPlus;
 }
