@@ -2,6 +2,8 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
+import '../helpers/color_knob_options.dart';
+
 List<Story> get badgeStories => [
       Story(
         name: 'Badges/Badge tag',
@@ -80,6 +82,43 @@ List<Story> get badgeStories => [
               options: BadgeMilestoneVariant.values
                   .map((item) => Option(label: item.name, value: item))
                   .toList()),
+        ),
+      ),
+      Story(
+        name: 'Badges/Badge icon',
+        description: 'Circular badge with a single icon. Size Large = 44px, Style White.',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Wrap(
+            spacing: 16,
+            runSpacing: 16,
+            children: [
+              BadgeIcon(
+                icon: context.knobs.options<DotsIconData>(
+                  label: 'Icon',
+                  initial: DotsIconData.video,
+                  options: DotsIconData.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList(),
+                ),
+                size: context.knobs.options<BadgeIconSize>(
+                  label: 'Size',
+                  initial: BadgeIconSize.large,
+                  options: BadgeIconSize.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList(),
+                ),
+                style: context.knobs.options<BadgeIconStyle>(
+                  label: 'Style',
+                  initial: BadgeIconStyle.white,
+                  options: BadgeIconStyle.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList(),
+                ),
+                iconColor: knobColorSelector(context, 'Icon color'),
+              ),
+            ],
+          ),
         ),
       ),
     ];
