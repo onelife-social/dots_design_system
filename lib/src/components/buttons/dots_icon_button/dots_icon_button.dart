@@ -23,6 +23,7 @@ class DotsIconButton extends StatelessWidget {
     this.backgroundColor,
     this.textTappable = false,
     this.shouldApplyBlur = true,
+    this.overflow,
   });
 
   /// The icon to display on the button.
@@ -91,6 +92,9 @@ class DotsIconButton extends StatelessWidget {
   /// Whether the button should apply the blur effect.
   final bool shouldApplyBlur;
 
+  /// The overflow behavior for the label text.
+  final TextOverflow? overflow;
+
   bool get isStyleAndStateDefault =>
       style == DotsIconButtonStyle.defaultStyle && state == DotsIconButtonState.defaultState;
 
@@ -114,25 +118,18 @@ class DotsIconButton extends StatelessWidget {
           ? Column(
               mainAxisSize: MainAxisSize.min,
               spacing: size.spacing,
-              children: [
-                ..._getChildren(buttonTheme, borderRadius, context),
-              ],
+              children: [..._getChildren(buttonTheme, borderRadius, context)],
             )
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               spacing: style.isNoBackground ? 4 : 8,
-              children: [
-                ..._getChildren(buttonTheme, borderRadius, context),
-              ],
+              children: [..._getChildren(buttonTheme, borderRadius, context)],
             ),
     );
 
     if (textTappable && label != null) {
-      return GestureDetector(
-        onTap: onTap,
-        child: widget,
-      );
+      return GestureDetector(onTap: onTap, child: widget);
     }
     return widget;
   }
@@ -161,11 +158,11 @@ class DotsIconButton extends StatelessWidget {
       if (label != null)
         _Label(
           label: label,
-          style: labelStyle ??
-              theme.typo.main.labelDefaultRegular.copyWith(
-                color: color ?? buttonTheme.labelColor,
-              ),
-        )
+          style:
+              labelStyle ??
+              theme.typo.main.labelDefaultRegular.copyWith(color: color ?? buttonTheme.labelColor),
+          overflow: overflow,
+        ),
     ];
   }
 }
@@ -206,12 +203,7 @@ class _IconButton extends StatelessWidget {
     );
 
     final widget = Center(
-      child: tag != null
-          ? BadgeTag(
-              tag: tag!,
-              child: iconWidget,
-            )
-          : iconWidget,
+      child: tag != null ? BadgeTag(tag: tag!, child: iconWidget) : iconWidget,
     );
 
     if (noButtonSize) {
@@ -261,17 +253,12 @@ class _IconButton extends StatelessWidget {
 class _Label extends StatelessWidget {
   final String? label;
   final TextStyle? style;
+  final TextOverflow? overflow;
 
-  const _Label({
-    required this.label,
-    required this.style,
-  });
+  const _Label({required this.label, required this.style, required this.overflow});
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      label ?? '',
-      style: style,
-    );
+    return Text(label ?? '', style: style, overflow: overflow);
   }
 }
