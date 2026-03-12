@@ -1,9 +1,8 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:dots_design_system/src/components/common/dots_shader_mask.dart';
+import 'package:easy_debounce/easy_throttle.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_progress_indicator/widget/gradient_progress_indicator_widget.dart';
-import 'package:easy_debounce/easy_debounce.dart';
-
 
 import 'dots_main_button_theme.dart';
 
@@ -30,8 +29,8 @@ class DotsMainButton extends StatelessWidget {
     this.highlightColor,
     this.isLoading = false,
     this.disabledVariant = DotsMainButtonVariant.disabled,
-    this.useDebounce = false,
-    this.debounceDuration = const Duration(milliseconds: 400),
+    this.useThrottle = false,
+    this.throttleDuration = const Duration(milliseconds: 400),
   });
 
   /// The text to display on the button.
@@ -105,19 +104,19 @@ class DotsMainButton extends StatelessWidget {
   /// The disabled variant of the button, used when [enabled] is false.
   final DotsMainButtonVariant disabledVariant;
 
-  /// Whether to use debounce for the onTap callback.
-  final bool useDebounce;
+  /// Whether to use throttle for the onTap callback.
+  final bool useThrottle;
 
-  /// The duration for the debounce when [useDebounce] is true.
-  final Duration debounceDuration;
+  /// The duration for the throttle when [useThrottle] is true.
+  final Duration throttleDuration;
 
   void _handleTap() {
     if (onTap == null) return;
 
-    if (useDebounce) {
-      EasyDebounce.debounce(
+    if (useThrottle) {
+      EasyThrottle.throttle(
         'dots_main_button_${content.hashCode}',
-        debounceDuration,
+        throttleDuration,
         () => onTap!(),
       );
     } else {
