@@ -23,6 +23,8 @@ class DotsToast extends StatelessWidget {
   // Custom icon data
   final DotsIconData? customIconData;
 
+  final Widget? customWidget;
+
   const DotsToast({
     super.key,
     required this.title,
@@ -32,6 +34,7 @@ class DotsToast extends StatelessWidget {
     this.onTap,
     this.btnTitle,
     this.customIconData,
+    this.customWidget,
   });
 
   Color iconColor(DotsTheme theme) {
@@ -47,6 +50,8 @@ class DotsToast extends StatelessWidget {
       case DotsToastVariant.connectionLost:
         return theme.colors.labelDestructive;
       case DotsToastVariant.progress:
+        return theme.colors.textTertiary;
+      case DotsToastVariant.widget:
         return theme.colors.textTertiary;
     }
   }
@@ -68,6 +73,8 @@ class DotsToast extends StatelessWidget {
         return DotsIconData.connectionOff;
       case DotsToastVariant.progress:
         return DotsIconData.progressSpinner;
+      case DotsToastVariant.widget:
+        return DotsIconData.progressSpinner;
     }
   }
 
@@ -84,11 +91,14 @@ class DotsToast extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           spacing: 4,
           children: [
-            DotsIcon(
-              iconData: customIconData ?? iconData(variant, isAction),
-              color: customIconColor ?? iconColor(theme),
-              size: variant == DotsToastVariant.progress ? 20 : 24,
-            ),
+            if (variant.isWidget)
+              customWidget ?? const SizedBox.shrink()
+            else
+              DotsIcon(
+                iconData: customIconData ?? iconData(variant, isAction),
+                color: customIconColor ?? iconColor(theme),
+                size: variant.isProgress ? 20 : 24,
+              ),
             Text(
               title,
               textAlign: TextAlign.center,
@@ -105,7 +115,7 @@ class DotsToast extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           spacing: 12,
           children: [
-            if (variant == DotsToastVariant.progress)
+            if (variant.isProgress)
               _RotatingIcon(
                 child: DotsIcon(iconData: customIconData ?? iconData(variant, isAction), size: 24),
               )
@@ -122,7 +132,7 @@ class DotsToast extends StatelessWidget {
                 style: theme.typo.main.bodyDefaultMedium.copyWith(color: theme.colors.textPrimary),
               ),
             ),
-            if (btnTitle != null && variant == DotsToastVariant.progress)
+            if (btnTitle != null && variant.isProgress)
               DotsMainButton(
                 content: btnTitle!,
                 variant: DotsMainButtonVariant.ghost,
