@@ -422,14 +422,16 @@ class _DotBookCoverBottomTitleLayer extends StatelessWidget {
                 dotsTitle,
                 textAlign: TextAlign.center,
                 maxLines: 1,
-                style: context.dotsTheme.typo.secondary.title02H2.copyWith(
+                style: context.dotsTheme.typo.main.titleH6.copyWith(
                   color: theme.colors.labelAlwaysWhite,
                   fontSize: DotsTextUtils.scaledFontSize(
-                    referenceFontSize: 6.84,
+                    referenceFontSize: 5.2,
                     imageWidth: coverImageWidth,
                     referenceWidth: kCoverImageWidth,
                   ),
-                  height: null,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: -0.08,
+                  height: 1.25,
                 ),
               ),
             ),
@@ -446,14 +448,16 @@ class _DotBookCoverBottomTitleLayer extends StatelessWidget {
               dotsTitle,
               textAlign: TextAlign.center,
               maxLines: 1,
-              style: context.dotsTheme.typo.secondary.title02H2.copyWith(
+              style: context.dotsTheme.typo.main.titleH6.copyWith(
                 color: textColor,
                 fontSize: DotsTextUtils.scaledFontSize(
-                  referenceFontSize: 5.8,
+                  referenceFontSize: 5.2,
                   imageWidth: coverImageWidth,
                   referenceWidth: kCoverImageWidth,
                 ),
-                height: null,
+                fontWeight: FontWeight.w500,
+                letterSpacing: -0.08,
+                height: 1.25,
               ),
             ),
           ),

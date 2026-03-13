@@ -74,14 +74,16 @@ class DotBookTextEditor extends StatelessWidget {
                       if (xtraInfo != null) ...[
                         Text(
                           xtraInfo!,
-                          style: theme.typo.secondary.title02H2.copyWith(
+                          style: theme.typo.main.titleH6.copyWith(
                             color: titleTextColor,
                             fontSize: DotsTextUtils.scaledFontSize(
-                              referenceFontSize: 6.8,
+                              referenceFontSize: 5.4,
                               imageWidth: coverImageWidth,
                               referenceWidth: kCoverImageWidth,
                             ),
-                            height: null,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.08,
+                            height: 1.25,
                           ),
                           textAlign: TextAlign.left,
                           maxLines: 1,

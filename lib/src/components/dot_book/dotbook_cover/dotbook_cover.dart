@@ -69,7 +69,7 @@ class DotBookCover extends StatelessWidget {
     this.createprogress = '',
     this.editingBorderColor,
     this.onEditingBorderTap,
-    this.dotsTitle = 'DotBook',
+    this.dotsTitle = 'Dots. Memories',
     this.editorTitle = '',
     this.editorSubtitle,
   });
