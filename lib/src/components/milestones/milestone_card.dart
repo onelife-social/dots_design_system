@@ -1,6 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
-import 'package:flutter/material.dart';
 import 'package:figma_squircle/figma_squircle.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vector_graphics/vector_graphics.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -42,6 +42,9 @@ class MilestoneCard extends StatefulWidget {
   /// Whether this card is selected (used for scroll positioning).
   final bool isSelected;
 
+  /// The badges to show on the card.
+  final List<MilestoneBadgeInfo> badges;
+
   const MilestoneCard({
     super.key,
     required this.width,
@@ -56,6 +59,7 @@ class MilestoneCard extends StatefulWidget {
     this.showEdit = false,
     this.onTapEdit,
     this.isSelected = false,
+    this.badges = const [],
   });
 
   @override
@@ -124,6 +128,7 @@ class _MilestoneCardState extends State<MilestoneCard> {
             forceWithoutBlur: _forceWithoutBlur,
             onTap: widget.onTap,
             isBig: isBig,
+            badges: widget.badges,
           ),
         ),
       ),
@@ -144,6 +149,7 @@ class _MilestoneItem extends StatelessWidget {
   final bool forceWithoutBlur;
   final VoidCallback? onTap;
   final bool isBig;
+  final List<MilestoneBadgeInfo> badges;
 
   const _MilestoneItem({
     required this.theme,
@@ -158,6 +164,7 @@ class _MilestoneItem extends StatelessWidget {
     required this.forceWithoutBlur,
     required this.onTap,
     required this.isBig,
+    this.badges = const [],
   });
 
   @override
@@ -222,6 +229,12 @@ class _MilestoneItem extends StatelessWidget {
                   bottom: 16,
                   right: 16,
                   child: _BtnEdit(onTap: onTapEdit),
+                ),
+              if (badges.isNotEmpty)
+                Positioned(
+                  bottom: 16,
+                  left: 16,
+                  child: _MilestoneBadges(badges: badges),
                 ),
             ],
           ),
@@ -333,6 +346,21 @@ class _BtnEdit extends StatelessWidget {
         backgroundColor: context.dotsTheme.colors.bgBtnImage,
         onTap: onTap,
       ),
+    );
+  }
+}
+
+class _MilestoneBadges extends StatelessWidget {
+  final List<MilestoneBadgeInfo> badges;
+
+  const _MilestoneBadges({required this.badges});
+
+  @override
+  Widget build(BuildContext context) {
+    return BadgeIconGroup(
+      icons: badges.map((badge) => badge.type.icon).toList(),
+      iconColors: badges.map((badge) => badge.type.color(context.dotsTheme)).toList(),
+      onTap: (index) => badges.elementAtOrNull(index)?.onTap?.call(),
     );
   }
 }

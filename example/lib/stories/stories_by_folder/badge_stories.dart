@@ -51,14 +51,12 @@ List<Story> get badgeStories => [
               options: BadgeLabelVariant.values
                   .map((item) => Option(label: item.name, value: item))
                   .toList()),
-          badgeIcon:  context.knobs.options<DotsIconData?>(
+          badgeIcon: context.knobs.options<DotsIconData?>(
             label: 'Badge Icon',
             initial: null,
             options: [
               const Option(label: 'None', value: null),
-              ...DotsIconData.values
-                  .map((item) => Option(label: item.name, value: item))
-                  .toList(),
+              ...DotsIconData.values.map((item) => Option(label: item.name, value: item)),
             ],
           ),
         ),
@@ -116,9 +114,61 @@ List<Story> get badgeStories => [
                       .toList(),
                 ),
                 iconColor: knobColorSelector(context, 'Icon color'),
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('onTap'),
+                    ),
+                  );
+                },
               ),
             ],
           ),
         ),
+      ),
+      Story(
+        name: 'Badges/Badge icon group',
+        description: 'Group of 1 to 3 badge icons following the Figma layout.',
+        builder: (context) {
+          final iconCount = context.knobs.options<int>(
+            label: 'Icon count',
+            initial: 3,
+            options: const [
+              Option(label: '1', value: 1),
+              Option(label: '2', value: 2),
+              Option(label: '3', value: 3),
+            ],
+          );
+
+          final icon1 = context.knobs.options<DotsIconData>(
+            label: 'Icon 1',
+            initial: DotsIconData.video,
+            options:
+                DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+          );
+          final icon2 = context.knobs.options<DotsIconData>(
+            label: 'Icon 2',
+            initial: DotsIconData.pages,
+            options:
+                DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+          );
+          final icon3 = context.knobs.options<DotsIconData>(
+            label: 'Icon 3',
+            initial: DotsIconData.mic,
+            options:
+                DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+          );
+
+          final icons = <DotsIconData>[icon1, icon2, icon3].take(iconCount).toList();
+          final iconColors = List.generate(
+              iconCount, (index) => knobColorSelector(context, 'Icon ${index + 1} color'));
+
+          return Center(
+            child: BadgeIconGroup(
+              icons: icons,
+              iconColors: iconColors,
+            ),
+          );
+        },
       ),
     ];

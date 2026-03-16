@@ -10,6 +10,7 @@ class BadgeIcon extends StatelessWidget {
     this.size = BadgeIconSize.large,
     this.style = BadgeIconStyle.white,
     this.iconColor,
+    this.onTap,
   });
 
   /// The icon to display in the badge.
@@ -28,30 +29,36 @@ class BadgeIcon extends StatelessWidget {
   /// Optional color for the icon.
   final Color? iconColor;
 
+  /// Optional callback when the icon is tapped.
+  final VoidCallback? onTap;
+
   @override
   Widget build(BuildContext context) {
     final badgeTheme = getBadgeIconThemeByStyle(context.dotsTheme, style);
 
-    return SizedBox(
-      height: size.size,
-      width: size.size,
-      child: DotsDecoratedBox(
-        decoration: BoxDecoration(
-          color: badgeTheme.backgroundColor,
-          borderRadius: BorderRadius.circular(size.size),
-          boxShadow: [
-            BoxShadow(
+    return GestureDetector(
+      onTap: onTap,
+      child: SizedBox(
+        height: size.size,
+        width: size.size,
+        child: DotsDecoratedBox(
+          decoration: BoxDecoration(
+            color: badgeTheme.backgroundColor,
+            borderRadius: BorderRadius.circular(size.size),
+            boxShadow: [
+              BoxShadow(
               color: const Color(0x33000000),
-              blurRadius: 20,
-              offset: Offset(0, 0),
+                blurRadius: 20,
+                offset: Offset(0, 0),
+              ),
+            ],
+          ),
+          child: Center(
+            child: DotsIcon(
+              iconData: icon,
+              size: size.iconSize,
+              color: iconColor ?? badgeTheme.foregroundColor,
             ),
-          ],
-        ),
-        child: Center(
-          child: DotsIcon(
-            iconData: icon,
-            size: size.iconSize,
-            color: iconColor ?? badgeTheme.foregroundColor,
           ),
         ),
       ),
