@@ -1,7 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-/// A group of up to three [BadgeIcon]s laid out.
+/// A group of zero to three [BadgeIcon]s laid out.
 class BadgeIconGroup extends StatelessWidget {
   const BadgeIconGroup({
     super.key,
@@ -9,8 +9,8 @@ class BadgeIconGroup extends StatelessWidget {
     this.iconColors,
     this.onTap,
   }) : assert(
-          icons.length >= 1 && icons.length <= 3,
-          'BadgeIconGroup supports from 1 to 3 icons.',
+          icons.length <= 3,
+          'BadgeIconGroup supports 0 to 3 icons.',
         );
 
   /// Icons to render in the group.
@@ -40,7 +40,7 @@ class BadgeIconGroup extends StatelessWidget {
               icon: icons[0],
               size: BadgeIconSize.medium,
               iconColor: iconColors?.elementAtOrNull(0),
-              onTap: onTap?.call(0),
+              onTap: onTap != null ? () => onTap!(0) : null,
             ),
           ),
           if (icons.length >= 2)
@@ -51,7 +51,7 @@ class BadgeIconGroup extends StatelessWidget {
                 icon: icons[1],
                 size: BadgeIconSize.small,
                 iconColor: iconColors?.elementAtOrNull(1),
-                onTap: onTap?.call(1),
+                onTap: onTap != null ? () => onTap!(1) : null,
               ),
             ),
           if (icons.length == 3)
@@ -62,7 +62,7 @@ class BadgeIconGroup extends StatelessWidget {
                 icon: icons[2],
                 size: BadgeIconSize.small,
                 iconColor: iconColors?.elementAtOrNull(2),
-                onTap: onTap?.call(2),
+                onTap: onTap != null ? () => onTap!(2) : null,
               ),
             ),
         ],
