@@ -26,7 +26,7 @@ List<Story> get milestonesStories => [
           onTapEdit: () => ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('On tap! Edit btn')),
           ),
-          badges: () {
+          badgeTypes: () {
             final badgeCount = context.knobs.sliderInt(
               label: 'Number of badges',
               initial: 2,
@@ -34,16 +34,14 @@ List<Story> get milestonesStories => [
               max: 3,
             );
             const allBadges = MilestoneBadgeType.values;
-            if (badgeCount == 0) return <MilestoneBadgeInfo>[];
+            if (badgeCount == 0) return <MilestoneBadgeType>[];
             return allBadges
                 .take(badgeCount)
-                .map((b) => MilestoneBadgeInfo(
-                    type: b,
-                    onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('On tap! ${b.name} badge')),
-                        )))
                 .toList();
           }(),
+          onBadgesTap: () => ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('On tap! Badges')),
+          ),
         ),
       ),
       Story(

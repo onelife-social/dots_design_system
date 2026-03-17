@@ -167,6 +167,11 @@ List<Story> get badgeStories => [
             child: BadgeIconGroup(
               icons: icons,
               iconColors: iconColors,
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('onTap')),
+                );
+              },
             ),
           );
         },
