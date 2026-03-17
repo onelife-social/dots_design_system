@@ -37,7 +37,6 @@ List<Story> get milestonesStories => [
             if (badgeCount == 0) return <MilestoneBadgeType>[];
             return allBadges
                 .take(badgeCount)
-                .toList()
                 .toList();
           }(),
           onBadgesTap: () => ScaffoldMessenger.of(context).showSnackBar(
