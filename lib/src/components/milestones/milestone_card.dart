@@ -43,7 +43,10 @@ class MilestoneCard extends StatefulWidget {
   final bool isSelected;
 
   /// The badges to show on the card.
-  final List<MilestoneBadgeInfo> badges;
+  final List<MilestoneBadgeType> badgeTypes;
+
+  /// Callback when the badges are tapped.
+  final VoidCallback? onBadgesTap;
 
   const MilestoneCard({
     super.key,
@@ -59,7 +62,8 @@ class MilestoneCard extends StatefulWidget {
     this.showEdit = false,
     this.onTapEdit,
     this.isSelected = false,
-    this.badges = const [],
+    this.badgeTypes = const [],
+    this.onBadgesTap,
   });
 
   @override
@@ -128,7 +132,8 @@ class _MilestoneCardState extends State<MilestoneCard> {
             forceWithoutBlur: _forceWithoutBlur,
             onTap: widget.onTap,
             isBig: isBig,
-            badges: widget.badges,
+            badgeTypes: widget.badgeTypes,
+            onBadgesTap: widget.onBadgesTap,
           ),
         ),
       ),
@@ -149,7 +154,8 @@ class _MilestoneItem extends StatelessWidget {
   final bool forceWithoutBlur;
   final VoidCallback? onTap;
   final bool isBig;
-  final List<MilestoneBadgeInfo> badges;
+  final List<MilestoneBadgeType> badgeTypes;
+  final VoidCallback? onBadgesTap;
 
   const _MilestoneItem({
     required this.theme,
@@ -164,7 +170,8 @@ class _MilestoneItem extends StatelessWidget {
     required this.forceWithoutBlur,
     required this.onTap,
     required this.isBig,
-    this.badges = const [],
+    this.badgeTypes = const [],
+    this.onBadgesTap,
   });
 
   @override
@@ -230,11 +237,11 @@ class _MilestoneItem extends StatelessWidget {
                   right: 16,
                   child: _BtnEdit(onTap: onTapEdit),
                 ),
-              if (badges.isNotEmpty)
+              if (badgeTypes.isNotEmpty)
                 Positioned(
                   bottom: 16,
                   left: 16,
-                  child: _MilestoneBadges(badges: badges),
+                  child: _MilestoneBadges(badgeTypes: badgeTypes, onTap: onBadgesTap),
                 ),
             ],
           ),
@@ -351,16 +358,17 @@ class _BtnEdit extends StatelessWidget {
 }
 
 class _MilestoneBadges extends StatelessWidget {
-  final List<MilestoneBadgeInfo> badges;
+  final List<MilestoneBadgeType> badgeTypes;
+  final VoidCallback? onTap;
 
-  const _MilestoneBadges({required this.badges});
+  const _MilestoneBadges({required this.badgeTypes, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return BadgeIconGroup(
-      icons: badges.map((badge) => badge.type.icon).toList(),
-      iconColors: badges.map((badge) => badge.type.color(context.dotsTheme)).toList(),
-      onTap: (index) => badges.elementAtOrNull(index)?.onTap?.call(),
+      icons: badgeTypes.map((badge) => badge.icon).toList(),
+      iconColors: badgeTypes.map((badge) => badge.color(context.dotsTheme)).toList(),
+      onTap: onTap,
     );
   }
 }

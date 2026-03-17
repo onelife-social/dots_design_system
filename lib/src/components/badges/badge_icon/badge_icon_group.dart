@@ -19,53 +19,54 @@ class BadgeIconGroup extends StatelessWidget {
   /// Optional colors, one per icon (up to 3). If null or shorter, missing icons use theme default.
   final List<Color?>? iconColors;
 
-  /// Optional callback when an icon is tapped.
-  final Function(int index)? onTap;
+  /// Optional callback when the group is tapped.
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     if (icons.isEmpty) return const SizedBox.shrink();
 
-    return SizedBox(
-      width: 63,
-      height: 70,
-      child: Stack(
-        clipBehavior: Clip.none,
-        fit: StackFit.loose,
-        children: [
-          Positioned(
-            left: 0,
-            bottom: 0,
-            child: BadgeIcon(
-              icon: icons[0],
-              size: BadgeIconSize.medium,
-              iconColor: iconColors?.elementAtOrNull(0),
-              onTap: onTap != null ? () => onTap!(0) : null,
-            ),
-          ),
-          if (icons.length >= 2)
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: SizedBox(
+        width: 63,
+        height: 70,
+        child: Stack(
+          clipBehavior: Clip.none,
+          fit: StackFit.loose,
+          children: [
             Positioned(
-              left: icons.length == 3 ? 4 : 31,
-              bottom: icons.length == 3 ? 42 : 31,
+              left: 0,
+              bottom: 0,
               child: BadgeIcon(
-                icon: icons[1],
-                size: BadgeIconSize.small,
-                iconColor: iconColors?.elementAtOrNull(1),
-                onTap: onTap != null ? () => onTap!(1) : null,
+                icon: icons[0],
+                size: BadgeIconSize.medium,
+                iconColor: iconColors?.elementAtOrNull(0),
               ),
             ),
-          if (icons.length == 3)
-            Positioned(
-              left: 35,
-              bottom: 26,
-              child: BadgeIcon(
-                icon: icons[2],
-                size: BadgeIconSize.small,
-                iconColor: iconColors?.elementAtOrNull(2),
-                onTap: onTap != null ? () => onTap!(2) : null,
+            if (icons.length >= 2)
+              Positioned(
+                left: icons.length == 3 ? 4 : 31,
+                bottom: icons.length == 3 ? 42 : 31,
+                child: BadgeIcon(
+                  icon: icons[1],
+                  size: BadgeIconSize.small,
+                  iconColor: iconColors?.elementAtOrNull(1),
+                ),
               ),
-            ),
-        ],
+            if (icons.length == 3)
+              Positioned(
+                left: 35,
+                bottom: 26,
+                child: BadgeIcon(
+                  icon: icons[2],
+                  size: BadgeIconSize.small,
+                  iconColor: iconColors?.elementAtOrNull(2),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
