@@ -150,6 +150,7 @@ enum DotsIconData {
   gallery('ic-gallery.svg', DotsIconGroup.media),
   galleryRefresh('ic-gallery--refresh.svg', DotsIconGroup.media),
   mic('ic-mic.svg', DotsIconGroup.media),
+  pages('ic-pages.svg', DotsIconGroup.media),
   pic('ic-pic.svg', DotsIconGroup.media),
   picDownload('ic-pic--download.svg', DotsIconGroup.media),
   picHeart('ic-pic--heart.svg', DotsIconGroup.media),
