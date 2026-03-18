@@ -475,7 +475,7 @@ List<Story> get dotBookStories => [
                   padding: const EdgeInsets.all(16),
                   child: DotbookPriceSummary(
                     imageProvider: NetworkImage('https://picsum.photos/250?image=9'),
-                    title: 'Tu Dotbook',
+                    title: 'Tu álbum de boda',
                     quantityLabel: 'Cantidad',
                     quantity: quantity,
                     showQuantityInput: context.knobs.boolean(
