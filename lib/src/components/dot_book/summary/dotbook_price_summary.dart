@@ -46,6 +46,8 @@ class DotbookPriceSummary extends StatelessWidget {
   /// Formatted total price value.
   final String totalPrice;
 
+  final Widget? customWidget;
+
   const DotbookPriceSummary({
     super.key,
     required this.imageProvider,
@@ -62,6 +64,7 @@ class DotbookPriceSummary extends StatelessWidget {
     required this.totalLabel,
     this.taxesIncludedLabel,
     required this.totalPrice,
+    this.customWidget,
   });
 
   @override
@@ -76,33 +79,45 @@ class DotbookPriceSummary extends StatelessWidget {
       ),
       child: SizedBox(
         width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 16,
-            children: [
-              SummaryTitleAndQuantity(
-                imageProvider: imageProvider,
-                errorBuilder: errorBuilder,
-                title: title,
-                quantityLabel: quantityLabel,
-                quantity: quantity,
-                showQuantityInput: showQuantityInput,
-                minQuantity: minQuantity,
-                maxQuantity: maxQuantity,
-                onIncrement: onIncrement,
-                onDecrement: onDecrement,
-              ),
-              DotsDivider(),
-              SummaryInfo(
-                products: products,
-                totalLabel: totalLabel,
-                taxesIncludedLabel: taxesIncludedLabel,
-                totalPrice: totalPrice,
-              ),
-            ],
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 230),
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 16,
+              children: [
+                SummaryTitleAndQuantity(
+                  imageProvider: imageProvider,
+                  errorBuilder: errorBuilder,
+                  title: title,
+                  quantityLabel: quantityLabel,
+                  quantity: quantity,
+                  showQuantityInput: showQuantityInput,
+                  minQuantity: minQuantity,
+                  maxQuantity: maxQuantity,
+                  onIncrement: onIncrement,
+                  onDecrement: onDecrement,
+                ),
+                DotsDivider(),
+
+                customWidget != null
+                    ? SizedBox(
+                        width: double.infinity,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: customWidget,
+                        ),
+                      )
+                    : SummaryInfo(
+                        products: products,
+                        totalLabel: totalLabel,
+                        taxesIncludedLabel: taxesIncludedLabel,
+                        totalPrice: totalPrice,
+                      ),
+              ],
+            ),
           ),
         ),
       ),
