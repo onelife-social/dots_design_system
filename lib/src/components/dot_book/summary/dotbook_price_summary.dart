@@ -154,28 +154,30 @@ class SummaryTitleAndQuantity extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 12),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 4,
-          children: [
-            Text(
-              title,
-              style: theme.typo.main.bodyLargeMedium.copyWith(
-                color: theme.colors.textPrimary,
+        Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 4,
+            children: [
+              Text(
+                title,
+                softWrap: true,
+                style: theme.typo.main.bodyLargeMedium.copyWith(
+                  color: theme.colors.textPrimary,
+                ),
               ),
-            ),
-            Text(
-              showQuantityInput ? '$quantityLabel:' : '$quantityLabel: $quantity',
-              style: theme.typo.main.labelDefaultRegular.copyWith(
-                color: theme.colors.textTertiary,
+              Text(
+                showQuantityInput ? '$quantityLabel:' : '$quantityLabel: $quantity',
+                style: theme.typo.main.labelDefaultRegular.copyWith(
+                  color: theme.colors.textTertiary,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-        const SizedBox(width: 6),
         if (showQuantityInput) ...[
-          const Spacer(),
+          const SizedBox(width: 12),
           DotsInputStepper(
             value: quantity,
             minValue: minQuantity!,
