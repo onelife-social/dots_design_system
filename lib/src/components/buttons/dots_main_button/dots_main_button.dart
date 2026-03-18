@@ -124,7 +124,6 @@ class DotsMainButton extends StatelessWidget {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -165,8 +164,7 @@ class DotsMainButton extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: theme.typo.main.bodyDefaultMedium.copyWith(
                   color:
-                      buttonTheme.foregroundSecondaryColor?.dotsWithOpacity(0.6) ??
-                      foregroundColor?.dotsWithOpacity(0.6),
+                      buttonTheme.foregroundSecondaryColor ?? foregroundColor?.dotsWithOpacity(0.6),
                 ),
               ),
           ],
