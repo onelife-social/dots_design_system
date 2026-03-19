@@ -64,21 +64,32 @@ List<Story> get dotBookStories => [
         description: 'Demo page for Page control',
         builder: (context) => ColoredBox(
           color: context.dotsTheme.colors.bgContainerSecondary,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: PageControl(
-              count: context.knobs.sliderInt(
-                label: 'Dot count',
-                initial: 5,
-                max: 10,
-                min: 0,
-              ),
-              activeIndex: context.knobs.sliderInt(
-                label: 'Active dot index',
-                initial: 0,
-                max: 9,
-                min: 0,
-              ),
+          child: PageControl(
+            count: context.knobs.sliderInt(
+              label: 'Dot count',
+              initial: 5,
+              max: 10,
+              min: 0,
+            ),
+            activeIndex: context.knobs.sliderInt(
+              label: 'Active dot index',
+              initial: 0,
+              max: 9,
+              min: 0,
+            ),
+            variant: context.knobs.options<PageControlVariant>(
+              label: 'PageControl variant',
+              initial: PageControlVariant.main,
+              options: const [
+                Option(
+                  label: 'Main',
+                  value: PageControlVariant.main,
+                ),
+                Option(
+                  label: 'Background',
+                  value: PageControlVariant.background,
+                ),
+              ],
             ),
           ),
         ),
