@@ -93,10 +93,7 @@ DotsMainButtonTheme getButtonThemeByButtonVariant(
       return DotsMainButtonTheme(
         backgroundColor: theme.colors.bgbBtnDisabledOpaque,
         foregroundColor: theme.colors.textDisabled,
-        foregroundSecondaryColor: theme.colors.textDisabled.dotsWithOpacity(
-          0.6,
-          multiplyWithExisting: true,
-        ),
+        foregroundSecondaryColor: theme.colors.textDisabled.dotsWithOpacity(0.6),
         blurStyle: theme.styles.blur50,
       );
     case DotsMainButtonVariant.ghost:
