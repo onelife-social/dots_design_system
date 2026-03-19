@@ -40,12 +40,13 @@ class PageControl extends StatelessWidget {
   Widget build(BuildContext context) {
     final dotsTheme = context.dotsTheme;
     final theme = getPageControlTheme(dotsTheme, variant, dotColor, activeColor);
+    final dotVerticalSpacing = variant.isBackground ? theme.dotSpacing : 0;
 
     return Padding(
       padding: theme.contentPadding,
       child: SizedBox(
         width: double.infinity,
-        height: count <= 0 ? theme.dotSize + theme.dotSpacing : null,
+        height: count <= 0 ? theme.dotSize + dotVerticalSpacing : null,
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -60,7 +61,8 @@ class PageControl extends StatelessWidget {
   ) {
     final List<Widget> children = <Widget>[];
     for (int i = 0; i < count; i++) {
-      final Color color = i == activeIndex ? theme.activeColor : theme.dotColor;
+      final bool isActive = variant.isBackground ? i <= activeIndex : i == activeIndex;
+      final Color color = isActive ? theme.activeColor : theme.dotColor;
 
       Widget dot = Padding(
         padding: variant.isBackground

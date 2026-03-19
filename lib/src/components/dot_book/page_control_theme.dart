@@ -24,7 +24,8 @@ class PageControlThemeData {
   /// Color of inactive dots.
   final Color dotColor;
 
-  /// Background color of the pill behind the active dot (background variant only).
+  /// Background color of the pill spanning from the first dot up to and
+  /// including the active dot (background variant only).
   final Color? activeBackgroundColor;
 
   /// Padding around the whole row of dots.
