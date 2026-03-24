@@ -35,6 +35,14 @@ List<Story> get buttonStories => [
             backgroundColor: knobColorSelector(context, 'Background color'),
             onTap: () {},
             expand: context.knobs.boolean(label: 'Expand', initial: true),
+            iconPosition: context.knobs.options<DotsMainButtonIconPosition>(
+              label: 'Icon position',
+              initial: DotsMainButtonIconPosition.left,
+              options: DotsMainButtonIconPosition.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
+            isLoading: context.knobs.boolean(label: 'Loading', initial: false),
             adaptPaddingForText:
                 context.knobs.boolean(label: 'Adapt padding for text', initial: false),
           ),
