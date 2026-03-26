@@ -79,26 +79,32 @@ class DotsSelector extends StatelessWidget {
 
     return isSelected
         ? Container(
-            width: size.height,
-            height: size.height,
+            constraints: BoxConstraints(
+              minWidth: size.height,
+              maxHeight: size.height,
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
+              borderRadius: BorderRadius.circular(size.height),
               color: theme.colors.labelHighlight,
             ),
-            child: Center(
-              child: variant.isCheck
-                  ? DotsIcon(
-                      iconData: DotsIconData.check,
-                      size: 14,
-                      color: theme.colors.labelAlwaysWhite,
-                    )
-                  : Text(
-                      number.toString(),
-                      style: theme.typo.main.bodyDefaultMedium.copyWith(
+            child: IntrinsicWidth(
+              child: Center(
+                widthFactor: 1,
+                child: variant.isCheck
+                    ? DotsIcon(
+                        iconData: DotsIconData.check,
+                        size: 14,
                         color: theme.colors.labelAlwaysWhite,
-                        fontSize: 14,
+                      )
+                    : Text(
+                        number.toString(),
+                        style: theme.typo.main.bodyDefaultMedium.copyWith(
+                          color: theme.colors.labelAlwaysWhite,
+                          fontSize: 14,
+                        ),
                       ),
-                    ),
+              ),
             ),
           )
         : Container(
