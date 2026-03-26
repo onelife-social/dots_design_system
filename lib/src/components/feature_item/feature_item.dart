@@ -2,9 +2,16 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class FeatureItem extends StatelessWidget {
+  /// Label shown on the left side of the row.
   final String feature;
+
+  /// Value shown on the right side of the row.
   final String value;
+
+  /// Icon used by the default constructor.
   final DotsIconData? icon;
+
+  /// Custom leading widget used by the variant `FeatureItem.image`.
   final Widget? image;
 
   const FeatureItem({
