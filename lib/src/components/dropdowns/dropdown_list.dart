@@ -1,11 +1,12 @@
+import 'dart:math' as math;
+
 import 'package:flutter/widgets.dart';
 
 import '../../../dots_design_system.dart';
 
 enum DropdownListVariant {
   defaultVariant,
-  onBackgroundVariant,
-  ;
+  onBackgroundVariant;
 
   bool get isDefault => this == DropdownListVariant.defaultVariant;
   bool get isOnBackground => this == DropdownListVariant.onBackgroundVariant;
@@ -13,8 +14,7 @@ enum DropdownListVariant {
 
 enum DropdownListSize {
   small,
-  medium,
-  ;
+  medium;
 
   bool get isSmall => this == DropdownListSize.small;
   bool get isMedium => this == DropdownListSize.medium;
@@ -33,8 +33,19 @@ class DropdownList extends StatefulWidget {
   /// The label to display on the button.
   final String label;
 
+  /// The subtitle to display on the button.
+  final String? subtitle;
+
   /// The list of items to show in the dropdown menu.
   final List<DropdownItem> items;
+
+  /// The max width of the dropdown menu. If null, menu uses button width.
+  final double? maxWidthMenu;
+
+  /// If true, the button shrinks to fit its content instead of using max width.
+  ///
+  /// Defaults to `true`.
+  final bool minSize;
 
   /// Callback when the button is tapped.
   final VoidCallback? onTap;
@@ -45,7 +56,10 @@ class DropdownList extends StatefulWidget {
     this.size = DropdownListSize.small,
     this.isActive = false,
     required this.label,
+    this.subtitle,
     required this.items,
+    this.maxWidthMenu,
+    this.minSize = true,
     this.onTap,
   });
 
@@ -77,9 +91,15 @@ class _DropdownListState extends State<DropdownList> {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.label != widget.label ||
+        oldWidget.subtitle != widget.subtitle ||
         oldWidget.size != widget.size ||
-        oldWidget.variant != widget.variant) {
+        oldWidget.variant != widget.variant ||
+        oldWidget.maxWidthMenu != widget.maxWidthMenu) {
       _scheduleMeasure();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _overlayEntry?.markNeedsBuild();
+      });
     }
 
     if (oldWidget.isActive != widget.isActive) {
@@ -126,7 +146,13 @@ class _DropdownListState extends State<DropdownList> {
 
     _overlayEntry = OverlayEntry(
       builder: (context) {
-        final buttonHeight = _buttonHeight ?? 0; // <— use cached height
+        final buttonHeight = _buttonHeight ?? 0;
+        final menuWidth = (_buttonWidth != null && widget.maxWidthMenu != null)
+            ? math.min(_buttonWidth!, widget.maxWidthMenu!)
+            : _buttonWidth ?? widget.maxWidthMenu;
+        final horizontalOffset = (_buttonWidth != null && menuWidth != null)
+            ? (_buttonWidth! - menuWidth) / 2
+            : 0.0;
         return Stack(
           children: [
             Positioned.fill(
@@ -140,10 +166,10 @@ class _DropdownListState extends State<DropdownList> {
             CompositedTransformFollower(
               link: _layerLink,
               showWhenUnlinked: false,
-              offset: Offset(0, buttonHeight + 8),
+              offset: Offset(horizontalOffset, buttonHeight + 8),
               child: DropdownMenu(
                 items: widget.items,
-                width: _buttonWidth,
+                width: menuWidth,
               ),
             ),
           ],
@@ -170,14 +196,19 @@ class _DropdownListState extends State<DropdownList> {
     final bgColor = widget.isActive
         ? theme.colors.bgFloatingActive
         : widget.variant.isDefault
-            ? theme.colors.bgContainerSecondaryOnBackground
-            : theme.colors.bgChip;
+        ? theme.colors.bgContainerSecondaryOnBackground
+        : theme.colors.bgChip;
 
-    final textColor = widget.isActive
+    final titleColor = widget.isActive
         ? theme.colors.textPrimary
         : widget.variant.isDefault
-            ? theme.colors.textPrimary
-            : theme.colors.labelAlwaysWhite;
+        ? theme.colors.textPrimary
+        : theme.colors.labelAlwaysWhite;
+    final subtitleColor = widget.isActive
+        ? theme.colors.textTertiary
+        : widget.variant.isDefault
+        ? theme.colors.textTertiary
+        : theme.colors.labelAlwaysWhite;
 
     return CompositedTransformTarget(
       link: _layerLink,
@@ -197,21 +228,32 @@ class _DropdownListState extends State<DropdownList> {
             color: bgColor,
           ),
           child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: widget.minSize ? MainAxisSize.min : MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
-            spacing: widget.size.isSmall ? 4 : 8,
             children: [
-              Text(
-                widget.label,
-                style: widget.size.isSmall
-                    ? theme.typo.main.labelDefaultBold.copyWith(color: textColor)
-                    : theme.typo.main.bodyLargeMedium.copyWith(color: textColor),
+              Flexible(
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: widget.label,
+                        style: theme.typo.main.bodyDefaultRegular.copyWith(color: titleColor),
+                      ),
+                      if ((widget.subtitle != null && widget.subtitle!.isNotEmpty))
+                        TextSpan(
+                          text: ' ${widget.subtitle!}',
+                          style: theme.typo.main.bodyDefaultRegular.copyWith(color: subtitleColor),
+                        ),
+                    ],
+                  ),
+                ),
               ),
+              SizedBox(width: widget.size.isSmall ? 4 : 8),
               DotsIcon(
                 iconData: widget.isActive ? DotsIconData.chevronUp : DotsIconData.chevronDown,
                 size: 14,
-                color: textColor,
+                color: titleColor,
               ),
             ],
           ),

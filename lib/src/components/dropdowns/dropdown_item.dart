@@ -5,7 +5,13 @@ class DropdownItem extends StatelessWidget {
   //Dropdown item text.
   final String text;
 
-  //Dropdown item icon.
+  //Dropdown item subtitle.
+  final String? subtitle;
+
+  //Dropdown item leading icon/widget.
+  final Widget? leading;
+
+  // Backwards-compatible trailing icon.
   final DotsIconData? icon;
 
   //Dropdown onTap item.
@@ -22,23 +28,20 @@ class DropdownItem extends StatelessWidget {
   const DropdownItem({
     super.key,
     required this.text,
+    this.subtitle,
+    this.leading,
     this.icon,
     required this.onTap,
     this.itemColor,
     this.minSize = false,
   });
 
+  String get resolvedSubtitle => subtitle ?? '';
+
   @override
   Widget build(BuildContext context) {
     final DotsTheme theme = context.dotsTheme;
     final Color color = itemColor ?? theme.colors.textPrimary;
-
-    final textWidget = Text(
-      text,
-      style: theme.typo.main.bodyDefaultMedium.copyWith(
-        color: color,
-      ),
-    );
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -48,8 +51,31 @@ class DropdownItem extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         child: Row(
           mainAxisSize: minSize ? MainAxisSize.min : MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(child: textWidget),
+            if (leading != null) ...[
+              leading!,
+              const SizedBox(width: 6),
+            ],
+            Expanded(
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: text,
+                      style: theme.typo.main.bodyDefaultMedium.copyWith(color: color),
+                    ),
+                    if (resolvedSubtitle.isNotEmpty)
+                      TextSpan(
+                        text: ' $resolvedSubtitle',
+                        style: theme.typo.main.bodyDefaultRegular.copyWith(
+                          color: theme.colors.textSecondary,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
             if (icon != null) ...[
               const SizedBox(width: 6),
               DotsIcon(
