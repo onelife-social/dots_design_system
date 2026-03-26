@@ -55,6 +55,9 @@ class AlbumGroupCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    final DotsStyleSquircle styleType = variant.isLarge
+        ? theme.styles.squircle52
+        : theme.styles.squircle32;
 
     return GestureDetector(
       onTap: onTap,
@@ -68,7 +71,7 @@ class AlbumGroupCard extends StatelessWidget {
             maxWidth: variant.isSmall ? 160 : 340,
           ),
           child: DotsDecoratedBox(
-            styleType: variant.isLarge ? theme.styles.squircle52 : theme.styles.squircle32,
+            styleType: styleType,
             child: Stack(
               children: [
                 SoftEdgeBlur(
@@ -91,8 +94,8 @@ class AlbumGroupCard extends StatelessWidget {
                   ],
                   child: ClipSmoothRect(
                     radius: SmoothBorderRadius(
-                      cornerRadius: variant.isLarge ? 52 : 32,
-                      cornerSmoothing: 0.5,
+                      cornerRadius: styleType.radius,
+                      cornerSmoothing: styleType.cornerSmoothing,
                     ),
                     child: Image(
                       image: imageProvider,
