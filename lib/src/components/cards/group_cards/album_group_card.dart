@@ -1,4 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:soft_edge_blur/soft_edge_blur.dart';
 
@@ -88,8 +89,11 @@ class AlbumGroupCard extends StatelessWidget {
                       ],
                     ),
                   ],
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(variant.isLarge ? 52 : 32),
+                  child: ClipSmoothRect(
+                    radius: SmoothBorderRadius(
+                      cornerRadius: variant.isLarge ? 52 : 32,
+                      cornerSmoothing: 0.5,
+                    ),
                     child: Image(
                       image: imageProvider,
                       fit: BoxFit.cover,
