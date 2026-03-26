@@ -235,6 +235,7 @@ enum DotsIconData {
   infoCircle('ic-info-circle.svg', DotsIconGroup.system),
   lightbulb('ic-lightbulb.svg', DotsIconGroup.system),
   lightbulb2('ic-lightbulb-2.svg', DotsIconGroup.system),
+  lightbulbOn('ic-lightbulb-on.svg', DotsIconGroup.system),
   loading('ic-loading.svg', DotsIconGroup.system),
   spinner('ic-spinner.svg', DotsIconGroup.system),
   progressSpinner('ic-slot.svg', DotsIconGroup.system),
