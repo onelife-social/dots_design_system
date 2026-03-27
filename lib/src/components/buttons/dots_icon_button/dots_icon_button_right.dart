@@ -14,10 +14,10 @@ class DotsIconButtonRight extends StatelessWidget {
   /// The state of the button.
   final DotsIconButtonRightVariant variant;
 
-  /// The text label displayed to the right of the icon.
+  /// The text label to display.
   final String label;
 
-  /// The icon to display on the button.
+  /// The icon to display.
   final DotsIconData icon;
 
   /// The padding of the button.
