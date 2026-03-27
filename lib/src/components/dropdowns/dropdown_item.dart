@@ -56,49 +56,52 @@ class _DropdownItemState extends State<DropdownItem> {
       onTapDown: (_) => setState(() => _isPressed = true),
       onTapUp: (_) => setState(() => _isPressed = false),
       onTapCancel: () => setState(() => _isPressed = false),
-      child: Container(
-        width: widget.minSize ? null : 234,
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: _isPressed ? theme.colors.bgContainerSecondary : null,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Row(
-          mainAxisSize: widget.minSize ? MainAxisSize.min : MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (widget.leading != null) ...[
-              widget.leading!,
-              const SizedBox(width: 6),
-            ],
-            Expanded(
-              child: Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: widget.text,
-                      style: theme.typo.main.bodyDefaultMedium.copyWith(color: color),
-                    ),
-                    if (widget.resolvedSubtitle.isNotEmpty)
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Container(
+          width: widget.minSize ? null : 234,
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: _isPressed ? theme.colors.bgContainerSecondary : null,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            mainAxisSize: widget.minSize ? MainAxisSize.min : MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              if (widget.leading != null) ...[
+                widget.leading!,
+                const SizedBox(width: 6),
+              ],
+              Expanded(
+                child: Text.rich(
+                  TextSpan(
+                    children: [
                       TextSpan(
-                        text: ' ${widget.resolvedSubtitle}',
-                        style: theme.typo.main.bodyDefaultRegular.copyWith(
-                          color: theme.colors.textSecondary,
-                        ),
+                        text: widget.text,
+                        style: theme.typo.main.bodyDefaultMedium.copyWith(color: color),
                       ),
-                  ],
+                      if (widget.resolvedSubtitle.isNotEmpty)
+                        TextSpan(
+                          text: ' ${widget.resolvedSubtitle}',
+                          style: theme.typo.main.bodyDefaultRegular.copyWith(
+                            color: theme.colors.textSecondary,
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            if (widget.icon != null) ...[
-              const SizedBox(width: 6),
-              DotsIcon(
-                iconData: widget.icon!,
-                size: 16,
-                color: color,
-              ),
+              if (widget.icon != null) ...[
+                const SizedBox(width: 6),
+                DotsIcon(
+                  iconData: widget.icon!,
+                  size: 16,
+                  color: color,
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

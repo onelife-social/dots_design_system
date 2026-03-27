@@ -31,13 +31,12 @@ class DropdownMenu extends StatelessWidget {
         constraints: BoxConstraints(
           maxHeight: maxHeight ?? double.infinity,
         ),
-        child: ListView.separated(
+        child: ListView.builder(
           shrinkWrap: true,
           primary: false,
           padding: const EdgeInsets.all(8),
           itemCount: items.length,
           itemBuilder: (context, index) => items[index],
-          separatorBuilder: (context, index) => const SizedBox(height: 8),
         ),
       ),
     );
