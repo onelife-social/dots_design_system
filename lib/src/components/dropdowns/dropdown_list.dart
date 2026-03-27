@@ -40,12 +40,12 @@ class DropdownList extends StatefulWidget {
   final List<DropdownItem> items;
 
   /// The max width of the dropdown menu. If null, menu uses button width.
-  final double? maxWidthMenu;
+  final double? menuMaxWidth;
 
   /// Fixed max height for the dropdown menu.
   ///
   /// If null, max height is calculated dynamically based on available space.
-  final double? maxMenuHeight;
+  final double? menuMaxHeight;
 
   /// If true, the button shrinks to fit its content instead of using max width.
   ///
@@ -63,8 +63,8 @@ class DropdownList extends StatefulWidget {
     required this.label,
     this.subtitle,
     required this.items,
-    this.maxWidthMenu,
-    this.maxMenuHeight,
+    this.menuMaxWidth,
+    this.menuMaxHeight,
     this.minSize = true,
     this.onTap,
   });
@@ -100,8 +100,8 @@ class _DropdownListState extends State<DropdownList> {
         oldWidget.subtitle != widget.subtitle ||
         oldWidget.size != widget.size ||
         oldWidget.variant != widget.variant ||
-        oldWidget.maxWidthMenu != widget.maxWidthMenu ||
-        oldWidget.maxMenuHeight != widget.maxMenuHeight) {
+        oldWidget.menuMaxWidth != widget.menuMaxWidth ||
+        oldWidget.menuMaxHeight != widget.menuMaxHeight) {
       _scheduleMeasure();
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
@@ -176,11 +176,11 @@ class _DropdownListState extends State<DropdownList> {
         const double gapButtonMenu = 8;
         final buttonHeight = _buttonHeight ?? 0;
         final maxMenuHeight =
-            widget.maxMenuHeight ?? _calculateMaxMenuHeight(context, gapButtonMenu);
+            widget.menuMaxHeight ?? _calculateMaxMenuHeight(context, gapButtonMenu);
 
-        final menuWidth = (_buttonWidth != null && widget.maxWidthMenu != null)
-            ? math.min(_buttonWidth!, widget.maxWidthMenu!)
-            : _buttonWidth ?? widget.maxWidthMenu;
+        final menuWidth = (_buttonWidth != null && widget.menuMaxWidth != null)
+            ? math.min(_buttonWidth!, widget.menuMaxWidth!)
+            : _buttonWidth ?? widget.menuMaxWidth;
         final horizontalOffset = (_buttonWidth != null && menuWidth != null)
             ? (_buttonWidth! - menuWidth) / 2
             : 0.0;

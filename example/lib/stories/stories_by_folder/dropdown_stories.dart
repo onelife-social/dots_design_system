@@ -123,13 +123,13 @@ List<Story> get dropdownStories => [
                   label: 'Subtitle',
                   initial: '(Incluido en la compra)',
                 ),
-                maxWidthMenu: context.knobs.slider(
+                menuMaxWidth: context.knobs.slider(
                   label: 'Menu max width',
                   initial: 260,
                   min: 120,
                   max: 500,
                 ),
-                maxMenuHeight: context.knobs.slider(
+                menuMaxHeight: context.knobs.slider(
                   label: 'Menu fixed max height',
                   initial: 260,
                   min: 120,
