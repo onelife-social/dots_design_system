@@ -1,7 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/widgets.dart';
 
-class DropdownItem extends StatelessWidget {
+class DropdownItem extends StatefulWidget {
   //Dropdown item text.
   final String text;
 
@@ -39,22 +39,36 @@ class DropdownItem extends StatelessWidget {
   String get resolvedSubtitle => subtitle ?? '';
 
   @override
+  State<DropdownItem> createState() => _DropdownItemState();
+}
+
+class _DropdownItemState extends State<DropdownItem> {
+  bool _isPressed = false;
+
+  @override
   Widget build(BuildContext context) {
     final DotsTheme theme = context.dotsTheme;
-    final Color color = itemColor ?? theme.colors.textPrimary;
+    final Color color = widget.itemColor ?? theme.colors.textPrimary;
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: onTap,
+      onTap: widget.onTap,
+      onTapDown: (_) => setState(() => _isPressed = true),
+      onTapUp: (_) => setState(() => _isPressed = false),
+      onTapCancel: () => setState(() => _isPressed = false),
       child: Container(
-        width: minSize ? null : 234,
+        width: widget.minSize ? null : 234,
         padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: _isPressed ? theme.colors.bgContainerSecondary : null,
+          borderRadius: BorderRadius.circular(12),
+        ),
         child: Row(
-          mainAxisSize: minSize ? MainAxisSize.min : MainAxisSize.max,
+          mainAxisSize: widget.minSize ? MainAxisSize.min : MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            if (leading != null) ...[
-              leading!,
+            if (widget.leading != null) ...[
+              widget.leading!,
               const SizedBox(width: 6),
             ],
             Expanded(
@@ -62,12 +76,12 @@ class DropdownItem extends StatelessWidget {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: text,
+                      text: widget.text,
                       style: theme.typo.main.bodyDefaultMedium.copyWith(color: color),
                     ),
-                    if (resolvedSubtitle.isNotEmpty)
+                    if (widget.resolvedSubtitle.isNotEmpty)
                       TextSpan(
-                        text: ' $resolvedSubtitle',
+                        text: ' ${widget.resolvedSubtitle}',
                         style: theme.typo.main.bodyDefaultRegular.copyWith(
                           color: theme.colors.textSecondary,
                         ),
@@ -76,10 +90,10 @@ class DropdownItem extends StatelessWidget {
                 ),
               ),
             ),
-            if (icon != null) ...[
+            if (widget.icon != null) ...[
               const SizedBox(width: 6),
               DotsIcon(
-                iconData: icon!,
+                iconData: widget.icon!,
                 size: 16,
                 color: color,
               ),
