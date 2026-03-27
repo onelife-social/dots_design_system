@@ -6,7 +6,7 @@ class FeatureItem extends StatelessWidget {
   final String feature;
 
   /// Value shown on the right side of the row.
-  final String value;
+  final String? value;
 
   /// Icon used by the default constructor.
   final DotsIconData? icon;
@@ -17,14 +17,14 @@ class FeatureItem extends StatelessWidget {
   const FeatureItem({
     super.key,
     required this.feature,
-    required this.value,
+    this.value,
     required DotsIconData this.icon,
   }) : image = null;
 
   const FeatureItem.image({
     super.key,
     required this.feature,
-    required this.value,
+    this.value,
     required Widget this.image,
   }) : icon = null;
 
@@ -37,7 +37,7 @@ class FeatureItem extends StatelessWidget {
       children: [
         _Leading(icon: icon, iconColor: theme.colors.textQuarternary, image: image),
         Expanded(
-          flex: 6,
+          flex: value == null ? 1 : 6,
           child: Text(
             feature,
             style: theme.typo.main.bodyDefaultRegular.copyWith(
@@ -46,16 +46,17 @@ class FeatureItem extends StatelessWidget {
             textAlign: TextAlign.left,
           ),
         ),
-        Expanded(
-          flex: 4,
-          child: Text(
-            value,
-            style: theme.typo.main.bodyDefaultMedium.copyWith(
-              color: theme.colors.textSecondary,
+        if (value != null)
+          Expanded(
+            flex: 4,
+            child: Text(
+              value!,
+              style: theme.typo.main.bodyDefaultMedium.copyWith(
+                color: theme.colors.textSecondary,
+              ),
+              textAlign: TextAlign.right,
             ),
-            textAlign: TextAlign.right,
           ),
-        ),
       ],
     );
   }
