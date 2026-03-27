@@ -1,5 +1,6 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:example/components/btn_folder_demo_page.dart';
+import 'package:example/components/dots_icon_button_right_demo_page.dart';
 import 'package:example/stories/helpers/color_knob_options.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
@@ -128,6 +129,25 @@ List<Story> get buttonStories => [
               ),
             ),
           ),
+        ),
+      ),
+      Story(
+        name: 'Buttons/Icon Button Right',
+        description: 'Demo page for Icon Button Right',
+        builder: (context) => DotsIconButtonRightDemoPage(
+          variant: context.knobs.options<DotsIconButtonRightVariant>(
+              label: 'Variant',
+              initial: DotsIconButtonRightVariant.primaryActive,
+              options: DotsIconButtonRightVariant.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList()),
+          icon: context.knobs.options<DotsIconData>(
+              label: 'Icon',
+              initial: DotsIconData.trash,
+              options: DotsIconData.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList()),
+          label: context.knobs.text(label: 'Label', initial: 'Details'),
         ),
       ),
       Story(

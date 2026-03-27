@@ -12,9 +12,16 @@ List<Story> get dropdownStories => [
         builder: (context) {
           return DropdownItemDemoPage(
             text: context.knobs.text(label: 'Title', initial: 'Dropdown Item'),
+            subtitle: context.knobs.text(label: 'Subtitle', initial: 'Item subtitle'),
             onTap: () {},
             icon: context.knobs.options<DotsIconData>(
               label: 'Item icon',
+              initial: DotsIconData.home,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+            leadingIcon: context.knobs.options<DotsIconData>(
+              label: 'Leading icon',
               initial: DotsIconData.home,
               options:
                   DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
@@ -45,6 +52,17 @@ List<Story> get dropdownStories => [
                   initial: DotsIconData.home,
                   options: iconOptions,
                 ),
+                subtitle: 'Subtitle ${index + 1}',
+                leading: DotsIcon(
+                  iconData: context.knobs.options<DotsIconData>(
+                    label: 'Icon for item ${index + 1}',
+                    initial: DotsIconData.home,
+                    options: iconOptions,
+                  ),
+                  size: 16,
+                  color: knobColorSelector(context, 'Item Color') ??
+                      context.dotsTheme.colors.textPrimary,
+                ),
                 onTap: () {},
                 itemColor: knobColorSelector(context, 'Item Color') ??
                     context.dotsTheme.colors.textPrimary,
@@ -64,7 +82,15 @@ List<Story> get dropdownStories => [
           final List<DropdownItem> items = List.generate(
             5,
             (index) => DropdownItem(
-              text: 'Label ${index + 1}',
+              text: '${index + 1}x Dotbook',
+              subtitle: index == 0 ? '(Incluido en la compra)' : '+${(index + 1) * 100}€',
+              leading: index == 0
+                  ? DotsIcon(
+                      iconData: DotsIconData.check,
+                      size: 16,
+                      color: context.dotsTheme.colors.textPrimary,
+                    )
+                  : null,
               onTap: () => ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Pressed: Label ${index + 1}')),
               ),
@@ -73,7 +99,7 @@ List<Story> get dropdownStories => [
           );
 
           return StatefulBuilder(
-            builder: (context, setState) {
+            builder: (context, setState) { 
               return DropdownList(
                 variant: context.knobs.options<DropdownListVariant>(
                   label: 'Variant',
@@ -92,7 +118,24 @@ List<Story> get dropdownStories => [
                   ],
                 ),
                 isActive: isActive,
-                label: context.knobs.text(label: 'Label', initial: 'Label'),
+                label: context.knobs.text(label: 'Label', initial: '1x Dotbook'),
+                subtitle: context.knobs.text(
+                  label: 'Subtitle',
+                  initial: '(Incluido en la compra)',
+                ),
+                menuMaxWidth: context.knobs.slider(
+                  label: 'Menu max width',
+                  initial: 260,
+                  min: 120,
+                  max: 500,
+                ),
+                menuMaxHeight: context.knobs.slider(
+                  label: 'Menu fixed max height',
+                  initial: 260,
+                  min: 120,
+                  max: 700,
+                ),
+                minSize: context.knobs.boolean(label: 'Min size', initial: true),
                 items: items,
                 onTap: () => setState(() => isActive = !isActive),
               );
