@@ -99,7 +99,7 @@ List<Story> get dropdownStories => [
           );
 
           return StatefulBuilder(
-            builder: (context, setState) {
+            builder: (context, setState) { 
               return DropdownList(
                 variant: context.knobs.options<DropdownListVariant>(
                   label: 'Variant',
@@ -128,6 +128,12 @@ List<Story> get dropdownStories => [
                   initial: 260,
                   min: 120,
                   max: 500,
+                ),
+                maxMenuHeight: context.knobs.slider(
+                  label: 'Menu fixed max height',
+                  initial: 260,
+                  min: 120,
+                  max: 700,
                 ),
                 minSize: context.knobs.boolean(label: 'Min size', initial: true),
                 items: items,

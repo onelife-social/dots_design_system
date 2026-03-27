@@ -42,6 +42,11 @@ class DropdownList extends StatefulWidget {
   /// The max width of the dropdown menu. If null, menu uses button width.
   final double? maxWidthMenu;
 
+  /// Fixed max height for the dropdown menu.
+  ///
+  /// If null, max height is calculated dynamically based on available space.
+  final double? maxMenuHeight;
+
   /// If true, the button shrinks to fit its content instead of using max width.
   ///
   /// Defaults to `true`.
@@ -59,6 +64,7 @@ class DropdownList extends StatefulWidget {
     this.subtitle,
     required this.items,
     this.maxWidthMenu,
+    this.maxMenuHeight,
     this.minSize = true,
     this.onTap,
   });
@@ -94,7 +100,8 @@ class _DropdownListState extends State<DropdownList> {
         oldWidget.subtitle != widget.subtitle ||
         oldWidget.size != widget.size ||
         oldWidget.variant != widget.variant ||
-        oldWidget.maxWidthMenu != widget.maxWidthMenu) {
+        oldWidget.maxWidthMenu != widget.maxWidthMenu ||
+        oldWidget.maxMenuHeight != widget.maxMenuHeight) {
       _scheduleMeasure();
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
@@ -140,13 +147,37 @@ class _DropdownListState extends State<DropdownList> {
     });
   }
 
+  double _calculateMaxMenuHeight(BuildContext context, double gapButtonMenu) {
+    final mediaQuery = MediaQuery.of(context);
+    final screenHeight = mediaQuery.size.height;
+    final bottomSafeArea = mediaQuery.viewPadding.bottom;
+    double maxMenuHeight = screenHeight;
+    final buttonContext = _buttonKey.currentContext;
+    if (buttonContext != null) {
+      final renderObject = buttonContext.findRenderObject();
+      if (renderObject is RenderBox) {
+        final buttonTop = renderObject.localToGlobal(Offset.zero).dy;
+        final buttonBottom = buttonTop + renderObject.size.height;
+        maxMenuHeight = math.max(
+          0,
+          screenHeight - buttonBottom - gapButtonMenu - bottomSafeArea - 16,
+        );
+      }
+    }
+    return maxMenuHeight;
+  }
+
   void _showOverlay() {
     if (_overlayEntry != null) return;
     final overlay = Overlay.of(context);
 
     _overlayEntry = OverlayEntry(
       builder: (context) {
+        const double gapButtonMenu = 8;
         final buttonHeight = _buttonHeight ?? 0;
+        final maxMenuHeight =
+            widget.maxMenuHeight ?? _calculateMaxMenuHeight(context, gapButtonMenu);
+
         final menuWidth = (_buttonWidth != null && widget.maxWidthMenu != null)
             ? math.min(_buttonWidth!, widget.maxWidthMenu!)
             : _buttonWidth ?? widget.maxWidthMenu;
@@ -166,10 +197,11 @@ class _DropdownListState extends State<DropdownList> {
             CompositedTransformFollower(
               link: _layerLink,
               showWhenUnlinked: false,
-              offset: Offset(horizontalOffset, buttonHeight + 8),
+              offset: Offset(horizontalOffset, buttonHeight + gapButtonMenu),
               child: DropdownMenu(
                 items: widget.items,
                 width: menuWidth,
+                maxHeight: maxMenuHeight,
               ),
             ),
           ],
