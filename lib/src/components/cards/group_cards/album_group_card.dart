@@ -1,4 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:soft_edge_blur/soft_edge_blur.dart';
 
@@ -54,6 +55,9 @@ class AlbumGroupCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    final DotsStyleSquircle styleType = variant.isLarge
+        ? theme.styles.squircle52
+        : theme.styles.squircle32;
 
     return GestureDetector(
       onTap: onTap,
@@ -67,7 +71,7 @@ class AlbumGroupCard extends StatelessWidget {
             maxWidth: variant.isSmall ? 160 : 340,
           ),
           child: DotsDecoratedBox(
-            styleType: variant.isLarge ? theme.styles.squircle52 : theme.styles.squircle32,
+            styleType: styleType,
             child: Stack(
               children: [
                 SoftEdgeBlur(
@@ -88,8 +92,11 @@ class AlbumGroupCard extends StatelessWidget {
                       ],
                     ),
                   ],
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(variant.isLarge ? 52 : 32),
+                  child: ClipSmoothRect(
+                    radius: SmoothBorderRadius(
+                      cornerRadius: styleType.radius,
+                      cornerSmoothing: styleType.cornerSmoothing,
+                    ),
                     child: Image(
                       image: imageProvider,
                       fit: BoxFit.cover,
