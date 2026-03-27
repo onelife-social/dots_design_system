@@ -203,8 +203,14 @@ class DotsMainButton extends StatelessWidget {
                   spacing: size.spacing,
                   mainAxisSize: expand ? MainAxisSize.max : MainAxisSize.min,
                   children: [
-                    if (iconPosition.isLeft) ...[iconWidget, text],
-                    if (iconPosition.isRight) ...[text, iconWidget],
+                    if (iconPosition.isLeft) ...[
+                      if (icon != null) iconWidget,
+                      text,
+                    ],
+                    if (iconPosition.isRight) ...[
+                      text,
+                      if (icon != null) iconWidget,
+                    ],
                   ],
                 ),
         ),

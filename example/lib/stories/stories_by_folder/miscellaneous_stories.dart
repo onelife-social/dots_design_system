@@ -1,4 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:example/components/feature_item_demo_page.dart';
 import 'package:example/components/radio_card_icons_demo_page.dart';
 import 'package:example/components/radio_card_label_demo_page.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
@@ -23,5 +24,10 @@ List<Story> get miscellaneousStories => [
         name: 'Miscellaneous/Radio Card Icons',
         description: 'Demo page for Radio Card Icons',
         builder: (context) => RadioCardIconsDemoScreen(),
+      ),
+      Story(
+        name: 'Miscellaneous/Feature Item',
+        description: 'Demo page for Feature Item icon and image variants',
+        builder: (context) => const FeatureItemDemoPage(),
       ),
     ];
