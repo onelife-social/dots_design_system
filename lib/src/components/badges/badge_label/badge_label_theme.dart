@@ -63,5 +63,15 @@ BadgeLabelTheme getBadgeLabelThemeByTagVariant(DotsTheme theme, BadgeLabelVarian
         backgroundGradient: theme.styles.bgPremium,
         foregroundColor: theme.colors.labelAlwaysWhite,
       );
+    case BadgeLabelVariant.warning:
+      return BadgeLabelTheme(
+        backgroundColor: theme.colors.labelWarning,
+        foregroundColor: theme.colors.labelAlwaysWhite,
+      );
+    case BadgeLabelVariant.warningMaterial:
+      return BadgeLabelTheme(
+        backgroundColor: theme.colors.bgWarning,
+        foregroundColor: theme.colors.labelWarning,
+      );
   }
 }
