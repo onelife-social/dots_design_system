@@ -96,12 +96,15 @@ class DotbookOrderItem extends StatelessWidget {
               children: [
                 Text(
                   title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: theme.typo.main.bodyLargeMedium.copyWith(
                     color: theme.colors.textPrimary,
                   ),
                 ),
                 Text(
                   subtitle,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: theme.typo.main.labelDefaultRegular.copyWith(
                     color: theme.colors.textTertiary,
