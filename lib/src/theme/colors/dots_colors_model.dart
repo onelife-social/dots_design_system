@@ -49,6 +49,8 @@ class DotsColorsModel {
   final Color labelActive;
   final Color labelInactive;
   final Color bgActive;
+  final Color labelWarning;
+  final Color bgWarning;
 
   // Miscellaneous
 
@@ -315,6 +317,8 @@ class DotsColorsModel {
     required this.labelActive,
     required this.labelInactive,
     required this.bgActive,
+    required this.labelWarning,
+    required this.bgWarning,
     required this.bgFloatingBase,
     required this.bgFloatingActive,
     required this.misc100,
@@ -544,6 +548,8 @@ class DotsColorsModel {
       bgFloatingBase: Color.lerp(bgFloatingBase, other?.bgFloatingBase, t) ?? bgFloatingBase,
       bgFloatingActive:
           Color.lerp(bgFloatingActive, other?.bgFloatingActive, t) ?? bgFloatingActive,
+      labelWarning: Color.lerp(labelWarning, other?.labelWarning, t) ?? labelWarning,
+      bgWarning: Color.lerp(bgWarning, other?.bgWarning, t) ?? bgWarning,
       misc100: Color.lerp(misc100, other?.misc100, t) ?? misc100,
       misc200: Color.lerp(misc200, other?.misc200, t) ?? misc200,
       misc300: Color.lerp(misc300, other?.misc300, t) ?? misc300,
