@@ -19,10 +19,13 @@ class DotsRatingStar extends StatelessWidget {
   final DotsIconData? iconData;
 
   // Size of the icon
-  final double iconSize;
+  final double? iconSize;
 
   // Function to be executed on tap
   final Function()? onTap;
+
+  // If true, show text label below the star
+  final bool showText;
 
   const DotsRatingStar({
     super.key,
@@ -30,7 +33,8 @@ class DotsRatingStar extends StatelessWidget {
     required this.variant,
     this.onTap,
     this.iconData,
-    this.iconSize = 28,
+    this.iconSize,
+    this.showText = true,
   });
 
   @override
@@ -42,15 +46,16 @@ class DotsRatingStar extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            text,
-            textAlign: TextAlign.center,
-            style: context.dotsTheme.typo.main.labelSmallMedium.copyWith(
-              color: variant == RatingIconVariant.disabled
-                  ? context.dotsTheme.colors.textDisabled
-                  : context.dotsTheme.colors.textQuarternary,
+          if (showText)
+            Text(
+              text,
+              textAlign: TextAlign.center,
+              style: context.dotsTheme.typo.main.labelSmallMedium.copyWith(
+                color: variant == RatingIconVariant.disabled
+                    ? context.dotsTheme.colors.textDisabled
+                    : context.dotsTheme.colors.textQuarternary,
+              ),
             ),
-          ),
           Padding(
             padding: const EdgeInsets.all(2.0),
             child: ShaderMask(
@@ -67,7 +72,7 @@ class DotsRatingStar extends StatelessWidget {
               },
               child: DotsIcon(
                 iconData: iconData ?? DotsIconData.star,
-                size: iconSize,
+                size: iconSize ?? 28,
               ),
             ),
           ),
