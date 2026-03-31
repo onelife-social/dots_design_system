@@ -2,20 +2,23 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class DotBookTestimonialCard extends StatelessWidget {
-	/// Image provider for the testimonial image.
-	final ImageProvider? imageCard;
+  /// Image provider for the testimonial image.
+  final ImageProvider? imageCard;
 
   /// Height for the testimonial image.
   final double imageHeight;
 
   /// Image provider for the profile image.
-	final ImageProvider? imageProfile;
+  final ImageProvider? imageProfile;
 
-	/// Card title.
-	final String? title;
+  /// Card title.
+  final String? title;
 
-	/// Card description.
-	final String? description;
+  /// Card subtitle
+  final Widget? subtitle;
+
+  /// Card description.
+  final String? description;
 
   /// Username for the testimonial.
   final String? username;
@@ -23,36 +26,35 @@ class DotBookTestimonialCard extends StatelessWidget {
   /// Optional tap callback.
   final Function()? onTap;
 
-	/// Optional width for the card.
-	final double width;
+  /// Optional width for the card.
+  final double width;
 
-	/// Callback when an error occurs while loading the image card.
+  /// Callback when an error occurs while loading the image card.
   final void Function(Object exception, StackTrace? stackTrace)? onErrorImageCard;
 
-	/// Callback when an error occurs while loading the profile image.
+  /// Callback when an error occurs while loading the profile image.
   final void Function(Object exception, StackTrace? stackTrace)? onErrorProfileImage;
 
-
-	const DotBookTestimonialCard({
-		super.key,
-		this.imageCard,
+  const DotBookTestimonialCard({
+    super.key,
+    this.imageCard,
     this.imageHeight = 170,
     this.imageProfile,
-		this.title,
-		this.description,
+    this.title,
+    this.subtitle,
+    this.description,
     this.username,
     this.onTap,
-		this.width = 300,
-		this.onErrorImageCard,
+    this.width = 300,
+    this.onErrorImageCard,
     this.onErrorProfileImage,
-	});
+  });
 
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
 
-	@override
-	Widget build(BuildContext context) {
-		final theme = context.dotsTheme;
-
-		return GestureDetector(
+    return GestureDetector(
       onTap: onTap,
       child: SizedBox(
         width: width,
@@ -76,32 +78,36 @@ class DotBookTestimonialCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               imageCard != null
-                ? ClipRRect(
-                    borderRadius: DotsBorderRadius.r24,
-                    child: Image(
-                      image: imageCard!,
-                      height: imageHeight,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        if (onErrorImageCard != null) onErrorImageCard!(error, stackTrace);
-                        return const SizedBox();
-                      },
-                    ),
-                  )
-                : const SizedBox(),
+                  ? ClipRRect(
+                      borderRadius: DotsBorderRadius.r24,
+                      child: Image(
+                        image: imageCard!,
+                        height: imageHeight,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          if (onErrorImageCard != null) onErrorImageCard!(error, stackTrace);
+                          return const SizedBox();
+                        },
+                      ),
+                    )
+                  : const SizedBox(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (title != null && title!.isNotEmpty)...[
+                    if (title != null && title!.isNotEmpty) ...[
                       Text(
                         title!,
                         style: theme.typo.main.titleH5.copyWith(
                           color: theme.colors.textPrimary,
                         ),
                       ),
+                      const SizedBox(height: 8),
+                    ],
+                    if (subtitle != null) ...[
+                      subtitle!,
                       const SizedBox(height: 8),
                     ],
                     if (description != null && description!.isNotEmpty)
@@ -118,7 +124,7 @@ class DotBookTestimonialCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: Row(
                   children: [
-                    if (imageProfile != null)...[
+                    if (imageProfile != null) ...[
                       DotsProfilePhoto(
                         imageProvider: imageProfile!,
                         width: 40,
@@ -144,5 +150,5 @@ class DotBookTestimonialCard extends StatelessWidget {
         ),
       ),
     );
-	}
+  }
 }

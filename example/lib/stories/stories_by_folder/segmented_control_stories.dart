@@ -4,6 +4,8 @@ import 'package:example/stories/helpers/color_knob_options.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
+import '../../components/segmented_control_price_handle.dart';
+
 List<Story> get segmentedControlStories => [
       Story(
         name: 'Segmented Control/Segmented control',
@@ -76,6 +78,51 @@ List<Story> get segmentedControlStories => [
             selectedColor: knobColorSelector(context, 'Selected color'),
             backgroundColor: knobColorSelector(context, 'Background color'),
             buttonTag: context.knobs.text(label: 'Button tag', initial: '1'),
+          );
+        },
+      ),
+      Story(
+        name: 'Segmented Control/Segmented control price',
+        description: 'Demo page for Segmented control for price options',
+        builder: (context) {
+          final variant = context.knobs.options<SegmentedControlPriceVariant>(
+            label: 'Variant',
+            initial: SegmentedControlPriceVariant.dual,
+            options: SegmentedControlPriceVariant.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          );
+
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SegmentedControlPriceHandle(
+              key: ValueKey('SegmentedControlPriceHandle_${variant.name}'),
+              variant: variant,
+              leftOptionName: context.knobs.text(label: 'Option 1', initial: 'Label'),
+              leftOptionPrice: context.knobs.text(label: 'Option 1 price', initial: '99,00€'),
+              leftOptionTag: context.knobs.text(label: 'Option 1 tag', initial: '17% OFF'),
+              leftOptionDescription:
+                  context.knobs.text(label: 'Option 1 description', initial: '8,25€/mes'),
+              leftOptionPriceTrailing:
+                  context.knobs.text(label: 'Option 1 price trailing', initial: '/ano'),
+              rightOptionName: variant.isDual
+                  ? context.knobs.text(label: 'Option 2', initial: 'Label')
+                  : null,
+              rightOptionPrice: variant.isDual
+                  ? context.knobs.text(label: 'Option 2 price', initial: '100,00€')
+                  : null,
+              rightOptionTag: variant.isDual
+                  ? context.knobs.text(label: 'Option 2 tag', initial: '17% OFF')
+                  : null,
+              rightOptionDescription: variant.isDual
+                  ? context.knobs.text(label: 'Option 2 description', initial: '8,25€/mes')
+                  : null,
+              rightOptionPriceTrailing: variant.isDual
+                  ? context.knobs.text(label: 'Option 2 price trailing', initial: '/ano')
+                  : null,
+              selectedColor: knobColorSelector(context, 'Selected color'),
+              backgroundColor: knobColorSelector(context, 'Background color'),
+            ),
           );
         },
       ),
