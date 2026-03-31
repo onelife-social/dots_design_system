@@ -47,6 +47,7 @@ class DotbookOrderItem extends StatelessWidget {
     final theme = context.dotsTheme;
 
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: onItemTap,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,9 +77,9 @@ class DotbookOrderItem extends StatelessWidget {
                       onError?.call(err, trace);
                       if (defaultImagePath != null) {
                         return Image.asset(
-                        defaultImagePath!,
-                        fit: BoxFit.cover,
-                      );
+                          defaultImagePath!,
+                          fit: BoxFit.cover,
+                        );
                       } else {
                         return const SizedBox.shrink();
                       }
