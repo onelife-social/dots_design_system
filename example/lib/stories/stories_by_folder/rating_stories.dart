@@ -18,6 +18,8 @@ List<Story> get ratingStories => [
                   .map((item) => Option(label: item.name, value: item))
                   .toList(),
             ),
+            showText: context.knobs.boolean(label: 'Show Text', initial: true),
+            iconSize: context.knobs.slider(label: 'Icon Size', initial: 28, min: 16, max: 48),
           ),
         ),
       ),
@@ -32,22 +34,38 @@ List<Story> get ratingStories => [
                 leftText: context.knobs.text(label: 'Left Text', initial: 'Very Unsatisfied'),
                 rightText: context.knobs.text(label: 'Right Text', initial: 'Very Satisfied'),
                 isSmall: context.knobs.boolean(label: 'Compact Layout', initial: false),
+                showText: context.knobs.boolean(label: 'Show Star Text', initial: true),
+                length: context.knobs.options(
+                  label: 'Number of Stars',
+                  initial: 10,
+                  options: [
+                    Option(label: '5', value: 5),
+                    Option(label: '10', value: 10),
+                  ],
+                ),
+                iconSize: context.knobs.slider(label: 'Icon Size', initial: 28, min: 16, max: 48),
               );
             },
           ),
         ),
-      ),   
-];
+      ),
+    ];
 
 class _RatingStarRowStory extends StatefulWidget {
   final String leftText;
   final String rightText;
   final bool isSmall;
+  final bool showText;
+  final int length;
+  final double? iconSize;
 
   const _RatingStarRowStory({
     required this.leftText,
     required this.rightText,
     required this.isSmall,
+    required this.showText,
+    required this.length,
+    this.iconSize,
   });
 
   @override
@@ -60,7 +78,7 @@ class _RatingStarRowStoryState extends State<_RatingStarRowStory> {
   @override
   Widget build(BuildContext context) {
     return DotsRatingStarRow(
-      starLabels: List.generate(10, (i) => (i + 1).toString()),
+      starLabels: List.generate(widget.length, (i) => (i + 1).toString()),
       leftText: widget.leftText,
       rightText: widget.rightText,
       selectedIndex: selectedIndex,
@@ -70,6 +88,8 @@ class _RatingStarRowStoryState extends State<_RatingStarRowStory> {
           selectedIndex = index;
         });
       },
+      showStarText: widget.showText,
+      iconSize: widget.iconSize,
     );
   }
 }
