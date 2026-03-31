@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:soft_edge_blur/soft_edge_blur.dart';
 
@@ -65,6 +66,9 @@ class EventGroupCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    final DotsStyleSquircle styleType = variant.isSmall
+        ? theme.styles.squircle32
+        : theme.styles.squircle52;
 
     return GestureDetector(
       onTap: onTap,
@@ -78,7 +82,7 @@ class EventGroupCard extends StatelessWidget {
             maxWidth: variant.isSmall ? 160 : 340,
           ),
           child: DotsDecoratedBox(
-            styleType: variant.isSmall ? theme.styles.squircle32 : theme.styles.squircle52,
+            styleType: styleType,
             decoration: BoxDecoration(
               image: !variant.isSmall
                   ? DecorationImage(
@@ -109,8 +113,11 @@ class EventGroupCard extends StatelessWidget {
                         ],
                       ),
                     ],
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(32),
+                    child: ClipSmoothRect(
+                      radius: SmoothBorderRadius(
+                        cornerRadius: styleType.radius,
+                        cornerSmoothing: styleType.cornerSmoothing,
+                      ),
                       child: Image(
                         image: imageProvider,
                         fit: BoxFit.cover,

@@ -518,4 +518,70 @@ List<Story> get dotBookStories => [
           },
         ),
       ),
+      Story(
+        name: 'DotBook Components/DotBook Order Item',
+        description: 'Demo page for DotBook Order Item',
+        builder: (context) => Builder(
+          builder: (context) {
+            return StatefulBuilder(
+              builder: (context, setState) {
+                final selectedIconData = context.knobs.options<DotsIconData?>(
+                  label: 'Right icon',
+                  initial: DotsIconData.chevronRight,
+                  options: [
+                    const Option(label: 'None', value: null),
+                    ...DotsIconData.values
+                        .map((item) => Option(label: item.name, value: item))
+                  ],
+                );
+                final selectedLabelVariant = context.knobs.options<BadgeLabelVariant>(
+                  label: 'Label variant',
+                  initial: BadgeLabelVariant.green,
+                  options: BadgeLabelVariant.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList(),
+                );
+                return Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: 12,
+                    children: [
+                      DotbookOrderItem(
+                        title: context.knobs.text(label: 'Title', initial: 'Álbum “Nueva York 2025”'),
+                        subtitle: context.knobs.text(label: 'Subtitle', initial: '23 marzo 2026'),
+                        labelText: context.knobs.text(label: 'Label text', initial: 'En reparto'),
+                        labelVariant: selectedLabelVariant,
+                        rightIcon: selectedIconData == null
+                            ? null
+                            : DotsIcon(
+                                iconData: selectedIconData,
+                                size: 16,
+                                color: context.dotsTheme.colors.textTertiary,
+                              ),
+                        dotbookImage: NetworkImage(
+                          context.knobs.text(
+                            label: 'Overlay image',
+                            initial: 'https://picsum.photos/600/900?image=22',
+                          ),
+                        ),
+                        onItemTap: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Tap on order item!',
+                            ),
+                          ),
+                        );
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
+          },
+        ),
+      ),
     ];
