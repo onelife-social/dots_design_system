@@ -24,6 +24,7 @@ class DotsRatingStar extends StatelessWidget {
   // Function to be executed on tap
   final Function()? onTap;
 
+  // If true, show text label below the star
   final bool showText;
 
   const DotsRatingStar({

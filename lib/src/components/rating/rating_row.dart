@@ -20,8 +20,10 @@ class DotsRatingStarRow extends StatelessWidget {
   // If true, show compact layout (for small ratio)
   final bool compact;
 
+  // If true, show text labels for each star
   final bool showStarText;
 
+  // Size of the star icons
   final double? iconSize;
 
   const DotsRatingStarRow({
