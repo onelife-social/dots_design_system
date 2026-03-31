@@ -5,6 +5,8 @@ export 'containers/containers_lib.dart';
 export 'icons/icons_lib.dart';
 export 'selectors/selectors_lib.dart';
 export 'segmented_control/segmented_control.dart';
+export 'segmented_control_price/segmented_control_price.dart';
+export 'segmented_control_price/segmented_control_price_variant.dart';
 export 'navigation/navigation_lib.dart';
 export 'photos_components/photos_components_lib.dart';
 export 'navigation/home_top_bar.dart';

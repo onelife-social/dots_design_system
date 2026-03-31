@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class FeatureItem extends StatelessWidget {
   final String feature;
-  final String value;
+  final String? value;
   final DotsIconData icon;
 
-  const FeatureItem({super.key, required this.feature, required this.value, required this.icon});
+  const FeatureItem({super.key, required this.feature, this.value, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +26,17 @@ class FeatureItem extends StatelessWidget {
             textAlign: TextAlign.left,
           ),
         ),
-        Expanded(
-          flex: 4,
-          child: Text(
-            value,
-            style: theme.typo.main.bodyDefaultMedium.copyWith(
-              color: theme.colors.textSecondary,
+        if (value != null)
+          Expanded(
+            flex: 4,
+            child: Text(
+              value!,
+              style: theme.typo.main.bodyDefaultMedium.copyWith(
+                color: theme.colors.textSecondary,
+              ),
+              textAlign: TextAlign.right,
             ),
-            textAlign: TextAlign.right,
           ),
-        ),
       ],
     );
   }

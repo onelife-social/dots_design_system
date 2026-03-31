@@ -77,7 +77,6 @@ class _BackSegmentedSingle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    var boxConstraints = BoxConstraints();
     return DotsDecoratedBox(
       styleType: theme.styles.bgBlur,
       decoration: ShapeDecoration(

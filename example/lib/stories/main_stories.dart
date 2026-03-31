@@ -113,6 +113,23 @@ List<Story> get allStories => [
         },
       ),
       Story(
+        name: 'Feature Item',
+        description: 'Demo page for Feature Item',
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: FeatureItem(
+            feature: context.knobs.text(label: 'Feature', initial: 'Feature 1'),
+            icon: context.knobs.options<DotsIconData>(
+              label: 'Feature icon',
+              initial: DotsIconData.star,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+            value: context.knobs.text(label: 'Feature value', initial: 'Value 1'),
+          ),
+        ),
+      ),
+      Story(
         name: 'Menu',
         description: 'Demo page for Menu',
         builder: (context) => Padding(
