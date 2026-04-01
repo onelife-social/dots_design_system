@@ -1,6 +1,4 @@
 import 'package:dots_design_system/dots_design_system.dart';
-import 'package:dots_design_system/src/components/components_lib.dart';
-import 'package:dots_design_system/src/core/core_lib.dart';
 import 'package:flutter/material.dart';
 
 class SegmentedControlPriceOption extends StatelessWidget {
@@ -10,6 +8,7 @@ class SegmentedControlPriceOption extends StatelessWidget {
   final String? description;
   final String? tag;
   final bool isSelected;
+  final SegmentedControlPriceVariant variant;
 
   const SegmentedControlPriceOption({
     super.key,
@@ -19,6 +18,7 @@ class SegmentedControlPriceOption extends StatelessWidget {
     this.description,
     this.tag,
     this.isSelected = false,
+    required this.variant,
   });
 
   @override
@@ -64,36 +64,82 @@ class SegmentedControlPriceOption extends StatelessWidget {
                   ],
                 ],
               ),
-              Row(
-                children: [
-                  Text(
-                    price,
-                    style: theme.typo.main.titleH6.copyWith(
-                      color: isSelected ? theme.colors.textPrimary : theme.colors.textTertiary,
-                    ),
-                  ),
-                  if (priceTrailingText != null)
-                    Text(
-                      priceTrailingText!,
-                      style: theme.typo.main.bodyDefaultMedium.copyWith(
-                        color: isSelected
-                            ? theme.colors.textQuarternary
-                            : theme.colors.textDisabled,
-                      ),
-                    ),
-                ],
-              ),
-              if (description != null)
-                Text(
-                  description!,
-                  style: theme.typo.main.bodyDefaultMedium.copyWith(
-                    color: isSelected ? theme.colors.textQuarternary : theme.colors.textDisabled,
-                  ),
+              if (variant.isSingle) ...[
+                if (description != null)
+                  _DescriptionText(description: description!, isSelected: isSelected),
+                _PriceRow(
+                  price: price,
+                  priceTrailingText: priceTrailingText,
+                  isSelected: isSelected,
                 ),
+              ],
+              if (variant.isDual) ...[
+                _PriceRow(
+                  price: price,
+                  priceTrailingText: priceTrailingText,
+                  isSelected: isSelected,
+                ),
+                if (description != null)
+                  _DescriptionText(description: description!, isSelected: isSelected),
+              ],
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _DescriptionText extends StatelessWidget {
+  final String description;
+  final bool isSelected;
+
+  const _DescriptionText({required this.description, required this.isSelected});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+
+    return Text(
+      description,
+      style: theme.typo.main.bodyDefaultMedium.copyWith(
+        color: isSelected ? theme.colors.textQuarternary : theme.colors.textDisabled,
+      ),
+    );
+  }
+}
+
+class _PriceRow extends StatelessWidget {
+  final String price;
+  final String? priceTrailingText;
+  final bool isSelected;
+
+  const _PriceRow({
+    required this.price,
+    this.priceTrailingText,
+    required this.isSelected,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+
+    return Row(
+      children: [
+        Text(
+          price,
+          style: theme.typo.main.titleH6.copyWith(
+            color: isSelected ? theme.colors.textPrimary : theme.colors.textTertiary,
+          ),
+        ),
+        if (priceTrailingText != null)
+          Text(
+            priceTrailingText!,
+            style: theme.typo.main.bodyDefaultMedium.copyWith(
+              color: isSelected ? theme.colors.textQuarternary : theme.colors.textDisabled,
+            ),
+          ),
+      ],
     );
   }
 }
