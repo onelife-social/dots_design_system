@@ -98,6 +98,7 @@ class SegmentedControlPrice extends StatelessWidget {
         description: leftOptionDescription,
         tag: leftOptionTag,
         isSelected: true,
+        variant: variant,
       ),
     );
   }
@@ -117,6 +118,7 @@ class SegmentedControlPrice extends StatelessWidget {
               description: leftOptionDescription,
               tag: leftOptionTag,
               isSelected: selectedOption.isLeft,
+              variant: variant,
             ),
           ),
         ),
@@ -131,6 +133,7 @@ class SegmentedControlPrice extends StatelessWidget {
               description: rightOptionDescription,
               tag: rightOptionTag,
               isSelected: selectedOption.isRight,
+              variant: variant,
             ),
           ),
         ),
@@ -145,6 +148,7 @@ class SegmentedControlPrice extends StatelessWidget {
     String? description,
     String? tag,
     required bool isSelected,
+    required SegmentedControlPriceVariant variant,
   }) {
     return SegmentedControlPriceOption(
       label: label,
@@ -153,6 +157,7 @@ class SegmentedControlPrice extends StatelessWidget {
       description: description,
       tag: tag,
       isSelected: isSelected,
+      variant: variant,
     );
   }
 }
