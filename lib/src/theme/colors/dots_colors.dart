@@ -215,6 +215,8 @@ class DotsColors {
     textDotbookOlive: Color(0xFF52572F),
     textDotbookIce: Color(0xFF3E585E),
     textDotbookRose: Color(0xFFA88692),
+    dotbookStartGradient: Color(0xFF94B0FA),
+    dotbookMiddleGradient: Color(0xFFD7F0FC),
   );
   static const dark = DotsColorsModel(
     bgBase: Color(0xFF191919),
@@ -428,6 +430,8 @@ class DotsColors {
     textDotbookOlive: Color(0xFF52572F),
     textDotbookIce: Color(0xFF3E585E),
     textDotbookRose: Color(0xFFA88692),
+    dotbookStartGradient: Color(0xFF4B6181),
+    dotbookMiddleGradient: Color(0xFF1A2B32),
   );
   static const recapGradientColors = [
     Color(0xFFEF5FC1),

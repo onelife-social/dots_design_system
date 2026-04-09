@@ -284,6 +284,8 @@ class DotsColorsModel {
   final Color textDotbookOlive;
   final Color textDotbookIce;
   final Color textDotbookRose;
+  final Color dotbookStartGradient;
+  final Color dotbookMiddleGradient;
 
   const DotsColorsModel({
     required this.bgBase,
@@ -497,6 +499,8 @@ class DotsColorsModel {
     required this.textDotbookOlive,
     required this.textDotbookIce,
     required this.textDotbookRose,
+    required this.dotbookStartGradient,
+    required this.dotbookMiddleGradient,
   });
 
   DotsColorsModel lerp(DotsColorsModel? other, double t) {
@@ -748,6 +752,10 @@ class DotsColorsModel {
           Color.lerp(textDotbookOlive, other?.textDotbookOlive, t) ?? textDotbookOlive,
       textDotbookIce: Color.lerp(textDotbookIce, other?.textDotbookIce, t) ?? textDotbookIce,
       textDotbookRose: Color.lerp(textDotbookRose, other?.textDotbookRose, t) ?? textDotbookRose,
+      dotbookStartGradient:
+          Color.lerp(dotbookStartGradient, other?.dotbookStartGradient, t) ?? dotbookStartGradient,
+      dotbookMiddleGradient:
+          Color.lerp(dotbookMiddleGradient, other?.dotbookMiddleGradient, t) ??dotbookMiddleGradient,
     );
   }
 }

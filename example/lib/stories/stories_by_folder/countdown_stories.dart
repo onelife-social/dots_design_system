@@ -21,6 +21,7 @@ List<Story> get countdownStories => [
           hoursLabel: context.knobs.text(label: 'Hours Label', initial: 'horas'),
           minutesLabel: context.knobs.text(label: 'Minutes Label', initial: 'min.'),
           secondsLabel: context.knobs.text(label: 'Seconds Label', initial: 'seg.'),
+          isDotbook: context.knobs.boolean(label: 'Is Dotbook', initial: false),
         ),
       ),
       Story(
