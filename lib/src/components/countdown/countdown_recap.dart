@@ -25,6 +25,7 @@ class CountdownRecap extends StatefulWidget {
   /// The label for seconds.
   final String secondsLabel;
 
+  /// Whether the countdown is for a Dotbook.
   final bool isDotbook;
 
   const CountdownRecap({
