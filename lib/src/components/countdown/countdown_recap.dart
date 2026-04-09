@@ -25,6 +25,8 @@ class CountdownRecap extends StatefulWidget {
   /// The label for seconds.
   final String secondsLabel;
 
+  final bool isDotbook;
+
   const CountdownRecap({
     super.key,
     required this.title,
@@ -34,6 +36,7 @@ class CountdownRecap extends StatefulWidget {
     required this.hoursLabel,
     required this.minutesLabel,
     required this.secondsLabel,
+    this.isDotbook = false,
   });
 
   @override
@@ -93,7 +96,9 @@ class _CountdownRecapState extends State<CountdownRecap> {
     final theme = context.dotsTheme;
 
     final decoration = BoxDecoration(
-      color: theme.colors.bgContainerSecondaryOnBackground,
+      color: widget.isDotbook 
+        ? theme.colors.textDisabled 
+        : theme.colors.bgContainerSecondaryOnBackground,
       borderRadius: DotsBorderRadius.r24,
       border: Border.all(
         color: Colors.white.dotsWithOpacity(0.3),
@@ -110,21 +115,24 @@ class _CountdownRecapState extends State<CountdownRecap> {
         child: DotsDecoratedBox(
           styleType: theme.styles.squircle24,
           decoration: decoration,
-          child: Padding(
-            padding: EdgeInsetsGeometry.only(left: 16, right: 16, top: 12, bottom: 16),
-            child: _isCountdownFinished
-                ? _CountdownFinishedBody(
-                    title: widget.title,
-                    description: widget.description,
-                  )
-                : _CountdownRecapBody(
-                    title: widget.title,
-                    timeRemaining: _timeRemaining,
-                    daysLabel: widget.daysLabel,
-                    hoursLabel: widget.hoursLabel,
-                    minutesLabel: widget.minutesLabel,
-                    secondsLabel: widget.secondsLabel,
-                  ),
+          child: SizedBox(
+            width: 192,
+            child: Padding(
+              padding: EdgeInsetsGeometry.only(left: 16, right: 16, top: 12, bottom: 16),
+              child: _isCountdownFinished
+                  ? _CountdownFinishedBody(
+                      title: widget.title,
+                      description: widget.description,
+                    )
+                  : _CountdownRecapBody(
+                      title: widget.title,
+                      timeRemaining: _timeRemaining,
+                      daysLabel: widget.daysLabel,
+                      hoursLabel: widget.hoursLabel,
+                      minutesLabel: widget.minutesLabel,
+                      secondsLabel: widget.secondsLabel,
+                    ),
+            ),
           ),
         ),
       ),
@@ -258,22 +266,19 @@ class _CountdownBaseBody extends StatelessWidget {
     final theme = context.dotsTheme;
     final Color textColor = theme.colors.labelAlwaysWhite;
 
-    return SizedBox(
-      width: 192,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          DotsIcon(iconData: DotsIconData.lock, size: 20, color: textColor),
-          const SizedBox(height: 4),
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: theme.typo.main.labelDefaultBold.copyWith(color: textColor),
-          ),
-          const SizedBox(height: 6),
-          child,
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        DotsIcon(iconData: DotsIconData.lock, size: 20, color: textColor),
+        const SizedBox(height: 4),
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: theme.typo.main.labelDefaultBold.copyWith(color: textColor),
+        ),
+        const SizedBox(height: 6),
+        child,
+      ],
     );
   }
 }
