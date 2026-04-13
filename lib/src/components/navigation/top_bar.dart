@@ -249,7 +249,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             if (onTapBack != null) ...[
-                              SizedBox(width: showCircleBackButton ? 16 : 8),
+                              const SizedBox(width: 16),
                               DotsIconButton(
                                 icon: DotsIconData.chevronLeft,
                                 size: DotsIconButtonSize.medium,
