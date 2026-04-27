@@ -49,6 +49,9 @@ class EventGroupCard extends StatelessWidget {
   /// Indicates if the group is blocked.
   final bool isBlocked;
 
+  /// The size of the edge blur effect.
+  final double? edgeSize;
+
   const EventGroupCard({
     this.variant = EventGroupCardVariant.small,
     required this.imageProvider,
@@ -60,6 +63,7 @@ class EventGroupCard extends StatelessWidget {
     this.onSecondaryTap,
     this.onError,
     this.isBlocked = false,
+    this.edgeSize,
     super.key,
   });
 
@@ -83,70 +87,61 @@ class EventGroupCard extends StatelessWidget {
           ),
           child: DotsDecoratedBox(
             styleType: styleType,
-            decoration: BoxDecoration(
-              image: !variant.isSmall
-                  ? DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
-                      onError: onError,
-                    )
-                  : null,
-            ),
             child: Stack(
               children: [
-                if (variant.isSmall)
-                  SoftEdgeBlur(
-                    edges: [
-                      EdgeBlur(
-                        type: EdgeType.bottomEdge,
-                        size: 60,
-                        sigma: 12,
-                        controlPoints: [
-                          ControlPoint(
-                            position: 0.5,
-                            type: ControlPointType.visible,
-                          ),
-                          ControlPoint(
-                            position: 1,
-                            type: ControlPointType.transparent,
-                          ),
-                        ],
-                      ),
-                    ],
-                    child: ClipSmoothRect(
-                      radius: SmoothBorderRadius(
-                        cornerRadius: styleType.radius,
-                        cornerSmoothing: styleType.cornerSmoothing,
-                      ),
-                      child: Image(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        height: double.infinity,
-                        errorBuilder: (context, error, stackTrace) {
-                          if (onError != null) onError!(error, stackTrace);
-                          return SizedBox();
-                        },
-                      ),
+                SoftEdgeBlur(
+                  edges: [
+                    EdgeBlur(
+                      type: EdgeType.bottomEdge,
+                      size: edgeSize ?? (variant.isSmall ? 60 : 110),
+                      sigma: 12,
+                      controlPoints: [
+                        ControlPoint(
+                          position: 0.5,
+                          type: ControlPointType.visible,
+                        ),
+                        ControlPoint(
+                          position: 1,
+                          type: ControlPointType.transparent,
+                        ),
+                      ],
                     ),
-                  ),
-                Align(
-                  alignment: variant.isSmall ? Alignment.bottomCenter : Alignment.topCenter,
-                  child: Container(
-                    height: variant.isSmall ? 43 : 94,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: variant.isSmall ? Alignment.bottomCenter : Alignment.topCenter,
-                        end: variant.isSmall ? Alignment.topCenter : Alignment.bottomCenter,
-                        colors: [
-                          Color(0x803c3c3c),
-                          Colors.transparent,
-                        ],
-                      ),
+                  ],
+                  child: ClipSmoothRect(
+                    radius: SmoothBorderRadius(
+                      cornerRadius: styleType.radius,
+                      cornerSmoothing: styleType.cornerSmoothing,
+                    ),
+                    child: Image(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: double.infinity,
+                      errorBuilder: (context, error, stackTrace) {
+                        if (onError != null) onError!(error, stackTrace);
+                        return SizedBox();
+                      },
                     ),
                   ),
                 ),
+                if (!variant.isSmall)
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      height: 94,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Color(0x803c3c3c),
+                            Colors.transparent,
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 Padding(
                   padding: EdgeInsets.all(variant.isSmall ? 16 : 24),
                   child: Stack(

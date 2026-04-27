@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 import '../../components/album_group_card_demo_page.dart';
+import '../../components/event_group_card_demo_page.dart';
 
 List<Story> get cards => [
       Story(
@@ -136,12 +137,8 @@ List<Story> get cards => [
         builder: (context) => Padding(
           padding: const EdgeInsets.all(16.0),
           child: AlbumGroupCardDemoPage(
-            imageProvider: NetworkImage(
-              context.knobs.text(
-                label: 'Container background image',
-                initial: 'https://picsum.photos/250?image=9',
-              ),
-            ),
+            imageProvider:  NetworkImage(context.knobs
+                .text(label: 'Feature image', initial: 'https://picsum.photos/250?image=9')),
             title: context.knobs.text(label: 'Group Name', initial: 'My Group'),
             variant: context.knobs.options<AlbumGroupCardVariant>(
               label: 'Variant',
@@ -169,60 +166,35 @@ List<Story> get cards => [
       Story(
         name: 'Cards/Event Group Cards',
         description: 'Demo page for event group cards',
-        builder: (context) {
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Center(
-              child: EventGroupCard(
-                variant: context.knobs.options<EventGroupCardVariant>(
-                  label: 'Variant',
-                  initial: EventGroupCardVariant.small,
-                  options: EventGroupCardVariant.values
-                      .map((item) => Option(label: item.name, value: item))
-                      .toList(),
-                ),
-                imageProvider: NetworkImage(
-                  context.knobs.text(
-                    label: 'Container background image',
-                    initial: 'https://picsum.photos/250?image=9',
-                  ),
-                ),
-                title: context.knobs.text(label: 'Group Name', initial: 'My Group'),
-                tagIconData: context.knobs.nullable.options<DotsIconData>(
-                  label: 'Icon Data Tag',
-                  initial: DotsIconData.prime1,
-                  options: DotsIconData.values
-                      .map((item) => Option(label: item.name, value: item))
-                      .toList(),
-                ),
-                onTap: () {},
-                onError: (exception, stackTrace) {},
-                actions: [
-                  GroupEventCardModel(
-                    text: 'Chat',
-                    icon: DotsIconData.chat,
-                    onTap: () {},
-                  ),
-                  GroupEventCardModel(
-                    text: 'Subir',
-                    icon: DotsIconData.camera,
-                    onTap: () {},
-                  ),
-                  GroupEventCardModel(
-                    text: 'Planning',
-                    icon: DotsIconData.planner,
-                    onTap: () {},
-                  ),
-                ],
-                secondaryText: context.knobs.text(
-                  label: 'Button Text',
-                  initial: 'Reducir tamaño',
-                ),
-                isBlocked: context.knobs.boolean(label: 'Is Blocked', initial: false),
-              ),
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: EventGroupCardDemoPage(
+            imageProvider:  NetworkImage(context.knobs
+                .text(label: 'Feature image', initial: 'https://picsum.photos/250?image=9')),
+            title: context.knobs.text(label: 'Group Name', initial: 'My Group'),
+            variant: context.knobs.options<EventGroupCardVariant>(
+              label: 'Variant',
+              initial: EventGroupCardVariant.small,
+              options: EventGroupCardVariant.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
             ),
-          );
-        },
+            tagIconData: context.knobs.nullable.options<DotsIconData>(
+              label: 'Icon Data Tag',
+              initial: DotsIconData.prime1,
+              options:
+                  DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
+            ),
+            secondaryText: context.knobs.text(
+              label: 'Button Text',
+              initial: 'Reducir tamaño',
+            ),
+            isBlocked: context.knobs.boolean(label: 'Is Blocked', initial: false),
+            edgeSize: context.knobs
+                .sliderInt(label: 'Edge Size', initial: 100, min: 0, max: 500)
+                .toDouble(),
+          ),
+        ),
       ),
       Story(
         name: 'Cards/Create Card',
@@ -294,40 +266,43 @@ List<Story> get cards => [
         name: 'Cards/DotBook Feature Card',
         description: 'Demo page for DotBook feature card',
         builder: (context) => Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: DotBookFeatureCard(
-              imageCard: NetworkImage(context.knobs.text(
-                  label: 'Feature image', initial: 'https://picsum.photos/250?image=9')),
-              imageHeight: context.knobs.slider(label: 'Image Height', initial: 80, min: 50, max: 200),
-              width: context.knobs.slider(label: 'Card Width', initial: 185, min: 100, max: 300),
-              title: context.knobs.text(label: 'Title', initial: 'High quality paper'),
-              description: context.knobs.text(
-                label: 'Description',
-                initial: 'Our books are made with high quality paper that ensures durability and a pleasant reading experience.',
-              ),
+          padding: const EdgeInsets.all(16.0),
+          child: DotBookFeatureCard(
+            imageCard: NetworkImage(context.knobs
+                .text(label: 'Feature image', initial: 'https://picsum.photos/250?image=9')),
+            imageHeight:
+                context.knobs.slider(label: 'Image Height', initial: 80, min: 50, max: 200),
+            width: context.knobs.slider(label: 'Card Width', initial: 185, min: 100, max: 300),
+            title: context.knobs.text(label: 'Title', initial: 'High quality paper'),
+            description: context.knobs.text(
+              label: 'Description',
+              initial:
+                  'Our books are made with high quality paper that ensures durability and a pleasant reading experience.',
             ),
           ),
+        ),
       ),
       Story(
         name: 'Cards/Testimonial card',
         description: 'Demo page for book feature text item',
-         builder: (context) => 
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: DotBookTestimonialCard(
-              imageCard: NetworkImage(context.knobs.text(
-                  label: 'Testimonial image', initial: 'https://picsum.photos/250?image=9')),
-              imageProfile: NetworkImage(context.knobs.text(
-                  label: 'Profile image', initial: 'https://picsum.photos/250?image=10')),
-              imageHeight: context.knobs.slider(label: 'Image Height', initial: 170, min: 50, max: 300),
-              width: context.knobs.slider(label: 'Card Width', initial: 300, min: 100, max: 600),
-              title: context.knobs.text(label: 'Title', initial: 'John Doe'),
-              description: context.knobs.text(
-                label: 'Description',
-                initial: 'I absolutely love this book! The quality is amazing and it has become my go-to for all my reading needs.',
-              ),
-              username: context.knobs.text(label: 'Username', initial: '@johndoe'),
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: DotBookTestimonialCard(
+            imageCard: NetworkImage(context.knobs
+                .text(label: 'Testimonial image', initial: 'https://picsum.photos/250?image=9')),
+            imageProfile: NetworkImage(context.knobs
+                .text(label: 'Profile image', initial: 'https://picsum.photos/250?image=10')),
+            imageHeight:
+                context.knobs.slider(label: 'Image Height', initial: 170, min: 50, max: 300),
+            width: context.knobs.slider(label: 'Card Width', initial: 300, min: 100, max: 600),
+            title: context.knobs.text(label: 'Title', initial: 'John Doe'),
+            description: context.knobs.text(
+              label: 'Description',
+              initial:
+                  'I absolutely love this book! The quality is amazing and it has become my go-to for all my reading needs.',
             ),
+            username: context.knobs.text(label: 'Username', initial: '@johndoe'),
           ),
+        ),
       ),
     ];
