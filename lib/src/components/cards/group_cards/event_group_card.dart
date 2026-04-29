@@ -136,8 +136,8 @@ class EventGroupCard extends StatelessWidget {
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
-                            Color.fromARGB(255, 0, 0, 0).withOpacity(0.0),
-                            Color.fromARGB(255, 0, 0, 0).withOpacity(0.2),
+                            Color.fromARGB(255, 0, 0, 0).withValues(alpha: 0.0),
+                            Color.fromARGB(255, 0, 0, 0).withValues(alpha: 0.2),
                           ],
                         ),
                       ),
