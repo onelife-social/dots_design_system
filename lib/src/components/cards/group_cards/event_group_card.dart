@@ -73,6 +73,7 @@ class EventGroupCard extends StatelessWidget {
     final DotsStyleSquircle styleType = variant.isSmall
         ? theme.styles.squircle32
         : theme.styles.squircle52;
+    final double bottomBlurHeight = edgeSize ?? (variant.isSmall ? 60 : 110);
 
     return GestureDetector(
       onTap: onTap,
@@ -93,7 +94,7 @@ class EventGroupCard extends StatelessWidget {
                   edges: [
                     EdgeBlur(
                       type: EdgeType.bottomEdge,
-                      size: edgeSize ?? (variant.isSmall ? 60 : 110),
+                      size: bottomBlurHeight,
                       sigma: 12,
                       controlPoints: [
                         ControlPoint(
@@ -121,6 +122,25 @@ class EventGroupCard extends StatelessWidget {
                         if (onError != null) onError!(error, stackTrace);
                         return SizedBox();
                       },
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: IgnorePointer(
+                    child: Container(
+                      height: bottomBlurHeight,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Color.fromARGB(255, 0, 0, 0).withOpacity(0.0),
+                            Color.fromARGB(255, 0, 0, 0).withOpacity(0.2),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
