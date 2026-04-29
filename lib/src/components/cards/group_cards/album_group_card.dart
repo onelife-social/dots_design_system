@@ -58,6 +58,7 @@ class AlbumGroupCard extends StatelessWidget {
     final DotsStyleSquircle styleType = variant.isLarge
         ? theme.styles.squircle52
         : theme.styles.squircle32;
+    final double bottomBlurHeight = edgeSize ?? (variant.isLarge ? 110 : 60);
 
     return GestureDetector(
       onTap: onTap,
@@ -78,7 +79,7 @@ class AlbumGroupCard extends StatelessWidget {
                   edges: [
                     EdgeBlur(
                       type: EdgeType.bottomEdge,
-                      size: edgeSize ?? (variant.isLarge ? 110 : 60),
+                      size: bottomBlurHeight,
                       sigma: blurSigma ?? 12,
                       controlPoints: [
                         ControlPoint(
@@ -106,6 +107,25 @@ class AlbumGroupCard extends StatelessWidget {
                         if (onError != null) onError!(error, stackTrace);
                         return SizedBox();
                       },
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: IgnorePointer(
+                    child: Container(
+                      height: bottomBlurHeight,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Color.fromARGB(255, 0, 0, 0).withValues(alpha: 0.0),
+                            Color.fromARGB(255, 0, 0, 0).withValues(alpha: 0.2),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
