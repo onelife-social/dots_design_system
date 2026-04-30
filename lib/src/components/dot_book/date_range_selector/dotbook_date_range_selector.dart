@@ -242,7 +242,7 @@ class DotbookDateRangeSelector extends StatelessWidget {
     final selectedDate = _dateOnly(date);
     var nextStartDate = _dateOnly(startDate);
     DateTime? nextEndDate = endDate != null ? _dateOnly(endDate!) : null;
-    final shouldMoveToEndField = selectedField == DotbookDateField.start && nextEndDate == null;
+    final shouldMoveToEndField = selectedField == DotbookDateField.start;
 
     if (selectedField == DotbookDateField.start) {
       nextStartDate = selectedDate;
