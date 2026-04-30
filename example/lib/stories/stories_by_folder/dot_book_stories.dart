@@ -608,17 +608,17 @@ List<Story> get dotBookStories => [
         description: 'Demo page for DotBook date range selector',
         builder: (context) => Builder(
           builder: (context) {
-            final firstOptionLabel = context.knobs.text(
-              label: 'First option title',
-              initial: 'Últimos 7 días',
+            final firstYearOptionLabel = context.knobs.text(
+              label: 'First year option label',
+              initial: 'Primer año',
             );
-            final secondOptionLabel = context.knobs.text(
-              label: 'Second option title',
-              initial: 'Últimos 30 días',
+            final specificYearOptionLabel = context.knobs.text(
+              label: 'Specific year option label',
+              initial: 'Año específico',
             );
-            final thirdOptionLabel = context.knobs.text(
-              label: 'Third option title',
-              initial: 'Rango personalizado',
+            final dateRangeOptionLabel = context.knobs.text(
+              label: 'Date range option label',
+              initial: 'Rango de fechas',
             );
             final startDateTitle = context.knobs.text(
               label: 'Start date title',
@@ -628,16 +628,16 @@ List<Story> get dotBookStories => [
               label: 'End date title',
               initial: 'Fecha de fin',
             );
-            final firstOptionDescription = context.knobs.nullable.text(
-              label: 'First option description',
-              initial: 'Selecciona una semana completa',
+            final firstYearOptionDescription = context.knobs.nullable.text(
+              label: 'First year option description',
+              initial: 'Contenido relacionado con el primer año',
             );
-            final secondOptionDescription = context.knobs.nullable.text(
-              label: 'Second option description',
+            final specificYearOptionDescription = context.knobs.nullable.text(
+              label: 'Specific year option description',
               initial: '',
             );
-            final thirdOptionDescription = context.knobs.nullable.text(
-              label: 'Third option description',
+            final dateRangeOptionDescription = context.knobs.nullable.text(
+              label: 'Date range option description',
               initial: '',
             );
             final firstRangeDays = context.knobs.sliderInt(
@@ -668,12 +668,12 @@ List<Story> get dotBookStories => [
                 return Padding(
                   padding: const EdgeInsets.all(16),
                   child: DotbookDateRangeSelector(
-                    firstOptionLabel: firstOptionLabel,
-                    secondOptionLabel: secondOptionLabel,
-                    thirdOptionLabel: thirdOptionLabel,
-                    firstOptionDescription: firstOptionDescription,
-                    secondOptionDescription: secondOptionDescription,
-                    thirdOptionDescription: thirdOptionDescription,
+                    firstYearOptionTitle: firstYearOptionLabel,
+                    specificYearOptionTitle: specificYearOptionLabel,
+                    dateRangeOptionTitle: dateRangeOptionLabel,
+                    firstYearOptionDescription: firstYearOptionDescription,
+                    specificYearOptionDescription: specificYearOptionDescription,
+                    dateRangeOptionDescription: dateRangeOptionDescription,
                     selectedOption: selectedOption,
                     selectedField: selectedField,
                     startDate: startDate,
