@@ -1,7 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:cupertino_calendar_picker/cupertino_calendar_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 enum DotbookDateRangeOption {
   first,
@@ -69,13 +69,13 @@ class DotbookDateRangeSelector extends StatelessWidget {
     final normalizedStartDate = _dateOnly(startDate);
     final normalizedEndDate = endDate != null ? _dateOnly(endDate!) : null;
     final normalizedCurrentDate = _dateOnly(currentDate ?? DateTime.now());
-    final normalizedFirstAllowedDate = _dateOnly(firstAllowedDate ?? DateTime(2020));
+    final normalizedFirstAllowedDate = _dateOnly(firstAllowedDate ?? DateTime(1970, 1, 1));
     final normalizedLastAllowedDate = _dateOnly(lastAllowedDate ?? DateTime(2100));
     final isCustomSelected = selectedOption == DotbookDateRangeOption.custom;
-    final activeDate = selectedField == DotbookDateField.start
+    final selectedDate = selectedField == DotbookDateField.start
         ? normalizedStartDate
         : normalizedEndDate ?? normalizedStartDate;
-    final calendarFocusedDay = _clampDate(
+    final displayedDate = _clampDate(
       _dateOnly(
         focusedDate ??
             (selectedField == DotbookDateField.start
@@ -154,131 +154,76 @@ class DotbookDateRangeSelector extends StatelessWidget {
                             borderRadius: DotsBorderRadius.r16,
                             child: Container(
                               color: theme.colors.bgContainerSecondary,
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  _CalendarHeader(
-                                    title: _formatMonthYear(calendarFocusedDay, localeName),
-                                    onPreviousMonth:
-                                        _canGoToPreviousMonth(
-                                          calendarFocusedDay,
-                                          normalizedFirstAllowedDate,
-                                        )
-                                        ? () => onFocusedDateChanged?.call(
-                                            _previousMonth(calendarFocusedDay),
-                                          )
-                                        : null,
-                                    onNextMonth:
-                                        _canGoToNextMonth(
-                                          calendarFocusedDay,
-                                          normalizedLastAllowedDate,
-                                        )
-                                        ? () => onFocusedDateChanged?.call(
-                                            _nextMonth(calendarFocusedDay),
-                                          )
-                                        : null,
+                              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                              child: Theme(
+                                data: Theme.of(context),
+                                child: CupertinoCalendar(
+                                  key: ValueKey(
+                                    '${selectedField.name}-${selectedDate.millisecondsSinceEpoch}-${displayedDate.millisecondsSinceEpoch}',
                                   ),
-                                  const SizedBox(height: 8),
-                                  TableCalendar<DateTime>(
-                                    locale: localeName,
-                                    headerVisible: false,
-                                    firstDay: normalizedFirstAllowedDate,
-                                    lastDay: normalizedLastAllowedDate,
-                                    focusedDay: calendarFocusedDay,
-                                    currentDay: normalizedCurrentDate,
-                                    availableCalendarFormats: const {
-                                      CalendarFormat.month: 'Month',
-                                    },
-                                    calendarFormat: CalendarFormat.month,
-                                    startingDayOfWeek: _startingDayOfWeek(context),
-                                    availableGestures: AvailableGestures.horizontalSwipe,
-                                    rowHeight: 38,
-                                    daysOfWeekHeight: 22,
-                                    daysOfWeekStyle: DaysOfWeekStyle(
-                                      weekdayStyle: theme.typo.main.labelDefaultRegular.copyWith(
-                                        color: theme.colors.textQuarternary,
-                                      ),
-                                      weekendStyle: theme.typo.main.labelDefaultRegular.copyWith(
-                                        color: theme.colors.textQuarternary,
-                                      ),
-                                    ),
-                                    calendarStyle: CalendarStyle(
-                                      outsideDaysVisible: false,
-                                      isTodayHighlighted: true,
-                                      rangeHighlightColor: theme.colors.bgHighlight.dotsWithOpacity(
-                                        0.10,
-                                      ),
-                                      withinRangeDecoration: BoxDecoration(
-                                        color: theme.colors.bgHighlight.dotsWithOpacity(0.10),
-                                        borderRadius: BorderRadius.circular(999),
-                                      ),
-                                      withinRangeTextStyle: theme.typo.main.bodyDefaultMedium
-                                          .copyWith(color: theme.colors.textPrimary),
-                                      rangeStartDecoration: BoxDecoration(
-                                        color: theme.colors.labelHighlight,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      rangeEndDecoration: BoxDecoration(
-                                        color: theme.colors.labelHighlight,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      rangeStartTextStyle: theme.typo.main.bodyDefaultMedium
-                                          .copyWith(color: theme.colors.labelAlwaysWhite),
-                                      rangeEndTextStyle: theme.typo.main.bodyDefaultMedium.copyWith(
-                                        color: theme.colors.labelAlwaysWhite,
-                                      ),
-                                      selectedDecoration: BoxDecoration(
-                                        color: theme.colors.labelHighlight,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      selectedTextStyle: theme.typo.main.bodyDefaultMedium.copyWith(
-                                        color: theme.colors.labelAlwaysWhite,
-                                      ),
-                                      todayDecoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: theme.colors.labelHighlight.dotsWithOpacity(0.35),
-                                        ),
-                                        shape: BoxShape.circle,
-                                      ),
-                                      todayTextStyle: theme.typo.main.bodyDefaultMedium.copyWith(
-                                        color: theme.colors.textPrimary,
-                                      ),
-                                      defaultDecoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      weekendDecoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      defaultTextStyle: theme.typo.main.bodyDefaultMedium.copyWith(
-                                        color: theme.colors.textPrimary,
-                                      ),
-                                      weekendTextStyle: theme.typo.main.bodyDefaultMedium.copyWith(
+                                  initialDateTime: selectedDate,
+                                  minimumDateTime: normalizedFirstAllowedDate,
+                                  maximumDateTime: normalizedLastAllowedDate,
+                                  currentDateTime: normalizedCurrentDate,
+                                  firstDayOfWeekIndex: MaterialLocalizations.of(
+                                    context,
+                                  ).firstDayOfWeekIndex,
+                                  onDateTimeChanged: _onDateSelected,
+                                  onDateSelected: _onDateSelected,
+                                  onDisplayedMonthChanged: (date) {
+                                    onFocusedDateChanged?.call(_dateOnly(date));
+                                  },
+                                  mainColor: theme.colors.labelHighlight,
+                                  use24hFormat: MediaQuery.alwaysUse24HourFormatOf(context),
+                                  mode: CupertinoCalendarMode.date,
+                                  type: CupertinoCalendarType.inline,
+                                  monthPickerDecoration: CalendarMonthPickerDecoration(
+                                    defaultDayStyle: CalendarMonthPickerDefaultDayStyle(
+                                      textStyle: theme.typo.main.bodyDefaultMedium.copyWith(
                                         color: theme.colors.textPrimary,
                                       ),
                                     ),
-                                    calendarBuilders: CalendarBuilders<DateTime>(
-                                      dowBuilder: (context, day) => Center(
-                                        child: Text(
-                                          DateFormat.E(localeName).format(day).substring(0, 1),
-                                          style: theme.typo.main.labelDefaultRegular.copyWith(
-                                            color: theme.colors.textQuarternary,
+                                    currentDayStyle: CalendarMonthPickerCurrentDayStyle(
+                                      textStyle: theme.typo.main.bodyDefaultMedium.copyWith(
+                                        color: theme.colors.labelHighlight,
+                                      ),
+                                    ),
+                                    selectedDayStyle: CalendarMonthPickerSelectedDayStyle(
+                                      mainColor: theme.colors.labelHighlight,
+                                      textStyle: theme.typo.main.bodyDefaultMedium.copyWith(
+                                        color: theme.colors.labelHighlight,
+                                      ),
+                                    ),
+                                    selectedCurrentDayStyle:
+                                        CalendarMonthPickerSelectedCurrentDayStyle(
+                                          mainColor: theme.colors.labelHighlight,
+                                          backgroundCircleColor: theme.colors.labelHighlight
+                                              .dotsWithOpacity(0.20),
+                                          textStyle: theme.typo.main.bodyDefaultMedium.copyWith(
+                                            color: theme.colors.labelHighlight,
                                           ),
                                         ),
+                                    disabledDayStyle: CalendarMonthPickerDisabledDayStyle(
+                                      textStyle: theme.typo.main.bodyDefaultMedium.copyWith(
+                                        color: theme.colors.textQuarternary,
                                       ),
                                     ),
-                                    rangeStartDay: normalizedStartDate,
-                                    rangeEndDay: normalizedEndDate,
-                                    selectedDayPredicate: (day) => isSameDay(day, activeDate),
-                                    onDaySelected: (selectedDay, focusedDay) {
-                                      onFocusedDateChanged?.call(_dateOnly(focusedDay));
-                                      _onDateSelected(selectedDay);
-                                    },
-                                    onPageChanged: (focusedDay) {
-                                      onFocusedDateChanged?.call(_dateOnly(focusedDay));
-                                    },
                                   ),
-                                ],
+                                  weekdayDecoration: CalendarWeekdayDecoration(
+                                    textStyle: theme.typo.main.labelDefaultRegular.copyWith(
+                                      color: theme.colors.textQuarternary,
+                                    ),
+                                  ),
+                                  headerDecoration: CalendarHeaderDecoration(
+                                    mainColor: theme.colors.labelHighlight,
+                                    monthDateStyle: theme.typo.main.bodyLargeMedium.copyWith(
+                                      color: theme.colors.textPrimary,
+                                    ),
+                                    monthDateArrowColor: theme.colors.labelHighlight,
+                                    forwardButtonColor: theme.colors.labelHighlight,
+                                    backwardButtonColor: theme.colors.labelHighlight,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -330,22 +275,6 @@ class DotbookDateRangeSelector extends StatelessWidget {
 
   DateTime _dateOnly(DateTime value) => DateTime(value.year, value.month, value.day);
 
-  DateTime _previousMonth(DateTime value) => DateTime(value.year, value.month - 1, 1);
-
-  DateTime _nextMonth(DateTime value) => DateTime(value.year, value.month + 1, 1);
-
-  bool _canGoToPreviousMonth(DateTime focusedDay, DateTime firstAllowedDate) {
-    final previousMonth = _previousMonth(focusedDay);
-
-    return !previousMonth.isBefore(DateTime(firstAllowedDate.year, firstAllowedDate.month, 1));
-  }
-
-  bool _canGoToNextMonth(DateTime focusedDay, DateTime lastAllowedDate) {
-    final nextMonth = _nextMonth(focusedDay);
-
-    return !nextMonth.isAfter(DateTime(lastAllowedDate.year, lastAllowedDate.month, 1));
-  }
-
   DateTime _clampDate(DateTime value, {DateTime? minDate, DateTime? maxDate}) {
     if (minDate != null && value.isBefore(minDate)) {
       return minDate;
@@ -366,12 +295,6 @@ class DotbookDateRangeSelector extends StatelessWidget {
     return DateFormat('d MMMM y', localeName).format(value);
   }
 
-  String _formatMonthYear(DateTime value, String localeName) {
-    final formatted = DateFormat.yMMMM(localeName).format(value);
-
-    return formatted.substring(0, 1).toUpperCase() + formatted.substring(1);
-  }
-
   String _localeName(BuildContext context) {
     final locale = Localizations.localeOf(context);
 
@@ -380,27 +303,6 @@ class DotbookDateRangeSelector extends StatelessWidget {
     }
 
     return '${locale.languageCode}_${locale.countryCode}';
-  }
-
-  StartingDayOfWeek _startingDayOfWeek(BuildContext context) {
-    switch (MaterialLocalizations.of(context).firstDayOfWeekIndex) {
-      case 0:
-        return StartingDayOfWeek.sunday;
-      case 1:
-        return StartingDayOfWeek.monday;
-      case 2:
-        return StartingDayOfWeek.tuesday;
-      case 3:
-        return StartingDayOfWeek.wednesday;
-      case 4:
-        return StartingDayOfWeek.thursday;
-      case 5:
-        return StartingDayOfWeek.friday;
-      case 6:
-        return StartingDayOfWeek.saturday;
-      default:
-        return StartingDayOfWeek.monday;
-    }
   }
 }
 
@@ -501,77 +403,6 @@ class _DateFieldCard extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _CalendarHeader extends StatelessWidget {
-  const _CalendarHeader({
-    required this.title,
-    this.onPreviousMonth,
-    this.onNextMonth,
-  });
-
-  final String title;
-  final VoidCallback? onPreviousMonth;
-  final VoidCallback? onNextMonth;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-
-    return Row(
-      children: [
-        Expanded(
-          child: Text(
-            title,
-            style: theme.typo.main.bodyLargeMedium.copyWith(
-              color: theme.colors.textPrimary,
-            ),
-          ),
-        ),
-        _CalendarHeaderButton(
-          icon: Icons.chevron_left,
-          onTap: onPreviousMonth,
-        ),
-        const SizedBox(width: 4),
-        _CalendarHeaderButton(
-          icon: Icons.chevron_right,
-          onTap: onNextMonth,
-        ),
-      ],
-    );
-  }
-}
-
-class _CalendarHeaderButton extends StatelessWidget {
-  const _CalendarHeaderButton({
-    required this.icon,
-    this.onTap,
-  });
-
-  final IconData icon;
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-    final isEnabled = onTap != null;
-
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(999),
-        child: Padding(
-          padding: const EdgeInsets.all(6),
-          child: Icon(
-            icon,
-            size: 18,
-            color: isEnabled ? theme.colors.textPrimary : theme.colors.textQuarternary,
-          ),
         ),
       ),
     );

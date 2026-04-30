@@ -682,7 +682,7 @@ List<Story> get dotBookStories => [
                     endDateTitle: endDateTitle,
                     focusedDate: focusedDate,
                     showCustomOption: showCustomOption,
-                    firstAllowedDate: DateTime(2025, 1, 1),
+                    firstAllowedDate: DateTime(1970, 1, 1),
                     lastAllowedDate: DateTime(2026, 12, 31),
                     onOptionChanged: (option) {
                       setState(() {
