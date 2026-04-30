@@ -1,4 +1,4 @@
 enum DotbookDateField {
-  start,
-  end,
+  startDate,
+  endDate,
 }

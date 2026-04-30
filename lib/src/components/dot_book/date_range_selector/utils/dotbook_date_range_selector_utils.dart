@@ -101,12 +101,12 @@ class DotbookDateRangeSelectorUtils {
     DotbookDateField? nextField;
     var focusedDate = selectedDate;
 
-    if (selectedField == DotbookDateField.start) {
+    if (selectedField == DotbookDateField.startDate) {
       nextStartDate = selectedDate;
       if (nextEndDate != null && selectedDate.isAfter(nextEndDate)) {
         nextEndDate = selectedDate;
       }
-      nextField = DotbookDateField.end;
+      nextField = DotbookDateField.endDate;
       focusedDate = dateOnly(nextEndDate ?? selectedDate);
     } else {
       nextEndDate = selectedDate;

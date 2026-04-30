@@ -60,18 +60,6 @@ String? _max30Nullable(String? value) {
 
 DateTime _storyDateOnly(DateTime value) => DateTime(value.year, value.month, value.day);
 
-DateTimeRangeSelection _storyPresetSelection({
-  required Duration rangeDuration,
-  DateTime? referenceDate,
-}) {
-  final endDate = _storyDateOnly(referenceDate ?? DateTime.now());
-
-  return DateTimeRangeSelection(
-    startDate: endDate.subtract(rangeDuration),
-    endDate: endDate,
-  );
-}
-
 List<Story> get dotBookStories => [
       Story(
         name: 'DotBook Components/page control',
@@ -603,191 +591,187 @@ List<Story> get dotBookStories => [
         description: 'Demo page for DotBook date range selector',
         builder: (context) => Builder(
           builder: (context) {
-            final firstYearOptionLabel = context.knobs.text(
-              label: 'First year option label',
+            final firstItemTitle = context.knobs.text(
+              label: 'First item title',
               initial: 'Primer año de Anna',
             );
-            final specificYearOptionLabel = context.knobs.text(
-              label: 'Specific year option label',
+            final secondItemTitle = context.knobs.text(
+              label: 'Second item title',
               initial: 'Recuerdos de 2026',
             );
-            final dateRangeOptionLabel = context.knobs.text(
-              label: 'Date range option label',
+            final thirdItemTitle = context.knobs.text(
+              label: 'Third item title',
               initial: 'Elegir fechas',
+            );
+            final firstItemDescription = context.knobs.nullable.text(
+              label: 'First item description',
+              initial: 'Jul 2024 → Jul 2025',
+            );
+            final secondItemDescription = context.knobs.nullable.text(
+              label: 'Second item description',
+              initial: '',
+            );
+            final thirdItemDescription = context.knobs.nullable.text(
+              label: 'Third item description',
+              initial: 'Selecciona un periodo',
             );
             final startDateTitle = context.knobs.text(
               label: 'Start date title',
-              initial: 'Fecha de inicio',
+              initial: 'Inicio',
             );
             final endDateTitle = context.knobs.text(
               label: 'End date title',
-              initial: 'Fecha de fin',
-            );
-            final firstYearOptionDescription = context.knobs.nullable.text(
-              label: 'First year option description',
-              initial: 'Jul 2024 → Jul 2025',
-            );
-            final specificYearOptionDescription = context.knobs.nullable.text(
-              label: 'Specific year option description',
-              initial: '',
-            );
-            final dateRangeOptionDescription = context.knobs.nullable.text(
-              label: 'Date range option description',
-              initial: 'Selecciona un periodo',
-            );
-            final firstYearOptionShowCalendar = context.knobs.boolean(
-              label: 'First year option show calendar',
-              initial: false,
-            );
-            final specificYearOptionShowCalendar = context.knobs.boolean(
-              label: 'Specific year option show calendar',
-              initial: false,
-            );
-            final dateRangeOptionShowCalendar = context.knobs.boolean(
-              label: 'Date range option show calendar',
-              initial: true,
-            );
-            final firstRangeDays = context.knobs.sliderInt(
-              label: 'First preset days',
-              initial: 7,
-              min: 1,
-              max: 60,
-            );
-            final secondRangeDays = context.knobs.sliderInt(
-              label: 'Second preset days',
-              initial: 30,
-              min: 1,
-              max: 120,
-            );
-            final showCustomOption = context.knobs.boolean(
-              label: 'Show custom option',
-              initial: true,
+              initial: 'Fin',
             );
 
-            bool isFirstYearOptionSelected = true;
-            bool isSpecificYearOptionSelected = false;
-            bool isDateRangeOptionSelected = false;
-            DotbookDateField selectedField = DotbookDateField.start;
-            DateTime focusedDate = _storyDateOnly(DateTime.now());
-            DateTime startDate = focusedDate;
+            int selectedItemIndex = context.knobs.sliderInt(
+              label: 'Selected item index',
+              initial: 0,
+              min: 0,
+              max: 2,
+            );
+            DotbookDateField selectedField = DotbookDateField.startDate;
+            
+            final today = _storyDateOnly(DateTime.now());
+            DateTime startDate = today;
             DateTime? endDate;
+
+            if (selectedItemIndex == 0) {
+              final previousYear = today.year - 1;
+              startDate = DateTime(previousYear, 6, 1);
+              endDate = DateTime(previousYear, 8, 0);
+            } else if (selectedItemIndex == 1) {
+              startDate = DateTime(2026, 1, 1);
+              endDate = today.isBefore(DateTime(2026, 1, 1))
+                  ? DateTime(2026, 1, 1)
+                  : today.isAfter(DateTime(2026, 12, 31))
+                      ? DateTime(2026, 12, 31)
+                      : today;
+            } else if (selectedItemIndex == 2) {
+              startDate = today;
+              endDate = null;
+            }
+
+            DateTime focusedDate = startDate;
 
             return StatefulBuilder(
               builder: (context, setState) {
+
+                String formatSelectedDate(DateTime? date) {
+                  if (date == null) {
+                    return 'Sin seleccionar';
+                  }
+
+                  return MaterialLocalizations.of(context).formatMediumDate(date);
+                }
+
+                void selectItem(int index, String title) {
+                  setState(() {
+                    selectedItemIndex = index;
+
+                    if (index == 0) {
+                      final previousYear = today.year - 1;
+                      startDate = DateTime(previousYear, 6, 1);
+                      endDate = DateTime(previousYear, 8, 0);
+                      focusedDate = startDate;
+                    }
+
+                    if (index == 1) {
+                      startDate = DateTime(2026, 1, 1);
+                      endDate = today.isBefore(DateTime(2026, 1, 1))
+                          ? DateTime(2026, 1, 1)
+                          : today.isAfter(DateTime(2026, 12, 31))
+                              ? DateTime(2026, 12, 31)
+                              : today;
+                      focusedDate = startDate;
+                    }
+
+                    if (index == 2) {
+                      selectedField = DotbookDateField.startDate;
+                      startDate = today;
+                      endDate = null;
+                      focusedDate = today;
+                    }
+                  });
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Tap en "$title"')),
+                  );
+                }
+
                 final items = <DotbookDateRangeSelectorItem>[
                   DotbookDateRangeSelectorItem(
-                    title: firstYearOptionLabel,
-                    subtitle: firstYearOptionDescription,
-                    isSelected: isFirstYearOptionSelected,
-                    showCalendar: firstYearOptionShowCalendar,
-                    onTap: () {
-                      setState(() {
-                        isFirstYearOptionSelected = true;
-                        isSpecificYearOptionSelected = false;
-                        isDateRangeOptionSelected = false;
-
-                        if (firstYearOptionShowCalendar) {
-                          focusedDate = selectedField == DotbookDateField.start
-                              ? startDate
-                              : endDate ?? startDate;
-                          return;
-                        }
-
-                        final presetSelection = _storyPresetSelection(
-                          rangeDuration: Duration(days: firstRangeDays - 1),
-                          referenceDate: focusedDate,
-                        );
-
-                        startDate = presetSelection.startDate;
-                        endDate = presetSelection.endDate;
-                        focusedDate = endDate ?? startDate;
-                      });
-                    },
+                    title: firstItemTitle,
+                    subtitle: firstItemDescription,
+                    isSelected: selectedItemIndex == 0,
+                    onTap: () => selectItem(0, firstItemTitle),
                   ),
                   DotbookDateRangeSelectorItem(
-                    title: specificYearOptionLabel,
-                    subtitle: specificYearOptionDescription,
-                    isSelected: isSpecificYearOptionSelected,
-                    showCalendar: specificYearOptionShowCalendar,
-                    onTap: () {
-                      setState(() {
-                        isFirstYearOptionSelected = false;
-                        isSpecificYearOptionSelected = true;
-                        isDateRangeOptionSelected = false;
-
-                        if (specificYearOptionShowCalendar) {
-                          focusedDate = selectedField == DotbookDateField.start
-                              ? startDate
-                              : endDate ?? startDate;
-                          return;
-                        }
-
-                        final presetSelection = _storyPresetSelection(
-                          rangeDuration: Duration(days: secondRangeDays - 1),
-                          referenceDate: focusedDate,
-                        );
-
-                        startDate = presetSelection.startDate;
-                        endDate = presetSelection.endDate;
-                        focusedDate = endDate ?? startDate;
-                      });
-                    },
+                    title: secondItemTitle,
+                    subtitle: secondItemDescription,
+                    isSelected: selectedItemIndex == 1,
+                    onTap: () => selectItem(1, secondItemTitle),
                   ),
-                  if (showCustomOption)
-                    DotbookDateRangeSelectorItem(
-                      title: dateRangeOptionLabel,
-                      subtitle: dateRangeOptionDescription,
-                      isSelected: isDateRangeOptionSelected,
-                      showCalendar: dateRangeOptionShowCalendar,
-                      onTap: () {
-                        setState(() {
-                          isFirstYearOptionSelected = false;
-                          isSpecificYearOptionSelected = false;
-                          isDateRangeOptionSelected = true;
-
-                          if (dateRangeOptionShowCalendar) {
-                            focusedDate = selectedField == DotbookDateField.start
-                                ? startDate
-                                : endDate ?? startDate;
-                          }
-                        });
-                      },
-                    ),
+                  DotbookDateRangeSelectorItem(
+                    title: thirdItemTitle,
+                    subtitle: thirdItemDescription,
+                    isSelected: selectedItemIndex == 2,
+                    showCalendar: true,
+                    onTap: () => selectItem(2, thirdItemTitle),
+                  ),
                 ];
+
+                
 
                 return Padding(
                   padding: const EdgeInsets.all(16),
-                  child: DotbookDateRangeSelector(
-                    items: items,
-                    selectedField: selectedField,
-                    startDate: startDate,
-                    endDate: endDate,
-                    initDateTitle: startDateTitle,
-                    endDateTitle: endDateTitle,
-                    focusedDate: focusedDate,
-                    firstAllowedDate: DateTime(1970, 1, 1),
-                    lastAllowedDate: DateTime(2026, 12, 31),
-                    onFieldChanged: (field) {
-                      setState(() {
-                        selectedField = field;
-                        focusedDate =
-                            field == DotbookDateField.start ? startDate : endDate ?? startDate;
-                      });
-                    },
-                    onChanged: (selection) {
-                      setState(() {
-                        startDate = selection.startDate;
-                        endDate = selection.endDate;
-                        focusedDate = selectedField == DotbookDateField.start
-                            ? startDate
-                            : endDate ?? startDate;
-                      });
-                    },
-                    onFocusedDateChanged: (date) {
-                      setState(() {
-                        focusedDate = date;
-                      });
-                    },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      DotbookDateRangeSelector(
+                        items: items,
+                        selectedField: selectedField,
+                        startDate: startDate,
+                        endDate: endDate,
+                        initDateTitle: startDateTitle,
+                        endDateTitle: endDateTitle,
+                        focusedDate: focusedDate,
+                        firstAllowedDate: DateTime(1970, 1, 1),
+                        lastAllowedDate: DateTime(2026, 12, 31),
+                        onFieldChanged: (field) {
+                          setState(() {
+                            selectedField = field;
+                            focusedDate =
+                                field == DotbookDateField.startDate ? startDate : endDate ?? startDate;
+                          });
+                        },
+                        onChanged: (selection) {
+                          setState(() {
+                            startDate = selection.startDate;
+                            endDate = selection.endDate;
+                            focusedDate = selectedField == DotbookDateField.startDate
+                                ? startDate
+                                : endDate ?? startDate;
+                          });
+                        },
+                        onFocusedDateChanged: (date) {
+                          setState(() {
+                            focusedDate = date;
+                          });
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Fecha de inicio elegida: ${formatSelectedDate(startDate)}',
+                        style: context.dotsTheme.typo.main.bodyDefaultRegular,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Fecha de fin elegida: ${formatSelectedDate(endDate)}',
+                        style: context.dotsTheme.typo.main.bodyDefaultRegular,
+                      ),
+                    ],
                   ),
                 );
               },

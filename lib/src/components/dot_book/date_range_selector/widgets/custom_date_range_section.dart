@@ -391,8 +391,8 @@ class _DateFieldsRow extends StatelessWidget {
             child: DotbookDateFieldCard(
               label: initDateTitle,
               value: DotbookDateRangeSelectorUtils.formatDate(startDate, localeName),
-              isActive: selectedField == DotbookDateField.start,
-              onTap: () => onFieldChanged(DotbookDateField.start),
+              isActive: selectedField == DotbookDateField.startDate,
+              onTap: () => onFieldChanged(DotbookDateField.startDate),
             ),
           ),
           const SizedBox(width: 10),
@@ -400,8 +400,8 @@ class _DateFieldsRow extends StatelessWidget {
             child: DotbookDateFieldCard(
               label: endDateTitle,
               value: DotbookDateRangeSelectorUtils.formatDate(endDate, localeName),
-              isActive: selectedField == DotbookDateField.end,
-              onTap: () => onFieldChanged(DotbookDateField.end),
+              isActive: selectedField == DotbookDateField.endDate,
+              onTap: () => onFieldChanged(DotbookDateField.endDate),
             ),
           ),
         ],

@@ -5,13 +5,13 @@ class DotbookDateRangeSelector extends StatelessWidget {
   const DotbookDateRangeSelector({
     super.key,
     required this.items,
-    required this.selectedField,
-    required this.startDate,
+    this.selectedField,
+    this.startDate,
     this.endDate,
-    required this.initDateTitle,
-    required this.endDateTitle,
-    required this.onFieldChanged,
-    required this.onChanged,
+    this.initDateTitle,
+    this.endDateTitle,
+    this.onFieldChanged,
+    this.onChanged,
     this.firstAllowedDate,
     this.lastAllowedDate,
     this.focusedDate,
@@ -19,24 +19,23 @@ class DotbookDateRangeSelector extends StatelessWidget {
     this.onFocusedDateChanged,
   });
 
-  /// Rows rendered by the selector. Each item controls its own title,
-  /// subtitle, selected state, tap callback and whether it reveals the calendar.
+  /// Rows rendered by the selector.
   final List<DotbookDateRangeSelectorItem> items;
 
   /// Currently active field inside the calendar section (`start` or `end`).
-  final DotbookDateField selectedField;
+  final DotbookDateField? selectedField;
 
   /// Current start date value to display at the start date card.
-  final DateTime startDate;
+  final DateTime? startDate;
 
   /// Current end date value to display at the end date card. It can be null until the user picks it.
   final DateTime? endDate;
 
   /// Label shown above the start date card.
-  final String initDateTitle;
+  final String? initDateTitle;
 
   /// Label shown above the end date card.
-  final String endDateTitle;
+  final String? endDateTitle;
 
   /// Minimum allowed date for the calendar.
   final DateTime? firstAllowedDate;
@@ -51,10 +50,10 @@ class DotbookDateRangeSelector extends StatelessWidget {
   final DateTime? currentDate;
 
   /// Called when the active date field changes.
-  final ValueChanged<DotbookDateField> onFieldChanged;
+  final ValueChanged<DotbookDateField>? onFieldChanged;
 
   /// Called when start/end dates change.
-  final ValueChanged<DateTimeRangeSelection> onChanged;
+  final ValueChanged<DateTimeRangeSelection>? onChanged;
 
   /// Called when the focused calendar date changes.
   final ValueChanged<DateTime>? onFocusedDateChanged;
@@ -63,7 +62,8 @@ class DotbookDateRangeSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     final localeName = DotbookDateRangeSelectorUtils.localeName(context);
-    final normalizedStartDate = DotbookDateRangeSelectorUtils.dateOnly(startDate);
+    final resolvedSelectedField = selectedField ?? DotbookDateField.startDate;
+    final normalizedStartDate = DotbookDateRangeSelectorUtils.dateOnly(startDate ?? DateTime.now());
     final normalizedEndDate = endDate == null ? null : DotbookDateRangeSelectorUtils.dateOnly(endDate!);
     final normalizedCurrentDate = DotbookDateRangeSelectorUtils.dateOnly(currentDate ?? DateTime.now());
     final normalizedFirstAllowedDate = DotbookDateRangeSelectorUtils.dateOnly(
@@ -75,11 +75,13 @@ class DotbookDateRangeSelector extends StatelessWidget {
     final visibleOptions = _visibleItems;
     final selectedVisibleOption = visibleOptions.where((option) => option.isSelected).firstOrNull;
     final shouldShowCalendar = selectedVisibleOption?.showCalendar ?? false;
-    final selectedDate = selectedField == DotbookDateField.start
+    final selectedDate = resolvedSelectedField == DotbookDateField.startDate
         ? normalizedStartDate
         : normalizedEndDate ?? normalizedStartDate;
     final baseFocusedDate = focusedDate ??
-        (selectedField == DotbookDateField.start ? normalizedStartDate : normalizedEndDate ?? normalizedStartDate);
+      (resolvedSelectedField == DotbookDateField.startDate
+        ? normalizedStartDate
+        : normalizedEndDate ?? normalizedStartDate);
     final displayedDate = DotbookDateRangeSelectorUtils.clampDate(
       DotbookDateRangeSelectorUtils.dateOnly(baseFocusedDate),
       minDate: normalizedFirstAllowedDate,
@@ -113,7 +115,7 @@ class DotbookDateRangeSelector extends StatelessWidget {
                 child: DotbookCustomDateRangeSection(
                   key: ValueKey(selectedVisibleOption?.title),
                   localeName: localeName,
-                  selectedField: selectedField,
+                  selectedField: resolvedSelectedField,
                   startDate: normalizedStartDate,
                   endDate: normalizedEndDate,
                   currentDate: normalizedCurrentDate,
@@ -121,9 +123,9 @@ class DotbookDateRangeSelector extends StatelessWidget {
                   lastAllowedDate: normalizedLastAllowedDate,
                   displayedDate: displayedDate,
                   selectedDate: selectedDate,
-                  initDateTitle: initDateTitle,
-                  endDateTitle: endDateTitle,
-                  onFieldChanged: onFieldChanged,
+                  initDateTitle: initDateTitle ?? '',
+                  endDateTitle: endDateTitle ?? '',
+                  onFieldChanged: (field) => onFieldChanged?.call(field),
                   onDateSelected: _onDateSelected,
                   onFocusedDateChanged: onFocusedDateChanged,
                 ),
@@ -135,17 +137,20 @@ class DotbookDateRangeSelector extends StatelessWidget {
   }
 
   void _onDateSelected(DateTime date) {
+    final resolvedSelectedField = selectedField ?? DotbookDateField.startDate;
+    final resolvedStartDate = startDate ?? DateTime.now();
+
     final change = DotbookDateRangeSelectorUtils.resolveSelectionChange(
-      selectedField: selectedField,
+      selectedField: resolvedSelectedField,
       tappedDate: date,
-      startDate: startDate,
+      startDate: resolvedStartDate,
       endDate: endDate,
     );
 
-    onChanged(change.selection);
+    onChanged?.call(change.selection);
 
     if (change.nextField != null) {
-      onFieldChanged(change.nextField!);
+      onFieldChanged?.call(change.nextField!);
     }
 
     onFocusedDateChanged?.call(change.focusedDate);
