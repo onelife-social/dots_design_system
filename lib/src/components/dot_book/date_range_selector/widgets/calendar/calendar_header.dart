@@ -2,15 +2,6 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class DotbookCalendarHeader extends StatelessWidget {
-  //Text display month and year
-  final String title;
-  //Callbacks for when the title is tapped (e.g., to switch to year selection mode)
-  final Function()? onTitleTap;
-  //Callbacks for when the previous month button is tapped
-  final Function()? onPreviousMonth;
-  //Callbacks for when the next month button is tapped
-  final Function()? onNextMonth;
-
   const DotbookCalendarHeader({
     super.key,
     required this.title,
@@ -18,6 +9,11 @@ class DotbookCalendarHeader extends StatelessWidget {
     this.onPreviousMonth,
     this.onNextMonth,
   });
+
+  final String title;
+  final VoidCallback? onTitleTap;
+  final VoidCallback? onPreviousMonth;
+  final VoidCallback? onNextMonth;
 
   @override
   Widget build(BuildContext context) {

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../../../../../dots_design_system.dart';
-
+import '../models/date_time_range_selection.dart';
+import '../models/enums.dart';
 
 class DotbookDateRangeSelectorUtils {
   const DotbookDateRangeSelectorUtils._();
@@ -117,7 +117,6 @@ class DotbookDateRangeSelectorUtils {
 
     return (
       selection: DateTimeRangeSelection(
-        option: DotbookDateRangeOption.custom,
         startDate: nextStartDate,
         endDate: nextEndDate,
       ),

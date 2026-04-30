@@ -61,18 +61,13 @@ String? _max30Nullable(String? value) {
 DateTime _storyDateOnly(DateTime value) => DateTime(value.year, value.month, value.day);
 
 DateTimeRangeSelection _storyPresetSelection({
-  required DotbookDateRangeOption option,
-  required Duration firstRangeDuration,
-  required Duration secondRangeDuration,
+  required Duration rangeDuration,
   DateTime? referenceDate,
 }) {
   final endDate = _storyDateOnly(referenceDate ?? DateTime.now());
-  final duration =
-      option == DotbookDateRangeOption.first ? firstRangeDuration : secondRangeDuration;
 
   return DateTimeRangeSelection(
-    option: option,
-    startDate: endDate.subtract(duration),
+    startDate: endDate.subtract(rangeDuration),
     endDate: endDate,
   );
 }
@@ -610,15 +605,15 @@ List<Story> get dotBookStories => [
           builder: (context) {
             final firstYearOptionLabel = context.knobs.text(
               label: 'First year option label',
-              initial: 'Primer año',
+              initial: 'Primer año de Anna',
             );
             final specificYearOptionLabel = context.knobs.text(
               label: 'Specific year option label',
-              initial: 'Año específico',
+              initial: 'Recuerdos de 2026',
             );
             final dateRangeOptionLabel = context.knobs.text(
               label: 'Date range option label',
-              initial: 'Rango de fechas',
+              initial: 'Elegir fechas',
             );
             final startDateTitle = context.knobs.text(
               label: 'Start date title',
@@ -630,7 +625,7 @@ List<Story> get dotBookStories => [
             );
             final firstYearOptionDescription = context.knobs.nullable.text(
               label: 'First year option description',
-              initial: 'Contenido relacionado con el primer año',
+              initial: 'Jul 2024 → Jul 2025',
             );
             final specificYearOptionDescription = context.knobs.nullable.text(
               label: 'Specific year option description',
@@ -638,7 +633,19 @@ List<Story> get dotBookStories => [
             );
             final dateRangeOptionDescription = context.knobs.nullable.text(
               label: 'Date range option description',
-              initial: '',
+              initial: 'Selecciona un periodo',
+            );
+            final firstYearOptionShowCalendar = context.knobs.boolean(
+              label: 'First year option show calendar',
+              initial: false,
+            );
+            final specificYearOptionShowCalendar = context.knobs.boolean(
+              label: 'Specific year option show calendar',
+              initial: false,
+            );
+            final dateRangeOptionShowCalendar = context.knobs.boolean(
+              label: 'Date range option show calendar',
+              initial: true,
             );
             final firstRangeDays = context.knobs.sliderInt(
               label: 'First preset days',
@@ -657,7 +664,9 @@ List<Story> get dotBookStories => [
               initial: true,
             );
 
-            DotbookDateRangeOption selectedOption = DotbookDateRangeOption.first;
+            bool isFirstYearOptionSelected = true;
+            bool isSpecificYearOptionSelected = false;
+            bool isDateRangeOptionSelected = false;
             DotbookDateField selectedField = DotbookDateField.start;
             DateTime focusedDate = _storyDateOnly(DateTime.now());
             DateTime startDate = focusedDate;
@@ -665,30 +674,19 @@ List<Story> get dotBookStories => [
 
             return StatefulBuilder(
               builder: (context, setState) {
-                return Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: DotbookDateRangeSelector(
-                    firstYearOptionTitle: firstYearOptionLabel,
-                    specificYearOptionTitle: specificYearOptionLabel,
-                    dateRangeOptionTitle: dateRangeOptionLabel,
-                    firstYearOptionDescription: firstYearOptionDescription,
-                    specificYearOptionDescription: specificYearOptionDescription,
-                    dateRangeOptionDescription: dateRangeOptionDescription,
-                    selectedOption: selectedOption,
-                    selectedField: selectedField,
-                    startDate: startDate,
-                    endDate: endDate,
-                    initDateTitle: startDateTitle,
-                    endDateTitle: endDateTitle,
-                    focusedDate: focusedDate,
-                    showCustomOption: showCustomOption,
-                    firstAllowedDate: DateTime(1970, 1, 1),
-                    lastAllowedDate: DateTime(2026, 12, 31),
-                    onOptionChanged: (option) {
+                final items = <DotbookDateRangeSelectorItem>[
+                  DotbookDateRangeSelectorItem(
+                    title: firstYearOptionLabel,
+                    subtitle: firstYearOptionDescription,
+                    isSelected: isFirstYearOptionSelected,
+                    showCalendar: firstYearOptionShowCalendar,
+                    onTap: () {
                       setState(() {
-                        selectedOption = option;
+                        isFirstYearOptionSelected = true;
+                        isSpecificYearOptionSelected = false;
+                        isDateRangeOptionSelected = false;
 
-                        if (option == DotbookDateRangeOption.custom) {
+                        if (firstYearOptionShowCalendar) {
                           focusedDate = selectedField == DotbookDateField.start
                               ? startDate
                               : endDate ?? startDate;
@@ -696,9 +694,7 @@ List<Story> get dotBookStories => [
                         }
 
                         final presetSelection = _storyPresetSelection(
-                          option: option,
-                          firstRangeDuration: Duration(days: firstRangeDays - 1),
-                          secondRangeDuration: Duration(days: secondRangeDays - 1),
+                          rangeDuration: Duration(days: firstRangeDays - 1),
                           referenceDate: focusedDate,
                         );
 
@@ -707,6 +703,70 @@ List<Story> get dotBookStories => [
                         focusedDate = endDate ?? startDate;
                       });
                     },
+                  ),
+                  DotbookDateRangeSelectorItem(
+                    title: specificYearOptionLabel,
+                    subtitle: specificYearOptionDescription,
+                    isSelected: isSpecificYearOptionSelected,
+                    showCalendar: specificYearOptionShowCalendar,
+                    onTap: () {
+                      setState(() {
+                        isFirstYearOptionSelected = false;
+                        isSpecificYearOptionSelected = true;
+                        isDateRangeOptionSelected = false;
+
+                        if (specificYearOptionShowCalendar) {
+                          focusedDate = selectedField == DotbookDateField.start
+                              ? startDate
+                              : endDate ?? startDate;
+                          return;
+                        }
+
+                        final presetSelection = _storyPresetSelection(
+                          rangeDuration: Duration(days: secondRangeDays - 1),
+                          referenceDate: focusedDate,
+                        );
+
+                        startDate = presetSelection.startDate;
+                        endDate = presetSelection.endDate;
+                        focusedDate = endDate ?? startDate;
+                      });
+                    },
+                  ),
+                  if (showCustomOption)
+                    DotbookDateRangeSelectorItem(
+                      title: dateRangeOptionLabel,
+                      subtitle: dateRangeOptionDescription,
+                      isSelected: isDateRangeOptionSelected,
+                      showCalendar: dateRangeOptionShowCalendar,
+                      onTap: () {
+                        setState(() {
+                          isFirstYearOptionSelected = false;
+                          isSpecificYearOptionSelected = false;
+                          isDateRangeOptionSelected = true;
+
+                          if (dateRangeOptionShowCalendar) {
+                            focusedDate = selectedField == DotbookDateField.start
+                                ? startDate
+                                : endDate ?? startDate;
+                          }
+                        });
+                      },
+                    ),
+                ];
+
+                return Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: DotbookDateRangeSelector(
+                    items: items,
+                    selectedField: selectedField,
+                    startDate: startDate,
+                    endDate: endDate,
+                    initDateTitle: startDateTitle,
+                    endDateTitle: endDateTitle,
+                    focusedDate: focusedDate,
+                    firstAllowedDate: DateTime(1970, 1, 1),
+                    lastAllowedDate: DateTime(2026, 12, 31),
                     onFieldChanged: (field) {
                       setState(() {
                         selectedField = field;
@@ -716,7 +776,6 @@ List<Story> get dotBookStories => [
                     },
                     onChanged: (selection) {
                       setState(() {
-                        selectedOption = selection.option;
                         startDate = selection.startDate;
                         endDate = selection.endDate;
                         focusedDate = selectedField == DotbookDateField.start

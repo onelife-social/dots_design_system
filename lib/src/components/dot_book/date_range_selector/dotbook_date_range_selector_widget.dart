@@ -1,53 +1,62 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
-
 class DotbookDateRangeSelector extends StatelessWidget {
   const DotbookDateRangeSelector({
     super.key,
-    this.firstYearOptionTitle = '',
-    this.specificYearOptionTitle = '',
-    this.dateRangeOptionTitle = '',
-    required this.selectedOption,
+    required this.items,
     required this.selectedField,
     required this.startDate,
     this.endDate,
     required this.initDateTitle,
     required this.endDateTitle,
-    required this.onOptionChanged,
     required this.onFieldChanged,
     required this.onChanged,
-    this.firstYearOptionDescription,
-    this.specificYearOptionDescription,
-    this.dateRangeOptionDescription,
     this.firstAllowedDate,
     this.lastAllowedDate,
     this.focusedDate,
-    this.showCustomOption = true,
     this.currentDate,
     this.onFocusedDateChanged,
   });
 
-  final String firstYearOptionTitle;
-  final String specificYearOptionTitle;
-  final String dateRangeOptionTitle;
-  final String? firstYearOptionDescription;
-  final String? specificYearOptionDescription;
-  final String? dateRangeOptionDescription;
-  final DotbookDateRangeOption selectedOption;
+  /// Rows rendered by the selector. Each item controls its own title,
+  /// subtitle, selected state, tap callback and whether it reveals the calendar.
+  final List<DotbookDateRangeSelectorItem> items;
+
+  /// Currently active field inside the calendar section (`start` or `end`).
   final DotbookDateField selectedField;
+
+  /// Current start date value to display at the start date card.
   final DateTime startDate;
+
+  /// Current end date value to display at the end date card. It can be null until the user picks it.
   final DateTime? endDate;
+
+  /// Label shown above the start date card.
   final String initDateTitle;
+
+  /// Label shown above the end date card.
   final String endDateTitle;
+
+  /// Minimum allowed date for the calendar.
   final DateTime? firstAllowedDate;
+
+  /// Maximum allowed date for the calendar.
   final DateTime? lastAllowedDate;
+
+  /// Focused month/day used by the calendar UI.
   final DateTime? focusedDate;
-  final bool showCustomOption;
+
+  /// Date considered as “today” in the calendar.
   final DateTime? currentDate;
-  final ValueChanged<DotbookDateRangeOption> onOptionChanged;
+
+  /// Called when the active date field changes.
   final ValueChanged<DotbookDateField> onFieldChanged;
+
+  /// Called when start/end dates change.
   final ValueChanged<DateTimeRangeSelection> onChanged;
+
+  /// Called when the focused calendar date changes.
   final ValueChanged<DateTime>? onFocusedDateChanged;
 
   @override
@@ -55,7 +64,7 @@ class DotbookDateRangeSelector extends StatelessWidget {
     final theme = context.dotsTheme;
     final localeName = DotbookDateRangeSelectorUtils.localeName(context);
     final normalizedStartDate = DotbookDateRangeSelectorUtils.dateOnly(startDate);
-    final normalizedEndDate = endDate != null ? DotbookDateRangeSelectorUtils.dateOnly(endDate!) : null;
+    final normalizedEndDate = endDate == null ? null : DotbookDateRangeSelectorUtils.dateOnly(endDate!);
     final normalizedCurrentDate = DotbookDateRangeSelectorUtils.dateOnly(currentDate ?? DateTime.now());
     final normalizedFirstAllowedDate = DotbookDateRangeSelectorUtils.dateOnly(
       firstAllowedDate ?? DateTime(1970, 1, 1),
@@ -63,20 +72,16 @@ class DotbookDateRangeSelector extends StatelessWidget {
     final normalizedLastAllowedDate = DotbookDateRangeSelectorUtils.dateOnly(
       lastAllowedDate ?? DateTime(2100),
     );
-    final hasFirstYearOption = _hasVisibleLabel(firstYearOptionTitle);
-    final hasSpecificYearOption = _hasVisibleLabel(specificYearOptionTitle);
-    final hasDateRangeOption = showCustomOption && _hasVisibleLabel(dateRangeOptionTitle);
-    final isCustomSelected = hasDateRangeOption && selectedOption == DotbookDateRangeOption.custom;
+    final visibleOptions = _visibleItems;
+    final selectedVisibleOption = visibleOptions.where((option) => option.isSelected).firstOrNull;
+    final shouldShowCalendar = selectedVisibleOption?.showCalendar ?? false;
     final selectedDate = selectedField == DotbookDateField.start
         ? normalizedStartDate
         : normalizedEndDate ?? normalizedStartDate;
+    final baseFocusedDate = focusedDate ??
+        (selectedField == DotbookDateField.start ? normalizedStartDate : normalizedEndDate ?? normalizedStartDate);
     final displayedDate = DotbookDateRangeSelectorUtils.clampDate(
-      DotbookDateRangeSelectorUtils.dateOnly(
-        focusedDate ??
-            (selectedField == DotbookDateField.start
-                ? normalizedStartDate
-                : normalizedEndDate ?? normalizedStartDate),
-      ),
+      DotbookDateRangeSelectorUtils.dateOnly(baseFocusedDate),
       minDate: normalizedFirstAllowedDate,
       maxDate: normalizedLastAllowedDate,
     );
@@ -94,50 +99,35 @@ class DotbookDateRangeSelector extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 12,
           children: [
-            if (hasFirstYearOption)
-              DotbookDateRangeOptionRow(
-                title: firstYearOptionTitle,
-                description: firstYearOptionDescription,
-                isSelected: selectedOption == DotbookDateRangeOption.first,
-                onTap: () => onOptionChanged(DotbookDateRangeOption.first),
+            ...visibleOptions.map(
+              (option) => DotbookDateRangeOptionRow(
+                title: option.title,
+                description: option.subtitle,
+                isSelected: option.isSelected,
+                onTap: option.onTap,
               ),
-            if (hasSpecificYearOption)
-              DotbookDateRangeOptionRow(
-                title: specificYearOptionTitle,
-                description: specificYearOptionDescription,
-                isSelected: selectedOption == DotbookDateRangeOption.second,
-                onTap: () => onOptionChanged(DotbookDateRangeOption.second),
-              ),
-            if (hasDateRangeOption) ...[
-              DotbookDateRangeOptionRow(
-                title: dateRangeOptionTitle,
-                description: dateRangeOptionDescription,
-                isSelected: isCustomSelected,
-                onTap: () => onOptionChanged(DotbookDateRangeOption.custom),
-              ),
+            ),
+            if (shouldShowCalendar)
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 220),
-                child: isCustomSelected
-                    ? DotbookCustomDateRangeSection(
-                        key: const ValueKey('custom-date-range'),
-                        localeName: localeName,
-                        selectedField: selectedField,
-                        startDate: normalizedStartDate,
-                        endDate: normalizedEndDate,
-                        currentDate: normalizedCurrentDate,
-                        firstAllowedDate: normalizedFirstAllowedDate,
-                        lastAllowedDate: normalizedLastAllowedDate,
-                        displayedDate: displayedDate,
-                        selectedDate: selectedDate,
-                        initDateTitle: initDateTitle,
-                        endDateTitle: endDateTitle,
-                        onFieldChanged: onFieldChanged,
-                        onDateSelected: _onDateSelected,
-                        onFocusedDateChanged: onFocusedDateChanged,
-                      )
-                    : const SizedBox.shrink(),
+                child: DotbookCustomDateRangeSection(
+                  key: ValueKey(selectedVisibleOption?.title),
+                  localeName: localeName,
+                  selectedField: selectedField,
+                  startDate: normalizedStartDate,
+                  endDate: normalizedEndDate,
+                  currentDate: normalizedCurrentDate,
+                  firstAllowedDate: normalizedFirstAllowedDate,
+                  lastAllowedDate: normalizedLastAllowedDate,
+                  displayedDate: displayedDate,
+                  selectedDate: selectedDate,
+                  initDateTitle: initDateTitle,
+                  endDateTitle: endDateTitle,
+                  onFieldChanged: onFieldChanged,
+                  onDateSelected: _onDateSelected,
+                  onFocusedDateChanged: onFocusedDateChanged,
+                ),
               ),
-            ],
           ],
         ),
       ),
@@ -162,4 +152,7 @@ class DotbookDateRangeSelector extends StatelessWidget {
   }
 
   bool _hasVisibleLabel(String value) => value.trim().isNotEmpty;
+
+  List<DotbookDateRangeSelectorItem> get _visibleItems =>
+      items.where((item) => _hasVisibleLabel(item.title)).toList(growable: false);
 }
