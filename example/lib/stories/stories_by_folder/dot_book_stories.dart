@@ -58,6 +58,25 @@ String? _max30Nullable(String? value) {
   return _max30(value);
 }
 
+DateTime _storyDateOnly(DateTime value) => DateTime(value.year, value.month, value.day);
+
+DateTimeRangeSelection _storyPresetSelection({
+  required DotbookDateRangeOption option,
+  required Duration firstRangeDuration,
+  required Duration secondRangeDuration,
+  DateTime? referenceDate,
+}) {
+  final endDate = _storyDateOnly(referenceDate ?? DateTime.now());
+  final duration =
+      option == DotbookDateRangeOption.first ? firstRangeDuration : secondRangeDuration;
+
+  return DateTimeRangeSelection(
+    option: option,
+    startDate: endDate.subtract(duration),
+    endDate: endDate,
+  );
+}
+
 List<Story> get dotBookStories => [
       Story(
         name: 'DotBook Components/page control',
@@ -530,8 +549,7 @@ List<Story> get dotBookStories => [
                   initial: DotsIconData.chevronRight,
                   options: [
                     const Option(label: 'None', value: null),
-                    ...DotsIconData.values
-                        .map((item) => Option(label: item.name, value: item))
+                    ...DotsIconData.values.map((item) => Option(label: item.name, value: item))
                   ],
                 );
                 final selectedLabelVariant = context.knobs.options<BadgeLabelVariant>(
@@ -549,7 +567,8 @@ List<Story> get dotBookStories => [
                     spacing: 12,
                     children: [
                       DotbookOrderItem(
-                        title: context.knobs.text(label: 'Title', initial: 'Álbum “Nueva York 2025”'),
+                        title:
+                            context.knobs.text(label: 'Title', initial: 'Álbum “Nueva York 2025”'),
                         subtitle: context.knobs.text(label: 'Subtitle', initial: '23 marzo 2026'),
                         labelText: context.knobs.text(label: 'Label text', initial: 'En reparto'),
                         labelVariant: selectedLabelVariant,
@@ -568,15 +587,148 @@ List<Story> get dotBookStories => [
                         ),
                         onItemTap: () {
                           ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Tap on order item!',
+                            SnackBar(
+                              content: Text(
+                                'Tap on order item!',
+                              ),
                             ),
-                          ),
-                        );
+                          );
                         },
                       ),
                     ],
+                  ),
+                );
+              },
+            );
+          },
+        ),
+      ),
+      Story(
+        name: 'DotBook Components/Dotbook date range selector',
+        description: 'Demo page for DotBook date range selector',
+        builder: (context) => Builder(
+          builder: (context) {
+            final firstOptionLabel = context.knobs.text(
+              label: 'First option title',
+              initial: 'Últimos 7 días',
+            );
+            final secondOptionLabel = context.knobs.text(
+              label: 'Second option title',
+              initial: 'Últimos 30 días',
+            );
+            final thirdOptionLabel = context.knobs.text(
+              label: 'Third option title',
+              initial: 'Rango personalizado',
+            );
+            final startDateTitle = context.knobs.text(
+              label: 'Start date title',
+              initial: 'Fecha de inicio',
+            );
+            final endDateTitle = context.knobs.text(
+              label: 'End date title',
+              initial: 'Fecha de fin',
+            );
+            final firstOptionDescription = context.knobs.nullable.text(
+              label: 'First option description',
+              initial: 'Selecciona una semana completa',
+            );
+            final secondOptionDescription = context.knobs.nullable.text(
+              label: 'Second option description',
+              initial: '',
+            );
+            final thirdOptionDescription = context.knobs.nullable.text(
+              label: 'Third option description',
+              initial: '',
+            );
+            final firstRangeDays = context.knobs.sliderInt(
+              label: 'First preset days',
+              initial: 7,
+              min: 1,
+              max: 60,
+            );
+            final secondRangeDays = context.knobs.sliderInt(
+              label: 'Second preset days',
+              initial: 30,
+              min: 1,
+              max: 120,
+            );
+            final showCustomOption = context.knobs.boolean(
+              label: 'Show custom option',
+              initial: true,
+            );
+
+            DotbookDateRangeOption selectedOption = DotbookDateRangeOption.first;
+            DotbookDateField selectedField = DotbookDateField.start;
+            DateTime focusedDate = _storyDateOnly(DateTime.now());
+            DateTime startDate = focusedDate;
+            DateTime? endDate;
+
+            return StatefulBuilder(
+              builder: (context, setState) {
+                return Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: DotbookDateRangeSelector(
+                    firstOptionLabel: firstOptionLabel,
+                    secondOptionLabel: secondOptionLabel,
+                    thirdOptionLabel: thirdOptionLabel,
+                    firstOptionDescription: firstOptionDescription,
+                    secondOptionDescription: secondOptionDescription,
+                    thirdOptionDescription: thirdOptionDescription,
+                    selectedOption: selectedOption,
+                    selectedField: selectedField,
+                    startDate: startDate,
+                    endDate: endDate,
+                    initDateTitle: startDateTitle,
+                    endDateTitle: endDateTitle,
+                    focusedDate: focusedDate,
+                    showCustomOption: showCustomOption,
+                    firstAllowedDate: DateTime(2025, 1, 1),
+                    lastAllowedDate: DateTime(2026, 12, 31),
+                    onOptionChanged: (option) {
+                      setState(() {
+                        selectedOption = option;
+
+                        if (option == DotbookDateRangeOption.custom) {
+                          focusedDate = selectedField == DotbookDateField.start
+                              ? startDate
+                              : endDate ?? startDate;
+                          return;
+                        }
+
+                        final presetSelection = _storyPresetSelection(
+                          option: option,
+                          firstRangeDuration: Duration(days: firstRangeDays - 1),
+                          secondRangeDuration: Duration(days: secondRangeDays - 1),
+                          referenceDate: focusedDate,
+                        );
+
+                        startDate = presetSelection.startDate;
+                        endDate = presetSelection.endDate;
+                        focusedDate = endDate ?? startDate;
+                      });
+                    },
+                    onFieldChanged: (field) {
+                      setState(() {
+                        selectedField = field;
+                        focusedDate =
+                            field == DotbookDateField.start ? startDate : endDate ?? startDate;
+                      });
+                    },
+                    onChanged: (selection) {
+                      setState(() {
+                        selectedOption = selection.option;
+                        startDate = selection.startDate;
+                        endDate = selection.endDate;
+                        focusedDate = selectedField == DotbookDateField.start
+                            ? startDate
+                            : endDate ?? startDate;
+                      });
+                    },
+                    onFocusedDateChanged: (date) {
+                      setState(() {
+                        focusedDate = date;
+                      });
+                    },
                   ),
                 );
               },
