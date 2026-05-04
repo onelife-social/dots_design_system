@@ -58,8 +58,6 @@ String? _max30Nullable(String? value) {
   return _max30(value);
 }
 
-DateTime _storyDateOnly(DateTime value) => DateTime(value.year, value.month, value.day);
-
 List<Story> get dotBookStories => [
       Story(
         name: 'DotBook Components/page control',
@@ -615,83 +613,18 @@ List<Story> get dotBookStories => [
               label: 'Third item description',
               initial: 'Selecciona un periodo',
             );
-            final startDateTitle = context.knobs.text(
-              label: 'Start date title',
-              initial: 'Inicio',
-            );
-            final endDateTitle = context.knobs.text(
-              label: 'End date title',
-              initial: 'Fin',
-            );
-
             int selectedItemIndex = context.knobs.sliderInt(
               label: 'Selected item index',
               initial: 0,
               min: 0,
               max: 2,
             );
-            DotbookDateField selectedField = DotbookDateField.startDate;
-            
-            final today = _storyDateOnly(DateTime.now());
-            DateTime startDate = today;
-            DateTime? endDate;
-
-            if (selectedItemIndex == 0) {
-              final previousYear = today.year - 1;
-              startDate = DateTime(previousYear, 6, 1);
-              endDate = DateTime(previousYear, 8, 0);
-            } else if (selectedItemIndex == 1) {
-              startDate = DateTime(2026, 1, 1);
-              endDate = today.isBefore(DateTime(2026, 1, 1))
-                  ? DateTime(2026, 1, 1)
-                  : today.isAfter(DateTime(2026, 12, 31))
-                      ? DateTime(2026, 12, 31)
-                      : today;
-            } else if (selectedItemIndex == 2) {
-              startDate = today;
-              endDate = null;
-            }
-
-            DateTime focusedDate = startDate;
 
             return StatefulBuilder(
               builder: (context, setState) {
-
-                String formatSelectedDate(DateTime? date) {
-                  if (date == null) {
-                    return 'Sin seleccionar';
-                  }
-
-                  return MaterialLocalizations.of(context).formatMediumDate(date);
-                }
-
                 void selectItem(int index, String title) {
                   setState(() {
                     selectedItemIndex = index;
-
-                    if (index == 0) {
-                      final previousYear = today.year - 1;
-                      startDate = DateTime(previousYear, 6, 1);
-                      endDate = DateTime(previousYear, 8, 0);
-                      focusedDate = startDate;
-                    }
-
-                    if (index == 1) {
-                      startDate = DateTime(2026, 1, 1);
-                      endDate = today.isBefore(DateTime(2026, 1, 1))
-                          ? DateTime(2026, 1, 1)
-                          : today.isAfter(DateTime(2026, 12, 31))
-                              ? DateTime(2026, 12, 31)
-                              : today;
-                      focusedDate = startDate;
-                    }
-
-                    if (index == 2) {
-                      selectedField = DotbookDateField.startDate;
-                      startDate = today;
-                      endDate = null;
-                      focusedDate = today;
-                    }
                   });
 
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -716,12 +649,10 @@ List<Story> get dotBookStories => [
                     title: thirdItemTitle,
                     subtitle: thirdItemDescription,
                     isSelected: selectedItemIndex == 2,
-                    showCalendar: true,
+                    showContent: true,
                     onTap: () => selectItem(2, thirdItemTitle),
                   ),
                 ];
-
-                
 
                 return Padding(
                   padding: const EdgeInsets.all(16),
@@ -731,45 +662,18 @@ List<Story> get dotBookStories => [
                     children: [
                       DotbookDateRangeSelector(
                         items: items,
-                        selectedField: selectedField,
-                        startDate: startDate,
-                        endDate: endDate,
-                        initDateTitle: startDateTitle,
-                        endDateTitle: endDateTitle,
-                        focusedDate: focusedDate,
-                        firstAllowedDate: DateTime(1970, 1, 1),
-                        lastAllowedDate: DateTime(2026, 12, 31),
-                        onFieldChanged: (field) {
-                          setState(() {
-                            selectedField = field;
-                            focusedDate =
-                                field == DotbookDateField.startDate ? startDate : endDate ?? startDate;
-                          });
-                        },
-                        onChanged: (selection) {
-                          setState(() {
-                            startDate = selection.startDate;
-                            endDate = selection.endDate;
-                            focusedDate = selectedField == DotbookDateField.startDate
-                                ? startDate
-                                : endDate ?? startDate;
-                          });
-                        },
-                        onFocusedDateChanged: (date) {
-                          setState(() {
-                            focusedDate = date;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        'Fecha de inicio elegida: ${formatSelectedDate(startDate)}',
-                        style: context.dotsTheme.typo.main.bodyDefaultRegular,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Fecha de fin elegida: ${formatSelectedDate(endDate)}',
-                        style: context.dotsTheme.typo.main.bodyDefaultRegular,
+                        content: Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: context.dotsTheme.colors.bgContainerSecondary,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Text(
+                            'Aquí puedes poner cualquier widget personalizado.',
+                            style: context.dotsTheme.typo.main.bodyDefaultRegular,
+                          ),
+                        ),
                       ),
                     ],
                   ),
