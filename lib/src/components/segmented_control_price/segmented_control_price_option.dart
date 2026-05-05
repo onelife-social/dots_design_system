@@ -69,22 +69,22 @@ class SegmentedControlPriceOption extends StatelessWidget {
               if (variant.isSingle) ...[
                 if (description != null)
                   _DescriptionText(description: description!, isSelected: isSelected),
+                if (originalPrice != null)
+                  _OriginalPriceText(originalPrice: originalPrice!, isSelected: isSelected),
                 _PriceRow(
                   price: price,
                   priceTrailingText: priceTrailingText,
                   isSelected: isSelected,
                 ),
-                if (originalPrice != null)
-                  _OriginalPriceText(originalPrice: originalPrice!, isSelected: isSelected),
               ],
               if (variant.isDual) ...[
+                if (originalPrice != null)
+                  _OriginalPriceText(originalPrice: originalPrice!, isSelected: isSelected),
                 _PriceRow(
                   price: price,
                   priceTrailingText: priceTrailingText,
                   isSelected: isSelected,
                 ),
-                if (originalPrice != null)
-                  _OriginalPriceText(originalPrice: originalPrice!, isSelected: isSelected),
                 if (description != null)
                   _DescriptionText(description: description!, isSelected: isSelected),
               ],
