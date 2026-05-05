@@ -70,7 +70,7 @@ class SegmentedControlPriceOption extends StatelessWidget {
                 if (description != null)
                   _DescriptionText(description: description!, isSelected: isSelected),
                 if (originalPrice != null)
-                  _OriginalPriceText(originalPrice: originalPrice!, isSelected: isSelected),
+                  _OriginalPriceText(originalPrice: originalPrice!),
                 _PriceRow(
                   price: price,
                   priceTrailingText: priceTrailingText,
@@ -79,7 +79,7 @@ class SegmentedControlPriceOption extends StatelessWidget {
               ],
               if (variant.isDual) ...[
                 if (originalPrice != null)
-                  _OriginalPriceText(originalPrice: originalPrice!, isSelected: isSelected),
+                  _OriginalPriceText(originalPrice: originalPrice!),
                 _PriceRow(
                   price: price,
                   priceTrailingText: priceTrailingText,
@@ -117,9 +117,8 @@ class _DescriptionText extends StatelessWidget {
 
 class _OriginalPriceText extends StatelessWidget {
   final String originalPrice;
-  final bool isSelected;
 
-  const _OriginalPriceText({required this.originalPrice, required this.isSelected});
+  const _OriginalPriceText({required this.originalPrice});
 
   @override
   Widget build(BuildContext context) {

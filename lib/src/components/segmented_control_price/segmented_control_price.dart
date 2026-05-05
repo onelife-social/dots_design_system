@@ -50,10 +50,10 @@ class SegmentedControlPrice extends StatelessWidget {
   /// Discount percentage to display as a badge on top of the widget (e.g. 17.0 shows "-17%").
   final double? overallDiscount;
 
-  /// The original price for the left option, shown with strikethrough below the current price.
+  /// The original price for the left option, shown with strikethrough above the current price.
   final String? leftOptionOriginalPrice;
 
-  /// The original price for the right option, shown with strikethrough below the current price.
+  /// The original price for the right option, shown with strikethrough above the current price.
   final String? rightOptionOriginalPrice;
 
   const SegmentedControlPrice({
@@ -98,7 +98,7 @@ class SegmentedControlPrice extends StatelessWidget {
       ),
     );
 
-    if (overallDiscount == null || overallDiscount == 0) return content;
+    if (overallDiscount == null || overallDiscount! <= 0) return content;
 
     return Stack(
       clipBehavior: Clip.none,
