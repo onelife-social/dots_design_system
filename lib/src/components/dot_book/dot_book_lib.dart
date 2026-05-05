@@ -1,6 +1,7 @@
 export 'page_control.dart';
 export 'page_control_theme.dart';
 export 'buttons/toggle_button.dart';
+export 'date_range_selector/dotbook_date_range_selector.dart';
 export 'orders/dotbook_order_item.dart';
 export 'images_components/dot_book_image_placeholder.dart';
 export 'texts_components/book_feature_text_item.dart';

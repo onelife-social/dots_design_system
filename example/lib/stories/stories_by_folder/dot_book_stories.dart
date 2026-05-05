@@ -530,8 +530,7 @@ List<Story> get dotBookStories => [
                   initial: DotsIconData.chevronRight,
                   options: [
                     const Option(label: 'None', value: null),
-                    ...DotsIconData.values
-                        .map((item) => Option(label: item.name, value: item))
+                    ...DotsIconData.values.map((item) => Option(label: item.name, value: item))
                   ],
                 );
                 final selectedLabelVariant = context.knobs.options<BadgeLabelVariant>(
@@ -549,7 +548,8 @@ List<Story> get dotBookStories => [
                     spacing: 12,
                     children: [
                       DotbookOrderItem(
-                        title: context.knobs.text(label: 'Title', initial: 'Álbum “Nueva York 2025”'),
+                        title:
+                            context.knobs.text(label: 'Title', initial: 'Álbum “Nueva York 2025”'),
                         subtitle: context.knobs.text(label: 'Subtitle', initial: '23 marzo 2026'),
                         labelText: context.knobs.text(label: 'Label text', initial: 'En reparto'),
                         labelVariant: selectedLabelVariant,
@@ -568,13 +568,112 @@ List<Story> get dotBookStories => [
                         ),
                         onItemTap: () {
                           ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Tap on order item!',
+                            SnackBar(
+                              content: Text(
+                                'Tap on order item!',
+                              ),
                             ),
-                          ),
-                        );
+                          );
                         },
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
+          },
+        ),
+      ),
+      Story(
+        name: 'DotBook Components/Dotbook date range selector',
+        description: 'Demo page for DotBook date range selector',
+        builder: (context) => Builder(
+          builder: (context) {
+            final firstItemTitle = context.knobs.text(
+              label: 'First item title',
+              initial: 'Primer año de Anna',
+            );
+            final secondItemTitle = context.knobs.text(
+              label: 'Second item title',
+              initial: 'Recuerdos de 2026',
+            );
+            final thirdItemTitle = context.knobs.text(
+              label: 'Third item title',
+              initial: 'Elegir fechas',
+            );
+            final firstItemDescription = context.knobs.nullable.text(
+              label: 'First item description',
+              initial: 'Jul 2024 → Jul 2025',
+            );
+            final secondItemDescription = context.knobs.nullable.text(
+              label: 'Second item description',
+              initial: '',
+            );
+            final thirdItemDescription = context.knobs.nullable.text(
+              label: 'Third item description',
+              initial: 'Selecciona un periodo',
+            );
+            int selectedItemIndex = context.knobs.sliderInt(
+              label: 'Selected item index',
+              initial: 0,
+              min: 0,
+              max: 2,
+            );
+
+            return StatefulBuilder(
+              builder: (context, setState) {
+                void selectItem(int index, String title) {
+                  setState(() {
+                    selectedItemIndex = index;
+                  });
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Tap en "$title"')),
+                  );
+                }
+
+                final items = <DotbookDateRangeSelectorItem>[
+                  DotbookDateRangeSelectorItem(
+                    title: firstItemTitle,
+                    subtitle: firstItemDescription,
+                    isSelected: selectedItemIndex == 0,
+                    onTap: () => selectItem(0, firstItemTitle),
+                  ),
+                  DotbookDateRangeSelectorItem(
+                    title: secondItemTitle,
+                    subtitle: secondItemDescription,
+                    isSelected: selectedItemIndex == 1,
+                    onTap: () => selectItem(1, secondItemTitle),
+                  ),
+                  DotbookDateRangeSelectorItem(
+                    title: thirdItemTitle,
+                    subtitle: thirdItemDescription,
+                    isSelected: selectedItemIndex == 2,
+                    showContent: true,
+                    onTap: () => selectItem(2, thirdItemTitle),
+                  ),
+                ];
+
+                return Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      DotbookDateRangeSelector(
+                        items: items,
+                        content: Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: context.dotsTheme.colors.bgContainerSecondary,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Text(
+                            'Aquí puedes poner cualquier widget personalizado.',
+                            style: context.dotsTheme.typo.main.bodyDefaultRegular,
+                          ),
+                        ),
                       ),
                     ],
                   ),
