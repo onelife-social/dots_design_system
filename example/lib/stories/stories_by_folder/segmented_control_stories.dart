@@ -93,35 +93,72 @@ List<Story> get segmentedControlStories => [
                 .toList(),
           );
 
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SegmentedControlPriceHandle(
-              key: ValueKey('SegmentedControlPriceHandle_${variant.name}'),
-              variant: variant,
-              leftOptionName: context.knobs.text(label: 'Option 1', initial: 'Label'),
-              leftOptionPrice: context.knobs.text(label: 'Option 1 price', initial: '99,00€'),
-              leftOptionTag: context.knobs.text(label: 'Option 1 tag', initial: '17% OFF'),
-              leftOptionDescription:
-                  context.knobs.text(label: 'Option 1 description', initial: '8,25€/mes'),
-              leftOptionPriceTrailing:
-                  context.knobs.text(label: 'Option 1 price trailing', initial: '/ano'),
-              rightOptionName: variant.isDual
-                  ? context.knobs.text(label: 'Option 2', initial: 'Label')
-                  : null,
-              rightOptionPrice: variant.isDual
-                  ? context.knobs.text(label: 'Option 2 price', initial: '100,00€')
-                  : null,
-              rightOptionTag: variant.isDual
-                  ? context.knobs.text(label: 'Option 2 tag', initial: '17% OFF')
-                  : null,
-              rightOptionDescription: variant.isDual
-                  ? context.knobs.text(label: 'Option 2 description', initial: '8,25€/mes')
-                  : null,
-              rightOptionPriceTrailing: variant.isDual
-                  ? context.knobs.text(label: 'Option 2 price trailing', initial: '/ano')
-                  : null,
-              selectedColor: knobColorSelector(context, 'Selected color'),
-              backgroundColor: knobColorSelector(context, 'Background color'),
+          return Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 200,
+              children: [
+                SegmentedControlPriceHandle(
+                  key: ValueKey('SegmentedControlPriceHandle_${variant.name}'),
+                  variant: variant,
+                  leftOptionName: context.knobs.text(label: 'Option 1', initial: 'Label'),
+                  leftOptionPrice: context.knobs.text(label: 'Option 1 price', initial: '99,00€'),
+                  leftOptionTag: context.knobs.text(label: 'Option 1 tag', initial: '17% OFF'),
+                  leftOptionDescription:
+                      context.knobs.text(label: 'Option 1 description', initial: '8,25€/mes'),
+                  leftOptionPriceTrailing:
+                      context.knobs.text(label: 'Option 1 price trailing', initial: '/ano'),
+                  rightOptionName: variant.isDual
+                      ? context.knobs.text(label: 'Option 2', initial: 'Label')
+                      : null,
+                  rightOptionPrice: variant.isDual
+                      ? context.knobs.text(label: 'Option 2 price', initial: '100,00€')
+                      : null,
+                  rightOptionTag: variant.isDual
+                      ? context.knobs.text(label: 'Option 2 tag', initial: '17% OFF')
+                      : null,
+                  rightOptionDescription: variant.isDual
+                      ? context.knobs.text(label: 'Option 2 description', initial: '8,25€/mes')
+                      : null,
+                  rightOptionPriceTrailing: variant.isDual
+                      ? context.knobs.text(label: 'Option 2 price trailing', initial: '/ano')
+                      : null,
+                  selectedColor: knobColorSelector(context, 'Selected color'),
+                  backgroundColor: knobColorSelector(context, 'Background color'),
+                  overallDiscount: null,
+                  leftOptionOriginalPrice: null,
+                  rightOptionOriginalPrice: null,
+                ),
+                SegmentedControlPriceHandle(
+                  variant: variant,
+                  leftOptionName: context.knobs.text(label: 'Option 1', initial: 'Label'),
+                  leftOptionPrice: context.knobs.text(label: 'Option 1 price', initial: '99,00€'),
+                  leftOptionTag: null,
+                  leftOptionDescription:
+                      context.knobs.text(label: 'Option 1 description', initial: '8,25€/mes'),
+                  leftOptionPriceTrailing:
+                      context.knobs.text(label: 'Option 1 price trailing', initial: '/ano'),
+                  rightOptionName: variant.isDual
+                      ? context.knobs.text(label: 'Option 2', initial: 'Label')
+                      : null,
+                  rightOptionPrice: variant.isDual
+                      ? context.knobs.text(label: 'Option 2 price', initial: '100,00€')
+                      : null,
+                  rightOptionTag: null,
+                  rightOptionDescription: variant.isDual
+                      ? context.knobs.text(label: 'Option 2 description', initial: '8,25€/mes')
+                      : null,
+                  rightOptionPriceTrailing: variant.isDual
+                      ? context.knobs.text(label: 'Option 2 price trailing', initial: '/ano')
+                      : null,
+                  selectedColor: knobColorSelector(context, 'Selected color'),
+                  backgroundColor: knobColorSelector(context, 'Background color'),
+                  overallDiscount: 30,
+                  leftOptionOriginalPrice: '99,00€',
+                  rightOptionOriginalPrice: '99,00€/mes',
+                ),
+              ],
             ),
           );
         },
