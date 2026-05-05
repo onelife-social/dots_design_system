@@ -47,6 +47,15 @@ class SegmentedControlPrice extends StatelessWidget {
   /// Callback when an option is tapped.
   final void Function(SegmentedControlOption optionTaped) onTapOption;
 
+  /// Discount percentage to display as a badge on top of the widget (e.g. 17.0 shows "-17%").
+  final double? overallDiscount;
+
+  /// The original price for the left option, shown with strikethrough below the current price.
+  final String? leftOptionOriginalPrice;
+
+  /// The original price for the right option, shown with strikethrough below the current price.
+  final String? rightOptionOriginalPrice;
+
   const SegmentedControlPrice({
     super.key,
     this.variant = SegmentedControlPriceVariant.dual,
@@ -63,6 +72,9 @@ class SegmentedControlPrice extends StatelessWidget {
     required this.selectedOption,
     this.backgroundColor,
     required this.onTapOption,
+    this.overallDiscount,
+    this.leftOptionOriginalPrice,
+    this.rightOptionOriginalPrice,
   }) : assert(
          variant == SegmentedControlPriceVariant.single ||
              (rightOptionName != null && rightOptionPrice != null),
@@ -73,7 +85,7 @@ class SegmentedControlPrice extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
-    return DotsDecoratedBox(
+    final Widget content = DotsDecoratedBox(
       styleType: theme.styles.squircle16,
       decoration: BoxDecoration(
         color: backgroundColor ?? theme.colors.bgContainerSecondaryOnBackground,
@@ -84,6 +96,25 @@ class SegmentedControlPrice extends StatelessWidget {
           child: variant.isSingle ? _buildSingleOption() : _buildDualOptions(),
         ),
       ),
+    );
+
+    if (overallDiscount == null) return content;
+
+    return Stack(
+      clipBehavior: Clip.none,
+      alignment: Alignment.topCenter,
+      children: [
+        content,
+        Positioned(
+          top: -8,
+          right: 0,
+          child: BadgeLabel(
+            content: '-${overallDiscount!.toStringAsFixed(0)}% OFF',
+            badgeIcon: DotsIconData.tag,
+            variant: BadgeLabelVariant.green,
+          ),
+        ),
+      ],
     );
   }
 
@@ -99,6 +130,7 @@ class SegmentedControlPrice extends StatelessWidget {
         tag: leftOptionTag,
         isSelected: true,
         variant: variant,
+        originalPrice: leftOptionOriginalPrice,
       ),
     );
   }
@@ -119,6 +151,7 @@ class SegmentedControlPrice extends StatelessWidget {
               tag: leftOptionTag,
               isSelected: selectedOption.isLeft,
               variant: variant,
+                originalPrice: leftOptionOriginalPrice,
             ),
           ),
         ),
@@ -134,6 +167,7 @@ class SegmentedControlPrice extends StatelessWidget {
               tag: rightOptionTag,
               isSelected: selectedOption.isRight,
               variant: variant,
+                originalPrice: rightOptionOriginalPrice,
             ),
           ),
         ),
@@ -149,6 +183,7 @@ class SegmentedControlPrice extends StatelessWidget {
     String? tag,
     required bool isSelected,
     required SegmentedControlPriceVariant variant,
+    String? originalPrice,
   }) {
     return SegmentedControlPriceOption(
       label: label,
@@ -158,6 +193,7 @@ class SegmentedControlPrice extends StatelessWidget {
       tag: tag,
       isSelected: isSelected,
       variant: variant,
+      originalPrice: originalPrice,
     );
   }
 }

@@ -18,6 +18,9 @@ class SegmentedControlPriceHandle extends StatefulWidget {
     this.rightOptionPriceTrailing,
     this.selectedColor,
     this.backgroundColor,
+    this.overallDiscount,
+    this.leftOptionOriginalPrice,
+    this.rightOptionOriginalPrice,
   });
 
   final SegmentedControlPriceVariant variant;
@@ -33,6 +36,9 @@ class SegmentedControlPriceHandle extends StatefulWidget {
   final String? rightOptionPriceTrailing;
   final Color? selectedColor;
   final Color? backgroundColor;
+  final double? overallDiscount;
+  final String? leftOptionOriginalPrice;
+  final String? rightOptionOriginalPrice;
 
   @override
   State<SegmentedControlPriceHandle> createState() => _SegmentedControlPriceHandleState();
@@ -44,7 +50,6 @@ class _SegmentedControlPriceHandleState extends State<SegmentedControlPriceHandl
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 85,
       width: 326,
       child: SegmentedControlPrice(
           variant: widget.variant,
@@ -60,6 +65,9 @@ class _SegmentedControlPriceHandleState extends State<SegmentedControlPriceHandl
           rightOptionPriceTrailing: widget.rightOptionPriceTrailing,
           selectedOption: selectedOption,
           backgroundColor: widget.backgroundColor,
+          overallDiscount: widget.overallDiscount,
+          leftOptionOriginalPrice: widget.leftOptionOriginalPrice,
+          rightOptionOriginalPrice: widget.rightOptionOriginalPrice,
           onTapOption: (option) {
             if (kDebugMode) {
               print('Selected option: $option');

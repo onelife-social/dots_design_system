@@ -9,6 +9,7 @@ class SegmentedControlPriceOption extends StatelessWidget {
   final String? tag;
   final bool isSelected;
   final SegmentedControlPriceVariant variant;
+  final String? originalPrice;
 
   const SegmentedControlPriceOption({
     super.key,
@@ -19,6 +20,7 @@ class SegmentedControlPriceOption extends StatelessWidget {
     this.tag,
     this.isSelected = false,
     required this.variant,
+    this.originalPrice,
   });
 
   @override
@@ -72,6 +74,8 @@ class SegmentedControlPriceOption extends StatelessWidget {
                   priceTrailingText: priceTrailingText,
                   isSelected: isSelected,
                 ),
+                if (originalPrice != null)
+                  _OriginalPriceText(originalPrice: originalPrice!, isSelected: isSelected),
               ],
               if (variant.isDual) ...[
                 _PriceRow(
@@ -79,6 +83,8 @@ class SegmentedControlPriceOption extends StatelessWidget {
                   priceTrailingText: priceTrailingText,
                   isSelected: isSelected,
                 ),
+                if (originalPrice != null)
+                  _OriginalPriceText(originalPrice: originalPrice!, isSelected: isSelected),
                 if (description != null)
                   _DescriptionText(description: description!, isSelected: isSelected),
               ],
@@ -104,6 +110,27 @@ class _DescriptionText extends StatelessWidget {
       description,
       style: theme.typo.main.bodyDefaultMedium.copyWith(
         color: isSelected ? theme.colors.textQuarternary : theme.colors.textDisabled,
+      ),
+    );
+  }
+}
+
+class _OriginalPriceText extends StatelessWidget {
+  final String originalPrice;
+  final bool isSelected;
+
+  const _OriginalPriceText({required this.originalPrice, required this.isSelected});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+
+    return Text(
+      originalPrice,
+      style: theme.typo.main.labelSmallMedium.copyWith(
+        color: theme.colors.labelActive,
+        decoration: TextDecoration.lineThrough,
+        decorationColor: theme.colors.textDisabled,
       ),
     );
   }
