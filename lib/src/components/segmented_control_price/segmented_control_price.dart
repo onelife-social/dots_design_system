@@ -98,7 +98,7 @@ class SegmentedControlPrice extends StatelessWidget {
       ),
     );
 
-    if (overallDiscount == null) return content;
+    if (overallDiscount == null || overallDiscount == 0) return content;
 
     return Stack(
       clipBehavior: Clip.none,
@@ -151,7 +151,7 @@ class SegmentedControlPrice extends StatelessWidget {
               tag: leftOptionTag,
               isSelected: selectedOption.isLeft,
               variant: variant,
-                originalPrice: leftOptionOriginalPrice,
+              originalPrice: leftOptionOriginalPrice,
             ),
           ),
         ),
@@ -167,7 +167,7 @@ class SegmentedControlPrice extends StatelessWidget {
               tag: rightOptionTag,
               isSelected: selectedOption.isRight,
               variant: variant,
-                originalPrice: rightOptionOriginalPrice,
+              originalPrice: rightOptionOriginalPrice,
             ),
           ),
         ),
