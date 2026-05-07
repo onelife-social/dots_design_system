@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../dots_design_system.dart';
-import '../../core/values/paths/images_paths.dart';
 
 class UserInfoTheme {
   final TextStyle nameStyle;

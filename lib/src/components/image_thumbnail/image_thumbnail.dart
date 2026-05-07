@@ -71,7 +71,7 @@ class DotsImageThumbnail extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: coverImage ? Colors.black.withOpacity(0.3) : Colors.transparent,
+          color: coverImage ? Colors.black.dotsWithOpacity(0.3) : Colors.transparent,
           borderRadius: DotsBorderRadius.r12,
         ),
         child: Center(

@@ -75,8 +75,6 @@ class _DotsAccordionState extends State<DotsAccordion> with TickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.dotsTheme;
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [

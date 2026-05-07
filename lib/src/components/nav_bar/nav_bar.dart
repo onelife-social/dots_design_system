@@ -52,7 +52,7 @@ class DotsNavBar extends StatelessWidget {
           padding: const EdgeInsets.all(5),
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(
-            color: theme.colors.bgContainerSecondary.withOpacity(0.7),
+            color: theme.colors.bgContainerSecondary.dotsWithOpacity(0.7),
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 0.70,
@@ -106,8 +106,8 @@ class _NavBarItem extends StatelessWidget {
     final String? pendingNumberText = item.pendingNumber == null
         ? null
         : item.pendingNumber! > kMaxPendingNumber
-            ? kMaxPendingNumber.toString()
-            : item.pendingNumber.toString();
+        ? kMaxPendingNumber.toString()
+        : item.pendingNumber.toString();
     return GestureDetector(
       onTap: () {
         item.onTap?.call();
@@ -115,7 +115,7 @@ class _NavBarItem extends StatelessWidget {
       child: Container(
         width: 70,
         height: 55,
-                      clipBehavior: Clip.antiAlias,
+        clipBehavior: Clip.antiAlias,
         decoration: const ShapeDecoration(
           shape: RoundedRectangleBorder(
             borderRadius: DotsBorderRadius.all32,
@@ -153,7 +153,7 @@ class _NavBarItem extends StatelessWidget {
                           tag: pendingNumberText,
                           child: const SizedBox.shrink(),
                         ),
-                      )
+                      ),
                   ],
                 ),
                 const SizedBox(height: 2),

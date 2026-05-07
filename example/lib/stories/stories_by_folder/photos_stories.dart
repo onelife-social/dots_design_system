@@ -26,7 +26,7 @@ List<Story> get photoStories => [
             width: 44,
             height: 44,
             imageProvider: NetworkImage(context.knobs
-               .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9')),
+                .text(label: 'Image URL', initial: 'https://picsum.photos/250?image=9')),
             reaction: context.knobs.nullable.text(
               label: 'Reaction',
               initial: '😋',
@@ -48,8 +48,7 @@ List<Story> get photoStories => [
             ),
             defaultImagePath: ImagesPaths.defaultSectionPlanning,
             squircleStyle: context.dotsTheme.styles.squircle16,
-            onError: (error, stackTrace) {
-            },
+            onError: (error, stackTrace) {},
             uploadError: context.knobs.boolean(
               label: 'Upload error',
               initial: true,
@@ -60,7 +59,7 @@ List<Story> get photoStories => [
               options:
                   DotsIconData.values.map((item) => Option(label: item.name, value: item)).toList(),
             ),
-            borderColor: context.dotsTheme.colors.bgBtnImage.withOpacity(0.6),
+            borderColor: context.dotsTheme.colors.bgBtnImage.dotsWithOpacity(0.6),
           ),
         ),
       ),

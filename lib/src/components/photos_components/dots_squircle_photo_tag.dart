@@ -97,7 +97,7 @@ class DotsSquircleImageTag extends StatelessWidget {
                 color: theme.colors.labelHighlight,
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: theme.colors.labelAlwaysWhite.withOpacity(0.3),
+                  color: theme.colors.labelAlwaysWhite.dotsWithOpacity(0.3),
                   width: 1.4,
                 ),
               ),

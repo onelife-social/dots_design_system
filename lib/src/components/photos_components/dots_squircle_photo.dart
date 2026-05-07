@@ -87,7 +87,7 @@ class DotsSquircleImage extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: borderColor ?? theme.colors.bgBtnImage.withOpacity(0.6),
+                        color: borderColor ?? theme.colors.bgBtnImage.dotsWithOpacity(0.6),
                         width: borderSize,
                       ),
                       borderRadius: borderRadius,
@@ -99,7 +99,7 @@ class DotsSquircleImage extends StatelessWidget {
               Positioned.fill(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.2),
+                    color: Colors.black.dotsWithOpacity(0.2),
                   ),
                   child: Center(
                     child: DotsIcon(

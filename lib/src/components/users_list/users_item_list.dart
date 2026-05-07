@@ -221,7 +221,7 @@ class UsersItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String? tapValue = id ?? '';
+    final String tapValue = id ?? '';
 
     final content = Container(
       color: Colors.transparent,
