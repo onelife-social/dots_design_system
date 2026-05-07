@@ -11,37 +11,44 @@ class DotsIconItem extends StatelessWidget {
   /// Text label to be displayed next to the icon slot.
   final String label;
 
-  const DotsIconItem({required this.type, required this.label, super.key});
+  /// Callback function to be called when the icon item is tapped.
+  final VoidCallback? onTap;
+
+  const DotsIconItem({required this.type, required this.label, this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        children: [
-          Expanded(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                DotsIconItemSlot(type: type),
-                SizedBox(width: 12),
-                Text(
-                  label,
-                  style: context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
-                    color: context.dotsTheme.colors.textPrimary,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        color: Colors.transparent,
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Row(
+          children: [
+            Expanded(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  DotsIconItemSlot(type: type),
+                  SizedBox(width: 12),
+                  Text(
+                    label,
+                    style: context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
+                      color: context.dotsTheme.colors.textPrimary,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const SizedBox(width: 8),
-          DotsIcon(
-            iconData: DotsIconData.chevronRight,
-            color: context.dotsTheme.colors.textSecondary,
-            size: 20,
-          ),
-        ],
+            const SizedBox(width: 8),
+            DotsIcon(
+              iconData: DotsIconData.chevronRight,
+              color: context.dotsTheme.colors.textSecondary,
+              size: 20,
+            ),
+          ],
+        ),
       ),
     );
   }
