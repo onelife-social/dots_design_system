@@ -112,9 +112,7 @@ List<Story> get dotBookStories => [
                 initial: null,
                 options: [
                   const Option(label: 'None', value: null),
-                  ...DotsIconData.values
-                      .map((item) => Option(label: item.name, value: item))
-                      .toList(),
+                  ...DotsIconData.values.map((item) => Option(label: item.name, value: item)),
                 ],
               ),
               onBackPressed: context.knobs.boolean(

@@ -1,5 +1,4 @@
 import 'package:dots_design_system/dots_design_system.dart';
-import 'package:dots_design_system/src/core/values/paths/images_paths.dart';
 import 'package:flutter/material.dart';
 
 enum DotsPlanSelectorVariant {
@@ -83,7 +82,7 @@ class DotsPlanSelector extends StatelessWidget {
                     description ?? '',
                     style: theme.typo.main.labelSmallRegular.copyWith(color: textColor),
                     textAlign: TextAlign.center,
-                  )
+                  ),
               ],
             ),
           ),

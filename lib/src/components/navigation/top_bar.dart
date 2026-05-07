@@ -74,21 +74,21 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     this.hideBackground = false,
     this.showBottomBorder = false,
-  })  : title = null,
-        subtitle = null,
-        child = null,
-        leftIcon = null,
-        rightIcon = null,
-        onTapBack = null,
-        bigStatusBar = false,
-        _hideWidgets = true,
-        ctaLabel = null,
-        onCtaTap = null,
-        ctaEnabled = false,
-        imageTitle = null,
-        onErrorImageTitle = null,
-        showCircleBackButton = false,
-        color = null;
+  }) : title = null,
+       subtitle = null,
+       child = null,
+       leftIcon = null,
+       rightIcon = null,
+       onTapBack = null,
+       bigStatusBar = false,
+       _hideWidgets = true,
+       ctaLabel = null,
+       onCtaTap = null,
+       ctaEnabled = false,
+       imageTitle = null,
+       onErrorImageTitle = null,
+       showCircleBackButton = false,
+       color = null;
 
   /// Bar with title and optional subtitle, left and right icons, back button and image.
   const DotsTopBar.title({
@@ -105,15 +105,15 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.showCircleBackButton = false,
     this.color,
     this.showBottomBorder = false,
-  })  : assert(
-          (leftIcon == null || onTapBack == null),
-          'leftIcon cannot be used with onTapBack',
-        ),
-        child = null,
-        _hideWidgets = false,
-        ctaLabel = null,
-        onCtaTap = null,
-        ctaEnabled = false;
+  }) : assert(
+         (leftIcon == null || onTapBack == null),
+         'leftIcon cannot be used with onTapBack',
+       ),
+       child = null,
+       _hideWidgets = false,
+       ctaLabel = null,
+       onCtaTap = null,
+       ctaEnabled = false;
 
   /// Bar with widget, left and right icons, and back button.
   const DotsTopBar.widget({
@@ -127,18 +127,18 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.showCircleBackButton = false,
     this.color,
     this.showBottomBorder = false,
-  })  : assert(
-          (leftIcon == null || onTapBack == null),
-          'leftIcon cannot be used with onTapBack',
-        ),
-        title = null,
-        subtitle = null,
-        ctaLabel = null,
-        _hideWidgets = false,
-        ctaEnabled = false,
-        imageTitle = null,
-        onErrorImageTitle = null,
-        onCtaTap = null;
+  }) : assert(
+         (leftIcon == null || onTapBack == null),
+         'leftIcon cannot be used with onTapBack',
+       ),
+       title = null,
+       subtitle = null,
+       ctaLabel = null,
+       _hideWidgets = false,
+       ctaEnabled = false,
+       imageTitle = null,
+       onErrorImageTitle = null,
+       onCtaTap = null;
 
   /// Bar with call to action and back button.
   const DotsTopBar.cta({
@@ -155,19 +155,19 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.showCircleBackButton = false,
     this.color,
     this.showBottomBorder = false,
-  })  : assert(
-          onCtaTap == null || ctaLabel != null,
-          'ctaLabel is required when onCtaTap is provided',
-        ),
-        assert(
-          (onTapBack != null),
-          'onTapBack cannot be null',
-        ),
-        child = null,
-        subtitle = null,
-        leftIcon = null,
-        _hideWidgets = false,
-        rightIcon = null;
+  }) : assert(
+         onCtaTap == null || ctaLabel != null,
+         'ctaLabel is required when onCtaTap is provided',
+       ),
+       assert(
+         (onTapBack != null),
+         'onTapBack cannot be null',
+       ),
+       child = null,
+       subtitle = null,
+       leftIcon = null,
+       _hideWidgets = false,
+       rightIcon = null;
 
   @override
   Size get preferredSize {
@@ -186,7 +186,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
           ? BoxDecoration(
               border: Border(
                 bottom: BorderSide(
-                  color: Colors.black.withOpacity(0.2),
+                  color: Colors.black.dotsWithOpacity(0.2),
                   width: 1,
                 ),
               ),
@@ -199,7 +199,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-               if (_hideWidgets != bigStatusBar)
+              if (_hideWidgets != bigStatusBar)
                 SizedBox(
                   height: 50,
                   width: double.infinity,
@@ -209,41 +209,43 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
                   child: Stack(
                     children: [
                       Positioned.fill(
-                          child: Center(
-                        child: child ??
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    if (imageTitle != null) ...[
-                                      DotsProfilePhoto(
-                                        imageProvider: imageTitle!,
-                                        width: 20,
-                                        height: 20,
-                                        onError: onErrorImageTitle,
+                        child: Center(
+                          child:
+                              child ??
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      if (imageTitle != null) ...[
+                                        DotsProfilePhoto(
+                                          imageProvider: imageTitle!,
+                                          width: 20,
+                                          height: 20,
+                                          onError: onErrorImageTitle,
+                                        ),
+                                        SizedBox(width: 6),
+                                      ],
+                                      Text(
+                                        title ?? '',
+                                        style: theme.typo.main.titleH6.copyWith(
+                                          color: theme.colors.textPrimary,
+                                        ),
                                       ),
-                                      SizedBox(width: 6)
                                     ],
+                                  ),
+                                  if (subtitle != null)
                                     Text(
-                                      title ?? '',
-                                      style: theme.typo.main.titleH6.copyWith(
-                                        color: theme.colors.textPrimary,
+                                      subtitle ?? '',
+                                      style: theme.typo.main.labelSmallRegular.copyWith(
+                                        color: theme.colors.textSecondary,
                                       ),
                                     ),
-                                  ],
-                                ),
-                                if (subtitle != null)
-                                  Text(
-                                    subtitle ?? '',
-                                    style: theme.typo.main.labelSmallRegular.copyWith(
-                                      color: theme.colors.textSecondary,
-                                    ),
-                                  ),
-                              ],
-                            ),
-                      )),
+                                ],
+                              ),
+                        ),
+                      ),
                       Positioned.fill(
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -284,8 +286,8 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
                       ),
                     ],
                   ),
-                )
-              ]
+                ),
+              ],
             ],
           ),
         ),

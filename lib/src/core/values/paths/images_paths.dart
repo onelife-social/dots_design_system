@@ -2,6 +2,7 @@ import 'package:dots_design_system/dots_design_system.dart';
 
 class ImagesPaths {
   static final String _images = 'packages/$dotsDesignSystemPackage/assets/images';
+  static final String imagesIcons = '$_images/icons';
 
   static final String bgBasic = '$_images/bg_basic.webp';
   static final String bgPremium = '$_images/bg_premium.webp';
@@ -21,7 +22,10 @@ class ImagesPaths {
   static final String dotbookCoverPrintedSand = '$_images/dotbook/printed_sand.webp';
   static final String dotbookCoverPrintedBeigeCraft = '$_images/dotbook/printed_beigeCraft.webp';
 
-  static final String dotbookDefaulOverlayImageLinen = '$_images/dotbook/default_overlay_linen.webp';
-  static final String dotbookDefaulOverlayImageSquare = '$_images/dotbook/default_overlay_square.webp';
-  static final String dotbookDefaultOverlayImageCircle = '$_images/dotbook/default_overlay_circle.webp';
+  static final String dotbookDefaulOverlayImageLinen =
+      '$_images/dotbook/default_overlay_linen.webp';
+  static final String dotbookDefaulOverlayImageSquare =
+      '$_images/dotbook/default_overlay_square.webp';
+  static final String dotbookDefaultOverlayImageCircle =
+      '$_images/dotbook/default_overlay_circle.webp';
 }

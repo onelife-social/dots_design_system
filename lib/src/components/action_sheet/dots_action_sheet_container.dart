@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +31,7 @@ class DotsActionSheetContainer extends StatelessWidget {
 
     return Stack(
       children: [
-         if (onClose != null)
+        if (onClose != null)
           GestureDetector(
             onTap: onClose,
             child: Container(color: Color(0xFF000000).dotsWithOpacity(0.4)),

@@ -1,6 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 const List<String> dotsColorNames = [
@@ -69,7 +68,6 @@ const List<String> basicColorNames = [
   'black',
   'white',
 ];
-
 
 Color? _getDotsColorByName(dynamic themeColors, String? name) {
   if (name == null || name == 'null') return null;
@@ -185,7 +183,6 @@ Color? knobColorSelector(BuildContext context, String label) {
     options: dotsColorNames.map((name) => Option(label: name, value: name)).toList(),
   );
 
-
   return _getDotsColorByName(themeColors, selectedColorName);
 }
 
@@ -226,5 +223,3 @@ Color basicColorSelector(BuildContext context, String label) {
   );
   return _getBasicColorByName(selectedColorName);
 }
-
-

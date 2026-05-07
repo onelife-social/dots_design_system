@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:dots_design_system/src/core/core_lib.dart';
-import 'package:dots_design_system/src/core/values/paths/shader_paths.dart';
 
 class ShadersLoader {
   static final Map<String, FragmentProgram> _programs = {};

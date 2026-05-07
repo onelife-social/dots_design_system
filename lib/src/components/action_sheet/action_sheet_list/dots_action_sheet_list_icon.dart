@@ -180,7 +180,7 @@ class _Header extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 44)
+              const SizedBox(width: 44),
             ],
           ),
         ],
@@ -193,7 +193,6 @@ class _Body extends StatelessWidget {
   final List<DotsActionSheetIconModel> icons;
 
   const _Body({
-    super.key,
     required this.icons,
   });
 

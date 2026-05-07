@@ -2,7 +2,6 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 import 'segmented_control_price_option.dart';
-import 'segmented_control_price_variant.dart';
 
 class SegmentedControlPrice extends StatelessWidget {
   /// The variant of the segmented control price.

@@ -192,7 +192,8 @@ class DotsMainButton extends StatelessWidget {
                     strokeWidth: 3.0,
                     gradientStops: const [0.0001, 1.0],
                     gradientColors: [
-                      (foregroundColor ?? context.dotsTheme.colors.labelAlwaysWhite).withOpacity(0),
+                      (foregroundColor ?? context.dotsTheme.colors.labelAlwaysWhite)
+                          .dotsWithOpacity(0),
                       (foregroundColor ?? context.dotsTheme.colors.labelAlwaysWhite),
                     ],
                     child: const SizedBox.shrink(),

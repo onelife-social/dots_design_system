@@ -38,6 +38,7 @@ flutter:
     - assets/icons/system/
     - assets/icons/home/
     - assets/images/
+    - assets/images/icons/
     - assets/images/social_media/
     - assets/images/milestones/
     - assets/images/dotbook/
