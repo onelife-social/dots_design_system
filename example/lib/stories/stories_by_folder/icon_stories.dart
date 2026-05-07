@@ -1,4 +1,5 @@
 import 'package:dots_design_system/dots_design_system.dart';
+import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 List<Story> get iconStories => [
@@ -18,6 +19,9 @@ List<Story> get iconStories => [
               ],
             ),
             label: context.knobs.text(label: 'Label', initial: 'Icon Label'),
+            onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Icon Item tapped!')),
+            ),
           );
         },
       ),
