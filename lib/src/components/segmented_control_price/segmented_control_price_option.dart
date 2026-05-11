@@ -69,8 +69,7 @@ class SegmentedControlPriceOption extends StatelessWidget {
               if (variant.isSingle) ...[
                 if (description != null)
                   _DescriptionText(description: description!, isSelected: isSelected),
-                if (originalPrice != null)
-                  _OriginalPriceText(originalPrice: originalPrice!),
+                if (originalPrice != null) _OriginalPriceText(originalPrice: originalPrice!),
                 _PriceRow(
                   price: price,
                   priceTrailingText: priceTrailingText,
@@ -78,8 +77,7 @@ class SegmentedControlPriceOption extends StatelessWidget {
                 ),
               ],
               if (variant.isDual) ...[
-                if (originalPrice != null)
-                  _OriginalPriceText(originalPrice: originalPrice!),
+                if (originalPrice != null) _OriginalPriceText(originalPrice: originalPrice!),
                 _PriceRow(
                   price: price,
                   priceTrailingText: priceTrailingText,
@@ -129,7 +127,8 @@ class _OriginalPriceText extends StatelessWidget {
       style: theme.typo.main.labelSmallMedium.copyWith(
         color: theme.colors.labelActive,
         decoration: TextDecoration.lineThrough,
-        decorationColor: theme.colors.textDisabled,
+        decorationColor: theme.colors.labelActive,
+        decorationThickness: 2,
       ),
     );
   }
