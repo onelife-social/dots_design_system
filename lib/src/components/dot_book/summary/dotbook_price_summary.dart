@@ -1,14 +1,62 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
+enum DotbookPriceSummaryVariant {
+  event,
+  albumYear,
+  albumMonth,
+}
+
+class DotbookClaimedBookItem {
+  final String quantity;
+  final String title;
+  final String price;
+  final bool greenPrice;
+
+  const DotbookClaimedBookItem({
+    required this.quantity,
+    required this.title,
+    required this.price,
+    this.greenPrice = true,
+  });
+}
+
+class DotbookProductItem {
+  final String title;
+  final String price;
+  final bool greenPrice;
+
+  const DotbookProductItem({
+    required this.title,
+    required this.price,
+    this.greenPrice = false,
+  });
+}
+
+class DotbookTotalPriceItem {
+  final String title;
+  final String? taxes;
+  final String price;
+
+  const DotbookTotalPriceItem({
+    required this.title,
+    this.taxes,
+    required this.price,
+  });
+}
+
 class DotbookPriceSummary extends StatelessWidget {
+
+   /// Layout variant of the summary card to display Image, custom widget or a label.
+  final DotbookPriceSummaryVariant variant;
+
   /// Product image shown in the summary header.
-  final ImageProvider imageProvider;
+  final ImageProvider? imageProvider;
 
   /// Optional widget builder used when `imageProvider` fails to load.
   final ImageErrorWidgetBuilder? errorBuilder;
 
-  /// Product title shown next to the image.
+  /// Product title shown next to the image or at the top.
   final String title;
 
   /// Label used for the quantity row.
@@ -35,22 +83,33 @@ class DotbookPriceSummary extends StatelessWidget {
   final VoidCallback? onDecrement;
 
   /// Product price rows where key is label and value is formatted price.
-  final Map<String, String> products;
+  final List<DotbookProductItem> products;
 
-  /// Label for the total row.
-  final String totalLabel;
+  /// Claimed books rows with quantity, title and price.
+  final List<DotbookClaimedBookItem> claimedBooks;
 
-  /// Optional supplementary label, e.g. "IVA included".
-  final String? taxesIncludedLabel;
+  /// Item to display the total price with an optional taxes included label.
+  final DotbookTotalPriceItem totalPriceItem;
 
-  /// Formatted total price value.
-  final String totalPrice;
+  /// Custom widget rendered in the header under the title. Only applied for
+  /// [DotbookPriceSummaryVariant.albumYear] variant.
+  final Widget? customSubtitleWidget;
 
+  /// Text used by the badge in [DotbookPriceSummaryVariant.albumMonth].
+  final String? subtitleLabelText;
+
+  /// Callback invoked when tapping the badge in [DotbookPriceSummaryVariant.albumMonth].
+  final VoidCallback? onTapSubtitleLabel;
+
+  /// Visual style used by the badge.
+  final BadgeLabelVariant subtitleLabelVariant;
+
+  /// Custom widget rendered below the quantity row and above the price summary.
   final Widget? customWidget;
 
   const DotbookPriceSummary({
     super.key,
-    required this.imageProvider,
+    this.imageProvider,
     this.errorBuilder,
     required this.title,
     required this.quantityLabel,
@@ -61,11 +120,22 @@ class DotbookPriceSummary extends StatelessWidget {
     this.onIncrement,
     this.onDecrement,
     required this.products,
-    required this.totalLabel,
-    this.taxesIncludedLabel,
-    required this.totalPrice,
+    required this.totalPriceItem,
+    this.variant = DotbookPriceSummaryVariant.event,
     this.customWidget,
-  });
+    this.customSubtitleWidget,
+    this.subtitleLabelText,
+    this.onTapSubtitleLabel,
+    this.subtitleLabelVariant = BadgeLabelVariant.warningMaterial,
+    this.claimedBooks = const [],
+  }) : assert(
+        !showQuantityInput ||
+            (minQuantity != null &&
+                maxQuantity != null &&
+                onIncrement != null &&
+                onDecrement != null),
+        'When showQuantityInput is true, minQuantity, maxQuantity, onIncrement and onDecrement are required.',
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -89,9 +159,14 @@ class DotbookPriceSummary extends StatelessWidget {
               spacing: 16,
               children: [
                 SummaryTitleAndQuantity(
+                  variant: variant,
                   imageProvider: imageProvider,
                   errorBuilder: errorBuilder,
                   title: title,
+                  customSubtitleWidget: customSubtitleWidget,
+                  subtitleLabelText: subtitleLabelText,
+                  onTapSubtitleLabel: onTapSubtitleLabel,
+                  subtitleLabelVariant: subtitleLabelVariant,
                   quantityLabel: quantityLabel,
                   quantity: quantity,
                   showQuantityInput: showQuantityInput,
@@ -101,7 +176,6 @@ class DotbookPriceSummary extends StatelessWidget {
                   onDecrement: onDecrement,
                 ),
                 DotsDivider(),
-
                 customWidget != null
                     ? SizedBox(
                         width: double.infinity,
@@ -112,9 +186,8 @@ class DotbookPriceSummary extends StatelessWidget {
                       )
                     : SummaryInfo(
                         products: products,
-                        totalLabel: totalLabel,
-                        taxesIncludedLabel: taxesIncludedLabel,
-                        totalPrice: totalPrice,
+                        claimedBooks: claimedBooks,
+                        totalPriceItem: totalPriceItem,
                       ),
               ],
             ),
@@ -126,11 +199,32 @@ class DotbookPriceSummary extends StatelessWidget {
 }
 
 class SummaryTitleAndQuantity extends StatelessWidget {
+  final DotbookPriceSummaryVariant variant;
+  final ImageProvider? imageProvider;
+  final ImageErrorWidgetBuilder? errorBuilder;
+  final String title;
+  final Widget? customSubtitleWidget;
+  final String? subtitleLabelText;
+  final BadgeLabelVariant subtitleLabelVariant;
+  final String quantityLabel;
+  final int quantity;
+  final bool showQuantityInput;
+  final int? minQuantity;
+  final int? maxQuantity;
+  final VoidCallback? onIncrement;
+  final VoidCallback? onDecrement;
+  final VoidCallback? onTapSubtitleLabel;
+
   const SummaryTitleAndQuantity({
     super.key,
-    required this.imageProvider,
+    required this.variant,
+    this.imageProvider,
     this.errorBuilder,
     required this.title,
+    this.customSubtitleWidget,
+    this.subtitleLabelText,
+    this.onTapSubtitleLabel,
+    this.subtitleLabelVariant = BadgeLabelVariant.warningMaterial,
     required this.quantityLabel,
     required this.quantity,
     this.showQuantityInput = false,
@@ -140,7 +234,43 @@ class SummaryTitleAndQuantity extends StatelessWidget {
     this.onDecrement,
   });
 
-  final ImageProvider imageProvider;
+  @override
+  Widget build(BuildContext context) {
+    if (variant == DotbookPriceSummaryVariant.event) {
+      return _EventSummaryHeader(
+        imageProvider: imageProvider,
+        errorBuilder: errorBuilder,
+        title: title,
+        quantityLabel: quantityLabel,
+        quantity: quantity,
+        showQuantityInput: showQuantityInput,
+        minQuantity: minQuantity,
+        maxQuantity: maxQuantity,
+        onIncrement: onIncrement,
+        onDecrement: onDecrement,
+      );
+    }
+
+    return _AlbumSummaryHeader(
+      variant: variant,
+      title: title,
+      customSubtitleWidget: customSubtitleWidget,
+      subtitleLabelText: subtitleLabelText,
+      subtitleLabelVariant: subtitleLabelVariant,
+      quantityLabel: quantityLabel,
+      quantity: quantity,
+      showQuantityInput: showQuantityInput,
+      minQuantity: minQuantity,
+      maxQuantity: maxQuantity,
+      onIncrement: onIncrement,
+      onDecrement: onDecrement,
+      onTapSubtitleLabel: onTapSubtitleLabel,
+    );
+  }
+}
+
+class _EventSummaryHeader extends StatelessWidget {
+  final ImageProvider? imageProvider;
   final ImageErrorWidgetBuilder? errorBuilder;
   final String title;
   final String quantityLabel;
@@ -151,6 +281,19 @@ class SummaryTitleAndQuantity extends StatelessWidget {
   final VoidCallback? onIncrement;
   final VoidCallback? onDecrement;
 
+  const _EventSummaryHeader({
+    this.imageProvider,
+    this.errorBuilder,
+    required this.title,
+    required this.quantityLabel,
+    required this.quantity,
+    required this.showQuantityInput,
+    this.minQuantity,
+    this.maxQuantity,
+    this.onIncrement,
+    this.onDecrement,
+  });
+
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -158,17 +301,19 @@ class SummaryTitleAndQuantity extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        ClipRRect(
-          borderRadius: DotsBorderRadius.r16,
-          child: Image(
-            image: imageProvider,
-            fit: BoxFit.cover,
-            width: 64,
-            height: 64,
-            errorBuilder: errorBuilder,
+        if (imageProvider != null) ...[
+          ClipRRect(
+            borderRadius: DotsBorderRadius.r16,
+            child: Image(
+              image: imageProvider!,
+              fit: BoxFit.cover,
+              width: 64,
+              height: 64,
+              errorBuilder: errorBuilder,
+            ),
           ),
-        ),
-        const SizedBox(width: 12),
+          const SizedBox(width: 12),
+        ],
         Expanded(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -182,11 +327,10 @@ class SummaryTitleAndQuantity extends StatelessWidget {
                   color: theme.colors.textPrimary,
                 ),
               ),
-              Text(
-                showQuantityInput ? '$quantityLabel:' : '$quantityLabel: $quantity',
-                style: theme.typo.main.labelDefaultRegular.copyWith(
-                  color: theme.colors.textTertiary,
-                ),
+              _QuantityLabelText(
+                quantityLabel: quantityLabel,
+                quantity: quantity,
+                showQuantityInput: showQuantityInput,
               ),
             ],
           ),
@@ -206,18 +350,160 @@ class SummaryTitleAndQuantity extends StatelessWidget {
   }
 }
 
+class _AlbumSummaryHeader extends StatelessWidget {
+  final DotbookPriceSummaryVariant variant;
+  final String title;
+  final Widget? customSubtitleWidget;
+  final String? subtitleLabelText;
+  final BadgeLabelVariant subtitleLabelVariant;
+  final String quantityLabel;
+  final int quantity;
+  final bool showQuantityInput;
+  final int? minQuantity;
+  final int? maxQuantity;
+  final VoidCallback? onIncrement;
+  final VoidCallback? onDecrement;
+  final VoidCallback? onTapSubtitleLabel;
+
+  const _AlbumSummaryHeader({
+    required this.variant,
+    required this.title,
+    this.customSubtitleWidget,
+    this.subtitleLabelText,
+    this.onTapSubtitleLabel,
+    this.subtitleLabelVariant = BadgeLabelVariant.warningMaterial,
+    required this.quantityLabel,
+    required this.quantity,
+    required this.showQuantityInput,
+    this.minQuantity,
+    this.maxQuantity,
+    this.onIncrement,
+    this.onDecrement,
+  });
+
+  Widget? _buildTitleExtra(BuildContext context) {
+    switch (variant) {
+      case DotbookPriceSummaryVariant.event:
+        return null;
+      case DotbookPriceSummaryVariant.albumYear:
+        if (customSubtitleWidget == null) return null;
+        return SizedBox(
+          width: double.infinity,
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: customSubtitleWidget,
+          ),
+        );
+      case DotbookPriceSummaryVariant.albumMonth:
+        if (subtitleLabelText == null || subtitleLabelText!.trim().isEmpty) return null;
+        return GestureDetector(
+          onTap: onTapSubtitleLabel,
+          child: Row(
+            children: [
+              BadgeLabel(
+                content: subtitleLabelText!,
+                variant: subtitleLabelVariant,
+              ),
+              const SizedBox(width: 2),
+              DotsIcon(
+                iconData: DotsIconData.helpCircle,
+                size: 14,
+                color: context.dotsTheme.colors.textTertiary,
+              ),
+            ],
+          ),
+        );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+    final titleExtra = _buildTitleExtra(context);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 8,
+        children: [
+          Text(
+            title,
+            softWrap: true,
+            style: theme.typo.main.bodyLargeMedium.copyWith(
+              color: theme.colors.textPrimary,
+            ),
+          ),
+          if (titleExtra != null) titleExtra,
+          if (showQuantityInput)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: _QuantityLabelText(
+                    quantityLabel: quantityLabel,
+                    quantity: quantity,
+                    showQuantityInput: true,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                DotsInputStepper(
+                  value: quantity,
+                  minValue: minQuantity!,
+                  maxValue: maxQuantity!,
+                  onIncrement: onIncrement!,
+                  onDecrement: onDecrement!,
+                ),
+              ],
+            )
+          else
+            _QuantityLabelText(
+              quantityLabel: quantityLabel,
+              quantity: quantity,
+              showQuantityInput: false,
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _QuantityLabelText extends StatelessWidget {
+  final String quantityLabel;
+  final int quantity;
+  final bool showQuantityInput;
+
+  const _QuantityLabelText({
+    required this.quantityLabel,
+    required this.quantity,
+    required this.showQuantityInput,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+
+    return Text(
+      showQuantityInput ? '$quantityLabel:' : '$quantityLabel: $quantity',
+      style: theme.typo.main.labelDefaultRegular.copyWith(
+        color: theme.colors.textSecondary,
+      ),
+    );
+  }
+}
+
 class SummaryInfo extends StatelessWidget {
-  final Map<String, String> products;
-  final String totalLabel;
-  final String? taxesIncludedLabel;
-  final String totalPrice;
+  final List<DotbookProductItem> products;
+  final List<DotbookClaimedBookItem> claimedBooks;
+  final DotbookTotalPriceItem totalPriceItem;
 
   const SummaryInfo({
     super.key,
     required this.products,
-    required this.totalLabel,
-    this.taxesIncludedLabel,
-    required this.totalPrice,
+    this.claimedBooks = const [],
+    required this.totalPriceItem,
   });
 
   @override
@@ -228,12 +514,19 @@ class SummaryInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         spacing: 8,
         children: [
-          ...products.entries.map((entry) => PriceRow(label: entry.key, price: entry.value)),
-
+          ...products.map((entry) => PriceRow(label: entry.title, price: entry.price, greenPrice: entry.greenPrice)),
+          if (claimedBooks.isNotEmpty) ...[
+            ...claimedBooks.map(
+              (entry) => ClaimedBooksRow(
+                quantity: entry.quantity,
+                title: entry.title,
+                price: entry.price,
+                greenPrice: entry.greenPrice,
+              ),
+            ),
+          ],
           TotalPriceRow(
-            totalLabel: totalLabel,
-            taxesIncludedLabel: taxesIncludedLabel,
-            totalPrice: totalPrice,
+            totalPriceItem: totalPriceItem,
           ),
         ],
       ),
@@ -244,11 +537,13 @@ class SummaryInfo extends StatelessWidget {
 class PriceRow extends StatelessWidget {
   final String label;
   final String price;
+  final bool greenPrice;
 
   const PriceRow({
     super.key,
     required this.label,
     required this.price,
+    this.greenPrice = false,
   });
 
   @override
@@ -270,7 +565,70 @@ class PriceRow extends StatelessWidget {
           child: Text(
             price,
             textAlign: TextAlign.right,
-            style: theme.typo.main.bodyDefaultMedium.copyWith(color: theme.colors.textSecondary),
+            style: theme.typo.main.bodyDefaultMedium.copyWith(color: greenPrice ? theme.colors.labelActive : theme.colors.textSecondary),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ClaimedBooksRow extends StatelessWidget {
+  final String quantity;
+  final String title;
+  final String price;
+  final bool greenPrice;
+
+  const ClaimedBooksRow({
+    super.key,
+    required this.quantity,
+    required this.title,
+    required this.price,
+    this.greenPrice = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+
+    return Row(
+      spacing: 10,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Expanded(
+          child: Row(
+            children: [
+              Text(
+                quantity,
+                style: theme.typo.main.bodyDefaultRegular.copyWith(
+                  color: theme.colors.textTertiary,
+                ),
+              ),
+              const SizedBox(width: 4),
+              Image.asset( 
+                '${ImagesPaths.imagesIcons}/icon_prime_circle.webp',
+                width: 12,
+                height: 12,
+              ),
+              const SizedBox(width: 4),
+              Text(
+                title,
+                style: theme.typo.main.bodyDefaultRegular.copyWith(
+                  color: theme.colors.textTertiary,
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: 100,
+          child: Text(
+            price,
+            textAlign: TextAlign.right,
+            style: theme.typo.main.bodyDefaultMedium.copyWith(color: greenPrice 
+              ? theme.colors.labelActive 
+              : theme.colors.textSecondary
+            ),
           ),
         ),
       ],
@@ -279,15 +637,11 @@ class PriceRow extends StatelessWidget {
 }
 
 class TotalPriceRow extends StatelessWidget {
-  final String totalLabel;
-  final String? taxesIncludedLabel;
-  final String totalPrice;
+  final DotbookTotalPriceItem totalPriceItem;
 
   const TotalPriceRow({
     super.key,
-    required this.totalLabel,
-    required this.taxesIncludedLabel,
-    required this.totalPrice,
+    required this.totalPriceItem,
   });
 
   @override
@@ -301,15 +655,15 @@ class TotalPriceRow extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              totalLabel,
+              totalPriceItem.title,
               style: theme.typo.main.bodyLargeBold.copyWith(
                 color: theme.colors.textPrimary,
               ),
             ),
-            if (taxesIncludedLabel != null) ...[
+            if (totalPriceItem.taxes != null) ...[
               const SizedBox(width: 6),
               Text(
-                taxesIncludedLabel!,
+                totalPriceItem.taxes!,
                 style: theme.typo.main.bodyLargeMedium.copyWith(
                   color: theme.colors.textQuarternary,
                 ),
@@ -318,7 +672,7 @@ class TotalPriceRow extends StatelessWidget {
           ],
         ),
         Text(
-          totalPrice,
+          totalPriceItem.price,
           style: theme.typo.main.bodyLargeBold.copyWith(
             color: theme.colors.textPrimary,
           ),
