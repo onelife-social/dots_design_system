@@ -96,7 +96,7 @@ List<Story> get dotBookStories => [
       ),
       Story(
         name: 'DotBook Components/Color rotation',
-        description: 'ColorRotation — anillo de color del bubble (rotación por pasos).',
+        description: 'ColorRotation used in Bubble',
         builder: (context) => ColoredBox(
           color: context.dotsTheme.colors.bgDotbookBlack,
           child: Center(
@@ -111,6 +111,37 @@ List<Story> get dotBookStories => [
             ),
           ),
         ),
+      ),
+      Story(
+        name: 'DotBook Components/Bubble',
+        description:
+            'Bubble used in QR Visualizer (Dotbook)',
+        builder: (context) {
+          final String imageUrlRaw = context.knobs.text(
+            label: 'imageUrl',
+            initial: 'https://picsum.photos/seed/dotbook-bubble/400/400',
+          );
+          final String? imageUrl = imageUrlRaw.trim().isEmpty ? null : imageUrlRaw.trim();
+
+          return ColoredBox(
+            color: context.dotsTheme.colors.bgDotbookBlack,
+            child: Center(
+              child: Bubble(
+                size: context.knobs.slider(
+                  label: 'Size',
+                  initial: 300,
+                  min: 120,
+                  max: 480,
+                ),
+                imageUrl: imageUrl,
+                animateColorRotation: context.knobs.boolean(
+                  label: 'Animate color rotation',
+                  initial: true,
+                ),
+              ),
+            ),
+          );
+        },
       ),
       Story(
         name: 'DotBook Components/image placeholder',
