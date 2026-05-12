@@ -46,8 +46,7 @@ class DotbookTotalPriceItem {
 }
 
 class DotbookPriceSummary extends StatelessWidget {
-
-   /// Layout variant of the summary card to display Image, custom widget or a label.
+  /// Layout variant of the summary card to display Image, custom widget or a label.
   final DotbookPriceSummaryVariant variant;
 
   /// Product image shown in the summary header.
@@ -129,13 +128,13 @@ class DotbookPriceSummary extends StatelessWidget {
     this.subtitleLabelVariant = BadgeLabelVariant.warningMaterial,
     this.claimedBooks = const [],
   }) : assert(
-        !showQuantityInput ||
-            (minQuantity != null &&
-                maxQuantity != null &&
-                onIncrement != null &&
-                onDecrement != null),
-        'When showQuantityInput is true, minQuantity, maxQuantity, onIncrement and onDecrement are required.',
-      );
+         !showQuantityInput ||
+             (minQuantity != null &&
+                 maxQuantity != null &&
+                 onIncrement != null &&
+                 onDecrement != null),
+         'When showQuantityInput is true, minQuantity, maxQuantity, onIncrement and onDecrement are required.',
+       );
 
   @override
   Widget build(BuildContext context) {
@@ -514,7 +513,10 @@ class SummaryInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         spacing: 8,
         children: [
-          ...products.map((entry) => PriceRow(label: entry.title, price: entry.price, greenPrice: entry.greenPrice)),
+          ...products.map(
+            (entry) =>
+                PriceRow(label: entry.title, price: entry.price, greenPrice: entry.greenPrice),
+          ),
           if (claimedBooks.isNotEmpty) ...[
             ...claimedBooks.map(
               (entry) => ClaimedBooksRow(
@@ -565,7 +567,9 @@ class PriceRow extends StatelessWidget {
           child: Text(
             price,
             textAlign: TextAlign.right,
-            style: theme.typo.main.bodyDefaultMedium.copyWith(color: greenPrice ? theme.colors.labelActive : theme.colors.textSecondary),
+            style: theme.typo.main.bodyDefaultMedium.copyWith(
+              color: greenPrice ? theme.colors.labelActive : theme.colors.textSecondary,
+            ),
           ),
         ),
       ],
@@ -596,28 +600,34 @@ class ClaimedBooksRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Expanded(
-          child: Row(
-            children: [
-              Text(
-                quantity,
-                style: theme.typo.main.bodyDefaultRegular.copyWith(
-                  color: theme.colors.textTertiary,
+          child: Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: quantity,
+                  style: theme.typo.main.bodyDefaultRegular.copyWith(
+                    color: theme.colors.textTertiary,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 4),
-              Image.asset( 
-                '${ImagesPaths.imagesIcons}/icon_prime_circle.webp',
-                width: 12,
-                height: 12,
-              ),
-              const SizedBox(width: 4),
-              Text(
-                title,
-                style: theme.typo.main.bodyDefaultRegular.copyWith(
-                  color: theme.colors.textTertiary,
+                WidgetSpan(
+                  alignment: PlaceholderAlignment.middle,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    child: Image.asset(
+                      '${ImagesPaths.imagesIcons}/icon_prime_circle.webp',
+                      width: 12,
+                      height: 12,
+                    ),
+                  ),
                 ),
-              ),
-            ],
+                TextSpan(
+                  text: title,
+                  style: theme.typo.main.bodyDefaultRegular.copyWith(
+                    color: theme.colors.textTertiary,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         SizedBox(
@@ -625,9 +635,8 @@ class ClaimedBooksRow extends StatelessWidget {
           child: Text(
             price,
             textAlign: TextAlign.right,
-            style: theme.typo.main.bodyDefaultMedium.copyWith(color: greenPrice 
-              ? theme.colors.labelActive 
-              : theme.colors.textSecondary
+            style: theme.typo.main.bodyDefaultMedium.copyWith(
+              color: greenPrice ? theme.colors.labelActive : theme.colors.textSecondary,
             ),
           ),
         ),
