@@ -95,6 +95,24 @@ List<Story> get dotBookStories => [
         ),
       ),
       Story(
+        name: 'DotBook Components/Color rotation',
+        description: 'ColorRotation — anillo de color del bubble (rotación por pasos).',
+        builder: (context) => ColoredBox(
+          color: context.dotsTheme.colors.bgDotbookBlack,
+          child: Center(
+            child: ColorRotation(
+              animate: context.knobs.boolean(label: 'Animate', initial: true),
+              width: context.knobs.slider(
+                label: 'Width',
+                initial: 220,
+                min: 80,
+                max: 400,
+              ),
+            ),
+          ),
+        ),
+      ),
+      Story(
         name: 'DotBook Components/image placeholder',
         description: 'Demo page for Image placeholder',
         builder: (context) => ColoredBox(

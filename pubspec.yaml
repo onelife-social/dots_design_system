@@ -42,6 +42,7 @@ flutter:
     - assets/images/social_media/
     - assets/images/milestones/
     - assets/images/dotbook/
+    - assets/images/dotbook/bubble/
 
   # Shaders
   shaders:
