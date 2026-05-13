@@ -17,6 +17,12 @@ class DotsSuggestionListItem extends StatelessWidget {
   // Function triggered when tile is tapped
   final Function()? onTap;
 
+  // Background color of the suggestion list item
+  final Color? backgroundColor;
+
+  // Background color of the icon container
+  final Color? backgroundIconColor;
+
   const DotsSuggestionListItem({
     super.key,
     required this.icon,
@@ -24,6 +30,8 @@ class DotsSuggestionListItem extends StatelessWidget {
     this.subtext,
     this.onTap,
     this.type = DotsSuggestionListItemVariant.main,
+    this.backgroundColor,
+    this.backgroundIconColor,
   });
 
   @override
@@ -34,9 +42,11 @@ class DotsSuggestionListItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: type.isMain
-              ? theme.colors.transparent
-              : theme.colors.bgContainerSecondaryOnBackground,
+          color: backgroundColor 
+            ?? (type.isMain
+                  ? theme.colors.transparent
+                  : theme.colors.bgContainerSecondaryOnBackground
+                ),
           borderRadius: DotsBorderRadius.r16,
         ),
         child: Padding(
@@ -46,9 +56,11 @@ class DotsSuggestionListItem extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: type.isMain
-                      ? theme.colors.bgContainerSecondaryOnBackground
-                      : theme.colors.transparent,
+                  color: backgroundIconColor 
+                    ?? (type.isMain
+                          ? theme.colors.bgContainerSecondaryOnBackground
+                          : theme.colors.transparent
+                        ),
                   borderRadius: DotsBorderRadius.r12,
                 ),
                 width: 40,
@@ -63,6 +75,7 @@ class DotsSuggestionListItem extends StatelessWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     if (text != null && text!.isNotEmpty)
                       Text(
