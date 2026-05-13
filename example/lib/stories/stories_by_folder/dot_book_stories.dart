@@ -564,42 +564,15 @@ List<Story> get dotBookStories => [
                         : null,
                     customSubtitleWidget: 
                       context.knobs.boolean(label: 'Show custom subtitle widget?', initial: false)
-                        ? GestureDetector(
-                          onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Custom subtitle tapped'))
-                            );
-                          },
-                          child: Expanded(
-                              child: Row(
-                                spacing: 4,
-                                children: [
-                                  Text(
-                                    '2 x',
-                                    style: theme.typo.main.bodyDefaultRegular.copyWith(
-                                      color: theme.colors.textTertiary,
-                                    ),
-                                  ),
-                                  Image.asset( 
-                                    '${ImagesPaths.imagesIcons}/icon_prime_circle.webp',
-                                    width: 12,
-                                    height: 12,
-                                  ),
-                                  Text(
-                                    'Dotbooks disponibles',
-                                    style: theme.typo.main.bodyDefaultRegular.copyWith(
-                                      color: theme.colors.textTertiary,
-                                    ),
-                                  ),
-                                  DotsIcon(
-                                    iconData: DotsIconData.helpCircle,
-                                    color: theme.colors.textTertiary,
-                                    size: 14,
-                                  ),
-                                ],
-                              ),
-                            ),
-                        )
+                        ? DotbookCustomSubtitleSummaryWidget(
+                            quantity: quantity,
+                            title: 'Dotbooks disponibles',
+                            onTap: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('Custom subtitle tapped'))
+                              );
+                            },
+                          )
                         : null,
                   ),
                 );

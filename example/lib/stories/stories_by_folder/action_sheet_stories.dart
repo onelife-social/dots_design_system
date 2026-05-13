@@ -874,7 +874,14 @@ List<Story> get actionSheetStories => [
                       );
                     }
                   : null,
+              backgroundColor: context.knobs.boolean(label: 'Custom background color', initial: false)
+                  ? Color(0xFFFF0000)
+                  : null,
+              backgroundIconColor: context.knobs.boolean(label: 'Custom background icon color', initial: false)
+                  ? Color.fromARGB(255, 0, 255, 140)
+                  : null,
             ),
+            
           );
         },
       ),
