@@ -5,7 +5,10 @@ import 'package:dots_design_system/src/core/constants.dart';
 import 'package:flutter/material.dart';
 
 class ColorRotation extends StatefulWidget {
-  static const String assetPath = 'assets/images/dotbook/bubble/bubble-color-rotate.webp';
+  static const String defaultAssetPath = 'assets/images/dotbook/bubble/bubble-color-rotate.webp';
+
+  /// Raster asset path bundled under `assets/images/dotbook/`. When null, [defaultAssetPath] is used.
+  final String? assetPath;
 
   /// When false, the widget stays at the current angle and the sequence stops.
   final bool animate;
@@ -21,6 +24,7 @@ class ColorRotation extends StatefulWidget {
 
   const ColorRotation({
     super.key,
+    this.assetPath,
     this.animate = true,
     this.width,
     this.fit = BoxFit.contain,
@@ -112,7 +116,7 @@ class _ColorRotationState extends State<ColorRotation> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     final Widget image = Image.asset(
-      ColorRotation.assetPath,
+      widget.assetPath ?? ColorRotation.defaultAssetPath,
       package: dotsDesignSystemPackage,
       width: widget.width,
       fit: widget.fit,

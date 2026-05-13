@@ -114,8 +114,7 @@ List<Story> get dotBookStories => [
       ),
       Story(
         name: 'DotBook Components/Bubble',
-        description:
-            'Bubble used in QR Visualizer (Dotbook)',
+        description: 'Bubble used in QR Visualizer (Dotbook)',
         builder: (context) {
           final String imageUrlRaw = context.knobs.text(
             label: 'imageUrl',
@@ -140,6 +139,63 @@ List<Story> get dotBookStories => [
                 ),
               ),
             ),
+          );
+        },
+      ),
+      Story(
+        name: 'DotBook Components/Background color rotation',
+        description: 'Simulated screen (gradient) with BackgroundColorRotation on top',
+        builder: (context) {
+          final bool fillParent = context.knobs.boolean(
+            label: 'Fill parent',
+            initial: false,
+          );
+          final bool clipToViewport = context.knobs.boolean(
+            label: 'Clip to layout',
+            initial: false,
+          );
+          final double boxWidth = context.knobs.slider(
+            label: 'Box width',
+            initial: 300,
+            min: 120,
+            max: 900,
+          );
+          final double boxHeight = context.knobs.slider(
+            label: 'Box height',
+            initial: 500,
+            min: 120,
+            max: 900,
+          );
+          final bool animate = context.knobs.boolean(
+            label: 'Animate',
+            initial: true,
+          );
+
+          final Widget demoStack = Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+              Positioned.fill(
+                child: Image.asset(
+                  'assets/images/dotbook/bubble/bg-gradient-light.png',
+                  package: 'dots_design_system',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Positioned.fill(
+                child: BackgroundColorRotation(
+                  width: fillParent ? null : boxWidth,
+                  height: fillParent ? null : boxHeight,
+                  animate: animate,
+                  clipToViewport: clipToViewport,
+                ),
+              ),
+            ],
+          );
+
+          return SizedBox(
+            width: fillParent ? double.infinity : boxWidth,
+            height: fillParent ? double.infinity : boxHeight,
+            child: demoStack,
           );
         },
       ),
