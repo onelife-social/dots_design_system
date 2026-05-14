@@ -52,6 +52,7 @@ class _RadioCardLabelDemoScreenState extends State<RadioCardLabelDemoScreen> {
                 },
                 variant: widget.variant,
                 value: widget.value,
+                greenTextValue: index == 1,
               ),
             ),
           );

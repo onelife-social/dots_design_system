@@ -18,6 +18,7 @@ class RadioCardLabel extends StatelessWidget {
     required this.onTap,
     this.variant = RadioCardLabelVariant.small,
     this.value,
+    this.greenTextValue = false,
   });
 
   final String title;
@@ -26,7 +27,8 @@ class RadioCardLabel extends StatelessWidget {
   final Function() onTap;
   final RadioCardLabelVariant variant;
   final String? value;
-
+  final bool greenTextValue;
+  
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
@@ -102,7 +104,9 @@ class RadioCardLabel extends StatelessWidget {
                       Text(
                         value!,
                         style: theme.typo.main.bodyLargeMedium.copyWith(
-                          color: theme.colors.textPrimary,
+                          color: greenTextValue 
+                            ? theme.colors.labelActive 
+                            : theme.colors.textPrimary,
                         ),
                       ),
                     ],

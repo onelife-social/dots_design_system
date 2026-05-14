@@ -180,6 +180,7 @@ enum DotsIconData {
   level5Square('ic-level-5-square.svg', DotsIconGroup.premium),
   prime1('ic-prime-1.svg', DotsIconGroup.premium),
   prime2('ic-prime-2.svg', DotsIconGroup.premium),
+  primeCircle('ic-premium-circle.svg', DotsIconGroup.premium),
   volume('ic-volume.svg', DotsIconGroup.premium),
   volumeOff('ic-volume--off.svg', DotsIconGroup.premium),
   tag('ic-tag.svg', DotsIconGroup.premium),

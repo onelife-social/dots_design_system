@@ -17,6 +17,12 @@ class DotsSuggestionListItem extends StatelessWidget {
   // Function triggered when tile is tapped
   final Function()? onTap;
 
+  // Background color of the suggestion list item
+  final Color? backgroundColor;
+
+  // Background color of the icon container
+  final Color? backgroundIconColor;
+
   const DotsSuggestionListItem({
     super.key,
     required this.icon,
@@ -24,21 +30,41 @@ class DotsSuggestionListItem extends StatelessWidget {
     this.subtext,
     this.onTap,
     this.type = DotsSuggestionListItemVariant.main,
+    this.backgroundColor,
+    this.backgroundIconColor,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
 
+    final ShapeDecoration gradientBox = ShapeDecoration(
+      gradient: LinearGradient(
+        begin: Alignment(0.00, 0.50),
+        end: Alignment(1.00, 0.50),
+        colors: [
+          const Color(0x1AC88EFF),
+          const Color(0x1A8B84F7),
+        ],
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+    );
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        decoration: BoxDecoration(
-          color: type.isMain
-              ? theme.colors.transparent
-              : theme.colors.bgContainerSecondaryOnBackground,
-          borderRadius: DotsBorderRadius.r16,
-        ),
+        decoration: type.isGradient
+            ? gradientBox
+            : BoxDecoration(
+                color:
+                    backgroundColor ??
+                    (type.isMain
+                        ? theme.colors.transparent
+                        : theme.colors.bgContainerSecondaryOnBackground),
+                borderRadius: DotsBorderRadius.r16,
+              ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
           child: Row(
@@ -46,23 +72,24 @@ class DotsSuggestionListItem extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: type.isMain
-                      ? theme.colors.bgContainerSecondaryOnBackground
-                      : theme.colors.transparent,
+                  color:
+                      backgroundIconColor ??
+                      (type.isMain
+                          ? theme.colors.bgContainerSecondaryOnBackground
+                          : theme.colors.transparent),
                   borderRadius: DotsBorderRadius.r12,
                 ),
                 width: 40,
                 height: 40,
                 child: ClipRRect(
                   borderRadius: DotsBorderRadius.r12,
-                  child: Center(
-                    child: icon
-                  ),
+                  child: Center(child: icon),
                 ),
               ),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     if (text != null && text!.isNotEmpty)
                       Text(
@@ -93,8 +120,10 @@ class DotsSuggestionListItem extends StatelessWidget {
 
 enum DotsSuggestionListItemVariant {
   main,
-  background;
+  background,
+  gradient;
 
   bool get isMain => this == DotsSuggestionListItemVariant.main;
   bool get isBackground => this == DotsSuggestionListItemVariant.background;
+  bool get isGradient => this == DotsSuggestionListItemVariant.gradient;
 }

@@ -585,10 +585,20 @@ List<Story> get dotBookStories => [
 
             return StatefulBuilder(
               builder: (context, setState) {
+                final theme = context.dotsTheme;
+                final variant = context.knobs.options<DotbookPriceSummaryVariant>(
+                  label: 'Variant',
+                  initial: DotbookPriceSummaryVariant.event,
+                  options: DotbookPriceSummaryVariant.values
+                      .map((item) => Option(label: item.name, value: item))
+                      .toList(),
+                );
+
                 return Padding(
                   padding: const EdgeInsets.all(16),
                   child: DotbookPriceSummary(
                     imageProvider: NetworkImage('https://picsum.photos/250?image=9'),
+                    variant: variant,
                     title: 'Tu álbum de boda',
                     quantityLabel: 'Cantidad',
                     quantity: quantity,
@@ -606,14 +616,69 @@ List<Story> get dotBookStories => [
                       if (quantity >= maxQuantity) return;
                       setState(() => quantity++);
                     },
-                    products: {
-                      'Dotbook Printed Cover': '29,95€',
-                      '100 páginas extra (x0,90€)': '90,00€',
-                      'Impuestos (IVA)': '12,14€',
-                    },
-                    totalLabel: 'Total',
-                    taxesIncludedLabel: '(IVA incluido)',
-                    totalPrice: '132,09€',
+                    products: const [
+                      DotbookProductItem(
+                        title: 'Dotbook Printed Cover',
+                        price: '29,95€',
+                      ),
+                      DotbookProductItem(
+                        title: '100 páginas extra (x0,90€)',
+                        price: '90,00€',
+                        greenPrice: true,
+                      ),
+                      DotbookProductItem(
+                        title: 'Impuestos (IVA)',
+                        price: '12,14€',
+                      ),
+                    ],
+                    claimedBooks: const [
+                      DotbookClaimedBookItem(
+                        quantity: '1 x',
+                        title: 'Dotbook Printed Cover',
+                        price: '29,95€',
+                      ),
+                      DotbookClaimedBookItem(
+                        quantity: '2 x',
+                        title: '100 páginas extra',
+                        price: '90,00€',
+                        greenPrice: false
+                      ),
+                      DotbookClaimedBookItem(
+                        quantity: '1 x',
+                        title: 'Impuestos (IVA)',
+                        price: '12,14€',
+                      ),
+                    ],
+                    totalPriceItem: const DotbookTotalPriceItem(
+                      title: 'Total',
+                      taxes: '(IVA incluido)',
+                      price: '132,09€',
+                    ),
+                    subtitleLabelText: variant == DotbookPriceSummaryVariant.albumMonth
+                        ? context.knobs.text(
+                            label: 'Footer label text',
+                            initial: 'Mensual seleccionado',
+                          )
+                        : null,
+                    onTapSubtitleLabel: variant == DotbookPriceSummaryVariant.albumMonth
+                        ? () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Label tapped'))
+                            );
+                          }
+                        : null,
+                    customSubtitleWidget: 
+                      context.knobs.boolean(label: 'Show custom subtitle widget?', initial: false)
+                        ? DotbookCustomSubtitleSummaryWidget(
+                            quantity: quantity,
+                            title: 'Dotbooks disponibles',
+                            onTap: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('Custom subtitle tapped'))
+                              );
+                            },
+                          )
+                        : null,
                   ),
                 );
               },
