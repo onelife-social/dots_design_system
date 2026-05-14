@@ -1,8 +1,9 @@
 import 'dart:async';
 
-import 'package:dots_design_system/extensions/num_extensions.dart';
-import 'package:dots_design_system/src/core/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../extensions/num_extensions.dart';
+import '../../../core/constants.dart';
 
 class ColorRotation extends StatefulWidget {
   static const String defaultAssetPath = 'assets/images/dotbook/bubble/bubble-color-rotate.webp';
@@ -64,6 +65,7 @@ class _ColorRotationState extends State<ColorRotation> with SingleTickerProvider
   void didUpdateWidget(covariant ColorRotation oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (!widget.animate && oldWidget.animate) {
+       _restAngle = _rotation?.value ?? _restAngle;
       _controller.stop();
     } else if (widget.animate && !oldWidget.animate) {
       unawaited(_ensureLoop());

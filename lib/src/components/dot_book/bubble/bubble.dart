@@ -14,13 +14,16 @@ class Bubble extends StatelessWidget {
 
   static const double _blurSigma = 3.19;
   static const double _layerPadding = 44;
-  static const Duration _networkImageFadeDuration = Duration(milliseconds: 450);
+  static const Duration _photoImageFadeDuration = Duration(milliseconds: 450);
 
   /// Diameter of the circular bubble.
   final double size;
 
-  /// Optional user image URL; when null or empty, this layer is omitted.
-  final String? imageUrl;
+  /// Optional user photo; when null, this layer is omitted.
+  final ImageProvider? imageProvider;
+
+  /// Widget shown when [imageProvider] fails to load; defaults to empty space.
+  final ImageErrorWidgetBuilder? errorBuilder;
 
   /// Passed to [ColorRotation].
   final bool animateColorRotation;
@@ -31,16 +34,14 @@ class Bubble extends StatelessWidget {
   const Bubble({
     super.key,
     required this.size,
-    this.imageUrl,
+    this.imageProvider,
+    this.errorBuilder,
     this.animateColorRotation = true,
     this.colorRotationCurve = Curves.linear,
   });
 
   @override
   Widget build(BuildContext context) {
-    final String? url = imageUrl;
-    final bool showNetworkImage = url != null && url.isNotEmpty;
-
     return ClipOval(
       child: SizedBox(
         width: size,
@@ -55,28 +56,27 @@ class Bubble extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            if (showNetworkImage)
+            if (imageProvider != null)
               _InsetLayer(
                 padding: _layerPadding,
-                child: Image.network(
-                  url,
+                child: Image(
+                  image: imageProvider!,
                   fit: BoxFit.cover,
-                  frameBuilder: (
-                    BuildContext context,
-                    Widget child,
-                    int? frame,
-                    bool wasSynchronouslyLoaded,
-                  ) {
-                    return AnimatedOpacity(
-                      opacity: frame == null ? 0 : 1,
-                      duration: _networkImageFadeDuration,
-                      curve: Curves.easeOut,
-                      child: child,
-                    );
-                  },
-                  errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-                    return const SizedBox.shrink();
-                  },
+                  frameBuilder:
+                      (
+                        BuildContext context,
+                        Widget child,
+                        int? frame,
+                        bool wasSynchronouslyLoaded,
+                      ) {
+                        return AnimatedOpacity(
+                          opacity: frame == null ? 0 : 1,
+                          duration: _photoImageFadeDuration,
+                          curve: Curves.easeOut,
+                          child: child,
+                        );
+                      },
+                  errorBuilder: errorBuilder,
                 ),
               ),
             _InsetLayer(

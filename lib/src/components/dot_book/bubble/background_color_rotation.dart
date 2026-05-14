@@ -17,8 +17,10 @@ import 'color_rotation.dart';
 /// When [clipToViewport] is true (default), a [ClipRect] limits painting to this
 /// widget’s layout bounds so the oversized asset does not draw on top of siblings.
 ///
-/// Pass [width] (and usually [height]) for explicit dimensions; otherwise a
-/// [LayoutBuilder] resolves size from constraints.
+/// When both [width] and [height] are set (positive), this widget lays out at exactly
+/// that size and scales the asset to cover that rectangle. Otherwise a [LayoutBuilder]
+/// reads constraints from the parent (with [MediaQuery] fallback) and this layer expands
+/// to fill the incoming max constraints via [SizedBox.expand].
 class BackgroundColorRotation extends StatelessWidget {
   static const String assetPath = 'assets/images/dotbook/bubble/bg-motion.webp';
 
@@ -34,13 +36,12 @@ class BackgroundColorRotation extends StatelessWidget {
   /// Curve for each 800ms transition between target angles.
   final Curve curve;
 
-  /// Logical width of the region to cover. When non-null, skips the internal [LayoutBuilder].
-  ///
-  /// Pass [height] as well when this layer is not full-screen; otherwise height defaults to
-  /// [MediaQuery.sizeOf] and the scale ratio can be wrong inside padded layouts.
+  /// Logical width of the region to cover. Used with [height] for both layout size
+  /// and scale when both are positive; otherwise ignored for sizing (see [LayoutBuilder] path).
   final double? width;
 
-  /// Logical height for scaling; ignored when [width] is null.
+  /// Logical height of the region to cover. Used with [width] for layout and scale when
+  /// both are positive; ignored when [width] is null or either value is non-positive.
   final double? height;
 
   /// When true, clips overflow so painting stays within this layer’s bounds.
@@ -58,7 +59,11 @@ class BackgroundColorRotation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (width != null && width! > 0 && height != null && height! > 0) {
-      return SizedBox.expand(child: _buildScaled(Size(width!, height!)));
+      return SizedBox(
+        width: width,
+        height: height,
+        child: _buildScaled(Size(width!, height!)),
+      );
     }
 
     return SizedBox.expand(
