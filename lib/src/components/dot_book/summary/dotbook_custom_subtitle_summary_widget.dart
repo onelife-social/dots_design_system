@@ -19,35 +19,33 @@ class DotbookCustomSubtitleSummaryWidget extends StatelessWidget {
     final theme = context.dotsTheme;
     return GestureDetector(
       onTap: onTap,
-      child: Expanded(
-          child: Row(
-            spacing: 4,
-            children: [
-              Text(
-                '${quantity}x',
-                style: theme.typo.main.bodyDefaultRegular.copyWith(
-                  color: theme.colors.textTertiary,
-                ),
-              ),
-              Image.asset( 
-                '${ImagesPaths.imagesIcons}/icon_prime_circle.webp',
-                width: 12,
-                height: 12,
-              ),
-              Text(
-                title,
-                style: theme.typo.main.bodyDefaultRegular.copyWith(
-                  color: theme.colors.textTertiary,
-                ),
-              ),
-              DotsIcon(
-                iconData: DotsIconData.helpCircle,
-                color: theme.colors.textTertiary,
-                size: 14,
-              ),
-            ],
+      child: Row(
+        spacing: 4,
+        children: [
+          Text(
+            '${quantity}x',
+            style: theme.typo.main.bodyDefaultRegular.copyWith(
+              color: theme.colors.textTertiary,
+            ),
           ),
-        ),
+          Image.asset( 
+            '${ImagesPaths.imagesIcons}/icon_prime_circle.webp',
+            width: 12,
+            height: 12,
+          ),
+          Text(
+            title,
+            style: theme.typo.main.bodyDefaultRegular.copyWith(
+              color: theme.colors.textTertiary,
+            ),
+          ),
+          DotsIcon(
+            iconData: DotsIconData.helpCircle,
+            color: theme.colors.textTertiary,
+            size: 14,
+          ),
+        ],
+      ),
     );
   }
 }
