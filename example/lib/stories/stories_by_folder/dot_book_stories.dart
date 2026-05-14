@@ -95,24 +95,6 @@ List<Story> get dotBookStories => [
         ),
       ),
       Story(
-        name: 'DotBook Components/Color rotation',
-        description: 'ColorRotation used in Bubble',
-        builder: (context) => ColoredBox(
-          color: context.dotsTheme.colors.bgDotbookBlack,
-          child: Center(
-            child: ColorRotation(
-              animate: context.knobs.boolean(label: 'Animate', initial: true),
-              width: context.knobs.slider(
-                label: 'Width',
-                initial: 220,
-                min: 80,
-                max: 400,
-              ),
-            ),
-          ),
-        ),
-      ),
-      Story(
         name: 'DotBook Components/Bubble',
         description: 'Bubble used in QR Visualizer (Dotbook)',
         builder: (context) {
@@ -198,6 +180,24 @@ List<Story> get dotBookStories => [
             child: demoStack,
           );
         },
+      ),
+      Story(
+        name: 'DotBook Components/Color rotation',
+        description: 'ColorRotation used in Bubble',
+        builder: (context) => ColoredBox(
+          color: context.dotsTheme.colors.bgDotbookBlack,
+          child: Center(
+            child: ColorRotation(
+              animate: context.knobs.boolean(label: 'Animate', initial: true),
+              width: context.knobs.slider(
+                label: 'Width',
+                initial: 220,
+                min: 80,
+                max: 400,
+              ),
+            ),
+          ),
+        ),
       ),
       Story(
         name: 'DotBook Components/image placeholder',
