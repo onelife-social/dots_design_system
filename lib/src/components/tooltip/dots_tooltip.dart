@@ -39,21 +39,23 @@ class DotsTooltip extends StatelessWidget {
     }
   }
 
-  double tailFromBorderWidth() {
+  double get _tailAlignmentX {
     switch (tailPosition) {
       case DotsToolTipTailPosition.bottomAlignLeadingEdge:
       case DotsToolTipTailPosition.topAlignLeadingEdge:
-      case DotsToolTipTailPosition.bottomAlignTrailingEdge:
-      case DotsToolTipTailPosition.topAlignTrailingEdge:
-        return 17;
+        return -0.82;
       case DotsToolTipTailPosition.bottomAlignLeading:
       case DotsToolTipTailPosition.topAlignLeading:
-      case DotsToolTipTailPosition.topAlignTrailing:
-      case DotsToolTipTailPosition.bottomAlignTrailing:
-        return 54;
+        return -0.56;
       case DotsToolTipTailPosition.bottomAlignCenter:
       case DotsToolTipTailPosition.topAlignCenter:
         return 0;
+      case DotsToolTipTailPosition.topAlignTrailing:
+      case DotsToolTipTailPosition.bottomAlignTrailing:
+        return 0.56;
+      case DotsToolTipTailPosition.bottomAlignTrailingEdge:
+      case DotsToolTipTailPosition.topAlignTrailingEdge:
+        return 0.82;
     }
   }
 
@@ -117,11 +119,12 @@ class DotsTooltip extends StatelessWidget {
                   )
                 : SizedBox(),
             Positioned(
-              top: tailPosition.isBottom ? height : -12,
-              right: tailPosition.isRight ? tailFromBorderWidth() : null,
-              left: tailPosition.isLeft ? tailFromBorderWidth() : null,
+              top: tailPosition.isBottom ? null : -12,
+              bottom: tailPosition.isBottom ? -12 : null,
+              left: 0,
+              right: 0,
               child: Align(
-                alignment: Alignment.center,
+                alignment: Alignment(_tailAlignmentX, 0),
                 child: ClipPath(
                   clipper: TriangleClipper(isInverted: tailPosition.isBottom),
                   child: CustomPaint(
