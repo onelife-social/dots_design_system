@@ -11,3 +11,6 @@ export 'dotbook_cover/dotbook_text_editor.dart';
 export 'dotbook_cover/dotbook_text_editor_border.dart';
 export 'dotbook_cover/dotbook_cover_overlay_image.dart';
 export 'summary/dotbook_summary.dart';
+export 'bubble/background_color_rotation.dart';
+export 'bubble/bubble.dart';
+export 'bubble/color_rotation.dart';

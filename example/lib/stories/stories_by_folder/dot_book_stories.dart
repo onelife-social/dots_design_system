@@ -533,11 +533,10 @@ List<Story> get dotBookStories => [
                         price: '29,95€',
                       ),
                       DotbookClaimedBookItem(
-                        quantity: '2 x',
-                        title: '100 páginas extra',
-                        price: '90,00€',
-                        greenPrice: false
-                      ),
+                          quantity: '2 x',
+                          title: '100 páginas extra',
+                          price: '90,00€',
+                          greenPrice: false),
                       DotbookClaimedBookItem(
                         quantity: '1 x',
                         title: 'Impuestos (IVA)',
@@ -557,23 +556,21 @@ List<Story> get dotBookStories => [
                         : null,
                     onTapSubtitleLabel: variant == DotbookPriceSummaryVariant.albumMonth
                         ? () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Label tapped'))
-                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(content: Text('Label tapped')));
                           }
                         : null,
-                    customSubtitleWidget: 
-                      context.knobs.boolean(label: 'Show custom subtitle widget?', initial: false)
-                        ? DotbookCustomSubtitleSummaryWidget(
-                            quantity: quantity,
-                            title: 'Dotbooks disponibles',
-                            onTap: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Custom subtitle tapped'))
-                              );
-                            },
-                          )
-                        : null,
+                    customSubtitleWidget:
+                        context.knobs.boolean(label: 'Show custom subtitle widget?', initial: false)
+                            ? DotbookCustomSubtitleSummaryWidget(
+                                quantity: quantity,
+                                title: 'Dotbooks disponibles',
+                                onTap: () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Custom subtitle tapped')));
+                                },
+                              )
+                            : null,
                   ),
                 );
               },
@@ -744,6 +741,112 @@ List<Story> get dotBookStories => [
               },
             );
           },
+        ),
+      ),
+      Story(
+        name: 'DotBook Components/Bubble',
+        description: 'Bubble used in QR Visualizer (Dotbook)',
+        builder: (context) {
+          final String imageUrlRaw = context.knobs.text(
+            label: 'imageUrl',
+            initial: 'https://picsum.photos/seed/dotbook-bubble/400/400',
+          );
+          final String? imageUrl = imageUrlRaw.trim().isEmpty ? null : imageUrlRaw.trim();
+
+          return ColoredBox(
+            color: context.dotsTheme.colors.bgDotbookBlack,
+            child: Center(
+              child: Bubble(
+                size: context.knobs.slider(
+                  label: 'Size',
+                  initial: 300,
+                  min: 120,
+                  max: 480,
+                ),
+                imageProvider: imageUrl == null ? null : NetworkImage(imageUrl),
+                errorBuilder: (context, error, stackTrace) => const SizedBox.shrink(),
+                animateColorRotation: context.knobs.boolean(
+                  label: 'Animate color rotation',
+                  initial: true,
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+      Story(
+        name: 'DotBook Components/Background color rotation',
+        description: 'Simulated screen (gradient) with BackgroundColorRotation on top',
+        builder: (context) {
+          final bool fillParent = context.knobs.boolean(
+            label: 'Fill parent',
+            initial: false,
+          );
+          final bool clipToViewport = context.knobs.boolean(
+            label: 'Clip to layout',
+            initial: false,
+          );
+          final double boxWidth = context.knobs.slider(
+            label: 'Box width',
+            initial: 300,
+            min: 120,
+            max: 900,
+          );
+          final double boxHeight = context.knobs.slider(
+            label: 'Box height',
+            initial: 500,
+            min: 120,
+            max: 900,
+          );
+          final bool animate = context.knobs.boolean(
+            label: 'Animate',
+            initial: true,
+          );
+
+          final Widget demoStack = Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+              Positioned.fill(
+                child: Image.asset(
+                  'assets/images/dotbook/bubble/bg-gradient-light.png',
+                  package: 'dots_design_system',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Positioned.fill(
+                child: BackgroundColorRotation(
+                  width: fillParent ? null : boxWidth,
+                  height: fillParent ? null : boxHeight,
+                  animate: animate,
+                  clipToViewport: clipToViewport,
+                ),
+              ),
+            ],
+          );
+
+          return SizedBox(
+            width: fillParent ? double.infinity : boxWidth,
+            height: fillParent ? double.infinity : boxHeight,
+            child: demoStack,
+          );
+        },
+      ),
+      Story(
+        name: 'DotBook Components/Color rotation',
+        description: 'ColorRotation used in Bubble',
+        builder: (context) => ColoredBox(
+          color: context.dotsTheme.colors.bgDotbookBlack,
+          child: Center(
+            child: ColorRotation(
+              animate: context.knobs.boolean(label: 'Animate', initial: true),
+              width: context.knobs.slider(
+                label: 'Width',
+                initial: 220,
+                min: 80,
+                max: 400,
+              ),
+            ),
+          ),
         ),
       ),
     ];

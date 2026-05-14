@@ -161,6 +161,7 @@ enum DotsIconData {
   planner('ic-planner.svg', DotsIconGroup.media),
   play('ic-play.svg', DotsIconGroup.media),
   playCircle('ic-play-circle.svg', DotsIconGroup.media),
+  playArrow('ic-play-arrow.svg', DotsIconGroup.media),
   template('ic-template.svg', DotsIconGroup.media),
   video('ic-video.svg', DotsIconGroup.media),
   videoOff('ic-video--off.svg', DotsIconGroup.media),
