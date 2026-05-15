@@ -20,7 +20,6 @@ List<Story> get accordionStories => [
             ),
             DotsAccordionSection(
               title: 'Second section',
-              leadingIcon: DotsIconData.info,
               content: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

@@ -29,12 +29,16 @@ class DotsAccordion extends StatefulWidget {
   /// Animation curve for expand/collapse.
   final Curve animationCurve;
 
+  /// If true, adds horizontal padding to the section headers.
+  final bool addHorizontalPadding;
+
   const DotsAccordion({
     super.key,
     required this.sections,
     this.singleOpen = true,
     this.animationDuration = const Duration(milliseconds: 180),
     this.animationCurve = Curves.easeInOut,
+    this.addHorizontalPadding = true,
   });
 
   @override
@@ -82,7 +86,7 @@ class _DotsAccordionState extends State<DotsAccordion> with TickerProviderStateM
           if (i > 0) DotsDivider(),
 
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: widget.addHorizontalPadding ? 16.0 : 0),
             child: _SectionHeader(
               title: widget.sections[i].title,
               leadingIcon: widget.sections[i].leadingIcon,
@@ -99,7 +103,11 @@ class _DotsAccordionState extends State<DotsAccordion> with TickerProviderStateM
             clipBehavior: Clip.hardEdge,
             child: _expanded[i]
                 ? Padding(
-                    padding: const EdgeInsets.only(left: 16, right: 16, bottom: 36),
+                    padding: EdgeInsets.only(
+                      left: widget.addHorizontalPadding ? 16 : 0, 
+                      right: widget.addHorizontalPadding ? 16 : 0, 
+                      bottom: 36
+                    ),
                     child: widget.sections[i].content,
                   )
                 : const SizedBox.shrink(),
@@ -120,7 +128,7 @@ class _SectionHeader extends StatelessWidget {
 
   const _SectionHeader({
     required this.title,
-    required this.leadingIcon,
+    this.leadingIcon,
     required this.isExpanded,
     required this.duration,
     required this.curve,
@@ -146,7 +154,6 @@ class _SectionHeader extends StatelessWidget {
               child: Text(
                 title,
                 style: theme.typo.main.bodyLargeMedium.copyWith(color: theme.colors.textPrimary),
-                overflow: TextOverflow.ellipsis,
               ),
             ),
             const SizedBox(width: 8),
