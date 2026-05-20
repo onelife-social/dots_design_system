@@ -114,7 +114,7 @@ class RadioCardLabel extends StatelessWidget {
                         ),
                       ),
                     ],
-                    if (valueSuffix != null && valueSuffix!.isNotEmpty) ...[
+                    if (valueSuffix != null && valueSuffix!.isNotEmpty)
                       Text(
                         valueSuffix!,
                         style:
@@ -123,7 +123,6 @@ class RadioCardLabel extends StatelessWidget {
                               color: theme.colors.textSecondary,
                             ),
                       ),
-                    ],
                   ],
                 ),
               ),
