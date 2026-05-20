@@ -23,6 +23,8 @@ class DotsIconButton extends StatelessWidget {
     this.backgroundColor,
     this.textTappable = false,
     this.shouldApplyBlur = true,
+    this.showShadow = false,
+    this.iconLabelSpacing = 0,
     this.overflow,
   });
 
@@ -92,6 +94,14 @@ class DotsIconButton extends StatelessWidget {
   /// Whether the button should apply the blur effect.
   final bool shouldApplyBlur;
 
+  /// Whether to show a drop shadow around the circular icon.
+  final bool showShadow;
+
+  /// Space between the icon and the label.
+  ///
+  /// Only applies when [label] is provided.
+  final double iconLabelSpacing;
+
   /// The overflow behavior for the label text.
   final TextOverflow? overflow;
 
@@ -117,13 +127,13 @@ class DotsIconButton extends StatelessWidget {
       child: direction == DotsIconButtonDirection.column
           ? Column(
               mainAxisSize: MainAxisSize.min,
-              spacing: size.spacing,
+              spacing: label != null ? iconLabelSpacing : 0,
               children: [..._getChildren(buttonTheme, borderRadius, context)],
             )
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
-              spacing: style.isNoBackground ? 4 : 8,
+              spacing: label != null ? iconLabelSpacing : 0,
               children: [..._getChildren(buttonTheme, borderRadius, context)],
             ),
     );
@@ -154,6 +164,7 @@ class DotsIconButton extends StatelessWidget {
         backgroundColor: backgroundColor,
         noButtonSize: style.isNoBackground,
         shouldApplyBlur: shouldApplyBlur,
+        showShadow: showShadow,
       ),
       if (label != null)
         _Label(
@@ -179,6 +190,7 @@ class _IconButton extends StatelessWidget {
   final dynamic color;
   final dynamic backgroundColor;
   final bool shouldApplyBlur;
+  final bool showShadow;
 
   const _IconButton({
     required this.icon,
@@ -192,6 +204,7 @@ class _IconButton extends StatelessWidget {
     required this.noButtonSize,
     required this.backgroundColor,
     required this.shouldApplyBlur,
+    required this.showShadow,
   });
 
   @override
@@ -211,29 +224,13 @@ class _IconButton extends StatelessWidget {
     }
 
     if (!shouldApplyBlur) {
-      return SizedBox(
-        height: noButtonSize ? null : size.size,
-        width: noButtonSize ? null : size.size,
-        child: DotsDecoratedBox(
-          decoration: BoxDecoration(
-            color: backgroundColor ?? buttonTheme.backgroundColor ?? Colors.transparent,
-            borderRadius: borderRadius,
-            border: buttonTheme.borderColor != null
-                ? Border.all(color: buttonTheme.borderColor ?? Colors.transparent, width: 0.7)
-                : null,
-          ),
-          child: widget,
-        ),
-      );
-    }
-
-    return SizedBox(
-      height: noButtonSize ? null : size.size,
-      width: noButtonSize ? null : size.size,
-      child: ClipRRect(
-        borderRadius: borderRadius,
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+      return _IconButtonShadow(
+        showShadow: showShadow,
+        noButtonSize: noButtonSize,
+        buttonSize: size.size,
+        child: SizedBox(
+          height: noButtonSize ? null : size.size,
+          width: noButtonSize ? null : size.size,
           child: DotsDecoratedBox(
             decoration: BoxDecoration(
               color: backgroundColor ?? buttonTheme.backgroundColor ?? Colors.transparent,
@@ -245,7 +242,68 @@ class _IconButton extends StatelessWidget {
             child: widget,
           ),
         ),
+      );
+    }
+
+    return _IconButtonShadow(
+      showShadow: showShadow,
+      noButtonSize: noButtonSize,
+      buttonSize: size.size,
+      child: SizedBox(
+        height: noButtonSize ? null : size.size,
+        width: noButtonSize ? null : size.size,
+        child: ClipRRect(
+          borderRadius: borderRadius,
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: DotsDecoratedBox(
+              decoration: BoxDecoration(
+                color: backgroundColor ?? buttonTheme.backgroundColor ?? Colors.transparent,
+                borderRadius: borderRadius,
+                border: buttonTheme.borderColor != null
+                    ? Border.all(color: buttonTheme.borderColor ?? Colors.transparent, width: 0.7)
+                    : null,
+              ),
+              child: widget,
+            ),
+          ),
+        ),
       ),
+    );
+  }
+}
+
+class _IconButtonShadow extends StatelessWidget {
+  final Widget child;
+  final bool showShadow;
+  final bool noButtonSize;
+  final double buttonSize;
+
+  const _IconButtonShadow({
+    required this.child,
+    required this.showShadow,
+    required this.noButtonSize,
+    required this.buttonSize,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (!showShadow || noButtonSize) return child;
+
+    return Container(
+      width: buttonSize,
+      height: buttonSize,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: context.dotsTheme.colors.shadowFolder,
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
+      child: child,
     );
   }
 }
