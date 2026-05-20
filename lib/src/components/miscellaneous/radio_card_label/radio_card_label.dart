@@ -18,9 +18,8 @@ class RadioCardLabel extends StatelessWidget {
     required this.onTap,
     this.variant = RadioCardLabelVariant.small,
     this.value,
+    this.valueStyle,
     this.greenTextValue = false,
-    this.valueSuffix,
-    this.valueSuffixStyle,
   });
 
   final String title;
@@ -29,9 +28,8 @@ class RadioCardLabel extends StatelessWidget {
   final Function() onTap;
   final RadioCardLabelVariant variant;
   final String? value;
+  final TextStyle? valueStyle;
   final bool greenTextValue;
-  final String? valueSuffix;
-  final TextStyle? valueSuffixStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -107,22 +105,15 @@ class RadioCardLabel extends StatelessWidget {
                       SizedBox(width: 16),
                       Text(
                         value!,
-                        style: theme.typo.main.bodyLargeMedium.copyWith(
-                          color: greenTextValue
-                              ? theme.colors.labelActive
-                              : theme.colors.textPrimary,
-                        ),
-                      ),
-                    ],
-                    if (valueSuffix != null && valueSuffix!.isNotEmpty)
-                      Text(
-                        valueSuffix!,
                         style:
-                            valueSuffixStyle ??
-                            theme.typo.main.bodyDefaultMedium.copyWith(
-                              color: theme.colors.textSecondary,
+                            valueStyle ??
+                            theme.typo.main.bodyLargeMedium.copyWith(
+                              color: greenTextValue
+                                  ? theme.colors.labelActive
+                                  : theme.colors.textPrimary,
                             ),
                       ),
+                    ],
                   ],
                 ),
               ),
