@@ -18,6 +18,7 @@ List<Story> get miscellaneousStories => [
             ],
           ),
           value: context.knobs.text(label: 'Value'),
+          valueSuffix: context.knobs.text(label: 'Value suffix'),
         ),
       ),
       Story(

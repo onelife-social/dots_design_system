@@ -2,9 +2,15 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 class RadioCardLabelDemoScreen extends StatefulWidget {
-  const RadioCardLabelDemoScreen({super.key, required this.variant, this.value});
+  const RadioCardLabelDemoScreen({
+    super.key,
+    required this.variant,
+    this.value,
+    this.valueSuffix,
+  });
   final RadioCardLabelVariant variant;
   final String? value;
+  final String? valueSuffix;
 
   @override
   State<RadioCardLabelDemoScreen> createState() => _RadioCardLabelDemoScreenState();
@@ -53,6 +59,7 @@ class _RadioCardLabelDemoScreenState extends State<RadioCardLabelDemoScreen> {
                 variant: widget.variant,
                 value: widget.value,
                 greenTextValue: index == 1,
+                valueSuffix: widget.valueSuffix,
               ),
             ),
           );
