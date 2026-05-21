@@ -29,6 +29,17 @@ class DotsTextAnimationsDemoPage extends StatelessWidget {
           style: style,
           duration: Duration(milliseconds: 800),
         ),
+        SizedBox(height: 20),
+        Text('Shimmer Animation'),
+        ShimmerAnimationText(
+          shimmerColor: context.dotsTheme.colors.labelHighlight,
+          baseColor: style.color ?? context.dotsTheme.colors.textPrimary,
+          shimmerOpacity: 0.9,
+          shimmerDuration: Duration(milliseconds: 1200),
+          pauseDuration: Duration(milliseconds: 1000),
+          highlightWidth: 0.5,
+          child: Text(text, style: style),
+        ),
       ],
     );
   }
