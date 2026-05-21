@@ -24,7 +24,6 @@ class DotsIconButton extends StatelessWidget {
     this.textTappable = false,
     this.shouldApplyBlur = true,
     this.showShadow = false,
-    this.iconLabelSpacing = 0,
     this.overflow,
   });
 
@@ -97,11 +96,6 @@ class DotsIconButton extends StatelessWidget {
   /// Whether to show a drop shadow around the circular icon.
   final bool showShadow;
 
-  /// Space between the icon and the label.
-  ///
-  /// Only applies when [label] is provided.
-  final double iconLabelSpacing;
-
   /// The overflow behavior for the label text.
   final TextOverflow? overflow;
 
@@ -119,6 +113,7 @@ class DotsIconButton extends StatelessWidget {
         ? getIconButtonThemeByVariant(theme, variant)
         : getIconButtonThemeByStyleAndState(theme, style, state);
     final borderRadius = BorderRadius.circular(size.size);
+    final spacing = label != null ? size.spacing + (showShadow ? 4.0 : 0.0) : 0.0;
 
     final widget = InkWell(
       onTap: onTap,
@@ -127,13 +122,13 @@ class DotsIconButton extends StatelessWidget {
       child: direction == DotsIconButtonDirection.column
           ? Column(
               mainAxisSize: MainAxisSize.min,
-              spacing: label != null ? iconLabelSpacing : 0,
+              spacing: spacing,
               children: [..._getChildren(buttonTheme, borderRadius, context)],
             )
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
-              spacing: label != null ? iconLabelSpacing : 0,
+              spacing: spacing,
               children: [..._getChildren(buttonTheme, borderRadius, context)],
             ),
     );
