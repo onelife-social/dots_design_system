@@ -162,12 +162,19 @@ class DotsIconButton extends StatelessWidget {
         showShadow: showShadow,
       ),
       if (label != null)
-        _Label(
-          label: label,
-          style:
-              labelStyle ??
-              theme.typo.main.labelDefaultRegular.copyWith(color: color ?? buttonTheme.labelColor),
-          overflow: overflow,
+        SizedBox(
+          width: direction == DotsIconButtonDirection.column && !style.isNoBackground
+              ? size.size
+              : null,
+          child: _Label(
+            label: label,
+            style:
+                labelStyle ??
+                theme.typo.main.labelDefaultRegular.copyWith(
+                  color: color ?? buttonTheme.labelColor,
+                ),
+            overflow: overflow,
+          ),
         ),
     ];
   }
