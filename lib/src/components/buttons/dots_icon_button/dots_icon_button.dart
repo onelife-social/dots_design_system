@@ -317,6 +317,7 @@ class _Label extends StatelessWidget {
       style: style,
       overflow: overflow,
       maxLines: overflow == null ? 2 : 1,
+      textAlign: TextAlign.center,
     );
   }
 }
