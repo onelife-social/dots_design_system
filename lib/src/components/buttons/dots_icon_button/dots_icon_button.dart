@@ -312,6 +312,11 @@ class _Label extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(label ?? '', style: style, overflow: overflow);
+    return Text(
+      label ?? '',
+      style: style,
+      overflow: overflow,
+      maxLines: overflow == null ? 2 : 1,
+    );
   }
 }
