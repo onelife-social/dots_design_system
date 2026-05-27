@@ -30,6 +30,11 @@ class DotsTextFieldButton extends StatefulWidget {
   /// The maximum length of text that can be entered in the TextField.
   final int? maxTextLength;
 
+  /// How the platform keyboard should capitalize text while typing.
+  ///
+  /// Defaults to [TextCapitalization.none].
+  final TextCapitalization textCapitalization;
+
   /// Callback when the text in the TextField changes.
   final ValueChanged<String>? onChanged;
 
@@ -106,6 +111,7 @@ class DotsTextFieldButton extends StatefulWidget {
     this.onTapBtn,
     this.hintText = '',
     this.maxTextLength,
+    this.textCapitalization = TextCapitalization.none,
     this.iconDataButton = DotsIconData.cross,
     this.buttonVariant = DotsCloseButtonVariant.inverted,
     this.buttonSize = DotsCloseButtonSize.extraSmall,
@@ -209,6 +215,7 @@ class _DotsTextFieldButtonState extends State<DotsTextFieldButton> {
                       controller: _controller,
                       maxLength: widget.maxTextLength,
                       textAlign: textAlign,
+                      textCapitalization: widget.textCapitalization,
                       style: theme.typo.main.bodyDefaultMedium.copyWith(
                         color: widget.applyErrorColor && widget.isError
                             ? theme.colors.labelDestructive
