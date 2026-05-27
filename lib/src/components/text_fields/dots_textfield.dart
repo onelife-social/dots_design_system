@@ -72,6 +72,11 @@ class DotsTextField extends StatefulWidget {
   /// The type of keyboard to show for the TextField.
   final TextInputType? keyboardType;
 
+  /// How the platform keyboard should capitalize text while typing.
+  ///
+  /// Defaults to [TextCapitalization.none].
+  final TextCapitalization textCapitalization;
+
   /// Optional list of input formatters (e.g. to restrict to digits only).
   final List<TextInputFormatter>? inputFormatters;
 
@@ -94,6 +99,7 @@ class DotsTextField extends StatefulWidget {
     this.alignCenter = false,
     this.textStyle,
     this.keyboardType,
+    this.textCapitalization = TextCapitalization.none,
     this.inputFormatters,
     this.addHintTextColorError,
   });
@@ -196,6 +202,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
         maxLines: 1,
         textAlign: textAlign,
         keyboardType: widget.keyboardType,
+        textCapitalization: widget.textCapitalization,
         inputFormatters: widget.inputFormatters,
         style: inputTextStyle.copyWith(
           color: widget.isError && !widget.background && !_focusNode.hasFocus

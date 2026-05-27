@@ -30,6 +30,11 @@ class DotsTextArea extends StatelessWidget {
   /// The maximum length of text that can be entered in the TextField.
   final int? maxTextLength;
 
+  /// How the platform keyboard should capitalize text while typing.
+  ///
+  /// Defaults to [TextCapitalization.none].
+  final TextCapitalization textCapitalization;
+
   /// The minimum height of the TextField. If null, the TextField minHeight will be maxHeight.
   final int? minHeight;
 
@@ -52,6 +57,7 @@ class DotsTextArea extends StatelessWidget {
     this.onChanged,
     this.onSubmitted,
     this.maxTextLength,
+    this.textCapitalization = TextCapitalization.none,
     this.minHeight,
     this.maxHeight,
     this.isError = false,
@@ -86,6 +92,7 @@ class DotsTextArea extends StatelessWidget {
         minLines: 1,
         maxLines: null,
         textAlign: TextAlign.start,
+        textCapitalization: textCapitalization,
         style: theme.typo.main.bodyLargeRegular.copyWith(
           color: theme.colors.textPrimary,
         ),
