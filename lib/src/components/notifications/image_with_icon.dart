@@ -161,7 +161,7 @@ class ImageWithIcon extends StatelessWidget {
                 style:
                     aliasLabelImageTextStyle ??
                     TextStyle(
-                      fontFamily: 'Proxima Soft',
+                      fontFamily: 'Inter',
                       fontSize: 40,
                       fontWeight: FontWeight.w500,
                       color: theme.colors.textTertiary,
