@@ -154,6 +154,7 @@ enum DotsIconData {
   pic('ic-pic.svg', DotsIconGroup.media),
   picDownload('ic-pic--download.svg', DotsIconGroup.media),
   picAdd('ic-pic--add.svg', DotsIconGroup.media),
+  picAddFill('ic-pic--add-fill.svg', DotsIconGroup.media),
   picHeart('ic-pic--heart.svg', DotsIconGroup.media),
   picUpload('ic-pic--upload.svg', DotsIconGroup.media),
   pics('ic-pics.svg', DotsIconGroup.media),
