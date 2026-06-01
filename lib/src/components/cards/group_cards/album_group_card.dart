@@ -75,29 +75,29 @@ class AlbumGroupCard extends StatelessWidget {
             styleType: styleType,
             child: Stack(
               children: [
-                SoftEdgeBlur(
-                  edges: [
-                    EdgeBlur(
-                      type: EdgeType.bottomEdge,
-                      size: bottomBlurHeight,
-                      sigma: blurSigma ?? 12,
-                      controlPoints: [
-                        ControlPoint(
-                          position: 0.5,
-                          type: ControlPointType.visible,
-                        ),
-                        ControlPoint(
-                          position: 1,
-                          type: ControlPointType.transparent,
-                        ),
-                      ],
-                    ),
-                  ],
-                  child: ClipSmoothRect(
-                    radius: SmoothBorderRadius(
-                      cornerRadius: styleType.radius,
-                      cornerSmoothing: styleType.cornerSmoothing,
-                    ),
+                ClipSmoothRect(
+                  radius: SmoothBorderRadius(
+                    cornerRadius: styleType.radius,
+                    cornerSmoothing: styleType.cornerSmoothing,
+                  ),
+                  child: SoftEdgeBlur(
+                    edges: [
+                      EdgeBlur(
+                        type: EdgeType.bottomEdge,
+                        size: bottomBlurHeight,
+                        sigma: blurSigma ?? 12,
+                        controlPoints: [
+                          ControlPoint(
+                            position: 0.5,
+                            type: ControlPointType.visible,
+                          ),
+                          ControlPoint(
+                            position: 1,
+                            type: ControlPointType.transparent,
+                          ),
+                        ],
+                      ),
+                    ],
                     child: Image(
                       image: imageProvider,
                       fit: BoxFit.cover,
