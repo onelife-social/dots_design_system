@@ -258,6 +258,7 @@ enum DotsIconData {
   shield('ic-shield.svg', DotsIconGroup.system),
   bell('ic-bell.svg', DotsIconGroup.system),
   pencilLine('ic-pencil--line.svg', DotsIconGroup.system),
+  pencilGlitter('ic-pencil-glitter.svg', DotsIconGroup.system),
   web('ic-web.svg', DotsIconGroup.system),
 
   // Home
