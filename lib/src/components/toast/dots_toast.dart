@@ -138,6 +138,7 @@ class DotsToast extends StatelessWidget {
                 variant: DotsMainButtonVariant.ghost,
                 size: DotsMainButtonSize.medium,
                 adaptPaddingForText: true,
+                onTap: onTap,
               ),
           ],
         ),
