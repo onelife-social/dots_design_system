@@ -18,10 +18,10 @@ class DotbookOrderItem extends StatelessWidget {
   final String subtitle;
 
   // The text of the order status.
-  final String labelText;
+  final String? labelText;
 
   // The visual variant of the order status label.
-  final BadgeLabelVariant labelVariant;
+  final BadgeLabelVariant? labelVariant;
 
   // An optional icon to display on the right side of the order item.
   final DotsIcon? rightIcon;
@@ -36,8 +36,8 @@ class DotbookOrderItem extends StatelessWidget {
     this.onError,
     required this.title,
     required this.subtitle,
-    required this.labelText,
-    required this.labelVariant,
+    this.labelText,
+    this.labelVariant,
     this.rightIcon,
     this.onItemTap,
   });
@@ -111,14 +111,17 @@ class DotbookOrderItem extends StatelessWidget {
                     color: theme.colors.textTertiary,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: BadgeLabel(
-                    content: labelText,
-                    size: BadgeLabelSize.small,
-                    variant: labelVariant,
-                  ),
-                ),
+                if (labelText != null && labelVariant != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: BadgeLabel(
+                      content: labelText!,
+                      size: BadgeLabelSize.small,
+                      variant: labelVariant!,
+                    ),
+                  )
+                else
+                  const SizedBox(height: 22),
               ],
             ),
           ),
