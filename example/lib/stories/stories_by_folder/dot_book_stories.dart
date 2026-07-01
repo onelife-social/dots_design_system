@@ -480,7 +480,6 @@ List<Story> get dotBookStories => [
 
             return StatefulBuilder(
               builder: (context, setState) {
-                final theme = context.dotsTheme;
                 final variant = context.knobs.options<DotbookPriceSummaryVariant>(
                   label: 'Variant',
                   initial: DotbookPriceSummaryVariant.event,
