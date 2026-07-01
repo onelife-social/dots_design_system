@@ -94,7 +94,7 @@ class DotBookTextEditor extends StatelessWidget {
                         Expanded(
                           child: Text(
                             subtitle!,
-                            style: theme.typo.secondary.title02H2.copyWith(
+                            style: theme.typo.main.labelSmallMedium.copyWith(
                               color: subtitleTextColor,
                               fontSize: DotsTextUtils.scaledFontSize(
                                 referenceFontSize: 6,
