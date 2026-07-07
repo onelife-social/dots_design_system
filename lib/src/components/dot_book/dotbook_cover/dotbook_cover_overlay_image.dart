@@ -538,6 +538,7 @@ class _DotBookCoverOverlayImage extends StatelessWidget {
                     createprogress,
                     style: theme.typo.main.titleH3.copyWith(
                       color: theme.colors.labelAlwaysWhite,
+                      fontFeatures: const [FontFeature.tabularFigures()],
                     ),
                   ),
                 ),
