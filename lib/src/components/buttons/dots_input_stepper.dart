@@ -49,7 +49,10 @@ class DotsInputStepper extends StatelessWidget {
             DotsIconButton(
               icon: DotsIconData.rest,
               size: DotsIconButtonSize.small,
-              color: theme.colors.textTertiary,
+              // Enabled uses the muted textTertiary (differs from the theme's
+              // default textPrimary); disabled falls through to null so the
+              // button theme resolves the disabled foreground.
+              color: _canDecrement ? theme.colors.textTertiary : null,
               backgroundColor: Colors.transparent,
               state: _canDecrement
                   ? DotsIconButtonState.defaultState
@@ -66,7 +69,7 @@ class DotsInputStepper extends StatelessWidget {
             DotsIconButton(
               icon: DotsIconData.add,
               size: DotsIconButtonSize.small,
-              color: theme.colors.textTertiary,
+              color: _canIncrement ? theme.colors.textTertiary : null,
               backgroundColor: Colors.transparent,
               state: _canIncrement
                   ? DotsIconButtonState.defaultState
