@@ -49,7 +49,9 @@ class DotsInputStepper extends StatelessWidget {
             DotsIconButton(
               icon: DotsIconData.rest,
               size: DotsIconButtonSize.small,
-              color: theme.colors.textTertiary,
+              color: _canDecrement
+                  ? theme.colors.textTertiary
+                  : theme.colors.textDisabled,
               backgroundColor: Colors.transparent,
               state: _canDecrement
                   ? DotsIconButtonState.defaultState
@@ -66,7 +68,9 @@ class DotsInputStepper extends StatelessWidget {
             DotsIconButton(
               icon: DotsIconData.add,
               size: DotsIconButtonSize.small,
-              color: theme.colors.textTertiary,
+              color: _canIncrement
+                  ? theme.colors.textTertiary
+                  : theme.colors.textDisabled,
               backgroundColor: Colors.transparent,
               state: _canIncrement
                   ? DotsIconButtonState.defaultState
