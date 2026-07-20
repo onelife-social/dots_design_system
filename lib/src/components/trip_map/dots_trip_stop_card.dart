@@ -114,14 +114,18 @@ class _StopThumbnailsRow extends StatelessWidget {
     final remaining = memoryCount - shown.length;
 
     return Row(
-      mainAxisSize: MainAxisSize.min,
       children: [
         for (var i = 0; i < shown.length; i++) ...[
           if (i > 0) const SizedBox(width: 6),
-          _StopThumbnail(
-            image: shown[i],
-            badgeCount: (i == shown.length - 1 && remaining > 0) ? remaining : null,
-            accentColor: accentColor,
+          Expanded(
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: _StopThumbnail(
+                image: shown[i],
+                badgeCount: (i == shown.length - 1 && remaining > 0) ? remaining : null,
+                accentColor: accentColor,
+              ),
+            ),
           ),
         ],
       ],
@@ -145,31 +149,27 @@ class _StopThumbnail extends StatelessWidget {
     final theme = context.dotsTheme;
     final badgeCount = this.badgeCount;
 
-    return SizedBox(
-      width: _kThumbnailSize,
-      height: _kThumbnailSize,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          ClipRRect(borderRadius: DotsBorderRadius.r8, child: image),
-          if (badgeCount != null)
-            ClipRRect(
-              borderRadius: DotsBorderRadius.r8,
-              child: Container(
-                color: accentColor.dotsWithOpacity(0.85),
-                alignment: Alignment.center,
-                child: Text(
-                  '+$badgeCount',
-                  style: theme.typo.main.labelSmallBold.copyWith(
-                    color: theme.colors.labelAlwaysWhite,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        ClipRRect(borderRadius: DotsBorderRadius.r8, child: image),
+        if (badgeCount != null)
+          ClipRRect(
+            borderRadius: DotsBorderRadius.r8,
+            child: Container(
+              color: accentColor.dotsWithOpacity(0.85),
+              alignment: Alignment.center,
+              child: Text(
+                '+$badgeCount',
+                style: theme.typo.main.labelSmallBold.copyWith(
+                  color: theme.colors.labelAlwaysWhite,
                 ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
-        ],
-      ),
+          ),
+      ],
     );
   }
 }
