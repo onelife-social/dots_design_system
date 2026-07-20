@@ -17,6 +17,7 @@ class DotsTripStopMarker extends StatelessWidget {
   const DotsTripStopMarker({
     required this.expanded,
     required this.memoryCount,
+    required this.order,
     this.thumbnails = const <Widget>[],
     this.title,
     this.color,
@@ -30,6 +31,9 @@ class DotsTripStopMarker extends StatelessWidget {
 
   /// Total memories at this stop.
   final int memoryCount;
+
+  /// 1-based position of this stop along the trip; shown inside the collapsed pin.
+  final int order;
 
   /// Image widgets for the memories at this stop, forwarded to
   /// [DotsTripStopCard] when [expanded].
@@ -90,7 +94,7 @@ class DotsTripStopMarker extends StatelessWidget {
               onTap: onTap,
               child: DotsMapPin(
                 color: accentColor,
-                count: memoryCount > 1 ? memoryCount : null,
+                count: order,
               ),
             ),
     );
