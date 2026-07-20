@@ -54,3 +54,4 @@ export 'dot_book/dot_book_lib.dart';
 export 'preview/preview.dart';
 export 'accordion/accordion.dart';
 export 'divider/dots_divider.dart';
+export 'trip_map/trip_map_lib.dart';
