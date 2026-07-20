@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 
 const double _kPointerWidth = 20;
 const double _kPointerHeight = 10;
+const double _kCloseSize = 22;
 
 /// A trip-stop map marker that collapses to a pin and expands to a summary
-/// bubble. [expanded] is controlled by the consumer (tap / map centering).
+/// bubble. [expanded] is controlled by the consumer (tap / map centering /
+/// timeline).
 ///
-/// The widget is bottom-anchored: its bottom-center is the geographic tip,
-/// both collapsed and expanded, so a consumer can bottom-align it inside a
-/// fixed-size map marker without the anchor point ever shifting.
+/// The widget is bottom-anchored: its bottom-center is the geographic tip, both
+/// collapsed and expanded, so a consumer can bottom-align it inside a fixed-size
+/// map marker without the anchor point ever shifting. Only real content absorbs
+/// taps (empty space falls through to the map).
 class DotsTripStopMarker extends StatelessWidget {
   const DotsTripStopMarker({
     required this.expanded,
@@ -39,12 +42,12 @@ class DotsTripStopMarker extends StatelessWidget {
   /// [DotsColorsModel.labelHighlight].
   final Color? color;
 
-  /// Fires when the collapsed pin, or the expanded bubble's pointer, is tapped
-  /// — used to toggle [expanded].
+  /// Toggles [expanded]: fires from the collapsed pin and the expanded bubble's
+  /// close button.
   final VoidCallback? onTap;
 
-  /// Fires when the expanded summary card itself is tapped — used to open the
-  /// stop's memories. Ignored while collapsed.
+  /// Opens the stop's memories: fires when the expanded card body is tapped.
+  /// Ignored while collapsed.
   final VoidCallback? onOpen;
 
   @override
@@ -52,46 +55,44 @@ class DotsTripStopMarker extends StatelessWidget {
     final theme = context.dotsTheme;
     final accentColor = color ?? theme.colors.labelHighlight;
 
-    // deferToChild (not opaque): the marker box is intentionally tall to fit the
-    // expanded bubble, so only real content should absorb taps — empty space must
-    // fall through to the map so panning/centering still works between markers.
-    return GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.deferToChild,
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 220),
-        switchInCurve: Curves.easeOutBack,
-        switchOutCurve: Curves.easeIn,
-        transitionBuilder: (child, animation) => FadeTransition(
-          opacity: animation,
-          child: ScaleTransition(
-            scale: animation,
-            alignment: Alignment.bottomCenter,
-            child: child,
-          ),
-        ),
-        layoutBuilder: (currentChild, previousChildren) => Stack(
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 220),
+      switchInCurve: Curves.easeOutBack,
+      switchOutCurve: Curves.easeIn,
+      transitionBuilder: (child, animation) => FadeTransition(
+        opacity: animation,
+        child: ScaleTransition(
+          scale: animation,
           alignment: Alignment.bottomCenter,
-          children: [
-            ...previousChildren,
-            if (currentChild != null) currentChild,
-          ],
+          child: child,
         ),
-        child: expanded
-            ? _ExpandedStopMarker(
-                key: const ValueKey('expanded'),
-                thumbnails: thumbnails,
-                memoryCount: memoryCount,
-                title: title,
-                accentColor: accentColor,
-                onOpen: onOpen,
-              )
-            : DotsMapPin(
-                key: const ValueKey('collapsed'),
+      ),
+      layoutBuilder: (currentChild, previousChildren) => Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          ...previousChildren,
+          if (currentChild != null) currentChild,
+        ],
+      ),
+      child: expanded
+          ? _ExpandedStopMarker(
+              key: const ValueKey('expanded'),
+              thumbnails: thumbnails,
+              memoryCount: memoryCount,
+              title: title,
+              accentColor: accentColor,
+              onOpen: onOpen,
+              onClose: onTap,
+            )
+          : GestureDetector(
+              key: const ValueKey('collapsed'),
+              behavior: HitTestBehavior.opaque,
+              onTap: onTap,
+              child: DotsMapPin(
                 color: accentColor,
                 count: memoryCount > 1 ? memoryCount : null,
               ),
-      ),
+            ),
     );
   }
 }
@@ -103,6 +104,7 @@ class _ExpandedStopMarker extends StatelessWidget {
     required this.title,
     required this.accentColor,
     required this.onOpen,
+    required this.onClose,
     super.key,
   });
 
@@ -111,6 +113,7 @@ class _ExpandedStopMarker extends StatelessWidget {
   final String? title;
   final Color accentColor;
   final VoidCallback? onOpen;
+  final VoidCallback? onClose;
 
   @override
   Widget build(BuildContext context) {
@@ -121,12 +124,23 @@ class _ExpandedStopMarker extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        DotsTripStopCard(
-          thumbnails: thumbnails,
-          memoryCount: memoryCount,
-          title: title,
-          accentColor: accentColor,
-          onTap: onOpen,
+        Stack(
+          clipBehavior: Clip.none,
+          children: [
+            DotsTripStopCard(
+              thumbnails: thumbnails,
+              memoryCount: memoryCount,
+              title: title,
+              accentColor: accentColor,
+              onTap: onOpen,
+            ),
+            if (onClose != null)
+              Positioned(
+                top: -8,
+                right: -8,
+                child: _CloseButton(onTap: onClose!),
+              ),
+          ],
         ),
         CustomPaint(
           size: const Size(_kPointerWidth, _kPointerHeight),
@@ -136,6 +150,34 @@ class _ExpandedStopMarker extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _CloseButton extends StatelessWidget {
+  const _CloseButton({required this.onTap});
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.dotsTheme;
+
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap,
+      child: Container(
+        width: _kCloseSize,
+        height: _kCloseSize,
+        decoration: BoxDecoration(
+          color: theme.colors.bgContainerPrimary,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(color: theme.colors.shadowPrimary, blurRadius: 8, offset: const Offset(0, 2)),
+          ],
+        ),
+        child: Icon(Icons.close, size: 14, color: theme.colors.textSecondary),
+      ),
     );
   }
 }
