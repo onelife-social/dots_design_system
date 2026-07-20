@@ -52,9 +52,12 @@ class DotsTripStopMarker extends StatelessWidget {
     final theme = context.dotsTheme;
     final accentColor = color ?? theme.colors.labelHighlight;
 
+    // deferToChild (not opaque): the marker box is intentionally tall to fit the
+    // expanded bubble, so only real content should absorb taps — empty space must
+    // fall through to the map so panning/centering still works between markers.
     return GestureDetector(
       onTap: onTap,
-      behavior: HitTestBehavior.opaque,
+      behavior: HitTestBehavior.deferToChild,
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 220),
         switchInCurve: Curves.easeOutBack,
