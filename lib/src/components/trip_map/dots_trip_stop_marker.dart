@@ -18,6 +18,7 @@ class DotsTripStopMarker extends StatelessWidget {
     this.title,
     this.color,
     this.onTap,
+    this.onOpen,
     super.key,
   });
 
@@ -38,7 +39,13 @@ class DotsTripStopMarker extends StatelessWidget {
   /// [DotsColorsModel.labelHighlight].
   final Color? color;
 
+  /// Fires when the collapsed pin, or the expanded bubble's pointer, is tapped
+  /// — used to toggle [expanded].
   final VoidCallback? onTap;
+
+  /// Fires when the expanded summary card itself is tapped — used to open the
+  /// stop's memories. Ignored while collapsed.
+  final VoidCallback? onOpen;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +81,7 @@ class DotsTripStopMarker extends StatelessWidget {
                 memoryCount: memoryCount,
                 title: title,
                 accentColor: accentColor,
+                onOpen: onOpen,
               )
             : DotsMapPin(
                 key: const ValueKey('collapsed'),
@@ -91,6 +99,7 @@ class _ExpandedStopMarker extends StatelessWidget {
     required this.memoryCount,
     required this.title,
     required this.accentColor,
+    required this.onOpen,
     super.key,
   });
 
@@ -98,6 +107,7 @@ class _ExpandedStopMarker extends StatelessWidget {
   final int memoryCount;
   final String? title;
   final Color accentColor;
+  final VoidCallback? onOpen;
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +123,7 @@ class _ExpandedStopMarker extends StatelessWidget {
           memoryCount: memoryCount,
           title: title,
           accentColor: accentColor,
+          onTap: onOpen,
         ),
         CustomPaint(
           size: const Size(_kPointerWidth, _kPointerHeight),
