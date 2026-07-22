@@ -162,6 +162,7 @@ class ImageWithIcon extends StatelessWidget {
                     aliasLabelImageTextStyle ??
                     TextStyle(
                       fontFamily: 'Nunito',
+                      package: dotsDesignSystemPackage,
                       fontSize: 40,
                       fontWeight: FontWeight.w600,
                       color: theme.colors.textTertiary,
