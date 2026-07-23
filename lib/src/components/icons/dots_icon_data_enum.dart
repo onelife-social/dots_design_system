@@ -124,6 +124,7 @@ enum DotsIconData {
   lock('ic-lock.svg', DotsIconGroup.editingTools),
   order('ic-order.svg', DotsIconGroup.editingTools),
   pencil('ic-pencil.svg', DotsIconGroup.editingTools),
+  plusMagnifyingglass('ic-plus-magnifyingglass.svg', DotsIconGroup.editingTools),
   print('ic-print.svg', DotsIconGroup.editingTools),
   remove('ic-remove.svg', DotsIconGroup.editingTools),
   rotateLeft('ic-rotate-left.svg', DotsIconGroup.editingTools),
