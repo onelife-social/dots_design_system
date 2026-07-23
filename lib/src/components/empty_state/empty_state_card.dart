@@ -34,6 +34,10 @@ class DotsEmptyStateCard extends StatelessWidget {
   /// Width of the image.
   final double? imageWidth;
 
+  /// Rich description rendered instead of [description] when set; [description]
+  /// stays as the accessibility label.
+  final List<InlineSpan>? descriptionSpans;
+
   const DotsEmptyStateCard({
     super.key,
     required this.variant,
@@ -46,11 +50,16 @@ class DotsEmptyStateCard extends StatelessWidget {
     this.button,
     this.extraSpaceAfterImage = 0,
     this.imageWidth,
+    this.descriptionSpans,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    final TextStyle descriptionStyle = theme.typo.main.bodyDefaultRegular.copyWith(
+      color: descriptionColor ?? theme.colors.textQuarternary,
+    );
+    final List<InlineSpan>? spans = descriptionSpans;
 
     return Container(
       width: context.screenWidth * context.getByRatio(0.8205, 0.9),
@@ -80,13 +89,19 @@ class DotsEmptyStateCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          Text(
-            description,
-            style: theme.typo.main.bodyDefaultRegular.copyWith(
-              color: descriptionColor ?? theme.colors.textQuarternary,
+          if (spans != null)
+            Text.rich(
+              TextSpan(children: spans),
+              style: descriptionStyle,
+              textAlign: TextAlign.center,
+              semanticsLabel: description,
+            )
+          else
+            Text(
+              description,
+              style: descriptionStyle,
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
           if (button != null) ...[
             SizedBox(height: context.getByRatio(16, 10)),
             button!,
