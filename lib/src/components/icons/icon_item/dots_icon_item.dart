@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../core/extensions/extensions_lib.dart';
 import '../icons_lib.dart';
 
-/// A widget that represents an icon item, which consists of an icon slot and a text label.
+/// A widget that represents an icon item, which consists of an icon slot and a
+/// text label with an optional supporting subtitle.
 class DotsIconItem extends StatelessWidget {
   /// Type of the icon item, which determines the image to be displayed in the slot.
   final DotsIconItemSlotType type;
@@ -11,10 +12,19 @@ class DotsIconItem extends StatelessWidget {
   /// Text label to be displayed next to the icon slot.
   final String label;
 
+  /// Optional secondary line shown under [label] (e.g. a selection summary).
+  final String? subtitle;
+
   /// Callback function to be called when the icon item is tapped.
   final VoidCallback? onTap;
 
-  const DotsIconItem({required this.type, required this.label, this.onTap, super.key});
+  const DotsIconItem({
+    required this.type,
+    required this.label,
+    this.subtitle,
+    this.onTap,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +41,8 @@ class DotsIconItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   DotsIconItemSlot(type: type),
-                  SizedBox(width: 12),
-                  Text(
-                    label,
-                    style: context.dotsTheme.typo.main.bodyLargeMedium.copyWith(
-                      color: context.dotsTheme.colors.textPrimary,
-                    ),
-                  ),
+                  const SizedBox(width: 12),
+                  Expanded(child: _labelColumn(context)),
                 ],
               ),
             ),
@@ -50,6 +55,35 @@ class DotsIconItem extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _labelColumn(BuildContext context) {
+    final theme = context.dotsTheme;
+    final Text labelText = Text(
+      label,
+      style: theme.typo.main.bodyLargeMedium.copyWith(
+        color: theme.colors.textPrimary,
+      ),
+    );
+
+    if (subtitle == null) {
+      return labelText;
+    }
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        labelText,
+        const SizedBox(height: 2),
+        Text(
+          subtitle!,
+          style: theme.typo.main.labelDefaultRegular.copyWith(
+            color: theme.colors.textSecondary,
+          ),
+        ),
+      ],
     );
   }
 }
