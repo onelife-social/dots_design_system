@@ -89,7 +89,7 @@ class DotsEmptyStateCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          if (spans != null)
+          if (spans != null && spans.isNotEmpty)
             Text.rich(
               TextSpan(children: spans),
               style: descriptionStyle,
