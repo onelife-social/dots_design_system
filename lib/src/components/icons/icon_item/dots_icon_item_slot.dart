@@ -43,7 +43,7 @@ class DotsIconItemSlot extends StatelessWidget {
         child: DotsIcon(
           iconData: spec.glyph,
           color: Colors.white.dotsWithOpacity(0.8),
-          size: side * 0.76,
+          size: side * (spec.overrideSideMultiplier ?? 0.76),
         ),
       ),
     );
@@ -56,7 +56,11 @@ class DotsIconItemSlot extends StatelessWidget {
       case DotsIconItemSlotType.cover:
         return const _SlotSpec([Color(0xFFFAA25E), Color(0xFFF37C20)], DotsIconData.album);
       case DotsIconItemSlotType.dedicatory:
-        return const _SlotSpec([Color(0xFFFF5B69), Color(0xFFFF3F51)], DotsIconData.dedicatory);
+        return const _SlotSpec(
+          [Color(0xFFFF5B69), Color(0xFFFF3F51)],
+          DotsIconData.dedicatory,
+          0.5,
+        );
       case DotsIconItemSlotType.images:
         return const _SlotSpec([Color(0xFF61ED82), Color(0xFF32B74B)], DotsIconData.pics);
       case DotsIconItemSlotType.milestone:
@@ -70,8 +74,9 @@ class DotsIconItemSlot extends StatelessWidget {
 class _SlotSpec {
   final List<Color> colors;
   final DotsIconData glyph;
+  final double? overrideSideMultiplier;
 
-  const _SlotSpec(this.colors, this.glyph);
+  const _SlotSpec(this.colors, this.glyph, [this.overrideSideMultiplier]);
 }
 
 enum DotsIconItemSlotType {
