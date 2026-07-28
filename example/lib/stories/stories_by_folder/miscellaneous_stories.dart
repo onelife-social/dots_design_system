@@ -18,6 +18,7 @@ List<Story> get miscellaneousStories => [
             ],
           ),
           value: context.knobs.text(label: 'Value'),
+          badgeText: context.knobs.text(label: 'Badge text'),
         ),
       ),
       Story(

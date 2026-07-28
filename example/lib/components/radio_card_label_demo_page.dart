@@ -6,9 +6,11 @@ class RadioCardLabelDemoScreen extends StatefulWidget {
     super.key,
     required this.variant,
     this.value,
+    this.badgeText,
   });
   final RadioCardLabelVariant variant;
   final String? value;
+  final String? badgeText;
 
   @override
   State<RadioCardLabelDemoScreen> createState() => _RadioCardLabelDemoScreenState();
@@ -57,6 +59,7 @@ class _RadioCardLabelDemoScreenState extends State<RadioCardLabelDemoScreen> {
                 variant: widget.variant,
                 value: widget.value,
                 greenTextValue: index == 1,
+                badgeText: widget.badgeText,
               ),
             ),
           );
