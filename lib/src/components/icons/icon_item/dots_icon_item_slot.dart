@@ -23,12 +23,15 @@ class DotsIconItemSlot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _SlotSpec spec = _specFor(type);
+    // Derive the corner radius and glyph size from the smaller side so a
+    // non-square slot never overflows its shorter dimension.
+    final double side = width < height ? width : height;
 
     return Container(
       width: width,
       height: height,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(width * 0.24),
+        borderRadius: BorderRadius.circular(side * 0.24),
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -39,7 +42,7 @@ class DotsIconItemSlot extends StatelessWidget {
         child: DotsIcon(
           iconData: spec.glyph,
           color: Colors.white,
-          size: width * 0.55,
+          size: side * 0.55,
         ),
       ),
     );
