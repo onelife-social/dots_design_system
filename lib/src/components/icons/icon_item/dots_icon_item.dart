@@ -41,7 +41,7 @@ class DotsIconItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   DotsIconItemSlot(type: type),
-                  const SizedBox(width: 12),
+                  const SizedBox(width: 14),
                   Expanded(child: _labelColumn(context)),
                 ],
               ),

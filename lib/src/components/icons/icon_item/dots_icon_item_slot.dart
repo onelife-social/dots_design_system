@@ -1,3 +1,4 @@
+import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 
 import '../dots_icon.dart';
@@ -7,16 +8,16 @@ class DotsIconItemSlot extends StatelessWidget {
   /// Type of the icon slot, which determines the glyph and gradient shown.
   final DotsIconItemSlotType type;
 
-  /// Width of the icon slot. Default is 44.
+  /// Width of the icon slot. Default is 32.
   final double width;
 
-  /// Height of the icon slot. Default is 44.
+  /// Height of the icon slot. Default is 32.
   final double height;
 
   const DotsIconItemSlot({
     required this.type,
-    this.width = 44,
-    this.height = 44,
+    this.width = 32,
+    this.height = 32,
     super.key,
   });
 
@@ -31,7 +32,7 @@ class DotsIconItemSlot extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(side * 0.24),
+        borderRadius: BorderRadius.circular(side * 0.25),
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -41,8 +42,8 @@ class DotsIconItemSlot extends StatelessWidget {
       child: Center(
         child: DotsIcon(
           iconData: spec.glyph,
-          color: Colors.white,
-          size: side * 0.55,
+          color: Colors.white.dotsWithOpacity(0.8),
+          size: side * 0.76,
         ),
       ),
     );
@@ -53,11 +54,11 @@ class DotsIconItemSlot extends StatelessWidget {
   _SlotSpec _specFor(DotsIconItemSlotType type) {
     switch (type) {
       case DotsIconItemSlotType.cover:
-        return const _SlotSpec([Color(0xFFFAA25E), Color(0xFFF37C20)], DotsIconData.book2);
+        return const _SlotSpec([Color(0xFFFAA25E), Color(0xFFF37C20)], DotsIconData.album);
       case DotsIconItemSlotType.dedicatory:
-        return const _SlotSpec([Color(0xFFFF5B69), Color(0xFFFF3F51)], DotsIconData.heart);
+        return const _SlotSpec([Color(0xFFFF5B69), Color(0xFFFF3F51)], DotsIconData.dedicatory);
       case DotsIconItemSlotType.images:
-        return const _SlotSpec([Color(0xFF61ED82), Color(0xFF32B74B)], DotsIconData.photoFrame);
+        return const _SlotSpec([Color(0xFF61ED82), Color(0xFF32B74B)], DotsIconData.pics);
       case DotsIconItemSlotType.milestone:
         return const _SlotSpec([Color(0xFFFFCD66), Color(0xFFFF9E11)], DotsIconData.star);
       case DotsIconItemSlotType.qr:
