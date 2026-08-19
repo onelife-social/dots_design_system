@@ -1,0 +1,309 @@
+<!-- @dsCard group="Inputs" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · Text Fields</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; min-width: 0; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .lbl { font-size: 10px; font-family: ui-monospace, monospace; margin: 14px 0 6px; }
+  .light .lbl { color: #00000066; } .dark .lbl { color: #FFFFFF73; }
+  .col { max-width: 320px; }
+  svg { flex: none; }
+  .stack > * + * { margin-top: 10px; }
+
+  /* DotsTextField — h44, pill r1000, bgContainerSecondaryOnBackground, padding 0 16 */
+  .tf {
+    height: 44px; border-radius: 1000px; padding: 0 16px;
+    display: flex; align-items: center; box-sizing: border-box;
+    font-size: 14px; font-weight: 500; letter-spacing: -0.02px; line-height: 1.29;
+  }
+  .light .tf { background: #8C8C8C1A; color: #000; }
+  .dark .tf { background: #75757533; color: #FFF; }
+  .tf .icon { margin-right: 6px; }
+  .light .icon { color: #0000008C; } .dark .icon { color: #FFFFFFA6; }
+  .light .hint { color: #00000066; } .dark .hint { color: #FFFFFF73; }
+  .tf .grow { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; }
+  .caret { display: inline-block; width: 1.5px; height: 18px; vertical-align: text-bottom; margin-left: 1px; }
+  .light .caret { background: #0072EF; } .dark .caret { background: #0A84FF; }
+  /* clear = DotsCloseButton extraSmall (16px, icon 10) variant inverted */
+  .clear { width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .light .clear { background: #00000066; color: #F8F7F5D9; }
+  .dark .clear { background: #FFFFFF73; color: #191919D9; }
+  .err-text { color: #ED2B32; }
+  .err-msg { font-size: 13px; font-weight: 400; letter-spacing: -0.01px; color: #ED2B32; padding: 4px 16px 0; }
+  .light .tf.disabled { color: #00000033; } .dark .tf.disabled { color: #FFFFFF33; }
+  /* background:false + showUnderline (border bottom 0.5 labelSecondary·0.3) */
+  .tf.underline { background: transparent; border-radius: 0; padding: 0; }
+  .light .tf.underline { border-bottom: 0.5px solid #0000000F; }
+  .dark .tf.underline { border-bottom: 0.5px solid #FFFFFF17; }
+
+  /* DotsTextFieldPhone — leading: flag (dialCode) + chevron 14 + divider */
+  .phone-lead { display: flex; align-items: center; }
+  .light .phone-lead .dial { color: #000000AB; } .dark .phone-lead .dial { color: #FFFFFFBF; }
+  .phone-lead .chev { margin: 0 6px; }
+  .light .phone-lead .chev { color: #000000AB; } .dark .phone-lead .chev { color: #FFFFFFBF; }
+  .phone-div { width: 0.5px; height: 28px; margin-right: 12px; opacity: 0.3; }
+  .light .phone-div { background: #00000033; } .dark .phone-div { background: #FFFFFF4D; }
+
+  /* DotsTextFieldButton — endButtonText + divider 0.5 textDisabled, suffixIcon 16 */
+  .end-div { width: 0.5px; align-self: stretch; margin: 8px 16px 8px 12px; }
+  .light .end-div { background: #00000033; } .dark .end-div { background: #FFFFFF33; }
+  .light .end-btn { color: #0072EF; } .dark .end-btn { color: #0A84FF; }
+  .light .suffix-check { color: #0072EF; } .dark .suffix-check { color: #0A84FF; }
+  .err-msg-asterisk { font-size: 13px; font-weight: 400; letter-spacing: -0.01px; color: #ED2B32; padding: 8px 24px 0; }
+
+  /* DotsTextFieldDate — h44 pill, padding 16/8, value chips bgSecondaryBtn r24 */
+  .tf.date { padding: 0 8px 0 16px; font-weight: 400; }
+  .date .chips { display: flex; gap: 4px; margin-left: 12px; }
+  .chip { padding: 4px 10px; border-radius: 24px; min-width: 56px; box-sizing: border-box;
+    text-align: center; font-size: 14px; font-weight: 500; letter-spacing: -0.02px; }
+  .light .chip { background: #8C8C8C4D; color: #000; }
+  .dark .chip { background: #C8C8C84D; color: #FFF; }
+  .chip.error { color: #ED2B32 !important; }
+
+  /* DotsTextArea — r24, padding 16 16 24 16, minHeight 50, counter labelSmallRegular */
+  .ta { border-radius: 24px; padding: 16px 16px 24px 16px; position: relative; min-height: 50px; box-sizing: border-box; }
+  .light .ta { background: #8C8C8C1A; } .dark .ta { background: #75757533; }
+  .ta .ta-label { display: flex; align-items: center; font-size: 16px; font-weight: 500; letter-spacing: -0.05px; margin-bottom: 6px; }
+  .light .ta .ta-label { color: #000; } .dark .ta .ta-label { color: #FFF; }
+  .ta .ta-label .icon { margin-right: 8px; }
+  .ta .ta-body { font-size: 16px; font-weight: 400; line-height: 1.31; letter-spacing: -0.05px; }
+  .ta .ta-body.indent { padding-left: 28px; }
+  .light .ta .ta-body { color: #000; } .dark .ta .ta-body { color: #FFF; }
+  .ta .counter { position: absolute; right: 16px; bottom: 10px; font-size: 11px; font-weight: 400; letter-spacing: 0.01px; }
+  .light .ta .counter { color: #00000066; } .dark .ta .counter { color: #FFFFFF73; }
+
+  /* DotsItemInput — h42, bgContainerSecondary, radius por posición, value box 120×r7 */
+  .item-input { height: 42px; box-sizing: border-box; padding: 8px 8px 8px 12px; display: flex; align-items: center; }
+  .light .item-input { background: #E2E2E2B3; } .dark .item-input { background: #282828B3; }
+  .item-input.first { border-radius: 16px 16px 0 0; margin-bottom: 1px; }
+  .item-input.last { border-radius: 0 0 16px 16px; margin-top: 1px; }
+  .item-input .icon { margin-right: 6px; }
+  .light .item-input .icon { color: #00000066; } .dark .item-input .icon { color: #FFFFFF73; }
+  .item-input .it-label { flex: 1; font-size: 14px; font-weight: 500; letter-spacing: -0.02px; margin-right: 8px; }
+  .light .item-input .it-label { color: #000; } .dark .item-input .it-label { color: #FFF; }
+  .item-input .value { width: 120px; height: 100%; border-radius: 7px; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 600; letter-spacing: -0.01px; box-sizing: border-box; }
+  .light .item-input .value { background: #8C8C8C1A; color: #000; }
+  .dark .item-input .value { background: #75757533; color: #FFF; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>Text Fields — Light</h2>
+    <div class="sub">text_fields/ · DotsTextField · DotsTextFieldPhone · DotsTextFieldButton · DotsTextFieldDate · DotsTextArea · DotsItemInput</div>
+    <div class="col">
+
+      <div class="lbl">DotsTextField · normal / focus / error / disabled / showUnderline</div>
+      <div class="stack">
+        <div class="tf">
+          <svg class="icon" width="20" height="20" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-search-l1)"><path d="M2.66602 13.9389C2.66602 19.8859 7.55172 24.7245 13.5565 24.7245C15.9311 24.7245 18.101 23.9677 19.8889 22.6971L26.6033 29.3605C26.9171 29.6713 27.3266 29.82 27.7633 29.82C28.6914 29.82 29.3327 29.1306 29.3327 28.2251C29.3327 27.7926 29.1689 27.4006 28.8823 27.1168L22.2088 20.467C23.6146 18.6559 24.447 16.3988 24.447 13.9389C24.447 7.99197 19.5613 3.15332 13.5565 3.15332C7.55172 3.15332 2.66602 7.99197 2.66602 13.9389ZM4.9997 13.9389C4.9997 9.26246 8.83457 5.46453 13.5565 5.46453C18.2784 5.46453 22.1133 9.26246 22.1133 13.9389C22.1133 18.6153 18.2784 22.4133 13.5565 22.4133C8.83457 22.4133 4.9997 18.6153 4.9997 13.9389Z" fill="currentColor"/></g><defs><clipPath id="clip-search-l1"><rect y="0.486572" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="grow hint">Buscar recuerdo</span>
+        </div>
+        <div class="tf">
+          <svg class="icon" width="20" height="20" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-search-l2)"><path d="M2.66602 13.9389C2.66602 19.8859 7.55172 24.7245 13.5565 24.7245C15.9311 24.7245 18.101 23.9677 19.8889 22.6971L26.6033 29.3605C26.9171 29.6713 27.3266 29.82 27.7633 29.82C28.6914 29.82 29.3327 29.1306 29.3327 28.2251C29.3327 27.7926 29.1689 27.4006 28.8823 27.1168L22.2088 20.467C23.6146 18.6559 24.447 16.3988 24.447 13.9389C24.447 7.99197 19.5613 3.15332 13.5565 3.15332C7.55172 3.15332 2.66602 7.99197 2.66602 13.9389ZM4.9997 13.9389C4.9997 9.26246 8.83457 5.46453 13.5565 5.46453C18.2784 5.46453 22.1133 9.26246 22.1133 13.9389C22.1133 18.6153 18.2784 22.4133 13.5565 22.4133C8.83457 22.4133 4.9997 18.6153 4.9997 13.9389Z" fill="currentColor"/></g><defs><clipPath id="clip-search-l2"><rect y="0.486572" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="grow">Viaje a Lisboa<span class="caret"></span></span>
+          <span class="clear"><svg width="10" height="10" viewBox="0 0 32 33" fill="none"><path d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z" fill="currentColor"/></svg></span>
+        </div>
+        <div>
+          <div class="tf"><span class="grow err-text">Nombre demasiado corto</span></div>
+          <div class="err-msg">Introduce al menos 3 caracteres</div>
+        </div>
+        <div class="tf disabled"><span class="grow">No editable</span></div>
+        <div class="tf underline"><span class="grow hint">Sin fondo, con subrayado</span></div>
+      </div>
+
+      <div class="lbl">DotsTextFieldPhone · countryCode + digitsOnly</div>
+      <div class="tf">
+        <span class="phone-lead">
+          <span>&#127466;&#127480;</span>
+          <span class="dial">&nbsp;(+34)</span>
+          <svg class="chev" width="14" height="14" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-chev-l)"><path d="M15.9993 24.8892C16.5255 24.8742 17.0065 24.6791 17.3973 24.2589L28.8216 12.5848C29.1523 12.2547 29.3327 11.8345 29.3327 11.3393C29.3327 10.349 28.551 9.55371 27.5589 9.55371C27.0779 9.55371 26.6119 9.74878 26.2662 10.0939L16.0144 20.6126L5.73253 10.0939C5.3868 9.76379 4.93584 9.55371 4.43978 9.55371C3.44768 9.55371 2.66602 10.349 2.66602 11.3393C2.66602 11.8345 2.8464 12.2547 3.1771 12.5848L14.6164 24.2589C15.0223 24.6791 15.4732 24.8892 15.9993 24.8892Z" fill="currentColor"/></g><defs><clipPath id="clip-chev-l"><rect y="0.240967" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="phone-div"></span>
+        </span>
+        <span class="grow hint">Número de teléfono</span>
+      </div>
+
+      <div class="lbl">DotsTextFieldButton · endButtonText / suffixIcon / error</div>
+      <div class="stack">
+        <div class="tf">
+          <svg class="icon" width="20" height="20" viewBox="0 0 32 32" fill="none"><g clip-path="url(#clip-send-l)"><path d="M18.6024 29.329C19.5188 29.329 20.168 28.5398 20.639 27.3178L28.9763 5.53904C29.2054 4.95353 29.3327 4.43165 29.3327 3.99887C29.3327 3.1715 28.8235 2.66235 27.9961 2.66235C27.5634 2.66235 27.0415 2.78964 26.4559 3.01875L4.56259 11.407C3.49338 11.8143 2.66602 12.4634 2.66602 13.3926C2.66602 14.5637 3.55702 14.9583 4.77898 15.3275L11.6525 17.4149C12.4671 17.6695 12.9254 17.6441 13.4727 17.1349L27.4361 4.08797C27.6015 3.93523 27.7925 3.96068 27.9198 4.07524C28.0471 4.20253 28.0598 4.39346 27.9071 4.55893L14.911 18.5732C14.4146 19.0951 14.3764 19.5278 14.6183 20.3807L16.6422 27.1015C17.0241 28.3871 17.4186 29.329 18.6024 29.329Z" fill="currentColor"/></g><defs><clipPath id="clip-send-l"><rect y="-0.00439453" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="grow">ana@correo.com</span>
+          <span class="end-div"></span>
+          <span class="end-btn">Verificar</span>
+        </div>
+        <div class="tf">
+          <span class="grow">Ana Martín</span>
+          <svg class="suffix-check" width="16" height="16" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-check-l)"><path d="M13.4057 26.9799C13.9382 26.9799 14.3591 26.7446 14.6563 26.2865L26.3568 7.86285C26.5797 7.50379 26.6663 7.2314 26.6663 6.94663C26.6663 6.26563 26.2206 5.81991 25.5396 5.81991C25.0443 5.81991 24.7719 5.98087 24.4748 6.45137L13.3562 24.1693L7.58644 16.6166C7.2769 16.1832 6.96737 16.0099 6.52163 16.0099C5.81589 16.0099 5.33301 16.4928 5.33301 17.1737C5.33301 17.4586 5.45682 17.7805 5.69207 18.0776L12.1181 26.2618C12.4895 26.7446 12.8733 26.9799 13.4057 26.9799Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M14.8801 26.4316C14.5358 26.9623 14.0324 27.2466 13.4058 27.2466C13.0973 27.2466 12.822 27.1776 12.5695 27.0335C12.3205 26.8915 12.1066 26.6839 11.9075 26.4253C11.9073 26.425 11.9078 26.4257 11.9075 26.4253L5.48307 18.2431C5.48298 18.243 5.48317 18.2432 5.48307 18.2431C5.22068 17.9116 5.06641 17.5328 5.06641 17.1737C5.06641 16.7683 5.2113 16.4068 5.47559 16.1465C5.73971 15.8863 6.1066 15.7432 6.5217 15.7432C6.78146 15.7432 7.01754 15.7944 7.23679 15.9188C7.45199 16.0409 7.63291 16.2234 7.80095 16.458L13.3348 23.7018L24.249 6.30961C24.4084 6.05715 24.5785 5.85924 24.797 5.72977C25.0188 5.59836 25.2627 5.55322 25.5397 5.55322C25.9395 5.55322 26.2929 5.68525 26.547 5.93931C26.801 6.19338 26.9331 6.54675 26.9331 6.94661C26.9331 7.29608 26.8233 7.61706 26.5834 8.0035L26.582 8.0058L14.8801 26.4316ZM24.4748 6.45137C24.7719 5.98087 25.0443 5.81991 25.5396 5.81991C26.2206 5.81991 26.6663 6.26563 26.6663 6.94663C26.6663 7.2314 26.5797 7.50379 26.3568 7.86285L14.6563 26.2865C14.3591 26.7446 13.9382 26.9799 13.4057 26.9799C12.8733 26.9799 12.4895 26.7446 12.1181 26.2618L5.69207 18.0776C5.45682 17.7805 5.33301 17.4586 5.33301 17.1737C5.33301 16.4928 5.81589 16.0099 6.52163 16.0099C6.96737 16.0099 7.2769 16.1832 7.58644 16.6166L13.3562 24.1693L24.4748 6.45137Z" fill="currentColor"/></g><defs><clipPath id="clip-check-l"><rect y="0.486572" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+        </div>
+        <div>
+          <div class="tf"><span class="grow err-text">usuario!inválido</span></div>
+          <div class="err-msg-asterisk">* El nombre de usuario no es válido</div>
+        </div>
+      </div>
+
+      <div class="lbl">DotsTextFieldDate · date + time chips / error</div>
+      <div class="stack">
+        <div class="tf date">
+          <svg class="icon" width="20" height="20" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-cal-l1)"><path d="M7.78123 27.3348H24.2308C26.7476 27.3348 28 26.0823 28 23.6016V8.89822C28 6.41755 26.7476 5.16516 24.2308 5.16516H7.78123C5.26442 5.16516 4 6.4055 4 8.89822V23.6016C4 26.0944 5.26442 27.3348 7.78123 27.3348ZM7.6006 25.3959C6.52885 25.3959 5.93878 24.83 5.93878 23.71V12.3543C5.93878 11.2464 6.52885 10.6684 7.6006 10.6684H24.3873C25.4591 10.6684 26.0612 11.2464 26.0612 12.3543V23.71C26.0612 24.83 25.4591 25.3959 24.3873 25.3959H7.6006ZM13.6578 14.9915H14.3682C14.7898 14.9915 14.9222 14.8711 14.9222 14.4496V13.7392C14.9222 13.3177 14.7898 13.1852 14.3682 13.1852H13.6578C13.2363 13.1852 13.0918 13.3177 13.0918 13.7392V14.4496C13.0918 14.8711 13.2363 14.9915 13.6578 14.9915ZM17.6558 14.9915H18.3663C18.7877 14.9915 18.9322 14.8711 18.9322 14.4496V13.7392C18.9322 13.3177 18.7877 13.1852 18.3663 13.1852H17.6558C17.2343 13.1852 17.0898 13.3177 17.0898 13.7392V14.4496C17.0898 14.8711 17.2343 14.9915 17.6558 14.9915ZM21.6538 14.9915H22.3643C22.7857 14.9915 22.9303 14.8711 22.9303 14.4496V13.7392C22.9303 13.3177 22.7857 13.1852 22.3643 13.1852H21.6538C21.2323 13.1852 21.0998 13.3177 21.0998 13.7392V14.4496C21.0998 14.8711 21.2323 14.9915 21.6538 14.9915ZM9.6598 18.9293H10.3582C10.7918 18.9293 10.9242 18.8089 10.9242 18.3874V17.6769C10.9242 17.2555 10.7918 17.1351 10.3582 17.1351H9.6598C9.22629 17.1351 9.09382 17.2555 9.09382 17.6769V18.3874C9.09382 18.8089 9.22629 18.9293 9.6598 18.9293ZM13.6578 18.9293H14.3682C14.7898 18.9293 14.9222 18.8089 14.9222 18.3874V17.6769C14.9222 17.2555 14.7898 17.1351 14.3682 17.1351H13.6578C13.2363 17.1351 13.0918 17.2555 13.0918 17.6769V18.3874C13.0918 18.8089 13.2363 18.9293 13.6578 18.9293ZM17.6558 18.9293H18.3663C18.7877 18.9293 18.9322 18.8089 18.9322 18.3874V17.6769C18.9322 17.2555 18.7877 17.1351 18.3663 17.1351H17.6558C17.2343 17.1351 17.0898 17.2555 17.0898 17.6769V18.3874C17.0898 18.8089 17.2343 18.9293 17.6558 18.9293ZM21.6538 18.9293H22.3643C22.7857 18.9293 22.9303 18.8089 22.9303 18.3874V17.6769C22.9303 17.2555 22.7857 17.1351 22.3643 17.1351H21.6538C21.2323 17.1351 21.0998 17.2555 21.0998 17.6769V18.3874C21.0998 18.8089 21.2323 18.9293 21.6538 18.9293ZM9.6598 22.8791H10.3582C10.7918 22.8791 10.9242 22.7467 10.9242 22.3252V21.6147C10.9242 21.1932 10.7918 21.0728 10.3582 21.0728H9.6598C9.22629 21.0728 9.09382 21.1932 9.09382 21.6147V22.3252C9.09382 22.7467 9.22629 22.8791 9.6598 22.8791ZM13.6578 22.8791H14.3682C14.7898 22.8791 14.9222 22.7467 14.9222 22.3252V21.6147C14.9222 21.1932 14.7898 21.0728 14.3682 21.0728H13.6578C13.2363 21.0728 13.0918 21.1932 13.0918 21.6147V22.3252C13.0918 22.7467 13.2363 22.8791 13.6578 22.8791ZM17.6558 22.8791H18.3663C18.7877 22.8791 18.9322 22.7467 18.9322 22.3252V21.6147C18.9322 21.1932 18.7877 21.0728 18.3663 21.0728H17.6558C17.2343 21.0728 17.0898 21.1932 17.0898 21.6147V22.3252C17.0898 22.7467 17.2343 22.8791 17.6558 22.8791Z" fill="currentColor"/></g><defs><clipPath id="clip-cal-l1"><rect y="0.25" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="grow">Fecha</span>
+          <span class="chips"><span class="chip">12 mar</span><span class="chip">18:30</span></span>
+        </div>
+        <div>
+          <div class="tf date">
+            <span class="grow">Fecha</span>
+            <span class="chips"><span class="chip error">31 feb</span></span>
+          </div>
+          <div class="err-msg">La fecha no es válida</div>
+        </div>
+      </div>
+
+      <div class="lbl">DotsTextArea · label + icon + maxTextLength / error</div>
+      <div class="stack">
+        <div class="ta">
+          <div class="ta-label">
+            <svg class="icon" width="20" height="20" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-pencil-l)"><path d="M24.1624 2.92672C23.4519 3.07821 23.2534 3.22448 21.9526 4.50958L20.7563 5.69542L26.5393 11.4627L27.6676 10.3343C28.8796 9.12233 29.0938 8.84024 29.2871 8.20814C29.3811 7.9156 29.3915 7.75888 29.3759 7.26783C29.3341 6.19169 29.1565 5.8887 27.6937 4.43644C26.5392 3.28717 26.3251 3.13568 25.5937 2.94761C25.1288 2.82746 24.6482 2.82224 24.1624 2.92672Z" fill="currentColor"/><path d="M11.6951 14.7235L4.28231 22.1363L3.4517 25.4483C2.9711 27.3812 2.62109 28.8648 2.62109 29.0111C2.62109 29.3715 2.8196 29.57 3.18006 29.57C3.32633 29.57 4.80993 29.22 6.74279 28.7394L10.0548 27.9088L17.4676 20.496C21.5423 16.4213 24.8751 13.0676 24.8751 13.0362C24.8751 12.9683 19.2228 7.31598 19.1549 7.31598C19.1236 7.31598 15.7698 10.6489 11.6951 14.7235Z" fill="currentColor"/></g><defs><clipPath id="clip-pencil-l"><rect y="0.236694" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+            Descripción
+          </div>
+          <div class="ta-body indent">Una tarde de verano en la playa con toda la familia.</div>
+          <span class="counter">86</span>
+        </div>
+        <div>
+          <div class="ta"><div class="ta-body hint">Escribe una nota…</div><span class="counter">140</span></div>
+          <div class="err-msg">Este campo es obligatorio</div>
+        </div>
+      </div>
+
+      <div class="lbl">DotsItemInput · position: first / middle / last</div>
+      <div>
+        <div class="item-input first">
+          <svg class="icon" width="20" height="20" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-cal-l2)"><path d="M7.78123 27.3348H24.2308C26.7476 27.3348 28 26.0823 28 23.6016V8.89822C28 6.41755 26.7476 5.16516 24.2308 5.16516H7.78123C5.26442 5.16516 4 6.4055 4 8.89822V23.6016C4 26.0944 5.26442 27.3348 7.78123 27.3348ZM7.6006 25.3959C6.52885 25.3959 5.93878 24.83 5.93878 23.71V12.3543C5.93878 11.2464 6.52885 10.6684 7.6006 10.6684H24.3873C25.4591 10.6684 26.0612 11.2464 26.0612 12.3543V23.71C26.0612 24.83 25.4591 25.3959 24.3873 25.3959H7.6006ZM13.6578 14.9915H14.3682C14.7898 14.9915 14.9222 14.8711 14.9222 14.4496V13.7392C14.9222 13.3177 14.7898 13.1852 14.3682 13.1852H13.6578C13.2363 13.1852 13.0918 13.3177 13.0918 13.7392V14.4496C13.0918 14.8711 13.2363 14.9915 13.6578 14.9915ZM17.6558 14.9915H18.3663C18.7877 14.9915 18.9322 14.8711 18.9322 14.4496V13.7392C18.9322 13.3177 18.7877 13.1852 18.3663 13.1852H17.6558C17.2343 13.1852 17.0898 13.3177 17.0898 13.7392V14.4496C17.0898 14.8711 17.2343 14.9915 17.6558 14.9915ZM21.6538 14.9915H22.3643C22.7857 14.9915 22.9303 14.8711 22.9303 14.4496V13.7392C22.9303 13.3177 22.7857 13.1852 22.3643 13.1852H21.6538C21.2323 13.1852 21.0998 13.3177 21.0998 13.7392V14.4496C21.0998 14.8711 21.2323 14.9915 21.6538 14.9915ZM9.6598 18.9293H10.3582C10.7918 18.9293 10.9242 18.8089 10.9242 18.3874V17.6769C10.9242 17.2555 10.7918 17.1351 10.3582 17.1351H9.6598C9.22629 17.1351 9.09382 17.2555 9.09382 17.6769V18.3874C9.09382 18.8089 9.22629 18.9293 9.6598 18.9293ZM13.6578 18.9293H14.3682C14.7898 18.9293 14.9222 18.8089 14.9222 18.3874V17.6769C14.9222 17.2555 14.7898 17.1351 14.3682 17.1351H13.6578C13.2363 17.1351 13.0918 17.2555 13.0918 17.6769V18.3874C13.0918 18.8089 13.2363 18.9293 13.6578 18.9293ZM17.6558 18.9293H18.3663C18.7877 18.9293 18.9322 18.8089 18.9322 18.3874V17.6769C18.9322 17.2555 18.7877 17.1351 18.3663 17.1351H17.6558C17.2343 17.1351 17.0898 17.2555 17.0898 17.6769V18.3874C17.0898 18.8089 17.2343 18.9293 17.6558 18.9293ZM21.6538 18.9293H22.3643C22.7857 18.9293 22.9303 18.8089 22.9303 18.3874V17.6769C22.9303 17.2555 22.7857 17.1351 22.3643 17.1351H21.6538C21.2323 17.1351 21.0998 17.2555 21.0998 17.6769V18.3874C21.0998 18.8089 21.2323 18.9293 21.6538 18.9293ZM9.6598 22.8791H10.3582C10.7918 22.8791 10.9242 22.7467 10.9242 22.3252V21.6147C10.9242 21.1932 10.7918 21.0728 10.3582 21.0728H9.6598C9.22629 21.0728 9.09382 21.1932 9.09382 21.6147V22.3252C9.09382 22.7467 9.22629 22.8791 9.6598 22.8791ZM13.6578 22.8791H14.3682C14.7898 22.8791 14.9222 22.7467 14.9222 22.3252V21.6147C14.9222 21.1932 14.7898 21.0728 14.3682 21.0728H13.6578C13.2363 21.0728 13.0918 21.1932 13.0918 21.6147V22.3252C13.0918 22.7467 13.2363 22.8791 13.6578 22.8791ZM17.6558 22.8791H18.3663C18.7877 22.8791 18.9322 22.7467 18.9322 22.3252V21.6147C18.9322 21.1932 18.7877 21.0728 18.3663 21.0728H17.6558C17.2343 21.0728 17.0898 21.1932 17.0898 21.6147V22.3252C17.0898 22.7467 17.2343 22.8791 17.6558 22.8791Z" fill="currentColor"/></g><defs><clipPath id="clip-cal-l2"><rect y="0.25" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="it-label">Fecha</span><span class="value">12/03/2026</span>
+        </div>
+        <div class="item-input">
+          <svg class="icon" width="20" height="20" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-clock-l)"><path d="M16 28.2501C22.5648 28.2501 28 22.8031 28 16.2501C28 9.68543 22.553 4.25012 15.9883 4.25012C9.4353 4.25012 4 9.68543 4 16.2501C4 22.8031 9.44707 28.2501 16 28.2501ZM16 26.2502C10.4471 26.2502 6.01177 21.8031 6.01177 16.2501C6.01177 10.6972 10.4353 6.25013 15.9883 6.25013C21.5413 6.25013 26.0001 10.6972 26.0001 16.2501C26.0001 21.8031 21.553 26.2502 16 26.2502Z" fill="currentColor"/><path d="M9.85194 17.5308H15.9931C16.4519 17.5308 16.8166 17.1779 16.8166 16.7072V8.77783C16.8166 8.319 16.4519 7.96606 15.9931 7.96606C15.5343 7.96606 15.1814 8.319 15.1814 8.77783V15.8954H9.85194C9.38135 15.8954 9.02841 16.2484 9.02841 16.7072C9.02841 17.1779 9.38135 17.5308 9.85194 17.5308Z" fill="currentColor"/></g><defs><clipPath id="clip-clock-l"><rect y="0.250122" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="it-label">Hora</span><span class="value">18:30</span>
+        </div>
+        <div class="item-input last">
+          <svg class="icon" width="20" height="20" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-loc-l)"><path d="M27.5429 24.2587C27.5429 27.3952 22.7652 29.5834 16.0182 29.5834C9.25899 29.5834 4.45703 27.3952 4.45703 24.2587C4.45703 21.6489 7.80766 19.6923 12.8574 19.124V20.0767C12.8574 20.4287 12.8666 20.7649 12.8882 21.0799C9.37173 21.5397 6.93702 22.7723 6.93702 24.2587C6.93702 26.1794 10.9002 27.6626 16.006 27.6626C21.0875 27.6626 25.075 26.1552 25.075 24.2587C25.075 22.7798 22.6188 21.5405 19.1002 21.0794C19.1213 20.7645 19.1303 20.4285 19.1303 20.0767V19.1195C24.1909 19.6815 27.5429 21.6417 27.5429 24.2587Z" fill="currentColor"/><path d="M20.5853 7.49988C20.5853 9.63948 19.1266 11.4387 17.145 11.925V19.6203C17.145 23.2187 16.5129 25.1638 16.0266 25.1638C15.5281 25.1638 14.896 23.2065 14.896 19.6203V11.925C12.9144 11.4265 11.4556 9.63948 11.4556 7.49988C11.4556 4.98341 13.4858 2.91675 16.0266 2.91675C18.5552 2.91675 20.5853 4.98341 20.5853 7.49988ZM13.1576 6.17479C13.1576 7.02576 13.887 7.75518 14.7136 7.75518C15.5767 7.75518 16.2819 7.02576 16.2819 6.17479C16.2819 5.33596 15.5767 4.61871 14.7136 4.61871C13.887 4.61871 13.1576 5.33596 13.1576 6.17479Z" fill="currentColor"/></g><defs><clipPath id="clip-loc-l"><rect y="0.250122" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="it-label">Lugar</span><span class="value">Madrid</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="theme dark">
+    <h2>Text Fields — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+    <div class="col">
+
+      <div class="lbl">DotsTextField · normal / focus / error / disabled / showUnderline</div>
+      <div class="stack">
+        <div class="tf">
+          <svg class="icon" width="20" height="20" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-search-d1)"><path d="M2.66602 13.9389C2.66602 19.8859 7.55172 24.7245 13.5565 24.7245C15.9311 24.7245 18.101 23.9677 19.8889 22.6971L26.6033 29.3605C26.9171 29.6713 27.3266 29.82 27.7633 29.82C28.6914 29.82 29.3327 29.1306 29.3327 28.2251C29.3327 27.7926 29.1689 27.4006 28.8823 27.1168L22.2088 20.467C23.6146 18.6559 24.447 16.3988 24.447 13.9389C24.447 7.99197 19.5613 3.15332 13.5565 3.15332C7.55172 3.15332 2.66602 7.99197 2.66602 13.9389ZM4.9997 13.9389C4.9997 9.26246 8.83457 5.46453 13.5565 5.46453C18.2784 5.46453 22.1133 9.26246 22.1133 13.9389C22.1133 18.6153 18.2784 22.4133 13.5565 22.4133C8.83457 22.4133 4.9997 18.6153 4.9997 13.9389Z" fill="currentColor"/></g><defs><clipPath id="clip-search-d1"><rect y="0.486572" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="grow hint">Buscar recuerdo</span>
+        </div>
+        <div class="tf">
+          <svg class="icon" width="20" height="20" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-search-d2)"><path d="M2.66602 13.9389C2.66602 19.8859 7.55172 24.7245 13.5565 24.7245C15.9311 24.7245 18.101 23.9677 19.8889 22.6971L26.6033 29.3605C26.9171 29.6713 27.3266 29.82 27.7633 29.82C28.6914 29.82 29.3327 29.1306 29.3327 28.2251C29.3327 27.7926 29.1689 27.4006 28.8823 27.1168L22.2088 20.467C23.6146 18.6559 24.447 16.3988 24.447 13.9389C24.447 7.99197 19.5613 3.15332 13.5565 3.15332C7.55172 3.15332 2.66602 7.99197 2.66602 13.9389ZM4.9997 13.9389C4.9997 9.26246 8.83457 5.46453 13.5565 5.46453C18.2784 5.46453 22.1133 9.26246 22.1133 13.9389C22.1133 18.6153 18.2784 22.4133 13.5565 22.4133C8.83457 22.4133 4.9997 18.6153 4.9997 13.9389Z" fill="currentColor"/></g><defs><clipPath id="clip-search-d2"><rect y="0.486572" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="grow">Viaje a Lisboa<span class="caret"></span></span>
+          <span class="clear"><svg width="10" height="10" viewBox="0 0 32 33" fill="none"><path d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z" fill="currentColor"/></svg></span>
+        </div>
+        <div>
+          <div class="tf"><span class="grow err-text">Nombre demasiado corto</span></div>
+          <div class="err-msg">Introduce al menos 3 caracteres</div>
+        </div>
+        <div class="tf disabled"><span class="grow">No editable</span></div>
+        <div class="tf underline"><span class="grow hint">Sin fondo, con subrayado</span></div>
+      </div>
+
+      <div class="lbl">DotsTextFieldPhone · countryCode + digitsOnly</div>
+      <div class="tf">
+        <span class="phone-lead">
+          <span>&#127466;&#127480;</span>
+          <span class="dial">&nbsp;(+34)</span>
+          <svg class="chev" width="14" height="14" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-chev-d)"><path d="M15.9993 24.8892C16.5255 24.8742 17.0065 24.6791 17.3973 24.2589L28.8216 12.5848C29.1523 12.2547 29.3327 11.8345 29.3327 11.3393C29.3327 10.349 28.551 9.55371 27.5589 9.55371C27.0779 9.55371 26.6119 9.74878 26.2662 10.0939L16.0144 20.6126L5.73253 10.0939C5.3868 9.76379 4.93584 9.55371 4.43978 9.55371C3.44768 9.55371 2.66602 10.349 2.66602 11.3393C2.66602 11.8345 2.8464 12.2547 3.1771 12.5848L14.6164 24.2589C15.0223 24.6791 15.4732 24.8892 15.9993 24.8892Z" fill="currentColor"/></g><defs><clipPath id="clip-chev-d"><rect y="0.240967" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="phone-div"></span>
+        </span>
+        <span class="grow hint">Número de teléfono</span>
+      </div>
+
+      <div class="lbl">DotsTextFieldButton · endButtonText / suffixIcon / error</div>
+      <div class="stack">
+        <div class="tf">
+          <svg class="icon" width="20" height="20" viewBox="0 0 32 32" fill="none"><g clip-path="url(#clip-send-d)"><path d="M18.6024 29.329C19.5188 29.329 20.168 28.5398 20.639 27.3178L28.9763 5.53904C29.2054 4.95353 29.3327 4.43165 29.3327 3.99887C29.3327 3.1715 28.8235 2.66235 27.9961 2.66235C27.5634 2.66235 27.0415 2.78964 26.4559 3.01875L4.56259 11.407C3.49338 11.8143 2.66602 12.4634 2.66602 13.3926C2.66602 14.5637 3.55702 14.9583 4.77898 15.3275L11.6525 17.4149C12.4671 17.6695 12.9254 17.6441 13.4727 17.1349L27.4361 4.08797C27.6015 3.93523 27.7925 3.96068 27.9198 4.07524C28.0471 4.20253 28.0598 4.39346 27.9071 4.55893L14.911 18.5732C14.4146 19.0951 14.3764 19.5278 14.6183 20.3807L16.6422 27.1015C17.0241 28.3871 17.4186 29.329 18.6024 29.329Z" fill="currentColor"/></g><defs><clipPath id="clip-send-d"><rect y="-0.00439453" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="grow">ana@correo.com</span>
+          <span class="end-div"></span>
+          <span class="end-btn">Verificar</span>
+        </div>
+        <div class="tf">
+          <span class="grow">Ana Martín</span>
+          <svg class="suffix-check" width="16" height="16" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-check-d)"><path d="M13.4057 26.9799C13.9382 26.9799 14.3591 26.7446 14.6563 26.2865L26.3568 7.86285C26.5797 7.50379 26.6663 7.2314 26.6663 6.94663C26.6663 6.26563 26.2206 5.81991 25.5396 5.81991C25.0443 5.81991 24.7719 5.98087 24.4748 6.45137L13.3562 24.1693L7.58644 16.6166C7.2769 16.1832 6.96737 16.0099 6.52163 16.0099C5.81589 16.0099 5.33301 16.4928 5.33301 17.1737C5.33301 17.4586 5.45682 17.7805 5.69207 18.0776L12.1181 26.2618C12.4895 26.7446 12.8733 26.9799 13.4057 26.9799Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M14.8801 26.4316C14.5358 26.9623 14.0324 27.2466 13.4058 27.2466C13.0973 27.2466 12.822 27.1776 12.5695 27.0335C12.3205 26.8915 12.1066 26.6839 11.9075 26.4253C11.9073 26.425 11.9078 26.4257 11.9075 26.4253L5.48307 18.2431C5.48298 18.243 5.48317 18.2432 5.48307 18.2431C5.22068 17.9116 5.06641 17.5328 5.06641 17.1737C5.06641 16.7683 5.2113 16.4068 5.47559 16.1465C5.73971 15.8863 6.1066 15.7432 6.5217 15.7432C6.78146 15.7432 7.01754 15.7944 7.23679 15.9188C7.45199 16.0409 7.63291 16.2234 7.80095 16.458L13.3348 23.7018L24.249 6.30961C24.4084 6.05715 24.5785 5.85924 24.797 5.72977C25.0188 5.59836 25.2627 5.55322 25.5397 5.55322C25.9395 5.55322 26.2929 5.68525 26.547 5.93931C26.801 6.19338 26.9331 6.54675 26.9331 6.94661C26.9331 7.29608 26.8233 7.61706 26.5834 8.0035L26.582 8.0058L14.8801 26.4316ZM24.4748 6.45137C24.7719 5.98087 25.0443 5.81991 25.5396 5.81991C26.2206 5.81991 26.6663 6.26563 26.6663 6.94663C26.6663 7.2314 26.5797 7.50379 26.3568 7.86285L14.6563 26.2865C14.3591 26.7446 13.9382 26.9799 13.4057 26.9799C12.8733 26.9799 12.4895 26.7446 12.1181 26.2618L5.69207 18.0776C5.45682 17.7805 5.33301 17.4586 5.33301 17.1737C5.33301 16.4928 5.81589 16.0099 6.52163 16.0099C6.96737 16.0099 7.2769 16.1832 7.58644 16.6166L13.3562 24.1693L24.4748 6.45137Z" fill="currentColor"/></g><defs><clipPath id="clip-check-d"><rect y="0.486572" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+        </div>
+        <div>
+          <div class="tf"><span class="grow err-text">usuario!inválido</span></div>
+          <div class="err-msg-asterisk">* El nombre de usuario no es válido</div>
+        </div>
+      </div>
+
+      <div class="lbl">DotsTextFieldDate · date + time chips / error</div>
+      <div class="stack">
+        <div class="tf date">
+          <svg class="icon" width="20" height="20" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-cal-d1)"><path d="M7.78123 27.3348H24.2308C26.7476 27.3348 28 26.0823 28 23.6016V8.89822C28 6.41755 26.7476 5.16516 24.2308 5.16516H7.78123C5.26442 5.16516 4 6.4055 4 8.89822V23.6016C4 26.0944 5.26442 27.3348 7.78123 27.3348ZM7.6006 25.3959C6.52885 25.3959 5.93878 24.83 5.93878 23.71V12.3543C5.93878 11.2464 6.52885 10.6684 7.6006 10.6684H24.3873C25.4591 10.6684 26.0612 11.2464 26.0612 12.3543V23.71C26.0612 24.83 25.4591 25.3959 24.3873 25.3959H7.6006ZM13.6578 14.9915H14.3682C14.7898 14.9915 14.9222 14.8711 14.9222 14.4496V13.7392C14.9222 13.3177 14.7898 13.1852 14.3682 13.1852H13.6578C13.2363 13.1852 13.0918 13.3177 13.0918 13.7392V14.4496C13.0918 14.8711 13.2363 14.9915 13.6578 14.9915ZM17.6558 14.9915H18.3663C18.7877 14.9915 18.9322 14.8711 18.9322 14.4496V13.7392C18.9322 13.3177 18.7877 13.1852 18.3663 13.1852H17.6558C17.2343 13.1852 17.0898 13.3177 17.0898 13.7392V14.4496C17.0898 14.8711 17.2343 14.9915 17.6558 14.9915ZM21.6538 14.9915H22.3643C22.7857 14.9915 22.9303 14.8711 22.9303 14.4496V13.7392C22.9303 13.3177 22.7857 13.1852 22.3643 13.1852H21.6538C21.2323 13.1852 21.0998 13.3177 21.0998 13.7392V14.4496C21.0998 14.8711 21.2323 14.9915 21.6538 14.9915ZM9.6598 18.9293H10.3582C10.7918 18.9293 10.9242 18.8089 10.9242 18.3874V17.6769C10.9242 17.2555 10.7918 17.1351 10.3582 17.1351H9.6598C9.22629 17.1351 9.09382 17.2555 9.09382 17.6769V18.3874C9.09382 18.8089 9.22629 18.9293 9.6598 18.9293ZM13.6578 18.9293H14.3682C14.7898 18.9293 14.9222 18.8089 14.9222 18.3874V17.6769C14.9222 17.2555 14.7898 17.1351 14.3682 17.1351H13.6578C13.2363 17.1351 13.0918 17.2555 13.0918 17.6769V18.3874C13.0918 18.8089 13.2363 18.9293 13.6578 18.9293ZM17.6558 18.9293H18.3663C18.7877 18.9293 18.9322 18.8089 18.9322 18.3874V17.6769C18.9322 17.2555 18.7877 17.1351 18.3663 17.1351H17.6558C17.2343 17.1351 17.0898 17.2555 17.0898 17.6769V18.3874C17.0898 18.8089 17.2343 18.9293 17.6558 18.9293ZM21.6538 18.9293H22.3643C22.7857 18.9293 22.9303 18.8089 22.9303 18.3874V17.6769C22.9303 17.2555 22.7857 17.1351 22.3643 17.1351H21.6538C21.2323 17.1351 21.0998 17.2555 21.0998 17.6769V18.3874C21.0998 18.8089 21.2323 18.9293 21.6538 18.9293ZM9.6598 22.8791H10.3582C10.7918 22.8791 10.9242 22.7467 10.9242 22.3252V21.6147C10.9242 21.1932 10.7918 21.0728 10.3582 21.0728H9.6598C9.22629 21.0728 9.09382 21.1932 9.09382 21.6147V22.3252C9.09382 22.7467 9.22629 22.8791 9.6598 22.8791ZM13.6578 22.8791H14.3682C14.7898 22.8791 14.9222 22.7467 14.9222 22.3252V21.6147C14.9222 21.1932 14.7898 21.0728 14.3682 21.0728H13.6578C13.2363 21.0728 13.0918 21.1932 13.0918 21.6147V22.3252C13.0918 22.7467 13.2363 22.8791 13.6578 22.8791ZM17.6558 22.8791H18.3663C18.7877 22.8791 18.9322 22.7467 18.9322 22.3252V21.6147C18.9322 21.1932 18.7877 21.0728 18.3663 21.0728H17.6558C17.2343 21.0728 17.0898 21.1932 17.0898 21.6147V22.3252C17.0898 22.7467 17.2343 22.8791 17.6558 22.8791Z" fill="currentColor"/></g><defs><clipPath id="clip-cal-d1"><rect y="0.25" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="grow">Fecha</span>
+          <span class="chips"><span class="chip">12 mar</span><span class="chip">18:30</span></span>
+        </div>
+        <div>
+          <div class="tf date">
+            <span class="grow">Fecha</span>
+            <span class="chips"><span class="chip error">31 feb</span></span>
+          </div>
+          <div class="err-msg">La fecha no es válida</div>
+        </div>
+      </div>
+
+      <div class="lbl">DotsTextArea · label + icon + maxTextLength / error</div>
+      <div class="stack">
+        <div class="ta">
+          <div class="ta-label">
+            <svg class="icon" width="20" height="20" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-pencil-d)"><path d="M24.1624 2.92672C23.4519 3.07821 23.2534 3.22448 21.9526 4.50958L20.7563 5.69542L26.5393 11.4627L27.6676 10.3343C28.8796 9.12233 29.0938 8.84024 29.2871 8.20814C29.3811 7.9156 29.3915 7.75888 29.3759 7.26783C29.3341 6.19169 29.1565 5.8887 27.6937 4.43644C26.5392 3.28717 26.3251 3.13568 25.5937 2.94761C25.1288 2.82746 24.6482 2.82224 24.1624 2.92672Z" fill="currentColor"/><path d="M11.6951 14.7235L4.28231 22.1363L3.4517 25.4483C2.9711 27.3812 2.62109 28.8648 2.62109 29.0111C2.62109 29.3715 2.8196 29.57 3.18006 29.57C3.32633 29.57 4.80993 29.22 6.74279 28.7394L10.0548 27.9088L17.4676 20.496C21.5423 16.4213 24.8751 13.0676 24.8751 13.0362C24.8751 12.9683 19.2228 7.31598 19.1549 7.31598C19.1236 7.31598 15.7698 10.6489 11.6951 14.7235Z" fill="currentColor"/></g><defs><clipPath id="clip-pencil-d"><rect y="0.236694" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+            Descripción
+          </div>
+          <div class="ta-body indent">Una tarde de verano en la playa con toda la familia.</div>
+          <span class="counter">86</span>
+        </div>
+        <div>
+          <div class="ta"><div class="ta-body hint">Escribe una nota…</div><span class="counter">140</span></div>
+          <div class="err-msg">Este campo es obligatorio</div>
+        </div>
+      </div>
+
+      <div class="lbl">DotsItemInput · position: first / middle / last</div>
+      <div>
+        <div class="item-input first">
+          <svg class="icon" width="20" height="20" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-cal-d2)"><path d="M7.78123 27.3348H24.2308C26.7476 27.3348 28 26.0823 28 23.6016V8.89822C28 6.41755 26.7476 5.16516 24.2308 5.16516H7.78123C5.26442 5.16516 4 6.4055 4 8.89822V23.6016C4 26.0944 5.26442 27.3348 7.78123 27.3348ZM7.6006 25.3959C6.52885 25.3959 5.93878 24.83 5.93878 23.71V12.3543C5.93878 11.2464 6.52885 10.6684 7.6006 10.6684H24.3873C25.4591 10.6684 26.0612 11.2464 26.0612 12.3543V23.71C26.0612 24.83 25.4591 25.3959 24.3873 25.3959H7.6006ZM13.6578 14.9915H14.3682C14.7898 14.9915 14.9222 14.8711 14.9222 14.4496V13.7392C14.9222 13.3177 14.7898 13.1852 14.3682 13.1852H13.6578C13.2363 13.1852 13.0918 13.3177 13.0918 13.7392V14.4496C13.0918 14.8711 13.2363 14.9915 13.6578 14.9915ZM17.6558 14.9915H18.3663C18.7877 14.9915 18.9322 14.8711 18.9322 14.4496V13.7392C18.9322 13.3177 18.7877 13.1852 18.3663 13.1852H17.6558C17.2343 13.1852 17.0898 13.3177 17.0898 13.7392V14.4496C17.0898 14.8711 17.2343 14.9915 17.6558 14.9915ZM21.6538 14.9915H22.3643C22.7857 14.9915 22.9303 14.8711 22.9303 14.4496V13.7392C22.9303 13.3177 22.7857 13.1852 22.3643 13.1852H21.6538C21.2323 13.1852 21.0998 13.3177 21.0998 13.7392V14.4496C21.0998 14.8711 21.2323 14.9915 21.6538 14.9915ZM9.6598 18.9293H10.3582C10.7918 18.9293 10.9242 18.8089 10.9242 18.3874V17.6769C10.9242 17.2555 10.7918 17.1351 10.3582 17.1351H9.6598C9.22629 17.1351 9.09382 17.2555 9.09382 17.6769V18.3874C9.09382 18.8089 9.22629 18.9293 9.6598 18.9293ZM13.6578 18.9293H14.3682C14.7898 18.9293 14.9222 18.8089 14.9222 18.3874V17.6769C14.9222 17.2555 14.7898 17.1351 14.3682 17.1351H13.6578C13.2363 17.1351 13.0918 17.2555 13.0918 17.6769V18.3874C13.0918 18.8089 13.2363 18.9293 13.6578 18.9293ZM17.6558 18.9293H18.3663C18.7877 18.9293 18.9322 18.8089 18.9322 18.3874V17.6769C18.9322 17.2555 18.7877 17.1351 18.3663 17.1351H17.6558C17.2343 17.1351 17.0898 17.2555 17.0898 17.6769V18.3874C17.0898 18.8089 17.2343 18.9293 17.6558 18.9293ZM21.6538 18.9293H22.3643C22.7857 18.9293 22.9303 18.8089 22.9303 18.3874V17.6769C22.9303 17.2555 22.7857 17.1351 22.3643 17.1351H21.6538C21.2323 17.1351 21.0998 17.2555 21.0998 17.6769V18.3874C21.0998 18.8089 21.2323 18.9293 21.6538 18.9293ZM9.6598 22.8791H10.3582C10.7918 22.8791 10.9242 22.7467 10.9242 22.3252V21.6147C10.9242 21.1932 10.7918 21.0728 10.3582 21.0728H9.6598C9.22629 21.0728 9.09382 21.1932 9.09382 21.6147V22.3252C9.09382 22.7467 9.22629 22.8791 9.6598 22.8791ZM13.6578 22.8791H14.3682C14.7898 22.8791 14.9222 22.7467 14.9222 22.3252V21.6147C14.9222 21.1932 14.7898 21.0728 14.3682 21.0728H13.6578C13.2363 21.0728 13.0918 21.1932 13.0918 21.6147V22.3252C13.0918 22.7467 13.2363 22.8791 13.6578 22.8791ZM17.6558 22.8791H18.3663C18.7877 22.8791 18.9322 22.7467 18.9322 22.3252V21.6147C18.9322 21.1932 18.7877 21.0728 18.3663 21.0728H17.6558C17.2343 21.0728 17.0898 21.1932 17.0898 21.6147V22.3252C17.0898 22.7467 17.2343 22.8791 17.6558 22.8791Z" fill="currentColor"/></g><defs><clipPath id="clip-cal-d2"><rect y="0.25" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="it-label">Fecha</span><span class="value">12/03/2026</span>
+        </div>
+        <div class="item-input">
+          <svg class="icon" width="20" height="20" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-clock-d)"><path d="M16 28.2501C22.5648 28.2501 28 22.8031 28 16.2501C28 9.68543 22.553 4.25012 15.9883 4.25012C9.4353 4.25012 4 9.68543 4 16.2501C4 22.8031 9.44707 28.2501 16 28.2501ZM16 26.2502C10.4471 26.2502 6.01177 21.8031 6.01177 16.2501C6.01177 10.6972 10.4353 6.25013 15.9883 6.25013C21.5413 6.25013 26.0001 10.6972 26.0001 16.2501C26.0001 21.8031 21.553 26.2502 16 26.2502Z" fill="currentColor"/><path d="M9.85194 17.5308H15.9931C16.4519 17.5308 16.8166 17.1779 16.8166 16.7072V8.77783C16.8166 8.319 16.4519 7.96606 15.9931 7.96606C15.5343 7.96606 15.1814 8.319 15.1814 8.77783V15.8954H9.85194C9.38135 15.8954 9.02841 16.2484 9.02841 16.7072C9.02841 17.1779 9.38135 17.5308 9.85194 17.5308Z" fill="currentColor"/></g><defs><clipPath id="clip-clock-d"><rect y="0.250122" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="it-label">Hora</span><span class="value">18:30</span>
+        </div>
+        <div class="item-input last">
+          <svg class="icon" width="20" height="20" viewBox="0 0 32 33" fill="none"><g clip-path="url(#clip-loc-d)"><path d="M27.5429 24.2587C27.5429 27.3952 22.7652 29.5834 16.0182 29.5834C9.25899 29.5834 4.45703 27.3952 4.45703 24.2587C4.45703 21.6489 7.80766 19.6923 12.8574 19.124V20.0767C12.8574 20.4287 12.8666 20.7649 12.8882 21.0799C9.37173 21.5397 6.93702 22.7723 6.93702 24.2587C6.93702 26.1794 10.9002 27.6626 16.006 27.6626C21.0875 27.6626 25.075 26.1552 25.075 24.2587C25.075 22.7798 22.6188 21.5405 19.1002 21.0794C19.1213 20.7645 19.1303 20.4285 19.1303 20.0767V19.1195C24.1909 19.6815 27.5429 21.6417 27.5429 24.2587Z" fill="currentColor"/><path d="M20.5853 7.49988C20.5853 9.63948 19.1266 11.4387 17.145 11.925V19.6203C17.145 23.2187 16.5129 25.1638 16.0266 25.1638C15.5281 25.1638 14.896 23.2065 14.896 19.6203V11.925C12.9144 11.4265 11.4556 9.63948 11.4556 7.49988C11.4556 4.98341 13.4858 2.91675 16.0266 2.91675C18.5552 2.91675 20.5853 4.98341 20.5853 7.49988ZM13.1576 6.17479C13.1576 7.02576 13.887 7.75518 14.7136 7.75518C15.5767 7.75518 16.2819 7.02576 16.2819 6.17479C16.2819 5.33596 15.5767 4.61871 14.7136 4.61871C13.887 4.61871 13.1576 5.33596 13.1576 6.17479Z" fill="currentColor"/></g><defs><clipPath id="clip-loc-d"><rect y="0.250122" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>
+          <span class="it-label">Lugar</span><span class="value">Madrid</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!-- @dsCard group="inputs" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsTextFieldButton;
+    var noop = function () {};
+    var variants = [
+      ['icon + hint', h(C, { icon: 'ic-send', hintText: 'Escribe un mensaje' })],
+      ['focus · clear (DotsCloseButton)', h(C, { defaultValue: 'Viaje a Lisboa', autoFocus: true })],
+      ['endButtonText', h(C, { icon: 'ic-send', defaultValue: 'ana@correo.com', endButtonText: 'Verificar', onEndButtonClick: noop })],
+      ['suffixIcon check', h(C, { defaultValue: 'Ana Martín', suffixIcon: 'ic-check' })],
+      ['error + asterisco', h(C, { defaultValue: 'usuario!inválido', isError: true, errorText: 'El nombre de usuario no es válido' })],
+      ['error sin asterisco ni color', h(C, { defaultValue: 'usuario!inválido', isError: true, errorText: 'El nombre de usuario no es válido', applyErrorColor: false, applyErrorAsterisk: false })],
+      ['alignCenter', h(C, { hintText: 'Centrado', alignCenter: true })],
+      ['disabled', h(C, { defaultValue: 'No editable', enabled: false })],
+      ['background:false', h(C, { icon: 'ic-send', background: false, hintText: 'Sin fondo' })],
+      ['dark', h(C, { icon: 'ic-send', defaultValue: 'ana@correo.com', endButtonText: 'Verificar', onEndButtonClick: noop }), 'dark']
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div');
+      if (v[2] === 'dark') { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '6px'; }
+      cell.appendChild(m); g.appendChild(cell);
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

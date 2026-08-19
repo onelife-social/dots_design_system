@@ -1,0 +1,63 @@
+<!-- @dsCard group="navigation" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+    .phone{max-width:340px;border-radius:14px;overflow:hidden;outline:1px solid #BCBCBC7F;background:var(--bg-base)}
+    [data-theme="dark"] .phone{outline-color:#BCBCBC33}
+    /* imgProfile — DotsProfilePhoto 32 (avatar → iniciales), como en screens/home.html */
+    .img-profile{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#C9A0DC,#7FB5D5);
+                 display:flex;align-items:center;justify-content:center;color:#FFF;font:600 12px var(--font-main)}
+    /* Fondo foto para apreciar blur/gradiente (solo tarjeta) */
+    .photo-bg{background:linear-gradient(135deg,#B8C6DB,#F5E8D0,#D9C1B8);padding-bottom:40px}
+    [data-theme="dark"] .photo-bg{background:linear-gradient(135deg,#33415C,#5A4A42,#2E4A46)}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsHomeTopBar;
+    function phone(el, photo) { return h('div', { className: 'phone' + (photo ? ' photo-bg' : '') }, el); }
+    function noop() {}
+    function avatar() { return h('span', { className: 'img-profile' }, 'JL'); }
+    // Los MISMOS iconos reales del home: ic-heart e ic-chat (DotsIconButton large noBackground + tag)
+    function heart() { return h(NS.DotsIconButton, { icon: 'ic-heart', size: 'large', variant: 'noBackground', tag: '2', color: 'var(--text-tertiary)', onClick: noop }); }
+    function chat() { return h(NS.DotsIconButton, { icon: 'ic-chat', size: 'large', variant: 'noBackground', tag: '5', color: 'var(--text-tertiary)', onClick: noop }); }
+    var variants = [
+      ['title · imgProfile + ic-heart / ic-chat (tags) — home', phone(h(C, {
+        title: 'Dots. Memories', imgProfile: avatar(),
+        rightIcon: heart(), secondRightIcon: chat()
+      }))],
+      ['title · backgroundBlur (blur 50 sobre foto)', phone(h(C, {
+        title: 'Hoy, 18 de agosto', backgroundBlur: true, imgProfile: avatar(),
+        rightIcon: heart(), secondRightIcon: chat()
+      }), true)],
+      ['onlyStatusBar · showGradient (mask a transparente)', phone(h(C, {
+        variant: 'onlyStatusBar', showGradient: true
+      }), true)],
+      ['widget · child custom', phone(h(C, {
+        child: h('span', { style: { font: '500 14px var(--font-main)', color: 'var(--text-secondary)' } }, 'Slot central (child)')
+      }))],
+      ['onlyStatusBar · h50', phone(h(C, { variant: 'onlyStatusBar' }))],
+      ['dark · title + imgProfile + iconos', phone(h(C, {
+        title: 'Dots. Memories', imgProfile: avatar(),
+        rightIcon: heart(), secondRightIcon: chat()
+      })), true]
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2]) { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '8px'; }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

@@ -1,0 +1,54 @@
+<!-- @dsCard group="navigation" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+    /* Fondo demo: la nav bar flota con blur sobre contenido (solo tarjeta) */
+    .bg-demo{padding:18px 22px;border-radius:24px;display:inline-block;background:linear-gradient(135deg,#B8C6DB,#F5E8D0,#D9C1B8)}
+    [data-theme="dark"] .bg-demo{background:linear-gradient(135deg,#33415C,#5A4A42,#2E4A46)}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsNavBar;
+    var itemsBadge = [
+      { icon: 'ic-add', label: 'Crear' },
+      { icon: 'ic-home', label: 'Inicio' },
+      { icon: 'ic-gallery', label: 'Galería', badge: 3 }
+    ];
+    function demo(el) { return h('div', { className: 'bg-demo' }, el); }
+    function Interactive() {
+      var st = React.useState(1);
+      return demo(h(C, { items: itemsBadge, selectedIndex: st[0], onSelect: st[1] }));
+    }
+    var variants = [
+      ['default · selectedIndex 0 · badge 3', demo(h(C, { items: itemsBadge, selectedIndex: 0 }))],
+      ['selectedIndex 1 (Inicio)', demo(h(C, { selectedIndex: 1 }))],
+      ['badge > 99 → "99"', demo(h(C, {
+        items: [
+          { icon: 'ic-add', label: 'Crear' },
+          { icon: 'ic-home', label: 'Inicio', badge: 120 },
+          { icon: 'ic-gallery', label: 'Galería' }
+        ], selectedIndex: 2
+      }))],
+      ['interactive · onSelect', h(Interactive)],
+      ['dark · selectedIndex 1 · badge 3', demo(h(C, { items: itemsBadge, selectedIndex: 1 })), true]
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2]) { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '8px'; }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

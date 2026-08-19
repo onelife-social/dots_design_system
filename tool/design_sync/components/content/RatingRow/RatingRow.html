@@ -1,0 +1,45 @@
+<!-- @dsCard group="content" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.RatingRow;
+    var nps = ['1','2','3','4','5','6','7','8','9','10'];
+    var five = ['1','2','3','4','5'];
+    var variants = [
+      ['nps 10 · selectedIndex 8 (promoter)', h(C, { starLabels: nps, selectedIndex: 8, leftText: 'Nada probable', rightText: 'Muy probable' })],
+      ['nps 10 · selectedIndex 6 (neutral)', h(C, { starLabels: nps, selectedIndex: 6, leftText: 'Nada probable', rightText: 'Muy probable' })],
+      ['nps 10 · selectedIndex 4 (detractor)', h(C, { starLabels: nps, selectedIndex: 4, leftText: 'Nada probable', rightText: 'Muy probable' })],
+      ['sin selección (disabled)', h(C, { starLabels: nps, leftText: 'Nada probable', rightText: 'Muy probable' })],
+      ['escala 5 · selectedIndex 2 (neutral)', h(C, { starLabels: five, selectedIndex: 2 })],
+      ['compact · 6+4', h(C, { starLabels: nps, selectedIndex: 8, compact: true })],
+      ['showStarText=false · iconSize 22', h(C, { starLabels: five, selectedIndex: 3, showStarText: false, iconSize: 22 })],
+      ['dark — selectedIndex 4', h(C, { starLabels: nps, selectedIndex: 4, leftText: 'Nada probable', rightText: 'Muy probable' }), 'dark']
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2] === 'dark') {
+        m.setAttribute('data-theme', 'dark');
+        m.style.background = 'var(--bg-base)';
+        m.style.padding = '12px';
+        m.style.borderRadius = '8px';
+      }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

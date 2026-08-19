@@ -1,0 +1,274 @@
+<!-- @dsCard group="Screens" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · Screen Home (home_v2)</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../_ds_bundle.css">
+<style>
+  /* ============ Página ============ */
+  body { margin: 0; font-family: var(--font-main, 'Inter', sans-serif); background: #ECEAE5; padding: 28px 24px 20px; }
+  .device-col { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .caption { font-size: 11px; font-weight: 600; color: #00000099; }
+  .caption span { font-weight: 400; opacity: .7; }
+  .foot { max-width: 860px; margin: 26px auto 0; font-size: 10px; line-height: 1.6; color: #00000073; font-family: ui-monospace, monospace; }
+  .foot b { color: #000000A6; }
+
+  /* ============ Frame de móvil — 390×844 ============ */
+  .phone {
+    position: relative; width: 390px; height: 844px; border-radius: 54px; overflow: hidden;
+    background: var(--bg-base);
+    box-shadow: 0 18px 40px #00000030, 0 0 0 10px #1C1C1E, 0 0 0 12px #3A3A3C;
+  }
+
+  /* Status bar simple — solo hora + indicadores (widget del sistema, no DS) */
+  .status { position: absolute; top: 0; left: 0; right: 0; height: 50px; z-index: 40;
+            display: flex; align-items: flex-end; justify-content: space-between;
+            padding: 0 34px 6px; box-sizing: border-box; pointer-events: none;
+            color: var(--text-primary); }
+  .status .time { font-size: 15px; font-weight: 600; letter-spacing: -.2px; }
+  .status .indicators { display: flex; align-items: center; gap: 6px; }
+  .status svg { display: block; }
+
+  /* Scroll real del contenido (HomeBody → _HomeScrollableContent) */
+  .scroll { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; }
+  .scroll::-webkit-scrollbar { display: none; }
+
+  /* HomePendingMemoriesBarSection — pad top 16 / bottom 11 · Carrousel pad 0 20, gap 24 */
+  .pending { padding: 16px 0 11px; }
+  .carrousel { display: flex; gap: 24px; padding: 0 20px; overflow: hidden; }
+
+  /* GroupFolderCarrouselWidget (el padding H16 lo pone FolderCarrousel) */
+  .folders { margin-top: 10px; }
+
+  /* HomeGroupList — expandidos: pad H 25 · pares: 16 ext / 24 medio · gap V 24 */
+  .group-list { margin-top: 18px; }
+  .expanded-item { padding: 0 25px; }
+  .pair { display: flex; justify-content: space-between; padding: 0 16px; margin-top: 24px; }
+
+  /* HomeAddAlbum — pad top 24, botón centrado */
+  .add-album { padding-top: 24px; display: flex; justify-content: center; }
+
+  /* HomeRecapsBanner — pad top 26, H 16 */
+  .recaps-banner { padding: 26px 16px 0; }
+
+  /* DotsBottomGradient — h104, bgBase transparente → bgBase, opacity .95 (widget app, no DS) */
+  .bottom-gradient { position: absolute; bottom: 0; left: 0; right: 0; height: 104px;
+                     opacity: .95; z-index: 35; pointer-events: none;
+                     background: linear-gradient(180deg, transparent, var(--bg-base)); }
+
+  /* DotsNavBar flotante centrada (HomeFloatingNavBar) */
+  .nav-wrap { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 36; }
+
+  /* _TopOverlay (scrolled) — gradiente bgBase → transparente h104 (widget app, no DS) */
+  .top-overlay { position: absolute; top: 0; left: 0; right: 0; height: 104px; z-index: 30; pointer-events: none;
+                 background: linear-gradient(180deg, var(--bg-base),
+                             color-mix(in srgb, var(--bg-base) 60%, transparent) 50%, transparent); }
+
+  /* DotsFloatingButton «Buscar» — visible solo con scroll, como en la app */
+  .floating-wrap { position: absolute; top: 56px; left: 50%; transform: translateX(-50%); z-index: 34; }
+
+  /* Caja 44×44 de los DotsIconButton large·noBackground del top bar (Dart: SizedBox del size large) */
+  .icon-slot-44 { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+
+  /* imgProfile — DotsProfilePhoto 32 (avatar → iniciales; DotsProfilePhoto no está en el bundle) */
+  .img-profile { width: 32px; height: 32px; border-radius: 50%;
+                 background: linear-gradient(135deg, #C9A0DC, #7FB5D5);
+                 display: flex; align-items: center; justify-content: center;
+                 color: #FFF; font: 600 12px var(--font-main, 'Inter', sans-serif); }
+</style>
+</head>
+<body>
+  <div class="device-col">
+    <div class="phone" id="root"></div>
+    <div class="caption">Home (home_v2) · #F8F7F5 <span>— componentes React del bundle; scroll dentro del frame (o ?scrolled=1) → _TopOverlay + DotsFloatingButton «Buscar»</span></div>
+  </div>
+
+  <div class="foot">
+    <b>Pantalla:</b> onelife_app · lib/app/features/home_v2 (HomePage → _HomeView → HomeBody → _HomeScrollableContent), montada con los componentes React de <b>window.DotsDesignSystem_9e41da</b>.
+    <b>Componentes montados (orden de aparición):</b> DotsHomeTopBar (title «Dots. Memories», imgProfile, rightIcon/secondRightIcon) · DotsIconButton (large · noBackground · ic-heart tag 2 / ic-chat tag 5) · MemoryCard ×5 (variants memory/recap; sección HomePendingMemoriesBarSection pad 16/11, carrusel gap 24 pad H20) · FolderCarrousel (ic-search Buscar · ic-grid Todos seleccionada iconSelectedColor #3E9ACB · ic-family Familia · ic-baby-stroller Bebé · ic-edit Editar) · EventGroupCard (active, size 340, tagIcon ic-prime-1, acciones ic-chat Chat / ic-camera Subir / ic-planner Planning) · AlbumGroupCard ×6 (small, size 167; pares 16 ext / 24 medio / 24 vert) · DotsMainButton (secondary · medium · blur «Gestionar álbumes»; el main · large del banner lo monta NotificationBannerImage) · NotificationBannerImage (HomeRecapsBanner, placeholder recap, actionButtonSize large) · DotsFloatingButton («Buscar» + ic-search; visible con scroll) · DotsNavBar (ic-add Crear / ic-home Inicio seleccionada / ic-gallery Galería badge 12).
+    <b>Markup manual (sin componente en el bundle):</b> barra de estado del sistema (hora + indicadores) · avatar 32 con iniciales (DotsProfilePhoto no portado) · DotsBottomGradient y _TopOverlay (widgets de la app, no DS; recreados con var(--bg-base)) · fotos → gradientes como data URIs SVG (mismos colores que la versión estática).
+  </div>
+
+  <script src="../_vendor/react.js"></script>
+  <script src="../_vendor/react-dom.js"></script>
+  <script src="../_ds_bundle.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da;
+    function noop() {}
+
+    /* Fotos placeholder — los mismos gradientes de la versión estática, como data URI SVG */
+    function photo(stops, vec) {
+      var n = stops.length - 1;
+      var s = stops.map(function (c, i) {
+        return '<stop offset="' + (i / n) + '" stop-color="' + c + '"/>';
+      }).join('');
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" preserveAspectRatio="none">' +
+        '<defs><linearGradient id="g" x1="0" y1="0" x2="' + vec[0] + '" y2="' + vec[1] + '">' + s +
+        '</linearGradient></defs><rect width="200" height="200" fill="url(#g)"/></svg>';
+      return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+    }
+    var d150 = [0.5, 0.87], d140 = [0.64, 0.77]; /* ≈ CSS 150deg / 140deg */
+
+    var MEMORIES = [
+      { groupName: 'Familia',      variant: 'memory', imageSrc: photo(['#A9C0D8', '#E3C9AE'], d150) },
+      { groupName: 'Recap Eva',    variant: 'recap',  imageSrc: photo(['#D8A9C0', '#A9BED8'], d150) },
+      { groupName: 'Abuelos',      variant: 'memory', imageSrc: photo(['#C8D8B8', '#A9C3DB'], d150) },
+      { groupName: 'Boda',         variant: 'memory', imageSrc: photo(['#E0C3A4', '#96B4CE'], d150) },
+      { groupName: 'Viaje a Roma', variant: 'memory', imageSrc: photo(['#B8C6DB', '#D9C1B8'], d150) }
+    ];
+    var ALBUMS = [
+      { title: 'Familia García',  tagIcon: 'ic-prime-1', imageSrc: photo(['#96B4CE', '#E0C3A4', '#A08FB0'], d140) },
+      { title: 'Verano 2025',                            imageSrc: photo(['#C8D8B8', '#A9C3DB', '#D8B8C8'], d140) },
+      { title: 'Cumple de Marta',                        imageSrc: photo(['#465B70', '#6E5847', '#4E4358'], d140) },
+      { title: 'Mascotas',        tagIcon: 'ic-prime-1', imageSrc: photo(['#3D4E60', '#5E4C40', '#44394E'], d140) },
+      { title: 'Abuelos',                                imageSrc: photo(['#3E5268', '#6A5544', '#3D4F4A'], d140) },
+      { title: 'Viaje a Roma',                           imageSrc: photo(['#4A4058', '#3D4E66', '#6B5548'], d140) }
+    ];
+
+    /* Barra de estado del sistema — markup mínimo (no es un componente del DS) */
+    var STATUS_ICONS =
+      '<svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>' +
+      '<svg width="16" height="11" viewBox="0 0 16 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 4a9.5 9.5 0 0 1 13 0M4 6.7a6 6 0 0 1 8 0M6.5 9.2a2.5 2.5 0 0 1 3 0"/></svg>' +
+      '<svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="16" height="8" rx="2" fill="currentColor"/><path d="M23.5 4v4a2 2 0 0 0 0-4Z" fill="currentColor" opacity=".4"/></svg>';
+
+    function statusBar() {
+      return h('div', { className: 'status' },
+        h('span', { className: 'time' }, '9:41'),
+        h('span', {
+          className: 'indicators',
+          dangerouslySetInnerHTML: { __html: STATUS_ICONS }
+        })
+      );
+    }
+
+    function albumPair(a, b) {
+      return h('div', { className: 'pair' },
+        h(NS.AlbumGroupCard, Object.assign({ variant: 'small', size: 167, onClick: noop }, a)),
+        h(NS.AlbumGroupCard, Object.assign({ variant: 'small', size: 167, onClick: noop }, b))
+      );
+    }
+
+    function HomeScreen() {
+      var st = React.useState(/[?&]scrolled=1/.test(location.search));
+      var scrolled = st[0], setScrolled = st[1];
+      var scrollRef = React.useRef(null);
+      React.useEffect(function () {
+        if (scrolled && scrollRef.current) scrollRef.current.scrollTop = 690;
+      }, []);
+
+      return h(React.Fragment, null,
+        h('div', {
+          className: 'scroll', ref: scrollRef,
+          onScroll: function (e) { setScrolled(e.target.scrollTop > 60); }
+        },
+          /* DotsHomeTopBar (MainHomeTopBarSection) */
+          h(NS.DotsHomeTopBar, {
+            title: 'Dots. Memories',
+            imgProfile: h('span', { className: 'img-profile' }, 'JL'),
+            rightIcon: h('span', { className: 'icon-slot-44' },
+              h(NS.DotsIconButton, { icon: 'ic-heart', size: 'large', variant: 'noBackground', tag: '2', color: 'var(--text-tertiary)', onClick: noop })),
+            secondRightIcon: h('span', { className: 'icon-slot-44' },
+              h(NS.DotsIconButton, { icon: 'ic-chat', size: 'large', variant: 'noBackground', tag: '5', color: 'var(--text-tertiary)', onClick: noop }))
+          }),
+
+          /* HomePendingMemoriesBarSection → Carrousel de MemoryCard */
+          h('div', { className: 'pending' },
+            h('div', { className: 'carrousel' },
+              MEMORIES.map(function (m, i) {
+                return h(NS.MemoryCard, Object.assign({ key: i, onClick: noop }, m));
+              })
+            )
+          ),
+
+          /* GroupFolderCarrouselWidget → FolderCarrousel */
+          h('div', { className: 'folders' },
+            h(NS.FolderCarrousel, {
+              items: [
+                { icon: 'ic-search', text: 'Buscar' },
+                { icon: 'ic-grid', text: 'Todos', isSelected: true, iconSelectedColor: '#3E9ACB' },
+                { icon: 'ic-family', text: 'Familia' },
+                { icon: 'ic-baby-stroller', text: 'Bebé' },
+                { icon: 'ic-edit', text: 'Editar' }
+              ],
+              showEditIcon: false,
+              onSelect: noop
+            })
+          ),
+
+          /* HomeGroupList — expandido (EventGroupCard active) + pares de AlbumGroupCard small */
+          h('div', { className: 'group-list' },
+            h('div', { className: 'expanded-item' },
+              h(NS.EventGroupCard, {
+                variant: 'active', size: 340,
+                title: 'Boda de Ana y Leo', secondaryText: 'Evento activo',
+                tagIcon: 'ic-prime-1',
+                imageSrc: photo(['#7E9BB8', '#D8B294', '#77958E'], d150),
+                actions: [
+                  { icon: 'ic-chat', text: 'Chat', onClick: noop },
+                  { icon: 'ic-camera', text: 'Subir', onClick: noop },
+                  { icon: 'ic-planner', text: 'Planning', onClick: noop }
+                ],
+                onClick: noop
+              })
+            ),
+            albumPair(ALBUMS[0], ALBUMS[1]),
+            albumPair(ALBUMS[2], ALBUMS[3]),
+            albumPair(ALBUMS[4], ALBUMS[5])
+          ),
+
+          /* HomeAddAlbum → DotsMainButton secondary medium */
+          h('div', { className: 'add-album' },
+            h(NS.DotsMainButton, {
+              label: 'Gestionar álbumes', variant: 'secondary', size: 'medium',
+              expand: false, shouldApplyBlur: true, onClick: noop
+            })
+          ),
+
+          /* HomeRecapsBanner → NotificationBannerImage (monta su DotsMainButton main·large) */
+          h('div', { className: 'recaps-banner' },
+            h(NS.NotificationBannerImage, {
+              title: '¡Revive tus mejores recuerdos en vídeo! Descubre uno nuevo cada vez.',
+              actionButtonText: 'Elegir mi álbum',
+              actionButtonSize: 'large',
+              showCloseButton: false,
+              onActionClick: noop
+            })
+          ),
+
+          /* Tras el banner: SizedBox(padding.bottom + 150) */
+          h('div', { style: { height: '184px' } })
+        ),
+
+        /* _TopOverlay + DotsFloatingButton — aparecen al cubrirse el top bar */
+        scrolled ? h('div', { className: 'top-overlay' }) : null,
+        scrolled ? h('div', { className: 'floating-wrap' },
+          h(NS.DotsFloatingButton, { content: 'Buscar', icon: 'ic-search', onClick: noop })
+        ) : null,
+
+        /* DotsBottomGradient + DotsNavBar (HomeFloatingNavBar) */
+        h('div', { className: 'bottom-gradient' }),
+        h('div', { className: 'nav-wrap' },
+          h(NS.DotsNavBar, {
+            items: [
+              { icon: 'ic-add', label: 'Crear' },
+              { icon: 'ic-home', label: 'Inicio' },
+              { icon: 'ic-gallery', label: 'Galería', badge: 12 }
+            ],
+            selectedIndex: 1,
+            onSelect: noop
+          })
+        ),
+
+        statusBar()
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(h(HomeScreen));
+  })();
+  </script>
+</body>
+</html>

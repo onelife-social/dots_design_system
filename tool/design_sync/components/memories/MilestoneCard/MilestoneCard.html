@@ -1,0 +1,66 @@
+<!-- @dsCard group="memories" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.MilestoneCard;
+    // Foto de ejemplo generada localmente (sin dependencias externas)
+    var demoSrc = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400">' +
+      '<defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1">' +
+      '<stop offset="0" stop-color="#C9D6C3"/><stop offset=".5" stop-color="#E4D6BE"/>' +
+      '<stop offset="1" stop-color="#A9B7C0"/></linearGradient></defs>' +
+      '<rect width="300" height="400" fill="url(#a)"/>' +
+      '<circle cx="90" cy="290" r="60" fill="#FFFFFF55"/>' +
+      '<circle cx="210" cy="150" r="90" fill="#FFFFFF33"/></svg>');
+    var row = function () {
+      return h('div', { style: { display: 'flex', gap: '14px', alignItems: 'flex-start', flexWrap: 'wrap' } },
+        Array.prototype.slice.call(arguments));
+    };
+    var variants = [
+      ['big (width 170 > 150 · r32) · title + date', h(C, {
+        width: 170, src: demoSrc, title: 'Primeros pasos', date: '12 mar 2026'
+      })],
+      ['completa · showBadge + showEdit + badgeTypes ×3', h(C, {
+        width: 170, src: demoSrc, title: 'Primeros pasos', date: '12 mar 2026',
+        showBadge: true, showEdit: true, badgeTypes: ['video', 'description', 'audio']
+      })],
+      ['small (width 120 · r24) · sin title (sin blur) / con title', row(
+        h(C, { width: 120, src: demoSrc }),
+        h(C, { width: 120, src: demoSrc, title: 'Su primer diente' })
+      )],
+      ['limitTitle (1 línea + ellipsis) · badgeTypes ×2', h(C, {
+        width: 170, src: demoSrc, limitTitle: true,
+        title: 'Un título larguísimo que no cabe en la tarjeta',
+        badgeTypes: ['video', 'audio']
+      })],
+      ['sin src (placeholder defaultImage) · badgeTypes ×1', h(C, {
+        width: 170, title: 'Gatea por primera vez', badgeTypes: ['description']
+      })],
+      ['dark · completa', h(C, {
+        width: 170, src: demoSrc, title: 'Primeros pasos', date: '12 mar 2026',
+        showBadge: true, showEdit: true, badgeTypes: ['video', 'description', 'audio']
+      }), true]
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2]) { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '8px'; }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

@@ -1,0 +1,83 @@
+<!-- @dsCard group="Feedback" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · DotsEmptyStateCard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Book.otf') format('opentype'); font-weight: 400; }
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Medium.otf') format('opentype'); font-weight: 500; }
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Bold.otf') format('opentype'); font-weight: 700; }
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .row { display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+
+  /* ===== DotsEmptyStateCard — columna centrada, ancho ~82% pantalla, padding h 20.
+     Título: typo.secondary.title02H5 (P22 Mackinac 20/500) textPrimary.
+     Descripción: bodyDefaultRegular 14/400 textQuarternary. Gaps: icono→título 16
+     (imagen→título 4), título→descripción 8, descripción→botón 16 ===== */
+  .empty-card { width: 280px; padding: 0 20px; box-sizing: border-box; display: flex;
+    flex-direction: column; align-items: center; text-align: center; }
+  .empty-icon { width: 48px; height: 48px; margin-bottom: 16px; }
+  .light .empty-icon { color: #00000066; } .dark .empty-icon { color: #FFFFFF73; }
+  .empty-image { width: 140px; height: 100px; border-radius: 16px; margin-bottom: 4px;
+    display: flex; align-items: center; justify-content: center; }
+  .light .empty-image { background: #E2E2E2B3; color: #00000066; }
+  .dark  .empty-image { background: #282828B3; color: #FFFFFF73; }
+  .empty-title { font-family: 'P22 Mackinac', Georgia, serif; font-size: 20px; font-weight: 500;
+    line-height: 1.25; margin: 0 0 8px; padding: 0 20px; }
+  .light .empty-title { color: #000; } .dark .empty-title { color: #FFF; }
+  .empty-desc { font-size: 14px; font-weight: 400; line-height: 1.29; margin: 0; }
+  .light .empty-desc { color: #00000066; } .dark .empty-desc { color: #FFFFFF73; }
+  /* Botón opcional: DotsMainButton large (44) main */
+  .btn { display: inline-flex; align-items: center; justify-content: center; margin-top: 16px;
+    border: none; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap;
+    height: 44px; padding: 0 20px; border-radius: 44px; font-size: 14px; font-weight: 500; }
+  .light .btn { background: #0072EF; color: #FFF; } .dark .btn { background: #0A84FF; color: #FFF; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>DotsEmptyStateCard — Light</h2>
+    <div class="sub">empty_state/empty_state_card · variant: icon | image · botón opcional</div>
+    <div class="row">
+      <div class="empty-card">
+        <svg class="empty-icon" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M2.66602 13.9389C2.66602 19.8859 7.55172 24.7245 13.5565 24.7245C15.9311 24.7245 18.101 23.9677 19.8889 22.6971L26.6033 29.3605C26.9171 29.6713 27.3266 29.82 27.7633 29.82C28.6914 29.82 29.3327 29.1306 29.3327 28.2251C29.3327 27.7926 29.1689 27.4006 28.8823 27.1168L22.2088 20.467C23.6146 18.6559 24.447 16.3988 24.447 13.9389C24.447 7.99197 19.5613 3.15332 13.5565 3.15332C7.55172 3.15332 2.66602 7.99197 2.66602 13.9389ZM4.9997 13.9389C4.9997 9.26246 8.83457 5.46453 13.5565 5.46453C18.2784 5.46453 22.1133 9.26246 22.1133 13.9389C22.1133 18.6153 18.2784 22.4133 13.5565 22.4133C8.83457 22.4133 4.9997 18.6153 4.9997 13.9389Z"/></svg>
+        <p class="empty-title">Sin resultados</p>
+        <p class="empty-desc">Prueba con otra búsqueda o cambia los filtros.</p>
+      </div>
+      <div class="empty-card">
+        <div class="empty-image"><svg width="32" height="32" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M28 10.6066V23.0443C28 25.141 26.9415 26.1893 24.8041 26.1893H7.19593C5.0687 26.1893 4 25.141 4 23.0443V10.6066C4 8.50994 5.0687 7.45142 7.19593 7.45142H24.8041C26.9415 7.45142 28 8.50994 28 10.6066ZM18.4224 17.0799L13.5573 21.3955L11.6132 19.6448C11.1654 19.2275 10.6463 19.0239 10.1476 19.0239C9.69975 19.0239 9.2112 19.2275 8.76337 19.6244L5.63868 22.3521V22.9731C5.63868 23.9705 6.22901 24.5608 7.21628 24.5608H24.7939C25.7608 24.5608 26.3613 23.9705 26.3613 22.9934V21.4259L21.6794 17.0901C21.201 16.6422 20.6209 16.4285 20.0611 16.4285C19.4809 16.4285 18.9211 16.6321 18.4224 17.0799ZM9.11959 14.5659C9.11959 15.9502 10.2494 17.0799 11.6336 17.0799C13.0076 17.0799 14.1374 15.9502 14.1374 14.5659C14.1374 13.1919 13.0076 12.0519 11.6336 12.0519C10.2494 12.0519 9.11959 13.1919 9.11959 14.5659Z"/></svg></div>
+        <p class="empty-title">Aún no hay recuerdos</p>
+        <p class="empty-desc">Crea tu primer recuerdo para empezar tu historia.</p>
+        <button class="btn">Crear recuerdo</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="theme dark">
+    <h2>DotsEmptyStateCard — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+    <div class="row">
+      <div class="empty-card">
+        <svg class="empty-icon" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M2.66602 13.9389C2.66602 19.8859 7.55172 24.7245 13.5565 24.7245C15.9311 24.7245 18.101 23.9677 19.8889 22.6971L26.6033 29.3605C26.9171 29.6713 27.3266 29.82 27.7633 29.82C28.6914 29.82 29.3327 29.1306 29.3327 28.2251C29.3327 27.7926 29.1689 27.4006 28.8823 27.1168L22.2088 20.467C23.6146 18.6559 24.447 16.3988 24.447 13.9389C24.447 7.99197 19.5613 3.15332 13.5565 3.15332C7.55172 3.15332 2.66602 7.99197 2.66602 13.9389ZM4.9997 13.9389C4.9997 9.26246 8.83457 5.46453 13.5565 5.46453C18.2784 5.46453 22.1133 9.26246 22.1133 13.9389C22.1133 18.6153 18.2784 22.4133 13.5565 22.4133C8.83457 22.4133 4.9997 18.6153 4.9997 13.9389Z"/></svg>
+        <p class="empty-title">Sin resultados</p>
+        <p class="empty-desc">Prueba con otra búsqueda o cambia los filtros.</p>
+      </div>
+      <div class="empty-card">
+        <div class="empty-image"><svg width="32" height="32" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M28 10.6066V23.0443C28 25.141 26.9415 26.1893 24.8041 26.1893H7.19593C5.0687 26.1893 4 25.141 4 23.0443V10.6066C4 8.50994 5.0687 7.45142 7.19593 7.45142H24.8041C26.9415 7.45142 28 8.50994 28 10.6066ZM18.4224 17.0799L13.5573 21.3955L11.6132 19.6448C11.1654 19.2275 10.6463 19.0239 10.1476 19.0239C9.69975 19.0239 9.2112 19.2275 8.76337 19.6244L5.63868 22.3521V22.9731C5.63868 23.9705 6.22901 24.5608 7.21628 24.5608H24.7939C25.7608 24.5608 26.3613 23.9705 26.3613 22.9934V21.4259L21.6794 17.0901C21.201 16.6422 20.6209 16.4285 20.0611 16.4285C19.4809 16.4285 18.9211 16.6321 18.4224 17.0799ZM9.11959 14.5659C9.11959 15.9502 10.2494 17.0799 11.6336 17.0799C13.0076 17.0799 14.1374 15.9502 14.1374 14.5659C14.1374 13.1919 13.0076 12.0519 11.6336 12.0519C10.2494 12.0519 9.11959 13.1919 9.11959 14.5659Z"/></svg></div>
+        <p class="empty-title">Aún no hay recuerdos</p>
+        <p class="empty-desc">Crea tu primer recuerdo para empezar tu historia.</p>
+        <button class="btn">Crear recuerdo</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

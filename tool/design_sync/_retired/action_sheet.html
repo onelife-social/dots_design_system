@@ -1,0 +1,184 @@
+<!-- @dsCard group="Feedback" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · DotsActionSheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Book.otf') format('opentype'); font-weight: 400; }
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Medium.otf') format('opentype'); font-weight: 500; }
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Bold.otf') format('opentype'); font-weight: 700; }
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  h3 { font-size: 12px; font-weight: 600; margin: 18px 0 8px; opacity: .7; }
+  .light h3 { color: #000; } .dark h3 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .row { display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
+  svg { display: block; flex: none; }
+
+  /* ===== Panel — DotsActionSheetContainer: bg bgBaseContrast, radio 32.
+     Scrim: negro 40% (30% + blur 10 en DotsActionSheetBase) ===== */
+  .sheet { width: 320px; border-radius: 32px; box-sizing: border-box; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; position: relative; }
+  .light .sheet { background: #FAFAFA; }
+  .dark  .sheet { background: #1F1F1F; }
+
+  /* Grabber — 36x4, radio 2.5, bg bgSecondaryBtn */
+  .grabber { width: 36px; height: 4px; border-radius: 2.5px; margin-top: 16px; }
+  .light .grabber { background: #8C8C8C4D; } .dark .grabber { background: #C8C8C84D; }
+  .grabber.g8 { margin-top: 8px; }
+
+  /* Títulos — typo.secondary title02H5 (20/500) estándar · title02H6 (18/500) lista */
+  .sheet-title { font-family: 'P22 Mackinac', Georgia, serif; font-size: 20px; font-weight: 500;
+    line-height: 1.25; margin: 0; text-align: center; }
+  .sheet-title-h6 { font-family: 'P22 Mackinac', Georgia, serif; font-size: 18px; font-weight: 500;
+    line-height: 1.28; margin: 0; text-align: center; }
+  .light .sheet-title, .light .sheet-title-h6 { color: #000; }
+  .dark  .sheet-title, .dark  .sheet-title-h6 { color: #FFF; }
+  .sheet-desc { font-size: 14px; font-weight: 400; line-height: 1.29; margin: 8px 0 0; text-align: center; }
+  .light .sheet-desc { color: #000000AB; } .dark .sheet-desc { color: #FFFFFFBF; }
+
+  /* DotsCloseButton medium (30, icono 16) softContrast: bg bgBtnDisabled, fg labelPrimary */
+  .close-btn { position: absolute; top: 16px; right: 16px; width: 30px; height: 30px;
+    border-radius: 50%; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; }
+  .light .close-btn { background: #C8C8C866; color: #00000099; }
+  .dark  .close-btn { background: #C8C8C819; color: #FFFFFFCC; }
+  .close-btn svg { width: 16px; height: 16px; }
+
+  /* Botones DotsMainButton — mainAction (52) y large (44) */
+  .btn { display: inline-flex; align-items: center; justify-content: center;
+    border: none; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap;
+    height: 52px; padding: 0 24px; border-radius: 52px; font-size: 14px; font-weight: 500; flex: 1; }
+  .light .v-main { background: #0072EF; color: #FFF; } .dark .v-main { background: #0A84FF; color: #FFF; }
+  .light .v-secondary { background: #8C8C8C4D; color: #000000AB; } .dark .v-secondary { background: #C8C8C84D; color: #FFFFFFBF; }
+
+  /* DotsTextFieldButton — h44, píldora (r1000), bg bgContainerSecondaryOnBackground,
+     icono + hint textTertiary, padding h 16 */
+  .search-field { height: 44px; border-radius: 1000px; box-sizing: border-box;
+    display: flex; align-items: center; gap: 8px; padding: 0 16px;
+    font-size: 14px; width: 100%; }
+  .light .search-field { background: #8C8C8C1A; color: #0000008C; }
+  .dark  .search-field { background: #75757533; color: #FFFFFFA6; }
+  .search-field svg { width: 16px; height: 16px; }
+
+  /* DotsFilterChip (chips de seleccionados en la cabecera de lista) */
+  .filter-chip { display: inline-flex; align-items: center; border-radius: 22px;
+    padding: 6px 6px 6px 12px; font-size: 13px; font-weight: 600; }
+  .light .filter-chip { background: #E2E2E2B3; color: #000000AB; }
+  .dark  .filter-chip { background: #282828B3; color: #FFFFFFBF; }
+  .chip-close { width: 16px; height: 16px; border-radius: 50%; margin-left: 8px;
+    display: inline-flex; align-items: center; justify-content: center; }
+  .light .chip-close { background: #8C8C8C4D; color: #0000008C; }
+  .dark  .chip-close { background: #C8C8C84D; color: #FFFFFFA6; }
+  .chip-close svg { width: 10px; height: 10px; }
+
+  /* DotsListItem — icono 40x40 radio 12 bg bgBaseContrast, texto bodyLargeBold 16/700, gap 12 */
+  .list-item { display: flex; align-items: center; gap: 12px; width: 100%; margin-bottom: 20px; }
+  .list-item .li-icon { width: 40px; height: 40px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; }
+  .light .li-icon { background: #E2E2E2B3; color: #0000008C; }
+  .dark  .li-icon { background: #282828B3; color: #FFFFFFA6; }
+  .li-icon svg { width: 20px; height: 20px; }
+  .list-item .li-label { font-size: 16px; font-weight: 700; line-height: 1.31; display: flex; align-items: center; gap: 4px; }
+  .light .li-label { color: #000; } .dark .li-label { color: #FFF; }
+  .li-label .lock { width: 14px; height: 14px; }
+  .light .lock { color: #000000AB; } .dark .lock { color: #FFFFFFBF; }
+  .list-title { font-size: 13px; font-weight: 600; align-self: flex-start; margin-bottom: 12px; }
+  .light .list-title { color: #0000008C; } .dark .list-title { color: #FFFFFFA6; }
+
+  .pad16 { padding: 0 16px; width: 100%; box-sizing: border-box; }
+  .pad20 { padding: 0 20px; width: 100%; box-sizing: border-box; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>DotsActionSheet — Light</h2>
+    <div class="sub">action_sheet/dots_action_sheet_standard · action_sheet_list · scrim negro 40% + radio 32</div>
+    <div class="row">
+      <!-- DotsActionSheetStandard -->
+      <div class="sheet">
+        <div class="grabber"></div>
+        <div class="pad16" style="margin-top:20px;">
+          <p class="sheet-title">Comparte este recuerdo</p>
+          <p class="sheet-desc">Invita a tu familia para que también pueda verlo y añadir sus fotos.</p>
+        </div>
+        <div class="pad16" style="display:flex; gap:15px; margin:20px 0 16px;">
+          <button class="btn v-secondary">Ahora no</button>
+          <button class="btn v-main">Compartir</button>
+        </div>
+      </div>
+      <!-- DotsActionSheetList -->
+      <div class="sheet">
+        <div class="grabber g8"></div>
+        <div class="pad16" style="margin-top:16px;">
+          <p class="sheet-title-h6">Añadir a un grupo</p>
+        </div>
+        <button class="close-btn"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></button>
+        <div class="pad16" style="margin:16px 0;">
+          <div class="search-field"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M2.66602 13.9389C2.66602 19.8859 7.55172 24.7245 13.5565 24.7245C15.9311 24.7245 18.101 23.9677 19.8889 22.6971L26.6033 29.3605C26.9171 29.6713 27.3266 29.82 27.7633 29.82C28.6914 29.82 29.3327 29.1306 29.3327 28.2251C29.3327 27.7926 29.1689 27.4006 28.8823 27.1168L22.2088 20.467C23.6146 18.6559 24.447 16.3988 24.447 13.9389C24.447 7.99197 19.5613 3.15332 13.5565 3.15332C7.55172 3.15332 2.66602 7.99197 2.66602 13.9389ZM4.9997 13.9389C4.9997 9.26246 8.83457 5.46453 13.5565 5.46453C18.2784 5.46453 22.1133 9.26246 22.1133 13.9389C22.1133 18.6153 18.2784 22.4133 13.5565 22.4133C8.83457 22.4133 4.9997 18.6153 4.9997 13.9389Z"/></svg>Buscar grupo</div>
+        </div>
+        <div class="pad16" style="display:flex; gap:4px; margin-bottom:16px;">
+          <span class="filter-chip">Familia<span class="chip-close"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></span></span>
+        </div>
+        <div class="pad20" style="display:flex; flex-direction:column; align-items:flex-start;">
+          <span class="list-title">Tus grupos</span>
+          <div class="list-item"><span class="li-icon"><svg viewBox="0 0 32 32" fill="none"><path fill="currentColor" d="M10.3888 15.7116C8.04173 15.7116 6.05902 13.6324 6.05902 10.9424C6.05902 8.31662 8.05245 6.30176 10.3888 6.30176C12.7145 6.30176 14.7186 8.34877 14.7079 10.9638C14.7079 13.6324 12.7359 15.7116 10.3888 15.7116ZM22.7781 15.9581C20.731 15.9581 19.0056 14.1361 19.0056 11.7997C19.0056 9.50624 20.7525 7.75931 22.7781 7.75931C24.8036 7.75931 26.5506 9.53839 26.5398 11.8212C26.5398 14.1361 24.8144 15.9581 22.7781 15.9581ZM28.6833 25.6894H20.6453C21.7921 24.0497 20.5596 20.813 18.1375 18.9053C19.3164 18.1444 20.8489 17.5871 22.7781 17.5871C27.5687 17.5871 30.666 21.1131 30.666 24.0175C30.666 25.0785 30.1301 25.6894 28.6833 25.6894ZM17.0657 25.6787H3.71193C1.94357 25.6787 1.33268 25.1428 1.33268 24.1568C1.33268 21.4025 4.83725 17.6085 10.3888 17.6085C15.9511 17.6085 19.445 21.4025 19.445 24.1568C19.445 25.1428 18.8341 25.6787 17.0657 25.6787Z"/></svg></span><span class="li-label">Familia Lerma</span></div>
+          <div class="list-item"><span class="li-icon"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M28 10.6066V23.0443C28 25.141 26.9415 26.1893 24.8041 26.1893H7.19593C5.0687 26.1893 4 25.141 4 23.0443V10.6066C4 8.50994 5.0687 7.45142 7.19593 7.45142H24.8041C26.9415 7.45142 28 8.50994 28 10.6066ZM18.4224 17.0799L13.5573 21.3955L11.6132 19.6448C11.1654 19.2275 10.6463 19.0239 10.1476 19.0239C9.69975 19.0239 9.2112 19.2275 8.76337 19.6244L5.63868 22.3521V22.9731C5.63868 23.9705 6.22901 24.5608 7.21628 24.5608H24.7939C25.7608 24.5608 26.3613 23.9705 26.3613 22.9934V21.4259L21.6794 17.0901C21.201 16.6422 20.6209 16.4285 20.0611 16.4285C19.4809 16.4285 18.9211 16.6321 18.4224 17.0799ZM9.11959 14.5659C9.11959 15.9502 10.2494 17.0799 11.6336 17.0799C13.0076 17.0799 14.1374 15.9502 14.1374 14.5659C14.1374 13.1919 13.0076 12.0519 11.6336 12.0519C10.2494 12.0519 9.11959 13.1919 9.11959 14.5659Z"/></svg></span><span class="li-label">Viajes<svg class="lock" viewBox="0 0 32 32" fill="none"><path fill="currentColor" d="M9.44427 29.3334H22.5564C24.6629 29.3334 25.7807 28.187 25.7807 25.9228V16.0493C25.7807 13.7851 24.6629 12.653 22.5564 12.653H9.44427C7.33773 12.653 6.21997 13.7851 6.21997 16.0493V25.9228C6.21997 28.187 7.33773 29.3334 9.44427 29.3334ZM8.72775 13.7565H11.0063V10.3621C11.0063 6.75085 13.3134 4.83061 15.9932 4.83061C18.6729 4.83061 21.0088 6.75085 21.0088 10.3621V13.7565H23.2729V10.6773C23.2729 5.28917 19.7477 2.66675 15.9932 2.66675C12.253 2.66675 8.72775 5.28917 8.72775 10.6773V13.7565Z"/></svg></span></div>
+        </div>
+        <div class="pad16" style="margin-bottom:16px;">
+          <button class="btn v-main" style="width:100%;">Añadir grupo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="theme dark">
+    <h2>DotsActionSheet — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark · bgBaseContrast #1F1F1F</div>
+    <div class="row">
+      <!-- DotsActionSheetStandard -->
+      <div class="sheet">
+        <div class="grabber"></div>
+        <div class="pad16" style="margin-top:20px;">
+          <p class="sheet-title">Comparte este recuerdo</p>
+          <p class="sheet-desc">Invita a tu familia para que también pueda verlo y añadir sus fotos.</p>
+        </div>
+        <div class="pad16" style="display:flex; gap:15px; margin:20px 0 16px;">
+          <button class="btn v-secondary">Ahora no</button>
+          <button class="btn v-main">Compartir</button>
+        </div>
+      </div>
+      <!-- DotsActionSheetList -->
+      <div class="sheet">
+        <div class="grabber g8"></div>
+        <div class="pad16" style="margin-top:16px;">
+          <p class="sheet-title-h6">Añadir a un grupo</p>
+        </div>
+        <button class="close-btn"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></button>
+        <div class="pad16" style="margin:16px 0;">
+          <div class="search-field"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M2.66602 13.9389C2.66602 19.8859 7.55172 24.7245 13.5565 24.7245C15.9311 24.7245 18.101 23.9677 19.8889 22.6971L26.6033 29.3605C26.9171 29.6713 27.3266 29.82 27.7633 29.82C28.6914 29.82 29.3327 29.1306 29.3327 28.2251C29.3327 27.7926 29.1689 27.4006 28.8823 27.1168L22.2088 20.467C23.6146 18.6559 24.447 16.3988 24.447 13.9389C24.447 7.99197 19.5613 3.15332 13.5565 3.15332C7.55172 3.15332 2.66602 7.99197 2.66602 13.9389ZM4.9997 13.9389C4.9997 9.26246 8.83457 5.46453 13.5565 5.46453C18.2784 5.46453 22.1133 9.26246 22.1133 13.9389C22.1133 18.6153 18.2784 22.4133 13.5565 22.4133C8.83457 22.4133 4.9997 18.6153 4.9997 13.9389Z"/></svg>Buscar grupo</div>
+        </div>
+        <div class="pad16" style="display:flex; gap:4px; margin-bottom:16px;">
+          <span class="filter-chip">Familia<span class="chip-close"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></span></span>
+        </div>
+        <div class="pad20" style="display:flex; flex-direction:column; align-items:flex-start;">
+          <span class="list-title">Tus grupos</span>
+          <div class="list-item"><span class="li-icon"><svg viewBox="0 0 32 32" fill="none"><path fill="currentColor" d="M10.3888 15.7116C8.04173 15.7116 6.05902 13.6324 6.05902 10.9424C6.05902 8.31662 8.05245 6.30176 10.3888 6.30176C12.7145 6.30176 14.7186 8.34877 14.7079 10.9638C14.7079 13.6324 12.7359 15.7116 10.3888 15.7116ZM22.7781 15.9581C20.731 15.9581 19.0056 14.1361 19.0056 11.7997C19.0056 9.50624 20.7525 7.75931 22.7781 7.75931C24.8036 7.75931 26.5506 9.53839 26.5398 11.8212C26.5398 14.1361 24.8144 15.9581 22.7781 15.9581ZM28.6833 25.6894H20.6453C21.7921 24.0497 20.5596 20.813 18.1375 18.9053C19.3164 18.1444 20.8489 17.5871 22.7781 17.5871C27.5687 17.5871 30.666 21.1131 30.666 24.0175C30.666 25.0785 30.1301 25.6894 28.6833 25.6894ZM17.0657 25.6787H3.71193C1.94357 25.6787 1.33268 25.1428 1.33268 24.1568C1.33268 21.4025 4.83725 17.6085 10.3888 17.6085C15.9511 17.6085 19.445 21.4025 19.445 24.1568C19.445 25.1428 18.8341 25.6787 17.0657 25.6787Z"/></svg></span><span class="li-label">Familia Lerma</span></div>
+          <div class="list-item"><span class="li-icon"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M28 10.6066V23.0443C28 25.141 26.9415 26.1893 24.8041 26.1893H7.19593C5.0687 26.1893 4 25.141 4 23.0443V10.6066C4 8.50994 5.0687 7.45142 7.19593 7.45142H24.8041C26.9415 7.45142 28 8.50994 28 10.6066ZM18.4224 17.0799L13.5573 21.3955L11.6132 19.6448C11.1654 19.2275 10.6463 19.0239 10.1476 19.0239C9.69975 19.0239 9.2112 19.2275 8.76337 19.6244L5.63868 22.3521V22.9731C5.63868 23.9705 6.22901 24.5608 7.21628 24.5608H24.7939C25.7608 24.5608 26.3613 23.9705 26.3613 22.9934V21.4259L21.6794 17.0901C21.201 16.6422 20.6209 16.4285 20.0611 16.4285C19.4809 16.4285 18.9211 16.6321 18.4224 17.0799ZM9.11959 14.5659C9.11959 15.9502 10.2494 17.0799 11.6336 17.0799C13.0076 17.0799 14.1374 15.9502 14.1374 14.5659C14.1374 13.1919 13.0076 12.0519 11.6336 12.0519C10.2494 12.0519 9.11959 13.1919 9.11959 14.5659Z"/></svg></span><span class="li-label">Viajes<svg class="lock" viewBox="0 0 32 32" fill="none"><path fill="currentColor" d="M9.44427 29.3334H22.5564C24.6629 29.3334 25.7807 28.187 25.7807 25.9228V16.0493C25.7807 13.7851 24.6629 12.653 22.5564 12.653H9.44427C7.33773 12.653 6.21997 13.7851 6.21997 16.0493V25.9228C6.21997 28.187 7.33773 29.3334 9.44427 29.3334ZM8.72775 13.7565H11.0063V10.3621C11.0063 6.75085 13.3134 4.83061 15.9932 4.83061C18.6729 4.83061 21.0088 6.75085 21.0088 10.3621V13.7565H23.2729V10.6773C23.2729 5.28917 19.7477 2.66675 15.9932 2.66675C12.253 2.66675 8.72775 5.28917 8.72775 10.6773V13.7565Z"/></svg></span></div>
+        </div>
+        <div class="pad16" style="margin-bottom:16px;">
+          <button class="btn v-main" style="width:100%;">Añadir grupo</button>
+        </div>
+      </div>
+    </div>
+    <div class="sub" style="margin-top:12px;">Variantes API: standard · list · input · radioButtons · settings · search · spotlight (base común: grabber + título Mackinac + radio 32)</div>
+  </div>
+</body>
+</html>

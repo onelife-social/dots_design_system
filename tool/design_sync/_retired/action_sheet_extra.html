@@ -1,0 +1,369 @@
+<!-- @dsCard group="Feedback" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · DotsActionSheet Extra</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Book.otf') format('opentype'); font-weight: 400; }
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Medium.otf') format('opentype'); font-weight: 500; }
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Bold.otf') format('opentype'); font-weight: 700; }
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .lbl { font-size: 10px; opacity: .45; margin: 16px 0 8px; font-family: ui-monospace, monospace; }
+  .light .lbl { color: #000; } .dark .lbl { color: #FFF; }
+  .row { display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
+  .foot { font-size: 10px; opacity: .45; margin-top: 20px; font-family: ui-monospace, monospace; }
+  .light .foot { color: #000; } .dark .foot { color: #FFF; }
+  svg { display: block; flex: none; }
+
+  /* ===== Panel — DotsActionSheetContainer: bg bgBaseContrast, radio 32 ===== */
+  .sheet { width: 300px; border-radius: 32px; box-sizing: border-box; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; position: relative; }
+  .light .sheet { background: #FAFAFA; }
+  .dark  .sheet { background: #1F1F1F; }
+
+  /* Grabber — 36x4, radio 2.5, bg bgSecondaryBtn */
+  .grabber { width: 36px; height: 4px; border-radius: 2.5px; margin-top: 16px; flex: none; }
+  .light .grabber { background: #8C8C8C4D; } .dark .grabber { background: #C8C8C84D; }
+
+  /* Títulos — typo.secondary title02H5 (20/500) · title02H6 (18/500) */
+  .sheet-title { font-family: 'P22 Mackinac', Georgia, serif; font-size: 20px; font-weight: 500;
+    line-height: 1.25; margin: 0; text-align: center; }
+  .sheet-title-h6 { font-family: 'P22 Mackinac', Georgia, serif; font-size: 18px; font-weight: 500;
+    line-height: 1.28; margin: 0; text-align: center; }
+  .light .sheet-title, .light .sheet-title-h6 { color: #000; }
+  .dark  .sheet-title, .dark  .sheet-title-h6 { color: #FFF; }
+  .sheet-sub { font-size: 13px; font-weight: 400; line-height: 1.31; margin: 4px 0 0; text-align: center; } /* labelDefaultRegular */
+  .light .sheet-sub { color: #000; } .dark .sheet-sub { color: #FFF; }
+
+  /* DotsCloseButton medium (30, icono 16) softContrast: bg bgBtnDisabled, fg labelPrimary */
+  .close-btn { position: absolute; top: 16px; right: 16px; width: 30px; height: 30px;
+    border-radius: 50%; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; }
+  .light .close-btn { background: #C8C8C866; color: #00000099; }
+  .dark  .close-btn { background: #C8C8C819; color: #FFFFFFCC; }
+  .close-btn svg { width: 16px; height: 16px; }
+
+  /* DotsMainButton mainAction (52) y large (44) */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    border: none; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap;
+    height: 52px; padding: 0 24px; border-radius: 52px; font-size: 14px; font-weight: 500; width: 100%; box-sizing: border-box; }
+  .btn.h44 { height: 44px; border-radius: 44px; width: auto; padding: 0 20px; }
+  .light .v-main { background: #0072EF; color: #FFF; } .dark .v-main { background: #0A84FF; color: #FFF; }
+
+  /* DotsIconButton solid extraLarge — Ø52, icono 32, bg bgContainerSecondaryOnBackground + blur50 */
+  .big-icon { width: 52px; height: 52px; border-radius: 52px; display: flex; align-items: center;
+    justify-content: center; backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); }
+  .light .big-icon { background: #8C8C8C1A; } .dark .big-icon { background: #75757533; }
+  .big-icon svg { width: 32px; height: 32px; }
+
+  /* DotsTextFieldButton — h44 píldora, bg bgContainerSecondaryOnBackground */
+  .field { height: 44px; border-radius: 1000px; box-sizing: border-box; width: 100%;
+    display: flex; align-items: center; gap: 8px; padding: 0 16px; font-size: 14px; }
+  .light .field { background: #8C8C8C1A; color: #0000008C; }
+  .dark  .field { background: #75757533; color: #FFFFFFA6; }
+  .field.center { justify-content: center; }
+  .field svg.si { width: 16px; height: 16px; }
+  .field .grow { flex: 1; }
+  .field .x-btn { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .light .field .x-btn { background: #C8C8C866; color: #00000099; }
+  .dark  .field .x-btn { background: #C8C8C819; color: #FFFFFFCC; }
+  .field .x-btn svg { width: 12px; height: 12px; }
+
+  /* DotsColorOptionsRow — círculos 32, spacing 18, borde negro 10% (sel: 2px 25% + check) */
+  .colors-row { display: flex; align-items: center; gap: 18px; }
+  .c-opt { width: 32px; height: 32px; border-radius: 50%; box-sizing: border-box;
+    border: 1.5px solid #0000001A; display: flex; align-items: center; justify-content: center; }
+  .c-opt.sel { border: 2px solid #00000040; }
+  .c-opt svg { width: 16px; height: 16px; }
+
+  /* RadioCardIcons — r24, pad 16, bg bgContainerSecondaryOnBackground (sel: borde 1.5 labelHighlight r26) */
+  .radio-card { border-radius: 26px; padding: 1.5px; width: 100%; box-sizing: border-box; }
+  .light .radio-card.sel { border: 1.5px solid #0072EF; } .dark .radio-card.sel { border: 1.5px solid #0A84FF; }
+  .radio-card.sel { padding: 0; }
+  .rc-inner { border-radius: 24px; padding: 16px; display: flex; align-items: center; gap: 16px; box-sizing: border-box; }
+  .light .rc-inner { background: #8C8C8C1A; } .dark .rc-inner { background: #75757533; }
+  .rc-col { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .rc-line { display: flex; align-items: flex-start; gap: 4px; font-size: 13px; font-weight: 400; line-height: 1.31; }
+  .rc-line.t { font-size: 14px; font-weight: 700; line-height: 1.29; } /* bodyDefaultBold */
+  .light .rc-line.t { color: #000; } .dark .rc-line.t { color: #FFF; }
+  .light .rc-line { color: #0000008C; } .dark .rc-line { color: #FFFFFFA6; } /* textTertiary */
+  .rc-line svg { width: 16px; height: 16px; }
+  /* DotsRadioButton — 24, borde 2 (sel labelHighlight, no-sel labelSecondary) */
+  .radio { width: 24px; height: 24px; border-radius: 50%; box-sizing: border-box; flex: none;
+    display: flex; align-items: center; justify-content: center; }
+  .light .radio { border: 2px solid #00000033; } .dark .radio { border: 2px solid #FFFFFF4D; }
+  .light .radio.sel, .dark .radio.sel { border-color: #0072EF; }
+  .dark .radio.sel { border-color: #0A84FF; }
+  .radio.sel::after { content: ''; width: 15px; height: 15px; border-radius: 50%; }
+  .light .radio.sel::after { background: #0072EF; } .dark .radio.sel::after { background: #0A84FF; }
+  /* DotsToggle — 44.42×27, knob 23.52, off fillSecondary / on labelHighlight */
+  .toggle { width: 44.42px; height: 27px; border-radius: 13.5px; padding: 1.74px; box-sizing: border-box; flex: none; }
+  .light .toggle.off { background: #78788029; } .dark .toggle.off { background: #78788052; }
+  .light .toggle.on { background: #0072EF; } .dark .toggle.on { background: #0A84FF; }
+  .toggle .knob { width: 23.52px; height: 23.52px; border-radius: 50%; background: #FFF;
+    box-shadow: 0 2.61px 6.97px #00000026, 0 0 0 0.87px #0000000A; }
+  .toggle.on .knob { margin-left: auto; }
+
+  /* DotsSystemButton — h44, r16, bg bgContainerSecondaryOnBackground + blur50, bodyDefaultMedium */
+  .sys-btn { height: 44px; border-radius: 16px; width: 100%; box-sizing: border-box; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
+    backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); }
+  .light .sys-btn { background: #8C8C8C1A; color: #000; } .dark .sys-btn { background: #75757533; color: #FFF; }
+  .sys-btn.destructive { color: #ED2B32; }
+  .light .sys-btn.disabled { color: #00000033; } .dark .sys-btn.disabled { color: #FFFFFF33; }
+  .sys-btn svg { width: 20px; height: 20px; }
+
+  /* Otros */
+  .avatar-100 { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(140deg, #E3C9AE, #A9C0D8); }
+  .settings-title { font-size: 20px; font-weight: 700; line-height: 1.25; letter-spacing: -0.09px; margin: 0; text-align: center; } /* titleH5 main */
+  .light .settings-title { color: #000; } .dark .settings-title { color: #FFF; }
+  .settings-sub { font-size: 14px; font-weight: 400; line-height: 1.29; margin: 6px 0 0; text-align: center; }
+  .light .settings-sub { color: #000; } .dark .settings-sub { color: #FFF; }
+  .spot-img { width: 100%; height: 120px; border-radius: 24px; background: linear-gradient(140deg, #96B4CE, #E0C3A4, #A08FB0); }
+  .spot-label { font-size: 13px; font-weight: 500; margin: 4px 0 0; text-align: center; }
+  .light .spot-label { color: #0000008C; } .dark .spot-label { color: #FFFFFFA6; }
+  .spot-desc { font-size: 14px; font-weight: 400; line-height: 1.29; margin: 12px 0 0; text-align: center; }
+  .light .spot-desc { color: #000000AB; } .dark .spot-desc { color: #FFFFFFBF; }
+  .list-item { display: flex; align-items: center; gap: 12px; width: 100%; margin-bottom: 16px; }
+  .li-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex: none; }
+  .light .li-icon { background: #E2E2E2B3; color: #0000008C; }
+  .dark  .li-icon { background: #282828B3; color: #FFFFFFA6; }
+  .li-icon svg { width: 20px; height: 20px; }
+  .li-label { font-size: 16px; font-weight: 700; line-height: 1.31; }
+  .light .li-label { color: #000; } .dark .li-label { color: #FFF; }
+  .fade-btn { position: relative; width: 100%; display: flex; justify-content: center; padding: 24px 0 16px; }
+  .light .fade-btn { background: linear-gradient(180deg, #FAFAFA00, #FAFAFA 55%); }
+  .dark  .fade-btn { background: linear-gradient(180deg, #1F1F1F00, #1F1F1F 55%); }
+  .pad16 { padding: 0 16px; width: 100%; box-sizing: border-box; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>DotsActionSheet Extra — Light</h2>
+    <div class="sub">action_sheet/ · input · radioButtons · settings · search · spotlight (no cubiertas en action_sheet.html)</div>
+
+    <div class="row">
+      <!-- DotsActionSheetInput — variant colors -->
+      <div class="sheet">
+        <div class="grabber"></div>
+        <div class="pad16" style="margin-top:16px;"><p class="sheet-title-h6">Nuevo grupo</p></div>
+        <button class="close-btn"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></button>
+        <div class="big-icon" style="margin:16px 0; color:#E55451;"><svg viewBox="0 0 32 32" fill="none"><path fill="currentColor" d="M10.3888 15.7116C8.04173 15.7116 6.05902 13.6324 6.05902 10.9424C6.05902 8.31662 8.05245 6.30176 10.3888 6.30176C12.7145 6.30176 14.7186 8.34877 14.7079 10.9638C14.7079 13.6324 12.7359 15.7116 10.3888 15.7116ZM22.7781 15.9581C20.731 15.9581 19.0056 14.1361 19.0056 11.7997C19.0056 9.50624 20.7525 7.75931 22.7781 7.75931C24.8036 7.75931 26.5506 9.53839 26.5398 11.8212C26.5398 14.1361 24.8144 15.9581 22.7781 15.9581ZM28.6833 25.6894H20.6453C21.7921 24.0497 20.5596 20.813 18.1375 18.9053C19.3164 18.1444 20.8489 17.5871 22.7781 17.5871C27.5687 17.5871 30.666 21.1131 30.666 24.0175C30.666 25.0785 30.1301 25.6894 28.6833 25.6894ZM17.0657 25.6787H3.71193C1.94357 25.6787 1.33268 25.1428 1.33268 24.1568C1.33268 21.4025 4.83725 17.6085 10.3888 17.6085C15.9511 17.6085 19.445 21.4025 19.445 24.1568C19.445 25.1428 18.8341 25.6787 17.0657 25.6787Z"/></svg></div>
+        <div class="pad16"><div class="field center">Nombre del grupo</div></div>
+        <div class="colors-row" style="margin:16px 0;">
+          <span class="c-opt" style="background:#00000066;"></span>
+          <span class="c-opt sel" style="background:#E55451;"><svg viewBox="0 0 16 16" fill="none"><path fill="#FFF" d="M13.2734 1.40424C13.9565 1.40451 14.6666 1.88338 14.6667 2.68483C14.6666 2.88525 14.6077 3.07445 14.5365 3.24017C14.4657 3.40474 14.3744 3.56605 14.3001 3.70111L7.86588 13.8235L7.86458 13.8248C7.54434 14.321 7.07827 14.5954 6.52408 14.5956C5.97445 14.5956 5.52986 14.3538 5.14257 13.8456L1.71158 9.62754L1.70507 9.61843C1.48889 9.32497 1.3334 8.9807 1.33333 8.60476C1.33335 7.85954 1.91442 7.25385 2.65755 7.25385C2.87781 7.25392 3.09449 7.28581 3.30664 7.39187C3.51674 7.49715 3.705 7.66665 3.88802 7.9101L6.44596 11.2213L12.0996 2.15033L12.1029 2.14577C12.3971 1.69666 12.8141 1.40426 13.2734 1.40424Z"/></svg></span>
+          <span class="c-opt" style="background:#EE8062;"></span>
+          <span class="c-opt" style="background:#F37C20;"></span>
+          <span class="c-opt" style="background:#F4BD24;"></span>
+          <span class="c-opt" style="background:#E2C567;"></span>
+        </div>
+        <div class="pad16" style="margin-bottom:16px;"><button class="btn v-main">Crear grupo</button></div>
+      </div>
+
+      <!-- DotsActionSheetRadioButtons — RadioCardIcons selector + toggle -->
+      <div class="sheet">
+        <div class="grabber"></div>
+        <div class="pad16" style="margin:16px 0 0; padding-top:12px;">
+          <p class="sheet-title">Tipo de DotBook</p>
+          <p class="sheet-sub">Elige el acabado para tu libro</p>
+        </div>
+        <div class="pad16" style="display:flex; flex-direction:column; gap:8px; margin:16px 0 0;">
+          <div class="radio-card sel">
+            <div class="rc-inner">
+              <div class="rc-col">
+                <div class="rc-line t"><svg viewBox="0 0 32 32" fill="none"><path fill="currentColor" d="M12.9033 10.6182C12.4318 10.6182 12.0367 10.2325 12.0367 9.77205C12.0367 9.29919 12.4318 8.92588 12.9033 8.92588H22.7419C23.2134 8.92588 23.6085 9.29919 23.6085 9.77205C23.6085 10.2325 23.2134 10.6182 22.7419 10.6182H12.9033ZM12.9033 14.1522C12.4318 14.1522 12.0367 13.7664 12.0367 13.2936C12.0367 12.8332 12.4318 12.4599 12.9033 12.4599H20.3714C20.8557 12.4599 21.2381 12.8332 21.2381 13.2936C21.2381 13.7664 20.8557 14.1522 20.3714 14.1522H12.9033ZM9.19472 29.3334H25.6985C26.2593 29.3334 26.718 28.8978 26.718 28.3379C26.718 27.9024 26.4122 27.5166 26.0044 27.3797C24.3986 26.7576 24.0672 24.7292 25.6476 23.1738C26.1319 22.701 26.718 22.0912 26.718 20.8469V6.57404C26.718 3.98577 25.4054 2.66675 22.7673 2.66675H9.23295C6.59488 2.66675 5.28223 3.97333 5.28223 6.57404V25.4883C5.28223 28.0517 6.60763 29.3334 9.19472 29.3334ZM9.30941 27.33C8.02224 27.33 7.33405 26.6581 7.33405 25.4759C7.33405 24.356 8.14969 23.6342 9.42411 23.6342H22.4997C22.6654 23.6342 22.8183 23.6218 22.9458 23.5969C22.3468 24.891 22.4488 26.2599 23.1241 27.33H9.30941ZM8.92708 21.7427C8.53201 21.7427 8.20066 21.4193 8.20066 21.0211V5.3048C8.20066 4.9066 8.53201 4.59551 8.92708 4.59551C9.32215 4.59551 9.66625 4.9066 9.66625 5.3048V21.0211C9.66625 21.4193 9.32215 21.7427 8.92708 21.7427Z"/></svg>Tapa dura</div>
+                <div class="rc-line"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M15.9932 2.90755C15.2193 2.90755 14.6687 3.46721 14.6687 4.25378L14.6687 19.5308L14.7728 22.7677L10.2931 17.7913L6.9593 14.4485C6.72117 14.2066 6.36405 14.0704 6.00679 14.0704C5.2627 14.0704 4.71202 14.6452 4.71202 15.4014C4.71202 15.7645 4.86087 16.0972 5.15856 16.4149L14.9961 26.4281C15.2789 26.7306 15.636 26.897 15.9932 26.897C16.3653 26.897 16.7076 26.7306 16.9904 26.4281L26.8428 16.4149C27.1256 16.0972 27.2745 15.7645 27.2745 15.4014C27.2745 14.6452 26.7387 14.0704 25.9796 14.0704C25.6224 14.0704 25.2801 14.2066 25.0271 14.4485L21.6934 17.7913L17.2136 22.7828L17.3327 19.5308L17.3327 4.25378C17.3327 3.46721 16.782 2.90755 15.9932 2.90755ZM26.0541 26.8667L5.97708 26.8667C5.20313 26.8667 4.66732 27.4264 4.66732 28.2129C4.66732 28.9994 5.20313 29.5742 5.97708 29.5742L26.0541 29.5742C26.8131 29.5742 27.334 28.9994 27.334 28.2129C27.334 27.4264 26.8131 26.8667 26.0541 26.8667Z"/></svg>Impresión premium</div>
+                <div class="rc-line">Desde 39,99 €</div>
+              </div>
+              <span class="radio sel"></span>
+            </div>
+          </div>
+          <div class="radio-card">
+            <div class="rc-inner">
+              <div class="rc-col">
+                <div class="rc-line t"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M12.9023 10.8682C12.4308 10.8682 12.0357 10.4825 12.0357 10.0221C12.0357 9.54919 12.4308 9.17588 12.9023 9.17588H22.7409C23.2125 9.17588 23.6075 9.54919 23.6075 10.0221C23.6075 10.4825 23.2125 10.8682 22.7409 10.8682H12.9023ZM12.9023 14.4022C12.4308 14.4022 12.0357 14.0164 12.0357 13.5436C12.0357 13.0832 12.4308 12.7099 12.9023 12.7099H20.3705C20.8547 12.7099 21.2371 13.0832 21.2371 13.5436C21.2371 14.0164 20.8547 14.4022 20.3705 14.4022H12.9023ZM9.19374 29.5834H25.6975C26.2583 29.5834 26.7171 29.1478 26.7171 28.5879C26.7171 28.1524 26.4113 27.7666 26.0034 27.6297C24.3976 27.0076 24.0663 24.9792 25.6466 23.4238C26.1309 22.951 26.7171 22.3412 26.7171 21.0969V6.82404C26.7171 4.23577 25.4044 2.91675 22.7664 2.91675H9.23197C6.59391 2.91675 5.28125 4.22333 5.28125 6.82404V25.7383C5.28125 28.3017 6.60665 29.5834 9.19374 29.5834ZM9.30843 27.58C8.02127 27.58 7.33308 26.9081 7.33308 25.7259C7.33308 24.606 8.14871 23.8842 9.42313 23.8842H22.4987C22.6645 23.8842 22.8174 23.8718 22.9448 23.8469C22.3458 25.141 22.4478 26.5099 23.1232 27.58H9.30843ZM8.92611 21.9927C8.53104 21.9927 8.19968 21.6693 8.19968 21.2711V5.5548C8.19968 5.1566 8.53104 4.84551 8.92611 4.84551C9.32118 4.84551 9.66528 5.1566 9.66528 5.5548V21.2711C9.66528 21.6693 9.32118 21.9927 8.92611 21.9927Z"/></svg>Tapa blanda</div>
+                <div class="rc-line">Desde 29,99 €</div>
+              </div>
+              <span class="radio"></span>
+            </div>
+          </div>
+          <div class="radio-card">
+            <div class="rc-inner">
+              <div class="rc-col">
+                <div class="rc-line t">Envío exprés</div>
+                <div class="rc-line">Llega en 48 h</div>
+              </div>
+              <span class="toggle on"><span class="knob"></span></span>
+            </div>
+          </div>
+        </div>
+        <div class="pad16" style="margin:20px 0 16px;"><button class="btn v-main">Continuar</button></div>
+      </div>
+
+      <!-- DotsActionSheetSettings -->
+      <div class="sheet">
+        <div class="grabber"></div>
+        <button class="close-btn"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></button>
+        <div class="avatar-100" style="margin-top:24px;"></div>
+        <div class="pad16" style="margin-top:16px;">
+          <p class="settings-title">Familia Lerma</p>
+          <p class="settings-sub">12 miembros · 340 recuerdos</p>
+        </div>
+        <div class="pad16" style="display:flex; flex-direction:column; gap:8px; margin:24px 0 16px;">
+          <button class="sys-btn"><svg viewBox="0 0 32 32" fill="none"><path fill="currentColor" d="M30.6673 15.9303C30.6673 22.6848 25.0648 28.2994 18.2981 28.2994C16.5852 28.2994 14.9456 27.9384 13.4539 27.2865C14.6114 25.9236 15.315 24.1687 15.315 22.2725C15.315 21.634 15.2369 21.0125 15.0813 20.4203C16.0495 20.1876 17.1308 20.0533 18.2981 20.0533C21.9488 20.0533 24.7555 21.3599 25.979 22.8114C27.6182 20.9981 28.6057 18.5869 28.6057 15.9303C28.6057 10.2064 24.0097 5.62256 18.286 5.62256C13.0552 5.62256 8.79683 9.45066 8.11363 14.4826C7.91003 14.4592 7.70254 14.4508 7.49324 14.4508C6.98498 14.4508 6.48713 14.5006 6.00548 14.5989C6.67871 8.44358 11.9804 3.56104 18.286 3.56104C25.0526 3.56104 30.6673 9.16355 30.6673 15.9303ZM22.4575 13.42C22.4575 16.0272 20.6385 18.016 18.2981 17.9918C15.9698 17.9675 14.1508 16.0272 14.1387 13.42C14.1266 10.9704 15.9698 8.94527 18.2981 8.94527C20.6264 8.94527 22.4575 10.9704 22.4575 13.42Z"/><path fill="currentColor" d="M13.6547 22.2701C13.6547 25.6413 10.8291 28.4304 7.49433 28.4304C4.12312 28.4304 1.33398 25.6655 1.33398 22.2701C1.33398 18.8989 4.12312 16.1098 7.49433 16.1098C10.8776 16.1098 13.6547 18.8868 13.6547 22.2701ZM6.7546 19.1535V21.5303H4.37778C3.94122 21.5303 3.63805 21.8214 3.63805 22.2701C3.63805 22.7188 3.94122 23.0098 4.37778 23.0098H6.7546V25.3866C6.7546 25.8353 7.04564 26.1263 7.49433 26.1263C7.94302 26.1263 8.23406 25.8353 8.23406 25.3866V23.0098H10.6109C11.0475 23.0098 11.3507 22.7188 11.3507 22.2701C11.3507 21.8214 11.0475 21.5303 10.6109 21.5303H8.23406V19.1535C8.23406 18.717 7.94302 18.4138 7.49433 18.4138C7.04564 18.4138 6.7546 18.717 6.7546 19.1535Z"/></svg>Invitar miembros</button>
+          <button class="sys-btn"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M24.1624 2.92672C23.4519 3.07821 23.2534 3.22448 21.9526 4.50958L20.7563 5.69542L26.5393 11.4627L27.6676 10.3343C28.8796 9.12233 29.0938 8.84024 29.2871 8.20814C29.3811 7.9156 29.3915 7.75888 29.3759 7.26783C29.3341 6.19169 29.1565 5.8887 27.6937 4.43644C26.5392 3.28717 26.3251 3.13568 25.5937 2.94761C25.1288 2.82746 24.6482 2.82224 24.1624 2.92672Z"/><path fill="currentColor" d="M11.6951 14.7235L4.28231 22.1363L3.4517 25.4483C2.9711 27.3812 2.62109 28.8648 2.62109 29.0111C2.62109 29.3715 2.8196 29.57 3.18006 29.57C3.32633 29.57 4.80993 29.22 6.74279 28.7394L10.0548 27.9088L17.4676 20.496C21.5423 16.4213 24.8751 13.0676 24.8751 13.0362C24.8751 12.9683 19.2228 7.31598 19.1549 7.31598C19.1236 7.31598 15.7698 10.6489 11.6951 14.7235Z"/></svg>Editar grupo</button>
+          <button class="sys-btn destructive"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M12.7426 25.0807C12.326 25.0807 12.0589 24.8293 12.0376 24.4142L11.7171 12.3854C11.7064 11.9811 11.9735 11.7189 12.4008 11.7189C12.796 11.7189 13.0738 11.9702 13.0845 12.3744L13.4263 24.4142C13.437 24.8184 13.1592 25.0807 12.7426 25.0807ZM16.0008 25.0807C15.5841 25.0807 15.2957 24.8184 15.2957 24.4142V12.3854C15.2957 11.9811 15.5841 11.7189 16.0008 11.7189C16.4174 11.7189 16.7165 11.9811 16.7165 12.3854V24.4142C16.7165 24.8184 16.4174 25.0807 16.0008 25.0807ZM19.2696 25.0807C18.853 25.0807 18.5753 24.8184 18.5859 24.4142L18.9171 12.3854C18.9278 11.9702 19.2055 11.7189 19.6008 11.7189C20.028 11.7189 20.2951 11.9811 20.2844 12.3854L19.9639 24.4142C19.9426 24.8293 19.6755 25.0807 19.2696 25.0807ZM11.3112 9.06406H13.0097V6.72603C13.0097 6.10329 13.437 5.69904 14.0779 5.69904H17.9022C18.5432 5.69904 18.9705 6.10329 18.9705 6.72603V9.06406H20.6689V6.61678C20.6689 5.0326 19.6649 4.07117 18.0197 4.07117H13.9604C12.3153 4.07117 11.3112 5.0326 11.3112 6.61678V9.06406ZM6.46134 9.93809H25.5508C25.9889 9.93809 26.3414 9.5557 26.3414 9.10776C26.3414 8.65983 25.9889 8.28836 25.5508 8.28836H6.46134C6.03404 8.28836 5.66016 8.65983 5.66016 9.10776C5.66016 9.56663 6.03404 9.93809 6.46134 9.93809ZM11.1082 28.402H20.904C22.4316 28.402 23.4571 27.3859 23.5319 25.8235L24.2797 9.70866H7.72187L8.48032 25.8345C8.5551 27.3968 9.55924 28.402 11.1082 28.402Z"/></svg>Salir del grupo</button>
+        </div>
+      </div>
+
+      <!-- DotsActionSheetSearch -->
+      <div class="sheet">
+        <div class="pad16" style="margin-top:24px;"><p class="sheet-title-h6" style="max-width:190px; margin:0 auto;">Añade a tus recuerdos</p></div>
+        <div class="pad16" style="margin:16px 0;">
+          <div class="field"><svg class="si" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M2.66602 13.9389C2.66602 19.8859 7.55172 24.7245 13.5565 24.7245C15.9311 24.7245 18.101 23.9677 19.8889 22.6971L26.6033 29.3605C26.9171 29.6713 27.3266 29.82 27.7633 29.82C28.6914 29.82 29.3327 29.1306 29.3327 28.2251C29.3327 27.7926 29.1689 27.4006 28.8823 27.1168L22.2088 20.467C23.6146 18.6559 24.447 16.3988 24.447 13.9389C24.447 7.99197 19.5613 3.15332 13.5565 3.15332C7.55172 3.15332 2.66602 7.99197 2.66602 13.9389ZM4.9997 13.9389C4.9997 9.26246 8.83457 5.46453 13.5565 5.46453C18.2784 5.46453 22.1133 9.26246 22.1133 13.9389C22.1133 18.6153 18.2784 22.4133 13.5565 22.4133C8.83457 22.4133 4.9997 18.6153 4.9997 13.9389Z"/></svg><span class="grow">Buscar personas</span><span class="x-btn"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></span></div>
+        </div>
+        <div class="pad16" style="padding-left:20px; padding-right:20px;">
+          <div class="list-item"><span class="li-icon"><svg viewBox="0 0 32 32" fill="none"><path fill="currentColor" d="M16 15.6505C13.0929 15.6505 10.6371 13.0753 10.6371 9.74339C10.6371 6.49118 13.1062 3.99561 16 3.99561C18.8805 3.99561 21.3628 6.531 21.3495 9.76994C21.3495 13.0753 18.9071 15.6505 16 15.6505ZM24.2699 27.9956H7.73007C5.5398 27.9956 4.78317 27.3319 4.78317 26.1106C4.78317 22.6991 9.12387 18 16 18C22.8894 18 27.2168 22.6991 27.2168 26.1106C27.2168 27.3319 26.4602 27.9956 24.2699 27.9956Z"/></svg></span><span class="li-label">Ana Martín</span></div>
+          <div class="list-item"><span class="li-icon"><svg viewBox="0 0 32 32" fill="none"><path fill="currentColor" d="M16 15.6505C13.0929 15.6505 10.6371 13.0753 10.6371 9.74339C10.6371 6.49118 13.1062 3.99561 16 3.99561C18.8805 3.99561 21.3628 6.531 21.3495 9.76994C21.3495 13.0753 18.9071 15.6505 16 15.6505ZM24.2699 27.9956H7.73007C5.5398 27.9956 4.78317 27.3319 4.78317 26.1106C4.78317 22.6991 9.12387 18 16 18C22.8894 18 27.2168 22.6991 27.2168 26.1106C27.2168 27.3319 26.4602 27.9956 24.2699 27.9956Z"/></svg></span><span class="li-label">Leo García</span></div>
+        </div>
+        <div class="fade-btn"><button class="btn v-main h44">Añadir 2 personas</button></div>
+      </div>
+
+      <!-- DotsActionSheetSpotlight -->
+      <div class="sheet">
+        <div class="grabber"></div>
+        <button class="close-btn" style="top:12px;"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></button>
+        <div class="pad16" style="margin-top:16px;"><div class="spot-img"></div></div>
+        <div class="pad16" style="margin-top:20px;">
+          <p class="sheet-title-h6">Tu Recap está listo</p>
+          <p class="spot-label">Recap de agosto · 54 fotos</p>
+          <p class="spot-desc">Revive los mejores momentos del mes en un vídeo creado para ti.</p>
+        </div>
+        <div class="pad16" style="margin:28px 0 15px;"><button class="btn v-main">Ver mi Recap</button></div>
+      </div>
+    </div>
+
+    <div class="foot">Cubre: input (variant colors: icono XL + DotsColorOptionsRow + DotsTextFieldButton + mainAction) · radioButtons (RadioCardIcons selector/toggle) · settings (DotsSystemButton active/destructive) · search (DotsTextFieldButton search + fade + botón) · spotlight. Variantes input restantes: main, text, date (DotsItemInput), user (avatar 56).</div>
+  </div>
+
+  <div class="theme dark">
+    <h2>DotsActionSheet Extra — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark · bgBaseContrast #1F1F1F</div>
+
+    <div class="row">
+      <!-- DotsActionSheetInput — variant colors -->
+      <div class="sheet">
+        <div class="grabber"></div>
+        <div class="pad16" style="margin-top:16px;"><p class="sheet-title-h6">Nuevo grupo</p></div>
+        <button class="close-btn"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></button>
+        <div class="big-icon" style="margin:16px 0; color:#E55451;"><svg viewBox="0 0 32 32" fill="none"><path fill="currentColor" d="M10.3888 15.7116C8.04173 15.7116 6.05902 13.6324 6.05902 10.9424C6.05902 8.31662 8.05245 6.30176 10.3888 6.30176C12.7145 6.30176 14.7186 8.34877 14.7079 10.9638C14.7079 13.6324 12.7359 15.7116 10.3888 15.7116ZM22.7781 15.9581C20.731 15.9581 19.0056 14.1361 19.0056 11.7997C19.0056 9.50624 20.7525 7.75931 22.7781 7.75931C24.8036 7.75931 26.5506 9.53839 26.5398 11.8212C26.5398 14.1361 24.8144 15.9581 22.7781 15.9581ZM28.6833 25.6894H20.6453C21.7921 24.0497 20.5596 20.813 18.1375 18.9053C19.3164 18.1444 20.8489 17.5871 22.7781 17.5871C27.5687 17.5871 30.666 21.1131 30.666 24.0175C30.666 25.0785 30.1301 25.6894 28.6833 25.6894ZM17.0657 25.6787H3.71193C1.94357 25.6787 1.33268 25.1428 1.33268 24.1568C1.33268 21.4025 4.83725 17.6085 10.3888 17.6085C15.9511 17.6085 19.445 21.4025 19.445 24.1568C19.445 25.1428 18.8341 25.6787 17.0657 25.6787Z"/></svg></div>
+        <div class="pad16"><div class="field center">Nombre del grupo</div></div>
+        <div class="colors-row" style="margin:16px 0;">
+          <span class="c-opt" style="background:#FFFFFF73;"></span>
+          <span class="c-opt sel" style="background:#E55451;"><svg viewBox="0 0 16 16" fill="none"><path fill="#FFF" d="M13.2734 1.40424C13.9565 1.40451 14.6666 1.88338 14.6667 2.68483C14.6666 2.88525 14.6077 3.07445 14.5365 3.24017C14.4657 3.40474 14.3744 3.56605 14.3001 3.70111L7.86588 13.8235L7.86458 13.8248C7.54434 14.321 7.07827 14.5954 6.52408 14.5956C5.97445 14.5956 5.52986 14.3538 5.14257 13.8456L1.71158 9.62754L1.70507 9.61843C1.48889 9.32497 1.3334 8.9807 1.33333 8.60476C1.33335 7.85954 1.91442 7.25385 2.65755 7.25385C2.87781 7.25392 3.09449 7.28581 3.30664 7.39187C3.51674 7.49715 3.705 7.66665 3.88802 7.9101L6.44596 11.2213L12.0996 2.15033L12.1029 2.14577C12.3971 1.69666 12.8141 1.40426 13.2734 1.40424Z"/></svg></span>
+          <span class="c-opt" style="background:#EE8062;"></span>
+          <span class="c-opt" style="background:#F37C20;"></span>
+          <span class="c-opt" style="background:#F4BD24;"></span>
+          <span class="c-opt" style="background:#E2C567;"></span>
+        </div>
+        <div class="pad16" style="margin-bottom:16px;"><button class="btn v-main">Crear grupo</button></div>
+      </div>
+
+      <!-- DotsActionSheetRadioButtons — RadioCardIcons selector + toggle -->
+      <div class="sheet">
+        <div class="grabber"></div>
+        <div class="pad16" style="margin:16px 0 0; padding-top:12px;">
+          <p class="sheet-title">Tipo de DotBook</p>
+          <p class="sheet-sub">Elige el acabado para tu libro</p>
+        </div>
+        <div class="pad16" style="display:flex; flex-direction:column; gap:8px; margin:16px 0 0;">
+          <div class="radio-card sel">
+            <div class="rc-inner">
+              <div class="rc-col">
+                <div class="rc-line t"><svg viewBox="0 0 32 32" fill="none"><path fill="currentColor" d="M12.9033 10.6182C12.4318 10.6182 12.0367 10.2325 12.0367 9.77205C12.0367 9.29919 12.4318 8.92588 12.9033 8.92588H22.7419C23.2134 8.92588 23.6085 9.29919 23.6085 9.77205C23.6085 10.2325 23.2134 10.6182 22.7419 10.6182H12.9033ZM12.9033 14.1522C12.4318 14.1522 12.0367 13.7664 12.0367 13.2936C12.0367 12.8332 12.4318 12.4599 12.9033 12.4599H20.3714C20.8557 12.4599 21.2381 12.8332 21.2381 13.2936C21.2381 13.7664 20.8557 14.1522 20.3714 14.1522H12.9033ZM9.19472 29.3334H25.6985C26.2593 29.3334 26.718 28.8978 26.718 28.3379C26.718 27.9024 26.4122 27.5166 26.0044 27.3797C24.3986 26.7576 24.0672 24.7292 25.6476 23.1738C26.1319 22.701 26.718 22.0912 26.718 20.8469V6.57404C26.718 3.98577 25.4054 2.66675 22.7673 2.66675H9.23295C6.59488 2.66675 5.28223 3.97333 5.28223 6.57404V25.4883C5.28223 28.0517 6.60763 29.3334 9.19472 29.3334ZM9.30941 27.33C8.02224 27.33 7.33405 26.6581 7.33405 25.4759C7.33405 24.356 8.14969 23.6342 9.42411 23.6342H22.4997C22.6654 23.6342 22.8183 23.6218 22.9458 23.5969C22.3468 24.891 22.4488 26.2599 23.1241 27.33H9.30941ZM8.92708 21.7427C8.53201 21.7427 8.20066 21.4193 8.20066 21.0211V5.3048C8.20066 4.9066 8.53201 4.59551 8.92708 4.59551C9.32215 4.59551 9.66625 4.9066 9.66625 5.3048V21.0211C9.66625 21.4193 9.32215 21.7427 8.92708 21.7427Z"/></svg>Tapa dura</div>
+                <div class="rc-line"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M15.9932 2.90755C15.2193 2.90755 14.6687 3.46721 14.6687 4.25378L14.6687 19.5308L14.7728 22.7677L10.2931 17.7913L6.9593 14.4485C6.72117 14.2066 6.36405 14.0704 6.00679 14.0704C5.2627 14.0704 4.71202 14.6452 4.71202 15.4014C4.71202 15.7645 4.86087 16.0972 5.15856 16.4149L14.9961 26.4281C15.2789 26.7306 15.636 26.897 15.9932 26.897C16.3653 26.897 16.7076 26.7306 16.9904 26.4281L26.8428 16.4149C27.1256 16.0972 27.2745 15.7645 27.2745 15.4014C27.2745 14.6452 26.7387 14.0704 25.9796 14.0704C25.6224 14.0704 25.2801 14.2066 25.0271 14.4485L21.6934 17.7913L17.2136 22.7828L17.3327 19.5308L17.3327 4.25378C17.3327 3.46721 16.782 2.90755 15.9932 2.90755ZM26.0541 26.8667L5.97708 26.8667C5.20313 26.8667 4.66732 27.4264 4.66732 28.2129C4.66732 28.9994 5.20313 29.5742 5.97708 29.5742L26.0541 29.5742C26.8131 29.5742 27.334 28.9994 27.334 28.2129C27.334 27.4264 26.8131 26.8667 26.0541 26.8667Z"/></svg>Impresión premium</div>
+                <div class="rc-line">Desde 39,99 €</div>
+              </div>
+              <span class="radio sel"></span>
+            </div>
+          </div>
+          <div class="radio-card">
+            <div class="rc-inner">
+              <div class="rc-col">
+                <div class="rc-line t"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M12.9023 10.8682C12.4308 10.8682 12.0357 10.4825 12.0357 10.0221C12.0357 9.54919 12.4308 9.17588 12.9023 9.17588H22.7409C23.2125 9.17588 23.6075 9.54919 23.6075 10.0221C23.6075 10.4825 23.2125 10.8682 22.7409 10.8682H12.9023ZM12.9023 14.4022C12.4308 14.4022 12.0357 14.0164 12.0357 13.5436C12.0357 13.0832 12.4308 12.7099 12.9023 12.7099H20.3705C20.8547 12.7099 21.2371 13.0832 21.2371 13.5436C21.2371 14.0164 20.8547 14.4022 20.3705 14.4022H12.9023ZM9.19374 29.5834H25.6975C26.2583 29.5834 26.7171 29.1478 26.7171 28.5879C26.7171 28.1524 26.4113 27.7666 26.0034 27.6297C24.3976 27.0076 24.0663 24.9792 25.6466 23.4238C26.1309 22.951 26.7171 22.3412 26.7171 21.0969V6.82404C26.7171 4.23577 25.4044 2.91675 22.7664 2.91675H9.23197C6.59391 2.91675 5.28125 4.22333 5.28125 6.82404V25.7383C5.28125 28.3017 6.60665 29.5834 9.19374 29.5834ZM9.30843 27.58C8.02127 27.58 7.33308 26.9081 7.33308 25.7259C7.33308 24.606 8.14871 23.8842 9.42313 23.8842H22.4987C22.6645 23.8842 22.8174 23.8718 22.9448 23.8469C22.3458 25.141 22.4478 26.5099 23.1232 27.58H9.30843ZM8.92611 21.9927C8.53104 21.9927 8.19968 21.6693 8.19968 21.2711V5.5548C8.19968 5.1566 8.53104 4.84551 8.92611 4.84551C9.32118 4.84551 9.66528 5.1566 9.66528 5.5548V21.2711C9.66528 21.6693 9.32118 21.9927 8.92611 21.9927Z"/></svg>Tapa blanda</div>
+                <div class="rc-line">Desde 29,99 €</div>
+              </div>
+              <span class="radio"></span>
+            </div>
+          </div>
+          <div class="radio-card">
+            <div class="rc-inner">
+              <div class="rc-col">
+                <div class="rc-line t">Envío exprés</div>
+                <div class="rc-line">Llega en 48 h</div>
+              </div>
+              <span class="toggle on"><span class="knob"></span></span>
+            </div>
+          </div>
+        </div>
+        <div class="pad16" style="margin:20px 0 16px;"><button class="btn v-main">Continuar</button></div>
+      </div>
+
+      <!-- DotsActionSheetSettings -->
+      <div class="sheet">
+        <div class="grabber"></div>
+        <button class="close-btn"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></button>
+        <div class="avatar-100" style="margin-top:24px; background:linear-gradient(140deg,#6B5A48,#4A5B70);"></div>
+        <div class="pad16" style="margin-top:16px;">
+          <p class="settings-title">Familia Lerma</p>
+          <p class="settings-sub">12 miembros · 340 recuerdos</p>
+        </div>
+        <div class="pad16" style="display:flex; flex-direction:column; gap:8px; margin:24px 0 16px;">
+          <button class="sys-btn"><svg viewBox="0 0 32 32" fill="none"><path fill="currentColor" d="M30.6673 15.9303C30.6673 22.6848 25.0648 28.2994 18.2981 28.2994C16.5852 28.2994 14.9456 27.9384 13.4539 27.2865C14.6114 25.9236 15.315 24.1687 15.315 22.2725C15.315 21.634 15.2369 21.0125 15.0813 20.4203C16.0495 20.1876 17.1308 20.0533 18.2981 20.0533C21.9488 20.0533 24.7555 21.3599 25.979 22.8114C27.6182 20.9981 28.6057 18.5869 28.6057 15.9303C28.6057 10.2064 24.0097 5.62256 18.286 5.62256C13.0552 5.62256 8.79683 9.45066 8.11363 14.4826C7.91003 14.4592 7.70254 14.4508 7.49324 14.4508C6.98498 14.4508 6.48713 14.5006 6.00548 14.5989C6.67871 8.44358 11.9804 3.56104 18.286 3.56104C25.0526 3.56104 30.6673 9.16355 30.6673 15.9303ZM22.4575 13.42C22.4575 16.0272 20.6385 18.016 18.2981 17.9918C15.9698 17.9675 14.1508 16.0272 14.1387 13.42C14.1266 10.9704 15.9698 8.94527 18.2981 8.94527C20.6264 8.94527 22.4575 10.9704 22.4575 13.42Z"/><path fill="currentColor" d="M13.6547 22.2701C13.6547 25.6413 10.8291 28.4304 7.49433 28.4304C4.12312 28.4304 1.33398 25.6655 1.33398 22.2701C1.33398 18.8989 4.12312 16.1098 7.49433 16.1098C10.8776 16.1098 13.6547 18.8868 13.6547 22.2701ZM6.7546 19.1535V21.5303H4.37778C3.94122 21.5303 3.63805 21.8214 3.63805 22.2701C3.63805 22.7188 3.94122 23.0098 4.37778 23.0098H6.7546V25.3866C6.7546 25.8353 7.04564 26.1263 7.49433 26.1263C7.94302 26.1263 8.23406 25.8353 8.23406 25.3866V23.0098H10.6109C11.0475 23.0098 11.3507 22.7188 11.3507 22.2701C11.3507 21.8214 11.0475 21.5303 10.6109 21.5303H8.23406V19.1535C8.23406 18.717 7.94302 18.4138 7.49433 18.4138C7.04564 18.4138 6.7546 18.717 6.7546 19.1535Z"/></svg>Invitar miembros</button>
+          <button class="sys-btn"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M24.1624 2.92672C23.4519 3.07821 23.2534 3.22448 21.9526 4.50958L20.7563 5.69542L26.5393 11.4627L27.6676 10.3343C28.8796 9.12233 29.0938 8.84024 29.2871 8.20814C29.3811 7.9156 29.3915 7.75888 29.3759 7.26783C29.3341 6.19169 29.1565 5.8887 27.6937 4.43644C26.5392 3.28717 26.3251 3.13568 25.5937 2.94761C25.1288 2.82746 24.6482 2.82224 24.1624 2.92672Z"/><path fill="currentColor" d="M11.6951 14.7235L4.28231 22.1363L3.4517 25.4483C2.9711 27.3812 2.62109 28.8648 2.62109 29.0111C2.62109 29.3715 2.8196 29.57 3.18006 29.57C3.32633 29.57 4.80993 29.22 6.74279 28.7394L10.0548 27.9088L17.4676 20.496C21.5423 16.4213 24.8751 13.0676 24.8751 13.0362C24.8751 12.9683 19.2228 7.31598 19.1549 7.31598C19.1236 7.31598 15.7698 10.6489 11.6951 14.7235Z"/></svg>Editar grupo</button>
+          <button class="sys-btn destructive"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M12.7426 25.0807C12.326 25.0807 12.0589 24.8293 12.0376 24.4142L11.7171 12.3854C11.7064 11.9811 11.9735 11.7189 12.4008 11.7189C12.796 11.7189 13.0738 11.9702 13.0845 12.3744L13.4263 24.4142C13.437 24.8184 13.1592 25.0807 12.7426 25.0807ZM16.0008 25.0807C15.5841 25.0807 15.2957 24.8184 15.2957 24.4142V12.3854C15.2957 11.9811 15.5841 11.7189 16.0008 11.7189C16.4174 11.7189 16.7165 11.9811 16.7165 12.3854V24.4142C16.7165 24.8184 16.4174 25.0807 16.0008 25.0807ZM19.2696 25.0807C18.853 25.0807 18.5753 24.8184 18.5859 24.4142L18.9171 12.3854C18.9278 11.9702 19.2055 11.7189 19.6008 11.7189C20.028 11.7189 20.2951 11.9811 20.2844 12.3854L19.9639 24.4142C19.9426 24.8293 19.6755 25.0807 19.2696 25.0807ZM11.3112 9.06406H13.0097V6.72603C13.0097 6.10329 13.437 5.69904 14.0779 5.69904H17.9022C18.5432 5.69904 18.9705 6.10329 18.9705 6.72603V9.06406H20.6689V6.61678C20.6689 5.0326 19.6649 4.07117 18.0197 4.07117H13.9604C12.3153 4.07117 11.3112 5.0326 11.3112 6.61678V9.06406ZM6.46134 9.93809H25.5508C25.9889 9.93809 26.3414 9.5557 26.3414 9.10776C26.3414 8.65983 25.9889 8.28836 25.5508 8.28836H6.46134C6.03404 8.28836 5.66016 8.65983 5.66016 9.10776C5.66016 9.56663 6.03404 9.93809 6.46134 9.93809ZM11.1082 28.402H20.904C22.4316 28.402 23.4571 27.3859 23.5319 25.8235L24.2797 9.70866H7.72187L8.48032 25.8345C8.5551 27.3968 9.55924 28.402 11.1082 28.402Z"/></svg>Salir del grupo</button>
+        </div>
+      </div>
+
+      <!-- DotsActionSheetSearch -->
+      <div class="sheet">
+        <div class="pad16" style="margin-top:24px;"><p class="sheet-title-h6" style="max-width:190px; margin:0 auto;">Añade a tus recuerdos</p></div>
+        <div class="pad16" style="margin:16px 0;">
+          <div class="field"><svg class="si" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M2.66602 13.9389C2.66602 19.8859 7.55172 24.7245 13.5565 24.7245C15.9311 24.7245 18.101 23.9677 19.8889 22.6971L26.6033 29.3605C26.9171 29.6713 27.3266 29.82 27.7633 29.82C28.6914 29.82 29.3327 29.1306 29.3327 28.2251C29.3327 27.7926 29.1689 27.4006 28.8823 27.1168L22.2088 20.467C23.6146 18.6559 24.447 16.3988 24.447 13.9389C24.447 7.99197 19.5613 3.15332 13.5565 3.15332C7.55172 3.15332 2.66602 7.99197 2.66602 13.9389ZM4.9997 13.9389C4.9997 9.26246 8.83457 5.46453 13.5565 5.46453C18.2784 5.46453 22.1133 9.26246 22.1133 13.9389C22.1133 18.6153 18.2784 22.4133 13.5565 22.4133C8.83457 22.4133 4.9997 18.6153 4.9997 13.9389Z"/></svg><span class="grow">Buscar personas</span><span class="x-btn"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></span></div>
+        </div>
+        <div class="pad16" style="padding-left:20px; padding-right:20px;">
+          <div class="list-item"><span class="li-icon"><svg viewBox="0 0 32 32" fill="none"><path fill="currentColor" d="M16 15.6505C13.0929 15.6505 10.6371 13.0753 10.6371 9.74339C10.6371 6.49118 13.1062 3.99561 16 3.99561C18.8805 3.99561 21.3628 6.531 21.3495 9.76994C21.3495 13.0753 18.9071 15.6505 16 15.6505ZM24.2699 27.9956H7.73007C5.5398 27.9956 4.78317 27.3319 4.78317 26.1106C4.78317 22.6991 9.12387 18 16 18C22.8894 18 27.2168 22.6991 27.2168 26.1106C27.2168 27.3319 26.4602 27.9956 24.2699 27.9956Z"/></svg></span><span class="li-label">Ana Martín</span></div>
+          <div class="list-item"><span class="li-icon"><svg viewBox="0 0 32 32" fill="none"><path fill="currentColor" d="M16 15.6505C13.0929 15.6505 10.6371 13.0753 10.6371 9.74339C10.6371 6.49118 13.1062 3.99561 16 3.99561C18.8805 3.99561 21.3628 6.531 21.3495 9.76994C21.3495 13.0753 18.9071 15.6505 16 15.6505ZM24.2699 27.9956H7.73007C5.5398 27.9956 4.78317 27.3319 4.78317 26.1106C4.78317 22.6991 9.12387 18 16 18C22.8894 18 27.2168 22.6991 27.2168 26.1106C27.2168 27.3319 26.4602 27.9956 24.2699 27.9956Z"/></svg></span><span class="li-label">Leo García</span></div>
+        </div>
+        <div class="fade-btn"><button class="btn v-main h44">Añadir 2 personas</button></div>
+      </div>
+
+      <!-- DotsActionSheetSpotlight -->
+      <div class="sheet">
+        <div class="grabber"></div>
+        <button class="close-btn" style="top:12px;"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></button>
+        <div class="pad16" style="margin-top:16px;"><div class="spot-img" style="background:linear-gradient(140deg,#465B70,#6E5847,#4E4358);"></div></div>
+        <div class="pad16" style="margin-top:20px;">
+          <p class="sheet-title-h6">Tu Recap está listo</p>
+          <p class="spot-label">Recap de agosto · 54 fotos</p>
+          <p class="spot-desc">Revive los mejores momentos del mes en un vídeo creado para ti.</p>
+        </div>
+        <div class="pad16" style="margin:28px 0 15px;"><button class="btn v-main">Ver mi Recap</button></div>
+      </div>
+    </div>
+
+    <div class="foot">Cubre: input (variant colors: icono XL + DotsColorOptionsRow + DotsTextFieldButton + mainAction) · radioButtons (RadioCardIcons selector/toggle) · settings (DotsSystemButton active/destructive) · search (DotsTextFieldButton search + fade + botón) · spotlight. Variantes input restantes: main, text, date (DotsItemInput), user (avatar 56).</div>
+  </div>
+</body>
+</html>

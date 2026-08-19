@@ -1,0 +1,32 @@
+/* AlbumGroupCard — cuadrada 1:1 (Dart: 135–160 small / 288–340 large), squircle32/52 */
+.ds-album-card { position: relative; overflow: hidden; cursor: pointer; flex: none; box-sizing: border-box; }
+.ds-album-card--small { border-radius: var(--squircle-32); }
+.ds-album-card--large { border-radius: var(--squircle-52); }
+.ds-album-card__img { position: absolute; inset: 0; background-size: cover; background-position: center; }
+/* Placeholder de foto cuando no llega imageSrc (degradado, sin token — como las tarjetas planas) */
+.ds-album-card__img--ph { background-image: linear-gradient(140deg, #96B4CE, #E0C3A4, #A08FB0); }
+/* SoftEdgeBlur bottomEdge σ12 (blurSigma) + degradado negro 0→20% (aprox: backdrop-blur con máscara) */
+.ds-album-card__fade {
+  position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none;
+  background: linear-gradient(180deg, #00000000, #00000033);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  mask-image: linear-gradient(180deg, transparent, #000 60%);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%);
+}
+/* Título — small: bodyDefaultMedium 14/500 pad 16 · large: bodyLargeMedium 16/500 pad 24 */
+.ds-album-card__title {
+  position: absolute; text-align: center; color: var(--label-always-white);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.ds-album-card__title--small { left: 16px; right: 16px; bottom: 16px; font: 500 14px/1.29 var(--font-main); }
+.ds-album-card__title--large { left: 24px; right: 24px; bottom: 24px; font: 500 16px/1.31 var(--font-main); }
+/* CardTag — Ø28, bgContainerPrimary + blur60; color = aproximación del ShaderMask lineal #AE98F3→#3478F6 (sin token) */
+.ds-album-card__tag {
+  position: absolute; width: 28px; height: 28px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--bg-container-primary); color: #7188F5;
+  backdrop-filter: blur(60px); -webkit-backdrop-filter: blur(60px);
+}
+.ds-album-card__tag--small { left: 16px; top: 16px; }
+.ds-album-card__tag--large { left: 24px; top: 24px; }
+.ds-album-card__lock { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--label-always-white); }

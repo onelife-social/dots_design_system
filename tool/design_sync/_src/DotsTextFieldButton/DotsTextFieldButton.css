@@ -1,0 +1,70 @@
+/* DotsTextFieldButton — dots_textfield_button.dart. Pastilla h44 r1000,
+   bg bgContainerSecondaryOnBackground, padding 0 16; clear (DotsCloseButton),
+   suffixIcon 16, endButton con divisor 0.5 textDisabled. */
+.ds-tf-btn { display: block; width: 100%; font-family: var(--font-main); }
+
+.ds-tf-btn__box {
+  display: flex; align-items: center;
+  height: 44px; box-sizing: border-box;
+  border-radius: 1000px; /* DotsBorderRadius.r1000 */
+  background: var(--bg-container-secondary-on-bg);
+  padding: 0 16px;
+  cursor: text;
+}
+.ds-tf-btn__box--no-bg { background: transparent; }
+
+/* icono 20 textTertiary (destructive si isError) */
+.ds-tf-btn__icon { display: inline-flex; flex: none; color: var(--text-tertiary); }
+.ds-tf-btn__icon--error { color: var(--label-destructive); }
+
+/* input: bodyDefaultMedium (14/500, h1.29, ls -0.02); gap 6 tras el icono (SizedBox
+   incondicional en Dart → margin-left siempre) */
+.ds-tf-btn__input {
+  flex: 1 1 auto; min-width: 0; margin-left: 6px;
+  border: 0; outline: none; background: transparent; padding: 0;
+  font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px;
+  color: var(--text-primary);
+  caret-color: var(--label-highlight); /* cursorColor: labelHighlight */
+}
+/* hint: textTertiary (destructive si isError) */
+.ds-tf-btn__input::placeholder { color: var(--text-tertiary); }
+.ds-tf-btn__input--error { color: var(--label-destructive); }
+.ds-tf-btn__input--hint-error::placeholder { color: var(--label-destructive); }
+.ds-tf-btn__input:disabled {
+  color: var(--text-disabled);
+  -webkit-text-fill-color: var(--text-disabled);
+}
+.ds-tf-btn--center .ds-tf-btn__input { text-align: center; }
+
+/* suffixIcon 16 labelHighlight (o suffixIconColor) */
+.ds-tf-btn__suffix { display: inline-flex; flex: none; margin-left: 6px; color: var(--label-highlight); }
+
+/* clear = DotsCloseButton extraSmall (16, icono 10) inverted */
+.ds-tf-btn__clear { display: inline-flex; flex: none; margin-left: 6px; }
+.ds-tf-btn__clear-fallback {
+  display: flex; align-items: center; justify-content: center;
+  width: 16px; height: 16px; padding: 0; border: 0; border-radius: 50%;
+  background: var(--text-quarternary); color: var(--bg-container-primary);
+  cursor: pointer;
+}
+
+/* endButton: divisor 0.5 textDisabled (margins 8/12/16) + bodyDefaultMedium labelHighlight */
+.ds-tf-btn__end-divider {
+  flex: none; width: 0.5px; align-self: stretch;
+  margin: 8px 16px 8px 12px;
+  background: var(--text-disabled);
+}
+.ds-tf-btn__end-btn {
+  flex: none; align-self: stretch;
+  border: 0; background: none; padding: 0; cursor: pointer;
+  font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px;
+  color: var(--label-highlight);
+}
+
+/* errorText: gap 8, padding 0 24, labelDefaultRegular destructive ('* ' si applyErrorAsterisk) */
+.ds-tf-btn__error-text {
+  padding: 8px 24px 0;
+  font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px;
+  color: var(--label-destructive);
+}
+.ds-tf-btn--center .ds-tf-btn__error-text { text-align: center; }

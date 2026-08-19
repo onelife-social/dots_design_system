@@ -1,0 +1,49 @@
+<!-- @dsCard group="feedback" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsEmptyStateCard;
+    // Imagen placeholder embebida (data URI) para la variante image
+    var IMG = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" width="140" height="100"><rect width="140" height="100" rx="16" fill="%23E2E2E2"/><circle cx="46" cy="40" r="12" fill="%23BABABA"/><path d="M24 78l28-24 22 18 20-14 22 20v6a10 10 0 0 1-10 10H34a10 10 0 0 1-10-10z" fill="%23BABABA"/></svg>'
+    );
+    var variants = [
+      ['icon', h(C, { variant: 'icon', icon: 'ic-search', title: 'Sin resultados', description: 'Prueba con otra búsqueda o cambia los filtros.' })],
+      ['image + button', h(C, {
+        variant: 'image', image: IMG, imageWidth: 140,
+        title: 'Aún no hay recuerdos', description: 'Crea tu primer recuerdo para empezar tu historia.',
+        button: h(NS.DotsMainButton, { label: 'Crear recuerdo', variant: 'main', size: 'large', adaptPaddingForText: true, expand: false })
+      })],
+      ['image + extraSpaceAfterImage', h(C, { variant: 'image', image: IMG, imageWidth: 100, extraSpaceAfterImage: 12, title: 'Álbum vacío', description: 'Añade fotos para llenar este álbum.' })],
+      ['custom colors', h(C, { variant: 'icon', icon: 'ic-alert-circle', title: 'Algo salió mal', description: 'Inténtalo de nuevo en unos minutos.', titleColor: 'var(--label-destructive)', descriptionColor: 'var(--text-tertiary)' })],
+      ['descriptionSpans', h(C, {
+        variant: 'icon', icon: 'ic-search', title: 'Sin resultados',
+        description: 'Prueba con otros filtros o borra la búsqueda.',
+        descriptionSpans: [ 'Prueba con otros filtros o ', h('strong', { key: 'b', style: { color: 'var(--label-highlight)', fontWeight: 600 } }, 'borra la búsqueda'), '.' ]
+      })],
+      ['dark', h(C, { variant: 'icon', icon: 'ic-search', title: 'Sin resultados', description: 'Prueba con otra búsqueda o cambia los filtros.' }), 'dark']
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div');
+      if (v[2] === 'dark') { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '6px'; }
+      cell.appendChild(m); g.appendChild(cell);
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

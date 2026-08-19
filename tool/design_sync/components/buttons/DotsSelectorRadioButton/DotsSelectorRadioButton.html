@@ -1,0 +1,60 @@
+<!-- @dsCard group="buttons" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da;
+    var C = NS.DotsSelectorRadioButton, L = NS.DotsSelectorRadioButtonLabel, S = NS.DotsSettingItemRadioBtn;
+    function stack() {
+      return h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
+        Array.prototype.slice.call(arguments));
+    }
+    var variants = [
+      ['DotsSelectorRadioButton — selected / unselected', stack(
+        h(C, { isSelected: true, title: 'Álbum de verano', details1: 'Hace 2 semanas', details2: '12 mar 2026' }),
+        h(C, { isSelected: false, title: 'Álbum de invierno', details1: 'Hace 3 meses', details2: '3 dic 2025' }))],
+      ['Label — free (selected) / acquired (no selectable)', stack(
+        h(L, { isSelected: true, isSelectable: true, variant: 'free', tagText: 'GRATIS',
+          title: 'Plan básico', details1: 'Hasta 100 recuerdos', details2: 'Sin coste, para siempre' }),
+        h(L, { isSelected: false, isSelectable: false, variant: 'acquired', tagText: 'ADQUIRIDO',
+          title: 'Pack familiar', details1: 'Comparte con 5 personas', details2: 'Comprado el 3 dic 2025' }))],
+      ['Label — premium / premiumPlus', stack(
+        h(L, { isSelected: false, isSelectable: true, variant: 'premium', tagText: 'PREMIUM',
+          title: 'Plan Premium', details1: 'Recuerdos ilimitados', details2: '99€/año' }),
+        h(L, { isSelected: false, isSelectable: true, variant: 'premiumPlus', tagText: 'PREMIUM+',
+          title: 'Plan Premium+', details1: 'Todo, con vídeo en 4K', details2: '149€/año' }))],
+      ['DotsSettingItemRadioBtn', stack(
+        h(S, { isSelected: true, leadingLabel: 'Calidad alta', trailingLabel: 'Recomendado' }),
+        h(S, { isSelected: false, leadingLabel: 'Calidad original', trailingLabel: 'Más espacio' }),
+        h(S, { isSelected: false, leadingLabel: 'Sin trailing' }))],
+      ['dark — tarjeta + setting item', stack(
+        h(C, { isSelected: true, title: 'Álbum de verano', details1: 'Hace 2 semanas', details2: '12 mar 2026' }),
+        h(S, { isSelected: true, leadingLabel: 'Calidad alta', trailingLabel: 'Recomendado' })), 'dark']
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2] === 'dark') {
+        m.setAttribute('data-theme', 'dark');
+        m.style.background = 'var(--bg-base)';
+        m.style.padding = '12px';
+        m.style.borderRadius = '8px';
+      }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

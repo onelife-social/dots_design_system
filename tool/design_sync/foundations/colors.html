@@ -1,0 +1,67 @@
+<!-- @dsCard group="Colors" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · Colores semánticos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', -apple-system, sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; color: #000; }
+  .dark  { background: #191919; color: #FFF; }
+  h2 { font-size: 18px; font-weight: 600; margin: 0 0 4px; }
+  .sub { font-size: 11px; opacity: .5; margin-bottom: 16px; }
+  .row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .sw { width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0; box-shadow: inset 0 0 0 1px rgba(128,128,128,.25); }
+  .name { font-size: 12px; font-weight: 500; }
+  .hex { font-size: 11px; opacity: .55; font-family: ui-monospace, monospace; }
+  .section { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; opacity: .45; margin: 18px 0 8px; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>Light — DotsColors.light</h2>
+    <div class="sub">lib/src/theme/colors/dots_colors.dart</div>
+    <div class="section">Fondos</div>
+    <div class="row"><div class="sw" style="background:#F8F7F5"></div><div><div class="name">bgBase</div><div class="hex">#F8F7F5</div></div></div>
+    <div class="row"><div class="sw" style="background:#E2E2E2B3"></div><div><div class="name">bgContainerSecondary</div><div class="hex">#E2E2E2 70%</div></div></div>
+    <div class="row"><div class="sw" style="background:#FFFFFF"></div><div><div class="name">bgStrong</div><div class="hex">#FFFFFF</div></div></div>
+    <div class="section">Texto</div>
+    <div class="row"><div class="sw" style="background:#000"></div><div><div class="name">textPrimary</div><div class="hex">#000000</div></div></div>
+    <div class="row"><div class="sw" style="background:#000000AB"></div><div><div class="name">textSecondary</div><div class="hex">#000000 67%</div></div></div>
+    <div class="row"><div class="sw" style="background:#0000008C"></div><div><div class="name">textTertiary</div><div class="hex">#000000 55%</div></div></div>
+    <div class="row"><div class="sw" style="background:#00000033"></div><div><div class="name">textDisabled</div><div class="hex">#000000 20%</div></div></div>
+    <div class="section">Acentos y estados</div>
+    <div class="row"><div class="sw" style="background:#0072EF"></div><div><div class="name">labelHighlight</div><div class="hex">#0072EF</div></div></div>
+    <div class="row"><div class="sw" style="background:#ED2B32"></div><div><div class="name">labelDestructive</div><div class="hex">#ED2B32</div></div></div>
+    <div class="row"><div class="sw" style="background:#28CB55"></div><div><div class="name">labelActive</div><div class="hex">#28CB55</div></div></div>
+    <div class="row"><div class="sw" style="background:#EF9148"></div><div><div class="name">labelWarning</div><div class="hex">#EF9148</div></div></div>
+    <div class="section">Premium</div>
+    <div class="row"><div class="sw" style="background:linear-gradient(135deg,#C17FFA,#8C84F7)"></div><div><div class="name">textPremium</div><div class="hex">#C17FFA → #8C84F7</div></div></div>
+    <div class="row"><div class="sw" style="background:linear-gradient(135deg,#DDA61C,#A37F28)"></div><div><div class="name">textPremiumPlus</div><div class="hex">#DDA61C → #A37F28</div></div></div>
+  </div>
+  <div class="theme dark">
+    <h2>Dark — DotsColors.dark</h2>
+    <div class="sub">Mismos tokens, valores dark</div>
+    <div class="section">Fondos</div>
+    <div class="row"><div class="sw" style="background:#191919"></div><div><div class="name">bgBase</div><div class="hex">#191919</div></div></div>
+    <div class="row"><div class="sw" style="background:#282828B3"></div><div><div class="name">bgContainerSecondary</div><div class="hex">#282828 70%</div></div></div>
+    <div class="row"><div class="sw" style="background:#3E3E3E"></div><div><div class="name">bgStrong</div><div class="hex">#3E3E3E</div></div></div>
+    <div class="section">Texto</div>
+    <div class="row"><div class="sw" style="background:#FFF"></div><div><div class="name">textPrimary</div><div class="hex">#FFFFFF</div></div></div>
+    <div class="row"><div class="sw" style="background:#FFFFFFBF"></div><div><div class="name">textSecondary</div><div class="hex">#FFFFFF 75%</div></div></div>
+    <div class="row"><div class="sw" style="background:#FFFFFFA6"></div><div><div class="name">textTertiary</div><div class="hex">#FFFFFF 65%</div></div></div>
+    <div class="row"><div class="sw" style="background:#FFFFFF33"></div><div><div class="name">textDisabled</div><div class="hex">#FFFFFF 20%</div></div></div>
+    <div class="section">Acentos y estados</div>
+    <div class="row"><div class="sw" style="background:#0A84FF"></div><div><div class="name">labelHighlight</div><div class="hex">#0A84FF</div></div></div>
+    <div class="row"><div class="sw" style="background:#ED2B32"></div><div><div class="name">labelDestructive</div><div class="hex">#ED2B32</div></div></div>
+    <div class="row"><div class="sw" style="background:#3BD866"></div><div><div class="name">labelActive</div><div class="hex">#3BD866</div></div></div>
+    <div class="row"><div class="sw" style="background:#EF9148"></div><div><div class="name">labelWarning</div><div class="hex">#EF9148</div></div></div>
+    <div class="section">Premium</div>
+    <div class="row"><div class="sw" style="background:linear-gradient(135deg,#C17FFA,#8C84F7)"></div><div><div class="name">textPremium</div><div class="hex">#C17FFA → #8C84F7</div></div></div>
+    <div class="row"><div class="sw" style="background:linear-gradient(135deg,#E9C058,#B48D2D)"></div><div><div class="name">textPremiumPlus</div><div class="hex">#E9C058 → #B48D2D</div></div></div>
+  </div>
+</body>
+</html>

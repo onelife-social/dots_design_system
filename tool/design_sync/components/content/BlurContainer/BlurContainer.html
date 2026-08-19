@@ -1,0 +1,74 @@
+<!-- @dsCard group="content" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+    .scene{width:118px;height:72px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#A9C3DB,#E4D3BE);
+           display:flex;align-items:center;justify-content:center;color:#FFF;font:600 12px 'Inter',sans-serif}
+    .scene--tall{width:160px;height:120px;align-items:flex-end;padding-bottom:10px;box-sizing:border-box}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.BlurContainer, G = C.GradientBlur;
+    function row() {
+      return h('div', { style: { display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'flex-start' } },
+        Array.prototype.slice.call(arguments));
+    }
+    function scene(t, tall) { return h('div', { className: 'scene' + (tall ? ' scene--tall' : '') }, t); }
+    var variants = [
+      ['BlurContainer · sigma 0 / 1.5 / 3 / 5', row(
+        h(C, { sigma: 0 }, scene('sigma 0')),
+        h(C, { sigma: 1.5 }, scene('sigma 1.5')),
+        h(C, { sigma: 3 }, scene('sigma 3')),
+        h(C, { sigma: 5 }, scene('sigma 5'))
+      )],
+      ['GradientBlur · fade inferior (home, nombres de álbum)',
+        h(G, {
+          sigma: 8,
+          values: [0, 1], stops: [0.35, 0.8],
+          start: 'topCenter', end: 'bottomCenter',
+          tintColor: 'rgba(0,0,0,0.2)',
+        }, scene('Verano 2024', true))],
+      ['GradientBlur · fade superior + tint', row(
+        h(G, {
+          sigma: 6,
+          values: [1, 0], stops: [0, 0.6],
+          start: 'topCenter', end: 'bottomCenter',
+          tintColor: 'rgba(0,0,0,0.15)',
+        }, scene('top blur', true)),
+        h(G, {
+          sigma: 6,
+          values: [0, 1],
+          start: 'centerLeft', end: 'centerRight',
+        }, scene('→ lateral', true))
+      )],
+      ['dark', row(
+        h(C, { sigma: 3 }, scene('sigma 3')),
+        h(G, { sigma: 8, values: [0, 1], stops: [0.35, 0.8], start: 'topCenter', end: 'bottomCenter' },
+          scene('gradiente', true))
+      ), true]
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2]) {
+        m.setAttribute('data-theme', 'dark');
+        m.style.background = 'var(--bg-base)';
+        m.style.padding = '12px';
+        m.style.borderRadius = '6px';
+      }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

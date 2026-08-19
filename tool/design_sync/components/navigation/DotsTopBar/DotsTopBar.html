@@ -1,0 +1,61 @@
+<!-- @dsCard group="navigation" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+    /* Marco tipo teléfono para ver el bar a ancho completo */
+    .phone{max-width:340px;border-radius:14px;overflow:hidden;outline:1px solid #BCBCBC7F;background:var(--bg-base)}
+    [data-theme="dark"] .phone{outline-color:#BCBCBC33}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsTopBar;
+    var AVATAR = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="%23E8B6A0"/><stop offset="1" stop-color="%23B8C6DB"/></linearGradient></defs><rect width="40" height="40" fill="url(%23g)"/></svg>';
+    function phone(el) { return h('div', { className: 'phone' }, el); }
+    function noop() {}
+    var rightOptions = h(NS.DotsIconButton, { icon: 'ic-options', size: 'medium', variant: 'solid', onClick: noop });
+    var variants = [
+      ['title · onTapBack + rightIcon · showBottomBorder', phone(h(C, {
+        title: 'Recuerdos', subtitle: '12 dots nuevos',
+        onBack: noop, rightIcon: rightOptions, showBottomBorder: true
+      }))],
+      ['title · imageTitle + showCircleBackButton', phone(h(C, {
+        title: 'Familia García', imageTitle: AVATAR,
+        onBack: noop, showCircleBackButton: true
+      }))],
+      ['cta · ctaLabel «Guardar»', phone(h(C, {
+        variant: 'cta', title: 'Editar dot', onBack: noop,
+        ctaLabel: 'Guardar', onCtaClick: noop
+      }))],
+      ['cta · ctaEnabled false', phone(h(C, {
+        variant: 'cta', title: 'Editar dot', onBack: noop,
+        ctaLabel: 'Guardar', onCtaClick: noop, ctaEnabled: false
+      }))],
+      ['widget · child custom', phone(h(C, {
+        variant: 'widget', onBack: noop,
+      }, h('span', { style: { font: '500 14px var(--font-main)', color: 'var(--text-secondary)' } }, 'Slot central (child)')))],
+      ['onlyStatusBar · h50', phone(h(C, { variant: 'onlyStatusBar' }))],
+      ['dark · title + back + rightIcon + border', phone(h(C, {
+        title: 'Recuerdos', subtitle: '12 dots nuevos',
+        onBack: noop, rightIcon: rightOptions, showBottomBorder: true
+      })), true]
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2]) { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '8px'; }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

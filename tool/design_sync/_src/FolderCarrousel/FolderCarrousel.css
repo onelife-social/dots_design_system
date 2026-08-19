@@ -1,0 +1,40 @@
+/* FolderCarrousel — carrousels/folder_carrousel.dart · scroll horizontal, pad 0 16 */
+.ds-folder-carrousel {
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 0 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* el SingleChildScrollView no muestra barra */
+}
+.ds-folder-carrousel::-webkit-scrollbar {
+  display: none;
+}
+/* Row sin gap: el espaciado (4px por lado) lo pone el propio BtnFolder */
+.ds-folder-carrousel > * {
+  flex: none;
+}
+
+/* Fallback (solo si BtnFolder no está en el bundle) — píldora h44 r1000 */
+.ds-folder-carrousel__fallback {
+  height: 44px;
+  margin: 4px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  border-radius: 1000px;
+  white-space: nowrap;
+  cursor: pointer;
+  background: var(--bg-container-secondary-on-bg);
+  color: var(--text-quarternary);
+  font: 500 14px/1.29 var(--font-main);
+}
+.ds-folder-carrousel__fallback.is-selected {
+  background: var(--bg-strong);
+  color: var(--text-primary);
+  box-shadow: 1px 4px 4px #00000014; /* shadowFolder — sin token */
+}

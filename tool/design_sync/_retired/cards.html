@@ -1,0 +1,294 @@
+<!-- @dsCard group="Cards" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · Cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin: 0 0 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .label { font-size: 10px; opacity: .45; margin: 16px 0 8px; font-family: ui-monospace, monospace; }
+  .light .label { color: #000; } .dark .label { color: #FFF; }
+  .row { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+  .foot { font-size: 10px; opacity: .45; margin-top: 20px; font-family: ui-monospace, monospace; }
+  .light .foot { color: #000; } .dark .foot { color: #FFF; }
+
+  /* ---- CreateCard — 164×112, r24 ---- */
+  .create-card { position: relative; width: 164px; height: 112px; border-radius: 24px; box-sizing: border-box; }
+  .create-card.v-label {
+    background: linear-gradient(90deg, #77D98A, #28AB87);
+    padding: 12px 14px; display: flex; flex-direction: column; justify-content: space-between; color: #FFF;
+  }
+  .create-card.v-label .ttl { font-size: 16px; font-weight: 500; line-height: 1.31; }
+  .create-card.v-label svg.big { width: 32px; height: 32px; }
+  .create-card .add-btn {
+    position: absolute; right: 11px; top: 11px; width: 28px; height: 28px; border-radius: 50%;
+    background: #F3F3F366; display: flex; align-items: center; justify-content: center; color: #FFF;
+  }
+  .create-card .add-btn svg { width: 14px; height: 14px; }
+  .create-card.v-button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+  .light .create-card.v-button { background: #8C8C8C1A; color: #000; }
+  .dark .create-card.v-button { background: #75757533; color: #FFF; }
+  .create-card.v-button .circle { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .light .create-card.v-button .circle { background: #8C8C8C1A; }
+  .dark .create-card.v-button .circle { background: #75757533; }
+  .create-card.v-button svg { width: 16px; height: 16px; }
+  .create-card.v-button .lbl { font-size: 13px; font-weight: 400; }
+
+  /* ---- MemoryCard — 68w, card 60.39×80 r15, borde 67.53×87.39 r18 w1.45 ---- */
+  .memory-card { width: 68px; display: flex; flex-direction: column; align-items: center; }
+  .mc-border { width: 67.53px; height: 87.39px; border-radius: 18px; padding: 1.45px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; }
+  .mc-border.memory { background: linear-gradient(180deg, #77D98A, #28AB87); }
+  .mc-border.recap { background: conic-gradient(#EF5FC1, #C982F7, #15ABF3, #B295B6, #F5784D, #EF9C5F, #F44E69, #EF5FC1); }
+  .mc-inner { width: 100%; height: 100%; border-radius: 16.5px; display: flex; align-items: center; justify-content: center; }
+  .light .mc-inner { background: #F8F7F5; } .dark .mc-inner { background: #191919; }
+  .mc-img { width: 60.39px; height: 80px; border-radius: 15px; background: linear-gradient(150deg, #A9C0D8, #E3C9AE); }
+  .memory-card .name { margin-top: 8px; font-size: 13px; font-weight: 500; line-height: 1.31; max-width: 68px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .light .memory-card .name { color: #000000AB; } .dark .memory-card .name { color: #FFFFFFBF; }
+
+  /* ---- AlbumGroupCard small — 135-160, squircle32, pad 16 ---- */
+  .album-card {
+    position: relative; width: 148px; height: 148px; border-radius: 32px; overflow: hidden;
+    background: linear-gradient(140deg, #96B4CE, #E0C3A4, #A08FB0);
+  }
+  .album-card .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 60px; background: linear-gradient(180deg, #00000000, #00000033); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); mask-image: linear-gradient(180deg, transparent, #000 60%); -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%); }
+  .album-card .ttl { position: absolute; left: 16px; right: 16px; bottom: 16px; text-align: center; color: #FFF; font-size: 14px; font-weight: 500; line-height: 1.29; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .card-tag {
+    position: absolute; left: 16px; top: 16px; width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(60px); -webkit-backdrop-filter: blur(60px);
+  }
+  .light .card-tag { background: #F8F7F5D9; } .dark .card-tag { background: #191919D9; }
+  .card-tag svg { width: 20px; height: 20px; }
+  .album-card .lock { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .album-card .lock svg { width: 32px; height: 32px; }
+
+  /* ---- EventGroupCard active — 288, squircle52, pad 24 ---- */
+  .event-card {
+    position: relative; width: 288px; height: 288px; border-radius: 52px; overflow: hidden;
+    background: linear-gradient(150deg, #7E9BB8, #D8B294, #77958E);
+  }
+  .event-card .top-grad { position: absolute; top: 0; left: 0; right: 0; height: 94px; background: linear-gradient(180deg, #3C3C3C80, transparent); }
+  .event-card .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 110px; background: linear-gradient(180deg, #00000000, #00000033); }
+  .event-card .head { position: absolute; top: 24px; left: 52px; right: 52px; text-align: center; color: #FFF; }
+  .event-card .head .ttl { font-size: 16px; font-weight: 700; line-height: 1.31; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .event-card .head .sec { margin-top: 4px; font-size: 11px; font-weight: 400; color: #FFFFFFB2; display: flex; align-items: center; justify-content: center; gap: 3px; }
+  .event-card .head .dot { width: 3px; height: 3px; border-radius: 50%; background: #FFFFFFB2; }
+  .event-menu {
+    position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; padding: 10px; border-radius: 20px;
+    backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
+  }
+  .light .event-menu { background: #C8C8C866; } /* bgBtnDisabled */
+  .dark .event-menu { background: #C8C8C819; }
+  .event-menu .act { min-width: 46px; display: flex; flex-direction: column; align-items: center; color: #FFF; font-size: 11px; font-weight: 400; }
+  .event-menu .act svg { width: 20px; height: 20px; }
+  .event-menu .sep { width: 0.5px; height: 22.78px; background: #0000001A; margin: 0 6px; }
+
+  /* ---- RecapCard — aspect 4/5, squircle52, overlay negro .3, borde 2 borderButton ---- */
+  .recap-card {
+    position: relative; width: 220px; height: 275px; border-radius: 52px; overflow: hidden;
+    background: linear-gradient(160deg, #8FA8C8, #D9B8A5, #8E7F9E);
+    box-shadow: 0 6px 20px #0000001A; box-sizing: border-box;
+  }
+  .recap-card .overlay { position: absolute; inset: 0; background: #0000004D; border-radius: 52px; box-sizing: border-box; }
+  .light .recap-card .overlay { border: 2px solid #BCBCBC7F; }
+  .dark .recap-card .overlay { border: 2px solid #BCBCBC33; }
+  .recap-card .inner { position: absolute; inset: 24px; }
+  .recap-card .ttl { display: flex; align-items: center; gap: 4px; color: #FFF; font-size: 14px; font-weight: 500; }
+  .recap-card .ttl svg { width: 16px; height: 16px; }
+  .badge-premium {
+    position: absolute; top: 0; right: 0; padding: 4px 10px; border-radius: 20px; color: #FFF;
+    font-size: 11px; font-weight: 600; background: linear-gradient(135deg, #C88EFF, #8B84F7);
+  }
+  .recap-card .cta {
+    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    height: 44px; padding: 0 20px; border-radius: 44px; border: none; white-space: nowrap;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #FFF;
+    backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
+  }
+  .light .recap-card .cta { background: #0072EF; } .dark .recap-card .cta { background: #0A84FF; }
+
+  /* ---- DotBookFeatureCard — w185, pad 20, bg bgContainerSecondary, r32 ---- */
+  .feature-card { width: 185px; box-sizing: border-box; padding: 20px; border-radius: 32px; display: flex; flex-direction: column; gap: 12px; }
+  .light .feature-card { background: #E2E2E2B3; } .dark .feature-card { background: #282828B3; }
+  .feature-card .img { height: 80px; border-radius: 24px; background: linear-gradient(140deg, #C9AE8F, #97B3C4); }
+  .feature-card .ttl { font-size: 18px; font-weight: 600; line-height: 1.28; }
+  .light .feature-card .ttl { color: #000; } .dark .feature-card .ttl { color: #FFF; }
+  .feature-card .desc { font-size: 14px; font-weight: 400; line-height: 1.29; }
+  .light .feature-card .desc { color: #0000008C; } .dark .feature-card .desc { color: #FFFFFFA6; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>Cards — Light</h2>
+    <div class="sub">cards/ · create_card · memory_card · group_cards · recap · dot_book_cards</div>
+
+    <div class="label">CreateCard — variant label (gradiente) / button · 164×112 · r24</div>
+    <div class="row">
+      <div class="create-card v-label">
+        <svg class="big" viewBox="0 0 32 33" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M28 10.6066V23.0443C28 25.141 26.9415 26.1893 24.8041 26.1893H7.19593C5.0687 26.1893 4 25.141 4 23.0443V10.6066C4 8.50994 5.0687 7.45142 7.19593 7.45142H24.8041C26.9415 7.45142 28 8.50994 28 10.6066ZM18.4224 17.0799L13.5573 21.3955L11.6132 19.6448C11.1654 19.2275 10.6463 19.0239 10.1476 19.0239C9.69975 19.0239 9.2112 19.2275 8.76337 19.6244L5.63868 22.3521V22.9731C5.63868 23.9705 6.22901 24.5608 7.21628 24.5608H24.7939C25.7608 24.5608 26.3613 23.9705 26.3613 22.9934V21.4259L21.6794 17.0901C21.201 16.6422 20.6209 16.4285 20.0611 16.4285C19.4809 16.4285 18.9211 16.6321 18.4224 17.0799ZM9.11959 14.5659C9.11959 15.9502 10.2494 17.0799 11.6336 17.0799C13.0076 17.0799 14.1374 15.9502 14.1374 14.5659C14.1374 13.1919 13.0076 12.0519 11.6336 12.0519C10.2494 12.0519 9.11959 13.1919 9.11959 14.5659Z"/></svg>
+        <span class="ttl">Primer viaje juntos</span>
+        <span class="add-btn"><svg viewBox="0 0 32 33" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4.47986 18.0504H14.1855V27.7561C14.1855 28.7426 14.997 29.5699 15.9993 29.5699C17.0017 29.5699 17.8132 28.7426 17.8132 27.7561V18.0504H27.5188C28.5053 18.0504 29.3327 17.239 29.3327 16.2366C29.3327 15.2342 28.5053 14.4227 27.5188 14.4227H17.8132V4.7171C17.8132 3.73063 17.0017 2.90326 15.9993 2.90326C14.997 2.90326 14.1855 3.73063 14.1855 4.7171V14.4227H4.47986C3.49338 14.4227 2.66602 15.2342 2.66602 16.2366C2.66602 17.239 3.49338 18.0504 4.47986 18.0504Z"/></svg></span>
+      </div>
+      <div class="create-card v-button">
+        <span class="circle"><svg viewBox="0 0 32 33" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4.47986 18.0504H14.1855V27.7561C14.1855 28.7426 14.997 29.5699 15.9993 29.5699C17.0017 29.5699 17.8132 28.7426 17.8132 27.7561V18.0504H27.5188C28.5053 18.0504 29.3327 17.239 29.3327 16.2366C29.3327 15.2342 28.5053 14.4227 27.5188 14.4227H17.8132V4.7171C17.8132 3.73063 17.0017 2.90326 15.9993 2.90326C14.997 2.90326 14.1855 3.73063 14.1855 4.7171V14.4227H4.47986C3.49338 14.4227 2.66602 15.2342 2.66602 16.2366C2.66602 17.239 3.49338 18.0504 4.47986 18.0504Z"/></svg></span>
+        <span class="lbl">Crear recuerdo</span>
+      </div>
+    </div>
+
+    <div class="label">MemoryCard — variant memory (borde verde) / recap (borde sweep) · 68w</div>
+    <div class="row">
+      <div class="memory-card">
+        <div class="mc-border memory"><div class="mc-inner"><div class="mc-img"></div></div></div>
+        <div class="name">Familia</div>
+      </div>
+      <div class="memory-card">
+        <div class="mc-border recap"><div class="mc-inner"><div class="mc-img" style="background:linear-gradient(150deg,#D8A9C0,#A9BED8);"></div></div></div>
+        <div class="name">Verano</div>
+      </div>
+    </div>
+
+    <div class="label">AlbumGroupCard — small (135–160, squircle32) · tagIconData / isBlocked</div>
+    <div class="row">
+      <div class="album-card">
+        <span class="card-tag"><svg viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="tagGradL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#AE98F3"/><stop offset="1" stop-color="#3478F6"/></linearGradient></defs><path fill="url(#tagGradL)" d="M16.5266 29.9471C16.9671 29.9471 17.2891 29.6249 17.3738 29.1672C18.5767 19.894 19.8811 18.4701 29.0637 17.453C29.5381 17.402 29.86 17.063 29.86 16.6052C29.86 16.1644 29.5381 15.8255 29.0637 15.7746C19.8811 14.7575 18.5767 13.3334 17.3738 4.04329C17.2891 3.58556 16.9671 3.28043 16.5266 3.28043C16.0861 3.28043 15.7643 3.58556 15.6965 4.04329C14.4937 13.3334 13.1721 14.7575 4.00657 15.7746C3.51525 15.8255 3.19336 16.1644 3.19336 16.6052C3.19336 17.063 3.51525 17.402 4.00657 17.453C13.1552 18.6566 14.4259 19.894 15.6965 29.1672C15.7643 29.6249 16.0861 29.9471 16.5266 29.9471Z"/></svg></span>
+        <div class="fade"></div>
+        <div class="ttl">Álbum del abuelo</div>
+      </div>
+      <div class="album-card" style="filter:saturate(.8);">
+        <div class="fade"></div>
+        <div class="lock"><svg viewBox="0 0 32 32" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M9.44427 29.3334H22.5564C24.6629 29.3334 25.7807 28.187 25.7807 25.9228V16.0493C25.7807 13.7851 24.6629 12.653 22.5564 12.653H9.44427C7.33773 12.653 6.21997 13.7851 6.21997 16.0493V25.9228C6.21997 28.187 7.33773 29.3334 9.44427 29.3334ZM8.72775 13.7565H11.0063V10.3621C11.0063 6.75085 13.3134 4.83061 15.9932 4.83061C18.6729 4.83061 21.0088 6.75085 21.0088 10.3621V13.7565H23.2729V10.6773C23.2729 5.28917 19.7477 2.66675 15.9932 2.66675C12.253 2.66675 8.72775 5.28917 8.72775 10.6773V13.7565Z"/></svg></div>
+        <div class="ttl">Bloqueado</div>
+      </div>
+    </div>
+
+    <div class="label">EventGroupCard — active (288–340, squircle52) · menú de acciones con blur</div>
+    <div class="event-card">
+      <div class="top-grad"></div>
+      <div class="fade"></div>
+      <div class="head">
+        <div class="ttl">Boda de Ana y Leo</div>
+        <div class="sec"><span class="dot"></span>34 participantes</div>
+      </div>
+      <div class="event-menu">
+        <div class="act"><svg viewBox="0 0 32 33" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M6.07536 27.1731H25.9234C28.1818 27.1731 29.3327 26.0439 29.3327 23.8071V12.4391C29.3327 10.2024 28.1818 9.08401 25.9234 9.08401H22.8181C21.9603 9.08401 21.6997 8.91029 21.2111 8.3674L20.3425 7.3902C19.7996 6.79302 19.2458 6.46729 18.1275 6.46729H13.7952C12.6769 6.46729 12.1231 6.79302 11.5803 7.3902L10.7116 8.3674C10.223 8.89943 9.95159 9.08401 9.10468 9.08401H6.07536C3.80608 9.08401 2.66602 10.2024 2.66602 12.4391V23.8071C2.66602 26.0439 3.80608 27.1731 6.07536 27.1731ZM15.9993 23.97C12.7094 23.97 10.071 21.3425 10.071 18.0309C10.071 14.7301 12.7094 12.1025 15.9993 12.1025C19.2893 12.1025 21.9168 14.7301 21.9168 18.0309C21.9168 21.3425 19.2784 23.97 15.9993 23.97ZM15.9993 22.3197C18.3664 22.3197 20.2773 20.4195 20.2773 18.0309C20.2773 15.653 18.3664 13.742 15.9993 13.742C13.6323 13.742 11.7105 15.653 11.7105 18.0309C11.7105 20.4195 13.6433 22.3197 15.9993 22.3197ZM22.6443 14.0352C22.6443 13.2968 23.2958 12.6454 24.0558 12.6454C24.805 12.6454 25.4456 13.2968 25.4456 14.0352C25.4456 14.8061 24.805 15.425 24.0558 15.4358C23.2958 15.4358 22.6443 14.8169 22.6443 14.0352Z"/></svg>Fotos</div>
+        <div class="sep"></div>
+        <div class="act"><svg viewBox="0 0 32 32" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M30.6673 15.9303C30.6673 22.6848 25.0648 28.2994 18.2981 28.2994C16.5852 28.2994 14.9456 27.9384 13.4539 27.2865C14.6114 25.9236 15.315 24.1687 15.315 22.2725C15.315 21.634 15.2369 21.0125 15.0813 20.4203C16.0495 20.1876 17.1308 20.0533 18.2981 20.0533C21.9488 20.0533 24.7555 21.3599 25.979 22.8114C27.6182 20.9981 28.6057 18.5869 28.6057 15.9303C28.6057 10.2064 24.0097 5.62256 18.286 5.62256C13.0552 5.62256 8.79683 9.45066 8.11363 14.4826C7.91003 14.4592 7.70254 14.4508 7.49324 14.4508C6.98498 14.4508 6.48713 14.5006 6.00548 14.5989C6.67871 8.44358 11.9804 3.56104 18.286 3.56104C25.0526 3.56104 30.6673 9.16355 30.6673 15.9303ZM22.4575 13.42C22.4575 16.0272 20.6385 18.016 18.2981 17.9918C15.9698 17.9675 14.1508 16.0272 14.1387 13.42C14.1266 10.9704 15.9698 8.94527 18.2981 8.94527C20.6264 8.94527 22.4575 10.9704 22.4575 13.42Z"/><path d="M13.6547 22.2701C13.6547 25.6413 10.8291 28.4304 7.49433 28.4304C4.12312 28.4304 1.33398 25.6655 1.33398 22.2701C1.33398 18.8989 4.12312 16.1098 7.49433 16.1098C10.8776 16.1098 13.6547 18.8868 13.6547 22.2701ZM6.7546 19.1535V21.5303H4.37778C3.94122 21.5303 3.63805 21.8214 3.63805 22.2701C3.63805 22.7188 3.94122 23.0098 4.37778 23.0098H6.7546V25.3866C6.7546 25.8353 7.04564 26.1263 7.49433 26.1263C7.94302 26.1263 8.23406 25.8353 8.23406 25.3866V23.0098H10.6109C11.0475 23.0098 11.3507 22.7188 11.3507 22.2701C11.3507 21.8214 11.0475 21.5303 10.6109 21.5303H8.23406V19.1535C8.23406 18.717 7.94302 18.4138 7.49433 18.4138C7.04564 18.4138 6.7546 18.717 6.7546 19.1535Z"/></svg>Invitar</div>
+        <div class="sep"></div>
+        <div class="act"><svg viewBox="0 0 32 32" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M26.4886 13.8726V25.6658C26.4886 28.1 25.2478 29.329 22.7781 29.329H9.22416C6.75444 29.329 5.51367 28.1 5.51367 25.6658V13.8726C5.51367 11.4383 6.75444 10.2094 9.22416 10.2094H12.781V12.1119H9.24779C8.06611 12.1119 7.41618 12.75 7.41618 13.9789V25.5594C7.41618 26.7884 8.06611 27.4265 9.24779 27.4265H22.7426C23.9125 27.4265 24.5861 26.7884 24.5861 25.5594V13.9789C24.5861 12.75 23.9125 12.1119 22.7426 12.1119H19.2211V10.2094H22.7781C25.2478 10.2094 26.4886 11.4383 26.4886 13.8726Z"/><path d="M15.9952 20.0804C16.5033 20.0804 16.9405 19.6549 16.9405 19.1586V7.02277L16.8696 5.25024L17.6614 6.08924L19.4575 8.00356C19.623 8.19263 19.8593 8.28716 20.0956 8.28716C20.5801 8.28716 20.9583 7.93266 20.9583 7.44817C20.9583 7.20002 20.8519 7.01095 20.6747 6.8337L16.6806 2.98141C16.4442 2.74507 16.2433 2.66235 15.9952 2.66235C15.7589 2.66235 15.558 2.74507 15.3098 2.98141L11.3157 6.8337C11.1385 7.01095 11.0439 7.20002 11.0439 7.44817C11.0439 7.93266 11.3984 8.28716 11.8947 8.28716C12.1193 8.28716 12.3792 8.19263 12.5447 8.00356L14.329 6.08924L15.1326 5.25024L15.0617 7.02277V19.1586C15.0617 19.6549 15.4871 20.0804 15.9952 20.0804Z"/></svg>Compartir</div>
+      </div>
+    </div>
+
+    <div class="label">RecapCard.active — 4:5, squircle52 · título clockTimer · BadgeLabel premium · DotsMainButton</div>
+    <div class="row">
+      <div class="recap-card">
+        <div class="overlay"></div>
+        <div class="inner">
+          <div class="ttl"><svg viewBox="0 0 32 33" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M17.1579 28.4247C23.8063 28.4247 29.3327 22.8984 29.3327 16.25C29.3327 9.58975 23.8063 4.07532 17.1579 4.07532C10.4976 4.07532 4.98321 9.57781 4.98321 16.2381H7.01233C7.01233 10.6043 11.5241 6.11638 17.1579 6.11638C22.7917 6.11638 27.3035 10.6163 27.3035 16.25C27.3035 21.8839 22.7917 26.4195 17.1579 26.3957C13.7562 26.3837 10.7722 24.7366 8.94596 22.1942C8.57594 21.7048 8.01495 21.5496 7.51364 21.848C7.0362 22.1464 6.90491 22.8029 7.31073 23.328C9.57857 26.3717 13.1355 28.4247 17.1579 28.4247ZM3.51508 13.9464C2.65569 13.9464 2.44084 14.5312 2.90635 15.1997L5.58001 18.9953C5.97389 19.5444 6.54682 19.5325 6.92877 18.9953L9.60244 15.1878C10.056 14.5312 9.84116 13.9464 8.99371 13.9464H3.51508Z"/><path d="M16.894 9.11305C16.2734 9.11305 15.772 9.61436 15.772 10.235V17.0027C15.772 17.2892 15.8556 17.5637 16.0943 17.8622L18.9828 21.6817C19.4603 22.3023 20.1048 22.4097 20.6896 22.0159C21.2267 21.6458 21.2626 20.9656 20.8448 20.3806L16.703 14.7588L18.0279 18.8409V10.235C18.0279 9.61436 17.5147 9.11305 16.894 9.11305Z"/></svg>Recap 2025</div>
+          <span class="badge-premium">Premium</span>
+          <button class="cta">Ver recap</button>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="img"></div>
+        <div class="ttl">Tapa dura</div>
+        <div class="desc">Impresión premium para tus mejores dots.</div>
+      </div>
+    </div>
+    <div class="label" style="margin-top:4px;">DotBookFeatureCard — w185 · r32 · imagen r24 h80 ↑</div>
+
+    <div class="foot">Cubre 6 variantes representativas. No incluidas: RecapCard.blocked/.generated, RecapCardLocked, DotBookDeliveryCard, DotBookTestimonialCard.</div>
+  </div>
+
+  <div class="theme dark">
+    <h2>Cards — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+
+    <div class="label">CreateCard — variant label (gradiente) / button · 164×112 · r24</div>
+    <div class="row">
+      <div class="create-card v-label">
+        <svg class="big" viewBox="0 0 32 33" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M28 10.6066V23.0443C28 25.141 26.9415 26.1893 24.8041 26.1893H7.19593C5.0687 26.1893 4 25.141 4 23.0443V10.6066C4 8.50994 5.0687 7.45142 7.19593 7.45142H24.8041C26.9415 7.45142 28 8.50994 28 10.6066ZM18.4224 17.0799L13.5573 21.3955L11.6132 19.6448C11.1654 19.2275 10.6463 19.0239 10.1476 19.0239C9.69975 19.0239 9.2112 19.2275 8.76337 19.6244L5.63868 22.3521V22.9731C5.63868 23.9705 6.22901 24.5608 7.21628 24.5608H24.7939C25.7608 24.5608 26.3613 23.9705 26.3613 22.9934V21.4259L21.6794 17.0901C21.201 16.6422 20.6209 16.4285 20.0611 16.4285C19.4809 16.4285 18.9211 16.6321 18.4224 17.0799ZM9.11959 14.5659C9.11959 15.9502 10.2494 17.0799 11.6336 17.0799C13.0076 17.0799 14.1374 15.9502 14.1374 14.5659C14.1374 13.1919 13.0076 12.0519 11.6336 12.0519C10.2494 12.0519 9.11959 13.1919 9.11959 14.5659Z"/></svg>
+        <span class="ttl">Primer viaje juntos</span>
+        <span class="add-btn"><svg viewBox="0 0 32 33" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4.47986 18.0504H14.1855V27.7561C14.1855 28.7426 14.997 29.5699 15.9993 29.5699C17.0017 29.5699 17.8132 28.7426 17.8132 27.7561V18.0504H27.5188C28.5053 18.0504 29.3327 17.239 29.3327 16.2366C29.3327 15.2342 28.5053 14.4227 27.5188 14.4227H17.8132V4.7171C17.8132 3.73063 17.0017 2.90326 15.9993 2.90326C14.997 2.90326 14.1855 3.73063 14.1855 4.7171V14.4227H4.47986C3.49338 14.4227 2.66602 15.2342 2.66602 16.2366C2.66602 17.239 3.49338 18.0504 4.47986 18.0504Z"/></svg></span>
+      </div>
+      <div class="create-card v-button">
+        <span class="circle"><svg viewBox="0 0 32 33" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4.47986 18.0504H14.1855V27.7561C14.1855 28.7426 14.997 29.5699 15.9993 29.5699C17.0017 29.5699 17.8132 28.7426 17.8132 27.7561V18.0504H27.5188C28.5053 18.0504 29.3327 17.239 29.3327 16.2366C29.3327 15.2342 28.5053 14.4227 27.5188 14.4227H17.8132V4.7171C17.8132 3.73063 17.0017 2.90326 15.9993 2.90326C14.997 2.90326 14.1855 3.73063 14.1855 4.7171V14.4227H4.47986C3.49338 14.4227 2.66602 15.2342 2.66602 16.2366C2.66602 17.239 3.49338 18.0504 4.47986 18.0504Z"/></svg></span>
+        <span class="lbl">Crear recuerdo</span>
+      </div>
+    </div>
+
+    <div class="label">MemoryCard — variant memory (borde verde) / recap (borde sweep) · 68w</div>
+    <div class="row">
+      <div class="memory-card">
+        <div class="mc-border memory"><div class="mc-inner"><div class="mc-img" style="background:linear-gradient(150deg,#4A5B70,#6B5A48);"></div></div></div>
+        <div class="name">Familia</div>
+      </div>
+      <div class="memory-card">
+        <div class="mc-border recap"><div class="mc-inner"><div class="mc-img" style="background:linear-gradient(150deg,#6B4A5E,#4A566B);"></div></div></div>
+        <div class="name">Verano</div>
+      </div>
+    </div>
+
+    <div class="label">AlbumGroupCard — small (135–160, squircle32) · tagIconData / isBlocked</div>
+    <div class="row">
+      <div class="album-card" style="background:linear-gradient(140deg,#465B70,#6E5847,#4E4358);">
+        <span class="card-tag"><svg viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="tagGradD" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3478F6"/><stop offset="1" stop-color="#B9A7F3"/></linearGradient></defs><path fill="url(#tagGradD)" d="M16.5266 29.9471C16.9671 29.9471 17.2891 29.6249 17.3738 29.1672C18.5767 19.894 19.8811 18.4701 29.0637 17.453C29.5381 17.402 29.86 17.063 29.86 16.6052C29.86 16.1644 29.5381 15.8255 29.0637 15.7746C19.8811 14.7575 18.5767 13.3334 17.3738 4.04329C17.2891 3.58556 16.9671 3.28043 16.5266 3.28043C16.0861 3.28043 15.7643 3.58556 15.6965 4.04329C14.4937 13.3334 13.1721 14.7575 4.00657 15.7746C3.51525 15.8255 3.19336 16.1644 3.19336 16.6052C3.19336 17.063 3.51525 17.402 4.00657 17.453C13.1552 18.6566 14.4259 19.894 15.6965 29.1672C15.7643 29.6249 16.0861 29.9471 16.5266 29.9471Z"/></svg></span>
+        <div class="fade"></div>
+        <div class="ttl">Álbum del abuelo</div>
+      </div>
+      <div class="album-card" style="background:linear-gradient(140deg,#3D4E60,#5E4C40,#44394E);filter:saturate(.8);">
+        <div class="fade"></div>
+        <div class="lock"><svg viewBox="0 0 32 32" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M9.44427 29.3334H22.5564C24.6629 29.3334 25.7807 28.187 25.7807 25.9228V16.0493C25.7807 13.7851 24.6629 12.653 22.5564 12.653H9.44427C7.33773 12.653 6.21997 13.7851 6.21997 16.0493V25.9228C6.21997 28.187 7.33773 29.3334 9.44427 29.3334ZM8.72775 13.7565H11.0063V10.3621C11.0063 6.75085 13.3134 4.83061 15.9932 4.83061C18.6729 4.83061 21.0088 6.75085 21.0088 10.3621V13.7565H23.2729V10.6773C23.2729 5.28917 19.7477 2.66675 15.9932 2.66675C12.253 2.66675 8.72775 5.28917 8.72775 10.6773V13.7565Z"/></svg></div>
+        <div class="ttl">Bloqueado</div>
+      </div>
+    </div>
+
+    <div class="label">EventGroupCard — active (288–340, squircle52) · menú de acciones con blur</div>
+    <div class="event-card" style="background:linear-gradient(150deg,#3E5268,#6A5544,#3D4F4A);">
+      <div class="top-grad"></div>
+      <div class="fade"></div>
+      <div class="head">
+        <div class="ttl">Boda de Ana y Leo</div>
+        <div class="sec"><span class="dot"></span>34 participantes</div>
+      </div>
+      <div class="event-menu">
+        <div class="act"><svg viewBox="0 0 32 33" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M6.07536 27.1731H25.9234C28.1818 27.1731 29.3327 26.0439 29.3327 23.8071V12.4391C29.3327 10.2024 28.1818 9.08401 25.9234 9.08401H22.8181C21.9603 9.08401 21.6997 8.91029 21.2111 8.3674L20.3425 7.3902C19.7996 6.79302 19.2458 6.46729 18.1275 6.46729H13.7952C12.6769 6.46729 12.1231 6.79302 11.5803 7.3902L10.7116 8.3674C10.223 8.89943 9.95159 9.08401 9.10468 9.08401H6.07536C3.80608 9.08401 2.66602 10.2024 2.66602 12.4391V23.8071C2.66602 26.0439 3.80608 27.1731 6.07536 27.1731ZM15.9993 23.97C12.7094 23.97 10.071 21.3425 10.071 18.0309C10.071 14.7301 12.7094 12.1025 15.9993 12.1025C19.2893 12.1025 21.9168 14.7301 21.9168 18.0309C21.9168 21.3425 19.2784 23.97 15.9993 23.97ZM15.9993 22.3197C18.3664 22.3197 20.2773 20.4195 20.2773 18.0309C20.2773 15.653 18.3664 13.742 15.9993 13.742C13.6323 13.742 11.7105 15.653 11.7105 18.0309C11.7105 20.4195 13.6433 22.3197 15.9993 22.3197ZM22.6443 14.0352C22.6443 13.2968 23.2958 12.6454 24.0558 12.6454C24.805 12.6454 25.4456 13.2968 25.4456 14.0352C25.4456 14.8061 24.805 15.425 24.0558 15.4358C23.2958 15.4358 22.6443 14.8169 22.6443 14.0352Z"/></svg>Fotos</div>
+        <div class="sep"></div>
+        <div class="act"><svg viewBox="0 0 32 32" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M30.6673 15.9303C30.6673 22.6848 25.0648 28.2994 18.2981 28.2994C16.5852 28.2994 14.9456 27.9384 13.4539 27.2865C14.6114 25.9236 15.315 24.1687 15.315 22.2725C15.315 21.634 15.2369 21.0125 15.0813 20.4203C16.0495 20.1876 17.1308 20.0533 18.2981 20.0533C21.9488 20.0533 24.7555 21.3599 25.979 22.8114C27.6182 20.9981 28.6057 18.5869 28.6057 15.9303C28.6057 10.2064 24.0097 5.62256 18.286 5.62256C13.0552 5.62256 8.79683 9.45066 8.11363 14.4826C7.91003 14.4592 7.70254 14.4508 7.49324 14.4508C6.98498 14.4508 6.48713 14.5006 6.00548 14.5989C6.67871 8.44358 11.9804 3.56104 18.286 3.56104C25.0526 3.56104 30.6673 9.16355 30.6673 15.9303ZM22.4575 13.42C22.4575 16.0272 20.6385 18.016 18.2981 17.9918C15.9698 17.9675 14.1508 16.0272 14.1387 13.42C14.1266 10.9704 15.9698 8.94527 18.2981 8.94527C20.6264 8.94527 22.4575 10.9704 22.4575 13.42Z"/><path d="M13.6547 22.2701C13.6547 25.6413 10.8291 28.4304 7.49433 28.4304C4.12312 28.4304 1.33398 25.6655 1.33398 22.2701C1.33398 18.8989 4.12312 16.1098 7.49433 16.1098C10.8776 16.1098 13.6547 18.8868 13.6547 22.2701ZM6.7546 19.1535V21.5303H4.37778C3.94122 21.5303 3.63805 21.8214 3.63805 22.2701C3.63805 22.7188 3.94122 23.0098 4.37778 23.0098H6.7546V25.3866C6.7546 25.8353 7.04564 26.1263 7.49433 26.1263C7.94302 26.1263 8.23406 25.8353 8.23406 25.3866V23.0098H10.6109C11.0475 23.0098 11.3507 22.7188 11.3507 22.2701C11.3507 21.8214 11.0475 21.5303 10.6109 21.5303H8.23406V19.1535C8.23406 18.717 7.94302 18.4138 7.49433 18.4138C7.04564 18.4138 6.7546 18.717 6.7546 19.1535Z"/></svg>Invitar</div>
+        <div class="sep"></div>
+        <div class="act"><svg viewBox="0 0 32 32" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M26.4886 13.8726V25.6658C26.4886 28.1 25.2478 29.329 22.7781 29.329H9.22416C6.75444 29.329 5.51367 28.1 5.51367 25.6658V13.8726C5.51367 11.4383 6.75444 10.2094 9.22416 10.2094H12.781V12.1119H9.24779C8.06611 12.1119 7.41618 12.75 7.41618 13.9789V25.5594C7.41618 26.7884 8.06611 27.4265 9.24779 27.4265H22.7426C23.9125 27.4265 24.5861 26.7884 24.5861 25.5594V13.9789C24.5861 12.75 23.9125 12.1119 22.7426 12.1119H19.2211V10.2094H22.7781C25.2478 10.2094 26.4886 11.4383 26.4886 13.8726Z"/><path d="M15.9952 20.0804C16.5033 20.0804 16.9405 19.6549 16.9405 19.1586V7.02277L16.8696 5.25024L17.6614 6.08924L19.4575 8.00356C19.623 8.19263 19.8593 8.28716 20.0956 8.28716C20.5801 8.28716 20.9583 7.93266 20.9583 7.44817C20.9583 7.20002 20.8519 7.01095 20.6747 6.8337L16.6806 2.98141C16.4442 2.74507 16.2433 2.66235 15.9952 2.66235C15.7589 2.66235 15.558 2.74507 15.3098 2.98141L11.3157 6.8337C11.1385 7.01095 11.0439 7.20002 11.0439 7.44817C11.0439 7.93266 11.3984 8.28716 11.8947 8.28716C12.1193 8.28716 12.3792 8.19263 12.5447 8.00356L14.329 6.08924L15.1326 5.25024L15.0617 7.02277V19.1586C15.0617 19.6549 15.4871 20.0804 15.9952 20.0804Z"/></svg>Compartir</div>
+      </div>
+    </div>
+
+    <div class="label">RecapCard.active — 4:5, squircle52 · título clockTimer · BadgeLabel premium · DotsMainButton</div>
+    <div class="row">
+      <div class="recap-card" style="background:linear-gradient(160deg,#3D4E66,#6B5548,#4A4058);">
+        <div class="overlay"></div>
+        <div class="inner">
+          <div class="ttl"><svg viewBox="0 0 32 33" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M17.1579 28.4247C23.8063 28.4247 29.3327 22.8984 29.3327 16.25C29.3327 9.58975 23.8063 4.07532 17.1579 4.07532C10.4976 4.07532 4.98321 9.57781 4.98321 16.2381H7.01233C7.01233 10.6043 11.5241 6.11638 17.1579 6.11638C22.7917 6.11638 27.3035 10.6163 27.3035 16.25C27.3035 21.8839 22.7917 26.4195 17.1579 26.3957C13.7562 26.3837 10.7722 24.7366 8.94596 22.1942C8.57594 21.7048 8.01495 21.5496 7.51364 21.848C7.0362 22.1464 6.90491 22.8029 7.31073 23.328C9.57857 26.3717 13.1355 28.4247 17.1579 28.4247ZM3.51508 13.9464C2.65569 13.9464 2.44084 14.5312 2.90635 15.1997L5.58001 18.9953C5.97389 19.5444 6.54682 19.5325 6.92877 18.9953L9.60244 15.1878C10.056 14.5312 9.84116 13.9464 8.99371 13.9464H3.51508Z"/><path d="M16.894 9.11305C16.2734 9.11305 15.772 9.61436 15.772 10.235V17.0027C15.772 17.2892 15.8556 17.5637 16.0943 17.8622L18.9828 21.6817C19.4603 22.3023 20.1048 22.4097 20.6896 22.0159C21.2267 21.6458 21.2626 20.9656 20.8448 20.3806L16.703 14.7588L18.0279 18.8409V10.235C18.0279 9.61436 17.5147 9.11305 16.894 9.11305Z"/></svg>Recap 2025</div>
+          <span class="badge-premium">Premium</span>
+          <button class="cta">Ver recap</button>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="img" style="background:linear-gradient(140deg,#6B5A48,#465B70);"></div>
+        <div class="ttl">Tapa dura</div>
+        <div class="desc">Impresión premium para tus mejores dots.</div>
+      </div>
+    </div>
+    <div class="label" style="margin-top:4px;">DotBookFeatureCard — w185 · r32 · imagen r24 h80 ↑</div>
+
+    <div class="foot">Cubre 6 variantes representativas. No incluidas: RecapCard.blocked/.generated, RecapCardLocked, DotBookDeliveryCard, DotBookTestimonialCard.</div>
+  </div>
+</body>
+</html>

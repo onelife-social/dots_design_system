@@ -1,0 +1,48 @@
+<!-- @dsCard group="Type" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · Tipografía</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Book.otf') format('opentype'); font-weight: 400; }
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Medium.otf') format('opentype'); font-weight: 500; }
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Bold.otf') format('opentype'); font-weight: 700; }
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-ExtraBold.otf') format('opentype'); font-weight: 800; }
+  body { margin: 0; padding: 28px; background: #F8F7F5; color: #000; font-family: 'Inter', sans-serif; }
+  .section { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #00000066; margin: 24px 0 10px; }
+  .section:first-child { margin-top: 0; }
+  .item { display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px; }
+  .meta { font-size: 10px; color: #00000059; font-family: ui-monospace, monospace; min-width: 150px; }
+  .inter { font-family: 'Inter', sans-serif; }
+  .nunito { font-family: 'Nunito', sans-serif; }
+  .mackinac { font-family: 'P22 Mackinac', Georgia, serif; }
+  .note { font-size: 10px; color: #00000059; margin-top: 20px; }
+</style>
+</head>
+<body>
+  <div class="section">Main — Inter (typo.main)</div>
+  <div class="item"><div class="meta">titleH1 · 32/700 · lh 1.25</div><div class="inter" style="font-size:32px;font-weight:700;line-height:1.25;letter-spacing:.13px">Title H1</div></div>
+  <div class="item"><div class="meta">titleH3 · 26/700 · lh 1.23</div><div class="inter" style="font-size:26px;font-weight:700;line-height:1.23">Title H3</div></div>
+  <div class="item"><div class="meta">titleH5 · 20/700 · lh 1.25</div><div class="inter" style="font-size:20px;font-weight:700;line-height:1.25;letter-spacing:-.09px">Title H5</div></div>
+  <div class="item"><div class="meta">titleH6 · 18/600 · lh 1.28</div><div class="inter" style="font-size:18px;font-weight:600;line-height:1.28;letter-spacing:-.08px">Title H6</div></div>
+  <div class="item"><div class="meta">bodyLargeRegular · 16/400</div><div class="inter" style="font-size:16px;line-height:1.31;letter-spacing:-.05px">Body large — guarda tus recuerdos con Dots</div></div>
+  <div class="item"><div class="meta">bodyDefaultMedium · 14/500</div><div class="inter" style="font-size:14px;font-weight:500;line-height:1.29;letter-spacing:-.02px">Body default — guarda tus recuerdos con Dots</div></div>
+  <div class="item"><div class="meta">labelDefaultBold · 13/600</div><div class="inter" style="font-size:13px;font-weight:600;line-height:1.31">Label default bold</div></div>
+  <div class="item"><div class="meta">labelSmallMedium · 11/600</div><div class="inter" style="font-size:11px;font-weight:600;line-height:1.27;letter-spacing:.01px">Label small</div></div>
+
+  <div class="section">Number — Nunito (typo.number)</div>
+  <div class="item"><div class="meta">numTitleH1 · 32/800</div><div class="nunito" style="font-size:32px;font-weight:800;line-height:1.25">1.234</div></div>
+  <div class="item"><div class="meta">numTitleH5 · 20/800</div><div class="nunito" style="font-size:20px;font-weight:800;line-height:1.25">28 fotos · 12 vídeos</div></div>
+  <div class="item"><div class="meta">numBodyDefault · 14/800</div><div class="nunito" style="font-size:14px;font-weight:800;line-height:1.29">365 días</div></div>
+
+  <div class="section">Secondary — P22 Mackinac (typo.secondary)</div>
+  <div class="item"><div class="meta">title02H1 · 32/500</div><div class="mackinac" style="font-size:32px;font-weight:500;line-height:1.25;letter-spacing:.13px">Nuestros recuerdos</div></div>
+  <div class="item"><div class="meta">title02H4 · 23/500</div><div class="mackinac" style="font-size:23px;font-weight:500;line-height:1.26">Un año juntos</div></div>
+  <div class="item"><div class="meta">title02H6 · 18/500</div><div class="mackinac" style="font-size:18px;font-weight:500;line-height:1.28;letter-spacing:-.08px">Momentos que importan</div></div>
+
+  <div class="note">P22 Mackinac se carga desde los archivos reales del proyecto (assets/fonts/); Georgia queda solo como fallback. Fuente de verdad: lib/src/theme/typography/dots_typo.dart.</div>
+</body>
+</html>

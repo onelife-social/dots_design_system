@@ -1,0 +1,276 @@
+<!-- @dsCard group="Inputs" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · Dropdowns &amp; Selectors</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Book.otf') format('opentype'); font-weight: 400; }
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Medium.otf') format('opentype'); font-weight: 500; }
+  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Bold.otf') format('opentype'); font-weight: 700; }
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; min-width: 0; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .lbl { font-size: 10px; font-family: ui-monospace, monospace; margin: 16px 0 8px; }
+  .light .lbl { color: #00000066; } .dark .lbl { color: #FFFFFF73; }
+  .row { display: flex; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+  .col { max-width: 320px; }
+  .stack > * + * { margin-top: 10px; }
+  svg { flex: none; }
+
+  /* DropdownList — r22; small: 8/12, medium: 12/16; label bodyDefaultRegular */
+  .dd-btn { display: inline-flex; align-items: center; border-radius: 22px;
+    padding: 8px 12px; font-size: 14px; font-weight: 400; letter-spacing: -0.02px; line-height: 1.29; }
+  .dd-btn.medium { padding: 12px 16px; }
+  .light .dd-btn { background: #8C8C8C1A; color: #000; }
+  .dark .dd-btn { background: #75757533; color: #FFF; }
+  .dd-btn .subtitle { margin-left: 3px; }
+  .light .dd-btn .subtitle { color: #0000008C; } .dark .dd-btn .subtitle { color: #FFFFFFA6; }
+  .dd-btn svg { margin-left: 4px; }
+  .dd-btn.medium svg { margin-left: 8px; }
+  /* isActive — bgFloatingActive + chevronUp */
+  .light .dd-btn.active { background: #00000026; }
+  .dark .dd-btn.active { background: #C8C8C81A; }
+  /* onBackgroundVariant — bgChip + labelAlwaysWhite */
+  .dd-btn.on-bg { background: #30303099; color: #FFF; }
+  .dd-btn.on-bg .subtitle { color: #FFF; }
+
+  /* DropdownMenu — w250, r24, bgBaseContrast, padding 8 */
+  .dd-menu { width: 250px; border-radius: 24px; padding: 8px; box-sizing: border-box; }
+  .light .dd-menu { background: #FAFAFA; } .dark .dd-menu { background: #1F1F1F; }
+  /* DropdownItem — padding 8, r12, margen vertical 4, pressed bgContainerSecondary */
+  .dd-item { display: flex; align-items: center; padding: 8px; margin: 4px 0; border-radius: 12px;
+    font-size: 14px; font-weight: 500; letter-spacing: -0.02px; }
+  .light .dd-item { color: #000; } .dark .dd-item { color: #FFF; }
+  .light .dd-item.pressed { background: #E2E2E2B3; } .dark .dd-item.pressed { background: #282828B3; }
+  .dd-item .text { flex: 1; min-width: 0; }
+  .dd-item .subtitle { font-weight: 400; }
+  .light .dd-item .subtitle { color: #000000AB; } .dark .dd-item .subtitle { color: #FFFFFFBF; }
+  .dd-item.destructive { color: #ED2B32; }
+  .dd-item svg.trailing { margin-left: 6px; }
+
+  /* DotsSelectorRadioButton / ...Label — bgContainerSecondary, r24, padding 16 */
+  .sel-card { border-radius: 24px; padding: 16px; margin: 1.5px; display: flex; align-items: center; }
+  .light .sel-card { background: #E2E2E2B3; } .dark .sel-card { background: #282828B3; }
+  /* isSelected — borde 1.5 labelHighlight strokeAlignOutside, r26 */
+  .light .sel-card.selected { border-radius: 26px; box-shadow: 0 0 0 1.5px #0072EF; }
+  .dark .sel-card.selected { border-radius: 26px; box-shadow: 0 0 0 1.5px #0A84FF; }
+  .sel-card .body { flex: 1; min-width: 0; margin-right: 16px; }
+  .sel-card .title { font-size: 14px; font-weight: 700; letter-spacing: -0.02px; margin-bottom: 10px; }
+  .light .sel-card .title { color: #000; } .dark .sel-card .title { color: #FFF; }
+  .sel-card .detail { display: flex; align-items: center; gap: 4px;
+    font-size: 13px; font-weight: 400; letter-spacing: -0.01px; }
+  .sel-card .detail + .detail { margin-top: 10px; }
+  .light .sel-card .detail { color: #0000008C; } .dark .sel-card .detail { color: #FFFFFFA6; }
+  /* DotsRadioButton — círculo, borde 2; selected labelHighlight + dot 15 */
+  .radio { width: 24px; height: 24px; border-radius: 50%; box-sizing: border-box; border: 2px solid;
+    display: flex; align-items: center; justify-content: center; flex: none; }
+  .light .radio { border-color: #00000033; } .dark .radio { border-color: #FFFFFF4D; }
+  .light .radio.on { border-color: #0072EF; } .dark .radio.on { border-color: #0A84FF; }
+  .radio.on::after { content: ''; width: 13px; height: 13px; border-radius: 50%; }
+  .light .radio.on::after { background: #0072EF; } .dark .radio.on::after { background: #0A84FF; }
+  .radio.s22 { width: 22px; height: 22px; }
+  .radio.s22.on::after { width: 12px; height: 12px; }
+
+  /* DotsSelectorRadioButtonLabel — BadgeLabel + title02H6 (P22 Mackinac) */
+  .badge { height: 22px; border-radius: 22px; padding: 0 8px; box-sizing: border-box;
+    display: inline-flex; align-items: center; color: #FFF;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.01px; margin-bottom: 8px; }
+  .light .badge.main { background: #0072EF; } .dark .badge.main { background: #0A84FF; }
+  .light .badge.green { background: #28CB55; } .dark .badge.green { background: #3BD866; }
+  .badge.premium { background: linear-gradient(135deg, #C88EFF, #8B84F7); }
+  .badge.premium-plus { background: linear-gradient(135deg, #E9C058, #B48D2D); }
+  .sel-card .title-serif { font-family: 'P22 Mackinac', Georgia, serif; font-size: 18px;
+    font-weight: 500; letter-spacing: -0.08px; line-height: 1.28; margin: 0; }
+  .light .sel-card .title-serif { color: #000; } .dark .sel-card .title-serif { color: #FFF; }
+  .sel-card .detail1 { font-size: 14px; font-weight: 500; letter-spacing: -0.02px; }
+  .light .sel-card .detail1 { color: #0000008C; } .dark .sel-card .detail1 { color: #FFFFFFA6; }
+  .sel-card .detail2 { font-size: 13px; font-weight: 400; letter-spacing: -0.01px; margin-top: 8px; }
+  .light .sel-card .detail2 { color: #0000008C; } .dark .sel-card .detail2 { color: #FFFFFFA6; }
+
+  /* DotsSettingItemRadioBtn — padding 16/12, radio 22, labels */
+  .setting-radio { display: flex; align-items: center; padding: 12px 16px; }
+  .setting-radio .leading { flex: 1; margin: 0 12px; font-size: 14px; font-weight: 700; letter-spacing: -0.02px; }
+  .light .setting-radio .leading { color: #000; } .dark .setting-radio .leading { color: #FFF; }
+  .setting-radio .trailing { font-size: 14px; font-weight: 500; letter-spacing: -0.02px; }
+  .light .setting-radio .trailing { color: #0000008C; } .dark .setting-radio .trailing { color: #FFFFFFA6; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>Dropdowns &amp; Selectors — Light</h2>
+    <div class="sub">dropdowns/ + selectors/ · DropdownList · DropdownMenu · DropdownItem · DotsSelectorRadioButton(Label) · DotsSettingItemRadioBtn</div>
+
+    <div class="lbl">DropdownList · size small / medium · isActive · onBackgroundVariant</div>
+    <div class="row">
+      <span class="dd-btn">Mes <span class="subtitle">marzo</span><svg width="14" height="14" viewBox="0 0 32 33" fill="none"><path d="M15.9993 24.8892C16.5255 24.8742 17.0065 24.6791 17.3973 24.2589L28.8216 12.5848C29.1523 12.2547 29.3327 11.8345 29.3327 11.3393C29.3327 10.349 28.551 9.55371 27.5589 9.55371C27.0779 9.55371 26.6119 9.74878 26.2662 10.0939L16.0144 20.6126L5.73253 10.0939C5.3868 9.76379 4.93584 9.55371 4.43978 9.55371C3.44768 9.55371 2.66602 10.349 2.66602 11.3393C2.66602 11.8345 2.8464 12.2547 3.1771 12.5848L14.6164 24.2589C15.0223 24.6791 15.4732 24.8892 15.9993 24.8892Z" fill="currentColor"/></svg></span>
+      <span class="dd-btn medium">Ordenar por<svg width="14" height="14" viewBox="0 0 32 33" fill="none"><path d="M15.9993 24.8892C16.5255 24.8742 17.0065 24.6791 17.3973 24.2589L28.8216 12.5848C29.1523 12.2547 29.3327 11.8345 29.3327 11.3393C29.3327 10.349 28.551 9.55371 27.5589 9.55371C27.0779 9.55371 26.6119 9.74878 26.2662 10.0939L16.0144 20.6126L5.73253 10.0939C5.3868 9.76379 4.93584 9.55371 4.43978 9.55371C3.44768 9.55371 2.66602 10.349 2.66602 11.3393C2.66602 11.8345 2.8464 12.2547 3.1771 12.5848L14.6164 24.2589C15.0223 24.6791 15.4732 24.8892 15.9993 24.8892Z" fill="currentColor"/></svg></span>
+      <span class="dd-btn active">Año <span class="subtitle">2026</span><svg width="14" height="14" viewBox="0 0 32 33" fill="none"><path d="M15.9993 8.57324C15.4732 8.58825 14.9922 8.78332 14.6014 9.20347L3.1771 20.8776C2.8464 21.2077 2.66602 21.6279 2.66602 22.1231C2.66602 23.1134 3.44768 23.9087 4.43978 23.9087C4.92081 23.9087 5.3868 23.7136 5.73253 23.3685L15.9843 12.8498L26.2662 23.3685C26.6119 23.6986 27.0629 23.9087 27.5589 23.9087C28.551 23.9087 29.3327 23.1134 29.3327 22.1231C29.3327 21.6279 29.1523 21.2077 28.8216 20.8776L17.3823 9.20347C16.9764 8.78332 16.5255 8.57324 15.9993 8.57324Z" fill="currentColor"/></svg></span>
+      <span class="dd-btn on-bg">Filtrar<svg width="14" height="14" viewBox="0 0 32 33" fill="none"><path d="M15.9993 24.8892C16.5255 24.8742 17.0065 24.6791 17.3973 24.2589L28.8216 12.5848C29.1523 12.2547 29.3327 11.8345 29.3327 11.3393C29.3327 10.349 28.551 9.55371 27.5589 9.55371C27.0779 9.55371 26.6119 9.74878 26.2662 10.0939L16.0144 20.6126L5.73253 10.0939C5.3868 9.76379 4.93584 9.55371 4.43978 9.55371C3.44768 9.55371 2.66602 10.349 2.66602 11.3393C2.66602 11.8345 2.8464 12.2547 3.1771 12.5848L14.6164 24.2589C15.0223 24.6791 15.4732 24.8892 15.9993 24.8892Z" fill="currentColor"/></svg></span>
+    </div>
+
+    <div class="lbl">DropdownMenu + DropdownItem · normal / pressed / itemColor</div>
+    <div class="dd-menu">
+      <div class="dd-item"><span class="text">Editar recuerdo</span><svg class="trailing" width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M24.1624 2.92672C23.4519 3.07821 23.2534 3.22448 21.9526 4.50958L20.7563 5.69542L26.5393 11.4627L27.6676 10.3343C28.8796 9.12233 29.0938 8.84024 29.2871 8.20814C29.3811 7.9156 29.3915 7.75888 29.3759 7.26783C29.3341 6.19169 29.1565 5.8887 27.6937 4.43644C26.5392 3.28717 26.3251 3.13568 25.5937 2.94761C25.1288 2.82746 24.6482 2.82224 24.1624 2.92672Z" fill="currentColor"/><path d="M11.6951 14.7235L4.28231 22.1363L3.4517 25.4483C2.9711 27.3812 2.62109 28.8648 2.62109 29.0111C2.62109 29.3715 2.8196 29.57 3.18006 29.57C3.32633 29.57 4.80993 29.22 6.74279 28.7394L10.0548 27.9088L17.4676 20.496C21.5423 16.4213 24.8751 13.0676 24.8751 13.0362C24.8751 12.9683 19.2228 7.31598 19.1549 7.31598C19.1236 7.31598 15.7698 10.6489 11.6951 14.7235Z" fill="currentColor"/></svg></div>
+      <div class="dd-item pressed"><span class="text">Compartir <span class="subtitle">con familia</span></span><svg class="trailing" width="16" height="16" viewBox="0 0 32 32" fill="none"><path d="M23.7781 29.329C26.2317 29.329 28.2206 27.34 28.2206 24.8865C28.2206 22.4329 26.2317 20.4439 23.7781 20.4439C22.5302 20.4439 21.4024 20.9585 20.5954 21.787L12.5091 17.1644C12.6103 16.792 12.6644 16.4002 12.6644 15.9957C12.6644 15.5912 12.6103 15.1994 12.5091 14.827L20.5965 10.2055C21.4034 11.0333 22.5307 11.5474 23.7781 11.5474C26.2317 11.5474 28.2206 9.55844 28.2206 7.10489C28.2206 4.65135 26.2317 2.66235 23.7781 2.66235C21.3246 2.66235 19.3356 4.65135 19.3356 7.10489C19.3356 7.50937 19.3896 7.90121 19.4909 8.27361L11.4045 12.8962C10.5976 12.0677 9.46979 11.5531 8.22184 11.5531C5.76829 11.5531 3.7793 13.5421 3.7793 15.9957C3.7793 18.4492 5.76829 20.4382 8.22184 20.4382C9.46923 20.4382 10.5965 19.9241 11.4035 19.0962L19.4909 23.7178C19.3896 24.0902 19.3356 24.482 19.3356 24.8865C19.3356 27.34 21.3246 29.329 23.7781 29.329Z" fill="currentColor"/></svg></div>
+      <div class="dd-item destructive"><span class="text">Eliminar</span><svg class="trailing" width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M12.7426 25.0807C12.326 25.0807 12.0589 24.8293 12.0376 24.4142L11.7171 12.3854C11.7064 11.9811 11.9735 11.7189 12.4008 11.7189C12.796 11.7189 13.0738 11.9702 13.0845 12.3744L13.4263 24.4142C13.437 24.8184 13.1592 25.0807 12.7426 25.0807ZM16.0008 25.0807C15.5841 25.0807 15.2957 24.8184 15.2957 24.4142V12.3854C15.2957 11.9811 15.5841 11.7189 16.0008 11.7189C16.4174 11.7189 16.7165 11.9811 16.7165 12.3854V24.4142C16.7165 24.8184 16.4174 25.0807 16.0008 25.0807ZM19.2696 25.0807C18.853 25.0807 18.5753 24.8184 18.5859 24.4142L18.9171 12.3854C18.9278 11.9702 19.2055 11.7189 19.6008 11.7189C20.028 11.7189 20.2951 11.9811 20.2844 12.3854L19.9639 24.4142C19.9426 24.8293 19.6755 25.0807 19.2696 25.0807ZM11.3112 9.06406H13.0097V6.72603C13.0097 6.10329 13.437 5.69904 14.0779 5.69904H17.9022C18.5432 5.69904 18.9705 6.10329 18.9705 6.72603V9.06406H20.6689V6.61678C20.6689 5.0326 19.6649 4.07117 18.0197 4.07117H13.9604C12.3153 4.07117 11.3112 5.0326 11.3112 6.61678V9.06406ZM6.46134 9.93809H25.5508C25.9889 9.93809 26.3414 9.5557 26.3414 9.10776C26.3414 8.65983 25.9889 8.28836 25.5508 8.28836H6.46134C6.03404 8.28836 5.66016 8.65983 5.66016 9.10776C5.66016 9.56663 6.03404 9.93809 6.46134 9.93809ZM11.1082 28.402H20.904C22.4316 28.402 23.4571 27.3859 23.5319 25.8235L24.2797 9.70866H7.72187L8.48032 25.8345C8.5551 27.3968 9.55924 28.402 11.1082 28.402Z" fill="currentColor"/></svg></div>
+    </div>
+
+    <div class="lbl">DotsSelectorRadioButton · isSelected true / false</div>
+    <div class="col stack">
+      <div class="sel-card selected">
+        <div class="body">
+          <div class="title">Álbum de verano</div>
+          <div class="detail"><svg width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M9.84707 17.5207C9.37648 17.5207 9.02354 17.1677 9.02354 16.697C9.02354 16.2383 9.37648 15.8853 9.84707 15.8853H15.1765V8.76766C15.1765 8.30883 15.5295 7.95589 15.9883 7.95589C16.447 7.95589 16.8118 8.30883 16.8118 8.76766V16.697C16.8118 17.1677 16.447 17.5207 15.9883 17.5207H9.84707ZM16 28.25C22.5648 28.25 28 22.803 28 16.25C28 9.6853 22.553 4.25 15.9883 4.25C9.4353 4.25 4 9.6853 4 16.25C4 22.803 9.44707 28.25 16 28.25Z" fill="currentColor"/></svg>Hace 2 semanas</div>
+          <div class="detail"><svg width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M7.78123 27.3348H24.2308C26.7476 27.3348 28 26.0823 28 23.6016V8.89822C28 6.41755 26.7476 5.16516 24.2308 5.16516H7.78123C5.26442 5.16516 4 6.4055 4 8.89822V23.6016C4 26.0944 5.26442 27.3348 7.78123 27.3348ZM7.6006 25.3959C6.52885 25.3959 5.93878 24.83 5.93878 23.71V12.3543C5.93878 11.2464 6.52885 10.6684 7.6006 10.6684H24.3873C25.4591 10.6684 26.0612 11.2464 26.0612 12.3543V23.71C26.0612 24.83 25.4591 25.3959 24.3873 25.3959H7.6006ZM13.6578 14.9915H14.3682C14.7898 14.9915 14.9222 14.8711 14.9222 14.4496V13.7392C14.9222 13.3177 14.7898 13.1852 14.3682 13.1852H13.6578C13.2363 13.1852 13.0918 13.3177 13.0918 13.7392V14.4496C13.0918 14.8711 13.2363 14.9915 13.6578 14.9915ZM17.6558 14.9915H18.3663C18.7877 14.9915 18.9322 14.8711 18.9322 14.4496V13.7392C18.9322 13.3177 18.7877 13.1852 18.3663 13.1852H17.6558C17.2343 13.1852 17.0898 13.3177 17.0898 13.7392V14.4496C17.0898 14.8711 17.2343 14.9915 17.6558 14.9915ZM21.6538 14.9915H22.3643C22.7857 14.9915 22.9303 14.8711 22.9303 14.4496V13.7392C22.9303 13.3177 22.7857 13.1852 22.3643 13.1852H21.6538C21.2323 13.1852 21.0998 13.3177 21.0998 13.7392V14.4496C21.0998 14.8711 21.2323 14.9915 21.6538 14.9915ZM9.6598 18.9293H10.3582C10.7918 18.9293 10.9242 18.8089 10.9242 18.3874V17.6769C10.9242 17.2555 10.7918 17.1351 10.3582 17.1351H9.6598C9.22629 17.1351 9.09382 17.2555 9.09382 17.6769V18.3874C9.09382 18.8089 9.22629 18.9293 9.6598 18.9293ZM13.6578 18.9293H14.3682C14.7898 18.9293 14.9222 18.8089 14.9222 18.3874V17.6769C14.9222 17.2555 14.7898 17.1351 14.3682 17.1351H13.6578C13.2363 17.1351 13.0918 17.2555 13.0918 17.6769V18.3874C13.0918 18.8089 13.2363 18.9293 13.6578 18.9293ZM17.6558 18.9293H18.3663C18.7877 18.9293 18.9322 18.8089 18.9322 18.3874V17.6769C18.9322 17.2555 18.7877 17.1351 18.3663 17.1351H17.6558C17.2343 17.1351 17.0898 17.2555 17.0898 17.6769V18.3874C17.0898 18.8089 17.2343 18.9293 17.6558 18.9293ZM21.6538 18.9293H22.3643C22.7857 18.9293 22.9303 18.8089 22.9303 18.3874V17.6769C22.9303 17.2555 22.7857 17.1351 22.3643 17.1351H21.6538C21.2323 17.1351 21.0998 17.2555 21.0998 17.6769V18.3874C21.0998 18.8089 21.2323 18.9293 21.6538 18.9293ZM9.6598 22.8791H10.3582C10.7918 22.8791 10.9242 22.7467 10.9242 22.3252V21.6147C10.9242 21.1932 10.7918 21.0728 10.3582 21.0728H9.6598C9.22629 21.0728 9.09382 21.1932 9.09382 21.6147V22.3252C9.09382 22.7467 9.22629 22.8791 9.6598 22.8791ZM13.6578 22.8791H14.3682C14.7898 22.8791 14.9222 22.7467 14.9222 22.3252V21.6147C14.9222 21.1932 14.7898 21.0728 14.3682 21.0728H13.6578C13.2363 21.0728 13.0918 21.1932 13.0918 21.6147V22.3252C13.0918 22.7467 13.2363 22.8791 13.6578 22.8791ZM17.6558 22.8791H18.3663C18.7877 22.8791 18.9322 22.7467 18.9322 22.3252V21.6147C18.9322 21.1932 18.7877 21.0728 18.3663 21.0728H17.6558C17.2343 21.0728 17.0898 21.1932 17.0898 21.6147V22.3252C17.0898 22.7467 17.2343 22.8791 17.6558 22.8791Z" fill="currentColor"/></svg>12 mar 2026</div>
+        </div>
+        <span class="radio on"></span>
+      </div>
+      <div class="sel-card">
+        <div class="body">
+          <div class="title">Álbum de invierno</div>
+          <div class="detail"><svg width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M9.84707 17.5207C9.37648 17.5207 9.02354 17.1677 9.02354 16.697C9.02354 16.2383 9.37648 15.8853 9.84707 15.8853H15.1765V8.76766C15.1765 8.30883 15.5295 7.95589 15.9883 7.95589C16.447 7.95589 16.8118 8.30883 16.8118 8.76766V16.697C16.8118 17.1677 16.447 17.5207 15.9883 17.5207H9.84707ZM16 28.25C22.5648 28.25 28 22.803 28 16.25C28 9.6853 22.553 4.25 15.9883 4.25C9.4353 4.25 4 9.6853 4 16.25C4 22.803 9.44707 28.25 16 28.25Z" fill="currentColor"/></svg>Hace 3 meses</div>
+          <div class="detail"><svg width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M7.78123 27.3348H24.2308C26.7476 27.3348 28 26.0823 28 23.6016V8.89822C28 6.41755 26.7476 5.16516 24.2308 5.16516H7.78123C5.26442 5.16516 4 6.4055 4 8.89822V23.6016C4 26.0944 5.26442 27.3348 7.78123 27.3348ZM7.6006 25.3959C6.52885 25.3959 5.93878 24.83 5.93878 23.71V12.3543C5.93878 11.2464 6.52885 10.6684 7.6006 10.6684H24.3873C25.4591 10.6684 26.0612 11.2464 26.0612 12.3543V23.71C26.0612 24.83 25.4591 25.3959 24.3873 25.3959H7.6006ZM13.6578 14.9915H14.3682C14.7898 14.9915 14.9222 14.8711 14.9222 14.4496V13.7392C14.9222 13.3177 14.7898 13.1852 14.3682 13.1852H13.6578C13.2363 13.1852 13.0918 13.3177 13.0918 13.7392V14.4496C13.0918 14.8711 13.2363 14.9915 13.6578 14.9915ZM17.6558 14.9915H18.3663C18.7877 14.9915 18.9322 14.8711 18.9322 14.4496V13.7392C18.9322 13.3177 18.7877 13.1852 18.3663 13.1852H17.6558C17.2343 13.1852 17.0898 13.3177 17.0898 13.7392V14.4496C17.0898 14.8711 17.2343 14.9915 17.6558 14.9915ZM21.6538 14.9915H22.3643C22.7857 14.9915 22.9303 14.8711 22.9303 14.4496V13.7392C22.9303 13.3177 22.7857 13.1852 22.3643 13.1852H21.6538C21.2323 13.1852 21.0998 13.3177 21.0998 13.7392V14.4496C21.0998 14.8711 21.2323 14.9915 21.6538 14.9915ZM9.6598 18.9293H10.3582C10.7918 18.9293 10.9242 18.8089 10.9242 18.3874V17.6769C10.9242 17.2555 10.7918 17.1351 10.3582 17.1351H9.6598C9.22629 17.1351 9.09382 17.2555 9.09382 17.6769V18.3874C9.09382 18.8089 9.22629 18.9293 9.6598 18.9293ZM13.6578 18.9293H14.3682C14.7898 18.9293 14.9222 18.8089 14.9222 18.3874V17.6769C14.9222 17.2555 14.7898 17.1351 14.3682 17.1351H13.6578C13.2363 17.1351 13.0918 17.2555 13.0918 17.6769V18.3874C13.0918 18.8089 13.2363 18.9293 13.6578 18.9293ZM17.6558 18.9293H18.3663C18.7877 18.9293 18.9322 18.8089 18.9322 18.3874V17.6769C18.9322 17.2555 18.7877 17.1351 18.3663 17.1351H17.6558C17.2343 17.1351 17.0898 17.2555 17.0898 17.6769V18.3874C17.0898 18.8089 17.2343 18.9293 17.6558 18.9293ZM21.6538 18.9293H22.3643C22.7857 18.9293 22.9303 18.8089 22.9303 18.3874V17.6769C22.9303 17.2555 22.7857 17.1351 22.3643 17.1351H21.6538C21.2323 17.1351 21.0998 17.2555 21.0998 17.6769V18.3874C21.0998 18.8089 21.2323 18.9293 21.6538 18.9293ZM9.6598 22.8791H10.3582C10.7918 22.8791 10.9242 22.7467 10.9242 22.3252V21.6147C10.9242 21.1932 10.7918 21.0728 10.3582 21.0728H9.6598C9.22629 21.0728 9.09382 21.1932 9.09382 21.6147V22.3252C9.09382 22.7467 9.22629 22.8791 9.6598 22.8791ZM13.6578 22.8791H14.3682C14.7898 22.8791 14.9222 22.7467 14.9222 22.3252V21.6147C14.9222 21.1932 14.7898 21.0728 14.3682 21.0728H13.6578C13.2363 21.0728 13.0918 21.1932 13.0918 21.6147V22.3252C13.0918 22.7467 13.2363 22.8791 13.6578 22.8791ZM17.6558 22.8791H18.3663C18.7877 22.8791 18.9322 22.7467 18.9322 22.3252V21.6147C18.9322 21.1932 18.7877 21.0728 18.3663 21.0728H17.6558C17.2343 21.0728 17.0898 21.1932 17.0898 21.6147V22.3252C17.0898 22.7467 17.2343 22.8791 17.6558 22.8791Z" fill="currentColor"/></svg>3 dic 2025</div>
+        </div>
+        <span class="radio"></span>
+      </div>
+    </div>
+
+    <div class="lbl">DotsSelectorRadioButtonLabel · variant free / acquired / premium / premiumPlus</div>
+    <div class="col stack">
+      <div class="sel-card selected">
+        <div class="body">
+          <span class="badge main">GRATIS</span>
+          <div class="title-serif">Plan básico</div>
+          <div class="detail1">Hasta 100 recuerdos</div>
+          <div class="detail2">Sin coste, para siempre</div>
+        </div>
+        <span class="radio on"></span>
+      </div>
+      <div class="sel-card">
+        <div class="body">
+          <span class="badge green">ADQUIRIDO</span>
+          <div class="title-serif">Pack familiar</div>
+          <div class="detail1">Comparte con 5 personas</div>
+          <div class="detail2">Comprado el 3 dic 2025</div>
+        </div>
+      </div>
+      <div class="sel-card">
+        <div class="body">
+          <span class="badge premium">PREMIUM</span>
+          <div class="title-serif">Plan Premium</div>
+          <div class="detail1">Recuerdos ilimitados</div>
+          <div class="detail2">99€/año</div>
+        </div>
+        <span class="radio"></span>
+      </div>
+      <div class="sel-card">
+        <div class="body">
+          <span class="badge premium-plus">PREMIUM+</span>
+          <div class="title-serif">Plan Premium+</div>
+          <div class="detail1">Todo, con vídeo en 4K</div>
+          <div class="detail2">149€/año</div>
+        </div>
+        <span class="radio"></span>
+      </div>
+    </div>
+
+    <div class="lbl">DotsSettingItemRadioBtn · leading + trailing label</div>
+    <div class="col">
+      <div class="setting-radio"><span class="radio s22 on"></span><span class="leading">Calidad alta</span><span class="trailing">Recomendado</span></div>
+      <div class="setting-radio"><span class="radio s22"></span><span class="leading">Calidad original</span><span class="trailing">Más espacio</span></div>
+    </div>
+  </div>
+
+  <div class="theme dark">
+    <h2>Dropdowns &amp; Selectors — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+
+    <div class="lbl">DropdownList · size small / medium · isActive · onBackgroundVariant</div>
+    <div class="row">
+      <span class="dd-btn">Mes <span class="subtitle">marzo</span><svg width="14" height="14" viewBox="0 0 32 33" fill="none"><path d="M15.9993 24.8892C16.5255 24.8742 17.0065 24.6791 17.3973 24.2589L28.8216 12.5848C29.1523 12.2547 29.3327 11.8345 29.3327 11.3393C29.3327 10.349 28.551 9.55371 27.5589 9.55371C27.0779 9.55371 26.6119 9.74878 26.2662 10.0939L16.0144 20.6126L5.73253 10.0939C5.3868 9.76379 4.93584 9.55371 4.43978 9.55371C3.44768 9.55371 2.66602 10.349 2.66602 11.3393C2.66602 11.8345 2.8464 12.2547 3.1771 12.5848L14.6164 24.2589C15.0223 24.6791 15.4732 24.8892 15.9993 24.8892Z" fill="currentColor"/></svg></span>
+      <span class="dd-btn medium">Ordenar por<svg width="14" height="14" viewBox="0 0 32 33" fill="none"><path d="M15.9993 24.8892C16.5255 24.8742 17.0065 24.6791 17.3973 24.2589L28.8216 12.5848C29.1523 12.2547 29.3327 11.8345 29.3327 11.3393C29.3327 10.349 28.551 9.55371 27.5589 9.55371C27.0779 9.55371 26.6119 9.74878 26.2662 10.0939L16.0144 20.6126L5.73253 10.0939C5.3868 9.76379 4.93584 9.55371 4.43978 9.55371C3.44768 9.55371 2.66602 10.349 2.66602 11.3393C2.66602 11.8345 2.8464 12.2547 3.1771 12.5848L14.6164 24.2589C15.0223 24.6791 15.4732 24.8892 15.9993 24.8892Z" fill="currentColor"/></svg></span>
+      <span class="dd-btn active">Año <span class="subtitle">2026</span><svg width="14" height="14" viewBox="0 0 32 33" fill="none"><path d="M15.9993 8.57324C15.4732 8.58825 14.9922 8.78332 14.6014 9.20347L3.1771 20.8776C2.8464 21.2077 2.66602 21.6279 2.66602 22.1231C2.66602 23.1134 3.44768 23.9087 4.43978 23.9087C4.92081 23.9087 5.3868 23.7136 5.73253 23.3685L15.9843 12.8498L26.2662 23.3685C26.6119 23.6986 27.0629 23.9087 27.5589 23.9087C28.551 23.9087 29.3327 23.1134 29.3327 22.1231C29.3327 21.6279 29.1523 21.2077 28.8216 20.8776L17.3823 9.20347C16.9764 8.78332 16.5255 8.57324 15.9993 8.57324Z" fill="currentColor"/></svg></span>
+      <span class="dd-btn on-bg">Filtrar<svg width="14" height="14" viewBox="0 0 32 33" fill="none"><path d="M15.9993 24.8892C16.5255 24.8742 17.0065 24.6791 17.3973 24.2589L28.8216 12.5848C29.1523 12.2547 29.3327 11.8345 29.3327 11.3393C29.3327 10.349 28.551 9.55371 27.5589 9.55371C27.0779 9.55371 26.6119 9.74878 26.2662 10.0939L16.0144 20.6126L5.73253 10.0939C5.3868 9.76379 4.93584 9.55371 4.43978 9.55371C3.44768 9.55371 2.66602 10.349 2.66602 11.3393C2.66602 11.8345 2.8464 12.2547 3.1771 12.5848L14.6164 24.2589C15.0223 24.6791 15.4732 24.8892 15.9993 24.8892Z" fill="currentColor"/></svg></span>
+    </div>
+
+    <div class="lbl">DropdownMenu + DropdownItem · normal / pressed / itemColor</div>
+    <div class="dd-menu">
+      <div class="dd-item"><span class="text">Editar recuerdo</span><svg class="trailing" width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M24.1624 2.92672C23.4519 3.07821 23.2534 3.22448 21.9526 4.50958L20.7563 5.69542L26.5393 11.4627L27.6676 10.3343C28.8796 9.12233 29.0938 8.84024 29.2871 8.20814C29.3811 7.9156 29.3915 7.75888 29.3759 7.26783C29.3341 6.19169 29.1565 5.8887 27.6937 4.43644C26.5392 3.28717 26.3251 3.13568 25.5937 2.94761C25.1288 2.82746 24.6482 2.82224 24.1624 2.92672Z" fill="currentColor"/><path d="M11.6951 14.7235L4.28231 22.1363L3.4517 25.4483C2.9711 27.3812 2.62109 28.8648 2.62109 29.0111C2.62109 29.3715 2.8196 29.57 3.18006 29.57C3.32633 29.57 4.80993 29.22 6.74279 28.7394L10.0548 27.9088L17.4676 20.496C21.5423 16.4213 24.8751 13.0676 24.8751 13.0362C24.8751 12.9683 19.2228 7.31598 19.1549 7.31598C19.1236 7.31598 15.7698 10.6489 11.6951 14.7235Z" fill="currentColor"/></svg></div>
+      <div class="dd-item pressed"><span class="text">Compartir <span class="subtitle">con familia</span></span><svg class="trailing" width="16" height="16" viewBox="0 0 32 32" fill="none"><path d="M23.7781 29.329C26.2317 29.329 28.2206 27.34 28.2206 24.8865C28.2206 22.4329 26.2317 20.4439 23.7781 20.4439C22.5302 20.4439 21.4024 20.9585 20.5954 21.787L12.5091 17.1644C12.6103 16.792 12.6644 16.4002 12.6644 15.9957C12.6644 15.5912 12.6103 15.1994 12.5091 14.827L20.5965 10.2055C21.4034 11.0333 22.5307 11.5474 23.7781 11.5474C26.2317 11.5474 28.2206 9.55844 28.2206 7.10489C28.2206 4.65135 26.2317 2.66235 23.7781 2.66235C21.3246 2.66235 19.3356 4.65135 19.3356 7.10489C19.3356 7.50937 19.3896 7.90121 19.4909 8.27361L11.4045 12.8962C10.5976 12.0677 9.46979 11.5531 8.22184 11.5531C5.76829 11.5531 3.7793 13.5421 3.7793 15.9957C3.7793 18.4492 5.76829 20.4382 8.22184 20.4382C9.46923 20.4382 10.5965 19.9241 11.4035 19.0962L19.4909 23.7178C19.3896 24.0902 19.3356 24.482 19.3356 24.8865C19.3356 27.34 21.3246 29.329 23.7781 29.329Z" fill="currentColor"/></svg></div>
+      <div class="dd-item destructive"><span class="text">Eliminar</span><svg class="trailing" width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M12.7426 25.0807C12.326 25.0807 12.0589 24.8293 12.0376 24.4142L11.7171 12.3854C11.7064 11.9811 11.9735 11.7189 12.4008 11.7189C12.796 11.7189 13.0738 11.9702 13.0845 12.3744L13.4263 24.4142C13.437 24.8184 13.1592 25.0807 12.7426 25.0807ZM16.0008 25.0807C15.5841 25.0807 15.2957 24.8184 15.2957 24.4142V12.3854C15.2957 11.9811 15.5841 11.7189 16.0008 11.7189C16.4174 11.7189 16.7165 11.9811 16.7165 12.3854V24.4142C16.7165 24.8184 16.4174 25.0807 16.0008 25.0807ZM19.2696 25.0807C18.853 25.0807 18.5753 24.8184 18.5859 24.4142L18.9171 12.3854C18.9278 11.9702 19.2055 11.7189 19.6008 11.7189C20.028 11.7189 20.2951 11.9811 20.2844 12.3854L19.9639 24.4142C19.9426 24.8293 19.6755 25.0807 19.2696 25.0807ZM11.3112 9.06406H13.0097V6.72603C13.0097 6.10329 13.437 5.69904 14.0779 5.69904H17.9022C18.5432 5.69904 18.9705 6.10329 18.9705 6.72603V9.06406H20.6689V6.61678C20.6689 5.0326 19.6649 4.07117 18.0197 4.07117H13.9604C12.3153 4.07117 11.3112 5.0326 11.3112 6.61678V9.06406ZM6.46134 9.93809H25.5508C25.9889 9.93809 26.3414 9.5557 26.3414 9.10776C26.3414 8.65983 25.9889 8.28836 25.5508 8.28836H6.46134C6.03404 8.28836 5.66016 8.65983 5.66016 9.10776C5.66016 9.56663 6.03404 9.93809 6.46134 9.93809ZM11.1082 28.402H20.904C22.4316 28.402 23.4571 27.3859 23.5319 25.8235L24.2797 9.70866H7.72187L8.48032 25.8345C8.5551 27.3968 9.55924 28.402 11.1082 28.402Z" fill="currentColor"/></svg></div>
+    </div>
+
+    <div class="lbl">DotsSelectorRadioButton · isSelected true / false</div>
+    <div class="col stack">
+      <div class="sel-card selected">
+        <div class="body">
+          <div class="title">Álbum de verano</div>
+          <div class="detail"><svg width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M9.84707 17.5207C9.37648 17.5207 9.02354 17.1677 9.02354 16.697C9.02354 16.2383 9.37648 15.8853 9.84707 15.8853H15.1765V8.76766C15.1765 8.30883 15.5295 7.95589 15.9883 7.95589C16.447 7.95589 16.8118 8.30883 16.8118 8.76766V16.697C16.8118 17.1677 16.447 17.5207 15.9883 17.5207H9.84707ZM16 28.25C22.5648 28.25 28 22.803 28 16.25C28 9.6853 22.553 4.25 15.9883 4.25C9.4353 4.25 4 9.6853 4 16.25C4 22.803 9.44707 28.25 16 28.25Z" fill="currentColor"/></svg>Hace 2 semanas</div>
+          <div class="detail"><svg width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M7.78123 27.3348H24.2308C26.7476 27.3348 28 26.0823 28 23.6016V8.89822C28 6.41755 26.7476 5.16516 24.2308 5.16516H7.78123C5.26442 5.16516 4 6.4055 4 8.89822V23.6016C4 26.0944 5.26442 27.3348 7.78123 27.3348ZM7.6006 25.3959C6.52885 25.3959 5.93878 24.83 5.93878 23.71V12.3543C5.93878 11.2464 6.52885 10.6684 7.6006 10.6684H24.3873C25.4591 10.6684 26.0612 11.2464 26.0612 12.3543V23.71C26.0612 24.83 25.4591 25.3959 24.3873 25.3959H7.6006ZM13.6578 14.9915H14.3682C14.7898 14.9915 14.9222 14.8711 14.9222 14.4496V13.7392C14.9222 13.3177 14.7898 13.1852 14.3682 13.1852H13.6578C13.2363 13.1852 13.0918 13.3177 13.0918 13.7392V14.4496C13.0918 14.8711 13.2363 14.9915 13.6578 14.9915ZM17.6558 14.9915H18.3663C18.7877 14.9915 18.9322 14.8711 18.9322 14.4496V13.7392C18.9322 13.3177 18.7877 13.1852 18.3663 13.1852H17.6558C17.2343 13.1852 17.0898 13.3177 17.0898 13.7392V14.4496C17.0898 14.8711 17.2343 14.9915 17.6558 14.9915ZM21.6538 14.9915H22.3643C22.7857 14.9915 22.9303 14.8711 22.9303 14.4496V13.7392C22.9303 13.3177 22.7857 13.1852 22.3643 13.1852H21.6538C21.2323 13.1852 21.0998 13.3177 21.0998 13.7392V14.4496C21.0998 14.8711 21.2323 14.9915 21.6538 14.9915ZM9.6598 18.9293H10.3582C10.7918 18.9293 10.9242 18.8089 10.9242 18.3874V17.6769C10.9242 17.2555 10.7918 17.1351 10.3582 17.1351H9.6598C9.22629 17.1351 9.09382 17.2555 9.09382 17.6769V18.3874C9.09382 18.8089 9.22629 18.9293 9.6598 18.9293ZM13.6578 18.9293H14.3682C14.7898 18.9293 14.9222 18.8089 14.9222 18.3874V17.6769C14.9222 17.2555 14.7898 17.1351 14.3682 17.1351H13.6578C13.2363 17.1351 13.0918 17.2555 13.0918 17.6769V18.3874C13.0918 18.8089 13.2363 18.9293 13.6578 18.9293ZM17.6558 18.9293H18.3663C18.7877 18.9293 18.9322 18.8089 18.9322 18.3874V17.6769C18.9322 17.2555 18.7877 17.1351 18.3663 17.1351H17.6558C17.2343 17.1351 17.0898 17.2555 17.0898 17.6769V18.3874C17.0898 18.8089 17.2343 18.9293 17.6558 18.9293ZM21.6538 18.9293H22.3643C22.7857 18.9293 22.9303 18.8089 22.9303 18.3874V17.6769C22.9303 17.2555 22.7857 17.1351 22.3643 17.1351H21.6538C21.2323 17.1351 21.0998 17.2555 21.0998 17.6769V18.3874C21.0998 18.8089 21.2323 18.9293 21.6538 18.9293ZM9.6598 22.8791H10.3582C10.7918 22.8791 10.9242 22.7467 10.9242 22.3252V21.6147C10.9242 21.1932 10.7918 21.0728 10.3582 21.0728H9.6598C9.22629 21.0728 9.09382 21.1932 9.09382 21.6147V22.3252C9.09382 22.7467 9.22629 22.8791 9.6598 22.8791ZM13.6578 22.8791H14.3682C14.7898 22.8791 14.9222 22.7467 14.9222 22.3252V21.6147C14.9222 21.1932 14.7898 21.0728 14.3682 21.0728H13.6578C13.2363 21.0728 13.0918 21.1932 13.0918 21.6147V22.3252C13.0918 22.7467 13.2363 22.8791 13.6578 22.8791ZM17.6558 22.8791H18.3663C18.7877 22.8791 18.9322 22.7467 18.9322 22.3252V21.6147C18.9322 21.1932 18.7877 21.0728 18.3663 21.0728H17.6558C17.2343 21.0728 17.0898 21.1932 17.0898 21.6147V22.3252C17.0898 22.7467 17.2343 22.8791 17.6558 22.8791Z" fill="currentColor"/></svg>12 mar 2026</div>
+        </div>
+        <span class="radio on"></span>
+      </div>
+      <div class="sel-card">
+        <div class="body">
+          <div class="title">Álbum de invierno</div>
+          <div class="detail"><svg width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M9.84707 17.5207C9.37648 17.5207 9.02354 17.1677 9.02354 16.697C9.02354 16.2383 9.37648 15.8853 9.84707 15.8853H15.1765V8.76766C15.1765 8.30883 15.5295 7.95589 15.9883 7.95589C16.447 7.95589 16.8118 8.30883 16.8118 8.76766V16.697C16.8118 17.1677 16.447 17.5207 15.9883 17.5207H9.84707ZM16 28.25C22.5648 28.25 28 22.803 28 16.25C28 9.6853 22.553 4.25 15.9883 4.25C9.4353 4.25 4 9.6853 4 16.25C4 22.803 9.44707 28.25 16 28.25Z" fill="currentColor"/></svg>Hace 3 meses</div>
+          <div class="detail"><svg width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M7.78123 27.3348H24.2308C26.7476 27.3348 28 26.0823 28 23.6016V8.89822C28 6.41755 26.7476 5.16516 24.2308 5.16516H7.78123C5.26442 5.16516 4 6.4055 4 8.89822V23.6016C4 26.0944 5.26442 27.3348 7.78123 27.3348ZM7.6006 25.3959C6.52885 25.3959 5.93878 24.83 5.93878 23.71V12.3543C5.93878 11.2464 6.52885 10.6684 7.6006 10.6684H24.3873C25.4591 10.6684 26.0612 11.2464 26.0612 12.3543V23.71C26.0612 24.83 25.4591 25.3959 24.3873 25.3959H7.6006ZM13.6578 14.9915H14.3682C14.7898 14.9915 14.9222 14.8711 14.9222 14.4496V13.7392C14.9222 13.3177 14.7898 13.1852 14.3682 13.1852H13.6578C13.2363 13.1852 13.0918 13.3177 13.0918 13.7392V14.4496C13.0918 14.8711 13.2363 14.9915 13.6578 14.9915ZM17.6558 14.9915H18.3663C18.7877 14.9915 18.9322 14.8711 18.9322 14.4496V13.7392C18.9322 13.3177 18.7877 13.1852 18.3663 13.1852H17.6558C17.2343 13.1852 17.0898 13.3177 17.0898 13.7392V14.4496C17.0898 14.8711 17.2343 14.9915 17.6558 14.9915ZM21.6538 14.9915H22.3643C22.7857 14.9915 22.9303 14.8711 22.9303 14.4496V13.7392C22.9303 13.3177 22.7857 13.1852 22.3643 13.1852H21.6538C21.2323 13.1852 21.0998 13.3177 21.0998 13.7392V14.4496C21.0998 14.8711 21.2323 14.9915 21.6538 14.9915ZM9.6598 18.9293H10.3582C10.7918 18.9293 10.9242 18.8089 10.9242 18.3874V17.6769C10.9242 17.2555 10.7918 17.1351 10.3582 17.1351H9.6598C9.22629 17.1351 9.09382 17.2555 9.09382 17.6769V18.3874C9.09382 18.8089 9.22629 18.9293 9.6598 18.9293ZM13.6578 18.9293H14.3682C14.7898 18.9293 14.9222 18.8089 14.9222 18.3874V17.6769C14.9222 17.2555 14.7898 17.1351 14.3682 17.1351H13.6578C13.2363 17.1351 13.0918 17.2555 13.0918 17.6769V18.3874C13.0918 18.8089 13.2363 18.9293 13.6578 18.9293ZM17.6558 18.9293H18.3663C18.7877 18.9293 18.9322 18.8089 18.9322 18.3874V17.6769C18.9322 17.2555 18.7877 17.1351 18.3663 17.1351H17.6558C17.2343 17.1351 17.0898 17.2555 17.0898 17.6769V18.3874C17.0898 18.8089 17.2343 18.9293 17.6558 18.9293ZM21.6538 18.9293H22.3643C22.7857 18.9293 22.9303 18.8089 22.9303 18.3874V17.6769C22.9303 17.2555 22.7857 17.1351 22.3643 17.1351H21.6538C21.2323 17.1351 21.0998 17.2555 21.0998 17.6769V18.3874C21.0998 18.8089 21.2323 18.9293 21.6538 18.9293ZM9.6598 22.8791H10.3582C10.7918 22.8791 10.9242 22.7467 10.9242 22.3252V21.6147C10.9242 21.1932 10.7918 21.0728 10.3582 21.0728H9.6598C9.22629 21.0728 9.09382 21.1932 9.09382 21.6147V22.3252C9.09382 22.7467 9.22629 22.8791 9.6598 22.8791ZM13.6578 22.8791H14.3682C14.7898 22.8791 14.9222 22.7467 14.9222 22.3252V21.6147C14.9222 21.1932 14.7898 21.0728 14.3682 21.0728H13.6578C13.2363 21.0728 13.0918 21.1932 13.0918 21.6147V22.3252C13.0918 22.7467 13.2363 22.8791 13.6578 22.8791ZM17.6558 22.8791H18.3663C18.7877 22.8791 18.9322 22.7467 18.9322 22.3252V21.6147C18.9322 21.1932 18.7877 21.0728 18.3663 21.0728H17.6558C17.2343 21.0728 17.0898 21.1932 17.0898 21.6147V22.3252C17.0898 22.7467 17.2343 22.8791 17.6558 22.8791Z" fill="currentColor"/></svg>3 dic 2025</div>
+        </div>
+        <span class="radio"></span>
+      </div>
+    </div>
+
+    <div class="lbl">DotsSelectorRadioButtonLabel · variant free / acquired / premium / premiumPlus</div>
+    <div class="col stack">
+      <div class="sel-card selected">
+        <div class="body">
+          <span class="badge main">GRATIS</span>
+          <div class="title-serif">Plan básico</div>
+          <div class="detail1">Hasta 100 recuerdos</div>
+          <div class="detail2">Sin coste, para siempre</div>
+        </div>
+        <span class="radio on"></span>
+      </div>
+      <div class="sel-card">
+        <div class="body">
+          <span class="badge green">ADQUIRIDO</span>
+          <div class="title-serif">Pack familiar</div>
+          <div class="detail1">Comparte con 5 personas</div>
+          <div class="detail2">Comprado el 3 dic 2025</div>
+        </div>
+      </div>
+      <div class="sel-card">
+        <div class="body">
+          <span class="badge premium">PREMIUM</span>
+          <div class="title-serif">Plan Premium</div>
+          <div class="detail1">Recuerdos ilimitados</div>
+          <div class="detail2">99€/año</div>
+        </div>
+        <span class="radio"></span>
+      </div>
+      <div class="sel-card">
+        <div class="body">
+          <span class="badge premium-plus">PREMIUM+</span>
+          <div class="title-serif">Plan Premium+</div>
+          <div class="detail1">Todo, con vídeo en 4K</div>
+          <div class="detail2">149€/año</div>
+        </div>
+        <span class="radio"></span>
+      </div>
+    </div>
+
+    <div class="lbl">DotsSettingItemRadioBtn · leading + trailing label</div>
+    <div class="col">
+      <div class="setting-radio"><span class="radio s22 on"></span><span class="leading">Calidad alta</span><span class="trailing">Recomendado</span></div>
+      <div class="setting-radio"><span class="radio s22"></span><span class="leading">Calidad original</span><span class="trailing">Más espacio</span></div>
+    </div>
+  </div>
+</body>
+</html>

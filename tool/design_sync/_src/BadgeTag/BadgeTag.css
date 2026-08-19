@@ -1,0 +1,14 @@
+/* BadgeTag — badges/badge_tag.dart. Min 18x18, pad 1x5, radio 22 (DotsBorderRadius.r22),
+   bg labelDestructive, texto labelSmallMedium 11/600 labelAlwaysWhite.
+   Con child: flota top-right (default -5,-5). */
+.ds-badge-tag {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 18px; min-height: 18px; padding: 1px 5px;
+  border-radius: 22px; box-sizing: border-box;
+  background: var(--label-destructive); color: var(--label-always-white);
+  font-family: var(--font-main);
+  font-size: 11px; font-weight: 600; line-height: 1.27; letter-spacing: 0.01px;
+  white-space: nowrap;
+}
+.ds-badge-tag-host { position: relative; display: inline-block; }
+.ds-badge-tag--floating { position: absolute; }

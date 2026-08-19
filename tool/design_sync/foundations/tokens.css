@@ -1,0 +1,109 @@
+/* Design tokens generados desde lib/src/theme (dots_colors.dart, dots_typo.dart, dots_styles.dart).
+   Fuente de verdad: el código Dart. Regenerar si cambian los tokens. */
+
+/* Fuentes de marca — archivos reales del repo (assets/fonts/) */
+@font-face { font-family: 'Inter'; src: url('../assets/fonts/Inter-Regular.ttf') format('truetype'), url('assets/fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../assets/fonts/Inter-Medium.ttf') format('truetype'), url('assets/fonts/Inter-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../assets/fonts/Inter-SemiBold.ttf') format('truetype'), url('assets/fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../assets/fonts/Inter-Bold.ttf') format('truetype'), url('assets/fonts/Inter-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Nunito'; src: url('../assets/fonts/Nunito-Regular.ttf') format('truetype'), url('assets/fonts/Nunito-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Nunito'; src: url('../assets/fonts/Nunito-SemiBold.ttf') format('truetype'), url('assets/fonts/Nunito-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Nunito'; src: url('../assets/fonts/Nunito-ExtraBold.ttf') format('truetype'), url('assets/fonts/Nunito-ExtraBold.ttf') format('truetype'); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Book.otf') format('opentype'), url('assets/fonts/P22Mackinac-Book.otf') format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Medium.otf') format('opentype'), url('assets/fonts/P22Mackinac-Medium.otf') format('opentype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Bold.otf') format('opentype'), url('assets/fonts/P22Mackinac-Bold.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-ExtraBold.otf') format('opentype'), url('assets/fonts/P22Mackinac-ExtraBold.otf') format('opentype'); font-weight: 800; font-style: normal; font-display: swap; }
+
+:root {
+  /* Backgrounds — DotsColors.light */
+  --bg-base: #F8F7F5;
+  --bg-base-contrast: #FAFAFA;
+  --bg-container-primary: #F8F7F5D9;
+  --bg-container-secondary: #E2E2E2B3;
+  --bg-container-secondary-on-bg: #8C8C8C1A;
+  --bg-container-tertiary: #BABABAE6;
+  --bg-secondary-btn: #8C8C8C4D;
+  --bg-floating-btn: #303030B3;
+  --bg-btn-image: #F3F3F399;
+  --bg-btn-disabled: #C8C8C866;
+  --bg-btn-disabled-opaque: #D8D8D8;
+  --bg-strong: #FFFFFF;
+  --bg-highlight: #0072EF33;
+  --bg-destructive: #ED2B321A;
+  --bg-active: #28CB551A;
+  --bg-warning: #EF91481A;
+
+  /* Text & labels */
+  --text-primary: #000000;
+  --text-secondary: #000000AB;
+  --text-tertiary: #0000008C;
+  --text-quarternary: #00000066;
+  --text-disabled: #00000033;
+  --label-primary: #00000099;
+  --label-secondary: #00000033;
+  --label-highlight: #0072EF;
+  --label-always-white: #FFFFFF;
+  --label-destructive: #ED2B32;
+  --label-active: #28CB55;
+  --label-warning: #EF9148;
+
+  /* Borders & shadows */
+  --border-button: #BCBCBC7F;
+  --border-glass: #BCBCBC0E;
+  --border-label: #EAECF0;
+  --shadow-primary: #00000026;
+  --shadow-default: 0 6px 20px #0000001A;
+  --shadow-floating-btn: 0 4px 15px #00000026;
+
+  /* Premium */
+  --text-premium-start: #C17FFA;
+  --text-premium-end: #8C84F7;
+  --text-premium-plus-start: #DDA61C;
+  --text-premium-plus-end: #A37F28;
+  --gradient-bg-premium: linear-gradient(135deg, #C88EFF, #8B84F7);
+  --gradient-bg-premium-plus: linear-gradient(135deg, #E9C058, #B48D2D);
+
+  /* Squircle radii (figma_squircle, cornerSmoothing 0.5) */
+  --squircle-8: 8px; --squircle-12: 12px; --squircle-15: 15px;
+  --squircle-16: 16px; --squircle-20: 20px; --squircle-24: 24px;
+  --squircle-28: 28px; --squircle-32: 32px; --squircle-52: 52px;
+
+  /* Blur levels */
+  --blur-10: 10px; --blur-12: 12px; --blur-20: 20px;
+  --blur-30: 30px; --blur-40: 40px; --blur-50: 50px;
+
+  /* Typography families */
+  --font-main: 'Inter', -apple-system, sans-serif;      /* UI y cuerpo */
+  --font-number: 'Nunito', -apple-system, sans-serif;   /* cifras y contadores */
+  --font-secondary: 'P22 Mackinac', Georgia, serif;     /* títulos editoriales */
+}
+
+/* DotsColors.dark */
+[data-theme="dark"] {
+  --bg-base: #191919;
+  --bg-base-contrast: #1F1F1F;
+  --bg-container-primary: #191919D9;
+  --bg-container-secondary: #282828B3;
+  --bg-container-secondary-on-bg: #75757533;
+  --bg-container-tertiary: #414141E6;
+  --bg-secondary-btn: #C8C8C84D;
+  --bg-floating-btn: #C8C8C866;
+  --bg-btn-image: #74747499;
+  --bg-btn-disabled: #C8C8C819;
+  --bg-btn-disabled-opaque: #313131;
+  --bg-strong: #3E3E3E;
+  --bg-highlight: #0A84FF33;
+  --text-primary: #FFFFFF;
+  --text-secondary: #FFFFFFBF;
+  --text-tertiary: #FFFFFFA6;
+  --text-quarternary: #FFFFFF73;
+  --text-disabled: #FFFFFF33;
+  --label-primary: #FFFFFFCC;
+  --label-secondary: #FFFFFF4D;
+  --label-highlight: #0A84FF;
+  --label-destructive: #ED2B32;
+  --label-active: #3BD866;
+  --border-button: #BCBCBC33;
+  --text-premium-plus-start: #E9C058;
+  --text-premium-plus-end: #B48D2D;
+}

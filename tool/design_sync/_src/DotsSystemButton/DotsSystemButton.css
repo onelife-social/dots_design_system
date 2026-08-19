@@ -1,0 +1,36 @@
+/* DotsSystemButton — port de lib/src/components/buttons/dots_system_button/ (Dart = fuente de verdad) */
+
+/* size medium: height 44, padding 24 horizontal, radius r16, gap 6,
+   texto typo.main.bodyDefaultMedium (14/500, lh 1.29, ls -0.02) */
+.ds-system-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  gap: 6px;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: var(--squircle-16);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  max-width: 100%;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+  letter-spacing: -0.02px;
+  background: var(--bg-container-secondary-on-bg);
+  color: var(--text-primary);
+  /* theme.styles.blur50 (blurStyle de la variante) */
+  -webkit-backdrop-filter: blur(var(--blur-50));
+  backdrop-filter: blur(var(--blur-50));
+}
+.ds-system-btn--expand { display: flex; width: 100%; }
+
+/* Variantes — DotsSystemButtonVariant (mismo fondo bgContainerSecondaryOnBackground) */
+.ds-system-btn--disabled { color: var(--text-disabled); }
+.ds-system-btn--destructive { color: var(--label-destructive); }
+
+.ds-system-btn__icon { display: inline-flex; align-items: center; flex: none; }
+.ds-system-btn__label { overflow: hidden; text-overflow: ellipsis; min-width: 0; }

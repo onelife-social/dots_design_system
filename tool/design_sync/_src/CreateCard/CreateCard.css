@@ -1,0 +1,33 @@
+/* CreateCard — 164×112 (width configurable), r24 */
+.ds-create-card { position: relative; height: 112px; border-radius: var(--squircle-24); box-sizing: border-box; cursor: pointer; flex: none; }
+/* variant label — pad 12/14, icono arriba, título abajo, botón add flotante */
+.ds-create-card--label {
+  padding: 12px 14px; display: flex; flex-direction: column; justify-content: space-between;
+  align-items: flex-start; color: var(--label-always-white);
+  /* fallback si no llega primaryColor: degradado lineal verde de marca (sin token) */
+  background: linear-gradient(90deg, #77D98A, #28AB87);
+}
+.ds-create-card__icon { display: inline-flex; flex: none; }
+/* bodyLargeMedium 16/500, máx 2 líneas */
+.ds-create-card__title {
+  font: 500 16px/1.31 var(--font-main);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+/* DotsIconButton medium Ø28 disabled — bgBtnImage al 40% (light #F3F3F3 / dark #747474, sin token con alpha) */
+.ds-create-card__add {
+  position: absolute; right: 11px; top: 11px; width: 28px; height: 28px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #F3F3F366; color: var(--label-always-white);
+}
+[data-theme="dark"] .ds-create-card__add { background: #74747466; }
+/* variant button — bgContainerSecondaryOnBackground, columna centrada */
+.ds-create-card--button {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  background: var(--bg-container-secondary-on-bg); color: var(--text-primary);
+}
+.ds-create-card__circle {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--bg-container-secondary-on-bg);
+}
+.ds-create-card__btn-label { font: 400 13px/1.31 var(--font-main); } /* labelDefaultRegular */

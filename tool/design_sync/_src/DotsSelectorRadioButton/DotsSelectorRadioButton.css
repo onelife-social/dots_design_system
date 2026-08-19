@@ -1,0 +1,77 @@
+/* DotsSelectorRadioButton / DotsSelectorRadioButtonLabel / DotsSettingItemRadioBtn — selectors/ */
+.ds-sel-card {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 16px; /* SizedBox(width: 16) entre body y radio */
+  width: calc(100% - 3px);
+  margin: 1.5px; /* Dart: margin EdgeInsets.all(1.5) para el borde exterior */
+  padding: 16px;
+  border-radius: var(--squircle-24);
+  background: var(--bg-container-secondary);
+  cursor: pointer;
+  font-family: var(--font-main);
+}
+/* isSelected — borde 1.5 labelHighlight strokeAlignOutside, r26 */
+.ds-sel-card.is-selected {
+  border-radius: 26px;
+  box-shadow: 0 0 0 1.5px var(--label-highlight);
+}
+.ds-sel-card__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.ds-sel-card__body--gap10 { gap: 10px; } /* Column spacing 10 (DotsSelectorRadioButton) */
+.ds-sel-card__body--gap8 { gap: 8px; }   /* Column spacing 8 (…Label) */
+/* title — bodyDefaultBold 14/700, textPrimary */
+.ds-sel-card__title { font: 700 14px/1.29 var(--font-main); letter-spacing: -0.02px; color: var(--text-primary); }
+/* detail — icono 16 + labelDefaultRegular 13/400, textTertiary, gap 4 */
+.ds-sel-card__detail {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font: 400 13px/1.31 var(--font-main);
+  letter-spacing: -0.01px;
+  color: var(--text-tertiary);
+}
+/* …Label: title02H6 (P22 Mackinac 18/500) · bodyDefaultMedium · labelDefaultRegular */
+.ds-sel-card__title-serif { font: 500 18px/1.28 var(--font-secondary); letter-spacing: -0.08px; color: var(--text-primary); }
+.ds-sel-card__detail1 { font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px; color: var(--text-tertiary); }
+.ds-sel-card__detail2 { font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px; color: var(--text-tertiary); }
+/* fallback si BadgeLabel no está en el bundle */
+.ds-sel-card__badge-ph {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 22px;
+  background: var(--label-highlight);
+  color: var(--label-always-white);
+  font: 600 11px/1 var(--font-main);
+}
+
+/* DotsSettingItemRadioBtn — padding 16/12, radio 22, gaps 12 */
+.ds-setting-radio {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  background: transparent;
+  font-family: var(--font-main);
+}
+.ds-setting-radio__leading { flex: 1; min-width: 0; font: 700 14px/1.29 var(--font-main); letter-spacing: -0.02px; color: var(--text-primary); }
+.ds-setting-radio__trailing { font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px; color: var(--text-tertiary); }
+
+/* fallback si DotsRadioButton no está en el bundle */
+.ds-sel-radio-fallback {
+  box-sizing: border-box;
+  flex: none;
+  border-radius: 50%;
+  border: 2px solid var(--label-secondary);
+}
+.ds-sel-radio-fallback.is-on { border-color: var(--label-highlight); }

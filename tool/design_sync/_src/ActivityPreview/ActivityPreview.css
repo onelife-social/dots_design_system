@@ -1,0 +1,208 @@
+/* ActivityPreview + ActivityPreview.OverviewItem — port de
+   lib/src/components/notifications/activity_preview.dart y activity_overview_item.dart
+   (Dart = fuente de verdad) */
+
+/* ── ActivityPreview — AspectRatio 3:4 · r24 · borde bgContainerSecondary · sombra 0 4 10 ── */
+.ds-activity-preview {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  padding: 10px 13px; /* EdgeInsets.symmetric(horizontal: 13, vertical: 10) */
+  border: 1px solid var(--bg-container-secondary);
+  border-radius: 24px; /* DotsBorderRadius.r24 (squircle → border-radius) */
+  box-shadow: 0 4px 10px var(--shadow-primary);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end; /* Alignment.bottomCenter */
+  justify-content: center;
+  font-family: var(--font-number);
+}
+.ds-activity-preview--clickable { cursor: pointer; }
+
+/* Placeholder sin imagen — degradado tipo foto (como las tarjetas de referencia; sin token) */
+.ds-activity-preview--placeholder {
+  background: linear-gradient(135deg, #FAA25E, #F43C51);
+}
+
+/* DecorationImage(fit: cover) */
+.ds-activity-preview__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Píldora — ClipRRect r100 + blur(10) + bgSecondaryBtn · pad 6/10 */
+.ds-activity-preview__pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  padding: 6px 10px;
+  border-radius: 100px;
+  background: var(--bg-secondary-btn);
+  backdrop-filter: blur(var(--blur-10));
+  -webkit-backdrop-filter: blur(var(--blur-10));
+  color: var(--label-always-white);
+  white-space: nowrap;
+}
+.ds-activity-preview__pill-icon { display: inline-flex; flex: none; }
+
+/* reacciones (emojis) — typo.number.numLabelDefault (Nunito 13/800, lh 1.31) · gap dcho 5 */
+.ds-activity-preview__reaction {
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.31;
+  margin-right: 5px;
+}
+
+/* number — typo.number.numBodyDefault (Nunito 14/800, lh 1.29) labelAlwaysWhite */
+.ds-activity-preview__number {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.29;
+}
+.ds-activity-preview__number--after-icon { margin-left: 4px; } /* SizedBox(width: 4) tras el icono */
+
+/* ── ActivityPreview.OverviewItem ───────────────────────────────────────── */
+.ds-activity-overview {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-main);
+}
+
+.ds-activity-overview__stack { position: relative; }
+
+.ds-activity-overview__card {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  /* Placeholder degradado tipo foto bajo la imagen (sin token) */
+  background: linear-gradient(135deg, #9297EF, #8B84F7);
+}
+/* Borde white30 strokeAlignInside — sobre la foto (sin token) */
+.ds-activity-overview__card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 var(--ds-ov-bw, 1px) #FFFFFF4D;
+  pointer-events: none;
+}
+/* Transform(rotateZ(-0.087 rad) ≈ -5deg, alignment: bottomRight) */
+.ds-activity-overview__card--back {
+  transform: rotate(-5deg);
+  transform-origin: bottom right;
+  background: linear-gradient(135deg, #28CB55, #0072EF);
+}
+.ds-activity-overview__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Gradiente superior black26 → transparent (stops 0 → 0.5) — solo card frontal */
+.ds-activity-overview__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #00000042, transparent 50%);
+  pointer-events: none;
+}
+
+/* Badge — Positioned(top: -8, right: -8): CircleAvatar r10 bgBase + interior 17 color de variante */
+.ds-activity-overview__badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-activity-overview__badge-inner {
+  width: 17px; /* 18 - margen 1.5 constreñido dentro del avatar de 20 */
+  height: 17px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SizedBox(height: 16) entre pila y textos */
+.ds-activity-overview__info {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* count / title — typo.main.bodyDefaultMedium (14/500, lh 1.29, ls -0.02) textSecondary */
+.ds-activity-overview__count,
+.ds-activity-overview__title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+  letter-spacing: -0.02px;
+  color: var(--text-secondary);
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* SizedBox(height: 2) + fila +N y avatares */
+.ds-activity-overview__reactions {
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-activity-overview__reactions-count {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+  letter-spacing: -0.02px;
+  color: var(--label-highlight);
+  margin-right: 4px; /* SizedBox(width: 4) */
+}
+.ds-activity-overview__avatars {
+  position: relative;
+  height: 17px;
+  flex: none;
+}
+.ds-activity-overview__avatar {
+  position: absolute;
+  top: 0;
+  width: 17px;
+  height: 17px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--bg-base);
+  border: 1px solid var(--bg-base);
+  overflow: hidden;
+}
+.ds-activity-overview__avatar-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.ds-activity-overview__avatar-fallback {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-container-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

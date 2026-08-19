@@ -1,0 +1,46 @@
+<!-- @dsCard group="indicators" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+    /* Fondo demo: el countdown vive sobre foto (blur + texto siempre blanco) */
+    .photo-bg{padding:22px;border-radius:24px;display:inline-flex;gap:16px;align-items:center;flex-wrap:wrap;background:linear-gradient(135deg,#7A93B5,#C4A192,#6E8E88)}
+    [data-theme="dark"] .photo-bg{background:linear-gradient(135deg,#3A4A61,#5C4A42,#37474E)}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsCountdown;
+    function demo() { return h('div', { className: 'photo-bg' }, Array.prototype.slice.call(arguments)); }
+    var labels = { daysLabel: 'días', hoursLabel: 'hrs', minutesLabel: 'min', secondsLabel: 'seg' };
+    function recap(extra) { return h(C, Object.assign({ title: 'Recap del verano' }, labels, extra)); }
+    var variants = [
+      ['recap · valores fijos 02/14/36/08', demo(recap({ days: 2, hours: 14, minutes: 36, seconds: 8 }))],
+      ['recap · targetDate (cuenta atrás real)', demo(recap({ targetDate: Date.now() + 2 * 86400e3 + 14 * 3600e3 + 36 * 60e3 + 8e3 }))],
+      ['recap · finished (description)', demo(recap({ finished: true, description: 'Ya casi está listo, vuelve pronto' }))],
+      ['recap · isDotbook (bg textDisabled)', demo(recap({ isDotbook: true, days: 2, hours: 14, minutes: 36, seconds: 8 }))],
+      ['small · icono weddingRings', demo(h(C, { variant: 'small', years: '2', yearsLabel: 'años', months: '3', monthsLabel: 'meses', conjunctionText: 'y', days: '12', daysLabel: 'días' }))],
+      ['big · título + años/meses/días', demo(h(C, { variant: 'big', title: 'Juntos desde hace', years: '2', yearsLabel: 'años', months: '3', monthsLabel: 'meses', days: '12', daysLabel: 'días', conjunctionText: 'y' }))],
+      ['dark · recap / small', demo(
+        recap({ days: 2, hours: 14, minutes: 36, seconds: 8 }),
+        h(C, { variant: 'small', years: '2', yearsLabel: 'años', months: '3', monthsLabel: 'meses', conjunctionText: 'y', days: '12', daysLabel: 'días' })
+      ), true]
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2]) { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '8px'; }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

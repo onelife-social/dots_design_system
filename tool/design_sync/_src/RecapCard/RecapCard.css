@@ -1,0 +1,60 @@
+/* RecapCard — 4:5 squircle52 con overlay (recap_card.dart) · locked: 7:8 pad 20 (recap_card_locked.dart) */
+.ds-recap-card {
+  position: relative; overflow: hidden; flex: none; box-sizing: border-box; cursor: pointer;
+  aspect-ratio: 4 / 5; border-radius: var(--squircle-52); box-shadow: var(--shadow-default);
+}
+.ds-recap-card--locked { aspect-ratio: 7 / 8; box-shadow: none; cursor: default; }
+.ds-recap-card__img { position: absolute; inset: 0; background-size: cover; background-position: center; }
+/* Placeholder de foto cuando no llega imageSrc (degradado, sin token — como las tarjetas planas) */
+.ds-recap-card__img--ph { background-image: linear-gradient(160deg, #8FA8C8, #D9B8A5, #8E7F9E); }
+.ds-recap-card__img--blur { filter: blur(15px); transform: scale(1.15); } /* ImageFilter.blur(15,15) */
+/* Overlay — negro 30% (sin token) + borde 2 borderButton strokeAlignInside */
+.ds-recap-card__overlay {
+  position: absolute; inset: 0; box-sizing: border-box; overflow: hidden;
+  background: #0000004D; border: 2px solid var(--border-button); border-radius: var(--squircle-52);
+}
+.ds-recap-card__text-img { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.ds-recap-card__inner { position: absolute; inset: 24px; }
+.ds-recap-card--locked .ds-recap-card__inner { inset: 20px; }
+/* Fila superior: título (clockTimer 16 + bodyDefaultMedium) + badge/botón */
+.ds-recap-card__title-row { display: flex; align-items: center; justify-content: space-between; }
+.ds-recap-card__ttl { display: inline-flex; align-items: center; gap: 4px; color: var(--label-always-white); font: 500 14px/1.29 var(--font-main); }
+/* DotsIconButton floating — Ø44 icono 24 (large) / Ø36 icono 20 (medium), bgBtnImage + blur10 */
+.ds-recap-card__icon-btn {
+  width: 44px; height: 44px; border: none; padding: 0; cursor: pointer; border-radius: 50%; flex: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--bg-btn-image); color: var(--text-primary);
+  backdrop-filter: blur(var(--blur-10)); -webkit-backdrop-filter: blur(var(--blur-10));
+}
+.ds-recap-card__icon-btn--medium { width: 36px; height: 36px; }
+/* bgBtnImage al 50% (light #F3F3F3 / dark #747474 — alpha sin token) */
+.ds-recap-card__icon-btn--half { background: #F3F3F380; }
+[data-theme="dark"] .ds-recap-card__icon-btn--half { background: #74747480; }
+.ds-recap-card__info { position: absolute; top: 0; right: 0; }
+.ds-recap-card__bottom { position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: center; }
+/* _CreatedByText — bodyDefaultMedium blanco, una línea cada texto */
+.ds-recap-card__created-by { width: 100%; text-align: center; color: var(--label-always-white); font: 500 14px/1.29 var(--font-main); }
+.ds-recap-card__created-by span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Fallbacks si BadgeLabel / DotsMainButton no están en el bundle */
+.ds-recap-card__badge-fb { padding: 4px 10px; border-radius: 20px; color: var(--label-always-white); font: 600 11px/1.29 var(--font-main); background: var(--gradient-bg-premium); }
+.ds-recap-card__cta-fb {
+  height: 44px; padding: 0 20px; border: none; border-radius: 44px; cursor: pointer; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 4px;
+  font: 500 14px/1.29 var(--font-main); color: var(--label-always-white); background: var(--label-highlight);
+  backdrop-filter: blur(var(--blur-50)); -webkit-backdrop-filter: blur(var(--blur-50));
+}
+/* CountdownRecap — w192 r24, bgContainerSecondaryOnBackground + borde blanco 30% + blur20 */
+.ds-recap-card__countdown {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 192px; box-sizing: border-box; border-radius: var(--squircle-24);
+  border: 1px solid #FFFFFF4D; background: var(--bg-container-secondary-on-bg);
+  backdrop-filter: blur(var(--blur-20)); -webkit-backdrop-filter: blur(var(--blur-20));
+  padding: 12px 16px 16px; text-align: center; color: var(--label-always-white);
+}
+.ds-recap-card__cd-lock { display: flex; justify-content: center; margin-bottom: 4px; }
+.ds-recap-card__cd-ttl { font: 600 13px/1.31 var(--font-main); margin-bottom: 6px; } /* labelDefaultBold (w600 en Dart) */
+.ds-recap-card__times { display: flex; justify-content: center; gap: 10.5px; }
+.ds-recap-card__t { display: inline-flex; flex-direction: column; }
+.ds-recap-card__t-v { font: 700 23px/1.26 var(--font-main); } /* titleH4 */
+.ds-recap-card__t-l { font: 600 11px/1.29 var(--font-main); color: #FFFFFFB2; } /* labelSmallMedium · blanco 70% */
+.ds-recap-card__cd-desc { font: 400 13px/1.31 var(--font-main); color: #FFFFFFB2; } /* labelDefaultRegular · blanco 70% */

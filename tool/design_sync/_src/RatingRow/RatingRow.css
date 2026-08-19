@@ -1,0 +1,65 @@
+/* RatingRow — port de lib/src/components/rating/rating_row.dart + rating_star.dart */
+
+/* Contenedor — maxWidth 342, padding horizontal 6, columna con gap 8 */
+.ds-rating-row {
+  max-width: 342px;
+  margin: 0 auto;
+  padding: 0 6px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-main);
+}
+
+.ds-rating-row__stars {
+  display: flex;
+  justify-content: space-between;
+}
+/* _CompactLayout — filas centradas, separación 5px */
+.ds-rating-row__stars--compact {
+  justify-content: center;
+  gap: 5px;
+}
+
+/* textos abajo — labelSmallMedium (11/600, lh 1.27, ls 0.01) textQuarternary */
+.ds-rating-row__ends {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.27;
+  letter-spacing: 0.01px;
+  color: var(--text-quarternary);
+}
+
+/* ── DotsRatingStar ── */
+.ds-rating-star {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ds-rating-star.is-tappable { cursor: pointer; }
+
+/* label sobre la estrella — labelSmallMedium textQuarternary (disabled → textDisabled) */
+.ds-rating-star__label {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.27;
+  letter-spacing: 0.01px;
+  text-align: center;
+  color: var(--text-quarternary);
+}
+.ds-rating-star--disabled .ds-rating-star__label { color: var(--text-disabled); }
+
+/* icono — Padding all(2); ShaderMask → fill con linearGradient (defs en el impl) */
+.ds-rating-star__icon { padding: 2px; display: inline-flex; }
+.ds-rating-star--disabled .ds-rating-star__icon { color: var(--text-disabled); }
+.ds-rating-star--detractor .ds-rating-star__icon svg path { fill: url(#ds-rating-g-detractor); }
+.ds-rating-star--neutral .ds-rating-star__icon svg path { fill: url(#ds-rating-g-neutral); }
+.ds-rating-star--promoter .ds-rating-star__icon svg path { fill: url(#ds-rating-g-promoter); }
+/* fallback sin DotsIcon en el bundle */
+.ds-rating-star__icon-fallback { line-height: 1; }
+.ds-rating-star--detractor .ds-rating-star__icon-fallback { color: #FA5B3D; } /* friends003 — sin token */
+.ds-rating-star--neutral .ds-rating-star__icon-fallback { color: #F7954A; }   /* friends005 — sin token */
+.ds-rating-star--promoter .ds-rating-star__icon-fallback { color: #01AF94; }  /* team007 — sin token */

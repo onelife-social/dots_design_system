@@ -1,0 +1,41 @@
+/* DotsProfilePhoto — photos_components/dots_profile_photo(_bited).dart · círculo (OvalBorder) */
+.ds-profile-photo {
+  position: relative;
+  display: inline-block;
+  flex: none;
+}
+.ds-profile-photo[role='button'] {
+  cursor: pointer;
+}
+.ds-profile-photo__circle {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.ds-profile-photo__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.ds-profile-photo__ph {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* Placeholder degradado — arte sin token (no existe en foundations) */
+.ds-profile-photo__ph--a { background: linear-gradient(135deg, #faa25e, #f43c51); }
+.ds-profile-photo__ph--b { background: linear-gradient(135deg, #9297ef, #8b84f7); }
+.ds-profile-photo__ph--c { background: linear-gradient(135deg, #28cb55, #0072ef); }
+.ds-profile-photo__ph--d { background: linear-gradient(135deg, #c88eff, #8b84f7); }
+/* Reaction — labelDefaultBold 13/600, centrada en la mordida */
+.ds-profile-photo__reaction {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 600 13px/1 var(--font-main);
+  color: var(--text-primary);
+}

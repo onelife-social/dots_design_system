@@ -1,0 +1,60 @@
+<!-- @dsCard group="buttons" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.BtnFolder;
+    function row() {
+      var kids = Array.prototype.slice.call(arguments);
+      return h.apply(null, ['div', { style: { display: 'flex', gap: '4px', alignItems: 'flex-start', flexWrap: 'wrap' } }].concat(kids));
+    }
+    var BLUE = '#3E9ACB'; // iconSelectedColor de las carpetas del home (sin token)
+    var variants = [
+      ['unselected / isSelected (icono #3E9ACB)', row(
+        h(C, { icon: 'ic-map', text: 'Viajes', iconSelectedColor: BLUE }),
+        h(C, { icon: 'ic-family', text: 'Familia', isSelected: true, iconSelectedColor: BLUE })
+      )],
+      ['isSelected + showEditIcon + isEditable (lápiz 18px)', row(
+        h(C, { icon: 'ic-family', text: 'Familia', isSelected: true, iconSelectedColor: BLUE, showEditIcon: true, isEditable: true })
+      )],
+      ['isNonExpandable (44×44, icono textQuarternary)', row(
+        h(C, { icon: 'ic-add', isNonExpandable: true, iconSelectedColor: BLUE })
+      )],
+      ['texto >20 chars — truncado con …', row(
+        h(C, { icon: 'ic-map', text: 'Un nombre de carpeta larguísimo', iconSelectedColor: BLUE })
+      )],
+      ['fila estilo home (scroll horizontal)', row(
+        h(C, { icon: 'ic-family', text: 'Todos', isSelected: true, iconSelectedColor: BLUE }),
+        h(C, { icon: 'ic-map', text: 'Viajes', iconSelectedColor: BLUE }),
+        h(C, { icon: 'ic-heart', text: 'Favoritos', iconSelectedColor: BLUE }),
+        h(C, { icon: 'ic-add', isNonExpandable: true, iconSelectedColor: BLUE })
+      )],
+      ['dark — unselected / selected / nonExpandable', row(
+        h(C, { icon: 'ic-map', text: 'Viajes', iconSelectedColor: BLUE }),
+        h(C, { icon: 'ic-family', text: 'Familia', isSelected: true, iconSelectedColor: BLUE, showEditIcon: true, isEditable: true }),
+        h(C, { icon: 'ic-add', isNonExpandable: true, iconSelectedColor: BLUE })
+      ), true],
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div');
+      if (v[2]) { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '6px'; }
+      cell.appendChild(m); g.appendChild(cell);
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

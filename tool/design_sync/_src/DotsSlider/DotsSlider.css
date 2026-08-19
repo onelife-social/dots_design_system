@@ -1,0 +1,56 @@
+/* DotsSlider — port de lib/src/components/slider/dots_slider.dart */
+
+.ds-slider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+.ds-slider__icon { flex: none; }
+
+/* track — trackHeight 9, RoundedRectSliderTrackShape, inactive bgContainerSecondary */
+.ds-slider__track {
+  position: relative;
+  flex: 1;
+  height: 9px;
+  border-radius: 4.5px;
+  margin: 0 10px;
+  background: var(--bg-container-secondary);
+  cursor: pointer;
+  touch-action: none; /* drag con pointer events */
+}
+.ds-slider.is-static .ds-slider__track { cursor: default; }
+
+/* parte activa — labelHighlight */
+.ds-slider__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 4.5px;
+  background: var(--label-highlight);
+}
+
+/* tick marks — labelSecondary (active e inactive iguales en el Dart) */
+.ds-slider__tick {
+  position: absolute;
+  top: 50%;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--label-secondary);
+}
+
+/* thumb — RoundSliderThumbShape enabledThumbRadius 14 → 28px, labelAlwaysWhite, elevation 1 */
+.ds-slider__thumb {
+  position: absolute;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--label-always-white);
+  box-shadow: 0 1px 2px #00000040; /* elevation 1 — sombra literal, sin token */
+}

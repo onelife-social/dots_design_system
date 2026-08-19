@@ -1,0 +1,46 @@
+/* DotsTextFieldDate — dots_textfield_date.dart. Pastilla h44 r1000,
+   bg bgContainerSecondaryOnBackground, padding 16/8, chips de valor bgSecondaryBtn r24. */
+.ds-tf-date { display: block; width: 100%; font-family: var(--font-main); }
+
+.ds-tf-date__box {
+  display: flex; align-items: center;
+  height: 44px; box-sizing: border-box;
+  border-radius: 1000px; /* DotsBorderRadius.r1000 */
+  background: var(--bg-container-secondary-on-bg);
+  padding: 0 8px 0 16px;
+  cursor: pointer;
+}
+.ds-tf-date__box--no-bg { background: transparent; }
+
+/* icono 20 textSecondary + gap 6 */
+.ds-tf-date__icon { display: inline-flex; flex: none; margin-right: 6px; color: var(--text-secondary); }
+
+/* label: bodyDefaultRegular (14/400, h1.29, ls -0.02) textPrimary */
+.ds-tf-date__label {
+  font: 400 14px/1.29 var(--font-main); letter-spacing: -0.02px;
+  color: var(--text-primary);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* Dart: Spacer() + SizedBox(width: 12) antes de los chips */
+.ds-tf-date__spacer { flex: 1 1 auto; min-width: 12px; }
+
+/* chips (date/time): gap 4, bg bgSecondaryBtn, r24, minWidth 56, padding 10x4,
+   bodyDefaultMedium (14/500, h1.29, ls -0.02) textPrimary (destructive si isError) */
+.ds-tf-date__chips { display: flex; align-items: center; gap: 4px; }
+.ds-tf-date__chip {
+  box-sizing: border-box; min-width: 56px; padding: 4px 10px;
+  border-radius: 24px; /* DotsBorderRadius.r24 */
+  background: var(--bg-secondary-btn);
+  text-align: center; white-space: nowrap;
+  font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px;
+  color: var(--text-primary);
+}
+.ds-tf-date__chip--error { color: var(--label-destructive); }
+
+/* errorText: labelDefaultRegular destructive (solo con background) */
+.ds-tf-date__error-text {
+  padding: 4px 16px 0;
+  font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px;
+  color: var(--label-destructive);
+}

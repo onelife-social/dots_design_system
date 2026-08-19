@@ -1,0 +1,62 @@
+/* DotsTextArea — dots_textarea.dart. Contenedor r24, bg bgContainerSecondaryOnBackground,
+   padding 16 16 24, minHeight 50 (o maxHeight con scroll), contador abajo-derecha. */
+.ds-textarea { display: block; width: 100%; font-family: var(--font-main); }
+
+.ds-textarea__box {
+  position: relative; box-sizing: border-box;
+  border-radius: 24px; /* DotsBorderRadius.r24 */
+  background: var(--bg-container-secondary-on-bg);
+  padding: 16px 16px 24px;
+  overflow-x: hidden; overflow-y: auto; /* maxHeight → scroll */
+  cursor: text;
+}
+
+/* label: bodyLargeMedium (16/500, h1.31, ls -0.05) textPrimary; icono 20 textTertiary + gap 8 */
+.ds-textarea__label {
+  display: flex; align-items: center;
+  font: 500 16px/1.31 var(--font-main); letter-spacing: -0.05px;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+.ds-textarea__icon { display: inline-flex; flex: none; margin-right: 8px; color: var(--text-tertiary); }
+
+/* sin label: Row(crossAxisAlignment: start) icono + textarea expandido */
+.ds-textarea__row { display: flex; align-items: flex-start; }
+.ds-textarea__row .ds-textarea__body { flex: 1 1 auto; min-width: 0; }
+
+/* con icono y label: indent 28 (icono 20 + gap 8) */
+.ds-textarea__body--indent { padding-left: 28px; }
+
+/* auto-grow (minLines 1, maxLines null): réplica invisible en la misma celda de grid */
+.ds-textarea__grow { display: grid; }
+.ds-textarea__grow::after {
+  content: attr(data-value) ' ';
+  visibility: hidden; white-space: pre-wrap; word-break: break-word;
+  grid-area: 1 / 1;
+}
+/* texto: bodyLargeRegular (16/400, h1.31, ls -0.05) */
+.ds-textarea__grow::after, .ds-textarea__input {
+  font: 400 16px/1.31 var(--font-main); letter-spacing: -0.05px;
+}
+.ds-textarea__input {
+  grid-area: 1 / 1; width: 100%; box-sizing: border-box;
+  border: 0; outline: none; background: transparent; padding: 0; margin: 0;
+  resize: none; overflow: hidden;
+  color: var(--text-primary);
+  caret-color: var(--label-highlight); /* cursorColor: labelHighlight */
+}
+.ds-textarea__input::placeholder { color: var(--text-quarternary); }
+
+/* contador (chars restantes): labelSmallRegular (11/400, h1.27, ls .01) textQuarternary */
+.ds-textarea__counter {
+  position: absolute; right: 16px; bottom: 10px;
+  font: 400 11px/1.27 var(--font-main); letter-spacing: 0.01px;
+  color: var(--text-quarternary);
+}
+
+/* errorText: labelDefaultRegular (13/400, h1.31, ls -0.01) labelDestructive */
+.ds-textarea__error-text {
+  padding: 4px 16px 0;
+  font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px;
+  color: var(--label-destructive);
+}

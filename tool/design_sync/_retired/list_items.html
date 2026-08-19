@@ -1,0 +1,110 @@
+<!-- @dsCard group="Lists" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · DotsListsItem</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+
+  .list { display: flex; flex-direction: column; gap: 14px; max-width: 340px; }
+  .item { display: flex; align-items: center; }
+  /* Label — typo.main.bodyDefaultMedium (14 / 500 / lh 1.29 / ls -0.02) */
+  .label { flex: 1; font-size: 14px; font-weight: 500; line-height: 1.29; letter-spacing: -0.02px;
+           margin: 0 8px 0 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .light .label { color: #000; } .dark .label { color: #FFF; }
+
+  /* DotsImageThumbnail — 40×40, radius 12 (squircle) */
+  .thumb { width: 40px; height: 40px; border-radius: 12px; flex: none; background-size: cover; }
+  .thumb.photo-a { background: linear-gradient(135deg, #A9C3DB, #E4D3BE); }
+  .thumb.photo-b { background: linear-gradient(135deg, #D8B8C8, #B8C8D8); }
+  .thumb.photo-c { background: linear-gradient(135deg, #C8D8B8, #A9C3DB); }
+  /* Variante icon — bg bgContainerSecondaryOnBackground, icono 20 textPrimary */
+  .thumb.icon { display: flex; align-items: center; justify-content: center; }
+  .light .thumb.icon { background: #8C8C8C1A; }
+  .dark .thumb.icon { background: #75757533; }
+  .light .thumb.icon svg { color: #000; }
+  .dark .thumb.icon svg { color: #FFF; }
+  /* picType.user — círculo 40, fondo bgBaseContrast */
+  .thumb.user { border-radius: 50%; }
+  .light .thumb.user { background: linear-gradient(135deg, #E8C9A9, #C9A9E8), #FAFAFA; }
+  .dark .thumb.user { background: linear-gradient(135deg, #E8C9A9, #C9A9E8), #1F1F1F; }
+
+  /* DotsRadioButton — size 22, borde 2 */
+  .radio { width: 22px; height: 22px; border-radius: 50%; box-sizing: border-box; flex: none;
+           display: flex; align-items: center; justify-content: center; }
+  .light .radio { border: 2px solid #00000033; }        /* labelSecondary */
+  .dark .radio { border: 2px solid #FFFFFF4D; }
+  .radio.on { border-color: #0072EF; }                  /* labelHighlight */
+  .dark .radio.on { border-color: #0A84FF; }
+  .radio.on::after { content: ''; width: 12px; height: 12px; border-radius: 50%; background: #0072EF; }
+  .dark .radio.on::after { background: #0A84FF; }
+
+  /* DotsSelector.check — pill 24, bg labelHighlight, check blanco 14 */
+  .check { min-width: 24px; height: 24px; border-radius: 24px; flex: none;
+           display: flex; align-items: center; justify-content: center; padding: 0 5px; box-sizing: border-box; }
+  .light .check { background: #0072EF; } .dark .check { background: #0A84FF; }
+
+  /* Variante divider — labelSmallMedium (11/600) textSecondary + línea 0.2 labelSecondary(50%) */
+  .divider-item .divider-label { font-size: 11px; font-weight: 600; line-height: 1.27; letter-spacing: 0.01px; margin-bottom: 10px; }
+  .light .divider-item .divider-label { color: #000000AB; }  /* textSecondary */
+  .dark .divider-item .divider-label { color: #FFFFFFBF; }
+  .divider-item .hairline { height: 1px; }
+  .light .divider-item .hairline { background: #0000001A; }  /* labelSecondary 50% */
+  .dark .divider-item .hairline { background: #FFFFFF26; }
+
+  .tag { font-size: 9px; font-family: ui-monospace, monospace; opacity: .45; flex: none; margin-left: 8px; }
+  .light .tag { color: #000; } .dark .tag { color: #FFF; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>DotsListsItem — Light</h2>
+    <div class="sub">dots_list_items/dots_list_items · variant × picType</div>
+    <div class="list">
+      <div class="item"><div class="thumb photo-a"></div><span class="label">Álbum de verano</span><span class="tag">main · album</span></div>
+      <div class="item"><div class="thumb user"></div><span class="label">María González</span><span class="tag">main · user</span></div>
+      <div class="item">
+        <div class="thumb icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="none"><path d="M16 15.6505C13.0929 15.6505 10.6371 13.0753 10.6371 9.74339C10.6371 6.49118 13.1062 3.99561 16 3.99561C18.8805 3.99561 21.3628 6.531 21.3495 9.76994C21.3495 13.0753 18.9071 15.6505 16 15.6505ZM24.2699 27.9956H7.73007C5.5398 27.9956 4.78317 27.3319 4.78317 26.1106C4.78317 22.6991 9.12387 18 16 18C22.8894 18 27.2168 22.6991 27.2168 26.1106C27.2168 27.3319 26.4602 27.9956 24.2699 27.9956Z" fill="currentColor"/></svg></div>
+        <span class="label">Invitar amigos</span><span class="tag">icon</span>
+      </div>
+      <div class="item"><div class="thumb photo-b"></div><span class="label">Viaje a Lisboa</span><span class="radio"></span><span class="tag">selector</span></div>
+      <div class="item"><div class="thumb photo-c"></div><span class="label">Cumpleaños de Ana</span><span class="radio on"></span><span class="tag">radioButton</span></div>
+      <div class="item">
+        <div class="thumb photo-a"></div><span class="label">Recuerdos 2024</span>
+        <span class="check"><svg width="14" height="14" viewBox="0 0 32 33" fill="none"><path d="M13.4057 26.9799C13.9382 26.9799 14.3591 26.7446 14.6563 26.2865L26.3568 7.86285C26.5797 7.50379 26.6663 7.2314 26.6663 6.94663C26.6663 6.26563 26.2206 5.81991 25.5396 5.81991C25.0443 5.81991 24.7719 5.98087 24.4748 6.45137L13.3562 24.1693L7.58644 16.6166C7.2769 16.1832 6.96737 16.0099 6.52163 16.0099C5.81589 16.0099 5.33301 16.4928 5.33301 17.1737C5.33301 17.4586 5.45682 17.7805 5.69207 18.0776L12.1181 26.2618C12.4895 26.7446 12.8733 26.9799 13.4057 26.9799Z" fill="#FFF"/><path fill-rule="evenodd" clip-rule="evenodd" d="M14.8801 26.4316C14.5358 26.9623 14.0324 27.2466 13.4058 27.2466C13.0973 27.2466 12.822 27.1776 12.5695 27.0335C12.3205 26.8915 12.1066 26.6839 11.9075 26.4253C11.9073 26.425 11.9078 26.4257 11.9075 26.4253L5.48307 18.2431C5.48298 18.243 5.48317 18.2432 5.48307 18.2431C5.22068 17.9116 5.06641 17.5328 5.06641 17.1737C5.06641 16.7683 5.2113 16.4068 5.47559 16.1465C5.73971 15.8863 6.1066 15.7432 6.5217 15.7432C6.78146 15.7432 7.01754 15.7944 7.23679 15.9188C7.45199 16.0409 7.63291 16.2234 7.80095 16.458L13.3348 23.7018L24.249 6.30961C24.4084 6.05715 24.5785 5.85924 24.797 5.72977C25.0188 5.59836 25.2627 5.55322 25.5397 5.55322C25.9395 5.55322 26.2929 5.68525 26.547 5.93931C26.801 6.19338 26.9331 6.54675 26.9331 6.94661C26.9331 7.29608 26.8233 7.61706 26.5834 8.0035L26.582 8.0058L14.8801 26.4316ZM24.4748 6.45137C24.7719 5.98087 25.0443 5.81991 25.5396 5.81991C26.2206 5.81991 26.6663 6.26563 26.6663 6.94663C26.6663 7.2314 26.5797 7.50379 26.3568 7.86285L14.6563 26.2865C14.3591 26.7446 13.9382 26.9799 13.4057 26.9799C12.8733 26.9799 12.4895 26.7446 12.1181 26.2618L5.69207 18.0776C5.45682 17.7805 5.33301 17.4586 5.33301 17.1737C5.33301 16.4928 5.81589 16.0099 6.52163 16.0099C6.96737 16.0099 7.2769 16.1832 7.58644 16.6166L13.3562 24.1693L24.4748 6.45137Z" fill="#FFF"/></svg></span>
+        <span class="tag">check</span>
+      </div>
+      <div class="divider-item"><div class="divider-label">Compartidos contigo</div><div class="hairline"></div></div>
+    </div>
+  </div>
+  <div class="theme dark">
+    <h2>DotsListsItem — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+    <div class="list">
+      <div class="item"><div class="thumb photo-a"></div><span class="label">Álbum de verano</span><span class="tag">main · album</span></div>
+      <div class="item"><div class="thumb user"></div><span class="label">María González</span><span class="tag">main · user</span></div>
+      <div class="item">
+        <div class="thumb icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="none"><path d="M16 15.6505C13.0929 15.6505 10.6371 13.0753 10.6371 9.74339C10.6371 6.49118 13.1062 3.99561 16 3.99561C18.8805 3.99561 21.3628 6.531 21.3495 9.76994C21.3495 13.0753 18.9071 15.6505 16 15.6505ZM24.2699 27.9956H7.73007C5.5398 27.9956 4.78317 27.3319 4.78317 26.1106C4.78317 22.6991 9.12387 18 16 18C22.8894 18 27.2168 22.6991 27.2168 26.1106C27.2168 27.3319 26.4602 27.9956 24.2699 27.9956Z" fill="currentColor"/></svg></div>
+        <span class="label">Invitar amigos</span><span class="tag">icon</span>
+      </div>
+      <div class="item"><div class="thumb photo-b"></div><span class="label">Viaje a Lisboa</span><span class="radio"></span><span class="tag">selector</span></div>
+      <div class="item"><div class="thumb photo-c"></div><span class="label">Cumpleaños de Ana</span><span class="radio on"></span><span class="tag">radioButton</span></div>
+      <div class="item">
+        <div class="thumb photo-a"></div><span class="label">Recuerdos 2024</span>
+        <span class="check"><svg width="14" height="14" viewBox="0 0 32 33" fill="none"><path d="M13.4057 26.9799C13.9382 26.9799 14.3591 26.7446 14.6563 26.2865L26.3568 7.86285C26.5797 7.50379 26.6663 7.2314 26.6663 6.94663C26.6663 6.26563 26.2206 5.81991 25.5396 5.81991C25.0443 5.81991 24.7719 5.98087 24.4748 6.45137L13.3562 24.1693L7.58644 16.6166C7.2769 16.1832 6.96737 16.0099 6.52163 16.0099C5.81589 16.0099 5.33301 16.4928 5.33301 17.1737C5.33301 17.4586 5.45682 17.7805 5.69207 18.0776L12.1181 26.2618C12.4895 26.7446 12.8733 26.9799 13.4057 26.9799Z" fill="#FFF"/><path fill-rule="evenodd" clip-rule="evenodd" d="M14.8801 26.4316C14.5358 26.9623 14.0324 27.2466 13.4058 27.2466C13.0973 27.2466 12.822 27.1776 12.5695 27.0335C12.3205 26.8915 12.1066 26.6839 11.9075 26.4253C11.9073 26.425 11.9078 26.4257 11.9075 26.4253L5.48307 18.2431C5.48298 18.243 5.48317 18.2432 5.48307 18.2431C5.22068 17.9116 5.06641 17.5328 5.06641 17.1737C5.06641 16.7683 5.2113 16.4068 5.47559 16.1465C5.73971 15.8863 6.1066 15.7432 6.5217 15.7432C6.78146 15.7432 7.01754 15.7944 7.23679 15.9188C7.45199 16.0409 7.63291 16.2234 7.80095 16.458L13.3348 23.7018L24.249 6.30961C24.4084 6.05715 24.5785 5.85924 24.797 5.72977C25.0188 5.59836 25.2627 5.55322 25.5397 5.55322C25.9395 5.55322 26.2929 5.68525 26.547 5.93931C26.801 6.19338 26.9331 6.54675 26.9331 6.94661C26.9331 7.29608 26.8233 7.61706 26.5834 8.0035L26.582 8.0058L14.8801 26.4316ZM24.4748 6.45137C24.7719 5.98087 25.0443 5.81991 25.5396 5.81991C26.2206 5.81991 26.6663 6.26563 26.6663 6.94663C26.6663 7.2314 26.5797 7.50379 26.3568 7.86285L14.6563 26.2865C14.3591 26.7446 13.9382 26.9799 13.4057 26.9799C12.8733 26.9799 12.4895 26.7446 12.1181 26.2618L5.69207 18.0776C5.45682 17.7805 5.33301 17.4586 5.33301 17.1737C5.33301 16.4928 5.81589 16.0099 6.52163 16.0099C6.96737 16.0099 7.2769 16.1832 7.58644 16.6166L13.3562 24.1693L24.4748 6.45137Z" fill="#FFF"/></svg></span>
+        <span class="tag">check</span>
+      </div>
+      <div class="divider-item"><div class="divider-label">Compartidos contigo</div><div class="hairline"></div></div>
+    </div>
+  </div>
+</body>
+</html>

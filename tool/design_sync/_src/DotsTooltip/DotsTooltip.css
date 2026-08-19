@@ -1,0 +1,44 @@
+/* DotsTooltip — tooltip/dots_tooltip.dart. bgBaseContrast + borde 1 bgContainerSecondary
+   + defaultShadow; cola TrianglePainter 21×13; esquina 14 en el lado de la cola. */
+.ds-tooltip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 185px;
+  max-width: 288px;
+  min-height: 64px;
+  box-sizing: border-box;
+  padding: 16px 52px 16px 16px; /* EdgeInsets.all(16).copyWith(right: 52) */
+  border-radius: var(--squircle-24);
+  background: var(--bg-base-contrast);
+  border: 1px solid var(--bg-container-secondary);
+  box-shadow: var(--shadow-default);
+  font-family: var(--font-main);
+}
+/* Esquina 14 en el lado de la cola (tailPosition *Edge) */
+.ds-tooltip--corner-tl { border-top-left-radius: 14px; }
+.ds-tooltip--corner-tr { border-top-right-radius: 14px; }
+.ds-tooltip--corner-bl { border-bottom-left-radius: 14px; }
+.ds-tooltip--corner-br { border-bottom-right-radius: 14px; }
+
+/* labelDefaultMedium: 13/500/1.31/-0.01, textPrimary */
+.ds-tooltip__text {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.31;
+  letter-spacing: -0.01px;
+  color: var(--text-primary);
+}
+
+.ds-tooltip__close { position: absolute; top: 16px; right: 16px; }
+.ds-tooltip__close-fallback {
+  width: 24px; height: 24px; border-radius: 50%; border: none; cursor: pointer;
+  background: var(--bg-btn-disabled); color: var(--label-primary);
+  display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1;
+}
+
+/* Cola — 21×13, fill bgBaseContrast, stroke 2 bgContainerSecondary */
+.ds-tooltip__tail { position: absolute; width: 21px; height: 13px; }
+.ds-tooltip__tail path { fill: var(--bg-base-contrast); stroke: var(--bg-container-secondary); }

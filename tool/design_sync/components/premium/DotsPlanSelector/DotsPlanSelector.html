@@ -1,0 +1,73 @@
+<!-- @dsCard group="premium" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsPlanSelector;
+    function row() {
+      return h('div', { style: { display: 'flex', gap: '8px' } },
+        Array.prototype.slice.call(arguments));
+    }
+    function Interactive() {
+      var st = React.useState('premium');
+      function plan(variant, title, desc) {
+        return h(C, {
+          title: title, description: desc, variant: variant,
+          selected: st[0] === variant,
+          onClick: function () { st[1](variant); },
+        });
+      }
+      return row(
+        plan('basic', 'Básico', 'Gratis'),
+        plan('premium', 'Premium', '4,99 €/mes'),
+        plan('premiumPlus', 'Premium+', '9,99 €/mes')
+      );
+    }
+    var variants = [
+      ['selected · basic / premium / premiumPlus (fondos webp reales)', row(
+        h(C, { title: 'Básico', description: 'Gratis', variant: 'basic', selected: true }),
+        h(C, { title: 'Premium', description: '4,99 €/mes', variant: 'premium', selected: true }),
+        h(C, { title: 'Premium+', description: '9,99 €/mes', variant: 'premiumPlus', selected: true })
+      )],
+      ['unselected', row(
+        h(C, { title: 'Básico', description: 'Gratis', variant: 'basic', selected: false }),
+        h(C, { title: 'Premium', description: '4,99 €/mes', variant: 'premium', selected: false }),
+        h(C, { title: 'Premium+', description: '9,99 €/mes', variant: 'premiumPlus', selected: false })
+      )],
+      ['sin description', row(
+        h(C, { title: 'Premium', variant: 'premium', selected: true }),
+        h(C, { title: 'Premium', variant: 'premium', selected: false })
+      )],
+      ['enabled: false', row(
+        h(C, { title: 'Premium', description: 'No disponible', variant: 'premium', selected: false, enabled: false }),
+        h(C, { title: 'Premium+', description: 'No disponible', variant: 'premiumPlus', selected: true, enabled: false })
+      )],
+      ['interactivo (onClick selecciona)', h(Interactive)],
+      ['dark · selected / unselected / disabled', row(
+        h(C, { title: 'Premium', description: '4,99 €/mes', variant: 'premium', selected: true }),
+        h(C, { title: 'Básico', description: 'Gratis', variant: 'basic', selected: false }),
+        h(C, { title: 'Premium+', description: 'No disponible', variant: 'premiumPlus', selected: false, enabled: false })
+      ), true]
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2]) { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '8px'; }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

@@ -1,0 +1,112 @@
+/* DotsListItem — port de lib/src/components/dots_list_items/dots_list_items.dart */
+
+.ds-list-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+.ds-list-item.is-tappable { cursor: pointer; }
+
+/* ── leading — DotsImageThumbnail 40×40 ── */
+.ds-list-item__thumb {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+/* variant image — radius 12 (squircle → border-radius) */
+.ds-list-item__thumb--album {
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-container-secondary-on-bg);
+}
+/* picType.user — círculo, fondo bgBaseContrast */
+.ds-list-item__thumb--user {
+  border-radius: 50%;
+  background: var(--bg-base-contrast);
+}
+.ds-list-item__thumb--user img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+/* variant icon — bg bgContainerSecondaryOnBackground */
+.ds-list-item__thumb--icon {
+  border-radius: 12px;
+  background: var(--bg-container-secondary-on-bg);
+}
+
+/* ── label — typo.main.bodyDefaultMedium (14/500, lh 1.29, ls -0.02) ── */
+.ds-list-item__label {
+  flex: 1;
+  min-width: 0;
+  margin: 0 8px 0 12px; /* SizedBox(12) antes + SizedBox(8) después */
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+  letter-spacing: -0.02px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── trailing check — DotsSelector.check small (altura 22, pill labelHighlight) ── */
+.ds-list-item__check {
+  min-width: 22px;
+  height: 22px;
+  box-sizing: border-box;
+  padding: 0 5px;
+  border-radius: 22px;
+  background: var(--label-highlight);
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* fallback si DotsRadioButton no está en el bundle — círculo 22, borde 2 */
+.ds-list-item__radio-fallback {
+  width: 22px;
+  height: 22px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 2px solid var(--label-secondary);
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-list-item__radio-fallback.is-on { border-color: var(--label-highlight); }
+.ds-list-item__radio-fallback.is-on::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--label-highlight);
+}
+
+/* ── variant divider — labelSmallMedium textSecondary + línea labelSecondary(50%) ── */
+.ds-list-item--divider {
+  display: block;
+}
+.ds-list-item__divider-label {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.27;
+  letter-spacing: 0.01px;
+  color: var(--text-secondary);
+  margin-bottom: 10px; /* SizedBox(height: 10) */
+}
+.ds-list-item__hairline {
+  height: 1px; /* Divider thickness 0.2 ≈ hairline 1px con 50% de labelSecondary */
+  background: var(--label-secondary);
+  opacity: 0.5;
+}

@@ -1,0 +1,79 @@
+/* ImageWithIcon — port de lib/src/components/notifications/image_with_icon.dart (Dart = fuente de verdad) */
+
+.ds-image-with-icon {
+  position: relative;
+  display: inline-block;
+  flex: none;
+}
+
+/* Card (Flutter Card, elevation por defecto 1) + ClipRRect */
+.ds-image-with-icon__card {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 3px var(--shadow-primary);
+}
+.ds-image-with-icon__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* BoxFit.cover */
+}
+/* defaultImage — ImagesPaths.defaultUserItem (assets/images/default_user_item.webp) embebido */
+.ds-image-with-icon__default {
+  position: absolute;
+  inset: 0;
+  background-image: url('data:image/webp;base64,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');
+  background-size: cover;
+  background-position: center;
+}
+/* Gradiente superior black26 → transparent (stops 0 → 0.5) */
+.ds-image-with-icon__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #00000042, transparent 50%);
+  pointer-events: none;
+}
+/* Borde white60 strokeAlignInside — sobre la foto (Colors.white60, sin token) */
+.ds-image-with-icon__card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 var(--ds-iwi-bw, 2px) #FFFFFF99;
+  pointer-events: none;
+}
+
+/* Alias sin imagen — bgSecondaryBtn + inicial Nunito 600 40 textTertiary */
+.ds-image-with-icon__alias {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary-btn);
+  overflow: hidden;
+}
+.ds-image-with-icon__alias-text {
+  font-family: var(--font-number); /* Nunito */
+  font-size: 40px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-align: center;
+}
+
+/* Badge — CircleAvatar bgBase + círculo interior bgSecondaryBtn con el icono */
+.ds-image-with-icon__badge {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.ds-image-with-icon__badge-inner {
+  border-radius: 50%;
+  background: var(--bg-secondary-btn);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

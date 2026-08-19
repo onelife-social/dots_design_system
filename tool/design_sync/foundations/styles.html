@@ -1,0 +1,58 @@
+<!-- @dsCard group="Styles" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · Estilos</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; padding: 28px; background: #F8F7F5; color: #000; font-family: 'Inter', sans-serif; }
+  .section { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #00000066; margin: 24px 0 12px; }
+  .section:first-child { margin-top: 0; }
+  .grid { display: flex; flex-wrap: wrap; gap: 16px; }
+  .cell { text-align: center; }
+  .label { font-size: 10px; color: #00000073; margin-top: 6px; font-family: ui-monospace, monospace; }
+  .sq { width: 72px; height: 72px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #BCBCBC7F; }
+  .grad { width: 140px; height: 56px; border-radius: 14px; }
+  .shadow-demo { width: 120px; height: 64px; border-radius: 16px; background: #FFF; }
+  .note { font-size: 10px; color: #00000059; margin-top: 22px; }
+</style>
+</head>
+<body>
+  <div class="section">Squircles (figma_squircle · cornerSmoothing 0.5)</div>
+  <div class="grid">
+    <div class="cell"><div class="sq" style="border-radius:8px"></div><div class="label">squircle8</div></div>
+    <div class="cell"><div class="sq" style="border-radius:12px"></div><div class="label">squircle12</div></div>
+    <div class="cell"><div class="sq" style="border-radius:16px"></div><div class="label">squircle16 (default)</div></div>
+    <div class="cell"><div class="sq" style="border-radius:20px"></div><div class="label">squircle20</div></div>
+    <div class="cell"><div class="sq" style="border-radius:24px"></div><div class="label">squircle24</div></div>
+    <div class="cell"><div class="sq" style="border-radius:32px"></div><div class="label">squircle32</div></div>
+  </div>
+
+  <div class="section">Gradientes</div>
+  <div class="grid">
+    <div class="cell"><div class="grad" style="background:linear-gradient(135deg,#C88EFF,#8B84F7)"></div><div class="label">bgPremium</div></div>
+    <div class="cell"><div class="grad" style="background:linear-gradient(135deg,#E9C058,#B48D2D)"></div><div class="label">bgPremiumPlus</div></div>
+    <div class="cell"><div class="grad" style="background:linear-gradient(90deg,#A6C9E0,#7AA8CE)"></div><div class="label">bgBasic</div></div>
+    <div class="cell"><div class="grad" style="background:linear-gradient(90deg,#C17FFA,#8C84F7)"></div><div class="label">textPremium</div></div>
+    <div class="cell"><div class="grad" style="background:linear-gradient(135deg,#77D98A,#28AB87)"></div><div class="label">gradientLinealGreen</div></div>
+    <div class="cell"><div class="grad" style="background:linear-gradient(135deg,#AE98F3,#3478F6)"></div><div class="label">gradientLinealPurple</div></div>
+  </div>
+
+  <div class="section">Sombras</div>
+  <div class="grid">
+    <div class="cell"><div class="shadow-demo" style="box-shadow:0 6px 20px #0000001A"></div><div class="label">defaultShadow</div></div>
+    <div class="cell"><div class="shadow-demo" style="box-shadow:0 4px 15px #00000026"></div><div class="label">floatingBtnShadow</div></div>
+    <div class="cell"><div class="shadow-demo" style="box-shadow:0 0 20px #00000033"></div><div class="label">toastShadow</div></div>
+  </div>
+
+  <div class="section">Blur (backdrop-filter)</div>
+  <div class="grid">
+    <div class="cell"><div class="sq" style="border-radius:16px;background:#F3F3F399;backdrop-filter:blur(10px)"></div><div class="label">blur10</div></div>
+    <div class="cell"><div class="sq" style="border-radius:16px;background:#F3F3F399;backdrop-filter:blur(20px)"></div><div class="label">blur20</div></div>
+    <div class="cell"><div class="sq" style="border-radius:16px;background:#F3F3F399;backdrop-filter:blur(50px)"></div><div class="label">blur50</div></div>
+  </div>
+
+  <div class="note">En Flutter los squircles usan figma_squircle (suavizado 0.5), aquí aproximados con border-radius. Los fondos glass combinan color translúcido + blur (DotsStyleBlur). Fuente: lib/src/theme/styles/dots_styles.dart.</div>
+</body>
+</html>

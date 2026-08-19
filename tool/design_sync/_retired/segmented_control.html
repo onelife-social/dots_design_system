@@ -1,0 +1,205 @@
+<!-- @dsCard group="Inputs" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · Segmented Control</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; min-width: 0; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .lbl { font-size: 10px; font-family: ui-monospace, monospace; margin: 16px 0 8px; }
+  .light .lbl { color: #00000066; } .dark .lbl { color: #FFFFFF73; }
+  .row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  svg { flex: none; }
+
+  /* SegmentedControl — back h36, itemPadding 4, textPadding 0 15, pill, blur 50 */
+  .seg { position: relative; display: inline-flex; height: 36px; border-radius: 1000px;
+    padding: 4px; box-sizing: border-box; backdrop-filter: blur(50px); }
+  .light .seg { background: #8C8C8C1A; } .dark .seg { background: #75757533; }
+  .seg .opt { height: 28px; padding: 0 15px; display: flex; align-items: center;
+    font-size: 13px; font-weight: 500; letter-spacing: -0.01px; white-space: nowrap; }
+  .light .seg .opt { color: #00000033; } .dark .seg .opt { color: #FFFFFF4D; }
+  /* selected segment h28, bgSecondaryBtn, labelPrimary */
+  .seg .opt.sel { border-radius: 1000px; }
+  .light .seg .opt.sel { background: #8C8C8C4D; color: #00000099; }
+  .dark .seg .opt.sel { background: #C8C8C84D; color: #FFFFFFCC; }
+  /* variant camera — bgChip, labelAlwaysWhite / class005 */
+  .seg.camera { background: #30303099; }
+  .seg.camera .opt { color: #FFFFFF; }
+  .light .seg.camera .opt.sel, .dark .seg.camera .opt.sel { color: #F4BD24; }
+  .light .seg.camera .opt.sel { background: #8C8C8C4D; }
+  .dark .seg.camera .opt.sel { background: #C8C8C84D; }
+  /* rightOptionTag — BadgeTag (minH 18, r22, padding 1 5, labelDestructive) en (-2,-2) */
+  .seg .tag { position: absolute; top: -2px; right: -2px; min-width: 18px; min-height: 18px;
+    box-sizing: border-box; padding: 1px 5px; border-radius: 22px; background: #ED2B32;
+    color: #FFF; font-size: 11px; font-weight: 600; letter-spacing: 0.01px;
+    display: flex; align-items: center; justify-content: center; }
+
+  /* SegmentedControlIcon — 108×48, pill 48×40, iconos 24 */
+  .seg-icon { position: relative; display: inline-flex; align-items: center; gap: 4px;
+    width: 108px; height: 48px; border-radius: 1000px; padding: 4px; box-sizing: border-box;
+    backdrop-filter: blur(50px); }
+  .light .seg-icon { background: #E2E2E2B3; } .dark .seg-icon { background: #282828B3; }
+  .seg-icon .cell { width: 48px; height: 40px; display: flex; align-items: center; justify-content: center; }
+  .seg-icon .cell.sel { border-radius: 1000px; }
+  .light .seg-icon .cell.sel { background: #00000026; } .dark .seg-icon .cell.sel { background: #C8C8C81A; }
+  .light .seg-icon .cell.sel svg { color: #000000AB; } .dark .seg-icon .cell.sel svg { color: #FFFFFFBF; }
+  .light .seg-icon .cell svg { color: #00000033; } .dark .seg-icon .cell svg { color: #FFFFFF33; }
+
+  /* SegmentedControlPrice — squircle16 aprox, padding 4, gap 4 */
+  .seg-price { position: relative; display: flex; gap: 4px; border-radius: 16px; padding: 4px;
+    box-sizing: border-box; max-width: 320px; }
+  .light .seg-price { background: #8C8C8C1A; } .dark .seg-price { background: #75757533; }
+  .seg-price .p-opt { flex: 1; border-radius: 16px; padding: 6px 6px 6px 10px; min-width: 0; }
+  /* selected: bgStrong + toastShadow (blur 20 outer #00000033) */
+  .light .seg-price .p-opt.sel { background: #FFFFFF; box-shadow: 0 0 20px #00000033; }
+  .dark .seg-price .p-opt.sel { background: #3E3E3E; box-shadow: 0 0 20px #00000033; }
+  .p-opt .p-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 4px; }
+  .p-opt .p-label { font-size: 14px; font-weight: 500; letter-spacing: -0.02px; }
+  .light .p-opt .p-label { color: #00000066; } .dark .p-opt .p-label { color: #FFFFFF73; }
+  .light .p-opt.sel .p-label { color: #000; } .dark .p-opt.sel .p-label { color: #FFF; }
+  .p-opt .p-original { font-size: 11px; font-weight: 600; letter-spacing: 0.01px;
+    text-decoration: line-through; text-decoration-thickness: 2px; }
+  .light .p-opt .p-original { color: #28CB55; } .dark .p-opt .p-original { color: #3BD866; }
+  .p-opt .p-price { display: flex; align-items: baseline; }
+  .p-opt .p-amount { font-size: 18px; font-weight: 600; letter-spacing: -0.08px; line-height: 1.28; }
+  .light .p-opt .p-amount { color: #0000008C; } .dark .p-opt .p-amount { color: #FFFFFFA6; }
+  .light .p-opt.sel .p-amount { color: #000; } .dark .p-opt.sel .p-amount { color: #FFF; }
+  .p-opt .p-trailing, .p-opt .p-desc { font-size: 14px; font-weight: 500; letter-spacing: -0.02px; }
+  .light .p-opt .p-trailing, .light .p-opt .p-desc { color: #00000033; }
+  .dark .p-opt .p-trailing, .dark .p-opt .p-desc { color: #FFFFFF33; }
+  .light .p-opt.sel .p-trailing, .light .p-opt.sel .p-desc { color: #00000066; }
+  .dark .p-opt.sel .p-trailing, .dark .p-opt.sel .p-desc { color: #FFFFFF73; }
+  /* BadgeLabel green medium — h22, r22, padding 0 8, labelSmallMedium, bg labelActive */
+  .badge-green { height: 22px; border-radius: 22px; padding: 0 8px; box-sizing: border-box;
+    display: inline-flex; align-items: center; gap: 5px; color: #FFF;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.01px; white-space: nowrap; }
+  .light .badge-green { background: #28CB55; } .dark .badge-green { background: #3BD866; }
+  /* overallDiscount — BadgeLabel green + icon tag, top -8, right 0 */
+  .seg-price .discount { position: absolute; top: -8px; right: 0; }
+  .wrap-discount { padding-top: 8px; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>Segmented Control — Light</h2>
+    <div class="sub">segmented_control/ + segmented_control_price/ · SegmentedControl · SegmentedControlSingle · SegmentedControlIcon · SegmentedControlPrice</div>
+
+    <div class="lbl">SegmentedControl · variant main / rightOptionTag / SegmentedControlSingle</div>
+    <div class="row">
+      <div class="seg"><span class="opt sel">Fotos</span><span class="opt">Vídeos</span></div>
+      <div class="seg"><span class="opt">Míos</span><span class="opt sel">Compartidos</span><span class="tag">3</span></div>
+      <div class="seg"><span class="opt sel">Todos</span></div>
+    </div>
+
+    <div class="lbl">SegmentedControl · variant camera (bgChip + class005)</div>
+    <div class="row">
+      <div class="seg camera"><span class="opt sel">Foto</span><span class="opt">Vídeo</span></div>
+    </div>
+
+    <div class="lbl">SegmentedControlIcon · 48×40 pill, iconos 24, left / right</div>
+    <div class="row">
+      <div class="seg-icon">
+        <span class="cell sel"><svg width="24" height="24" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.07536 27.1731H25.9234C28.1818 27.1731 29.3327 26.0439 29.3327 23.8071V12.4391C29.3327 10.2024 28.1818 9.08401 25.9234 9.08401H22.8181C21.9603 9.08401 21.6997 8.91029 21.2111 8.3674L20.3425 7.3902C19.7996 6.79302 19.2458 6.46729 18.1275 6.46729H13.7952C12.6769 6.46729 12.1231 6.79302 11.5803 7.3902L10.7116 8.3674C10.223 8.89943 9.95159 9.08401 9.10468 9.08401H6.07536C3.80608 9.08401 2.66602 10.2024 2.66602 12.4391V23.8071C2.66602 26.0439 3.80608 27.1731 6.07536 27.1731ZM15.9993 23.97C12.7094 23.97 10.071 21.3425 10.071 18.0309C10.071 14.7301 12.7094 12.1025 15.9993 12.1025C19.2893 12.1025 21.9168 14.7301 21.9168 18.0309C21.9168 21.3425 19.2784 23.97 15.9993 23.97ZM15.9993 22.3197C18.3664 22.3197 20.2773 20.4195 20.2773 18.0309C20.2773 15.653 18.3664 13.742 15.9993 13.742C13.6323 13.742 11.7105 15.653 11.7105 18.0309C11.7105 20.4195 13.6433 22.3197 15.9993 22.3197ZM22.6443 14.0352C22.6443 13.2968 23.2958 12.6454 24.0558 12.6454C24.805 12.6454 25.4456 13.2968 25.4456 14.0352C25.4456 14.8061 24.805 15.425 24.0558 15.4358C23.2958 15.4358 22.6443 14.8169 22.6443 14.0352Z" fill="currentColor"/></svg></span>
+        <span class="cell"><svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.843 7.71273V7.91316H10.8603C7.5001 7.91316 5.55477 9.84671 5.55477 13.1714V22.4855H5.03601C2.57193 22.4855 1.33398 21.2711 1.33398 18.8306V7.71273C1.33398 5.28401 2.57193 4.05786 5.03601 4.05786H21.141C23.6051 4.05786 24.843 5.28401 24.843 7.71273Z" fill="currentColor"/><path d="M30.6673 13.1694V24.2873C30.6673 26.7161 29.4293 27.9422 26.9652 27.9422H10.8603C8.39613 27.9422 7.15818 26.7278 7.15818 24.2873V13.1694C7.15818 10.7407 8.39613 9.51458 10.8603 9.51458H26.9652C29.4293 9.51458 30.6673 10.7407 30.6673 13.1694ZM21.1764 18.2863L16.4133 22.5071L14.5269 20.7975C14.0671 20.3848 13.5837 20.1962 13.0767 20.1962C12.617 20.1962 12.1807 20.3848 11.7208 20.7739L9.05636 23.1202V24.193C9.05636 25.4191 9.71659 26.044 10.8956 26.044H26.9416C28.0971 26.044 28.769 25.4191 28.769 24.193V22.4599L24.3596 18.2981C23.8998 17.8736 23.3457 17.6614 22.768 17.6614C22.1786 17.6614 21.6716 17.8501 21.1764 18.2863ZM13.065 16.0344C13.065 17.4138 14.1849 18.5574 15.5643 18.5574C16.9438 18.5574 18.0638 17.4138 18.0638 16.0344C18.0638 14.6785 16.9438 13.5349 15.5643 13.5349C14.1849 13.5349 13.065 14.6785 13.065 16.0344Z" fill="currentColor"/></svg></span>
+      </div>
+      <div class="seg-icon">
+        <span class="cell"><svg width="24" height="24" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.07536 27.1731H25.9234C28.1818 27.1731 29.3327 26.0439 29.3327 23.8071V12.4391C29.3327 10.2024 28.1818 9.08401 25.9234 9.08401H22.8181C21.9603 9.08401 21.6997 8.91029 21.2111 8.3674L20.3425 7.3902C19.7996 6.79302 19.2458 6.46729 18.1275 6.46729H13.7952C12.6769 6.46729 12.1231 6.79302 11.5803 7.3902L10.7116 8.3674C10.223 8.89943 9.95159 9.08401 9.10468 9.08401H6.07536C3.80608 9.08401 2.66602 10.2024 2.66602 12.4391V23.8071C2.66602 26.0439 3.80608 27.1731 6.07536 27.1731ZM15.9993 23.97C12.7094 23.97 10.071 21.3425 10.071 18.0309C10.071 14.7301 12.7094 12.1025 15.9993 12.1025C19.2893 12.1025 21.9168 14.7301 21.9168 18.0309C21.9168 21.3425 19.2784 23.97 15.9993 23.97ZM15.9993 22.3197C18.3664 22.3197 20.2773 20.4195 20.2773 18.0309C20.2773 15.653 18.3664 13.742 15.9993 13.742C13.6323 13.742 11.7105 15.653 11.7105 18.0309C11.7105 20.4195 13.6433 22.3197 15.9993 22.3197ZM22.6443 14.0352C22.6443 13.2968 23.2958 12.6454 24.0558 12.6454C24.805 12.6454 25.4456 13.2968 25.4456 14.0352C25.4456 14.8061 24.805 15.425 24.0558 15.4358C23.2958 15.4358 22.6443 14.8169 22.6443 14.0352Z" fill="currentColor"/></svg></span>
+        <span class="cell sel"><svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.843 7.71273V7.91316H10.8603C7.5001 7.91316 5.55477 9.84671 5.55477 13.1714V22.4855H5.03601C2.57193 22.4855 1.33398 21.2711 1.33398 18.8306V7.71273C1.33398 5.28401 2.57193 4.05786 5.03601 4.05786H21.141C23.6051 4.05786 24.843 5.28401 24.843 7.71273Z" fill="currentColor"/><path d="M30.6673 13.1694V24.2873C30.6673 26.7161 29.4293 27.9422 26.9652 27.9422H10.8603C8.39613 27.9422 7.15818 26.7278 7.15818 24.2873V13.1694C7.15818 10.7407 8.39613 9.51458 10.8603 9.51458H26.9652C29.4293 9.51458 30.6673 10.7407 30.6673 13.1694ZM21.1764 18.2863L16.4133 22.5071L14.5269 20.7975C14.0671 20.3848 13.5837 20.1962 13.0767 20.1962C12.617 20.1962 12.1807 20.3848 11.7208 20.7739L9.05636 23.1202V24.193C9.05636 25.4191 9.71659 26.044 10.8956 26.044H26.9416C28.0971 26.044 28.769 25.4191 28.769 24.193V22.4599L24.3596 18.2981C23.8998 17.8736 23.3457 17.6614 22.768 17.6614C22.1786 17.6614 21.6716 17.8501 21.1764 18.2863ZM13.065 16.0344C13.065 17.4138 14.1849 18.5574 15.5643 18.5574C16.9438 18.5574 18.0638 17.4138 18.0638 16.0344C18.0638 14.6785 16.9438 13.5349 15.5643 13.5349C14.1849 13.5349 13.065 14.6785 13.065 16.0344Z" fill="currentColor"/></svg></span>
+      </div>
+    </div>
+
+    <div class="lbl">SegmentedControlPrice · variant dual + originalPrice + tag + overallDiscount</div>
+    <div class="wrap-discount">
+      <div class="seg-price">
+        <div class="p-opt">
+          <div class="p-head"><span class="p-label">Mensual</span></div>
+          <div class="p-price"><span class="p-amount">9,99€</span><span class="p-trailing">/mes</span></div>
+          <div class="p-desc">Sin permanencia</div>
+        </div>
+        <div class="p-opt sel">
+          <div class="p-head"><span class="p-label">Anual</span><span class="badge-green">17% OFF</span></div>
+          <div class="p-original">119,88€</div>
+          <div class="p-price"><span class="p-amount">99€</span><span class="p-trailing">/año</span></div>
+          <div class="p-desc">8,25€/mes</div>
+        </div>
+        <span class="discount badge-green"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.0378 28.0737L27.0929 16.3978C27.9433 15.5016 28.0001 14.9877 28.0001 13.7329V9.19159C28.0001 7.92482 27.7165 7.53044 26.8548 6.62218L24.2469 3.87353C23.3965 2.97723 23.0224 2.6665 21.8205 2.6665H17.5005C16.3099 2.6665 15.8337 2.72626 14.9833 3.62256L3.89416 15.2864C2.27275 16.9954 2.23873 18.7641 3.90551 20.5089L11.0828 28.0618C12.7496 29.8065 14.4163 29.7826 16.0378 28.0737ZM19.9156 12.2271C19.0199 12.2271 18.3622 11.4981 18.3622 10.5898C18.3622 9.66962 19.0199 8.95257 19.9156 8.95257C20.8 8.95257 21.469 9.66962 21.469 10.5898C21.469 11.4981 20.8 12.2271 19.9156 12.2271Z" fill="currentColor"/></svg>-17% OFF</span>
+      </div>
+    </div>
+
+    <div class="lbl">SegmentedControlPrice · variant single (description sobre el precio)</div>
+    <div class="seg-price">
+      <div class="p-opt sel">
+        <div class="p-head"><span class="p-label">Premium anual</span><span class="badge-green">17% OFF</span></div>
+        <div class="p-desc">8,25€/mes</div>
+        <div class="p-original">119,88€</div>
+        <div class="p-price"><span class="p-amount">99€</span><span class="p-trailing">/año</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="theme dark">
+    <h2>Segmented Control — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+
+    <div class="lbl">SegmentedControl · variant main / rightOptionTag / SegmentedControlSingle</div>
+    <div class="row">
+      <div class="seg"><span class="opt sel">Fotos</span><span class="opt">Vídeos</span></div>
+      <div class="seg"><span class="opt">Míos</span><span class="opt sel">Compartidos</span><span class="tag">3</span></div>
+      <div class="seg"><span class="opt sel">Todos</span></div>
+    </div>
+
+    <div class="lbl">SegmentedControl · variant camera (bgChip + class005)</div>
+    <div class="row">
+      <div class="seg camera"><span class="opt sel">Foto</span><span class="opt">Vídeo</span></div>
+    </div>
+
+    <div class="lbl">SegmentedControlIcon · 48×40 pill, iconos 24, left / right</div>
+    <div class="row">
+      <div class="seg-icon">
+        <span class="cell sel"><svg width="24" height="24" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.07536 27.1731H25.9234C28.1818 27.1731 29.3327 26.0439 29.3327 23.8071V12.4391C29.3327 10.2024 28.1818 9.08401 25.9234 9.08401H22.8181C21.9603 9.08401 21.6997 8.91029 21.2111 8.3674L20.3425 7.3902C19.7996 6.79302 19.2458 6.46729 18.1275 6.46729H13.7952C12.6769 6.46729 12.1231 6.79302 11.5803 7.3902L10.7116 8.3674C10.223 8.89943 9.95159 9.08401 9.10468 9.08401H6.07536C3.80608 9.08401 2.66602 10.2024 2.66602 12.4391V23.8071C2.66602 26.0439 3.80608 27.1731 6.07536 27.1731ZM15.9993 23.97C12.7094 23.97 10.071 21.3425 10.071 18.0309C10.071 14.7301 12.7094 12.1025 15.9993 12.1025C19.2893 12.1025 21.9168 14.7301 21.9168 18.0309C21.9168 21.3425 19.2784 23.97 15.9993 23.97ZM15.9993 22.3197C18.3664 22.3197 20.2773 20.4195 20.2773 18.0309C20.2773 15.653 18.3664 13.742 15.9993 13.742C13.6323 13.742 11.7105 15.653 11.7105 18.0309C11.7105 20.4195 13.6433 22.3197 15.9993 22.3197ZM22.6443 14.0352C22.6443 13.2968 23.2958 12.6454 24.0558 12.6454C24.805 12.6454 25.4456 13.2968 25.4456 14.0352C25.4456 14.8061 24.805 15.425 24.0558 15.4358C23.2958 15.4358 22.6443 14.8169 22.6443 14.0352Z" fill="currentColor"/></svg></span>
+        <span class="cell"><svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.843 7.71273V7.91316H10.8603C7.5001 7.91316 5.55477 9.84671 5.55477 13.1714V22.4855H5.03601C2.57193 22.4855 1.33398 21.2711 1.33398 18.8306V7.71273C1.33398 5.28401 2.57193 4.05786 5.03601 4.05786H21.141C23.6051 4.05786 24.843 5.28401 24.843 7.71273Z" fill="currentColor"/><path d="M30.6673 13.1694V24.2873C30.6673 26.7161 29.4293 27.9422 26.9652 27.9422H10.8603C8.39613 27.9422 7.15818 26.7278 7.15818 24.2873V13.1694C7.15818 10.7407 8.39613 9.51458 10.8603 9.51458H26.9652C29.4293 9.51458 30.6673 10.7407 30.6673 13.1694ZM21.1764 18.2863L16.4133 22.5071L14.5269 20.7975C14.0671 20.3848 13.5837 20.1962 13.0767 20.1962C12.617 20.1962 12.1807 20.3848 11.7208 20.7739L9.05636 23.1202V24.193C9.05636 25.4191 9.71659 26.044 10.8956 26.044H26.9416C28.0971 26.044 28.769 25.4191 28.769 24.193V22.4599L24.3596 18.2981C23.8998 17.8736 23.3457 17.6614 22.768 17.6614C22.1786 17.6614 21.6716 17.8501 21.1764 18.2863ZM13.065 16.0344C13.065 17.4138 14.1849 18.5574 15.5643 18.5574C16.9438 18.5574 18.0638 17.4138 18.0638 16.0344C18.0638 14.6785 16.9438 13.5349 15.5643 13.5349C14.1849 13.5349 13.065 14.6785 13.065 16.0344Z" fill="currentColor"/></svg></span>
+      </div>
+      <div class="seg-icon">
+        <span class="cell"><svg width="24" height="24" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.07536 27.1731H25.9234C28.1818 27.1731 29.3327 26.0439 29.3327 23.8071V12.4391C29.3327 10.2024 28.1818 9.08401 25.9234 9.08401H22.8181C21.9603 9.08401 21.6997 8.91029 21.2111 8.3674L20.3425 7.3902C19.7996 6.79302 19.2458 6.46729 18.1275 6.46729H13.7952C12.6769 6.46729 12.1231 6.79302 11.5803 7.3902L10.7116 8.3674C10.223 8.89943 9.95159 9.08401 9.10468 9.08401H6.07536C3.80608 9.08401 2.66602 10.2024 2.66602 12.4391V23.8071C2.66602 26.0439 3.80608 27.1731 6.07536 27.1731ZM15.9993 23.97C12.7094 23.97 10.071 21.3425 10.071 18.0309C10.071 14.7301 12.7094 12.1025 15.9993 12.1025C19.2893 12.1025 21.9168 14.7301 21.9168 18.0309C21.9168 21.3425 19.2784 23.97 15.9993 23.97ZM15.9993 22.3197C18.3664 22.3197 20.2773 20.4195 20.2773 18.0309C20.2773 15.653 18.3664 13.742 15.9993 13.742C13.6323 13.742 11.7105 15.653 11.7105 18.0309C11.7105 20.4195 13.6433 22.3197 15.9993 22.3197ZM22.6443 14.0352C22.6443 13.2968 23.2958 12.6454 24.0558 12.6454C24.805 12.6454 25.4456 13.2968 25.4456 14.0352C25.4456 14.8061 24.805 15.425 24.0558 15.4358C23.2958 15.4358 22.6443 14.8169 22.6443 14.0352Z" fill="currentColor"/></svg></span>
+        <span class="cell sel"><svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.843 7.71273V7.91316H10.8603C7.5001 7.91316 5.55477 9.84671 5.55477 13.1714V22.4855H5.03601C2.57193 22.4855 1.33398 21.2711 1.33398 18.8306V7.71273C1.33398 5.28401 2.57193 4.05786 5.03601 4.05786H21.141C23.6051 4.05786 24.843 5.28401 24.843 7.71273Z" fill="currentColor"/><path d="M30.6673 13.1694V24.2873C30.6673 26.7161 29.4293 27.9422 26.9652 27.9422H10.8603C8.39613 27.9422 7.15818 26.7278 7.15818 24.2873V13.1694C7.15818 10.7407 8.39613 9.51458 10.8603 9.51458H26.9652C29.4293 9.51458 30.6673 10.7407 30.6673 13.1694ZM21.1764 18.2863L16.4133 22.5071L14.5269 20.7975C14.0671 20.3848 13.5837 20.1962 13.0767 20.1962C12.617 20.1962 12.1807 20.3848 11.7208 20.7739L9.05636 23.1202V24.193C9.05636 25.4191 9.71659 26.044 10.8956 26.044H26.9416C28.0971 26.044 28.769 25.4191 28.769 24.193V22.4599L24.3596 18.2981C23.8998 17.8736 23.3457 17.6614 22.768 17.6614C22.1786 17.6614 21.6716 17.8501 21.1764 18.2863ZM13.065 16.0344C13.065 17.4138 14.1849 18.5574 15.5643 18.5574C16.9438 18.5574 18.0638 17.4138 18.0638 16.0344C18.0638 14.6785 16.9438 13.5349 15.5643 13.5349C14.1849 13.5349 13.065 14.6785 13.065 16.0344Z" fill="currentColor"/></svg></span>
+      </div>
+    </div>
+
+    <div class="lbl">SegmentedControlPrice · variant dual + originalPrice + tag + overallDiscount</div>
+    <div class="wrap-discount">
+      <div class="seg-price">
+        <div class="p-opt">
+          <div class="p-head"><span class="p-label">Mensual</span></div>
+          <div class="p-price"><span class="p-amount">9,99€</span><span class="p-trailing">/mes</span></div>
+          <div class="p-desc">Sin permanencia</div>
+        </div>
+        <div class="p-opt sel">
+          <div class="p-head"><span class="p-label">Anual</span><span class="badge-green">17% OFF</span></div>
+          <div class="p-original">119,88€</div>
+          <div class="p-price"><span class="p-amount">99€</span><span class="p-trailing">/año</span></div>
+          <div class="p-desc">8,25€/mes</div>
+        </div>
+        <span class="discount badge-green"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.0378 28.0737L27.0929 16.3978C27.9433 15.5016 28.0001 14.9877 28.0001 13.7329V9.19159C28.0001 7.92482 27.7165 7.53044 26.8548 6.62218L24.2469 3.87353C23.3965 2.97723 23.0224 2.6665 21.8205 2.6665H17.5005C16.3099 2.6665 15.8337 2.72626 14.9833 3.62256L3.89416 15.2864C2.27275 16.9954 2.23873 18.7641 3.90551 20.5089L11.0828 28.0618C12.7496 29.8065 14.4163 29.7826 16.0378 28.0737ZM19.9156 12.2271C19.0199 12.2271 18.3622 11.4981 18.3622 10.5898C18.3622 9.66962 19.0199 8.95257 19.9156 8.95257C20.8 8.95257 21.469 9.66962 21.469 10.5898C21.469 11.4981 20.8 12.2271 19.9156 12.2271Z" fill="currentColor"/></svg>-17% OFF</span>
+      </div>
+    </div>
+
+    <div class="lbl">SegmentedControlPrice · variant single (description sobre el precio)</div>
+    <div class="seg-price">
+      <div class="p-opt sel">
+        <div class="p-head"><span class="p-label">Premium anual</span><span class="badge-green">17% OFF</span></div>
+        <div class="p-desc">8,25€/mes</div>
+        <div class="p-original">119,88€</div>
+        <div class="p-price"><span class="p-amount">99€</span><span class="p-trailing">/año</span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

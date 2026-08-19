@@ -1,0 +1,11 @@
+/* DotsDivider — port de lib/src/components/divider/dots_divider.dart
+   Opacity .6 · DotsBorderRadius.r1000 · 1px labelSecondary sobre 1px bgStrong */
+
+.ds-divider {
+  width: 100%; /* Dart: width = double.infinity por defecto */
+  opacity: 0.6;
+  border-radius: 1000px;
+  overflow: hidden;
+}
+.ds-divider__line1 { height: 1px; background: var(--label-secondary); }
+.ds-divider__line2 { height: 1px; background: var(--bg-strong); }

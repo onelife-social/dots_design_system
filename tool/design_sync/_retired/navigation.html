@@ -1,0 +1,231 @@
+<!-- @dsCard group="Navigation" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · DotsTopBar / DotsHomeTopBar</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin: 0 0 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .label { font-size: 10px; opacity: .45; margin: 14px 0 6px; font-family: ui-monospace, monospace; }
+  .light .label { color: #000; } .dark .label { color: #FFF; }
+
+  .phone { width: 340px; border-radius: 14px; overflow: hidden; }
+  .light .phone { outline: 1px solid #BCBCBC7F; }
+  .dark .phone { outline: 1px solid #BCBCBC33; }
+
+  /* DotsTopBar — bg bgContainerPrimary; normal 50, big 106 (50 status + contenido) */
+  .top-bar { position: relative; display: flex; flex-direction: column; }
+  .light .top-bar { background: #F8F7F5D9; }
+  .dark .top-bar { background: #191919D9; }
+  .top-bar.normal { height: 50px; }
+  .top-bar.big { height: 106px; }
+  .top-bar .status { height: 50px; flex: none; }
+  .top-bar .content { flex: 1; position: relative; display: flex; align-items: center; }
+  .top-bar .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .top-bar.bordered { box-shadow: 0 1px 0 #00000033; }
+
+  /* titleH6 18/600 textPrimary · subtitle labelSmallRegular 11/400 textSecondary */
+  .tb-title { font-size: 18px; font-weight: 600; line-height: 1.28; display: flex; align-items: center; gap: 6px; }
+  .light .tb-title { color: #000; } .dark .tb-title { color: #FFF; }
+  .tb-subtitle { font-size: 11px; font-weight: 400; line-height: 1.27; }
+  .light .tb-subtitle { color: #000000AB; } .dark .tb-subtitle { color: #FFFFFFBF; }
+
+  /* DotsProfilePhoto 20×20 en imageTitle */
+  .img-title { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg, #E8B6A0, #B8C6DB); }
+
+  /* Back button — DotsIconButton chevronLeft, medium; solid = círculo bgSecondaryBtn */
+  .back { margin-left: 16px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; z-index: 1; }
+  .light .back { color: #000; } .dark .back { color: #FFF; }
+  .back.solid.l { background: #8C8C8C4D; }
+  .back.solid.d { background: #C8C8C84D; }
+  .back svg { width: 18px; height: 18px; }
+
+  .right-slot { margin-left: auto; margin-right: 16px; display: flex; align-items: center; gap: 8px; z-index: 1; }
+  .icon-btn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+  .light .icon-btn { color: #000; background: #8C8C8C4D; }
+  .dark .icon-btn { color: #FFF; background: #C8C8C84D; }
+  .icon-btn svg { width: 16px; height: 16px; }
+
+  /* CTA — DotsMainButton small: h28, pad 0 12, r28, 11/600 */
+  .cta-btn {
+    height: 28px; padding: 0 12px; border-radius: 28px; border: none;
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: #FFF;
+  }
+  .light .cta-btn { background: #0072EF; } .dark .cta-btn { background: #0A84FF; }
+
+  /* DotsHomeTopBar — título labelDefaultBold 13/600 textTertiary; imgProfile 32 */
+  .home-title { font-size: 13px; font-weight: 600; line-height: 1.31; }
+  .light .home-title { color: #0000008C; } .dark .home-title { color: #FFFFFFA6; }
+  .img-profile { margin-left: 16px; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #C9A0DC, #7FB5D5); z-index: 1; }
+  .home-blur { backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); }
+
+  /* ProgressBarSection (navigation/viewer) — barra 4px, r12 */
+  .pbs { padding-bottom: 10px; }
+  .pbs .texts { display: flex; justify-content: space-between; align-items: center; padding: 8px 16px 0; margin-bottom: 8px; }
+  .pbs .l { font-size: 13px; font-weight: 500; }
+  .pbs .r { font-size: 13px; font-weight: 400; display: flex; align-items: center; gap: 6px; }
+  .light .pbs .l, .light .pbs .r { color: #000000AB; }
+  .dark .pbs .l, .dark .pbs .r { color: #FFFFFFBF; }
+  .pbs .track { height: 4px; border-radius: 12px; margin: 0; overflow: hidden; }
+  .light .pbs .track { background: #00000033; } .dark .pbs .track { background: #FFFFFF4D; }
+  .pbs .fill { height: 100%; width: 62%; border-radius: 0 12px 12px 0; }
+  .light .pbs .fill { background: #0072EF; } .dark .pbs .fill { background: #0A84FF; }
+  .pbs.blur { backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); }
+  .light .pbs.blur { background: #F8F7F5D9; } .dark .pbs.blur { background: #191919D9; }
+  .chev { width: 14px; height: 14px; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>Navigation — Light</h2>
+    <div class="sub">navigation/top_bar · home_top_bar · viewer/progress_bar_section</div>
+
+    <div class="label">DotsTopBar.title — bigStatusBar (h106) · onTapBack + rightIcon · showBottomBorder</div>
+    <div class="phone">
+      <div class="top-bar big bordered">
+        <div class="status"></div>
+        <div class="content">
+          <div class="center">
+            <div class="tb-title">Recuerdos</div>
+            <div class="tb-subtitle">12 dots nuevos</div>
+          </div>
+          <div class="back"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.73291 16C6.74792 16.5261 6.94298 17.0072 7.36313 17.398L19.0373 28.8223C19.3674 29.153 19.7876 29.3334 20.2827 29.3334C21.2731 29.3334 22.0684 28.5517 22.0684 27.5596C22.0684 27.0786 21.8733 26.6126 21.5282 26.2668L11.0094 16.0151L21.5282 5.7332C21.8583 5.38747 22.0684 4.93651 22.0684 4.44046C22.0684 3.44835 21.2731 2.66669 20.2827 2.66669C19.7876 2.66669 19.3674 2.84707 19.0373 3.17777L7.36313 14.6171C6.94298 15.0229 6.73291 15.4739 6.73291 16Z" fill="currentColor"/></svg></div>
+          <div class="right-slot"><div class="icon-btn"><svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.62033 16.4867C7.62033 18.2226 6.21309 19.6299 4.47716 19.6299C2.74123 19.6299 1.33398 18.2226 1.33398 16.4867C1.33398 14.7508 2.74123 13.3435 4.47716 13.3435C6.21309 13.3435 7.62033 14.7508 7.62033 16.4867Z" fill="currentColor"/><path d="M19.1438 16.4867C19.1438 18.2226 17.7366 19.6299 16.0007 19.6299C14.2647 19.6299 12.8575 18.2226 12.8575 16.4867C12.8575 14.7508 14.2647 13.3435 16.0007 13.3435C17.7366 13.3435 19.1438 14.7508 19.1438 16.4867Z" fill="currentColor"/><path d="M30.6673 16.4867C30.6673 18.2226 29.2601 19.6299 27.5241 19.6299C25.7882 19.6299 24.381 18.2226 24.381 16.4867C24.381 14.7508 25.7882 13.3435 27.5241 13.3435C29.2601 13.3435 30.6673 14.7508 30.6673 16.4867Z" fill="currentColor"/></svg></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="label">DotsTopBar.title — imageTitle (DotsProfilePhoto 20) · showCircleBackButton</div>
+    <div class="phone">
+      <div class="top-bar big">
+        <div class="status"></div>
+        <div class="content">
+          <div class="center"><div class="tb-title"><span class="img-title"></span>Familia García</div></div>
+          <div class="back solid l"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.73291 16C6.74792 16.5261 6.94298 17.0072 7.36313 17.398L19.0373 28.8223C19.3674 29.153 19.7876 29.3334 20.2827 29.3334C21.2731 29.3334 22.0684 28.5517 22.0684 27.5596C22.0684 27.0786 21.8733 26.6126 21.5282 26.2668L11.0094 16.0151L21.5282 5.7332C21.8583 5.38747 22.0684 4.93651 22.0684 4.44046C22.0684 3.44835 21.2731 2.66669 20.2827 2.66669C19.7876 2.66669 19.3674 2.84707 19.0373 3.17777L7.36313 14.6171C6.94298 15.0229 6.73291 15.4739 6.73291 16Z" fill="currentColor"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="label">DotsTopBar.cta — ctaLabel (DotsMainButton small)</div>
+    <div class="phone">
+      <div class="top-bar big">
+        <div class="status"></div>
+        <div class="content">
+          <div class="center"><div class="tb-title">Editar dot</div></div>
+          <div class="back"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.73291 16C6.74792 16.5261 6.94298 17.0072 7.36313 17.398L19.0373 28.8223C19.3674 29.153 19.7876 29.3334 20.2827 29.3334C21.2731 29.3334 22.0684 28.5517 22.0684 27.5596C22.0684 27.0786 21.8733 26.6126 21.5282 26.2668L11.0094 16.0151L21.5282 5.7332C21.8583 5.38747 22.0684 4.93651 22.0684 4.44046C22.0684 3.44835 21.2731 2.66669 20.2827 2.66669C19.7876 2.66669 19.3674 2.84707 19.0373 3.17777L7.36313 14.6171C6.94298 15.0229 6.73291 15.4739 6.73291 16Z" fill="currentColor"/></svg></div>
+          <div class="right-slot"><button class="cta-btn">Guardar</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="label">DotsTopBar.onlyStatusBar — h50</div>
+    <div class="phone"><div class="top-bar normal"></div></div>
+
+    <div class="label">DotsHomeTopBar.title — imgProfile + rightIcon + secondRightIcon · backgroundBlur</div>
+    <div class="phone">
+      <div class="top-bar big home-blur">
+        <div class="status"></div>
+        <div class="content">
+          <div class="center"><div class="home-title">Hoy, 18 de agosto</div></div>
+          <div class="img-profile"></div>
+          <div class="right-slot">
+            <div class="icon-btn"><svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.9991 28.0942C16.3361 28.0942 16.8157 27.8536 17.2045 27.6131C24.4499 23.0552 29.09 17.7124 29.09 12.2935C29.09 7.64704 25.8108 4.40588 21.6762 4.40588C19.0969 4.40588 17.1656 5.79857 15.9991 7.8876C14.8585 5.81123 12.9143 4.40588 10.335 4.40588C6.20037 4.40588 2.9082 7.64704 2.9082 12.2935C2.9082 17.7124 7.54835 23.0552 14.7937 27.6131C15.1955 27.8536 15.6751 28.0942 15.9991 28.0942Z" fill="currentColor"/></svg></div>
+            <div class="icon-btn"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.28471 27.9256C8.68641 27.9256 12.0298 26.5089 14.1208 25.0811C14.3391 24.925 14.523 24.8692 14.7068 24.8692C14.8562 24.8804 14.994 24.8915 15.1204 24.8915C23.4042 24.8804 29.3327 20.4966 29.3327 14.4731C29.3327 8.70622 23.3927 4.06592 15.9936 4.06592C8.59449 4.06592 2.66602 8.70622 2.66602 14.4731C2.66602 18.0649 4.89494 21.2774 8.66343 23.2518C8.87024 23.3745 8.92768 23.5418 8.82428 23.7426C8.1579 24.8246 7.04344 26.0293 6.58387 26.5982C6.06685 27.234 6.36557 27.9256 7.28471 27.9256Z" fill="currentColor"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="label">ProgressBarSection — medium · blur · onTap (chevron)</div>
+    <div class="phone">
+      <div class="pbs blur">
+        <div class="texts">
+          <span class="l">Subiendo dots</span>
+          <span class="r">31 de 50 <svg class="chev" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.6675 16.241C23.6525 16.7672 23.4574 17.2482 23.0373 17.639L11.3631 29.0633C11.033 29.394 10.6128 29.5744 10.1177 29.5744C9.12732 29.5744 8.33203 28.7927 8.33203 27.8006C8.33203 27.3196 8.5271 26.8536 8.87222 26.5079L19.391 16.2561L8.87222 5.97423C8.54211 5.6285 8.33203 5.17754 8.33203 4.68148C8.33203 3.68938 9.12731 2.90771 10.1177 2.90771C10.6128 2.90771 11.033 3.0881 11.3631 3.4188L23.0373 14.8581C23.4574 15.264 23.6675 15.7149 23.6675 16.241Z" fill="currentColor"/></svg></span>
+        </div>
+        <div class="track"><div class="fill"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="theme dark">
+    <h2>Navigation — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+
+    <div class="label">DotsTopBar.title — bigStatusBar (h106) · onTapBack + rightIcon · showBottomBorder</div>
+    <div class="phone">
+      <div class="top-bar big bordered">
+        <div class="status"></div>
+        <div class="content">
+          <div class="center">
+            <div class="tb-title">Recuerdos</div>
+            <div class="tb-subtitle">12 dots nuevos</div>
+          </div>
+          <div class="back"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.73291 16C6.74792 16.5261 6.94298 17.0072 7.36313 17.398L19.0373 28.8223C19.3674 29.153 19.7876 29.3334 20.2827 29.3334C21.2731 29.3334 22.0684 28.5517 22.0684 27.5596C22.0684 27.0786 21.8733 26.6126 21.5282 26.2668L11.0094 16.0151L21.5282 5.7332C21.8583 5.38747 22.0684 4.93651 22.0684 4.44046C22.0684 3.44835 21.2731 2.66669 20.2827 2.66669C19.7876 2.66669 19.3674 2.84707 19.0373 3.17777L7.36313 14.6171C6.94298 15.0229 6.73291 15.4739 6.73291 16Z" fill="currentColor"/></svg></div>
+          <div class="right-slot"><div class="icon-btn"><svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.62033 16.4867C7.62033 18.2226 6.21309 19.6299 4.47716 19.6299C2.74123 19.6299 1.33398 18.2226 1.33398 16.4867C1.33398 14.7508 2.74123 13.3435 4.47716 13.3435C6.21309 13.3435 7.62033 14.7508 7.62033 16.4867Z" fill="currentColor"/><path d="M19.1438 16.4867C19.1438 18.2226 17.7366 19.6299 16.0007 19.6299C14.2647 19.6299 12.8575 18.2226 12.8575 16.4867C12.8575 14.7508 14.2647 13.3435 16.0007 13.3435C17.7366 13.3435 19.1438 14.7508 19.1438 16.4867Z" fill="currentColor"/><path d="M30.6673 16.4867C30.6673 18.2226 29.2601 19.6299 27.5241 19.6299C25.7882 19.6299 24.381 18.2226 24.381 16.4867C24.381 14.7508 25.7882 13.3435 27.5241 13.3435C29.2601 13.3435 30.6673 14.7508 30.6673 16.4867Z" fill="currentColor"/></svg></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="label">DotsTopBar.title — imageTitle (DotsProfilePhoto 20) · showCircleBackButton</div>
+    <div class="phone">
+      <div class="top-bar big">
+        <div class="status"></div>
+        <div class="content">
+          <div class="center"><div class="tb-title"><span class="img-title"></span>Familia García</div></div>
+          <div class="back solid d"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.73291 16C6.74792 16.5261 6.94298 17.0072 7.36313 17.398L19.0373 28.8223C19.3674 29.153 19.7876 29.3334 20.2827 29.3334C21.2731 29.3334 22.0684 28.5517 22.0684 27.5596C22.0684 27.0786 21.8733 26.6126 21.5282 26.2668L11.0094 16.0151L21.5282 5.7332C21.8583 5.38747 22.0684 4.93651 22.0684 4.44046C22.0684 3.44835 21.2731 2.66669 20.2827 2.66669C19.7876 2.66669 19.3674 2.84707 19.0373 3.17777L7.36313 14.6171C6.94298 15.0229 6.73291 15.4739 6.73291 16Z" fill="currentColor"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="label">DotsTopBar.cta — ctaLabel (DotsMainButton small)</div>
+    <div class="phone">
+      <div class="top-bar big">
+        <div class="status"></div>
+        <div class="content">
+          <div class="center"><div class="tb-title">Editar dot</div></div>
+          <div class="back"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.73291 16C6.74792 16.5261 6.94298 17.0072 7.36313 17.398L19.0373 28.8223C19.3674 29.153 19.7876 29.3334 20.2827 29.3334C21.2731 29.3334 22.0684 28.5517 22.0684 27.5596C22.0684 27.0786 21.8733 26.6126 21.5282 26.2668L11.0094 16.0151L21.5282 5.7332C21.8583 5.38747 22.0684 4.93651 22.0684 4.44046C22.0684 3.44835 21.2731 2.66669 20.2827 2.66669C19.7876 2.66669 19.3674 2.84707 19.0373 3.17777L7.36313 14.6171C6.94298 15.0229 6.73291 15.4739 6.73291 16Z" fill="currentColor"/></svg></div>
+          <div class="right-slot"><button class="cta-btn">Guardar</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="label">DotsTopBar.onlyStatusBar — h50</div>
+    <div class="phone"><div class="top-bar normal"></div></div>
+
+    <div class="label">DotsHomeTopBar.title — imgProfile + rightIcon + secondRightIcon · backgroundBlur</div>
+    <div class="phone">
+      <div class="top-bar big home-blur">
+        <div class="status"></div>
+        <div class="content">
+          <div class="center"><div class="home-title">Hoy, 18 de agosto</div></div>
+          <div class="img-profile"></div>
+          <div class="right-slot">
+            <div class="icon-btn"><svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.9991 28.0942C16.3361 28.0942 16.8157 27.8536 17.2045 27.6131C24.4499 23.0552 29.09 17.7124 29.09 12.2935C29.09 7.64704 25.8108 4.40588 21.6762 4.40588C19.0969 4.40588 17.1656 5.79857 15.9991 7.8876C14.8585 5.81123 12.9143 4.40588 10.335 4.40588C6.20037 4.40588 2.9082 7.64704 2.9082 12.2935C2.9082 17.7124 7.54835 23.0552 14.7937 27.6131C15.1955 27.8536 15.6751 28.0942 15.9991 28.0942Z" fill="currentColor"/></svg></div>
+            <div class="icon-btn"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.28471 27.9256C8.68641 27.9256 12.0298 26.5089 14.1208 25.0811C14.3391 24.925 14.523 24.8692 14.7068 24.8692C14.8562 24.8804 14.994 24.8915 15.1204 24.8915C23.4042 24.8804 29.3327 20.4966 29.3327 14.4731C29.3327 8.70622 23.3927 4.06592 15.9936 4.06592C8.59449 4.06592 2.66602 8.70622 2.66602 14.4731C2.66602 18.0649 4.89494 21.2774 8.66343 23.2518C8.87024 23.3745 8.92768 23.5418 8.82428 23.7426C8.1579 24.8246 7.04344 26.0293 6.58387 26.5982C6.06685 27.234 6.36557 27.9256 7.28471 27.9256Z" fill="currentColor"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="label">ProgressBarSection — medium · blur · onTap (chevron)</div>
+    <div class="phone">
+      <div class="pbs blur">
+        <div class="texts">
+          <span class="l">Subiendo dots</span>
+          <span class="r">31 de 50 <svg class="chev" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.6675 16.241C23.6525 16.7672 23.4574 17.2482 23.0373 17.639L11.3631 29.0633C11.033 29.394 10.6128 29.5744 10.1177 29.5744C9.12732 29.5744 8.33203 28.7927 8.33203 27.8006C8.33203 27.3196 8.5271 26.8536 8.87222 26.5079L19.391 16.2561L8.87222 5.97423C8.54211 5.6285 8.33203 5.17754 8.33203 4.68148C8.33203 3.68938 9.12731 2.90771 10.1177 2.90771C10.6128 2.90771 11.033 3.0881 11.3631 3.4188L23.0373 14.8581C23.4574 15.264 23.6675 15.7149 23.6675 16.241Z" fill="currentColor"/></svg></span>
+        </div>
+        <div class="track"><div class="fill"></div></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

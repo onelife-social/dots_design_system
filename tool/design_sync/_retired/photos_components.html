@@ -1,0 +1,173 @@
+<!-- @dsCard group="Memories" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · Photos components</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .row { display: flex; align-items: flex-end; gap: 24px; margin-bottom: 18px; flex-wrap: wrap; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .lbl { font-size: 9px; font-family: ui-monospace, monospace; opacity: .45; text-align: center; }
+  .light .lbl { color: #000; } .dark .lbl { color: #FFF; }
+  .footnote { font-size: 9px; opacity: .4; font-family: ui-monospace, monospace; margin-top: 4px; }
+  .light .footnote { color: #000; } .dark .footnote { color: #FFF; }
+
+  .ph1 { background: linear-gradient(135deg, #F2B880, #D96D6B); }
+  .ph2 { background: linear-gradient(135deg, #9BC7EE, #6E7FD0); }
+  .ph3 { background: linear-gradient(160deg, #E8C3A0, #C88EA7 55%, #7E6BA8); }
+  .ph4 { background: linear-gradient(140deg, #A8D8B9, #5B9AA0); }
+
+  /* DotsProfilePhoto — círculo (OvalBorder), default 32×32 */
+  .profile-photo { border-radius: 50%; }
+  .s32 { width: 32px; height: 32px; }
+  .s44 { width: 44px; height: 44px; }
+
+  /* DotsProfilePhotoBited — 44 default, biteSize 0.25, biteOffset (0.85, 0.85) → mordida r11 en (37.4, 37.4) */
+  .bited-wrap { position: relative; width: 44px; height: 44px; }
+  .bited {
+    -webkit-mask: radial-gradient(circle 11px at 37.4px 37.4px, transparent 10.5px, #000 11.5px);
+    mask: radial-gradient(circle 11px at 37.4px 37.4px, transparent 10.5px, #000 11.5px);
+  }
+  .bited-wrap .reaction {
+    position: absolute; left: 26.4px; top: 26.4px; width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 600; line-height: 1; /* labelDefaultBold */
+  }
+
+  /* DotsSquircleImage — default size 52, DotsBorderRadius.r16, defaultShadow 0 6 20 #0000001A */
+  .squircle {
+    width: 52px; height: 52px; border-radius: 16px; overflow: hidden; position: relative;
+    box-shadow: 0 6px 20px #0000001A;
+  }
+  /* hideBorder: false → borde 1px bgBtnImage al 60% */
+  .light .squircle.bordered { box-shadow: 0 6px 20px #0000001A, inset 0 0 0 1px #F3F3F399; }
+  .dark .squircle.bordered { box-shadow: 0 6px 20px #0000001A, inset 0 0 0 1px #74747499; }
+  /* uploadError: true → overlay negro 20% + icono cloudFail 24 blanco */
+  .squircle .error-overlay {
+    position: absolute; inset: 0; background: #00000033;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .squircle .error-overlay svg { width: 24px; height: 24px; color: #FFFFFF; }
+
+  /* DotsSquircleImageTag — size 100 (lienzo 110), r24, borde 2 labelAlwaysWhite,
+     tag circle 40 labelHighlight con borde blanco 30% 1.4, icono calendarCheck 24 blanco */
+  .squircle-tag-wrap { position: relative; width: 110px; height: 110px; }
+  .squircle-tag-img {
+    position: absolute; left: 0; top: 0; width: 100px; height: 100px;
+    border-radius: 24px; box-shadow: 0 6px 20px #0000001A, inset 0 0 0 2px #FFFFFF;
+  }
+  .tag-circle {
+    position: absolute; right: 2px; bottom: 2px; width: 40px; height: 40px;
+    border-radius: 50%; border: 1.4px solid #FFFFFF4D; box-sizing: border-box;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .light .tag-circle { background: #0072EF; } /* labelHighlight */
+  .dark .tag-circle { background: #0A84FF; }
+  .tag-circle svg { width: 24px; height: 24px; color: #FFFFFF; }
+
+  /* DotsImageThumbnail — default size 40, DotsBorderRadius.r12 */
+  .thumbnail { width: 40px; height: 40px; border-radius: 12px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center; }
+  .light .thumbnail.icon-variant { background: #8C8C8C1A; } /* bgContainerSecondaryOnBackground */
+  .dark .thumbnail.icon-variant { background: #75757533; }
+  .thumbnail.icon-variant svg { width: 20px; height: 20px; }
+  .light .thumbnail.icon-variant svg { color: #000000AB; }
+  .dark .thumbnail.icon-variant svg { color: #FFFFFFBF; }
+  .thumbnail .cover { position: absolute; inset: 0; background: #0000004D; border-radius: 12px; } /* coverImage 30% */
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>Photos components — Light</h2>
+    <div class="sub">photos_components/* · image_thumbnail/image_thumbnail</div>
+    <div class="row">
+      <div class="item"><div class="profile-photo s32 ph1"></div><div class="lbl">DotsProfilePhoto · 32</div></div>
+      <div class="item"><div class="profile-photo s44 ph2"></div><div class="lbl">DotsProfilePhoto · 44</div></div>
+      <div class="item">
+        <div class="bited-wrap"><div class="profile-photo s44 ph1 bited"></div><div class="reaction">😂</div></div>
+        <div class="lbl">DotsProfilePhotoBited · 44</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="item"><div class="squircle ph3"></div><div class="lbl">DotsSquircleImage · 52 r16</div></div>
+      <div class="item"><div class="squircle ph4 bordered"></div><div class="lbl">hideBorder: false</div></div>
+      <div class="item">
+        <div class="squircle ph3"><div class="error-overlay">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.486 11.1864C21.0373 11.8469 22 13.313 22 15.0046C22 17.2198 20.1225 19 17.72 19H6.76531C4.04455 19 2 17.0103 2 14.6421C2 12.6766 3.12172 11.0495 4.91964 10.7595C4.95942 8.50402 7.09148 6.9977 9.04852 7.57767C10.0032 6.16801 11.5386 5 13.6945 5C16.9483 5 19.502 7.59378 19.486 11.1864ZM11.1089 15.3026C11.1089 15.7779 11.5227 16.1726 12 16.1726C12.4773 16.1726 12.891 15.786 12.891 15.3026C12.891 14.8193 12.4853 14.4326 12 14.4326C11.5147 14.4326 11.1089 14.8274 11.1089 15.3026ZM11.2522 9.80091L11.3635 12.8458C11.3795 13.2727 11.5942 13.5144 12.008 13.5144C12.4057 13.5144 12.6285 13.2808 12.6444 12.8458L12.7557 9.80896C12.7717 9.34982 12.4375 9.02761 12 9.02761C11.5545 9.02761 11.2363 9.34176 11.2522 9.80091Z"/></svg>
+        </div></div>
+        <div class="lbl">uploadError: true · cloudFail</div>
+      </div>
+      <div class="item">
+        <div class="squircle-tag-wrap">
+          <div class="squircle-tag-img ph2"></div>
+          <div class="tag-circle">
+            <svg viewBox="0 0 32 33" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M25.4667 7.74283V14.6423C25.1544 14.5969 24.8345 14.5768 24.5101 14.5768C24.1733 14.5768 23.8411 14.5985 23.5173 14.6481V11.2081C23.5173 10.0973 22.9118 9.51772 21.8341 9.51772H4.9545C3.87682 9.51772 3.28349 10.0973 3.28349 11.2081V22.5939C3.28349 23.7169 3.87682 24.2843 4.9545 24.2843H16.9512C17.119 24.9767 17.3886 25.6294 17.7422 26.2282H5.13613C2.6054 26.2282 1.33398 24.9846 1.33398 22.4852V7.74283C1.33398 5.2435 2.6054 3.99988 5.13613 3.99988H21.6767C24.2074 3.99988 25.4667 5.25558 25.4667 7.74283Z"/><path d="M8.28384 20.4894V21.2018C8.28384 21.6244 8.15065 21.7572 7.71471 21.7572H7.01239C6.57655 21.7572 6.44326 21.6244 6.44326 21.2018V20.4894C6.44326 20.0669 6.57655 19.9461 7.01239 19.9461H7.71471C8.15065 19.9461 8.28384 20.0669 8.28384 20.4894ZM12.3039 20.4894V21.2018C12.3039 21.6244 12.1707 21.7572 11.747 21.7572H11.0325C10.6087 21.7572 10.4634 21.6244 10.4634 21.2018V20.4894C10.4634 20.0669 10.6087 19.9461 11.0325 19.9461H11.747C12.1707 19.9461 12.3039 20.0669 12.3039 20.4894ZM16.3362 20.4894V21.2018C16.3362 21.6244 16.1908 21.7572 15.7671 21.7572H15.0527C14.6288 21.7572 14.4835 21.6244 14.4835 21.2018V20.4894C14.4835 20.0669 14.6288 19.9461 15.0527 19.9461H15.7671C16.1908 19.9461 16.3362 20.0669 16.3362 20.4894ZM8.28384 16.5412V17.2536C8.28384 17.6762 8.15065 17.797 7.71471 17.797H7.01239C6.57655 17.797 6.44326 17.6762 6.44326 17.2536V16.5412C6.44326 16.1187 6.57655 15.9979 7.01239 15.9979H7.71471C8.15065 15.9979 8.28384 16.1187 8.28384 16.5412ZM12.3039 16.5412V17.2536C12.3039 17.6762 12.1707 17.797 11.747 17.797H11.0325C10.6087 17.797 10.4634 17.6762 10.4634 17.2536V16.5412C10.4634 16.1187 10.6087 15.9979 11.0325 15.9979H11.747C12.1707 15.9979 12.3039 16.1187 12.3039 16.5412ZM16.3362 16.5412V17.2536C16.3362 17.6762 16.1908 17.797 15.7671 17.797H15.0527C14.6288 17.797 14.4835 17.6762 14.4835 17.2536V16.5412C14.4835 16.1187 14.6288 15.9979 15.0527 15.9979H15.7671C16.1908 15.9979 16.3362 16.1187 16.3362 16.5412ZM12.3039 12.593V13.3054C12.3039 13.7279 12.1707 13.8487 11.747 13.8487H11.0325C10.6087 13.8487 10.4634 13.7279 10.4634 13.3054V12.593C10.4634 12.1704 10.6087 12.0376 11.0325 12.0376H11.747C12.1707 12.0376 12.3039 12.1704 12.3039 12.593ZM16.3362 12.593V13.3054C16.3362 13.7279 16.1908 13.8487 15.7671 13.8487H15.0527C14.6288 13.8487 14.4835 13.7279 14.4835 13.3054V12.593C14.4835 12.1704 14.6288 12.0376 15.0527 12.0376H15.7671C16.1908 12.0376 16.3362 12.1704 16.3362 12.593ZM20.3563 12.593V13.3054C20.3563 13.7279 20.211 13.8487 19.7871 13.8487H19.0727C18.6489 13.8487 18.5157 13.7279 18.5157 13.3054V12.593C18.5157 12.1704 18.6489 12.0376 19.0727 12.0376H19.7871C20.211 12.0376 20.3563 12.1704 20.3563 12.593Z"/><path d="M30.6673 22.3666C30.6673 25.7233 27.846 28.5003 24.5161 28.5003C21.1378 28.5003 18.3649 25.7474 18.3649 22.3666C18.3649 19.01 21.1378 16.233 24.5161 16.233C27.8823 16.233 30.6673 18.998 30.6673 22.3666ZM26.6957 19.65L23.7411 23.7311L22.2518 22.1252C22.1307 21.9924 21.9369 21.8716 21.6826 21.8716C21.2589 21.8716 20.9198 22.1976 20.9198 22.6323C20.9198 22.8013 20.9803 23.0187 21.1256 23.1756L23.172 25.4214C23.3295 25.5905 23.5716 25.675 23.7775 25.675C24.0439 25.675 24.286 25.5663 24.4193 25.3851L27.9308 20.5193C28.0398 20.3623 28.1002 20.1934 28.1002 20.0605C28.1002 19.6379 27.737 19.3119 27.3375 19.3119C27.0589 19.3119 26.841 19.4568 26.6957 19.65Z"/></svg>
+          </div>
+        </div>
+        <div class="lbl">DotsSquircleImageTag · 100 r24 · calendarCheck</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="item"><div class="thumbnail ph1"></div><div class="lbl">DotsImageThumbnail · image · 40 r12</div></div>
+      <div class="item"><div class="thumbnail ph1"><div class="cover"></div></div><div class="lbl">coverImage: true</div></div>
+      <div class="item">
+        <div class="thumbnail icon-variant">
+          <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 15.6505C13.0929 15.6505 10.6371 13.0753 10.6371 9.74339C10.6371 6.49118 13.1062 3.99561 16 3.99561C18.8805 3.99561 21.3628 6.531 21.3495 9.76994C21.3495 13.0753 18.9071 15.6505 16 15.6505ZM24.2699 27.9956H7.73007C5.5398 27.9956 4.78317 27.3319 4.78317 26.1106C4.78317 22.6991 9.12387 18 16 18C22.8894 18 27.2168 22.6991 27.2168 26.1106C27.2168 27.3319 26.4602 27.9956 24.2699 27.9956Z"/></svg>
+        </div>
+        <div class="lbl">variant: icon · user 20</div>
+      </div>
+    </div>
+  </div>
+  <div class="theme dark">
+    <h2>Photos components — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+    <div class="row">
+      <div class="item"><div class="profile-photo s32 ph1"></div><div class="lbl">DotsProfilePhoto · 32</div></div>
+      <div class="item"><div class="profile-photo s44 ph2"></div><div class="lbl">DotsProfilePhoto · 44</div></div>
+      <div class="item">
+        <div class="bited-wrap"><div class="profile-photo s44 ph1 bited"></div><div class="reaction">😂</div></div>
+        <div class="lbl">DotsProfilePhotoBited · 44</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="item"><div class="squircle ph3"></div><div class="lbl">DotsSquircleImage · 52 r16</div></div>
+      <div class="item"><div class="squircle ph4 bordered"></div><div class="lbl">hideBorder: false</div></div>
+      <div class="item">
+        <div class="squircle ph3"><div class="error-overlay">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.486 11.1864C21.0373 11.8469 22 13.313 22 15.0046C22 17.2198 20.1225 19 17.72 19H6.76531C4.04455 19 2 17.0103 2 14.6421C2 12.6766 3.12172 11.0495 4.91964 10.7595C4.95942 8.50402 7.09148 6.9977 9.04852 7.57767C10.0032 6.16801 11.5386 5 13.6945 5C16.9483 5 19.502 7.59378 19.486 11.1864ZM11.1089 15.3026C11.1089 15.7779 11.5227 16.1726 12 16.1726C12.4773 16.1726 12.891 15.786 12.891 15.3026C12.891 14.8193 12.4853 14.4326 12 14.4326C11.5147 14.4326 11.1089 14.8274 11.1089 15.3026ZM11.2522 9.80091L11.3635 12.8458C11.3795 13.2727 11.5942 13.5144 12.008 13.5144C12.4057 13.5144 12.6285 13.2808 12.6444 12.8458L12.7557 9.80896C12.7717 9.34982 12.4375 9.02761 12 9.02761C11.5545 9.02761 11.2363 9.34176 11.2522 9.80091Z"/></svg>
+        </div></div>
+        <div class="lbl">uploadError: true · cloudFail</div>
+      </div>
+      <div class="item">
+        <div class="squircle-tag-wrap">
+          <div class="squircle-tag-img ph2"></div>
+          <div class="tag-circle">
+            <svg viewBox="0 0 32 33" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M25.4667 7.74283V14.6423C25.1544 14.5969 24.8345 14.5768 24.5101 14.5768C24.1733 14.5768 23.8411 14.5985 23.5173 14.6481V11.2081C23.5173 10.0973 22.9118 9.51772 21.8341 9.51772H4.9545C3.87682 9.51772 3.28349 10.0973 3.28349 11.2081V22.5939C3.28349 23.7169 3.87682 24.2843 4.9545 24.2843H16.9512C17.119 24.9767 17.3886 25.6294 17.7422 26.2282H5.13613C2.6054 26.2282 1.33398 24.9846 1.33398 22.4852V7.74283C1.33398 5.2435 2.6054 3.99988 5.13613 3.99988H21.6767C24.2074 3.99988 25.4667 5.25558 25.4667 7.74283Z"/><path d="M8.28384 20.4894V21.2018C8.28384 21.6244 8.15065 21.7572 7.71471 21.7572H7.01239C6.57655 21.7572 6.44326 21.6244 6.44326 21.2018V20.4894C6.44326 20.0669 6.57655 19.9461 7.01239 19.9461H7.71471C8.15065 19.9461 8.28384 20.0669 8.28384 20.4894ZM12.3039 20.4894V21.2018C12.3039 21.6244 12.1707 21.7572 11.747 21.7572H11.0325C10.6087 21.7572 10.4634 21.6244 10.4634 21.2018V20.4894C10.4634 20.0669 10.6087 19.9461 11.0325 19.9461H11.747C12.1707 19.9461 12.3039 20.0669 12.3039 20.4894ZM16.3362 20.4894V21.2018C16.3362 21.6244 16.1908 21.7572 15.7671 21.7572H15.0527C14.6288 21.7572 14.4835 21.6244 14.4835 21.2018V20.4894C14.4835 20.0669 14.6288 19.9461 15.0527 19.9461H15.7671C16.1908 19.9461 16.3362 20.0669 16.3362 20.4894ZM8.28384 16.5412V17.2536C8.28384 17.6762 8.15065 17.797 7.71471 17.797H7.01239C6.57655 17.797 6.44326 17.6762 6.44326 17.2536V16.5412C6.44326 16.1187 6.57655 15.9979 7.01239 15.9979H7.71471C8.15065 15.9979 8.28384 16.1187 8.28384 16.5412ZM12.3039 16.5412V17.2536C12.3039 17.6762 12.1707 17.797 11.747 17.797H11.0325C10.6087 17.797 10.4634 17.6762 10.4634 17.2536V16.5412C10.4634 16.1187 10.6087 15.9979 11.0325 15.9979H11.747C12.1707 15.9979 12.3039 16.1187 12.3039 16.5412ZM16.3362 16.5412V17.2536C16.3362 17.6762 16.1908 17.797 15.7671 17.797H15.0527C14.6288 17.797 14.4835 17.6762 14.4835 17.2536V16.5412C14.4835 16.1187 14.6288 15.9979 15.0527 15.9979H15.7671C16.1908 15.9979 16.3362 16.1187 16.3362 16.5412ZM12.3039 12.593V13.3054C12.3039 13.7279 12.1707 13.8487 11.747 13.8487H11.0325C10.6087 13.8487 10.4634 13.7279 10.4634 13.3054V12.593C10.4634 12.1704 10.6087 12.0376 11.0325 12.0376H11.747C12.1707 12.0376 12.3039 12.1704 12.3039 12.593ZM16.3362 12.593V13.3054C16.3362 13.7279 16.1908 13.8487 15.7671 13.8487H15.0527C14.6288 13.8487 14.4835 13.7279 14.4835 13.3054V12.593C14.4835 12.1704 14.6288 12.0376 15.0527 12.0376H15.7671C16.1908 12.0376 16.3362 12.1704 16.3362 12.593ZM20.3563 12.593V13.3054C20.3563 13.7279 20.211 13.8487 19.7871 13.8487H19.0727C18.6489 13.8487 18.5157 13.7279 18.5157 13.3054V12.593C18.5157 12.1704 18.6489 12.0376 19.0727 12.0376H19.7871C20.211 12.0376 20.3563 12.1704 20.3563 12.593Z"/><path d="M30.6673 22.3666C30.6673 25.7233 27.846 28.5003 24.5161 28.5003C21.1378 28.5003 18.3649 25.7474 18.3649 22.3666C18.3649 19.01 21.1378 16.233 24.5161 16.233C27.8823 16.233 30.6673 18.998 30.6673 22.3666ZM26.6957 19.65L23.7411 23.7311L22.2518 22.1252C22.1307 21.9924 21.9369 21.8716 21.6826 21.8716C21.2589 21.8716 20.9198 22.1976 20.9198 22.6323C20.9198 22.8013 20.9803 23.0187 21.1256 23.1756L23.172 25.4214C23.3295 25.5905 23.5716 25.675 23.7775 25.675C24.0439 25.675 24.286 25.5663 24.4193 25.3851L27.9308 20.5193C28.0398 20.3623 28.1002 20.1934 28.1002 20.0605C28.1002 19.6379 27.737 19.3119 27.3375 19.3119C27.0589 19.3119 26.841 19.4568 26.6957 19.65Z"/></svg>
+          </div>
+        </div>
+        <div class="lbl">DotsSquircleImageTag · 100 r24 · calendarCheck</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="item"><div class="thumbnail ph1"></div><div class="lbl">DotsImageThumbnail · image · 40 r12</div></div>
+      <div class="item"><div class="thumbnail ph1"><div class="cover"></div></div><div class="lbl">coverImage: true</div></div>
+      <div class="item">
+        <div class="thumbnail icon-variant">
+          <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 15.6505C13.0929 15.6505 10.6371 13.0753 10.6371 9.74339C10.6371 6.49118 13.1062 3.99561 16 3.99561C18.8805 3.99561 21.3628 6.531 21.3495 9.76994C21.3495 13.0753 18.9071 15.6505 16 15.6505ZM24.2699 27.9956H7.73007C5.5398 27.9956 4.78317 27.3319 4.78317 26.1106C4.78317 22.6991 9.12387 18 16 18C22.8894 18 27.2168 22.6991 27.2168 26.1106C27.2168 27.3319 26.4602 27.9956 24.2699 27.9956Z"/></svg>
+        </div>
+        <div class="lbl">variant: icon · user 20</div>
+      </div>
+    </div>
+    <div class="footnote">Omitidas: DotsSquircleImage con squircleStyle custom · DotsSquircleImageTag con icon/tamaños custom · DotsImageThumbnail iconData/iconColor custom</div>
+  </div>
+</body>
+</html>

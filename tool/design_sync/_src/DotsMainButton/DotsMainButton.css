@@ -1,0 +1,133 @@
+/* DotsMainButton — port de lib/src/components/buttons/dots_main_button/ (Dart = fuente de verdad) */
+
+.ds-main-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  max-width: 100%;
+  padding: 0;
+  background: transparent;
+  font-family: var(--font-main);
+}
+.ds-main-btn--expand { display: flex; width: 100%; }
+.ds-main-btn:disabled { cursor: default; }
+
+/* ── Tamaños — DotsMainButtonSize (radio = altura: píldora) ─────────────────
+   mainAction/large → typo.main.bodyDefaultMedium (14/500, lh 1.29, ls -0.02)
+   medium → labelDefaultBold (13/600, lh 1.31, ls -0.01)
+   small  → labelSmallMedium (11/600, lh 1.27, ls 0.01) */
+.ds-main-btn--size-mainAction { height: 52px; padding: 0 24px; border-radius: 52px; gap: 6px; font-size: 14px; font-weight: 500; line-height: 1.29; letter-spacing: -0.02px; }
+.ds-main-btn--size-large      { height: 44px; padding: 0 20px; border-radius: 44px; gap: 4px; font-size: 14px; font-weight: 500; line-height: 1.29; letter-spacing: -0.02px; }
+.ds-main-btn--size-medium     { height: 36px; padding: 0 16px; border-radius: 36px; gap: 4px; font-size: 13px; font-weight: 600; line-height: 1.31; letter-spacing: -0.01px; }
+.ds-main-btn--size-small      { height: 28px; padding: 0 12px; border-radius: 28px; gap: 4px; font-size: 11px; font-weight: 600; line-height: 1.27; letter-spacing: 0.01px; }
+.ds-main-btn--adapt-padding   { padding: 0 7px; }
+
+/* ── Partes ── */
+.ds-main-btn__label { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+/* details → bodyDefaultMedium con foregroundSecondaryColor (fg al 60%) */
+.ds-main-btn__details { font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px; opacity: 0.6; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.ds-main-btn__icon { display: inline-flex; align-items: center; flex: none; }
+
+/* ── Variantes — DotsMainButtonVariant (dots_main_button_theme.dart) ── */
+.ds-main-btn--main { background: var(--label-highlight); color: var(--label-always-white); }
+.ds-main-btn--secondary { background: var(--bg-secondary-btn); color: var(--text-secondary); }
+.ds-main-btn--secondaryLight,
+.ds-main-btn--secondaryDark { background: var(--bg-btn-image); color: var(--text-secondary); }
+.ds-main-btn--destructive { background: var(--label-destructive); color: var(--label-always-white); }
+.ds-main-btn--disabled { background: var(--bg-btn-disabled); color: var(--text-disabled); }
+.ds-main-btn--disabledOpaque { background: var(--bg-btn-disabled-opaque); color: var(--text-disabled); }
+.ds-main-btn--ghost { background: transparent; color: var(--label-highlight); }
+.ds-main-btn--surface { background: var(--bg-container-secondary); color: var(--text-primary); }
+/* Variantes con texto en degradado: color base white como en Dart (el degradado enmascara el texto) */
+.ds-main-btn--secondaryPremium,
+.ds-main-btn--secondaryPremiumPlus { background: var(--bg-container-secondary-on-bg); color: var(--label-always-white); }
+.ds-main-btn--surfacePremium,
+.ds-main-btn--surfacePremiumPlus { background: var(--bg-container-secondary); color: var(--label-always-white); }
+/* premium/premiumPlus: fondo degradado SOLO en mainAction; resto = bgBtnImage + texto degradado */
+.ds-main-btn--premium.ds-main-btn--size-mainAction { background: var(--gradient-bg-premium); color: var(--label-always-white); }
+.ds-main-btn--premiumPlus.ds-main-btn--size-mainAction { background: var(--gradient-bg-premium-plus); color: var(--label-always-white); }
+.ds-main-btn--premium:not(.ds-main-btn--size-mainAction),
+.ds-main-btn--premiumPlus:not(.ds-main-btn--size-mainAction) { background: var(--bg-btn-image); color: var(--label-always-white); }
+
+/* ── Texto en degradado (DotsShaderMask sobre content+details) ── */
+.ds-main-btn--secondaryPremium .ds-main-btn__label,
+.ds-main-btn--secondaryPremium .ds-main-btn__details,
+.ds-main-btn--surfacePremium .ds-main-btn__label,
+.ds-main-btn--surfacePremium .ds-main-btn__details {
+  background: linear-gradient(90deg, var(--text-premium-start), var(--text-premium-end));
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+}
+.ds-main-btn--secondaryPremiumPlus .ds-main-btn__label,
+.ds-main-btn--secondaryPremiumPlus .ds-main-btn__details,
+.ds-main-btn--surfacePremiumPlus .ds-main-btn__label,
+.ds-main-btn--surfacePremiumPlus .ds-main-btn__details {
+  background: linear-gradient(90deg, var(--text-premium-plus-start), var(--text-premium-plus-end));
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+}
+.ds-main-btn--premium:not(.ds-main-btn--size-mainAction) .ds-main-btn__label,
+.ds-main-btn--premium:not(.ds-main-btn--size-mainAction) .ds-main-btn__details {
+  background: var(--gradient-bg-premium);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+}
+.ds-main-btn--premiumPlus:not(.ds-main-btn--size-mainAction) .ds-main-btn__label,
+.ds-main-btn--premiumPlus:not(.ds-main-btn--size-mainAction) .ds-main-btn__details {
+  background: var(--gradient-bg-premium-plus);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+}
+/* textColor anula el foregroundGradient (secondaryPremium/Plus, surfacePremium/Plus — Dart) */
+.ds-main-btn--custom-text .ds-main-btn__label,
+.ds-main-btn--custom-text .ds-main-btn__details {
+  background: none; color: inherit; -webkit-text-fill-color: currentColor;
+}
+
+/* ── Colores de icono por variante (theme.iconColor) ── */
+.ds-main-btn--secondaryPremium .ds-main-btn__icon,
+.ds-main-btn--surfacePremium .ds-main-btn__icon { color: var(--text-premium-start); }
+.ds-main-btn--secondaryPremiumPlus .ds-main-btn__icon,
+.ds-main-btn--surfacePremiumPlus .ds-main-btn__icon { color: var(--text-premium-plus-start); }
+/* premium/premiumPlus no-mainAction: en Dart el icono queda foreground white (fuera del shader mask) */
+.ds-main-btn--premium:not(.ds-main-btn--size-mainAction) .ds-main-btn__icon,
+.ds-main-btn--premiumPlus:not(.ds-main-btn--size-mainAction) .ds-main-btn__icon { color: var(--label-always-white); }
+
+/* ── Blur + sombra: SOLO con shouldApplyBlur (Dart) ── */
+.ds-main-btn--blur.ds-main-btn--secondary,
+.ds-main-btn--blur.ds-main-btn--secondaryLight,
+.ds-main-btn--blur.ds-main-btn--secondaryDark,
+.ds-main-btn--blur.ds-main-btn--disabled,
+.ds-main-btn--blur.ds-main-btn--disabledOpaque,
+.ds-main-btn--blur.ds-main-btn--premium:not(.ds-main-btn--size-mainAction),
+.ds-main-btn--blur.ds-main-btn--premiumPlus:not(.ds-main-btn--size-mainAction) {
+  -webkit-backdrop-filter: blur(var(--blur-50));
+  backdrop-filter: blur(var(--blur-50));
+}
+.ds-main-btn--blur.ds-main-btn--surface,
+.ds-main-btn--blur.ds-main-btn--surfacePremium,
+.ds-main-btn--blur.ds-main-btn--surfacePremiumPlus {
+  -webkit-backdrop-filter: blur(var(--blur-10));
+  backdrop-filter: blur(var(--blur-10));
+}
+.ds-main-btn--blur.ds-main-btn--secondaryLight,
+.ds-main-btn--blur.ds-main-btn--secondaryDark,
+.ds-main-btn--blur.ds-main-btn--premium:not(.ds-main-btn--size-mainAction),
+.ds-main-btn--blur.ds-main-btn--premiumPlus:not(.ds-main-btn--size-mainAction) {
+  box-shadow: var(--shadow-default);
+}
+
+/* ── Loading — GradientProgressIndicator (anillo con degradado a currentColor) ── */
+.ds-main-btn__spinner {
+  flex: none;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0deg, currentColor 360deg);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2.5px)); /* #000 = solo máscara, no color visible */
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2.5px));
+  animation: ds-main-btn-spin 1s linear infinite;
+}
+@keyframes ds-main-btn-spin { to { transform: rotate(360deg); } }

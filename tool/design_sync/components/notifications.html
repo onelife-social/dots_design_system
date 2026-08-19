@@ -1,0 +1,173 @@
+<!-- @dsCard group="Social" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · Notifications</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; min-width: 0; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .variant-label { font-size: 10px; font-family: ui-monospace, monospace; opacity: .45; margin: 14px 0 6px; }
+  .light .variant-label { color: #000; } .dark .variant-label { color: #FFF; }
+
+  /* ===== DotsNotificationItem — foto 44 circular · gap 12 ===== */
+  .notif-item { display: flex; align-items: center; width: 100%; cursor: pointer; margin-bottom: 12px; }
+  .profile-photo {
+    width: 44px; height: 44px; border-radius: 50%; flex: none;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 15px; color: #FFFFFFD9;
+  }
+  .grad-a { background: linear-gradient(135deg, #FAA25E, #F43C51); }
+  .grad-b { background: linear-gradient(135deg, #9297EF, #8B84F7); }
+  .grad-c { background: linear-gradient(135deg, #28CB55, #0072EF); }
+  .notif-info { flex: 1; min-width: 0; margin: 0 12px; font-size: 14px; letter-spacing: -0.02px; line-height: 1.29; }
+  .notif-title { font-weight: 700; }
+  .light .notif-title { color: #000000; } .dark .notif-title { color: #FFFFFF; }
+  .notif-desc { font-weight: 400; }
+  .light .notif-desc { color: #000000AB; } .dark .notif-desc { color: #FFFFFFBF; }
+  .notif-date { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 800; }
+  .light .notif-date { color: #00000066; } .dark .notif-date { color: #FFFFFF73; }
+
+  /* Trailing: DotsMainButton small — h28, r28, 11/600 */
+  .btn-small {
+    flex: none; height: 28px; padding: 0 12px; border-radius: 28px; border: none; cursor: pointer;
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: #FFF;
+  }
+  .light .btn-small { background: #0072EF; } .dark .btn-small { background: #0A84FF; }
+
+  /* Trailing: DotsImageThumbnail — 44x44, r12 */
+  .thumb { width: 44px; height: 44px; border-radius: 12px; flex: none; display: flex; align-items: center; justify-content: center; }
+  .light .thumb-icon { background: #8C8C8C1A; } .dark .thumb-icon { background: #75757533; }
+  .light .thumb-icon svg { fill: #000000AB; } .dark .thumb-icon svg { fill: #FFFFFFBF; }
+  .thumb-image { position: relative; overflow: hidden; }
+  .thumb-cover { position: absolute; inset: 0; border-radius: 12px; background: #0000004D; display: flex; align-items: center; justify-content: center;
+    font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 500; color: #FFFFFF; }
+
+  /* ===== NotificationBanner — r24, close softContrast medium 30 ===== */
+  .banner { position: relative; border-radius: 24px; padding: 20px 20px 16px; text-align: center; }
+  .light .banner { background: #8C8C8C1A; } .dark .banner { background: #75757533; }
+  .banner-title { font-size: 16px; font-weight: 700; letter-spacing: -0.05px; margin: 0 16px 8px; }
+  .light .banner-title { color: #000000; } .dark .banner-title { color: #FFFFFF; }
+  .banner-body { font-size: 14px; font-weight: 400; letter-spacing: -0.02px; line-height: 1.29; margin-bottom: 16px; }
+  .light .banner-body { color: #000000AB; } .dark .banner-body { color: #FFFFFFBF; }
+  .btn-medium {
+    height: 36px; padding: 0 16px; border-radius: 36px; border: none; cursor: pointer;
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #FFF;
+  }
+  .light .btn-medium { background: #0072EF; } .dark .btn-medium { background: #0A84FF; }
+  .close-btn {
+    position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-radius: 50%;
+    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0;
+  }
+  .light .close-btn { background: #C8C8C866; } .dark .close-btn { background: #C8C8C819; }
+  .light .close-btn svg { fill: #00000099; } .dark .close-btn svg { fill: #FFFFFFCC; }
+
+  /* ===== ActivityPreview — 3:4, r24, píldora blur(10) bgSecondaryBtn ===== */
+  .activity-row { display: flex; gap: 12px; }
+  .activity-card {
+    width: 108px; aspect-ratio: 3 / 4; border-radius: 24px; box-sizing: border-box;
+    padding: 10px 13px; box-shadow: 0 4px 10px #00000026; cursor: pointer;
+    display: flex; align-items: flex-end; justify-content: center;
+  }
+  .light .activity-card { border: 1px solid #E2E2E2B3; } .dark .activity-card { border: 1px solid #282828B3; }
+  .activity-pill {
+    display: inline-flex; align-items: center; padding: 6px 10px; border-radius: 100px;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800; color: #FFFFFF;
+  }
+  .light .activity-pill { background: #8C8C8C4D; } .dark .activity-pill { background: #C8C8C84D; }
+  .activity-pill svg { fill: #FFFFFF; margin-right: 4px; }
+  .pill-reaction { margin-right: 5px; display: inline-flex; }
+  .pill-reaction svg { margin-right: 0; }
+
+  .footnote { font-size: 9px; opacity: .4; margin-top: 14px; font-family: ui-monospace, monospace; line-height: 1.5; }
+  .light .footnote { color: #000; } .dark .footnote { color: #FFF; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>Notifications — Light</h2>
+    <div class="sub">notifications/ · DotsNotificationItem · NotificationBanner · ActivityPreview</div>
+
+    <div class="variant-label">DotsNotificationItem · main / event / reaction</div>
+    <div class="notif-item">
+      <div class="profile-photo grad-a">MG</div>
+      <div class="notif-info"><div class="notif-title">María García</div><div class="notif-desc">quiere unirse a tu álbum</div></div>
+      <button class="btn-small">Aceptar</button>
+    </div>
+    <div class="notif-item">
+      <div class="profile-photo grad-b">CR</div>
+      <div class="notif-info"><span class="notif-title">Carlos </span><span class="notif-desc">cumple años hoy. ¡Felicítale!</span></div>
+      <div class="thumb thumb-icon"><svg width="24" height="24" viewBox="0 0 32 33" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_344_728_cake)"><path d="M15.7674 3.99965C15.5851 4.07778 15.4966 4.22361 15.1997 4.90069C14.4237 6.68194 14.2205 7.74444 14.5382 8.39548C14.6789 8.68194 14.9966 9.01527 15.2466 9.12986L15.4289 9.2184V11.4007H11.2101V10.3121L11.382 10.2236C11.8195 9.99444 12.0903 9.66632 12.2257 9.19236C12.4497 8.41632 11.9809 7.16632 11.1476 6.33298C10.9289 6.11423 10.8768 6.08819 10.6632 6.08819C10.4601 6.08819 10.4028 6.11423 10.2257 6.29132C9.77261 6.74444 9.31428 7.49965 9.14761 8.06736C9.02261 8.49444 9.03823 9.07777 9.17886 9.41111C9.30907 9.70798 9.77261 10.1819 9.99136 10.234C10.1164 10.2653 10.1164 10.2757 10.1164 10.833V11.3955L7.52369 11.4111C4.94449 11.4267 4.93393 11.4268 4.66844 11.5465C4.33511 11.6976 4.01219 12.0257 3.85594 12.3642C3.74136 12.6194 3.73615 12.6715 3.72053 14.4996C3.71011 16.2705 3.71532 16.3851 3.80907 16.5361C3.8924 16.6767 4.0799 16.7705 5.18407 17.2288C7.10074 18.0205 7.31428 18.0309 8.8924 17.359C9.67886 17.0257 9.74657 17.0101 10.1424 17.0049C10.5487 16.9996 10.5851 17.0101 11.4445 17.3746C12.882 17.984 13.2049 17.9892 14.5591 17.4371L14.6129 17.4153C15.4534 17.0745 15.6375 16.9998 15.8267 16.9834C15.8798 16.9788 15.9333 16.9788 16.0018 16.9788C16.0703 16.9788 16.1237 16.9788 16.1768 16.9834C16.366 16.9998 16.5502 17.0745 17.3907 17.4153L17.4445 17.4371C18.7987 17.9892 19.1216 17.984 20.5591 17.3746C21.4184 17.0101 21.4549 16.9996 21.8612 17.0049C22.257 17.0101 22.3247 17.0257 23.1112 17.359C24.6893 18.0309 24.8924 18.0205 26.8143 17.2288C27.9237 16.7705 28.1112 16.6715 28.1945 16.5361C28.2882 16.3851 28.2934 16.2653 28.283 14.4996C28.2674 12.6715 28.2622 12.6194 28.1476 12.3642C27.9914 12.0257 27.6684 11.6976 27.3351 11.5465C27.0696 11.4268 27.0591 11.4267 24.4851 11.4111L21.8872 11.3955V10.3174L22.1112 10.1871C22.4184 10.0049 22.6945 9.69757 22.8299 9.40069C22.9653 9.08298 22.9809 8.48923 22.8559 8.06736C22.6893 7.49965 22.2309 6.74444 21.7778 6.29132C21.6007 6.11423 21.5434 6.08819 21.3403 6.08819C21.1268 6.08819 21.0747 6.11423 20.8559 6.33298C20.0226 7.16632 19.5539 8.41632 19.7778 9.19236C19.9132 9.66632 20.1841 9.99444 20.6268 10.2236L20.7934 10.3121V11.4007H16.5747V9.2184L16.757 9.12986C17.007 9.01007 17.3247 8.68194 17.4705 8.39027C17.7049 7.9059 17.6424 7.16632 17.283 6.10382C17.033 5.37465 16.5382 4.26007 16.3976 4.11944C16.2674 3.98403 15.9393 3.92673 15.7674 3.99965Z"/><path d="M9.10339 18.3525C8.03047 18.7952 7.83255 18.8473 7.18151 18.8473C6.6138 18.8473 6.22318 18.7483 5.41068 18.4098C5.09818 18.2744 4.82214 18.1702 4.79609 18.1702C4.77005 18.1702 4.74922 19.2119 4.74922 20.6702V23.1702H27.2492V20.6702C27.2492 19.2119 27.2284 18.1702 27.2023 18.1702C27.1763 18.1702 26.9003 18.2744 26.5878 18.4098C25.7648 18.7536 25.3846 18.8473 24.8013 18.8473C24.1763 18.8473 23.9107 18.7796 22.8065 18.3265C22.3169 18.1233 21.8846 17.9619 21.8482 17.9619C21.8065 17.9619 21.3846 18.1233 20.9055 18.3213C19.8482 18.7588 19.5253 18.8473 18.9523 18.8473C18.3221 18.8473 18.0773 18.7848 17.0096 18.3473C16.4888 18.1338 16.0357 17.9619 15.9992 17.9619C15.9628 17.9619 15.5096 18.1338 14.9888 18.3473C13.9211 18.7848 13.6763 18.8473 13.0461 18.8473C12.4732 18.8473 12.1503 18.7588 11.093 18.3213C10.6138 18.1233 10.1815 17.9619 10.1294 17.9671C10.0773 17.9723 9.61901 18.1442 9.10339 18.3525Z"/><path d="M2.82747 25.1052C3.01497 24.7302 3.30664 24.4593 3.67643 24.3187C3.93685 24.2145 4.16602 24.2145 15.9837 24.2145C27.916 24.2093 28.0306 24.2093 28.3066 24.3135C28.6921 24.4593 28.9837 24.725 29.1712 25.1052C29.3118 25.3812 29.3327 25.4802 29.3327 25.8447C29.3327 26.35 29.2493 26.6937 29.0202 27.1156C28.6868 27.7458 28.0358 28.2458 27.3066 28.4333C26.9316 28.527 26.5618 28.5322 15.9993 28.5322C5.43685 28.5322 5.06706 28.527 4.69206 28.4333C3.96289 28.2458 3.31185 27.7458 2.97852 27.1156C2.74935 26.6937 2.66602 26.35 2.66602 25.8447C2.66602 25.4802 2.68685 25.3812 2.82747 25.1052Z"/></g><defs><clipPath id="clip0_344_728_cake"><rect y="0.250122" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg></div>
+    </div>
+    <div class="notif-item">
+      <div class="profile-photo grad-c">LP</div>
+      <div class="notif-info"><span class="notif-title">Lucía </span><span class="notif-desc">reaccionó a tu foto</span> <span class="notif-date">2h</span></div>
+      <div class="thumb thumb-image grad-b"><div class="thumb-cover">+3</div></div>
+    </div>
+
+    <div class="variant-label">NotificationBanner · title + body + actionButtonText + showCloseButton</div>
+    <div class="banner">
+      <button class="close-btn"><svg width="16" height="16" viewBox="0 0 32 33" xmlns="http://www.w3.org/2000/svg"><path d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></button>
+      <div class="banner-title">Activa las notificaciones</div>
+      <div class="banner-body">No te pierdas los nuevos recuerdos de tus álbumes compartidos.</div>
+      <button class="btn-medium">Activar</button>
+    </div>
+
+    <div class="variant-label">ActivityPreview · reactions / views / favs</div>
+    <div class="activity-row">
+      <div class="activity-card grad-a"><div class="activity-pill"><span class="pill-reaction"><svg width="13" height="13" viewBox="0 0 32 33" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_344_673_rx)"><path d="M15.9991 28.0942C16.3361 28.0942 16.8157 27.8536 17.2045 27.6131C24.4499 23.0552 29.09 17.7124 29.09 12.2935C29.09 7.64704 25.8108 4.40588 21.6762 4.40588C19.0969 4.40588 17.1656 5.79857 15.9991 7.8876C14.8585 5.81123 12.9143 4.40588 10.335 4.40588C6.20037 4.40588 2.9082 7.64704 2.9082 12.2935C2.9082 17.7124 7.54835 23.0552 14.7937 27.6131C15.1955 27.8536 15.6751 28.0942 15.9991 28.0942Z"/></g><defs><clipPath id="clip0_344_673_rx"><rect y="0.25" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg></span><span class="pill-reaction"><svg width="13" height="13" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg"><path d="M7.11714 1.96484C10.2099 1.9651 12.7171 4.47203 12.7171 7.56484C12.7169 10.6574 10.2097 13.1646 7.11714 13.1648C4.02443 13.1647 1.51637 10.6575 1.51611 7.56484C1.51611 4.47194 4.02427 1.96497 7.11714 1.96484ZM9.61199 9.58856C7.62344 10.2262 5.58355 9.91145 4.5522 9.5968C4.45032 9.56572 4.34631 9.59171 4.27385 9.65247C4.20035 9.71443 4.15761 9.8149 4.18415 9.92464C4.38449 10.7495 4.91207 11.2542 5.49137 11.5463C6.06785 11.8368 6.69845 11.9196 7.12024 11.904L7.1223 11.903H7.12436C9.05633 11.7647 9.79172 10.6563 9.96972 9.89577C9.99435 9.78988 9.95262 9.69414 9.88003 9.63598C9.82676 9.59337 9.75715 9.57075 9.68519 9.57515L9.61199 9.58856ZM5.25426 4.93598C5.16897 4.94878 5.00613 5.01048 4.93982 5.05557C4.79577 5.15365 4.69217 5.2889 4.6223 5.46691C4.58692 5.55724 4.54943 5.70134 4.54189 5.77928C4.5392 5.80681 4.53364 5.83082 4.53364 5.83082C4.53014 5.82969 4.51264 5.81557 4.49343 5.79783C4.43615 5.7449 4.31311 5.66151 4.22642 5.61742C3.96194 5.48296 3.68911 5.48217 3.44704 5.61536C3.03064 5.84478 2.87926 6.39997 3.08622 6.94113C3.19355 7.22162 3.39558 7.45728 3.69756 7.65453C3.95924 7.82544 4.16037 7.92077 5.02745 8.28237C5.51397 8.48526 5.51302 8.48421 5.55941 8.45453C5.58351 8.43929 5.56798 8.46976 5.83776 7.90608C6.10852 7.34037 6.1734 7.19589 6.25735 6.97825C6.40653 6.59145 6.46083 6.29415 6.43158 6.02567C6.39316 5.67474 6.21014 5.33487 5.95013 5.13082C5.87262 5.07007 5.72973 4.99439 5.63879 4.96587C5.51496 4.92713 5.38442 4.91659 5.25426 4.93598ZM9.01199 4.94526C8.55076 4.84751 8.07969 5.16374 7.88622 5.6999C7.78612 5.97777 7.78533 6.28319 7.88519 6.62464C7.97176 6.92056 8.06205 7.12186 8.48106 7.95041C8.71621 8.41538 8.71546 8.41263 8.76972 8.42051C8.79771 8.42472 8.76602 8.43806 9.33261 8.19268C9.90173 7.9462 10.0443 7.88102 10.2481 7.77309C10.6098 7.58152 10.8422 7.39481 10.9934 7.17618C11.1908 6.89035 11.2727 6.51933 11.2089 6.1999C11.1899 6.10484 11.1311 5.95621 11.0811 5.87618C11.0129 5.76738 10.9204 5.67565 10.8099 5.60608C10.7375 5.56058 10.5755 5.5019 10.4965 5.49268C10.3249 5.47274 10.1598 5.5053 9.9924 5.59268C9.90748 5.63706 9.78655 5.72095 9.73055 5.77412C9.71109 5.79256 9.69353 5.80729 9.69137 5.80711C9.69137 5.80711 9.68527 5.78353 9.68209 5.7566C9.67316 5.68029 9.6343 5.53813 9.59756 5.44938C9.48531 5.17883 9.27999 5.00227 9.01199 4.94526Z"/></svg></span>12</div></div>
+      <div class="activity-card grad-b"><div class="activity-pill"><svg width="14" height="14" viewBox="0 0 32 33" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_344_1284_vw)"><path d="M16.0061 25.4337C24.673 25.4337 30.6673 18.4222 30.6673 16.2366C30.6673 14.0401 24.6622 7.03949 16.0061 7.03949C7.44735 7.03949 1.33398 14.0401 1.33398 16.2366C1.33398 18.4222 7.44735 25.4337 16.0061 25.4337ZM16.0061 22.2634C12.6302 22.2634 9.9468 19.526 9.9468 16.2366C9.9468 12.8607 12.6302 10.2098 16.0061 10.2098C19.3495 10.2098 22.0545 12.8607 22.0545 16.2366C22.0545 19.526 19.3495 22.2634 16.0061 22.2634ZM16.0061 18.4114C17.2071 18.4114 18.2025 17.4268 18.2025 16.2366C18.2025 15.0356 17.2071 14.0509 16.0061 14.0509C14.7942 14.0509 13.7988 15.0356 13.7988 16.2366C13.7988 17.4268 14.7942 18.4114 16.0061 18.4114Z"/></g><defs><clipPath id="clip0_344_1284_vw"><rect y="0.236572" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>1.2K</div></div>
+      <div class="activity-card grad-c"><div class="activity-pill"><svg width="14" height="14" viewBox="0 0 32 33" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_344_673_fv)"><path d="M15.9991 28.0942C16.3361 28.0942 16.8157 27.8536 17.2045 27.6131C24.4499 23.0552 29.09 17.7124 29.09 12.2935C29.09 7.64704 25.8108 4.40588 21.6762 4.40588C19.0969 4.40588 17.1656 5.79857 15.9991 7.8876C14.8585 5.81123 12.9143 4.40588 10.335 4.40588C6.20037 4.40588 2.9082 7.64704 2.9082 12.2935C2.9082 17.7124 7.54835 23.0552 14.7937 27.6131C15.1955 27.8536 15.6751 28.0942 15.9991 28.0942Z"/></g><defs><clipPath id="clip0_344_673_fv"><rect y="0.25" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>48</div></div>
+    </div>
+
+    <div class="footnote">Omitidos: NotificationBannerImage (banner con imagen + titleH6), ActivityOverviewItem (pila de fotos 53x68 + contadores), ImageWithIcon (imagen 53x68 con icono en esquina).</div>
+  </div>
+
+  <div class="theme dark">
+    <h2>Notifications — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+
+    <div class="variant-label">DotsNotificationItem · main / event / reaction</div>
+    <div class="notif-item">
+      <div class="profile-photo grad-a">MG</div>
+      <div class="notif-info"><div class="notif-title">María García</div><div class="notif-desc">quiere unirse a tu álbum</div></div>
+      <button class="btn-small">Aceptar</button>
+    </div>
+    <div class="notif-item">
+      <div class="profile-photo grad-b">CR</div>
+      <div class="notif-info"><span class="notif-title">Carlos </span><span class="notif-desc">cumple años hoy. ¡Felicítale!</span></div>
+      <div class="thumb thumb-icon"><svg width="24" height="24" viewBox="0 0 32 33" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_344_728_cake)"><path d="M15.7674 3.99965C15.5851 4.07778 15.4966 4.22361 15.1997 4.90069C14.4237 6.68194 14.2205 7.74444 14.5382 8.39548C14.6789 8.68194 14.9966 9.01527 15.2466 9.12986L15.4289 9.2184V11.4007H11.2101V10.3121L11.382 10.2236C11.8195 9.99444 12.0903 9.66632 12.2257 9.19236C12.4497 8.41632 11.9809 7.16632 11.1476 6.33298C10.9289 6.11423 10.8768 6.08819 10.6632 6.08819C10.4601 6.08819 10.4028 6.11423 10.2257 6.29132C9.77261 6.74444 9.31428 7.49965 9.14761 8.06736C9.02261 8.49444 9.03823 9.07777 9.17886 9.41111C9.30907 9.70798 9.77261 10.1819 9.99136 10.234C10.1164 10.2653 10.1164 10.2757 10.1164 10.833V11.3955L7.52369 11.4111C4.94449 11.4267 4.93393 11.4268 4.66844 11.5465C4.33511 11.6976 4.01219 12.0257 3.85594 12.3642C3.74136 12.6194 3.73615 12.6715 3.72053 14.4996C3.71011 16.2705 3.71532 16.3851 3.80907 16.5361C3.8924 16.6767 4.0799 16.7705 5.18407 17.2288C7.10074 18.0205 7.31428 18.0309 8.8924 17.359C9.67886 17.0257 9.74657 17.0101 10.1424 17.0049C10.5487 16.9996 10.5851 17.0101 11.4445 17.3746C12.882 17.984 13.2049 17.9892 14.5591 17.4371L14.6129 17.4153C15.4534 17.0745 15.6375 16.9998 15.8267 16.9834C15.8798 16.9788 15.9333 16.9788 16.0018 16.9788C16.0703 16.9788 16.1237 16.9788 16.1768 16.9834C16.366 16.9998 16.5502 17.0745 17.3907 17.4153L17.4445 17.4371C18.7987 17.9892 19.1216 17.984 20.5591 17.3746C21.4184 17.0101 21.4549 16.9996 21.8612 17.0049C22.257 17.0101 22.3247 17.0257 23.1112 17.359C24.6893 18.0309 24.8924 18.0205 26.8143 17.2288C27.9237 16.7705 28.1112 16.6715 28.1945 16.5361C28.2882 16.3851 28.2934 16.2653 28.283 14.4996C28.2674 12.6715 28.2622 12.6194 28.1476 12.3642C27.9914 12.0257 27.6684 11.6976 27.3351 11.5465C27.0696 11.4268 27.0591 11.4267 24.4851 11.4111L21.8872 11.3955V10.3174L22.1112 10.1871C22.4184 10.0049 22.6945 9.69757 22.8299 9.40069C22.9653 9.08298 22.9809 8.48923 22.8559 8.06736C22.6893 7.49965 22.2309 6.74444 21.7778 6.29132C21.6007 6.11423 21.5434 6.08819 21.3403 6.08819C21.1268 6.08819 21.0747 6.11423 20.8559 6.33298C20.0226 7.16632 19.5539 8.41632 19.7778 9.19236C19.9132 9.66632 20.1841 9.99444 20.6268 10.2236L20.7934 10.3121V11.4007H16.5747V9.2184L16.757 9.12986C17.007 9.01007 17.3247 8.68194 17.4705 8.39027C17.7049 7.9059 17.6424 7.16632 17.283 6.10382C17.033 5.37465 16.5382 4.26007 16.3976 4.11944C16.2674 3.98403 15.9393 3.92673 15.7674 3.99965Z"/><path d="M9.10339 18.3525C8.03047 18.7952 7.83255 18.8473 7.18151 18.8473C6.6138 18.8473 6.22318 18.7483 5.41068 18.4098C5.09818 18.2744 4.82214 18.1702 4.79609 18.1702C4.77005 18.1702 4.74922 19.2119 4.74922 20.6702V23.1702H27.2492V20.6702C27.2492 19.2119 27.2284 18.1702 27.2023 18.1702C27.1763 18.1702 26.9003 18.2744 26.5878 18.4098C25.7648 18.7536 25.3846 18.8473 24.8013 18.8473C24.1763 18.8473 23.9107 18.7796 22.8065 18.3265C22.3169 18.1233 21.8846 17.9619 21.8482 17.9619C21.8065 17.9619 21.3846 18.1233 20.9055 18.3213C19.8482 18.7588 19.5253 18.8473 18.9523 18.8473C18.3221 18.8473 18.0773 18.7848 17.0096 18.3473C16.4888 18.1338 16.0357 17.9619 15.9992 17.9619C15.9628 17.9619 15.5096 18.1338 14.9888 18.3473C13.9211 18.7848 13.6763 18.8473 13.0461 18.8473C12.4732 18.8473 12.1503 18.7588 11.093 18.3213C10.6138 18.1233 10.1815 17.9619 10.1294 17.9671C10.0773 17.9723 9.61901 18.1442 9.10339 18.3525Z"/><path d="M2.82747 25.1052C3.01497 24.7302 3.30664 24.4593 3.67643 24.3187C3.93685 24.2145 4.16602 24.2145 15.9837 24.2145C27.916 24.2093 28.0306 24.2093 28.3066 24.3135C28.6921 24.4593 28.9837 24.725 29.1712 25.1052C29.3118 25.3812 29.3327 25.4802 29.3327 25.8447C29.3327 26.35 29.2493 26.6937 29.0202 27.1156C28.6868 27.7458 28.0358 28.2458 27.3066 28.4333C26.9316 28.527 26.5618 28.5322 15.9993 28.5322C5.43685 28.5322 5.06706 28.527 4.69206 28.4333C3.96289 28.2458 3.31185 27.7458 2.97852 27.1156C2.74935 26.6937 2.66602 26.35 2.66602 25.8447C2.66602 25.4802 2.68685 25.3812 2.82747 25.1052Z"/></g><defs><clipPath id="clip0_344_728_cake"><rect y="0.250122" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg></div>
+    </div>
+    <div class="notif-item">
+      <div class="profile-photo grad-c">LP</div>
+      <div class="notif-info"><span class="notif-title">Lucía </span><span class="notif-desc">reaccionó a tu foto</span> <span class="notif-date">2h</span></div>
+      <div class="thumb thumb-image grad-b"><div class="thumb-cover">+3</div></div>
+    </div>
+
+    <div class="variant-label">NotificationBanner · title + body + actionButtonText + showCloseButton</div>
+    <div class="banner">
+      <button class="close-btn"><svg width="16" height="16" viewBox="0 0 32 33" xmlns="http://www.w3.org/2000/svg"><path d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></button>
+      <div class="banner-title">Activa las notificaciones</div>
+      <div class="banner-body">No te pierdas los nuevos recuerdos de tus álbumes compartidos.</div>
+      <button class="btn-medium">Activar</button>
+    </div>
+
+    <div class="variant-label">ActivityPreview · reactions / views / favs</div>
+    <div class="activity-row">
+      <div class="activity-card grad-a"><div class="activity-pill"><span class="pill-reaction"><svg width="13" height="13" viewBox="0 0 32 33" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_344_673_rx)"><path d="M15.9991 28.0942C16.3361 28.0942 16.8157 27.8536 17.2045 27.6131C24.4499 23.0552 29.09 17.7124 29.09 12.2935C29.09 7.64704 25.8108 4.40588 21.6762 4.40588C19.0969 4.40588 17.1656 5.79857 15.9991 7.8876C14.8585 5.81123 12.9143 4.40588 10.335 4.40588C6.20037 4.40588 2.9082 7.64704 2.9082 12.2935C2.9082 17.7124 7.54835 23.0552 14.7937 27.6131C15.1955 27.8536 15.6751 28.0942 15.9991 28.0942Z"/></g><defs><clipPath id="clip0_344_673_rx"><rect y="0.25" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg></span><span class="pill-reaction"><svg width="13" height="13" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg"><path d="M7.11714 1.96484C10.2099 1.9651 12.7171 4.47203 12.7171 7.56484C12.7169 10.6574 10.2097 13.1646 7.11714 13.1648C4.02443 13.1647 1.51637 10.6575 1.51611 7.56484C1.51611 4.47194 4.02427 1.96497 7.11714 1.96484ZM9.61199 9.58856C7.62344 10.2262 5.58355 9.91145 4.5522 9.5968C4.45032 9.56572 4.34631 9.59171 4.27385 9.65247C4.20035 9.71443 4.15761 9.8149 4.18415 9.92464C4.38449 10.7495 4.91207 11.2542 5.49137 11.5463C6.06785 11.8368 6.69845 11.9196 7.12024 11.904L7.1223 11.903H7.12436C9.05633 11.7647 9.79172 10.6563 9.96972 9.89577C9.99435 9.78988 9.95262 9.69414 9.88003 9.63598C9.82676 9.59337 9.75715 9.57075 9.68519 9.57515L9.61199 9.58856ZM5.25426 4.93598C5.16897 4.94878 5.00613 5.01048 4.93982 5.05557C4.79577 5.15365 4.69217 5.2889 4.6223 5.46691C4.58692 5.55724 4.54943 5.70134 4.54189 5.77928C4.5392 5.80681 4.53364 5.83082 4.53364 5.83082C4.53014 5.82969 4.51264 5.81557 4.49343 5.79783C4.43615 5.7449 4.31311 5.66151 4.22642 5.61742C3.96194 5.48296 3.68911 5.48217 3.44704 5.61536C3.03064 5.84478 2.87926 6.39997 3.08622 6.94113C3.19355 7.22162 3.39558 7.45728 3.69756 7.65453C3.95924 7.82544 4.16037 7.92077 5.02745 8.28237C5.51397 8.48526 5.51302 8.48421 5.55941 8.45453C5.58351 8.43929 5.56798 8.46976 5.83776 7.90608C6.10852 7.34037 6.1734 7.19589 6.25735 6.97825C6.40653 6.59145 6.46083 6.29415 6.43158 6.02567C6.39316 5.67474 6.21014 5.33487 5.95013 5.13082C5.87262 5.07007 5.72973 4.99439 5.63879 4.96587C5.51496 4.92713 5.38442 4.91659 5.25426 4.93598ZM9.01199 4.94526C8.55076 4.84751 8.07969 5.16374 7.88622 5.6999C7.78612 5.97777 7.78533 6.28319 7.88519 6.62464C7.97176 6.92056 8.06205 7.12186 8.48106 7.95041C8.71621 8.41538 8.71546 8.41263 8.76972 8.42051C8.79771 8.42472 8.76602 8.43806 9.33261 8.19268C9.90173 7.9462 10.0443 7.88102 10.2481 7.77309C10.6098 7.58152 10.8422 7.39481 10.9934 7.17618C11.1908 6.89035 11.2727 6.51933 11.2089 6.1999C11.1899 6.10484 11.1311 5.95621 11.0811 5.87618C11.0129 5.76738 10.9204 5.67565 10.8099 5.60608C10.7375 5.56058 10.5755 5.5019 10.4965 5.49268C10.3249 5.47274 10.1598 5.5053 9.9924 5.59268C9.90748 5.63706 9.78655 5.72095 9.73055 5.77412C9.71109 5.79256 9.69353 5.80729 9.69137 5.80711C9.69137 5.80711 9.68527 5.78353 9.68209 5.7566C9.67316 5.68029 9.6343 5.53813 9.59756 5.44938C9.48531 5.17883 9.27999 5.00227 9.01199 4.94526Z"/></svg></span>12</div></div>
+      <div class="activity-card grad-b"><div class="activity-pill"><svg width="14" height="14" viewBox="0 0 32 33" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_344_1284_vw)"><path d="M16.0061 25.4337C24.673 25.4337 30.6673 18.4222 30.6673 16.2366C30.6673 14.0401 24.6622 7.03949 16.0061 7.03949C7.44735 7.03949 1.33398 14.0401 1.33398 16.2366C1.33398 18.4222 7.44735 25.4337 16.0061 25.4337ZM16.0061 22.2634C12.6302 22.2634 9.9468 19.526 9.9468 16.2366C9.9468 12.8607 12.6302 10.2098 16.0061 10.2098C19.3495 10.2098 22.0545 12.8607 22.0545 16.2366C22.0545 19.526 19.3495 22.2634 16.0061 22.2634ZM16.0061 18.4114C17.2071 18.4114 18.2025 17.4268 18.2025 16.2366C18.2025 15.0356 17.2071 14.0509 16.0061 14.0509C14.7942 14.0509 13.7988 15.0356 13.7988 16.2366C13.7988 17.4268 14.7942 18.4114 16.0061 18.4114Z"/></g><defs><clipPath id="clip0_344_1284_vw"><rect y="0.236572" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>1.2K</div></div>
+      <div class="activity-card grad-c"><div class="activity-pill"><svg width="14" height="14" viewBox="0 0 32 33" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_344_673_fv)"><path d="M15.9991 28.0942C16.3361 28.0942 16.8157 27.8536 17.2045 27.6131C24.4499 23.0552 29.09 17.7124 29.09 12.2935C29.09 7.64704 25.8108 4.40588 21.6762 4.40588C19.0969 4.40588 17.1656 5.79857 15.9991 7.8876C14.8585 5.81123 12.9143 4.40588 10.335 4.40588C6.20037 4.40588 2.9082 7.64704 2.9082 12.2935C2.9082 17.7124 7.54835 23.0552 14.7937 27.6131C15.1955 27.8536 15.6751 28.0942 15.9991 28.0942Z"/></g><defs><clipPath id="clip0_344_673_fv"><rect y="0.25" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg>48</div></div>
+    </div>
+
+    <div class="footnote">Omitidos: NotificationBannerImage (banner con imagen + titleH6), ActivityOverviewItem (pila de fotos 53x68 + contadores), ImageWithIcon (imagen 53x68 con icono en esquina).</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+/* DotsToast — toast/dots_toast.dart. Contenedor: bgContainerPrimary, borde 1.4
+   borderAlert, squircle24, padding 16, toastShadow (blur 20 #00000033, BlurStyle.outer).
+   bgToast (DotsStyleColorDodge, blur 50) aproximado: bg translúcido + backdrop-filter. */
+.ds-toast {
+  /* borderAlert no existe como token en tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart) */
+  --ds-border-alert: #FFFFFF4D;
+  box-sizing: border-box;
+  border-radius: var(--squircle-24);
+  padding: 16px;
+  border: 1.4px solid var(--ds-border-alert);
+  background: var(--bg-container-primary);
+  box-shadow: 0 0 20px #00000033; /* toastShadow — sin token en tokens.css (dots_styles.dart) */
+  backdrop-filter: blur(var(--blur-50));
+  -webkit-backdrop-filter: blur(var(--blur-50));
+  font-family: var(--font-main);
+}
+[data-theme="dark"] .ds-toast { --ds-border-alert: #6E6E6E4D; }
+.ds-toast--clickable { cursor: pointer; }
+
+/* isAction: false — DotsToastInfo, fila de 358 con gap 12 */
+.ds-toast--info {
+  width: 358px; max-width: 100%;
+  display: flex; align-items: center; gap: 12px;
+}
+/* isAction: true — DotsToastAction, columna de 160 con gap 4 */
+.ds-toast--action {
+  width: 160px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; text-align: center;
+}
+
+/* typo.main.bodyDefaultMedium (Inter 14/500, h1.29, ls -0.02) textPrimary */
+.ds-toast__title {
+  font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px;
+  color: var(--text-primary);
+}
+.ds-toast--info .ds-toast__title { flex: 1; text-align: start; min-width: 0; }
+
+.ds-toast__icon { flex: none; display: inline-flex; }
+/* _RotatingIcon: vuelta completa cada 1s (variant progress, isAction false) */
+.ds-toast__icon--spin { animation: ds-toast-rot 1s linear infinite; }
+@keyframes ds-toast-rot { to { transform: rotate(360deg); } }
+
+/* Fallback si DotsMainButton no está en el bundle (ghost medium aproximado) */
+.ds-toast__btn-fallback {
+  border: 0; background: transparent; cursor: pointer; flex: none;
+  height: 36px; padding: 0 8px; border-radius: 36px;
+  font: 600 13px/1.31 var(--font-main); letter-spacing: -0.01px;
+  color: var(--label-highlight);
+}
