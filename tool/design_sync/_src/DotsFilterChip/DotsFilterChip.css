@@ -1,0 +1,24 @@
+/* DotsFilterChip — dots_filter_chip.dart. Radio r22, bg bgContainerSecondary,
+   padding 6 (izq 12), label labelDefaultBold textSecondary, gap 8 al close. */
+.ds-filter-chip {
+  display: inline-flex; align-items: center;
+  box-sizing: border-box; border: 0; margin: 0;
+  border-radius: 22px; /* DotsBorderRadius.r22 */
+  background: var(--bg-container-secondary);
+  padding: 6px 6px 6px 12px;
+  font-family: var(--font-main);
+  cursor: pointer;
+}
+/* typo.main.labelDefaultBold (Inter 13/600, h1.31, ls -0.01) textSecondary */
+.ds-filter-chip__label {
+  font: 600 13px/1.31 var(--font-main); letter-spacing: -0.01px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+/* DotsCloseButton extraSmall highContrast: 16px, bg bgSecondaryBtn, fg textTertiary */
+.ds-filter-chip__close {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 16px; height: 16px; margin-left: 8px; border-radius: 50%;
+  background: var(--bg-secondary-btn);
+  color: var(--text-tertiary);
+}

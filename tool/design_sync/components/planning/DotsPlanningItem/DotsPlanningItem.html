@@ -1,0 +1,53 @@
+<!-- @dsCard group="planning" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsPlanningItem;
+    var mainItem = { icon: 'ic-calendar', text: 'Sábado 12 de julio' };
+    var subItems = [
+      { icon: 'ic-clock-outline', text: '21:00 h' },
+      { icon: 'ic-location-pin', text: 'Calle Mayor 12, Madrid', underline: true }
+    ];
+    var variants = [
+      ['colapsado (mainItem visible, tap para expandir)', h(C, {
+        mainText: 'Cena en La Terraza', mainItem: mainItem, subItems: subItems
+      })],
+      ['defaultExpanded: true (subItems + underline en ubicación)', h(C, {
+        mainText: 'Cena en La Terraza', mainItem: mainItem, subItems: subItems, defaultExpanded: true
+      })],
+      ['sin mainItem · solo título', h(C, {
+        mainText: 'Tarde de juegos', subItems: subItems
+      })],
+      ['expanded controlado + iconos custom', h(C, {
+        mainText: 'Excursión al lago', expanded: true,
+        mainIcon: 'ic-chevron-down', mainIconActive: 'ic-chevron-up',
+        mainItem: { icon: 'ic-calendar', text: 'Domingo 13 de julio' },
+        subItems: [{ icon: 'ic-location-pin', text: 'Embalse de San Juan', underline: true }]
+      })],
+      ['dark · defaultExpanded', h(C, {
+        mainText: 'Cena en La Terraza', mainItem: mainItem, subItems: subItems, defaultExpanded: true
+      }), true]
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2]) { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '8px'; }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

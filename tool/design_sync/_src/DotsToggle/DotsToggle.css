@@ -1,0 +1,37 @@
+/* DotsToggle — 44.42×27, knob 23.52, knobPadding 1.74 (dots_toggle.dart) */
+.ds-toggle {
+  /* fillSecondary — sin token en tokens.css (Dart: 0x29787880 light / 0x52787880 dark) */
+  --ds-toggle-fill: #78788029;
+  width: 44.42px;
+  height: 27px;
+  border-radius: 13.5px;
+  padding: 1.74px;
+  box-sizing: border-box;
+  border: none;
+  margin: 0;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: var(--ds-toggle-fill);
+  cursor: pointer;
+  transition: background 0.18s ease-in-out;
+}
+[data-theme="dark"] .ds-toggle { --ds-toggle-fill: #78788052; }
+.ds-toggle.is-on {
+  background: var(--label-highlight);
+  justify-content: flex-end;
+}
+.ds-toggle__knob {
+  width: 23.52px;
+  height: 23.52px;
+  border-radius: 50%;
+  background: var(--label-always-white);
+  /* knobShadows literales del Dart (no son tokens) */
+  box-shadow: 0 2.61px 0.87px #0000000f, 0 2.61px 6.97px #00000026, 0 0 0 0.87px #0000000a;
+}
+.ds-toggle.is-disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}

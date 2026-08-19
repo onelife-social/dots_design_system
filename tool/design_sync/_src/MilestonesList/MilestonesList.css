@@ -1,0 +1,42 @@
+/* MilestonesList — milestones/milestones_list.dart · timeline bezier punteada + items centrados */
+.ds-milestones-list {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+.ds-milestones-list__line {
+  position: absolute;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+}
+/* FractionalTranslation(-0.5, -0.5): cada item centrado en su punto */
+.ds-milestones-list__item {
+  position: absolute;
+  display: block;
+  transform: translate(-50%, -50%);
+}
+/* Fallback de BadgeMilestone(ghost): r22, blur 25, bgBase, labelDefaultRegular textTertiary */
+.ds-milestones-list__badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 22px;
+  background: var(--bg-base);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  font: 400 13px/1.31 var(--font-main);
+  letter-spacing: -0.01px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+/* Fallback si __ds.MilestoneCard no está en el bundle */
+.ds-milestones-list__card-fallback {
+  display: block;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--squircle-32);
+  border: 3px solid var(--label-always-white);
+  box-sizing: border-box;
+  box-shadow: var(--shadow-floating-btn);
+  background: linear-gradient(150deg, #C9D6C3, #E4D6BE 45%, #A9B7C0); /* placeholder, no token */
+}

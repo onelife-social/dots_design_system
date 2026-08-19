@@ -1,0 +1,63 @@
+<!-- @dsCard group="content" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.FeatureItem;
+    function col() {
+      return h('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '320px' } },
+        Array.prototype.slice.call(arguments));
+    }
+    var avatar = h('span', { style: {
+      width: '24px', height: '24px', borderRadius: '50%', display: 'inline-block',
+      background: 'linear-gradient(135deg, #A9C3DB, #E4D3BE)',
+    } });
+    var variants = [
+      ['icon + value', col(
+        h(C, { feature: 'Fecha', value: '12 mayo 2024', icon: 'ic-calendar' }),
+        h(C, { feature: 'Lugar', value: 'Madrid', icon: 'ic-location-pin' }),
+        h(C, { feature: 'Personas', value: '4', icon: 'ic-group' })
+      )],
+      ['icon sin value (feature a todo el ancho)', col(
+        h(C, { feature: 'Recuerdos ilimitados', icon: 'ic-infinity' }),
+        h(C, { feature: 'Copia de seguridad', icon: 'ic-cloud-check' })
+      )],
+      ['FeatureItem.image (leading 24×24)', col(
+        h(C, { feature: 'Creado por', value: 'María', image: avatar })
+      )],
+      ['texto largo', col(
+        h(C, { feature: 'Descripción larga que ocupa más de una línea', value: 'valor largo también', icon: 'ic-text' })
+      )],
+      ['dark', col(
+        h(C, { feature: 'Fecha', value: '12 mayo 2024', icon: 'ic-calendar' }),
+        h(C, { feature: 'Lugar', value: 'Madrid', icon: 'ic-location-pin' }),
+        h(C, { feature: 'Recuerdos ilimitados', icon: 'ic-infinity' })
+      ), true]
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2]) {
+        m.setAttribute('data-theme', 'dark');
+        m.style.background = 'var(--bg-base)';
+        m.style.padding = '12px';
+        m.style.borderRadius = '6px';
+      }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

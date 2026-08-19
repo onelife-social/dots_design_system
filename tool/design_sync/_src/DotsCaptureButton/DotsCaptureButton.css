@@ -1,0 +1,35 @@
+/* DotsCaptureButton — Ø80, inner Ø68 (photo·recording Ø60), ring 6 (capture_button/) */
+.ds-capture {
+  position: relative;
+  box-sizing: border-box;
+  width: 80px;
+  height: 80px;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-container-secondary);
+}
+.ds-capture__inner {
+  border-radius: 50%;
+  flex: none;
+}
+.ds-capture__inner--photo { background: var(--label-always-white); }
+.ds-capture__inner--video { background: var(--label-destructive); }
+/* arco de progreso — empieza arriba (startAngle -π/2 en Dart) */
+.ds-capture__ring {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+/* icono stop — 32 × 32, r8 (_RecordingButton) */
+.ds-capture__stop {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--label-destructive);
+}

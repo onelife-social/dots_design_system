@@ -1,0 +1,109 @@
+/* DotsSegmentedControl — segmented_control/ (h36, itemPadding 4, textPadding 0 15, r1000, bgBlur 50) */
+.ds-seg {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 36px;
+  padding: 4px;
+  box-sizing: border-box;
+  border-radius: 1000px;
+  background: var(--bg-container-secondary-on-bg);
+  -webkit-backdrop-filter: blur(var(--blur-50));
+  backdrop-filter: blur(var(--blur-50));
+}
+.ds-seg__opt {
+  height: 28px;
+  padding: 0 15px;
+  border: none;
+  margin: 0;
+  background: transparent;
+  border-radius: 1000px;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* labelDefaultMedium */
+  font: 500 13px/1 var(--font-main);
+  letter-spacing: -0.01px;
+  color: var(--label-secondary);
+}
+.ds-seg__opt.is-selected {
+  background: var(--bg-secondary-btn);
+  color: var(--label-primary);
+}
+/* variant camera — bgChip (0x99303030) y class005 (#F4BD24): sin token en tokens.css */
+.ds-seg--camera { background: #30303099; }
+.ds-seg--camera .ds-seg__opt { color: var(--label-always-white); }
+.ds-seg--camera .ds-seg__opt.is-selected { color: #F4BD24; }
+/* type single — una única opción, no interactiva */
+.ds-seg--single .ds-seg__opt { cursor: default; }
+/* BadgeTag (rightOptionTag / buttonTag) — minH 18, r22, padding 1 5, labelDestructive */
+.ds-seg__tag {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 18px;
+  min-height: 18px;
+  box-sizing: border-box;
+  padding: 1px 5px;
+  border-radius: 22px;
+  background: var(--label-destructive);
+  color: var(--label-always-white);
+  /* labelSmallMedium */
+  font: 600 11px/1.45 var(--font-main);
+  letter-spacing: 0.01px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+/* type icon — SegmentedControlIcon: 108×48, celdas 48×40, iconos 24 */
+.ds-seg-icon {
+  /* bgFloatingActive — sin token en tokens.css (Dart: 0x26000000 light / 0x1AC8C8C8 dark) */
+  --ds-seg-pill: #00000026;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: 108px;
+  height: 48px;
+  padding: 4px;
+  box-sizing: border-box;
+  border-radius: 1000px;
+  background: var(--bg-container-secondary);
+  -webkit-backdrop-filter: blur(var(--blur-50));
+  backdrop-filter: blur(var(--blur-50));
+}
+[data-theme="dark"] .ds-seg-icon { --ds-seg-pill: #C8C8C81A; }
+.ds-seg-icon__pill {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 48px;
+  height: 40px;
+  border-radius: 1000px;
+  background: var(--ds-seg-pill);
+  /* easeInOutCubic 200ms del AnimatedAlign/AnimatedContainer */
+  transition: transform 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.ds-seg-icon__pill.is-right { transform: translateX(52px); }
+.ds-seg-icon__cell {
+  position: relative;
+  width: 48px;
+  height: 40px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 1000px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-disabled);
+  /* fallback tipográfico si DotsIcon no está en el bundle */
+  font: 500 10px var(--font-main);
+}
+.ds-seg-icon__cell.is-selected { color: var(--text-secondary); }

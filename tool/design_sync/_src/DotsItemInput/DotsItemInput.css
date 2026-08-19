@@ -1,0 +1,39 @@
+/* DotsItemInput — dots_item_input.dart. Fila h42 bg bgContainerSecondary,
+   radio 16 según posición, caja de valor 120×r7 bgContainerSecondaryOnBackground. */
+.ds-item-input {
+  display: flex; align-items: center;
+  height: 42px; box-sizing: border-box;
+  background: var(--bg-container-secondary);
+  padding: 8px 8px 8px 12px;
+  font-family: var(--font-main);
+}
+.ds-item-input--clickable { cursor: pointer; }
+
+/* DotsItemInputPosition */
+.ds-item-input--only-one { border-radius: 16px; }
+.ds-item-input--first { border-radius: 16px 16px 0 0; }
+.ds-item-input--middle { border-radius: 0; }
+.ds-item-input--last { border-radius: 0 0 16px 16px; }
+
+/* icono 20 textQuarternary + gap 6 */
+.ds-item-input__icon { display: inline-flex; flex: none; margin-right: 6px; color: var(--text-quarternary); }
+
+/* label: bodyDefaultMedium (14/500, h1.29, ls -0.02) + gap 8 hasta el valor */
+.ds-item-input__label {
+  flex: 1 1 auto; min-width: 0; margin-right: 8px;
+  font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px;
+  color: var(--text-primary);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* value: 120 × alto completo, r7, bg bgContainerSecondaryOnBackground,
+   labelDefaultBold (13/600, h1.31, ls -0.01) centrado */
+.ds-item-input__value {
+  flex: none; width: 120px; height: 100%; box-sizing: border-box;
+  border-radius: 7px; /* DotsBorderRadius.r7 */
+  background: var(--bg-container-secondary-on-bg);
+  display: flex; align-items: center; justify-content: center;
+  font: 600 13px/1.31 var(--font-main); letter-spacing: -0.01px;
+  color: var(--text-primary);
+  overflow: hidden;
+}

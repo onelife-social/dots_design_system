@@ -1,0 +1,70 @@
+/* DotsAccordion — port de lib/src/components/accordion/dots_accordion.dart */
+
+.ds-accordion {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+
+/* ── header — padding vertical 20; horizontal 16 con addHorizontalPadding ── */
+.ds-accordion__header {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  cursor: pointer;
+}
+.ds-accordion--hpad .ds-accordion__header { padding: 20px 16px; }
+
+.ds-accordion__leading { flex: none; margin-right: 8px; }
+
+/* título — typo.main.bodyLargeMedium (16/500, lh 1.31, ls -0.05) textPrimary */
+.ds-accordion__title {
+  flex: 1;
+  min-width: 0;
+  margin-right: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.31;
+  letter-spacing: -0.05px;
+  color: var(--text-primary);
+}
+
+/* chevron — AnimatedRotation turns 0.5, 180ms easeInOut */
+.ds-accordion__chevron {
+  flex: none;
+  transition: transform var(--ds-accordion-duration, 180ms) ease-in-out;
+}
+.ds-accordion__section.is-expanded .ds-accordion__chevron { transform: rotate(180deg); }
+.ds-accordion__chevron--fallback { color: var(--text-tertiary); font-size: 16px; line-height: 1; }
+
+/* ── despliegue — AnimatedSize ≈ grid-template-rows 0fr→1fr ── */
+.ds-accordion__collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--ds-accordion-duration, 180ms) ease-in-out;
+}
+.ds-accordion__section.is-expanded .ds-accordion__collapse { grid-template-rows: 1fr; }
+.ds-accordion__collapse-inner {
+  overflow: hidden; /* Clip.hardEdge */
+  min-height: 0;
+}
+/* contenido — padding inferior 36; lateral 16 con addHorizontalPadding */
+.ds-accordion__content {
+  padding: 0 0 36px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.29;
+  letter-spacing: -0.02px;
+  color: var(--text-secondary);
+}
+.ds-accordion--hpad .ds-accordion__content { padding: 0 16px 36px; }
+
+/* ── DotsDivider entre secciones — opacity 0.6, radius 1000, 2 líneas 1px ── */
+.ds-accordion__divider {
+  opacity: 0.6;
+  border-radius: 1000px;
+  overflow: hidden;
+}
+.ds-accordion__divider-l1 { height: 1px; background: var(--label-secondary); }
+.ds-accordion__divider-l2 { height: 1px; background: var(--bg-strong); }

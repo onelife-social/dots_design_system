@@ -1,0 +1,3 @@
+/* Entrada única de estilos del DS — los diseños consumen SOLO esta clausura. */
+@import "./foundations/tokens.css";
+@import "./_ds_bundle.css";

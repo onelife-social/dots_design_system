@@ -1,0 +1,83 @@
+<!-- @dsCard group="Buttons" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · DotsSystemButton</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .lbl { font-size: 10px; font-family: ui-monospace, monospace; opacity: .45; width: 100%; margin: 4px 0 2px; }
+  .light .lbl { color: #000; } .dark .lbl { color: #FFF; }
+  /* DotsSystemButton — size medium: height 44, padding 24×12, radius r16, gap 6, texto bodyDefaultMedium 14/500 */
+  .sysbtn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    border: none; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap;
+    height: 44px; padding: 0 24px; border-radius: 16px;
+    font-size: 14px; font-weight: 500; letter-spacing: -0.02px;
+    backdrop-filter: blur(50px);
+  }
+  .sysbtn.full { width: 100%; }
+  .sysbtn svg { width: 20px; height: 20px; flex: none; }
+  /* Variantes — DotsSystemButtonVariant (mismo fondo bgContainerSecondaryOnBackground) */
+  .light .v-active { background: #8C8C8C1A; color: #000000; }
+  .light .v-disabled { background: #8C8C8C1A; color: #00000033; }
+  .light .v-destructive { background: #8C8C8C1A; color: #ED2B32; }
+  .dark .v-active { background: #75757533; color: #FFFFFF; }
+  .dark .v-disabled { background: #75757533; color: #FFFFFF33; }
+  .dark .v-destructive { background: #75757533; color: #ED2B32; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>DotsSystemButton — Light</h2>
+    <div class="sub">buttons/dots_system_button · variant × icon · size.medium (44)</div>
+    <div class="lbl">DotsSystemButtonVariant.active</div>
+    <div class="row">
+      <button class="sysbtn v-active"><svg viewBox="0 0 32 33" fill="none"><path d="M4.47986 18.0504H14.1855V27.7561C14.1855 28.7426 14.997 29.5699 15.9993 29.5699C17.0017 29.5699 17.8132 28.7426 17.8132 27.7561V18.0504H27.5188C28.5053 18.0504 29.3327 17.239 29.3327 16.2366C29.3327 15.2342 28.5053 14.4227 27.5188 14.4227H17.8132V4.7171C17.8132 3.73063 17.0017 2.90326 15.9993 2.90326C14.997 2.90326 14.1855 3.73063 14.1855 4.7171V14.4227H4.47986C3.49338 14.4227 2.66602 15.2342 2.66602 16.2366C2.66602 17.239 3.49338 18.0504 4.47986 18.0504Z" fill="currentColor"/></svg>Añadir recuerdo</button>
+      <button class="sysbtn v-active">Continuar</button>
+    </div>
+    <div class="lbl">DotsSystemButtonVariant.disabled</div>
+    <div class="row">
+      <button class="sysbtn v-disabled"><svg viewBox="0 0 32 33" fill="none"><path d="M4.47986 18.0504H14.1855V27.7561C14.1855 28.7426 14.997 29.5699 15.9993 29.5699C17.0017 29.5699 17.8132 28.7426 17.8132 27.7561V18.0504H27.5188C28.5053 18.0504 29.3327 17.239 29.3327 16.2366C29.3327 15.2342 28.5053 14.4227 27.5188 14.4227H17.8132V4.7171C17.8132 3.73063 17.0017 2.90326 15.9993 2.90326C14.997 2.90326 14.1855 3.73063 14.1855 4.7171V14.4227H4.47986C3.49338 14.4227 2.66602 15.2342 2.66602 16.2366C2.66602 17.239 3.49338 18.0504 4.47986 18.0504Z" fill="currentColor"/></svg>Añadir recuerdo</button>
+      <button class="sysbtn v-disabled">Continuar</button>
+    </div>
+    <div class="lbl">DotsSystemButtonVariant.destructive</div>
+    <div class="row">
+      <button class="sysbtn v-destructive"><svg viewBox="0 0 32 33" fill="none"><path d="M12.7426 25.0807C12.326 25.0807 12.0589 24.8293 12.0376 24.4142L11.7171 12.3854C11.7064 11.9811 11.9735 11.7189 12.4008 11.7189C12.796 11.7189 13.0738 11.9702 13.0845 12.3744L13.4263 24.4142C13.437 24.8184 13.1592 25.0807 12.7426 25.0807ZM16.0008 25.0807C15.5841 25.0807 15.2957 24.8184 15.2957 24.4142V12.3854C15.2957 11.9811 15.5841 11.7189 16.0008 11.7189C16.4174 11.7189 16.7165 11.9811 16.7165 12.3854V24.4142C16.7165 24.8184 16.4174 25.0807 16.0008 25.0807ZM19.2696 25.0807C18.853 25.0807 18.5753 24.8184 18.5859 24.4142L18.9171 12.3854C18.9278 11.9702 19.2055 11.7189 19.6008 11.7189C20.028 11.7189 20.2951 11.9811 20.2844 12.3854L19.9639 24.4142C19.9426 24.8293 19.6755 25.0807 19.2696 25.0807ZM11.3112 9.06406H13.0097V6.72603C13.0097 6.10329 13.437 5.69904 14.0779 5.69904H17.9022C18.5432 5.69904 18.9705 6.10329 18.9705 6.72603V9.06406H20.6689V6.61678C20.6689 5.0326 19.6649 4.07117 18.0197 4.07117H13.9604C12.3153 4.07117 11.3112 5.0326 11.3112 6.61678V9.06406ZM6.46134 9.93809H25.5508C25.9889 9.93809 26.3414 9.5557 26.3414 9.10776C26.3414 8.65983 25.9889 8.28836 25.5508 8.28836H6.46134C6.03404 8.28836 5.66016 8.65983 5.66016 9.10776C5.66016 9.56663 6.03404 9.93809 6.46134 9.93809ZM11.1082 28.402H20.904C22.4316 28.402 23.4571 27.3859 23.5319 25.8235L24.2797 9.70866H7.72187L8.48032 25.8345C8.5551 27.3968 9.55924 28.402 11.1082 28.402Z" fill="currentColor"/></svg>Eliminar</button>
+      <button class="sysbtn v-destructive">Cerrar sesión</button>
+    </div>
+    <div class="lbl">ancho completo (Row mainAxisSize.max)</div>
+    <div class="row"><button class="sysbtn full v-active">Guardar cambios</button></div>
+  </div>
+  <div class="theme dark">
+    <h2>DotsSystemButton — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+    <div class="lbl">DotsSystemButtonVariant.active</div>
+    <div class="row">
+      <button class="sysbtn v-active"><svg viewBox="0 0 32 33" fill="none"><path d="M4.47986 18.0504H14.1855V27.7561C14.1855 28.7426 14.997 29.5699 15.9993 29.5699C17.0017 29.5699 17.8132 28.7426 17.8132 27.7561V18.0504H27.5188C28.5053 18.0504 29.3327 17.239 29.3327 16.2366C29.3327 15.2342 28.5053 14.4227 27.5188 14.4227H17.8132V4.7171C17.8132 3.73063 17.0017 2.90326 15.9993 2.90326C14.997 2.90326 14.1855 3.73063 14.1855 4.7171V14.4227H4.47986C3.49338 14.4227 2.66602 15.2342 2.66602 16.2366C2.66602 17.239 3.49338 18.0504 4.47986 18.0504Z" fill="currentColor"/></svg>Añadir recuerdo</button>
+      <button class="sysbtn v-active">Continuar</button>
+    </div>
+    <div class="lbl">DotsSystemButtonVariant.disabled</div>
+    <div class="row">
+      <button class="sysbtn v-disabled"><svg viewBox="0 0 32 33" fill="none"><path d="M4.47986 18.0504H14.1855V27.7561C14.1855 28.7426 14.997 29.5699 15.9993 29.5699C17.0017 29.5699 17.8132 28.7426 17.8132 27.7561V18.0504H27.5188C28.5053 18.0504 29.3327 17.239 29.3327 16.2366C29.3327 15.2342 28.5053 14.4227 27.5188 14.4227H17.8132V4.7171C17.8132 3.73063 17.0017 2.90326 15.9993 2.90326C14.997 2.90326 14.1855 3.73063 14.1855 4.7171V14.4227H4.47986C3.49338 14.4227 2.66602 15.2342 2.66602 16.2366C2.66602 17.239 3.49338 18.0504 4.47986 18.0504Z" fill="currentColor"/></svg>Añadir recuerdo</button>
+      <button class="sysbtn v-disabled">Continuar</button>
+    </div>
+    <div class="lbl">DotsSystemButtonVariant.destructive</div>
+    <div class="row">
+      <button class="sysbtn v-destructive"><svg viewBox="0 0 32 33" fill="none"><path d="M12.7426 25.0807C12.326 25.0807 12.0589 24.8293 12.0376 24.4142L11.7171 12.3854C11.7064 11.9811 11.9735 11.7189 12.4008 11.7189C12.796 11.7189 13.0738 11.9702 13.0845 12.3744L13.4263 24.4142C13.437 24.8184 13.1592 25.0807 12.7426 25.0807ZM16.0008 25.0807C15.5841 25.0807 15.2957 24.8184 15.2957 24.4142V12.3854C15.2957 11.9811 15.5841 11.7189 16.0008 11.7189C16.4174 11.7189 16.7165 11.9811 16.7165 12.3854V24.4142C16.7165 24.8184 16.4174 25.0807 16.0008 25.0807ZM19.2696 25.0807C18.853 25.0807 18.5753 24.8184 18.5859 24.4142L18.9171 12.3854C18.9278 11.9702 19.2055 11.7189 19.6008 11.7189C20.028 11.7189 20.2951 11.9811 20.2844 12.3854L19.9639 24.4142C19.9426 24.8293 19.6755 25.0807 19.2696 25.0807ZM11.3112 9.06406H13.0097V6.72603C13.0097 6.10329 13.437 5.69904 14.0779 5.69904H17.9022C18.5432 5.69904 18.9705 6.10329 18.9705 6.72603V9.06406H20.6689V6.61678C20.6689 5.0326 19.6649 4.07117 18.0197 4.07117H13.9604C12.3153 4.07117 11.3112 5.0326 11.3112 6.61678V9.06406ZM6.46134 9.93809H25.5508C25.9889 9.93809 26.3414 9.5557 26.3414 9.10776C26.3414 8.65983 25.9889 8.28836 25.5508 8.28836H6.46134C6.03404 8.28836 5.66016 8.65983 5.66016 9.10776C5.66016 9.56663 6.03404 9.93809 6.46134 9.93809ZM11.1082 28.402H20.904C22.4316 28.402 23.4571 27.3859 23.5319 25.8235L24.2797 9.70866H7.72187L8.48032 25.8345C8.5551 27.3968 9.55924 28.402 11.1082 28.402Z" fill="currentColor"/></svg>Eliminar</button>
+      <button class="sysbtn v-destructive">Cerrar sesión</button>
+    </div>
+    <div class="lbl">ancho completo (Row mainAxisSize.max)</div>
+    <div class="row"><button class="sysbtn full v-active">Guardar cambios</button></div>
+  </div>
+</body>
+</html>

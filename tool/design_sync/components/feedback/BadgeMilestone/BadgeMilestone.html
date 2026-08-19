@@ -1,0 +1,61 @@
+<!-- @dsCard group="feedback" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+    /* Contexto MilestoneCard: foto + starburst assets/images/milestones/badge-milestone-1.svg
+       (_CardBadge, top 5 right 5) — el pill BadgeMilestone flota con su blur encima. */
+    .bm-context{position:relative;width:280px;height:150px;border-radius:16px;overflow:hidden;
+      background:linear-gradient(135deg,#F99027 0%,#C88EFF 55%,#0072EF 100%)}
+    .bm-context img{position:absolute;top:5px;right:5px;width:45px;height:45px}
+    .bm-context .bm-slot{position:absolute;left:12px;bottom:12px;display:flex;gap:8px}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.BadgeMilestone;
+    // assets/images/milestones/badge-milestone-1.svg (asset real, base64)
+    var BADGE_MILESTONE_1 = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDUiIGhlaWdodD0iNDUiIHZpZXdCb3g9IjAgMCA0NSA0NSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iNDUiIHdpZHRoPSI0NSIgaGVpZ2h0PSI0NSIgcng9IjIyLjUiIHRyYW5zZm9ybT0icm90YXRlKDkwIDQ1IDApIiBmaWxsPSJ1cmwoI3BhaW50MF9yYWRpYWxfODkxOF8xNjY0NykiLz4KPHJlY3QgeD0iNDQuNjUzOCIgeT0iMC4zNDYxNTQiIHdpZHRoPSI0NC4zMDc3IiBoZWlnaHQ9IjQ0LjMwNzciIHJ4PSIyMi4xNTM4IiB0cmFuc2Zvcm09InJvdGF0ZSg5MCA0NC42NTM4IDAuMzQ2MTU0KSIgc3Ryb2tlPSJ1cmwoI3BhaW50MV9saW5lYXJfODkxOF8xNjY0NykiIHN0cm9rZS1vcGFjaXR5PSIwLjciIHN0cm9rZS13aWR0aD0iMC42OTIzMDgiLz4KPGcgZmlsdGVyPSJ1cmwoI2ZpbHRlcjBfZGRkXzg5MThfMTY2NDcpIj4KPHBhdGggZD0iTTE1LjEwOTQgMzMuMDU1QzE1LjU1MDggMzMuMzk5NSAxNi4xMTA2IDMzLjI4MTEgMTYuNzc4MSAzMi43OTY3TDIyLjQ3MzEgMjguNjA4OEwyOC4xNzkgMzIuNzk2N0MyOC44NDY1IDMzLjI4MTEgMjkuMzk1NiAzMy4zOTk1IDI5Ljg0NzcgMzMuMDU1QzMwLjI4OTIgMzIuNzIxMyAzMC4zODYgMzIuMTcyMiAzMC4xMTY5IDMxLjM4NjNMMjcuODY2OCAyNC42OUwzMy42MTU3IDIwLjU1NkMzNC4yODMyIDIwLjA4MjMgMzQuNTUyNCAxOS41ODcgMzQuMzgwMSAxOS4wNDg3QzM0LjIwNzkgMTguNTMyIDMzLjcwMTkgMTguMjczNiAzMi44NzMgMTguMjg0NEwyNS44MjEzIDE4LjMyNzRMMjMuNjc4OSAxMS41OTg4QzIzLjQyMDYgMTAuODAyMSAyMy4wMzMgMTAuNDAzOCAyMi40NzMxIDEwLjQwMzhDMjEuOTI0MSAxMC40MDM4IDIxLjUzNjUgMTAuODAyMSAyMS4yNzgyIDExLjU5ODhMMTkuMTM1OCAxOC4zMjc0TDEyLjA4NDIgMTguMjg0NEMxMS4yNTUyIDE4LjI3MzYgMTAuNzQ5MiAxOC41MzIgMTAuNTc3IDE5LjA0ODdDMTAuMzkzOSAxOS41ODcgMTAuNjczOSAyMC4wODIzIDExLjM0MTMgMjAuNTU2TDE3LjA5MDMgMjQuNjlMMTQuODQwMiAzMS4zODYzQzE0LjU3MTEgMzIuMTcyMiAxNC42NjggMzIuNzIxMyAxNS4xMDk0IDMzLjA1NVoiIGZpbGw9IndoaXRlIi8+CjwvZz4KPGRlZnM+CjxmaWx0ZXIgaWQ9ImZpbHRlcjBfZGRkXzg5MThfMTY2NDciIHg9IjMuNTk5MDIiIHk9IjMuNzU5MTgiIHdpZHRoPSIzNy43NTQ5IiBoZWlnaHQ9IjM3LjEwODkiIGZpbHRlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIj4KPGZlRmxvb2QgZmxvb2Qtb3BhY2l0eT0iMCIgcmVzdWx0PSJCYWNrZ3JvdW5kSW1hZ2VGaXgiLz4KPGZlQ29sb3JNYXRyaXggaW49IlNvdXJjZUFscGhhIiB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMTI3IDAiIHJlc3VsdD0iaGFyZEFscGhhIi8+CjxmZU9mZnNldCBkeT0iMC42OTIzMDgiLz4KPGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMy40NjE1NCIvPgo8ZmVDb21wb3NpdGUgaW4yPSJoYXJkQWxwaGEiIG9wZXJhdG9yPSJvdXQiLz4KPGZlQ29sb3JNYXRyaXggdHlwZT0ibWF0cml4IiB2YWx1ZXM9IjAgMCAwIDAgMSAwIDAgMCAwIDEgMCAwIDAgMCAxIDAgMCAwIDAuMjUgMCIvPgo8ZmVCbGVuZCBtb2RlPSJub3JtYWwiIGluMj0iQmFja2dyb3VuZEltYWdlRml4IiByZXN1bHQ9ImVmZmVjdDFfZHJvcFNoYWRvd184OTE4XzE2NjQ3Ii8+CjxmZUNvbG9yTWF0cml4IGluPSJTb3VyY2VBbHBoYSIgdHlwZT0ibWF0cml4IiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDEyNyAwIiByZXN1bHQ9ImhhcmRBbHBoYSIvPgo8ZmVPZmZzZXQvPgo8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIzLjMyMjMxIi8+CjxmZUNvbXBvc2l0ZSBpbjI9ImhhcmRBbHBoYSIgb3BlcmF0b3I9Im91dCIvPgo8ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMCAwIDAgMCAwLjM4NDMxNCAwIDAgMCAwIDAuMzAxOTYxIDAgMCAwIDAgMSAwIDAgMCAwLjIgMCIvPgo8ZmVCbGVuZCBtb2RlPSJub3JtYWwiIGluMj0iZWZmZWN0MV9kcm9wU2hhZG93Xzg5MThfMTY2NDciIHJlc3VsdD0iZWZmZWN0Ml9kcm9wU2hhZG93Xzg5MThfMTY2NDciLz4KPGZlQ29sb3JNYXRyaXggaW49IlNvdXJjZUFscGhhIiB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMTI3IDAiIHJlc3VsdD0iaGFyZEFscGhhIi8+CjxmZU9mZnNldC8+CjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjAuNSIvPgo8ZmVDb21wb3NpdGUgaW4yPSJoYXJkQWxwaGEiIG9wZXJhdG9yPSJvdXQiLz4KPGZlQ29sb3JNYXRyaXggdHlwZT0ibWF0cml4IiB2YWx1ZXM9IjAgMCAwIDAgMSAwIDAgMCAwIDEgMCAwIDAgMCAxIDAgMCAwIDAuNSAwIi8+CjxmZUJsZW5kIG1vZGU9Im5vcm1hbCIgaW4yPSJlZmZlY3QyX2Ryb3BTaGFkb3dfODkxOF8xNjY0NyIgcmVzdWx0PSJlZmZlY3QzX2Ryb3BTaGFkb3dfODkxOF8xNjY0NyIvPgo8ZmVCbGVuZCBtb2RlPSJub3JtYWwiIGluPSJTb3VyY2VHcmFwaGljIiBpbjI9ImVmZmVjdDNfZHJvcFNoYWRvd184OTE4XzE2NjQ3IiByZXN1bHQ9InNoYXBlIi8+CjwvZmlsdGVyPgo8cmFkaWFsR3JhZGllbnQgaWQ9InBhaW50MF9yYWRpYWxfODkxOF8xNjY0NyIgY3g9IjAiIGN5PSIwIiByPSIxIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgZ3JhZGllbnRUcmFuc2Zvcm09InRyYW5zbGF0ZSg2Ny41IDIyLjYzNjQpIHJvdGF0ZSgwLjM0NzM2OSkgc2NhbGUoMjIuNTAwNCAyNy44Mjc1KSI+CjxzdG9wIHN0b3AtY29sb3I9IiNGRUQ2QTciLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRjk5MDI3Ii8+CjwvcmFkaWFsR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQxX2xpbmVhcl84OTE4XzE2NjQ3IiB4MT0iNDUuNDQ4NiIgeTE9IjAuNDcyMDI4IiB4Mj0iNzEuMjQ3IiB5Mj0iNTQuMDQ0MiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSJ3aGl0ZSIgc3RvcC1vcGFjaXR5PSIwLjciLz4KPHN0b3Agb2Zmc2V0PSIwLjUiIHN0b3AtY29sb3I9IndoaXRlIiBzdG9wLW9wYWNpdHk9IjAiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSJ3aGl0ZSIgc3RvcC1vcGFjaXR5PSIwLjciLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K';
+    function row() {
+      var kids = Array.prototype.slice.call(arguments);
+      return h.apply(null, ['div', { style: { display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' } }].concat(kids));
+    }
+    var variants = [
+      ['main / ghost', row(
+        h(C, { content: '100 recuerdos' }),
+        h(C, { content: '1 año juntos', variant: 'ghost' })
+      )],
+      ['ellipsis', h('div', { style: { maxWidth: '160px' } },
+        h(C, { content: 'Un hito con un texto larguísimo que se corta' })
+      )],
+      ['sobre foto (MilestoneCard + badge-milestone-1.svg)', h('div', { className: 'bm-context' },
+        h('img', { src: BADGE_MILESTONE_1, alt: 'badge-milestone-1' }),
+        h('div', { className: 'bm-slot' },
+          h(C, { content: '100 recuerdos' }),
+          h(C, { content: 'ghost', variant: 'ghost' })
+        )
+      )],
+      ['dark', row(
+        h(C, { content: '100 recuerdos' }),
+        h(C, { content: '1 año juntos', variant: 'ghost' })
+      ), 'dark']
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div');
+      if (v[2] === 'dark') { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '6px'; }
+      cell.appendChild(m); g.appendChild(cell);
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

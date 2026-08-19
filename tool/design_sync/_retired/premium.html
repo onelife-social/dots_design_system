@@ -1,0 +1,95 @@
+<!-- @dsCard group="Premium" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · DotsPlanSelector</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .cap { font-size: 10px; opacity: .55; margin: 14px 0 6px; font-family: ui-monospace, monospace; }
+  .light .cap { color: #000; } .dark .cap { color: #FFF; }
+  .row { display: flex; gap: 8px; margin-bottom: 8px; }
+  /* DotsPlanSelector — DotsBorderRadius.r16, padding 4, height ≈ 9.5–11.1% de pantalla */
+  .plan {
+    flex: 1; height: 80px; border-radius: 16px; padding: 4px; box-sizing: border-box;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; cursor: pointer;
+  }
+  .plan .title { font-size: 14px; font-weight: 700; line-height: 1.29; letter-spacing: -0.02px; } /* bodyDefaultBold */
+  .plan .desc { font-size: 11px; font-weight: 400; line-height: 1.27; letter-spacing: 0.01px; }  /* labelSmallRegular */
+  /* Sin seleccionar: bgContainerSecondaryOnBackground + textPrimary */
+  .light .unselected { background: #8C8C8C1A; color: #000000; }
+  .dark .unselected { background: #75757533; color: #FFFFFF; }
+  /* Seleccionado: fondo imagen (bgBasic/bgPremium/bgPremiumPlus) + labelAlwaysWhite */
+  .selected { color: #FFFFFF; background-position: center; background-size: cover; background-repeat: no-repeat; }
+  .sel-basic { background-image: url(data:image/webp;base64,UklGRnoDAABXRUJQVlA4IG4DAABQIQCdASpWAfAAPlEokkcjoqGhICgAcAoJaW7gQ6sLb4ZO2r+5M81AapQT+PVL68Y89fsAW5o/RHsEQcokVWusq1BhYbP0t+GYWYS76nFo+JJVxnpEFip+7UQ7tRf/XnE7xVicACFWmhextKVjw6mD7TaVvqaI6ybbAWu4nnci9IF/cW0pxYIjGJw5pgc8qS0xBx13zLUA6OGILvPUKkuJnUowJh/t/wuTgj1O7Ux4+5DfPXQNziVDef8b+Cb0oj2k6Yfoiv6LdR2NU/g4mGqgjHlpgxk3servmIzWTEnukTzkZDq/a1Jf8tgtI2H2AsfGRllCeZKcBEqolcSn7mSq7POoXQL866UZ/MPkAb/3mHJloAD++OXHzDuVrQUnb/19+KPnd9za/AMDP9S/9uxqY1An2OZHgGdHr3fxGPHikHD6DxWppMdBOeN+jP68R8Ce85AraMDR+Xu8Rk9HqlZXpGy3pdW2SexAWIfGcTq6J7Rf34YXS5ecR4zQKtLxVvnd7VsA9DaA7iGEHb7ejT4V5bIIiHsmogYCWYY8tbWNMXN4v8NQXtk0N7U/pEyuoj/gjdsc16K9Y99gpg2gy/mLPdTY1XMCUCFE30kHQz1Iro7ma6vbmUq4RTaIA8TDc0peW57f2ybIQDsCSYPlV7wdXVzHY/yCR9efnMGEh/0KeD8mdCrLmM9AeCNAWoYe9GhFmPHO+DMqDImlrcQ7sDT/p63l97eTSVGEzyFzcKbUhoxWeOueV3gP1MLaDuzVp1Y8lufXryuLkd3yT45r6+DEiYx+epWe3UOtYP00O8ttcQJGAqChqouxxU+wX8X3El4aqGf6/cQw2Pi6HlKegG5M/uQIMpav+LmgddbHm4FVzr7vtSxGh4Kw0hk8xAB1Dp4pO60CNQ8os09yJLCSC/ps/WD4hpaxRtChVkJOsAfA1gABfN4Ox7F1Md6FKWkutMon+bJCZE1q3QqJoh2CBAARbEGUyIXofnL9XikNnEMuMgCX3hbbUMo3fvOVRWnc9DqeReubR27pr+EJ5WAzHQi21ZGHLZZHV06sdo+e7iC7dsEDMxgGMd6AvBHMzv1FvDwOYqkMCX4GgF5hX66Vp0XQQWQ5ZS9J8n0xYrcTQ2uJ22SgmDtnFHwPEpmBGpP1h9UtLBvVP4/vT14TOtRgAA==); } /* assets/images/bg_basic.webp */
+  .sel-premium { background-image: url(data:image/webp;base64,UklGRogDAABXRUJQVlA4IHwDAAAwIQCdASpWAfAAPlEokkcjoqGhICgAcAoJaW7hDgeF7/aNNzORvOGDGUE/z0sd05PL/sAK+rAVZOQ3oSONpv3tKEf4j9ZfEpJ6hypsaoDrAAtwTnhz1FT+GYmACI5m8UDRLSsZGeHmzy82upRoSDHsaSQZyjAJc/0mFWvrA1lAD0q0Kq8A80pRE+lSlugMHUnZ/0JahKX9qZJ2W1pd6OkKaJ+kvK69wwfwCFoye7xlO4ijUTPhIhdcRWPsyDrO2NH367zh7T+y/FglVD5ioO/cfEjwiCxD13hz7hNPSgJc3B4iEqhKcDsiImcN+QchEr/R+bsE5/+5RlDzrHWvIQWJ0xusae+97QB/+IVQbWAWRLyAAP7OGzoFBf/z0z//RP/9y/7p7NCnaUePqFWxVPw8ccknqkp5jBYKVLRt/8mcgj2GmBdah5uUnEiq2lyhOsk2FkDygDPGdYMn3C8iNXpReAQ3+ufrw1ms+IFrczxPCA5GfVDsnqVyI2y2PtkOC0k0Ea+e9iyBG1JhTsLzrRZ1zZR5TaTJdGvstbjYdrDxs3C58O+k0dGCnpx59vnXS/tsm468US/2wGGJxjN0V+ZfomWSqZX6omiElwUEDIRiuaA+NYkwmYZ8TvJzfGZACjltN5UdDKId43ty6SBdxkqypDwPOv7778y0OUj2NN5wQe7rKjTua7zLk4Dy2yRd+4skQ/JZ9Pdr7P6W6j0VOHF2Nx/wPj9UB9NzIZBPqk6fOrR2MnvUQDmcEJqQveKW6dWQapWUohgHj1hwN1dUaqGO0KG4JZoT7KcBEILaIJfCemd+dzgEnT3rKaGv50WNV5WdHo4aAan8zlK4oLSeLp8BaysInyLFp+KadptilxkQTG+ML3hxHbQ0FXjgXZ6bXj6dvoRJ+WS2ulRhNCBdTVzWb4nMOZs1IWKTbF5+uIGQwcdjRKLNsqbS+4S/9/VimET5wqlCdQXnr+bnWGap3VWOrwbn58WMqA0i4aD2C0YUpoUpW1qphSGgzjm1QI7ow/us4N7jdAeEAAChnpFcr2YYBXVuL3vvzKGQQChk0zcCQ2kBiOYAA/KQl8Kc3/0xDWCbCK//CcfNhKsrH6joAZIV63MNzPHksUi8yokzhoI07vrUKL6N8V9mK8UbvilvW+WnAmHJrDzVZMUJSHeWq3O4SDm8lUWDNjQtkgAA); } /* assets/images/bg_premium.webp */
+  .sel-premium-plus { background-image: url(data:image/webp;base64,UklGRt4DAABXRUJQVlA4INIDAABwKQCdASpXAfAAPlEoj0apIqkhICmpIAoJaW7hDKfXHgw1Lb0SvMIKKCvryACU6e5R3B7XBS1HPcElUNqCqG1BUyeCtA2tLUoau4wHVo9SCnw9y9LBeh0/8zJMIr5tS7d9tnnSdEdURgCv/plbeaR6TPQWI3pKiwboEpU6h8KXP5vven4kSvNCEA9GSgjXKG3qO0gxhUFaIMoKIumIAf0RO99UAXsbIFGZqvkh+mrqOijyOSMfyEapPRT2rakpNXSV6kYzZ6e6xUZ6Keo14F1d5jq/dpIzT/IN59lhaal0IEkzk8LgtuGFGUa96ROS4CZ/kJtFEoZXxFVdIsLD0de1WQQbLC7L7waZ+SgI2A9E25Airiz/HSWikW5srFNRk66z1mazFMPHMxpJynaNAeoyExBvvVmoThVC/HvSWJiqBRBVDZ9jhs+1QKII1chj+gmDnNwAAP7heCfdmlhg//8pX/1+/6/emD/UT2Ed+Ayj6pxKwFH5StImxCm8RtivogyCMYdITY3dzhfECvNAo/+QN36DGMoaJSGuJ/FoIfiGwd2tM9UsNIMQQzCowensyrM8sGVbdousVTDsauloPIfmjEZ8v/DncNZKelvzBapyUs8aFekro3TP6GUbeGUxk79BPeG5LMvPUGSB5/ijgkY8XKKZiW3NwvJ118+pOQ2XgUOcfEoeRX9PRxOdWmpmBj9f4FlZZbzm3AkC1mfVXSTWO/GwCTcHEn6s8/7lABoa2dApyhuJFHnyIEk9Nh01bPZw3P5VGU1B4j7q/iSI/VPTHxFEPoUzs5lJOXko911tJm2ZjzE54poBvTclqj1RAZ+eqkEwfYfyr37OKPgCfTSpOPiieA2DyXyAlndxneNX4qdgaaVBJLiDIw1R6a8HjM1SiM0zgG83SK+a9UBu6qUH7/Dh4kAAgUJJCjjbxqZCUvu3iLMV4UsetNTHMl/QgBjCGJ72QgKjxEE4+KyH5vfdFwqZPMRj5ueX26fXZwdP8uHpvwUsnvb77mOT78qCfJvvXDMFUps1AILsNwZi24inalNe+VzMxMcVis33cNwY33XZbFQxtMUsGYY5ouGo2JE7rl8rJcEPWv8xbnHjZWfG8QrhclL4G7Z4A+vZZfPIFRUpWV+4ls/tGi29iO3CgoLSqa3AVT6zRcfehFnUKzhvLFFhHYXJqI3tzAbbH0fx1Zj5btZjx/WQsnTUthFzNx5Z7b6iFPFvf+E8jFjl8pJ4lmaCHJaRXFR+xA9OZuKUOA4cj06AV4em8JmHwE6KSMDylzWG1JQow6sFsXiX3KPgAAA=); } /* assets/images/bg_premium_plus.webp */
+  /* Deshabilitado: textQuarternary, sin imagen */
+  .light .disabled { background: #8C8C8C1A; color: #00000066; cursor: default; }
+  .dark .disabled { background: #75757533; color: #FFFFFF73; cursor: default; }
+  /* Gradientes de texto premium (textPremium / textPremiumPlus) */
+  .gt { font-size: 14px; font-weight: 700; background-clip: text; -webkit-background-clip: text; color: transparent; }
+  .gt-premium { background-image: linear-gradient(90deg, #C17FFA, #8C84F7); -webkit-background-clip: text; background-clip: text; }
+  .light .gt-premium-plus { background-image: linear-gradient(90deg, #DDA61C, #A37F28); -webkit-background-clip: text; background-clip: text; }
+  .dark .gt-premium-plus { background-image: linear-gradient(90deg, #E9C058, #B48D2D); -webkit-background-clip: text; background-clip: text; }
+  .foot { font-size: 9px; opacity: .4; margin-top: 14px; font-family: ui-monospace, monospace; }
+  .light .foot { color: #000; } .dark .foot { color: #FFF; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>DotsPlanSelector — Light</h2>
+    <div class="sub">premium/dots_plan_selector · variant × selected × enabled</div>
+    <div class="cap">selected: true (fondo bgBasic / bgPremium / bgPremiumPlus)</div>
+    <div class="row">
+      <div class="plan selected sel-basic"><span class="title">Básico</span><span class="desc">Gratis</span></div>
+      <div class="plan selected sel-premium"><span class="title">Premium</span><span class="desc">4,99 €/mes</span></div>
+      <div class="plan selected sel-premium-plus"><span class="title">Premium+</span><span class="desc">9,99 €/mes</span></div>
+    </div>
+    <div class="cap">selected: false</div>
+    <div class="row">
+      <div class="plan unselected"><span class="title">Básico</span><span class="desc">Gratis</span></div>
+      <div class="plan unselected"><span class="title">Premium</span><span class="desc">4,99 €/mes</span></div>
+      <div class="plan unselected"><span class="title">Premium+</span><span class="desc">9,99 €/mes</span></div>
+    </div>
+    <div class="cap">enabled: false</div>
+    <div class="row">
+      <div class="plan disabled"><span class="title">Premium</span><span class="desc">No disponible</span></div>
+    </div>
+    <div class="cap">textPremium / textPremiumPlus (gradientes de texto)</div>
+    <div class="row"><span class="gt gt-premium">Hazte Premium</span><span class="gt gt-premium-plus">Hazte Premium+</span></div>
+    <div class="foot">Fondos seleccionados: assets reales bg_basic.webp / bg_premium.webp / bg_premium_plus.webp (ImagesPaths.bgBasic/bgPremium/bgPremiumPlus) incrustados como data URI.</div>
+  </div>
+  <div class="theme dark">
+    <h2>DotsPlanSelector — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+    <div class="cap">selected: true</div>
+    <div class="row">
+      <div class="plan selected sel-basic"><span class="title">Básico</span><span class="desc">Gratis</span></div>
+      <div class="plan selected sel-premium"><span class="title">Premium</span><span class="desc">4,99 €/mes</span></div>
+      <div class="plan selected sel-premium-plus"><span class="title">Premium+</span><span class="desc">9,99 €/mes</span></div>
+    </div>
+    <div class="cap">selected: false</div>
+    <div class="row">
+      <div class="plan unselected"><span class="title">Básico</span><span class="desc">Gratis</span></div>
+      <div class="plan unselected"><span class="title">Premium</span><span class="desc">4,99 €/mes</span></div>
+      <div class="plan unselected"><span class="title">Premium+</span><span class="desc">9,99 €/mes</span></div>
+    </div>
+    <div class="cap">enabled: false</div>
+    <div class="row">
+      <div class="plan disabled"><span class="title">Premium</span><span class="desc">No disponible</span></div>
+    </div>
+    <div class="cap">textPremium / textPremiumPlus</div>
+    <div class="row"><span class="gt gt-premium">Hazte Premium</span><span class="gt gt-premium-plus">Hazte Premium+</span></div>
+  </div>
+</body>
+</html>

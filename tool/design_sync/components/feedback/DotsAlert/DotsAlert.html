@@ -1,0 +1,43 @@
+<!-- @dsCard group="feedback" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsAlert;
+    var noop = function () {};
+    var variants = [
+      ['noButtons', h(C, { variant: 'noButtons', icon: 'ic-check-circle', title: 'Copia creada', message: 'Tu recuerdo se guardó correctamente.' })],
+      ['oneButton', h(C, { variant: 'oneButton', icon: 'ic-check-circle', title: 'Copia creada', message: 'Tu recuerdo se guardó correctamente.', mainButtonText: 'Entendido', onMainButtonClick: noop })],
+      ['twoHorizontalButtons', h(C, { variant: 'twoHorizontalButtons', icon: 'ic-alert-circle', title: '¿Guardar cambios?', message: 'Se actualizará el recuerdo compartido.', mainButtonText: 'Guardar', secondaryButtonText: 'Cancelar', onMainButtonClick: noop, onSecondaryButtonClick: noop })],
+      ['twoHorizontalButtonsDestructive', h(C, { variant: 'twoHorizontalButtonsDestructive', icon: 'ic-trash', title: '¿Eliminar recuerdo?', message: 'Esta acción no se puede deshacer.', mainButtonText: 'Eliminar', secondaryButtonText: 'Cancelar', onMainButtonClick: noop, onSecondaryButtonClick: noop })],
+      ['twoVerticalButtons', h(C, { variant: 'twoVerticalButtons', icon: 'ic-check-circle', title: 'Invitación enviada', message: 'Podrán unirse desde el enlace.', mainButtonText: 'Compartir enlace', secondaryButtonText: 'Ahora no', onMainButtonClick: noop, onSecondaryButtonClick: noop })],
+      ['twoVerticalButtonsDestructive', h(C, { variant: 'twoVerticalButtonsDestructive', icon: 'ic-trash', title: '¿Salir del recuerdo?', message: 'Dejarás de ver sus actualizaciones.', mainButtonText: 'Salir', secondaryButtonText: 'Cancelar', onMainButtonClick: noop, onSecondaryButtonClick: noop })],
+      ['twoVerticalButtonsNoActive', h(C, { variant: 'twoVerticalButtonsNoActive', icon: 'ic-alert-circle', title: '¿Cómo quieres continuar?', message: 'Elige una opción.', mainButtonText: 'Crear recuerdo', secondaryButtonText: 'Importar fotos', onMainButtonClick: noop, onSecondaryButtonClick: noop })],
+      ['input', h(C, { variant: 'input', icon: 'ic-search', title: 'Buscar amigos', inputHint: 'Nombre o email', mainButtonText: 'Buscar', secondaryButtonText: 'Cancelar', onMainButtonClick: noop, onSecondaryButtonClick: noop })],
+      ['selector', h(C, { variant: 'selector', icon: 'ic-alert-circle', title: 'Elige un álbum', message: 'El recuerdo se añadirá al álbum elegido.', selectorItems: [{ label: 'Verano 2025', onClick: noop }, { label: 'Familia', onClick: noop }], mainButtonText: 'Añadir', secondaryButtonText: 'Cancelar', onMainButtonClick: noop, onSecondaryButtonClick: noop })],
+      ['showCloseButton', h(C, { variant: 'oneButton', icon: 'ic-check-circle', title: 'Copia creada', message: 'Tu recuerdo se guardó correctamente.', mainButtonText: 'Entendido', showCloseButton: true, onClose: noop, onMainButtonClick: noop })],
+      ['dark', h(C, { variant: 'twoHorizontalButtonsDestructive', icon: 'ic-trash', title: '¿Eliminar recuerdo?', message: 'Esta acción no se puede deshacer.', mainButtonText: 'Eliminar', secondaryButtonText: 'Cancelar', onMainButtonClick: noop, onSecondaryButtonClick: noop }), 'dark']
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div');
+      if (v[2] === 'dark') { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '6px'; }
+      cell.appendChild(m); g.appendChild(cell);
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

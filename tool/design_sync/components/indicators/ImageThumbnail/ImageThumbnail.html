@@ -1,0 +1,46 @@
+<!-- @dsCard group="indicators" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+    .row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.ImageThumbnail;
+    // Foto demo como data URI (sin assets externos)
+    var PHOTO = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" width="112" height="112">' +
+      '<defs><linearGradient id="p" x1="0" y1="0" x2="1" y2="1">' +
+      '<stop offset="0" stop-color="#F2B880"/><stop offset="1" stop-color="#D96D6B"/>' +
+      '</linearGradient></defs><rect width="112" height="112" fill="url(#p)"/></svg>');
+    function row() { return h('div', { className: 'row' }, Array.prototype.slice.call(arguments)); }
+    var variants = [
+      ['image · 40 r12 / coverImage', row(h(C, { variant: 'image', src: PHOTO }), h(C, { variant: 'image', src: PHOTO, coverImage: true }))],
+      ['icon · default user 20', row(h(C, { variant: 'icon' }))],
+      ['icon · custom icon / iconColor', row(
+        h(C, { variant: 'icon', icon: 'ic-camera' }),
+        h(C, { variant: 'icon', icon: 'ic-lock', iconColor: 'var(--label-highlight)' })
+      )],
+      ['size 56 · image / icon iconSize 28', row(h(C, { variant: 'image', src: PHOTO, size: 56 }), h(C, { variant: 'icon', size: 56, iconSize: 28 }))],
+      ['dark · image / icon', row(h(C, { variant: 'image', src: PHOTO }), h(C, { variant: 'icon' })), true]
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2]) { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '8px'; }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

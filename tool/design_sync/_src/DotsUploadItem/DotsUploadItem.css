@@ -1,0 +1,134 @@
+/* DotsUploadItem — upload_items/dots_upload_item.dart · fila pad-y 8 · foto 64 squircle16 */
+.ds-upload-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  font-family: var(--font-main);
+}
+.ds-upload-item > .ds-squircle-photo,
+.ds-upload-item__photo-fallback {
+  flex: none;
+  margin-right: 12px;
+}
+.ds-upload-item__photo-fallback {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-default);
+  /* Placeholder degradado — arte sin token */
+  background: linear-gradient(160deg, #e8c3a0, #c88ea7 55%, #7e6ba8);
+}
+.ds-upload-item__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ds-upload-item__body--processing {
+  padding-right: 10px;
+}
+/* textDate — bodyDefaultMedium 14/500, textPrimary */
+.ds-upload-item__date {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+  letter-spacing: -0.02px;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+/* processText — labelDefaultRegular 13/400, textSecondary · icono 14 + gap 3 */
+.ds-upload-item__process {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.ds-upload-item__process-icon {
+  flex: none;
+  display: flex;
+  margin-right: 3px;
+}
+@keyframes ds-upload-item-spin {
+  to { transform: rotate(360deg); }
+}
+.ds-upload-item__process-icon--spin {
+  animation: ds-upload-item-spin 1s linear infinite;
+}
+.ds-upload-item__process-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.31;
+  letter-spacing: -0.01px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* progreso — DotsProgressBar(parts: 1) + % textQuarternary */
+.ds-upload-item__progress {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+.ds-upload-item__progress-bar {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+}
+.ds-upload-item__progress-fallback {
+  flex: 1;
+  height: 5px;
+  border-radius: 100px;
+  background: var(--label-secondary);
+}
+.ds-upload-item__progress-pct {
+  flex: none;
+  margin-left: 8px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.01px;
+  color: var(--text-quarternary);
+}
+/* timeElapsed — labelDefaultRegular, textQuarternary */
+.ds-upload-item__elapsed {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.31;
+  letter-spacing: -0.01px;
+  color: var(--text-quarternary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* botón derecho — gap 12 respecto al cuerpo */
+.ds-upload-item > .ds-main-btn,
+.ds-upload-item__btn-fallback {
+  flex: none;
+  margin-left: 12px;
+}
+/* Fallback si DotsMainButton no está en el bundle (medium: h36, píldora, 13/600) */
+.ds-upload-item__btn-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 36px;
+  cursor: pointer;
+  font: 600 13px var(--font-main);
+  white-space: nowrap;
+}
+.ds-upload-item__btn-fallback--main {
+  background: var(--label-highlight);
+  color: var(--label-always-white);
+}
+.ds-upload-item__btn-fallback--secondary {
+  background: var(--bg-secondary-btn);
+  color: var(--text-secondary);
+  backdrop-filter: blur(var(--blur-50));
+}

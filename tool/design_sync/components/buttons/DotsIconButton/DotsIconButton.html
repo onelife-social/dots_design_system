@@ -1,0 +1,86 @@
+<!-- @dsCard group="buttons" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsIconButton;
+    function row() {
+      var kids = Array.prototype.slice.call(arguments);
+      return h.apply(null, ['div', { style: { display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' } }].concat(kids));
+    }
+    var variants = [
+      ['sizes: enormous 56 · extraLarge 52 · large 44 · medium 36 · small 28 · extraSmall 22', row(
+        h(C, { icon: 'ic-heart', size: 'enormous' }),
+        h(C, { icon: 'ic-heart', size: 'extraLarge' }),
+        h(C, { icon: 'ic-heart', size: 'large' }),
+        h(C, { icon: 'ic-heart', size: 'medium' }),
+        h(C, { icon: 'ic-heart', size: 'small' }),
+        h(C, { icon: 'ic-heart', size: 'extraSmall' })
+      )],
+      ['style defaultStyle × state default/active/disabled/destructive', row(
+        h(C, { icon: 'ic-add' }),
+        h(C, { icon: 'ic-add', state: 'active' }),
+        h(C, { icon: 'ic-add', state: 'disabled' }),
+        h(C, { icon: 'ic-trash', state: 'destructive' })
+      )],
+      ['style onPhoto × state default/disabled/destructive', row(
+        h(C, { icon: 'ic-user', style: 'onPhoto' }),
+        h(C, { icon: 'ic-user', style: 'onPhoto', state: 'disabled' }),
+        h(C, { icon: 'ic-trash', style: 'onPhoto', state: 'destructive' })
+      )],
+      ['style floating × state (borde 0.7 borderAlert, blur 10)', row(
+        h(C, { icon: 'ic-home', style: 'floating' }),
+        h(C, { icon: 'ic-home', style: 'floating', state: 'active' }),
+        h(C, { icon: 'ic-home', style: 'floating', state: 'disabled' }),
+        h(C, { icon: 'ic-trash', style: 'floating', state: 'destructive' })
+      )],
+      ['style noBackground × state', row(
+        h(C, { icon: 'ic-settings', style: 'noBackground' }),
+        h(C, { icon: 'ic-settings', style: 'noBackground', state: 'active' }),
+        h(C, { icon: 'ic-settings', style: 'noBackground', state: 'disabled' }),
+        h(C, { icon: 'ic-settings', style: 'noBackground', state: 'destructive' })
+      )],
+      ['label column / row · tag · showShadow · sin blur', row(
+        h(C, { icon: 'ic-heart', label: 'Favoritos' }),
+        h(C, { icon: 'ic-heart', label: 'Favoritos', direction: 'row' }),
+        h(C, { icon: 'ic-add', tag: '3' }),
+        h(C, { icon: 'ic-heart', showShadow: true }),
+        h(C, { icon: 'ic-heart', shouldApplyBlur: false })
+      )],
+      ['variant (deprecado): photo · active · noBackground · photoDisable', row(
+        h(C, { icon: 'ic-user', variant: 'photo' }),
+        h(C, { icon: 'ic-add', variant: 'active' }),
+        h(C, { icon: 'ic-settings', variant: 'noBackground' }),
+        h(C, { icon: 'ic-user', variant: 'photoDisable' })
+      )],
+      ['dark — defaultStyle/onPhoto/floating/noBackground', row(
+        h(C, { icon: 'ic-heart' }),
+        h(C, { icon: 'ic-user', style: 'onPhoto' }),
+        h(C, { icon: 'ic-home', style: 'floating' }),
+        h(C, { icon: 'ic-settings', style: 'noBackground' }),
+        h(C, { icon: 'ic-heart', label: 'Favoritos' })
+      ), true],
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div');
+      if (v[2]) { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '6px'; }
+      cell.appendChild(m); g.appendChild(cell);
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

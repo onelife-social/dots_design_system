@@ -1,0 +1,32 @@
+/* DotsTextFieldPhone — dots_textfield_phone.dart. Leading de DotsTextField:
+   bandera + (dialCode) + chevron 14 + divisor vertical, luego el input tel. */
+.ds-tf-phone__lead {
+  display: inline-flex; align-items: center; align-self: stretch; flex: none;
+  padding: 8px 0; box-sizing: border-box;
+  cursor: pointer;
+}
+.ds-tf-phone__lead--disabled { cursor: default; }
+
+/* bodyDefaultMedium (14/500, h1.29, ls -0.02).
+   Dart: flag con Colors.black hardcodeado (sin token) — se mantiene #000. */
+.ds-tf-phone__flag {
+  font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px;
+  color: #000;
+}
+.ds-tf-phone__dial {
+  font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px;
+  color: var(--text-secondary);
+  white-space: pre;
+}
+
+/* chevron-down 14 textSecondary, gap 6 a cada lado */
+.ds-tf-phone__chev { display: inline-flex; flex: none; margin: 0 6px; color: var(--text-secondary); }
+
+/* divisor: 0.5px labelSecondary con opacity 0.3, estirado; gap 12 hasta el input */
+.ds-tf-phone__divider {
+  width: 0.5px; align-self: stretch;
+  background: var(--label-secondary); opacity: 0.3;
+  margin-right: 12px;
+}
+
+.ds-tf-phone__fallback { font: 500 14px/1.29 var(--font-main); color: var(--text-quarternary); }

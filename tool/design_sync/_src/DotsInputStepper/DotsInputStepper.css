@@ -1,0 +1,39 @@
+/* DotsInputStepper — 116 × 41, píldora r1000 (dots_input_stepper.dart) */
+.ds-stepper {
+  box-sizing: border-box;
+  width: 116px;
+  height: 41px;
+  border-radius: 1000px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-container-secondary-on-bg);
+}
+/* DotsIconButton small (28), backgroundColor transparent, shouldApplyBlur false */
+.ds-stepper__btn {
+  box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  font: 500 14px/1 var(--font-main); /* solo visible en el glifo fallback */
+}
+.ds-stepper__btn.is-disabled {
+  color: var(--text-disabled);
+  cursor: default;
+  pointer-events: none;
+}
+/* valor — bodyLargeMedium 16/500, textPrimary */
+.ds-stepper__value {
+  font: 500 16px/1.31 var(--font-main);
+  letter-spacing: -0.05px;
+  color: var(--text-primary);
+}

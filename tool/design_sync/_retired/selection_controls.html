@@ -1,0 +1,185 @@
+<!-- @dsCard group="Buttons" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · Selection Controls</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  h3 { font-size: 12px; font-weight: 600; margin: 18px 0 6px; }
+  .light h2, .light h3 { color: #000; } .dark h2, .dark h3 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 12px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .row { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+  .lbl { font-size: 9px; font-family: ui-monospace, monospace; opacity: .45; width: 100%; margin: 2px 0; }
+  .light .lbl { color: #000; } .dark .lbl { color: #FFF; }
+
+  /* ===== DotsToggle — 44.42 × 27, knobPadding 1.74 ===== */
+  .toggle {
+    width: 44.42px; height: 27px; border-radius: 13.5px;
+    padding: 1.74px; box-sizing: border-box;
+    display: flex; align-items: center; cursor: pointer;
+    transition: background .18s ease-in-out;
+  }
+  .light .toggle { background: #78788029; }  /* fillSecondary */
+  .dark  .toggle { background: #78788052; }
+  .light .toggle.on { background: #0072EF; } /* labelHighlight */
+  .dark  .toggle.on { background: #0A84FF; }
+  .toggle .knob {
+    width: 23.52px; height: 23.52px; border-radius: 50%;
+    background: #FFFFFF; /* labelAlwaysWhite */
+    box-shadow: 0 2.61px 0.87px #0000000F, 0 2.61px 6.97px #00000026, 0 0 0 0.87px #0000000A;
+  }
+  .toggle.on { justify-content: flex-end; }
+
+  /* ===== DotsRadioButton — 24, borde 2 ===== */
+  .radio {
+    width: 24px; height: 24px; border-radius: 50%; box-sizing: border-box;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .light .radio { border: 2px solid #00000033; }  /* labelSecondary */
+  .dark  .radio { border: 2px solid #FFFFFF4D; }
+  .light .radio.on { border-color: #0072EF; }     /* labelHighlight */
+  .dark  .radio.on { border-color: #0A84FF; }
+  .radio.on::after { content: ''; width: 12px; height: 12px; border-radius: 50%; }
+  .light .radio.on::after { background: #0072EF; }
+  .dark  .radio.on::after { background: #0A84FF; }
+
+  /* ===== DotsSelector — medium 24, pensado sobre foto ===== */
+  .photo {
+    display: inline-flex; align-items: center; gap: 16px;
+    padding: 14px 16px; border-radius: 16px;
+    background: linear-gradient(120deg, #7A8AA0, #A48D7E 55%, #5E6C60);
+  }
+  .selector-off {
+    width: 24px; height: 24px; border-radius: 50%; box-sizing: border-box;
+    border: 2px solid #FFFFFFB3; /* labelAlwaysWhite 70% */
+  }
+  .selector-on {
+    min-width: 24px; height: 24px; box-sizing: border-box;
+    padding: 0 5px; border-radius: 24px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #FFFFFF; font-size: 14px; font-weight: 500; font-family: 'Inter', sans-serif;
+  }
+  .light .selector-on { background: #0072EF; }
+  .dark  .selector-on { background: #0A84FF; }
+  .selector-on svg { width: 14px; height: 14px; }
+
+  /* ===== DotsInputStepper — 116 × 41, pill ===== */
+  .stepper {
+    width: 116px; height: 41px; border-radius: 1000px; box-sizing: border-box;
+    padding: 0 6px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .light .stepper { background: #8C8C8C1A; } /* bgContainerSecondaryOnBackground */
+  .dark  .stepper { background: #75757533; }
+  .stepper button {
+    width: 28px; height: 28px; border-radius: 50%; border: none; padding: 0;
+    background: transparent; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .stepper button svg { width: 14px; height: 14px; }
+  .light .stepper .enabled { color: #0000008C; }  /* textTertiary */
+  .dark  .stepper .enabled { color: #FFFFFFA6; }
+  .light .stepper .disabled { color: #00000033; } /* textDisabled */
+  .dark  .stepper .disabled { color: #FFFFFF33; }
+  .stepper .value { font-size: 16px; font-weight: 500; letter-spacing: -0.05px; } /* bodyLargeMedium */
+  .light .stepper .value { color: #000; } .dark .stepper .value { color: #FFF; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>Selection Controls — Light</h2>
+    <div class="sub">buttons/dots_toggle · dots_radio_button · dots_selector · dots_input_stepper</div>
+
+    <h3>DotsToggle</h3>
+    <div class="lbl">isSelected: false · true (44.42 × 27, knob 23.52)</div>
+    <div class="row">
+      <div class="toggle"><div class="knob"></div></div>
+      <div class="toggle on"><div class="knob"></div></div>
+    </div>
+
+    <h3>DotsRadioButton</h3>
+    <div class="lbl">isSelected: false · true (size 24, borde 2)</div>
+    <div class="row">
+      <div class="radio"></div>
+      <div class="radio on"></div>
+    </div>
+
+    <h3>DotsSelector</h3>
+    <div class="lbl">DotsSelector.check · DotsSelector.num (medium 24, sobre foto)</div>
+    <div class="row">
+      <span class="photo">
+        <span class="selector-off"></span>
+        <span class="selector-on"><svg viewBox="0 0 32 33" fill="none"><path d="M13.4057 26.9799C13.9382 26.9799 14.3591 26.7446 14.6563 26.2865L26.3568 7.86285C26.5797 7.50379 26.6663 7.2314 26.6663 6.94663C26.6663 6.26563 26.2206 5.81991 25.5396 5.81991C25.0443 5.81991 24.7719 5.98087 24.4748 6.45137L13.3562 24.1693L7.58644 16.6166C7.2769 16.1832 6.96737 16.0099 6.52163 16.0099C5.81589 16.0099 5.33301 16.4928 5.33301 17.1737C5.33301 17.4586 5.45682 17.7805 5.69207 18.0776L12.1181 26.2618C12.4895 26.7446 12.8733 26.9799 13.4057 26.9799Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M14.8801 26.4316C14.5358 26.9623 14.0324 27.2466 13.4058 27.2466C13.0973 27.2466 12.822 27.1776 12.5695 27.0335C12.3205 26.8915 12.1066 26.6839 11.9075 26.4253C11.9073 26.425 11.9078 26.4257 11.9075 26.4253L5.48307 18.2431C5.48298 18.243 5.48317 18.2432 5.48307 18.2431C5.22068 17.9116 5.06641 17.5328 5.06641 17.1737C5.06641 16.7683 5.2113 16.4068 5.47559 16.1465C5.73971 15.8863 6.1066 15.7432 6.5217 15.7432C6.78146 15.7432 7.01754 15.7944 7.23679 15.9188C7.45199 16.0409 7.63291 16.2234 7.80095 16.458L13.3348 23.7018L24.249 6.30961C24.4084 6.05715 24.5785 5.85924 24.797 5.72977C25.0188 5.59836 25.2627 5.55322 25.5397 5.55322C25.9395 5.55322 26.2929 5.68525 26.547 5.93931C26.801 6.19338 26.9331 6.54675 26.9331 6.94661C26.9331 7.29608 26.8233 7.61706 26.5834 8.0035L26.582 8.0058L14.8801 26.4316ZM24.4748 6.45137C24.7719 5.98087 25.0443 5.81991 25.5396 5.81991C26.2206 5.81991 26.6663 6.26563 26.6663 6.94663C26.6663 7.2314 26.5797 7.50379 26.3568 7.86285L14.6563 26.2865C14.3591 26.7446 13.9382 26.9799 13.4057 26.9799C12.8733 26.9799 12.4895 26.7446 12.1181 26.2618L5.69207 18.0776C5.45682 17.7805 5.33301 17.4586 5.33301 17.1737C5.33301 16.4928 5.81589 16.0099 6.52163 16.0099C6.96737 16.0099 7.2769 16.1832 7.58644 16.6166L13.3562 24.1693L24.4748 6.45137Z" fill="currentColor"/></svg></span>
+        <span class="selector-on">3</span>
+        <span class="selector-on">12</span>
+      </span>
+    </div>
+
+    <h3>DotsInputStepper</h3>
+    <div class="lbl">valor intermedio · valor en minValue (116 × 41)</div>
+    <div class="row">
+      <div class="stepper">
+        <button class="enabled"><svg viewBox="0 0 14 14" fill="none"><path d="M6.2064 7.79353H1.96018C1.5286 7.79353 1.16663 7.43852 1.16663 6.99998C1.16663 6.56143 1.5286 6.20642 1.96018 6.20642H6.2064H7.79351H12.0397C12.4713 6.20642 12.8333 6.56143 12.8333 6.99998C12.8333 7.43852 12.4713 7.79353 12.0397 7.79353H7.79351H6.2064Z" fill="currentColor"/></svg></button>
+        <span class="value">3</span>
+        <button class="enabled"><svg viewBox="0 0 32 33" fill="none"><path d="M4.47986 18.0504H14.1855V27.7561C14.1855 28.7426 14.997 29.5699 15.9993 29.5699C17.0017 29.5699 17.8132 28.7426 17.8132 27.7561V18.0504H27.5188C28.5053 18.0504 29.3327 17.239 29.3327 16.2366C29.3327 15.2342 28.5053 14.4227 27.5188 14.4227H17.8132V4.7171C17.8132 3.73063 17.0017 2.90326 15.9993 2.90326C14.997 2.90326 14.1855 3.73063 14.1855 4.7171V14.4227H4.47986C3.49338 14.4227 2.66602 15.2342 2.66602 16.2366C2.66602 17.239 3.49338 18.0504 4.47986 18.0504Z" fill="currentColor"/></svg></button>
+      </div>
+      <div class="stepper">
+        <button class="disabled"><svg viewBox="0 0 14 14" fill="none"><path d="M6.2064 7.79353H1.96018C1.5286 7.79353 1.16663 7.43852 1.16663 6.99998C1.16663 6.56143 1.5286 6.20642 1.96018 6.20642H6.2064H7.79351H12.0397C12.4713 6.20642 12.8333 6.56143 12.8333 6.99998C12.8333 7.43852 12.4713 7.79353 12.0397 7.79353H7.79351H6.2064Z" fill="currentColor"/></svg></button>
+        <span class="value">1</span>
+        <button class="enabled"><svg viewBox="0 0 32 33" fill="none"><path d="M4.47986 18.0504H14.1855V27.7561C14.1855 28.7426 14.997 29.5699 15.9993 29.5699C17.0017 29.5699 17.8132 28.7426 17.8132 27.7561V18.0504H27.5188C28.5053 18.0504 29.3327 17.239 29.3327 16.2366C29.3327 15.2342 28.5053 14.4227 27.5188 14.4227H17.8132V4.7171C17.8132 3.73063 17.0017 2.90326 15.9993 2.90326C14.997 2.90326 14.1855 3.73063 14.1855 4.7171V14.4227H4.47986C3.49338 14.4227 2.66602 15.2342 2.66602 16.2366C2.66602 17.239 3.49338 18.0504 4.47986 18.0504Z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="theme dark">
+    <h2>Selection Controls — Dark</h2>
+    <div class="sub">Mismos controles, tokens dark</div>
+
+    <h3>DotsToggle</h3>
+    <div class="lbl">isSelected: false · true (44.42 × 27, knob 23.52)</div>
+    <div class="row">
+      <div class="toggle"><div class="knob"></div></div>
+      <div class="toggle on"><div class="knob"></div></div>
+    </div>
+
+    <h3>DotsRadioButton</h3>
+    <div class="lbl">isSelected: false · true (size 24, borde 2)</div>
+    <div class="row">
+      <div class="radio"></div>
+      <div class="radio on"></div>
+    </div>
+
+    <h3>DotsSelector</h3>
+    <div class="lbl">DotsSelector.check · DotsSelector.num (medium 24, sobre foto)</div>
+    <div class="row">
+      <span class="photo">
+        <span class="selector-off"></span>
+        <span class="selector-on"><svg viewBox="0 0 32 33" fill="none"><path d="M13.4057 26.9799C13.9382 26.9799 14.3591 26.7446 14.6563 26.2865L26.3568 7.86285C26.5797 7.50379 26.6663 7.2314 26.6663 6.94663C26.6663 6.26563 26.2206 5.81991 25.5396 5.81991C25.0443 5.81991 24.7719 5.98087 24.4748 6.45137L13.3562 24.1693L7.58644 16.6166C7.2769 16.1832 6.96737 16.0099 6.52163 16.0099C5.81589 16.0099 5.33301 16.4928 5.33301 17.1737C5.33301 17.4586 5.45682 17.7805 5.69207 18.0776L12.1181 26.2618C12.4895 26.7446 12.8733 26.9799 13.4057 26.9799Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M14.8801 26.4316C14.5358 26.9623 14.0324 27.2466 13.4058 27.2466C13.0973 27.2466 12.822 27.1776 12.5695 27.0335C12.3205 26.8915 12.1066 26.6839 11.9075 26.4253C11.9073 26.425 11.9078 26.4257 11.9075 26.4253L5.48307 18.2431C5.48298 18.243 5.48317 18.2432 5.48307 18.2431C5.22068 17.9116 5.06641 17.5328 5.06641 17.1737C5.06641 16.7683 5.2113 16.4068 5.47559 16.1465C5.73971 15.8863 6.1066 15.7432 6.5217 15.7432C6.78146 15.7432 7.01754 15.7944 7.23679 15.9188C7.45199 16.0409 7.63291 16.2234 7.80095 16.458L13.3348 23.7018L24.249 6.30961C24.4084 6.05715 24.5785 5.85924 24.797 5.72977C25.0188 5.59836 25.2627 5.55322 25.5397 5.55322C25.9395 5.55322 26.2929 5.68525 26.547 5.93931C26.801 6.19338 26.9331 6.54675 26.9331 6.94661C26.9331 7.29608 26.8233 7.61706 26.5834 8.0035L26.582 8.0058L14.8801 26.4316ZM24.4748 6.45137C24.7719 5.98087 25.0443 5.81991 25.5396 5.81991C26.2206 5.81991 26.6663 6.26563 26.6663 6.94663C26.6663 7.2314 26.5797 7.50379 26.3568 7.86285L14.6563 26.2865C14.3591 26.7446 13.9382 26.9799 13.4057 26.9799C12.8733 26.9799 12.4895 26.7446 12.1181 26.2618L5.69207 18.0776C5.45682 17.7805 5.33301 17.4586 5.33301 17.1737C5.33301 16.4928 5.81589 16.0099 6.52163 16.0099C6.96737 16.0099 7.2769 16.1832 7.58644 16.6166L13.3562 24.1693L24.4748 6.45137Z" fill="currentColor"/></svg></span>
+        <span class="selector-on">3</span>
+        <span class="selector-on">12</span>
+      </span>
+    </div>
+
+    <h3>DotsInputStepper</h3>
+    <div class="lbl">valor intermedio · valor en minValue (116 × 41)</div>
+    <div class="row">
+      <div class="stepper">
+        <button class="enabled"><svg viewBox="0 0 14 14" fill="none"><path d="M6.2064 7.79353H1.96018C1.5286 7.79353 1.16663 7.43852 1.16663 6.99998C1.16663 6.56143 1.5286 6.20642 1.96018 6.20642H6.2064H7.79351H12.0397C12.4713 6.20642 12.8333 6.56143 12.8333 6.99998C12.8333 7.43852 12.4713 7.79353 12.0397 7.79353H7.79351H6.2064Z" fill="currentColor"/></svg></button>
+        <span class="value">3</span>
+        <button class="enabled"><svg viewBox="0 0 32 33" fill="none"><path d="M4.47986 18.0504H14.1855V27.7561C14.1855 28.7426 14.997 29.5699 15.9993 29.5699C17.0017 29.5699 17.8132 28.7426 17.8132 27.7561V18.0504H27.5188C28.5053 18.0504 29.3327 17.239 29.3327 16.2366C29.3327 15.2342 28.5053 14.4227 27.5188 14.4227H17.8132V4.7171C17.8132 3.73063 17.0017 2.90326 15.9993 2.90326C14.997 2.90326 14.1855 3.73063 14.1855 4.7171V14.4227H4.47986C3.49338 14.4227 2.66602 15.2342 2.66602 16.2366C2.66602 17.239 3.49338 18.0504 4.47986 18.0504Z" fill="currentColor"/></svg></button>
+      </div>
+      <div class="stepper">
+        <button class="disabled"><svg viewBox="0 0 14 14" fill="none"><path d="M6.2064 7.79353H1.96018C1.5286 7.79353 1.16663 7.43852 1.16663 6.99998C1.16663 6.56143 1.5286 6.20642 1.96018 6.20642H6.2064H7.79351H12.0397C12.4713 6.20642 12.8333 6.56143 12.8333 6.99998C12.8333 7.43852 12.4713 7.79353 12.0397 7.79353H7.79351H6.2064Z" fill="currentColor"/></svg></button>
+        <span class="value">1</span>
+        <button class="enabled"><svg viewBox="0 0 32 33" fill="none"><path d="M4.47986 18.0504H14.1855V27.7561C14.1855 28.7426 14.997 29.5699 15.9993 29.5699C17.0017 29.5699 17.8132 28.7426 17.8132 27.7561V18.0504H27.5188C28.5053 18.0504 29.3327 17.239 29.3327 16.2366C29.3327 15.2342 28.5053 14.4227 27.5188 14.4227H17.8132V4.7171C17.8132 3.73063 17.0017 2.90326 15.9993 2.90326C14.997 2.90326 14.1855 3.73063 14.1855 4.7171V14.4227H4.47986C3.49338 14.4227 2.66602 15.2342 2.66602 16.2366C2.66602 17.239 3.49338 18.0504 4.47986 18.0504Z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

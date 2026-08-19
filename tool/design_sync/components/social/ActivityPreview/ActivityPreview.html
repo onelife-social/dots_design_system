@@ -1,0 +1,68 @@
+<!-- @dsCard group="social" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da;
+    var C = NS.ActivityPreview, O = NS.ActivityPreview.OverviewItem;
+    function demoImg(a, b) {
+      return 'data:image/svg+xml;utf8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400">' +
+        '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+        '<stop offset="0" stop-color="' + a + '"/><stop offset="1" stop-color="' + b + '"/></linearGradient></defs>' +
+        '<rect width="300" height="400" fill="url(#g)"/></svg>');
+    }
+    function row() {
+      var kids = Array.prototype.slice.call(arguments);
+      return h.apply(null, ['div', { style: { display: 'flex', gap: '12px', alignItems: 'flex-start', flexWrap: 'wrap' } }].concat(kids));
+    }
+    function card(child) { return h('div', { style: { width: '108px', flex: 'none' } }, child); }
+    var variants = [
+      ['variant: reactions · views · favs (placeholder)', row(
+        card(h(C, { variant: 'reactions', reactions: ['❤️', '😂'], number: '12', onCardClick: function () {} })),
+        card(h(C, { variant: 'views', number: '1.2K' })),
+        card(h(C, { variant: 'favs', number: '48' }))
+      )],
+      ['con src (imagen real, cover)', row(
+        card(h(C, { variant: 'reactions', reactions: ['🔥'], number: '31', src: demoImg('#EF5FC1', '#15ABF3') })),
+        card(h(C, { variant: 'views', number: '204', src: demoImg('#C982F7', '#F5784D') }))
+      )],
+      ['OverviewItem — reactions · views · favs', row(
+        h(O, { variant: 'reactions', icon: 'ic-heart', count: 1234, title: 'Reacciones', reactionsCount: 2100,
+               images: [demoImg('#FAA25E', '#F43C51'), demoImg('#9297EF', '#8B84F7')],
+               userImages: [demoImg('#28CB55', '#0072EF'), demoImg('#EF5FC1', '#C982F7')] }),
+        h(O, { variant: 'views', icon: 'ic-eye', count: 15600, title: 'Vistas', reactionsCount: 0,
+               images: [demoImg('#C982F7', '#15ABF3')], userImages: [] }),
+        h(O, { variant: 'favs', icon: 'ic-heart', count: 48, title: 'Favoritos', reactionsCount: 5,
+               images: [], userImages: [demoImg('#F5784D', '#F43C51')] })
+      )],
+      ['dark — preview + OverviewItem', row(
+        card(h(C, { variant: 'views', number: '1.2K' })),
+        h(O, { variant: 'reactions', icon: 'ic-heart', count: 1234, title: 'Reacciones', reactionsCount: 2100,
+               images: [demoImg('#FAA25E', '#F43C51'), demoImg('#9297EF', '#8B84F7')],
+               userImages: [demoImg('#28CB55', '#0072EF'), demoImg('#EF5FC1', '#C982F7')] })
+      ), true],
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div');
+      if (v[2]) { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '6px'; }
+      cell.appendChild(m); g.appendChild(cell);
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

@@ -1,0 +1,101 @@
+/* DotsCountdown — countdown/countdown_recap.dart + countdown_event_finished.dart
+   r24 · blur20 · toastShadow · bgContainerSecondaryOnBackground · texto labelAlwaysWhite */
+.ds-countdown {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: var(--squircle-24);
+  background: var(--bg-container-secondary-on-bg);
+  backdrop-filter: blur(var(--blur-20));
+  -webkit-backdrop-filter: blur(var(--blur-20));
+  box-shadow: var(--shadow-default); /* toastShadow */
+  color: var(--label-always-white);
+  font-family: var(--font-main);
+}
+
+/* CountdownRecap — w192, padding 12/16/16, borde blanco 30% (sin token — Colors.white .3 en Dart) */
+.ds-countdown--recap {
+  width: 192px;
+  padding: 12px 16px 16px;
+  border: 1px solid #ffffff4d;
+}
+/* isDotbook — bg textDisabled */
+.ds-countdown--dotbook {
+  background: var(--text-disabled);
+}
+
+/* labelDefaultBold 13/600 */
+.ds-countdown__title {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.31;
+}
+
+/* labelDefaultRegular 13/400 al 70% */
+.ds-countdown__desc {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.31;
+  opacity: 0.7;
+}
+
+.ds-countdown__times {
+  display: inline-flex;
+  justify-content: center;
+  gap: 10.5px;
+  margin-top: 6px;
+}
+.ds-countdown__item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* titleH4 23/700 */
+.ds-countdown__item-value {
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1.26;
+}
+/* labelSmallMedium 11/600 — al 70% solo en recap (is-dim) */
+.ds-countdown__item-label {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.27;
+}
+.ds-countdown__item-label.is-dim {
+  opacity: 0.7;
+}
+
+/* CountdownEventFinished small — h36, padding 0 12, fila icono 16 + texto labelDefaultBold */
+.ds-countdown--small {
+  flex-direction: row;
+  align-items: center;
+  height: 36px;
+  padding: 0 12px;
+  gap: 2px;
+}
+.ds-countdown__small-text {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.31;
+  white-space: nowrap;
+}
+
+/* CountdownEventFinished big — w169, padding 10/5, título + fila gap 10 */
+.ds-countdown--big {
+  width: 169px;
+  padding: 10px 5px;
+}
+.ds-countdown--big .ds-countdown__title {
+  margin-top: 0;
+}
+.ds-countdown--big .ds-countdown__times {
+  margin-top: 2px;
+  gap: 10px;
+}

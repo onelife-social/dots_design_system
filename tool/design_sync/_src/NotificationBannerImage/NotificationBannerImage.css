@@ -1,0 +1,103 @@
+/* NotificationBannerImage — port de lib/src/components/notifications/notification_banner_image.dart (Dart = fuente de verdad) */
+
+.ds-notif-banner-img {
+  position: relative;
+  box-sizing: border-box;
+  background: var(--bg-container-secondary-on-bg); /* bgContainerSecondaryOnBackground */
+  border-radius: 24px;
+  padding: 20px 0 16px; /* top 20 · bottom 16; horizontal via imagePadding / content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px; /* Column(spacing: 12) */
+  text-align: center;
+  font-family: var(--font-main);
+}
+.ds-notif-banner-img--clickable { cursor: pointer; }
+
+.ds-notif-banner-img__img-wrap {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.ds-notif-banner-img__img {
+  display: block;
+  max-width: 100%;
+  object-fit: cover; /* BoxFit.cover */
+}
+/* Sin imageSize la imagen ocupa el ancho disponible (banner del home) */
+.ds-notif-banner-img__img:not(.ds-notif-banner-img__img--sized) { width: 100%; height: auto; }
+
+/* Placeholder (solo web, sin src) — degradado del recap como screens/home.html; r16 aprox. del asset real */
+.ds-notif-banner-img__placeholder {
+  width: 100%;
+  height: 88px;
+  border-radius: 16px;
+  background: linear-gradient(120deg, #EF5FC1, #C982F7 30%, #15ABF3 55%, #F5784D 85%); /* sin token: asset ilustrado */
+  opacity: 0.9;
+}
+
+.ds-notif-banner-img__content {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px; /* Column(spacing: 12) interior */
+}
+
+/* title — typo.main.titleH6 (18/600, lh 1.28, ls -0.08) + pad horizontal 28 */
+.ds-notif-banner-img__title {
+  margin: 0 28px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.28;
+  letter-spacing: -0.08px;
+  color: var(--text-primary);
+}
+
+/* description — typo.main.bodyDefaultRegular (14/400, lh 1.29, ls -0.02) */
+.ds-notif-banner-img__desc {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.29;
+  letter-spacing: -0.02px;
+  color: var(--text-tertiary);
+}
+.ds-notif-banner-img__desc-appended { color: var(--label-highlight); }
+
+.ds-notif-banner-img__action { display: flex; justify-content: center; }
+
+/* Positioned(top: 12, right: 12) */
+.ds-notif-banner-img__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+/* Fallbacks si DotsMainButton/DotsCloseButton no están en el bundle */
+.ds-notif-banner-img__action-fallback {
+  height: 36px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 36px;
+  cursor: pointer;
+  background: var(--label-highlight);
+  color: var(--label-always-white);
+  font: 600 13px/1.31 var(--font-main);
+  letter-spacing: -0.01px;
+}
+.ds-notif-banner-img__close-fallback {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  background: var(--bg-btn-disabled);
+  color: var(--label-primary);
+  font-size: 16px;
+  line-height: 1;
+}

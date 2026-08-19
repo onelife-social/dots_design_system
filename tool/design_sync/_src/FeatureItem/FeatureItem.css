@@ -1,0 +1,44 @@
+/* FeatureItem — port de lib/src/components/feature_item/feature_item.dart
+   Row gap 8 · icono 16 textQuarternary (o imagen 24) · feature bodyDefaultRegular
+   textTertiary flex 6 · value bodyDefaultMedium textSecondary flex 4 */
+
+.ds-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-main);
+}
+.ds-feature-item__icon {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  color: var(--text-quarternary);
+}
+.ds-feature-item__image {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex: none;
+  overflow: hidden;
+}
+/* typo.main.bodyDefaultRegular (14/400, lh 1.29, ls -0.02) */
+.ds-feature-item__feature {
+  flex: 1;
+  min-width: 0;
+  font: 400 14px/1.29 var(--font-main);
+  letter-spacing: -0.02px;
+  color: var(--text-tertiary);
+  text-align: left;
+}
+.ds-feature-item--with-value .ds-feature-item__feature { flex: 6; }
+/* typo.main.bodyDefaultMedium (14/500, lh 1.29, ls -0.02) */
+.ds-feature-item__value {
+  flex: 4;
+  min-width: 0;
+  font: 500 14px/1.29 var(--font-main);
+  letter-spacing: -0.02px;
+  color: var(--text-secondary);
+  text-align: right;
+}

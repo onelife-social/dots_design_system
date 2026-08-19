@@ -1,0 +1,145 @@
+<!-- @dsCard group="overlays" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsActionSheet;
+    var noop = function () {};
+    var variants = [
+      ['standard', h(C, {
+        variant: 'standard',
+        title: 'Comparte este recuerdo',
+        description: 'Invita a tu familia para que también pueda verlo y añadir sus fotos.',
+        primaryLabel: 'Compartir', secondaryLabel: 'Ahora no',
+        onPrimaryTap: noop, onSecondaryTap: noop, onClose: noop,
+      })],
+      ['standard · column + stepProgress', h(C, {
+        variant: 'standard',
+        title: 'Configura tu grupo',
+        description: 'Paso 2 de 4',
+        stepProgress: 0.5,
+        buttonPositioning: 'column',
+        primaryLabel: 'Continuar',
+        onPrimaryTap: noop, onClose: noop,
+      })],
+      ['list', h(C, {
+        variant: 'list',
+        title: 'Añadir a un grupo',
+        showCloseButton: true, onClose: noop,
+        searchHint: 'Buscar grupo',
+        selectedItems: [{ id: 1, name: 'Familia' }],
+        onChipTap: noop,
+        listTitle: 'Tus grupos',
+        items: [
+          { icon: 'ic-family', label: 'Familia Lerma', onClick: noop },
+          { icon: 'ic-pic', label: 'Viajes', showLockIcon: true, onClick: noop },
+        ],
+        primaryLabel: 'Añadir grupo', onPrimaryTap: noop,
+      })],
+      ['input · colors', h(C, {
+        variant: 'input', inputVariant: 'colors',
+        title: 'Nuevo grupo',
+        showCloseButton: true, onClose: noop,
+        icon: 'ic-family', iconColor: '#E55451',
+        inputHint: 'Nombre del grupo',
+        colors: ['#00000066', '#E55451', '#EE8062', '#F37C20', '#F4BD24', '#E2C567'],
+        selectedColorIndex: 1, onColorSelect: noop,
+        primaryLabel: 'Crear grupo', onPrimaryTap: noop,
+      })],
+      ['radioButtons', h(C, {
+        variant: 'radioButtons',
+        title: 'Tipo de DotBook',
+        description: 'Elige el acabado para tu libro',
+        options: [
+          { id: 'hard', title: 'Tapa dura', titleIcon: 'ic-book-2',
+            details: [{ icon: 'ic-download', label: 'Impresión premium' }, { label: 'Desde 39,99 €' }],
+            selected: true },
+          { id: 'soft', title: 'Tapa blanda', titleIcon: 'ic-book-open',
+            details: [{ label: 'Desde 29,99 €' }] },
+          { id: 'express', title: 'Envío exprés', control: 'toggle', selected: true,
+            details: [{ label: 'Llega en 48 h' }] },
+        ],
+        onSelect: noop,
+        primaryLabel: 'Continuar', onPrimaryTap: noop,
+      })],
+      ['settings', h(C, {
+        variant: 'settings',
+        title: 'Familia Lerma',
+        description: '12 miembros · 340 recuerdos',
+        showCloseButton: true, onClose: noop,
+        buttons: [
+          { icon: 'ic-user-add--filled', label: 'Invitar miembros', onTap: noop },
+          { icon: 'ic-edit', label: 'Editar grupo', onTap: noop },
+          { icon: 'ic-trash', label: 'Salir del grupo', destructive: true, onTap: noop },
+        ],
+      })],
+      ['search', h(C, {
+        variant: 'search',
+        title: 'Añade a tus recuerdos',
+        searchHint: 'Buscar personas',
+        onSearchChanged: noop,
+        items: [
+          { icon: 'ic-user', label: 'Ana Martín', onClick: noop },
+          { icon: 'ic-user', label: 'Leo García', onClick: noop },
+        ],
+        primaryLabel: 'Añadir 2 personas', onPrimaryTap: noop,
+      })],
+      ['spotlight', h(C, {
+        variant: 'spotlight',
+        title: 'Tu Recap está listo',
+        label: 'Recap de agosto · 54 fotos',
+        description: 'Revive los mejores momentos del mes en un vídeo creado para ti.',
+        showCloseButton: true, onClose: noop,
+        primaryLabel: 'Ver mi Recap', onPrimaryTap: noop,
+      })],
+      ['list · ghost + back', h(C, {
+        variant: 'list', listVariant: 'ghost',
+        title: 'Tus álbumes',
+        showBackButton: true, onBack: noop,
+        labelButtonText: 'OK', onLabelButtonTap: noop,
+        searchHint: 'Buscar álbum',
+        items: [{ icon: 'ic-album', label: 'Verano 2026', onClick: noop }],
+        primaryLabel: 'Crear álbum', onPrimaryTap: noop,
+      })],
+      ['standard · dark', h(C, {
+        variant: 'standard',
+        title: 'Comparte este recuerdo',
+        description: 'Invita a tu familia para que también pueda verlo y añadir sus fotos.',
+        primaryLabel: 'Compartir', secondaryLabel: 'Ahora no',
+        onPrimaryTap: noop, onSecondaryTap: noop, onClose: noop,
+      }), 'dark'],
+      ['list · dark', h(C, {
+        variant: 'list',
+        title: 'Añadir a un grupo',
+        showCloseButton: true, onClose: noop,
+        searchHint: 'Buscar grupo',
+        listTitle: 'Tus grupos',
+        items: [
+          { icon: 'ic-family', label: 'Familia Lerma', onClick: noop },
+          { icon: 'ic-pic', label: 'Viajes', showLockIcon: true, onClick: noop },
+        ],
+        primaryLabel: 'Añadir grupo', onPrimaryTap: noop,
+      }), 'dark'],
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2] === 'dark') { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '6px'; }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

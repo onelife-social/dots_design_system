@@ -1,0 +1,24 @@
+/* PageControl — dot_book/page_control.dart · main (8px, pad 18/12) · background (6px, píldora bgActive) */
+.ds-page-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+/* main: contentPadding 18 vertical / 12 horizontal */
+.ds-page-control--main {
+  padding: 18px 12px;
+}
+/* background: contentPadding zero */
+.ds-page-control--background {
+  padding: 0;
+}
+.ds-page-control__cell {
+  display: inline-flex;
+  flex: none;
+}
+.ds-page-control__dot {
+  display: inline-block;
+  border-radius: 50%;
+}

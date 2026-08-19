@@ -1,0 +1,52 @@
+/* ColorSelector — port de lib/src/components/color_options/ (color_options.dart +
+   color_selector.dart). Fila horizontal scrolleable con padding 16 en extremos. */
+
+.ds-color-selector {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  padding: 2px 16px; /* 16 = SizedBox inicial/final del Row Dart; 2 vertical evita clip del borde */
+  scrollbar-width: none;
+}
+.ds-color-selector::-webkit-scrollbar { display: none; }
+
+/* variant options — DotsColorOptionsRow: borde negro 10% 1.5 / sel. negro 25% 2 + check blanco.
+   Negros hardcodeados: Dart usa Colors.black con opacidad, no un token de tema. */
+.ds-color-selector__option {
+  box-sizing: border-box;
+  flex: none;
+  padding: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 0, 0, 0.10);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.ds-color-selector__option.is-selected { border: 2px solid rgba(0, 0, 0, 0.25); }
+
+/* variant selector — DotsColorSelectorRow: anillo exterior labelHighlight 1.5 (sel.),
+   padding 2.5, dot con textura colorSelectorShadow (color_shadow.webp real, data URI)
+   y borde interior negro 25% (sel.) */
+.ds-color-selector__swatch {
+  box-sizing: border-box;
+  flex: none;
+  padding: 2.5px;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  background: transparent;
+  display: inline-flex;
+  cursor: pointer;
+}
+.ds-color-selector__swatch.is-selected { border-color: var(--label-highlight); }
+.ds-color-selector__dot {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-image: url('data:image/webp;base64,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');
+  background-size: cover;
+  background-position: center;
+}
+.ds-color-selector__swatch.is-selected .ds-color-selector__dot {
+  box-shadow: inset 0 0 0 1.5px rgba(0, 0, 0, 0.25); /* borde interior — Dart Colors.black 25% */
+}

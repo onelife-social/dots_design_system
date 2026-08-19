@@ -1,0 +1,57 @@
+/* DotsTextField — dots_textfield.dart. Contenedor h44, píldora r1000,
+   bg bgContainerSecondaryOnBackground, padding 0 16. */
+.ds-textfield { display: block; width: 100%; font-family: var(--font-main); }
+
+.ds-textfield__box {
+  display: flex; align-items: center;
+  height: 44px; box-sizing: border-box;
+  border-radius: 1000px; /* DotsBorderRadius.r1000 */
+  background: var(--bg-container-secondary-on-bg);
+  padding: 0 16px;
+  cursor: text;
+}
+.ds-textfield__box--no-bg { background: transparent; border-radius: 0; padding: 0; }
+/* showUnderline: borde inferior 0.5 labelSecondary con opacidad 0.3 multiplicada */
+.ds-textfield__box--underline {
+  border-bottom: 0.5px solid color-mix(in srgb, var(--label-secondary) 30%, transparent);
+}
+
+/* icono 20 textTertiary (destructive si !background && isError), gap 6 */
+.ds-textfield__icon { display: inline-flex; flex: none; margin-right: 6px; color: var(--text-tertiary); }
+.ds-textfield__icon--error { color: var(--label-destructive); }
+
+/* input: typo.main.bodyDefaultMedium (Inter 14/500, height 1.29, ls -0.02) */
+.ds-textfield__input {
+  flex: 1 1 auto; min-width: 0;
+  border: 0; outline: none; background: transparent; padding: 0; margin: 0;
+  font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px;
+  color: var(--text-primary);
+  caret-color: var(--label-highlight); /* cursorColor: labelHighlight */
+}
+.ds-textfield__input::placeholder { color: var(--text-quarternary); }
+.ds-textfield__input--error { color: var(--label-destructive); }
+.ds-textfield__input--hint-error::placeholder { color: var(--label-destructive); }
+.ds-textfield__input:disabled {
+  color: var(--text-disabled);
+  -webkit-text-fill-color: var(--text-disabled);
+}
+.ds-textfield--center .ds-textfield__input { text-align: center; }
+.ds-textfield--center .ds-textfield__error-text { text-align: center; }
+
+/* clear = DotsCloseButton extraSmall (16, icono 10) */
+.ds-textfield__clear {
+  flex: none; display: flex; align-items: center; justify-content: center;
+  width: 16px; height: 16px; padding: 0; border: 0; border-radius: 50%;
+  cursor: pointer;
+}
+/* variant inverted: bg textQuarternary, fg bgContainerPrimary */
+.ds-textfield__clear--inverted { background: var(--text-quarternary); color: var(--bg-container-primary); }
+/* variant softContrast: bg bgBtnDisabled, fg labelPrimary */
+.ds-textfield__clear--soft { background: var(--bg-btn-disabled); color: var(--label-primary); }
+
+/* errorText: typo.main.labelDefaultRegular (13/400, h1.31, ls -0.01) labelDestructive */
+.ds-textfield__error-text {
+  padding: 4px 16px 0;
+  font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px;
+  color: var(--label-destructive);
+}

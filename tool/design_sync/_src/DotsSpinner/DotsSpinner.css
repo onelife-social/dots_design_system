@@ -1,0 +1,37 @@
+/* DotsSpinner — spinner/spinner_round.dart (SpinnerRound) · size 43 · stroke 4 */
+.ds-spinner {
+  position: relative;
+  display: inline-flex;
+}
+.ds-spinner__svg {
+  display: block;
+}
+.ds-spinner__track {
+  stroke: var(--bg-btn-image);
+}
+.ds-spinner__arc {
+  stroke: var(--label-always-white);
+  transition: stroke-dasharray 0.3s ease;
+}
+
+/* labelSmallMedium 11/600 sobre foto — siempre blanco */
+.ds-spinner__pct {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-main);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.27;
+  color: var(--label-always-white);
+}
+
+/* Indeterminado (extensión web) — arco fijo al 25% girando */
+.ds-spinner--indeterminate .ds-spinner__svg {
+  animation: ds-spinner-rotate 1s linear infinite;
+}
+@keyframes ds-spinner-rotate {
+  to { transform: rotate(360deg); }
+}

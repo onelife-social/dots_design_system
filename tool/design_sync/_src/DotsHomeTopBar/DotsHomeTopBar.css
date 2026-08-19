@@ -1,0 +1,91 @@
+/* DotsHomeTopBar — navigation/home_top_bar.dart · big 106 (50 status + main 56) / normal 50 */
+.ds-home-top-bar {
+  position: relative;
+  width: 100%;
+  overflow: hidden; /* ClipRRect(BorderRadius.zero) */
+  font-family: var(--font-main);
+}
+.ds-home-top-bar__bg {
+  position: absolute;
+  inset: 0;
+}
+/* backgroundBlur — BackdropFilter blur 50 + bgContainerPrimary (token con alpha) */
+.ds-home-top-bar__bg--blur {
+  background: var(--bg-container-primary);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+}
+/* showGradient — ShaderMask bgContainerPrimary→transparente sobre blur 18 */
+.ds-home-top-bar__bg--gradient {
+  background: var(--bg-container-primary);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  mask-image: linear-gradient(to bottom, #000, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent);
+}
+.ds-home-top-bar__col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+/* TopBarContent — alto fijo preferredSize */
+.ds-home-top-bar__content {
+  height: 106px;
+  display: flex;
+  flex-direction: column;
+}
+.ds-home-top-bar--normal .ds-home-top-bar__content {
+  height: 50px;
+}
+.ds-home-top-bar__status {
+  height: 50px;
+  flex: none;
+}
+/* DotsHomeTopBarMainSection */
+.ds-home-top-bar__main {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+}
+.ds-home-top-bar__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* título — labelDefaultBold 13/600, lh 1.31, textTertiary (GestureDetector) */
+.ds-home-top-bar__title {
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.31;
+  color: var(--text-tertiary);
+}
+.ds-home-top-bar__row {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+}
+/* imgProfile — ml 16 (DotsProfilePhoto 32 en el home) */
+.ds-home-top-bar__profile {
+  margin-left: 16px;
+  display: inline-flex;
+  z-index: 1;
+}
+.ds-home-top-bar__spacer {
+  flex: 1;
+}
+.ds-home-top-bar__slot {
+  display: inline-flex;
+  z-index: 1;
+}
+/* SizedBox(16) tras secondRightIcon */
+.ds-home-top-bar__slot--second {
+  margin-right: 16px;
+}

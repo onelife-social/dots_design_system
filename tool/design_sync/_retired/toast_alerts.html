@@ -1,0 +1,148 @@
+<!-- @dsCard group="Feedback" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · DotsToast + DotsAlert</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  h3 { font-size: 12px; font-weight: 600; margin: 18px 0 8px; opacity: .7; }
+  .light h3 { color: #000; } .dark h3 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+  svg { display: block; flex: none; }
+
+  /* ===== DotsToast — contenedor: bgContainerPrimary, borde 1.4 borderAlert,
+     squircle24, padding 16, toastShadow 0 0 20 #00000033.
+     bgToast (DotsStyleColorDodge) aproximado: color base translúcido + backdrop blur 50 ===== */
+  .toast {
+    box-sizing: border-box; border-radius: 24px; padding: 16px;
+    border: 1.4px solid; box-shadow: 0 0 20px #00000033;
+    backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
+    font-size: 14px; font-weight: 500; line-height: 1.29;
+  }
+  .light .toast { background: #F8F7F5D9; border-color: #FFFFFF4D; color: #000000; }
+  .dark  .toast { background: #191919D9; border-color: #6E6E6E4D; color: #FFFFFF; }
+  .toast-info { width: 358px; max-width: 100%; display: flex; align-items: center; gap: 12px; }
+  .toast-action { width: 160px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+  .toast-info .grow { flex: 1; }
+  /* Colores de icono por variante */
+  .light .ic-highlight { color: #0072EF; } .dark .ic-highlight { color: #0A84FF; }   /* success, connectionResumed */
+  .ic-destructive { color: #ED2B32; }                                                /* error, connectionLost */
+  .light .ic-tertiary { color: #0000008C; } .dark .ic-tertiary { color: #FFFFFFA6; } /* info, progress */
+  /* Botón ghost medium (btnTitle en variante progress) */
+  .btn-ghost-md {
+    border: none; background: transparent; cursor: pointer; font-family: 'Inter', sans-serif;
+    height: 36px; padding: 0 8px; border-radius: 36px; font-size: 13px; font-weight: 600;
+  }
+  .light .btn-ghost-md { color: #0072EF; } .dark .btn-ghost-md { color: #0A84FF; }
+  .spin { animation: rot 1s linear infinite; }
+  @keyframes rot { to { transform: rotate(360deg); } }
+
+  /* ===== DotsAlert — ancho 320, bgContainerSecondary, radio 32, borde 1.4 borderAlert,
+     BackdropFilter blur 50 (bgAlert color-dodge aproximado), padding 16 ===== */
+  .alert {
+    box-sizing: border-box; width: 320px; border-radius: 32px; padding: 16px;
+    border: 1.4px solid; backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .light .alert { background: #E2E2E2B3; border-color: #FFFFFF4D; }
+  .dark  .alert { background: #282828B3; border-color: #6E6E6E4D; }
+  .alert-icon-pad { padding: 8px; }
+  .alert-icon {
+    width: 48px; height: 48px; border-radius: 24.5px; box-sizing: border-box; padding: 12px;
+  }
+  .light .alert-icon { background: #0072EF33; color: #0072EF; }
+  .dark  .alert-icon { background: #0A84FF33; color: #0A84FF; }
+  .alert-body { padding: 16px; text-align: center; }
+  .alert-title { font-size: 16px; font-weight: 700; line-height: 1.31; margin: 0 0 8px; }
+  .light .alert-title { color: #000; } .dark .alert-title { color: #FFF; }
+  .alert-msg { font-size: 14px; font-weight: 400; line-height: 1.29; margin: 0; }
+  .light .alert-msg { color: #000; } .dark .alert-msg { color: #FFF; }
+  .alert-actions { width: 100%; margin-top: 8px; display: flex; gap: 12px; }
+  /* DotsMainButton large (44) dentro del alert */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; flex: 1;
+    border: none; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap;
+    height: 44px; padding: 0 20px; border-radius: 44px; font-size: 14px; font-weight: 500;
+  }
+  .light .v-main { background: #0072EF; color: #FFF; } .dark .v-main { background: #0A84FF; color: #FFF; }
+  .v-destructive { background: #ED2B32; color: #FFF; }
+  .light .v-secondary { background: #8C8C8C4D; color: #000000AB; } .dark .v-secondary { background: #C8C8C84D; color: #FFFFFFBF; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>DotsToast + DotsAlert — Light</h2>
+    <div class="sub">toast/dots_toast · alerts/dots_alert · variantes reales</div>
+
+    <h3>DotsToastInfo (isAction: false · 358 ancho)</h3>
+    <div class="row"><div class="toast toast-info"><svg class="ic-highlight" width="20" height="20" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M29.3327 16.4867C29.3327 23.7678 23.2935 29.82 15.9993 29.82C8.71831 29.82 2.66602 23.7678 2.66602 16.4867C2.66602 9.19255 8.70524 3.15332 15.9863 3.15332C23.2805 3.15332 29.3327 9.19255 29.3327 16.4867ZM20.0648 11.2971L14.4831 20.2644L11.8294 16.8396C11.5026 16.4082 11.215 16.2906 10.836 16.2906C10.2477 16.2906 9.79021 16.7742 9.79021 17.3625C9.79021 17.6631 9.90786 17.9507 10.1039 18.2122L13.385 22.2384C13.7249 22.6958 14.0909 22.8789 14.5353 22.8789C14.9798 22.8789 15.3588 22.6697 15.6334 22.2384L21.7772 12.5651C21.934 12.2906 22.104 11.9899 22.104 11.7024C22.104 11.088 21.568 10.6958 20.9929 10.6958C20.653 10.6958 20.3131 10.905 20.0648 11.2971Z"/></svg><span class="grow">Recuerdo guardado</span></div></div>
+    <div class="row"><div class="toast toast-info"><svg class="ic-destructive" width="20" height="20" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M25.4288 7.05848C30.5773 12.207 30.5866 20.7569 25.4288 25.9147C20.2803 31.0631 11.7212 31.0632 6.57262 25.9147C1.41491 20.7569 1.41491 12.2162 6.56339 7.06771C11.7212 1.90995 20.2711 1.90077 25.4288 7.05848ZM11.4993 13.5934L14.3924 16.4866L11.4993 19.3797C11.0186 19.8604 11.0187 20.5259 11.4993 21.0065C11.9707 21.4779 12.6177 21.4594 13.0983 20.9788L15.9915 18.0856L18.8939 20.988C19.3653 21.4594 20.0309 21.4779 20.5022 21.0065C20.9829 20.5259 20.9829 19.8603 20.5022 19.3797L17.5998 16.4773L20.5021 13.575C20.9736 13.1035 21.0013 12.4473 20.5299 11.9758C20.0493 11.4952 19.3745 11.5045 18.9031 11.9759L16.0008 14.8782L13.1076 11.9851C12.627 11.5044 11.98 11.5229 11.4993 12.0036C11.0279 12.475 11.0186 13.1128 11.4993 13.5934Z"/></svg><span class="grow">No se pudo subir la foto</span></div></div>
+    <div class="row"><div class="toast toast-info"><svg class="ic-tertiary" width="20" height="20" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M29.3327 16.4867C29.3327 23.7678 23.2935 29.82 15.9993 29.82C8.71831 29.82 2.66602 23.7678 2.66602 16.4867C2.66602 9.19255 8.70524 3.15332 15.9863 3.15332C23.2805 3.15332 29.3327 9.19255 29.3327 16.4867ZM14.5353 21.8985C14.5353 22.6697 15.2151 23.2972 15.9993 23.2972C16.7836 23.2972 17.4634 22.6828 17.4634 21.8985C17.4634 21.1142 16.7968 20.4867 15.9993 20.4867C15.202 20.4867 14.5353 21.1272 14.5353 21.8985ZM14.7575 10.722L14.9275 17.8462C14.9405 18.539 15.3197 18.918 15.9993 18.918C16.653 18.918 17.0321 18.5521 17.0451 17.8462L17.2282 10.735C17.2412 10.0422 16.7052 9.53242 15.9863 9.53242C15.2543 9.53242 14.7444 10.0291 14.7575 10.722Z"/></svg><span class="grow">Nueva versión disponible</span></div></div>
+    <div class="row"><div class="toast toast-info"><svg class="ic-tertiary spin" width="24" height="24" viewBox="0 0 23 23" fill="none"><path d="M1.1333 11.1333C1.1333 5.61045 5.61045 1.1333 11.1333 1.1333C16.6561 1.1333 21.1333 5.61045 21.1333 11.1333C21.1333 16.6561 16.6561 21.1333 11.1333 21.1333C5.61045 21.1333 1.1333 16.6561 1.1333 11.1333Z" stroke="black" stroke-opacity="0.08" stroke-width="2.26667"/><path d="M21.1333 11.1333C21.1333 5.61045 16.6561 1.1333 11.1333 1.1333" stroke="#3478F6" stroke-width="2.26667" stroke-linecap="round"/></svg><span class="grow">Subiendo 12 fotos…</span><button class="btn-ghost-md">Cancelar</button></div></div>
+
+    <h3>DotsToastAction (isAction: true · 160 ancho)</h3>
+    <div class="row">
+      <div class="toast toast-action"><svg class="ic-highlight" width="24" height="24" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M29.3327 16.4867C29.3327 23.7678 23.2935 29.82 15.9993 29.82C8.71831 29.82 2.66602 23.7678 2.66602 16.4867C2.66602 9.19255 8.70524 3.15332 15.9863 3.15332C23.2805 3.15332 29.3327 9.19255 29.3327 16.4867ZM20.0648 11.2971L14.4831 20.2644L11.8294 16.8396C11.5026 16.4082 11.215 16.2906 10.836 16.2906C10.2477 16.2906 9.79021 16.7742 9.79021 17.3625C9.79021 17.6631 9.90786 17.9507 10.1039 18.2122L13.385 22.2384C13.7249 22.6958 14.0909 22.8789 14.5353 22.8789C14.9798 22.8789 15.3588 22.6697 15.6334 22.2384L21.7772 12.5651C21.934 12.2906 22.104 11.9899 22.104 11.7024C22.104 11.088 21.568 10.6958 20.9929 10.6958C20.653 10.6958 20.3131 10.905 20.0648 11.2971Z"/></svg>Copiado</div>
+      <div class="toast toast-action"><svg class="ic-destructive" width="24" height="24" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M12.7426 25.0807C12.326 25.0807 12.0589 24.8293 12.0376 24.4142L11.7171 12.3854C11.7064 11.9811 11.9735 11.7189 12.4008 11.7189C12.796 11.7189 13.0738 11.9702 13.0845 12.3744L13.4263 24.4142C13.437 24.8184 13.1592 25.0807 12.7426 25.0807ZM16.0008 25.0807C15.5841 25.0807 15.2957 24.8184 15.2957 24.4142V12.3854C15.2957 11.9811 15.5841 11.7189 16.0008 11.7189C16.4174 11.7189 16.7165 11.9811 16.7165 12.3854V24.4142C16.7165 24.8184 16.4174 25.0807 16.0008 25.0807ZM19.2696 25.0807C18.853 25.0807 18.5753 24.8184 18.5859 24.4142L18.9171 12.3854C18.9278 11.9702 19.2055 11.7189 19.6008 11.7189C20.028 11.7189 20.2951 11.9811 20.2844 12.3854L19.9639 24.4142C19.9426 24.8293 19.6755 25.0807 19.2696 25.0807ZM11.3112 9.06406H13.0097V6.72603C13.0097 6.10329 13.437 5.69904 14.0779 5.69904H17.9022C18.5432 5.69904 18.9705 6.10329 18.9705 6.72603V9.06406H20.6689V6.61678C20.6689 5.0326 19.6649 4.07117 18.0197 4.07117H13.9604C12.3153 4.07117 11.3112 5.0326 11.3112 6.61678V9.06406ZM6.46134 9.93809H25.5508C25.9889 9.93809 26.3414 9.5557 26.3414 9.10776C26.3414 8.65983 25.9889 8.28836 25.5508 8.28836H6.46134C6.03404 8.28836 5.66016 8.65983 5.66016 9.10776C5.66016 9.56663 6.03404 9.93809 6.46134 9.93809ZM11.1082 28.402H20.904C22.4316 28.402 23.4571 27.3859 23.5319 25.8235L24.2797 9.70866H7.72187L8.48032 25.8345C8.5551 27.3968 9.55924 28.402 11.1082 28.402Z"/></svg>Eliminado</div>
+    </div>
+    <div class="sub">success · error · info · progress · connectionResumed · connectionLost · widget</div>
+
+    <h3>DotsAlert (320 ancho · blur 50)</h3>
+    <div class="row">
+      <div class="alert">
+        <div class="alert-icon-pad"><div class="alert-icon"><svg width="24" height="24" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M29.3327 16.4867C29.3327 23.7678 23.2935 29.82 15.9993 29.82C8.71831 29.82 2.66602 23.7678 2.66602 16.4867C2.66602 9.19255 8.70524 3.15332 15.9863 3.15332C23.2805 3.15332 29.3327 9.19255 29.3327 16.4867ZM20.0648 11.2971L14.4831 20.2644L11.8294 16.8396C11.5026 16.4082 11.215 16.2906 10.836 16.2906C10.2477 16.2906 9.79021 16.7742 9.79021 17.3625C9.79021 17.6631 9.90786 17.9507 10.1039 18.2122L13.385 22.2384C13.7249 22.6958 14.0909 22.8789 14.5353 22.8789C14.9798 22.8789 15.3588 22.6697 15.6334 22.2384L21.7772 12.5651C21.934 12.2906 22.104 11.9899 22.104 11.7024C22.104 11.088 21.568 10.6958 20.9929 10.6958C20.653 10.6958 20.3131 10.905 20.0648 11.2971Z"/></svg></div></div>
+        <div class="alert-body"><p class="alert-title">Copia creada</p><p class="alert-msg">Tu recuerdo se guardó correctamente.</p></div>
+        <div class="alert-actions"><button class="btn v-main">Entendido</button></div>
+      </div>
+      <div class="alert">
+        <div class="alert-icon-pad"><div class="alert-icon"><svg width="24" height="24" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M12.7426 25.0807C12.326 25.0807 12.0589 24.8293 12.0376 24.4142L11.7171 12.3854C11.7064 11.9811 11.9735 11.7189 12.4008 11.7189C12.796 11.7189 13.0738 11.9702 13.0845 12.3744L13.4263 24.4142C13.437 24.8184 13.1592 25.0807 12.7426 25.0807ZM16.0008 25.0807C15.5841 25.0807 15.2957 24.8184 15.2957 24.4142V12.3854C15.2957 11.9811 15.5841 11.7189 16.0008 11.7189C16.4174 11.7189 16.7165 11.9811 16.7165 12.3854V24.4142C16.7165 24.8184 16.4174 25.0807 16.0008 25.0807ZM19.2696 25.0807C18.853 25.0807 18.5753 24.8184 18.5859 24.4142L18.9171 12.3854C18.9278 11.9702 19.2055 11.7189 19.6008 11.7189C20.028 11.7189 20.2951 11.9811 20.2844 12.3854L19.9639 24.4142C19.9426 24.8293 19.6755 25.0807 19.2696 25.0807ZM11.3112 9.06406H13.0097V6.72603C13.0097 6.10329 13.437 5.69904 14.0779 5.69904H17.9022C18.5432 5.69904 18.9705 6.10329 18.9705 6.72603V9.06406H20.6689V6.61678C20.6689 5.0326 19.6649 4.07117 18.0197 4.07117H13.9604C12.3153 4.07117 11.3112 5.0326 11.3112 6.61678V9.06406ZM6.46134 9.93809H25.5508C25.9889 9.93809 26.3414 9.5557 26.3414 9.10776C26.3414 8.65983 25.9889 8.28836 25.5508 8.28836H6.46134C6.03404 8.28836 5.66016 8.65983 5.66016 9.10776C5.66016 9.56663 6.03404 9.93809 6.46134 9.93809ZM11.1082 28.402H20.904C22.4316 28.402 23.4571 27.3859 23.5319 25.8235L24.2797 9.70866H7.72187L8.48032 25.8345C8.5551 27.3968 9.55924 28.402 11.1082 28.402Z"/></svg></div></div>
+        <div class="alert-body"><p class="alert-title">¿Eliminar recuerdo?</p><p class="alert-msg">Esta acción no se puede deshacer.</p></div>
+        <div class="alert-actions"><button class="btn v-secondary">Cancelar</button><button class="btn v-destructive">Eliminar</button></div>
+      </div>
+    </div>
+    <div class="sub">noButtons · oneButton · twoHorizontalButtons(Destructive) · twoVerticalButtons(Destructive/NoActive) · input · selector</div>
+  </div>
+
+  <div class="theme dark">
+    <h2>DotsToast + DotsAlert — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+
+    <h3>DotsToastInfo (isAction: false · 358 ancho)</h3>
+    <div class="row"><div class="toast toast-info"><svg class="ic-highlight" width="20" height="20" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M29.3327 16.4867C29.3327 23.7678 23.2935 29.82 15.9993 29.82C8.71831 29.82 2.66602 23.7678 2.66602 16.4867C2.66602 9.19255 8.70524 3.15332 15.9863 3.15332C23.2805 3.15332 29.3327 9.19255 29.3327 16.4867ZM20.0648 11.2971L14.4831 20.2644L11.8294 16.8396C11.5026 16.4082 11.215 16.2906 10.836 16.2906C10.2477 16.2906 9.79021 16.7742 9.79021 17.3625C9.79021 17.6631 9.90786 17.9507 10.1039 18.2122L13.385 22.2384C13.7249 22.6958 14.0909 22.8789 14.5353 22.8789C14.9798 22.8789 15.3588 22.6697 15.6334 22.2384L21.7772 12.5651C21.934 12.2906 22.104 11.9899 22.104 11.7024C22.104 11.088 21.568 10.6958 20.9929 10.6958C20.653 10.6958 20.3131 10.905 20.0648 11.2971Z"/></svg><span class="grow">Recuerdo guardado</span></div></div>
+    <div class="row"><div class="toast toast-info"><svg class="ic-destructive" width="20" height="20" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M25.4288 7.05848C30.5773 12.207 30.5866 20.7569 25.4288 25.9147C20.2803 31.0631 11.7212 31.0632 6.57262 25.9147C1.41491 20.7569 1.41491 12.2162 6.56339 7.06771C11.7212 1.90995 20.2711 1.90077 25.4288 7.05848ZM11.4993 13.5934L14.3924 16.4866L11.4993 19.3797C11.0186 19.8604 11.0187 20.5259 11.4993 21.0065C11.9707 21.4779 12.6177 21.4594 13.0983 20.9788L15.9915 18.0856L18.8939 20.988C19.3653 21.4594 20.0309 21.4779 20.5022 21.0065C20.9829 20.5259 20.9829 19.8603 20.5022 19.3797L17.5998 16.4773L20.5021 13.575C20.9736 13.1035 21.0013 12.4473 20.5299 11.9758C20.0493 11.4952 19.3745 11.5045 18.9031 11.9759L16.0008 14.8782L13.1076 11.9851C12.627 11.5044 11.98 11.5229 11.4993 12.0036C11.0279 12.475 11.0186 13.1128 11.4993 13.5934Z"/></svg><span class="grow">No se pudo subir la foto</span></div></div>
+    <div class="row"><div class="toast toast-info"><svg class="ic-tertiary" width="20" height="20" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M29.3327 16.4867C29.3327 23.7678 23.2935 29.82 15.9993 29.82C8.71831 29.82 2.66602 23.7678 2.66602 16.4867C2.66602 9.19255 8.70524 3.15332 15.9863 3.15332C23.2805 3.15332 29.3327 9.19255 29.3327 16.4867ZM14.5353 21.8985C14.5353 22.6697 15.2151 23.2972 15.9993 23.2972C16.7836 23.2972 17.4634 22.6828 17.4634 21.8985C17.4634 21.1142 16.7968 20.4867 15.9993 20.4867C15.202 20.4867 14.5353 21.1272 14.5353 21.8985ZM14.7575 10.722L14.9275 17.8462C14.9405 18.539 15.3197 18.918 15.9993 18.918C16.653 18.918 17.0321 18.5521 17.0451 17.8462L17.2282 10.735C17.2412 10.0422 16.7052 9.53242 15.9863 9.53242C15.2543 9.53242 14.7444 10.0291 14.7575 10.722Z"/></svg><span class="grow">Nueva versión disponible</span></div></div>
+    <div class="row"><div class="toast toast-info"><svg class="ic-tertiary spin" width="24" height="24" viewBox="0 0 23 23" fill="none"><path d="M1.1333 11.1333C1.1333 5.61045 5.61045 1.1333 11.1333 1.1333C16.6561 1.1333 21.1333 5.61045 21.1333 11.1333C21.1333 16.6561 16.6561 21.1333 11.1333 21.1333C5.61045 21.1333 1.1333 16.6561 1.1333 11.1333Z" stroke="black" stroke-opacity="0.08" stroke-width="2.26667"/><path d="M21.1333 11.1333C21.1333 5.61045 16.6561 1.1333 11.1333 1.1333" stroke="#3478F6" stroke-width="2.26667" stroke-linecap="round"/></svg><span class="grow">Subiendo 12 fotos…</span><button class="btn-ghost-md">Cancelar</button></div></div>
+
+    <h3>DotsToastAction (isAction: true · 160 ancho)</h3>
+    <div class="row">
+      <div class="toast toast-action"><svg class="ic-highlight" width="24" height="24" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M29.3327 16.4867C29.3327 23.7678 23.2935 29.82 15.9993 29.82C8.71831 29.82 2.66602 23.7678 2.66602 16.4867C2.66602 9.19255 8.70524 3.15332 15.9863 3.15332C23.2805 3.15332 29.3327 9.19255 29.3327 16.4867ZM20.0648 11.2971L14.4831 20.2644L11.8294 16.8396C11.5026 16.4082 11.215 16.2906 10.836 16.2906C10.2477 16.2906 9.79021 16.7742 9.79021 17.3625C9.79021 17.6631 9.90786 17.9507 10.1039 18.2122L13.385 22.2384C13.7249 22.6958 14.0909 22.8789 14.5353 22.8789C14.9798 22.8789 15.3588 22.6697 15.6334 22.2384L21.7772 12.5651C21.934 12.2906 22.104 11.9899 22.104 11.7024C22.104 11.088 21.568 10.6958 20.9929 10.6958C20.653 10.6958 20.3131 10.905 20.0648 11.2971Z"/></svg>Copiado</div>
+      <div class="toast toast-action"><svg class="ic-destructive" width="24" height="24" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M12.7426 25.0807C12.326 25.0807 12.0589 24.8293 12.0376 24.4142L11.7171 12.3854C11.7064 11.9811 11.9735 11.7189 12.4008 11.7189C12.796 11.7189 13.0738 11.9702 13.0845 12.3744L13.4263 24.4142C13.437 24.8184 13.1592 25.0807 12.7426 25.0807ZM16.0008 25.0807C15.5841 25.0807 15.2957 24.8184 15.2957 24.4142V12.3854C15.2957 11.9811 15.5841 11.7189 16.0008 11.7189C16.4174 11.7189 16.7165 11.9811 16.7165 12.3854V24.4142C16.7165 24.8184 16.4174 25.0807 16.0008 25.0807ZM19.2696 25.0807C18.853 25.0807 18.5753 24.8184 18.5859 24.4142L18.9171 12.3854C18.9278 11.9702 19.2055 11.7189 19.6008 11.7189C20.028 11.7189 20.2951 11.9811 20.2844 12.3854L19.9639 24.4142C19.9426 24.8293 19.6755 25.0807 19.2696 25.0807ZM11.3112 9.06406H13.0097V6.72603C13.0097 6.10329 13.437 5.69904 14.0779 5.69904H17.9022C18.5432 5.69904 18.9705 6.10329 18.9705 6.72603V9.06406H20.6689V6.61678C20.6689 5.0326 19.6649 4.07117 18.0197 4.07117H13.9604C12.3153 4.07117 11.3112 5.0326 11.3112 6.61678V9.06406ZM6.46134 9.93809H25.5508C25.9889 9.93809 26.3414 9.5557 26.3414 9.10776C26.3414 8.65983 25.9889 8.28836 25.5508 8.28836H6.46134C6.03404 8.28836 5.66016 8.65983 5.66016 9.10776C5.66016 9.56663 6.03404 9.93809 6.46134 9.93809ZM11.1082 28.402H20.904C22.4316 28.402 23.4571 27.3859 23.5319 25.8235L24.2797 9.70866H7.72187L8.48032 25.8345C8.5551 27.3968 9.55924 28.402 11.1082 28.402Z"/></svg>Eliminado</div>
+    </div>
+    <div class="sub">success · error · info · progress · connectionResumed · connectionLost · widget</div>
+
+    <h3>DotsAlert (320 ancho · blur 50)</h3>
+    <div class="row">
+      <div class="alert">
+        <div class="alert-icon-pad"><div class="alert-icon"><svg width="24" height="24" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M29.3327 16.4867C29.3327 23.7678 23.2935 29.82 15.9993 29.82C8.71831 29.82 2.66602 23.7678 2.66602 16.4867C2.66602 9.19255 8.70524 3.15332 15.9863 3.15332C23.2805 3.15332 29.3327 9.19255 29.3327 16.4867ZM20.0648 11.2971L14.4831 20.2644L11.8294 16.8396C11.5026 16.4082 11.215 16.2906 10.836 16.2906C10.2477 16.2906 9.79021 16.7742 9.79021 17.3625C9.79021 17.6631 9.90786 17.9507 10.1039 18.2122L13.385 22.2384C13.7249 22.6958 14.0909 22.8789 14.5353 22.8789C14.9798 22.8789 15.3588 22.6697 15.6334 22.2384L21.7772 12.5651C21.934 12.2906 22.104 11.9899 22.104 11.7024C22.104 11.088 21.568 10.6958 20.9929 10.6958C20.653 10.6958 20.3131 10.905 20.0648 11.2971Z"/></svg></div></div>
+        <div class="alert-body"><p class="alert-title">Copia creada</p><p class="alert-msg">Tu recuerdo se guardó correctamente.</p></div>
+        <div class="alert-actions"><button class="btn v-main">Entendido</button></div>
+      </div>
+      <div class="alert">
+        <div class="alert-icon-pad"><div class="alert-icon"><svg width="24" height="24" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M12.7426 25.0807C12.326 25.0807 12.0589 24.8293 12.0376 24.4142L11.7171 12.3854C11.7064 11.9811 11.9735 11.7189 12.4008 11.7189C12.796 11.7189 13.0738 11.9702 13.0845 12.3744L13.4263 24.4142C13.437 24.8184 13.1592 25.0807 12.7426 25.0807ZM16.0008 25.0807C15.5841 25.0807 15.2957 24.8184 15.2957 24.4142V12.3854C15.2957 11.9811 15.5841 11.7189 16.0008 11.7189C16.4174 11.7189 16.7165 11.9811 16.7165 12.3854V24.4142C16.7165 24.8184 16.4174 25.0807 16.0008 25.0807ZM19.2696 25.0807C18.853 25.0807 18.5753 24.8184 18.5859 24.4142L18.9171 12.3854C18.9278 11.9702 19.2055 11.7189 19.6008 11.7189C20.028 11.7189 20.2951 11.9811 20.2844 12.3854L19.9639 24.4142C19.9426 24.8293 19.6755 25.0807 19.2696 25.0807ZM11.3112 9.06406H13.0097V6.72603C13.0097 6.10329 13.437 5.69904 14.0779 5.69904H17.9022C18.5432 5.69904 18.9705 6.10329 18.9705 6.72603V9.06406H20.6689V6.61678C20.6689 5.0326 19.6649 4.07117 18.0197 4.07117H13.9604C12.3153 4.07117 11.3112 5.0326 11.3112 6.61678V9.06406ZM6.46134 9.93809H25.5508C25.9889 9.93809 26.3414 9.5557 26.3414 9.10776C26.3414 8.65983 25.9889 8.28836 25.5508 8.28836H6.46134C6.03404 8.28836 5.66016 8.65983 5.66016 9.10776C5.66016 9.56663 6.03404 9.93809 6.46134 9.93809ZM11.1082 28.402H20.904C22.4316 28.402 23.4571 27.3859 23.5319 25.8235L24.2797 9.70866H7.72187L8.48032 25.8345C8.5551 27.3968 9.55924 28.402 11.1082 28.402Z"/></svg></div></div>
+        <div class="alert-body"><p class="alert-title">¿Eliminar recuerdo?</p><p class="alert-msg">Esta acción no se puede deshacer.</p></div>
+        <div class="alert-actions"><button class="btn v-secondary">Cancelar</button><button class="btn v-destructive">Eliminar</button></div>
+      </div>
+    </div>
+    <div class="sub">noButtons · oneButton · twoHorizontalButtons(Destructive) · twoVerticalButtons(Destructive/NoActive) · input · selector</div>
+  </div>
+</body>
+</html>

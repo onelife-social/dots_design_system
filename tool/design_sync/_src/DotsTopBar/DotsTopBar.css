@@ -1,0 +1,114 @@
+/* DotsTopBar — navigation/top_bar.dart · normal 50 / big 106 (50 status + contenido) */
+.ds-top-bar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  background: var(--bg-container-primary);
+  font-family: var(--font-main);
+}
+/* showBottomBorder — Colors.black @0.2 (sin token) */
+.ds-top-bar--bordered {
+  box-shadow: 0 1px 0 #00000033;
+}
+.ds-top-bar__status {
+  height: 50px;
+  flex: none;
+}
+.ds-top-bar__content {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+}
+.ds-top-bar__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-top-bar__title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+/* titleH6 — 18/600, lh 1.28, textPrimary */
+.ds-top-bar__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.28;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+/* imageTitle — DotsProfilePhoto 20×20 */
+.ds-top-bar__img-title {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+}
+/* subtitle — labelSmallRegular 11/400, lh 1.27, textSecondary */
+.ds-top-bar__subtitle {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.27;
+  color: var(--text-secondary);
+}
+.ds-top-bar__row {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+}
+.ds-top-bar__slot {
+  display: inline-flex;
+  z-index: 1;
+}
+.ds-top-bar__slot--left {
+  margin-left: 16px;
+}
+.ds-top-bar__spacer {
+  flex: 1;
+}
+.ds-top-bar__slot--right {
+  margin-right: 16px;
+}
+
+/* Fallbacks (solo si DotsIconButton / DotsMainButton no están en el bundle) */
+.ds-top-bar__back-fallback {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.ds-top-bar__back-fallback.is-solid {
+  background: var(--bg-secondary-btn);
+}
+.ds-top-bar__cta-fallback {
+  height: 28px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 28px;
+  background: var(--label-highlight);
+  color: var(--label-always-white);
+  font: 600 11px/1 var(--font-main);
+  cursor: pointer;
+}
+.ds-top-bar__cta-fallback:disabled {
+  background: var(--bg-btn-disabled);
+  color: var(--text-disabled);
+  cursor: default;
+}

@@ -1,0 +1,257 @@
+/* DotsActionSheet — action_sheet/ (DotsActionSheetContainer: bg bgBaseContrast, radio 32).
+   Hoja estática montable: position relative, sin scrim. */
+.ds-action-sheet {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  border-radius: var(--squircle-32);
+  background: var(--bg-base-contrast);
+  font-family: var(--font-main);
+}
+.ds-action-sheet--settings { padding: 16px; } /* Dart: containerPadding EdgeInsets.all(16) */
+
+/* Utilidades de layout */
+.ds-action-sheet__pad16 { padding: 0 16px; width: 100%; box-sizing: border-box; }
+.ds-action-sheet__full { width: 100%; }
+.ds-action-sheet__mt16 { margin-top: 16px; }
+.ds-action-sheet__mt20 { margin-top: 20px; }
+
+/* Grabber — 36×4, radio 2.5, bgSecondaryBtn */
+.ds-action-sheet__grabber {
+  width: 36px; height: 4px; border-radius: 2.5px; flex: none;
+  margin-top: 16px;
+  background: var(--bg-secondary-btn);
+}
+.ds-action-sheet--list .ds-action-sheet__grabber { margin-top: 8px; }
+
+/* Títulos — typo.secondary title02H5 (20/500) y title02H6 (18/500) */
+.ds-action-sheet__title-h5 {
+  font-family: var(--font-secondary); font-size: 20px; font-weight: 500;
+  line-height: 1.25; margin: 0; text-align: center; color: var(--text-primary);
+}
+.ds-action-sheet__title-h6 {
+  font-family: var(--font-secondary); font-size: 18px; font-weight: 500;
+  line-height: 1.28; margin: 0; text-align: center; color: var(--text-primary);
+}
+/* description — bodyDefaultRegular 14/400, textSecondary (list: textQuarternary) */
+.ds-action-sheet__description {
+  font-size: 14px; font-weight: 400; line-height: 1.29; letter-spacing: -0.02px;
+  margin: 8px 0 0; text-align: center; color: var(--text-secondary);
+}
+.ds-action-sheet__description--quarternary { color: var(--text-quarternary); padding: 0 32px; box-sizing: border-box; }
+/* subtitle (radioButtons) — labelDefaultRegular 13/400 textPrimary */
+.ds-action-sheet__subtitle {
+  font-size: 13px; font-weight: 400; line-height: 1.31; letter-spacing: -0.01px;
+  margin: 4px 0 0; text-align: center; color: var(--text-primary);
+}
+
+/* Cierre — DotsCloseButton medium softContrast, top 16 right 16 */
+.ds-action-sheet__close { position: absolute; top: 16px; right: 16px; }
+.ds-action-sheet__close-fallback {
+  width: 30px; height: 30px; border-radius: 50%; border: none; cursor: pointer;
+  background: var(--bg-btn-disabled); color: var(--label-primary);
+  display: flex; align-items: center; justify-content: center; font-size: 16px; line-height: 1;
+}
+
+/* Botonera — row con gap 15 (Dart SizedBox(width: 15)); column apilada */
+.ds-action-sheet__buttons { display: flex; gap: 15px; width: 100%; }
+.ds-action-sheet__buttons > * { flex: 1; }
+.ds-action-sheet__buttons--column { flex-direction: column; gap: 0; }
+.ds-action-sheet__footer { margin: 20px 0 16px; }
+.ds-action-sheet__footer:empty { display: none; }
+
+/* Fallbacks (solo si faltan DotsMainButton / DotsTextField / DotsRadioButton) */
+.ds-action-sheet__btn-fallback {
+  height: 52px; border-radius: 52px; border: none; cursor: pointer; width: 100%;
+  background: var(--label-highlight); color: var(--label-always-white);
+  font-family: var(--font-main); font-size: 14px; font-weight: 500;
+}
+.ds-action-sheet__btn-fallback--h44 { height: 44px; border-radius: 44px; width: auto; padding: 0 20px; }
+.ds-action-sheet__field-fallback {
+  height: 44px; border-radius: 1000px; box-sizing: border-box; width: 100%;
+  display: flex; align-items: center; gap: 8px; padding: 0 16px; font-size: 14px;
+  background: var(--bg-container-secondary-on-bg); color: var(--text-tertiary);
+}
+.ds-action-sheet__field-fallback.is-center { justify-content: center; }
+.ds-action-sheet__radio-fallback {
+  width: 24px; height: 24px; border-radius: 50%; box-sizing: border-box; flex: none;
+  border: 2px solid var(--label-secondary);
+  display: flex; align-items: center; justify-content: center;
+}
+.ds-action-sheet__radio-fallback.is-on { border-color: var(--label-highlight); }
+.ds-action-sheet__radio-fallback.is-on::after {
+  content: ''; width: 15px; height: 15px; border-radius: 50%; background: var(--label-highlight);
+}
+
+/* stepProgress — aproximación de DotsProgressBar (barra 4px, fill labelHighlight) */
+.ds-action-sheet__progress {
+  width: 134px; height: 4px; border-radius: 2px; overflow: hidden;
+  background: var(--bg-secondary-btn);
+}
+.ds-action-sheet__progress-fill { height: 100%; border-radius: 2px; background: var(--label-highlight); }
+
+/* ===== list ===== */
+.ds-action-sheet__list-header {
+  position: relative; width: 100%; box-sizing: border-box;
+  margin-top: 16px; padding: 0 96px; /* Dart: slots laterales de 80 + 16 */
+  display: flex; align-items: center; justify-content: center; min-height: 30px;
+}
+.ds-action-sheet__back {
+  position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  border: none; background: none; cursor: pointer; padding: 4px; display: flex;
+}
+.ds-action-sheet__label-btn { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); max-width: 80px; }
+.ds-action-sheet__search-row { margin: 16px 0; }
+.ds-action-sheet__chips {
+  width: 100%; box-sizing: border-box; display: flex; gap: 4px;
+  padding: 0 16px; margin-bottom: 16px; overflow-x: auto;
+}
+/* DotsFilterChip — r22, pad 6/12, labelDefaultBold-ish 13/600, bgContainerSecondary */
+.ds-action-sheet__chip {
+  display: inline-flex; align-items: center; flex: none; border-radius: 22px;
+  padding: 6px 6px 6px 12px; font-size: 13px; font-weight: 600;
+  background: var(--bg-container-secondary); color: var(--text-secondary);
+}
+.ds-action-sheet__chip-close {
+  width: 16px; height: 16px; border-radius: 50%; margin-left: 8px; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--bg-secondary-btn); color: var(--text-tertiary);
+}
+.ds-action-sheet__list {
+  width: 100%; box-sizing: border-box; padding: 0 20px;
+  display: flex; flex-direction: column; align-items: flex-start;
+}
+/* listTitle — labelDefaultBold, textTertiary */
+.ds-action-sheet__list-title { font-size: 13px; font-weight: 600; margin-bottom: 12px; color: var(--text-tertiary); }
+/* DotsListItem — icono 40×40 r12, texto bodyLargeBold 16/700, gap 12 */
+.ds-action-sheet__list-item { display: flex; align-items: center; gap: 12px; width: 100%; margin-bottom: 20px; cursor: pointer; }
+.ds-action-sheet__list-item-icon {
+  width: 40px; height: 40px; border-radius: var(--squircle-12); flex: none; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-container-secondary); color: var(--text-tertiary);
+}
+.ds-action-sheet__list-item-label {
+  font-size: 16px; font-weight: 700; line-height: 1.31; color: var(--text-primary);
+  display: flex; align-items: center; gap: 4px; min-width: 0;
+}
+.ds-action-sheet__list-item-lock { flex: none; }
+/* Footer ghost (ActionSheetListVariant.ghost) — DotsIconButton active + label bold */
+.ds-action-sheet__ghost-btn {
+  display: inline-flex; align-items: center; gap: 8px; margin: 0 auto;
+  border: none; background: none; cursor: pointer;
+  font-family: var(--font-main); font-size: 13px; font-weight: 600; color: var(--text-primary);
+}
+.ds-action-sheet__ghost-btn-icon {
+  width: 28px; height: 28px; border-radius: 50%; flex: none;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-highlight);
+}
+
+/* ===== input ===== */
+/* Icono XL — DotsIconButton solid extraLarge: Ø52, icono 32, bgContainerSecondaryOnBackground + blur50 */
+.ds-action-sheet__big-icon {
+  width: 52px; height: 52px; border-radius: var(--squircle-52); flex: none;
+  margin: 16px 0; display: flex; align-items: center; justify-content: center;
+  background: var(--bg-container-secondary-on-bg);
+  backdrop-filter: blur(var(--blur-50)); -webkit-backdrop-filter: blur(var(--blur-50));
+  color: var(--text-tertiary);
+}
+/* DotsColorOptionsRow — círculos 32, gap 18; borde negro 10% (sel: 2px 25% + check) */
+.ds-action-sheet__colors { display: flex; align-items: center; gap: 18px; margin: 16px 0 0; }
+.ds-action-sheet__color {
+  width: 32px; height: 32px; border-radius: 50%; box-sizing: border-box; cursor: pointer;
+  border: 1.5px solid #0000001A; /* Dart: negro 10% (sin token) */
+  display: flex; align-items: center; justify-content: center;
+}
+.ds-action-sheet__color.is-selected { border: 2px solid #00000040; } /* Dart: negro 25% (sin token) */
+
+/* ===== radioButtons ===== */
+.ds-action-sheet__radio-head { margin-top: 16px; padding-top: 12px; }
+.ds-action-sheet__options {
+  width: 100%; box-sizing: border-box; padding: 0 16px; margin-top: 16px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+/* RadioCardIcons — r24 pad16 bgContainerSecondaryOnBackground; sel: borde 1.5 labelHighlight r26 */
+.ds-action-sheet__radio-card { border-radius: 26px; padding: 1.5px; width: 100%; box-sizing: border-box; cursor: pointer; }
+.ds-action-sheet__radio-card.is-selected { border: 1.5px solid var(--label-highlight); padding: 0; }
+.ds-action-sheet__radio-card-inner {
+  border-radius: var(--squircle-24); padding: 16px; box-sizing: border-box;
+  display: flex; align-items: center; gap: 16px;
+  background: var(--bg-container-secondary-on-bg);
+}
+.ds-action-sheet__radio-card-col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.ds-action-sheet__radio-line {
+  display: flex; align-items: flex-start; gap: 4px;
+  font-size: 13px; font-weight: 400; line-height: 1.31; letter-spacing: -0.01px;
+  color: var(--text-tertiary);
+}
+/* título de la card — bodyDefaultBold 14/700 */
+.ds-action-sheet__radio-line--title { font-size: 14px; font-weight: 700; line-height: 1.29; letter-spacing: -0.02px; color: var(--text-primary); }
+/* DotsToggle embebido — 44.42×27; off fillSecondary (sin token: #78788029 / dark #78788052) */
+.ds-action-sheet__toggle {
+  width: 44.42px; height: 27px; border-radius: 13.5px; padding: 1.74px;
+  box-sizing: border-box; display: flex; flex: none; background: #78788029;
+}
+[data-theme="dark"] .ds-action-sheet__toggle { background: #78788052; }
+.ds-action-sheet__toggle.is-on,
+[data-theme="dark"] .ds-action-sheet__toggle.is-on { background: var(--label-highlight); }
+.ds-action-sheet__toggle-knob {
+  width: 23.52px; height: 23.52px; border-radius: 50%;
+  background: #FFFFFF; /* knob siempre blanco (Dart) */
+  box-shadow: 0 2.61px 6.97px #00000026, 0 0 0 0.87px #0000000A;
+}
+.ds-action-sheet__toggle.is-on .ds-action-sheet__toggle-knob { margin-left: auto; }
+
+/* ===== settings ===== */
+.ds-action-sheet__avatar {
+  width: 100px; height: 100px; border-radius: 50%; flex: none; margin-top: 8px;
+  background: var(--bg-container-secondary) center/cover no-repeat;
+}
+/* titleH5 (main) — 20/700/1.25/-0.09 */
+.ds-action-sheet__settings-title {
+  font-size: 20px; font-weight: 700; line-height: 1.25; letter-spacing: -0.09px;
+  margin: 0; text-align: center; color: var(--text-primary);
+}
+.ds-action-sheet__settings-sub {
+  font-size: 14px; font-weight: 400; line-height: 1.29; letter-spacing: -0.02px;
+  margin: 6px 0 0; text-align: center; color: var(--text-primary);
+}
+.ds-action-sheet__sys-btns { width: 100%; display: flex; flex-direction: column; gap: 8px; margin-top: 24px; }
+/* DotsSystemButton — h44, r16, bgContainerSecondaryOnBackground + blur50, bodyDefaultMedium */
+.ds-action-sheet__sys-btn {
+  height: 44px; border-radius: var(--squircle-16); width: 100%; box-sizing: border-box;
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  font-family: var(--font-main); font-size: 14px; font-weight: 500; letter-spacing: -0.02px;
+  background: var(--bg-container-secondary-on-bg); color: var(--text-primary);
+  backdrop-filter: blur(var(--blur-50)); -webkit-backdrop-filter: blur(var(--blur-50));
+}
+.ds-action-sheet__sys-btn.is-destructive { color: var(--label-destructive); }
+.ds-action-sheet__sys-btn.is-disabled { color: var(--text-disabled); cursor: default; }
+
+/* ===== search ===== */
+.ds-action-sheet__search-title { max-width: 190px; margin: 24px auto 0; }
+/* Fade + botón — degradado bgBaseContrast como en Dart (stops 0/.5/1) */
+.ds-action-sheet__fade-footer {
+  position: relative; width: 100%; box-sizing: border-box; margin-top: -48px;
+  display: flex; justify-content: center; padding: 40px 16px 16px;
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--bg-base-contrast) 0%, transparent) 0%,
+    var(--bg-base-contrast) 55%);
+  pointer-events: none;
+}
+.ds-action-sheet__fade-footer > * { pointer-events: auto; }
+
+/* ===== spotlight ===== */
+.ds-action-sheet__spot-img {
+  width: 100%; height: 120px; border-radius: var(--squircle-24);
+  background: var(--bg-container-secondary) center/cover no-repeat;
+}
+/* label — labelDefaultMedium 13/500 textTertiary */
+.ds-action-sheet__spot-label { font-size: 13px; font-weight: 500; letter-spacing: -0.01px; margin: 4px 0 0; text-align: center; color: var(--text-tertiary); }
+.ds-action-sheet__spot-desc { font-size: 14px; font-weight: 400; line-height: 1.29; letter-spacing: -0.02px; margin: 12px 0 0; text-align: center; color: var(--text-secondary); }
+.ds-action-sheet__spot-footer { margin: 28px 0 15px; }

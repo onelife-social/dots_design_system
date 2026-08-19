@@ -1,0 +1,54 @@
+<!-- @dsCard group="indicators" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+    .row{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.ImageWithProgressAround;
+    // Foto demo como data URI (sin assets externos)
+    var PHOTO = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" width="180" height="320">' +
+      '<defs><linearGradient id="p" x1="0" y1="0" x2="1" y2="1">' +
+      '<stop offset="0" stop-color="#F2B880"/><stop offset=".55" stop-color="#C88EA7"/><stop offset="1" stop-color="#7E6BA8"/>' +
+      '</linearGradient></defs><rect width="180" height="320" fill="url(#p)"/></svg>');
+    function row() { return h('div', { className: 'row' }, Array.prototype.slice.call(arguments)); }
+    function Animated() {
+      var st = React.useState(0.15);
+      React.useEffect(function () {
+        var id = setInterval(function () {
+          st[1](function (p) { return p >= 1 ? 0.15 : Math.min(1, p + 0.3); });
+        }, 1500);
+        return function () { clearInterval(id); };
+      }, []);
+      return h(C, { width: 150, progress: st[0] });
+    }
+    var variants = [
+      ['default · 72% · w150 · 9:16 · placeholder', row(h(C, { width: 150, progress: 0.72 }))],
+      ['src · 25% / 100%', row(h(C, { width: 150, progress: 0.25, src: PHOTO }), h(C, { width: 150, progress: 1, src: PHOTO }))],
+      ['aspectRatio small (3:4) · w150', row(h(C, { width: 150, progress: 0.6, src: PHOTO, aspectRatio: 'small' }))],
+      ['progress 45 (>1 → %) · stroke 8 · r30', row(h(C, { width: 130, progress: 45, progressBarWidth: 8, borderRadius: 30, src: PHOTO }))],
+      ['progreso animado (transition 800ms)', row(h(Animated))],
+      ['dark · 72% (track bgSecondaryBtn dark)', row(h(C, { width: 150, progress: 0.72, src: PHOTO })), true]
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2]) { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '8px'; }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

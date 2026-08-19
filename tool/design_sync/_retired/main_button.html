@@ -1,0 +1,84 @@
+<!-- @dsCard group="Buttons" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · DotsMainButton</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+    border: none; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap;
+    height: 44px; padding: 0 20px; border-radius: 44px; font-size: 14px; font-weight: 500;
+  }
+  /* Tamaños — DotsMainButtonSize (radio = altura: píldora) */
+  .main-action { height: 52px; padding: 0 24px; border-radius: 52px; font-size: 14px; font-weight: 500; gap: 6px; }
+  .medium { height: 36px; padding: 0 16px; border-radius: 36px; font-size: 13px; font-weight: 600; }
+  .small { height: 28px; padding: 0 12px; border-radius: 28px; font-size: 11px; font-weight: 600; }
+  /* Variantes light — DotsMainButtonVariant */
+  .light .v-main { background: #0072EF; color: #FFF; }
+  .light .v-secondary { background: #8C8C8C4D; color: #000000AB; backdrop-filter: blur(50px); }
+  .light .v-secondary-light { background: #F3F3F399; color: #000000AB; backdrop-filter: blur(50px); box-shadow: 0 6px 20px #0000001A; }
+  .light .v-destructive { background: #ED2B32; color: #FFF; }
+  .light .v-disabled { background: #C8C8C866; color: #00000033; }
+  .light .v-ghost { background: transparent; color: #0072EF; }
+  .light .v-premium { background: linear-gradient(135deg, #C88EFF, #8B84F7); color: #FFF; }
+  .light .v-premium-plus { background: linear-gradient(135deg, #E9C058, #B48D2D); color: #FFF; }
+  .light .v-secondary-premium { background: #8C8C8C1A; }
+  .light .v-surface { background: #E2E2E2B3; color: #000; backdrop-filter: blur(10px); }
+  /* Variantes dark */
+  .dark .v-main { background: #0A84FF; color: #FFF; }
+  .dark .v-secondary { background: #C8C8C84D; color: #FFFFFFBF; backdrop-filter: blur(50px); }
+  .dark .v-secondary-light { background: #74747499; color: #FFFFFFBF; backdrop-filter: blur(50px); box-shadow: 0 6px 20px #0000001A; }
+  .dark .v-destructive { background: #ED2B32; color: #FFF; }
+  .dark .v-disabled { background: #C8C8C819; color: #FFFFFF33; }
+  .dark .v-ghost { background: transparent; color: #0A84FF; }
+  .dark .v-premium { background: linear-gradient(135deg, #C88EFF, #8B84F7); color: #FFF; }
+  .dark .v-premium-plus { background: linear-gradient(135deg, #E9C058, #B48D2D); color: #FFF; }
+  .dark .v-secondary-premium { background: #75757533; }
+  .dark .v-surface { background: #282828B3; color: #FFF; backdrop-filter: blur(10px); }
+  .grad-text { background: linear-gradient(90deg, #C17FFA, #8C84F7); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .grad-text-plus { background: linear-gradient(90deg, #DDA61C, #A37F28); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .dark .grad-text-plus { background: linear-gradient(90deg, #E9C058, #B48D2D); -webkit-background-clip: text; background-clip: text; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>DotsMainButton — Light</h2>
+    <div class="sub">buttons/dots_main_button · variant × size</div>
+    <div class="row">
+      <button class="btn main-action v-main">Main action · 52</button>
+      <button class="btn v-main">Large · 44</button>
+      <button class="btn medium v-main">Medium · 36</button>
+      <button class="btn small v-main">Small · 28</button>
+    </div>
+    <div class="row"><button class="btn v-secondary">secondary</button><button class="btn v-secondary-light">secondaryLight</button><button class="btn v-surface">surface</button></div>
+    <div class="row"><button class="btn v-destructive">destructive</button><button class="btn v-disabled">disabled</button><button class="btn v-ghost">ghost</button></div>
+    <div class="row"><button class="btn v-premium">premium</button><button class="btn v-premium-plus">premiumPlus</button></div>
+    <div class="row"><button class="btn v-secondary-premium"><span class="grad-text">secondaryPremium</span></button><button class="btn v-secondary-premium"><span class="grad-text-plus">secondaryPremiumPlus</span></button></div>
+  </div>
+  <div class="theme dark">
+    <h2>DotsMainButton — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+    <div class="row">
+      <button class="btn main-action v-main">Main action · 52</button>
+      <button class="btn v-main">Large · 44</button>
+      <button class="btn medium v-main">Medium · 36</button>
+      <button class="btn small v-main">Small · 28</button>
+    </div>
+    <div class="row"><button class="btn v-secondary">secondary</button><button class="btn v-secondary-light">secondaryLight</button><button class="btn v-surface">surface</button></div>
+    <div class="row"><button class="btn v-destructive">destructive</button><button class="btn v-disabled">disabled</button><button class="btn v-ghost">ghost</button></div>
+    <div class="row"><button class="btn v-premium">premium</button><button class="btn v-premium-plus">premiumPlus</button></div>
+    <div class="row"><button class="btn v-secondary-premium"><span class="grad-text">secondaryPremium</span></button><button class="btn v-secondary-premium"><span class="grad-text-plus">secondaryPremiumPlus</span></button></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+/* MemoryCard — 68w · tarjeta 60.39×80 r15 · borde degradado 67.53×87.39 r18 w1.45 */
+.ds-memory-card { width: 68px; flex: none; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+/* GradientBoxBorder w1.45 → padding con degradado de fondo + hueco al color de la página */
+.ds-memory-card__border {
+  width: 67.53px; height: 87.39px; border-radius: 18px; padding: 1.45px; box-sizing: border-box;
+  display: flex; align-items: center; justify-content: center;
+}
+/* gradientInitialLinealGreen → gradientFinalLinealGreen (sin token CSS) */
+.ds-memory-card__border--memory { background: linear-gradient(180deg, #77D98A, #28AB87); }
+/* DotsColors.recapGradientColors (SweepGradient, sin token CSS) */
+.ds-memory-card__border--recap { background: conic-gradient(#EF5FC1, #C982F7, #15ABF3, #B295B6, #F5784D, #EF9C5F, #F44E69, #EF5FC1); }
+.ds-memory-card__inner {
+  width: 100%; height: 100%; border-radius: 16.5px; background: var(--bg-base);
+  display: flex; align-items: center; justify-content: center;
+}
+.ds-memory-card__img { width: 60.39px; height: 80px; border-radius: var(--squircle-15); background-size: cover; background-position: center; }
+/* Placeholder de foto cuando no llega imageSrc (degradado, sin token — como las tarjetas planas) */
+.ds-memory-card__img--ph { background-image: linear-gradient(150deg, #A9C0D8, #E3C9AE); }
+/* labelDefaultMedium 13/500 textSecondary */
+.ds-memory-card__name {
+  margin-top: 8px; max-width: 68px; text-align: center;
+  color: var(--text-secondary); font: 500 13px/1.31 var(--font-main);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}

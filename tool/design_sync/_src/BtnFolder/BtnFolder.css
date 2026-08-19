@@ -1,0 +1,29 @@
+/* BtnFolder — píldora h44 r1000, icono 20, texto bodyDefaultMedium 14/500 (btn_folder.dart) */
+.ds-btn-folder { position: relative; display: inline-block; }
+/* Dart: ClipRRect(21) + Padding(4) alrededor de la píldora */
+.ds-btn-folder__clip { display: block; padding: 4px; border-radius: 21px; overflow: hidden; }
+.ds-btn-folder__pill {
+  display: inline-flex; align-items: center;
+  height: 44px; margin-bottom: 6px; border: none; padding: 0; cursor: pointer;
+  border-radius: 1000px; white-space: nowrap;
+  background: var(--bg-container-secondary-on-bg); color: var(--text-quarternary);
+  font: 500 14px/1.29 var(--font-main);
+}
+/* isSelected — bgStrong + sombra shadowFolder #00000014 (sin token), blur 4 offset (1,4) */
+.ds-btn-folder__pill--selected {
+  background: var(--bg-strong); color: var(--text-primary);
+  box-shadow: 1px 4px 4px #00000014;
+}
+.ds-btn-folder__icon { display: inline-flex; flex: none; margin: 0 6px 0 16px; }
+.ds-btn-folder__text { margin-right: 16px; overflow: hidden; text-overflow: ellipsis; }
+/* isNonExpandable — 44×44, icono centrado (siempre textQuarternary) */
+.ds-btn-folder__pill--nonexp { width: 44px; justify-content: center; }
+.ds-btn-folder__pill--nonexp .ds-btn-folder__icon { margin: 0; }
+.ds-btn-folder__pill--nonexp.ds-btn-folder__pill--selected { color: var(--text-quarternary); }
+/* Edit icon — 18×18, bgChip #30303099 (sin token), pencil 10 labelAlwaysWhite */
+.ds-btn-folder__edit {
+  position: absolute; top: 0; right: 0; width: 18px; height: 18px;
+  border: none; padding: 0; cursor: pointer; border-radius: 100px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #30303099; color: var(--label-always-white);
+}

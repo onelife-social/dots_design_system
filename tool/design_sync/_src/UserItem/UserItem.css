@@ -1,0 +1,117 @@
+/* UserItem + UserInfo — user_items/user_item.dart · user_info.dart */
+
+/* UserInfo — avatar 26 (small) / 40 (large), gap 8, nombre + details */
+.ds-user-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-main);
+  text-align: left;
+}
+.ds-user-info__avatar {
+  flex: none;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-strong);
+}
+.ds-user-info--small .ds-user-info__avatar {
+  width: 26px;
+  height: 26px;
+}
+.ds-user-info--large .ds-user-info__avatar {
+  width: 40px;
+  height: 40px;
+}
+.ds-user-info__avatar-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* aliasLabelImageText — bgContainerSecondaryOnBackground + num*Medium textTertiary */
+.ds-user-info__avatar--alias {
+  background: var(--bg-container-secondary-on-bg);
+  color: var(--text-tertiary);
+  font-family: var(--font-number);
+  font-weight: 600;
+}
+.ds-user-info--small .ds-user-info__avatar--alias {
+  font-size: 14px; /* numBodyDefaultMedium */
+}
+.ds-user-info--large .ds-user-info__avatar--alias {
+  font-size: 18px; /* numTitleH5Medium */
+}
+/* Placeholder degradado con iniciales — arte sin token */
+.ds-user-info__avatar--ph {
+  color: #ffffffd9;
+  font-family: var(--font-number);
+  font-weight: 700;
+}
+.ds-user-info--small .ds-user-info__avatar--ph { font-size: 10px; }
+.ds-user-info--large .ds-user-info__avatar--ph { font-size: 14px; }
+.ds-user-info__avatar--ph-a { background: linear-gradient(135deg, #faa25e, #f43c51); }
+.ds-user-info__avatar--ph-b { background: linear-gradient(135deg, #9297ef, #8b84f7); }
+.ds-user-info__avatar--ph-c { background: linear-gradient(135deg, #28cb55, #0072ef); }
+.ds-user-info__avatar--ph-d { background: linear-gradient(135deg, #c88eff, #8b84f7); }
+
+.ds-user-info__names {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* name — small: bodyDefaultMedium 14/500 · large: bodyLargeMedium 16/500 */
+.ds-user-info__name {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02px;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ds-user-info--large .ds-user-info__name {
+  font-size: 16px;
+  letter-spacing: -0.05px;
+}
+/* details — small: labelSmallRegular 11/400 · large: labelDefaultRegular 13/400 */
+.ds-user-info__details {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.01px;
+  color: var(--text-quarternary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ds-user-info--large .ds-user-info__details {
+  font-size: 13px;
+  letter-spacing: -0.01px;
+}
+
+/* UserItem — 170×45, squircle24, bgStrong, sombra flotante, pad 6.5×10, gap 8 */
+.ds-user-item {
+  width: 170px;
+  height: 45px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6.5px 10px;
+  border: none;
+  border-radius: var(--squircle-24);
+  background: var(--bg-strong);
+  box-shadow: var(--shadow-floating-btn);
+  cursor: pointer;
+  font-family: var(--font-main);
+}
+.ds-user-item > .ds-icon {
+  flex: none;
+  display: flex;
+}

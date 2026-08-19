@@ -1,0 +1,234 @@
+<!-- @dsCard group="Content" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · DotsTooltip + DotsMenu</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  h3 { font-size: 12px; font-weight: 600; margin: 22px 0 10px; opacity: .8; }
+  .light h3 { color: #000; } .dark h3 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+
+  /* ============ DotsTooltip ============ */
+  /* bgBaseContrast + borde 1px bgContainerSecondary + defaultShadow (0 6px 20 #0000001A) */
+  .tooltip {
+    position: relative; display: flex; align-items: center; gap: 10px;
+    min-width: 185px; max-width: 288px; min-height: 64px; box-sizing: border-box;
+    padding: 16px 52px 16px 16px;               /* EdgeInsets.all(16).copyWith(right: 52) */
+    border-radius: 24px;                         /* DotsBorderRadius.r24 */
+    border: 1px solid; box-shadow: 0 6px 20px #0000001A;
+    margin-bottom: 26px;
+  }
+  .light .tooltip { background: #FAFAFA; border-color: #E2E2E2B3; }
+  .dark .tooltip { background: #1F1F1F; border-color: #282828B3; }
+  /* esquina 14 en el lado de la cola */
+  .tip-tl14 { border-top-left-radius: 14px; }
+  /* texto — labelDefaultMedium: 13/500/1.31/-0.01, textPrimary */
+  .tooltip p { margin: 0; font-size: 13px; font-weight: 500; line-height: 1.31; letter-spacing: -0.01px; }
+  .light .tooltip p { color: #000; } .dark .tooltip p { color: #FFF; }
+  /* icon 32 — labelHighlight */
+  .light .tip-icon { color: #0072EF; } .dark .tip-icon { color: #0A84FF; }
+  /* DotsCloseButton small softContrast — 24px, icono 16, bgBtnDisabled / labelPrimary */
+  .tip-close {
+    position: absolute; top: 16px; right: 16px; width: 24px; height: 24px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  }
+  .light .tip-close { background: #C8C8C866; color: #00000099; }
+  .dark .tip-close { background: #C8C8C819; color: #FFFFFFCC; }
+  /* cola — TrianglePainter 21×13 */
+  .tail { position: absolute; width: 21px; height: 13px; }
+  .tail-bottom { bottom: -12px; left: 50%; transform: translateX(-50%); }        /* bottomAlignCenter */
+  .tail-top-leading { top: -12px; left: 9%; transform: rotate(180deg); }         /* topAlignLeadingEdge (x -0.82) */
+  .light .tail path { fill: #FAFAFA; stroke: #E2E2E2B3; }
+  .dark .tail path { fill: #1F1F1F; stroke: #282828B3; }
+
+  /* ============ DotsMenu ============ */
+  .menu {
+    width: 250px; box-sizing: border-box; padding: 8px;
+    border-radius: 20px;                         /* DotsBorderRadius.r20 */
+  }
+  .light .menu { background: #FAFAFA; }          /* bgBaseContrast */
+  .dark .menu { background: #1F1F1F; }
+  .menu-item {
+    display: flex; align-items: center; gap: 6px; padding: 8px;
+    border-radius: 12px; cursor: pointer;
+  }
+  .menu-item + .menu-item { margin-top: 8px; }
+  /* label — bodyDefaultMedium: 14/500/1.29/-0.02 */
+  .mi-label { flex: 1; font-size: 14px; font-weight: 500; line-height: 1.29; letter-spacing: -0.02px; }
+  .light .mi-label { color: #000; } .dark .mi-label { color: #FFF; }
+  /* details — labelDefaultRegular: 13/400, textTertiary */
+  .mi-details { font-size: 13px; font-weight: 400; line-height: 1.31; letter-spacing: -0.01px; }
+  .light .mi-details { color: #0000008C; } .dark .mi-details { color: #FFFFFFA6; }
+  /* iconos: izquierda 14 (check/chevron), derecha 16 labelPrimary */
+  .light .mi-icon { color: #00000099; } .dark .mi-icon { color: #FFFFFFCC; }
+  .light .mi-check { color: #0072EF; } .dark .mi-check { color: #0A84FF; }      /* selected → labelHighlight */
+  .light .mi-chevron { color: #000; } .dark .mi-chevron { color: #FFF; }        /* textPrimary */
+  .mi-delete .mi-label, .mi-delete .mi-icon { color: #ED2B32 !important; }      /* isDelete → labelDestructive */
+  /* divisor del menú — Divider thickness .5 labelSecondary, indent 8 */
+  .menu-div { height: 0.5px; margin: 2px 8px 6px; }
+  .light .menu-div { background: #00000033; } .dark .menu-div { background: #FFFFFF4D; }
+
+  /* ============ SettingsList / SettingsItem ============ */
+  .set-title { font-size: 13px; font-weight: 500; letter-spacing: -0.01px; text-transform: uppercase; margin: 0 15px 8px; }
+  .light .set-title { color: #0000008C; } .dark .set-title { color: #FFFFFFA6; }
+  .set-list { border-radius: 24px; max-width: 340px; }
+  .light .set-list { background: #8C8C8C1A; }    /* bgContainerSecondaryOnBackground */
+  .dark .set-list { background: #75757533; }
+  .set-item { display: flex; align-items: center; gap: 8px; padding: 12px 16px; }
+  .set-item.toggle-row { padding: 4px 16px; }
+  .set-label { flex: 1; font-size: 14px; font-weight: 500; letter-spacing: -0.02px; }
+  .light .set-label { color: #000; } .dark .set-label { color: #FFF; }
+  .light .set-icon { color: #0000008C; } .dark .set-icon { color: #FFFFFFA6; }  /* textTertiary */
+  .set-div { height: 0.5px; margin: 0 16px 0 44px; }
+  .light .set-div { background: #00000033; } .dark .set-div { background: #FFFFFF4D; }
+  .set-desc { font-size: 13px; font-weight: 400; margin: 8px 15px 0; }
+  .light .set-desc { color: #0000008C; } .dark .set-desc { color: #FFFFFFA6; }
+  /* DotsToggle — 44.42×27, knob 23.5 blanco */
+  .toggle { width: 44.42px; height: 27px; border-radius: 13.5px; padding: 1.74px; box-sizing: border-box; }
+  .toggle .knob { width: 23.5px; height: 23.5px; border-radius: 50%; background: #FFFFFF;
+    box-shadow: 0 2.61px 6.97px #00000026, 0 2.61px 0.87px #0000000F; }
+  .light .toggle.on { background: #0072EF; } .dark .toggle.on { background: #0A84FF; }  /* labelHighlight */
+  .light .toggle.off { background: #78788029; } .dark .toggle.off { background: #78788052; } /* fillSecondary */
+  .toggle.on .knob { margin-left: auto; }
+
+  .foot { font-size: 9px; opacity: .45; margin-top: 14px; line-height: 1.5; }
+  .light .foot { color: #000; } .dark .foot { color: #FFF; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>DotsTooltip + DotsMenu — Light</h2>
+    <div class="sub">tooltip/dots_tooltip · menu/dots_menu · menu/settings_list</div>
+
+    <h3>DotsTooltip · tailPosition</h3>
+    <div class="tooltip">
+      <svg class="tip-icon" width="32" height="32" viewBox="0 0 32 33" fill="none"><path d="M15.9993 3.15332C8.63555 3.15332 2.66602 9.12286 2.66602 16.4867C2.66602 23.8505 8.63555 29.82 15.9993 29.82C23.3631 29.82 29.3327 23.8504 29.3327 16.4867C29.3327 9.12286 23.3631 3.15332 15.9993 3.15332ZM15.9993 9.22324C16.671 9.22324 17.2154 9.76769 17.2154 10.4393C17.2154 11.1109 16.671 11.6554 15.9993 11.6554C15.3277 11.6554 14.7833 11.1109 14.7833 10.4393C14.7833 9.76769 15.3277 9.22324 15.9993 9.22324ZM17.2155 22.5339C17.2155 23.2056 16.671 23.7501 15.9994 23.7501C15.3277 23.7501 14.7832 23.2056 14.7832 22.5339V14.1895C14.7832 13.5179 15.3277 12.9734 15.9993 12.9734C16.671 12.9734 17.2155 13.5179 17.2155 14.1895V22.5339Z" fill="currentColor"/></svg>
+      <p>Toca aquí para añadir tu primer recuerdo</p>
+      <span class="tip-close"><svg width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z" fill="currentColor"/></svg></span>
+      <svg class="tail tail-bottom" viewBox="0 0 21 13"><path d="M0 0 L8.5 11 Q10.5 13.4 12.5 11 L21 0" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="tooltip tip-tl14">
+      <p>Comparte el álbum con tu familia</p>
+      <span class="tip-close"><svg width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z" fill="currentColor"/></svg></span>
+      <svg class="tail tail-top-leading" viewBox="0 0 21 13"><path d="M0 0 L8.5 11 Q10.5 13.4 12.5 11 L21 0" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+
+    <h3>DotsMenu · mainItem + subitems</h3>
+    <div class="menu">
+      <div class="menu-item"><span class="mi-label">Opciones del dot</span></div>
+      <div class="menu-div"></div>
+      <div class="menu-item">
+        <svg class="mi-check" width="14" height="14" viewBox="0 0 32 33" fill="none"><path d="M13.4057 26.9799C13.9382 26.9799 14.3591 26.7446 14.6563 26.2865L26.3568 7.86285C26.5797 7.50379 26.6663 7.2314 26.6663 6.94663C26.6663 6.26563 26.2206 5.81991 25.5396 5.81991C25.0443 5.81991 24.7719 5.98087 24.4748 6.45137L13.3562 24.1693L7.58644 16.6166C7.2769 16.1832 6.96737 16.0099 6.52163 16.0099C5.81589 16.0099 5.33301 16.4928 5.33301 17.1737C5.33301 17.4586 5.45682 17.7805 5.69207 18.0776L12.1181 26.2618C12.4895 26.7446 12.8733 26.9799 13.4057 26.9799Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M14.8801 26.4316C14.5358 26.9623 14.0324 27.2466 13.4058 27.2466C13.0973 27.2466 12.822 27.1776 12.5695 27.0335C12.3205 26.8915 12.1066 26.6839 11.9075 26.4253C11.9073 26.425 11.9078 26.4257 11.9075 26.4253L5.48307 18.2431C5.48298 18.243 5.48317 18.2432 5.48307 18.2431C5.22068 17.9116 5.06641 17.5328 5.06641 17.1737C5.06641 16.7683 5.2113 16.4068 5.47559 16.1465C5.73971 15.8863 6.1066 15.7432 6.5217 15.7432C6.78146 15.7432 7.01754 15.7944 7.23679 15.9188C7.45199 16.0409 7.63291 16.2234 7.80095 16.458L13.3348 23.7018L24.249 6.30961C24.4084 6.05715 24.5785 5.85924 24.797 5.72977C25.0188 5.59836 25.2627 5.55322 25.5397 5.55322C25.9395 5.55322 26.2929 5.68525 26.547 5.93931C26.801 6.19338 26.9331 6.54675 26.9331 6.94661C26.9331 7.29608 26.8233 7.61706 26.5834 8.0035L26.582 8.0058L14.8801 26.4316ZM24.4748 6.45137C24.7719 5.98087 25.0443 5.81991 25.5396 5.81991C26.2206 5.81991 26.6663 6.26563 26.6663 6.94663C26.6663 7.2314 26.5797 7.50379 26.3568 7.86285L14.6563 26.2865C14.3591 26.7446 13.9382 26.9799 13.4057 26.9799C12.8733 26.9799 12.4895 26.7446 12.1181 26.2618L5.69207 18.0776C5.45682 17.7805 5.33301 17.4586 5.33301 17.1737C5.33301 16.4928 5.81589 16.0099 6.52163 16.0099C6.96737 16.0099 7.2769 16.1832 7.58644 16.6166L13.3562 24.1693L24.4748 6.45137Z" fill="currentColor"/></svg>
+        <span class="mi-label">Todos los recuerdos</span>
+      </div>
+      <div class="menu-item">
+        <div style="flex:1">
+          <div class="mi-label">Editar título</div>
+          <div class="mi-details">Cambia el nombre visible</div>
+        </div>
+        <svg class="mi-icon" width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M24.1624 2.92672C23.4519 3.07821 23.2534 3.22448 21.9526 4.50958L20.7563 5.69542L26.5393 11.4627L27.6676 10.3343C28.8796 9.12233 29.0938 8.84024 29.2871 8.20814C29.3811 7.9156 29.3915 7.75888 29.3759 7.26783C29.3341 6.19169 29.1565 5.8887 27.6937 4.43644C26.5392 3.28717 26.3251 3.13568 25.5937 2.94761C25.1288 2.82746 24.6482 2.82224 24.1624 2.92672Z" fill="currentColor"/><path d="M11.6951 14.7235L4.28231 22.1363L3.4517 25.4483C2.9711 27.3812 2.62109 28.8648 2.62109 29.0111C2.62109 29.3715 2.8196 29.57 3.18006 29.57C3.32633 29.57 4.80993 29.22 6.74279 28.7394L10.0548 27.9088L17.4676 20.496C21.5423 16.4213 24.8751 13.0676 24.8751 13.0362C24.8751 12.9683 19.2228 7.31598 19.1549 7.31598C19.1236 7.31598 15.7698 10.6489 11.6951 14.7235Z" fill="currentColor"/></svg>
+      </div>
+      <div class="menu-item">
+        <svg class="mi-chevron" width="14" height="14" viewBox="0 0 32 33" fill="none"><path d="M23.6675 16.241C23.6525 16.7672 23.4574 17.2482 23.0373 17.639L11.3631 29.0633C11.033 29.394 10.6128 29.5744 10.1177 29.5744C9.12732 29.5744 8.33203 28.7927 8.33203 27.8006C8.33203 27.3196 8.5271 26.8536 8.87222 26.5079L19.391 16.2561L8.87222 5.97423C8.54211 5.6285 8.33203 5.17754 8.33203 4.68148C8.33203 3.68938 9.12731 2.90771 10.1177 2.90771C10.6128 2.90771 11.033 3.0881 11.3631 3.4188L23.0373 14.8581C23.4574 15.264 23.6675 15.7149 23.6675 16.241Z" fill="currentColor"/></svg>
+        <span class="mi-label">Ordenar por</span>
+      </div>
+      <div class="menu-div"></div>
+      <div class="menu-item mi-delete">
+        <span class="mi-label">Eliminar dot</span>
+        <svg class="mi-icon" width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M12.7426 25.0807C12.326 25.0807 12.0589 24.8293 12.0376 24.4142L11.7171 12.3854C11.7064 11.9811 11.9735 11.7189 12.4008 11.7189C12.796 11.7189 13.0738 11.9702 13.0845 12.3744L13.4263 24.4142C13.437 24.8184 13.1592 25.0807 12.7426 25.0807ZM16.0008 25.0807C15.5841 25.0807 15.2957 24.8184 15.2957 24.4142V12.3854C15.2957 11.9811 15.5841 11.7189 16.0008 11.7189C16.4174 11.7189 16.7165 11.9811 16.7165 12.3854V24.4142C16.7165 24.8184 16.4174 25.0807 16.0008 25.0807ZM19.2696 25.0807C18.853 25.0807 18.5753 24.8184 18.5859 24.4142L18.9171 12.3854C18.9278 11.9702 19.2055 11.7189 19.6008 11.7189C20.028 11.7189 20.2951 11.9811 20.2844 12.3854L19.9639 24.4142C19.9426 24.8293 19.6755 25.0807 19.2696 25.0807ZM11.3112 9.06406H13.0097V6.72603C13.0097 6.10329 13.437 5.69904 14.0779 5.69904H17.9022C18.5432 5.69904 18.9705 6.10329 18.9705 6.72603V9.06406H20.6689V6.61678C20.6689 5.0326 19.6649 4.07117 18.0197 4.07117H13.9604C12.3153 4.07117 11.3112 5.0326 11.3112 6.61678V9.06406ZM6.46134 9.93809H25.5508C25.9889 9.93809 26.3414 9.5557 26.3414 9.10776C26.3414 8.65983 25.9889 8.28836 25.5508 8.28836H6.46134C6.03404 8.28836 5.66016 8.65983 5.66016 9.10776C5.66016 9.56663 6.03404 9.93809 6.46134 9.93809ZM11.1082 28.402H20.904C22.4316 28.402 23.4571 27.3859 23.5319 25.8235L24.2797 9.70866H7.72187L8.48032 25.8345C8.5551 27.3968 9.55924 28.402 11.1082 28.402Z" fill="currentColor"/></svg>
+      </div>
+    </div>
+
+    <h3>SettingsList · SettingsItemVariant</h3>
+    <div class="set-title">Notificaciones</div>
+    <div class="set-list">
+      <div class="set-item">
+        <svg class="set-icon" width="20" height="20" viewBox="0 0 32 32" fill="none"><path d="M5.96051 24.2534H26.0397C27.2305 24.2534 27.9526 23.6452 27.9526 22.7205C27.9526 21.4537 26.6604 20.3135 25.571 19.186C24.7348 18.312 24.5068 16.5131 24.4054 15.0562C24.3168 10.1916 23.0246 6.84721 19.6549 5.63106C19.1735 3.97151 17.8687 2.66669 15.9938 2.66669C14.1315 2.66669 12.814 3.97151 12.3453 5.63106C8.97555 6.84721 7.68339 10.1916 7.59471 15.0562C7.49337 16.5131 7.26534 18.312 6.42923 19.186C5.32709 20.3135 4.04761 21.4537 4.04761 22.7205C4.04761 23.6452 4.75703 24.2534 5.96051 24.2534ZM15.9938 29.3334C18.1474 29.3334 19.7182 27.7624 19.8829 25.9889H12.1173C12.282 27.7624 13.8528 29.3334 15.9938 29.3334Z" fill="currentColor"/></svg>
+        <span class="set-label">Recordatorios diarios</span>
+        <svg class="set-icon" width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M23.6675 16.241C23.6525 16.7672 23.4574 17.2482 23.0373 17.639L11.3631 29.0633C11.033 29.394 10.6128 29.5744 10.1177 29.5744C9.12732 29.5744 8.33203 28.7927 8.33203 27.8006C8.33203 27.3196 8.5271 26.8536 8.87222 26.5079L19.391 16.2561L8.87222 5.97423C8.54211 5.6285 8.33203 5.17754 8.33203 4.68148C8.33203 3.68938 9.12731 2.90771 10.1177 2.90771C10.6128 2.90771 11.033 3.0881 11.3631 3.4188L23.0373 14.8581C23.4574 15.264 23.6675 15.7149 23.6675 16.241Z" fill="currentColor"/></svg>
+      </div>
+      <div class="set-div"></div>
+      <div class="set-item toggle-row">
+        <svg class="set-icon" width="20" height="20" viewBox="0 0 32 32" fill="none"><path d="M16 15.6505C13.0929 15.6505 10.6371 13.0753 10.6371 9.74339C10.6371 6.49118 13.1062 3.99561 16 3.99561C18.8805 3.99561 21.3628 6.531 21.3495 9.76994C21.3495 13.0753 18.9071 15.6505 16 15.6505ZM24.2699 27.9956H7.73007C5.5398 27.9956 4.78317 27.3319 4.78317 26.1106C4.78317 22.6991 9.12387 18 16 18C22.8894 18 27.2168 22.6991 27.2168 26.1106C27.2168 27.3319 26.4602 27.9956 24.2699 27.9956Z" fill="currentColor"/></svg>
+        <span class="set-label">Actividad de amigos</span>
+        <span class="toggle on"><span class="knob"></span></span>
+      </div>
+    </div>
+    <div class="set-desc">Puedes cambiar esto más tarde en Ajustes.</div>
+
+    <div class="foot">Tooltip: 3 de 10 tailPosition (top/bottom × leadingEdge/leading/center/trailing/trailingEdge) · omitidas: showCloseButton=false, iconWidget custom, maxWidth≠288 · Menu: omitidas navegación anidada (700ms), scroll &gt;7 subitems (maxHeight 336), addDivider por item</div>
+  </div>
+
+  <div class="theme dark">
+    <h2>DotsTooltip + DotsMenu — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+
+    <h3>DotsTooltip · tailPosition</h3>
+    <div class="tooltip">
+      <svg class="tip-icon" width="32" height="32" viewBox="0 0 32 33" fill="none"><path d="M15.9993 3.15332C8.63555 3.15332 2.66602 9.12286 2.66602 16.4867C2.66602 23.8505 8.63555 29.82 15.9993 29.82C23.3631 29.82 29.3327 23.8504 29.3327 16.4867C29.3327 9.12286 23.3631 3.15332 15.9993 3.15332ZM15.9993 9.22324C16.671 9.22324 17.2154 9.76769 17.2154 10.4393C17.2154 11.1109 16.671 11.6554 15.9993 11.6554C15.3277 11.6554 14.7833 11.1109 14.7833 10.4393C14.7833 9.76769 15.3277 9.22324 15.9993 9.22324ZM17.2155 22.5339C17.2155 23.2056 16.671 23.7501 15.9994 23.7501C15.3277 23.7501 14.7832 23.2056 14.7832 22.5339V14.1895C14.7832 13.5179 15.3277 12.9734 15.9993 12.9734C16.671 12.9734 17.2155 13.5179 17.2155 14.1895V22.5339Z" fill="currentColor"/></svg>
+      <p>Toca aquí para añadir tu primer recuerdo</p>
+      <span class="tip-close"><svg width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z" fill="currentColor"/></svg></span>
+      <svg class="tail tail-bottom" viewBox="0 0 21 13"><path d="M0 0 L8.5 11 Q10.5 13.4 12.5 11 L21 0" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="tooltip tip-tl14">
+      <p>Comparte el álbum con tu familia</p>
+      <span class="tip-close"><svg width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z" fill="currentColor"/></svg></span>
+      <svg class="tail tail-top-leading" viewBox="0 0 21 13"><path d="M0 0 L8.5 11 Q10.5 13.4 12.5 11 L21 0" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+
+    <h3>DotsMenu · mainItem + subitems</h3>
+    <div class="menu">
+      <div class="menu-item"><span class="mi-label">Opciones del dot</span></div>
+      <div class="menu-div"></div>
+      <div class="menu-item">
+        <svg class="mi-check" width="14" height="14" viewBox="0 0 32 33" fill="none"><path d="M13.4057 26.9799C13.9382 26.9799 14.3591 26.7446 14.6563 26.2865L26.3568 7.86285C26.5797 7.50379 26.6663 7.2314 26.6663 6.94663C26.6663 6.26563 26.2206 5.81991 25.5396 5.81991C25.0443 5.81991 24.7719 5.98087 24.4748 6.45137L13.3562 24.1693L7.58644 16.6166C7.2769 16.1832 6.96737 16.0099 6.52163 16.0099C5.81589 16.0099 5.33301 16.4928 5.33301 17.1737C5.33301 17.4586 5.45682 17.7805 5.69207 18.0776L12.1181 26.2618C12.4895 26.7446 12.8733 26.9799 13.4057 26.9799Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M14.8801 26.4316C14.5358 26.9623 14.0324 27.2466 13.4058 27.2466C13.0973 27.2466 12.822 27.1776 12.5695 27.0335C12.3205 26.8915 12.1066 26.6839 11.9075 26.4253C11.9073 26.425 11.9078 26.4257 11.9075 26.4253L5.48307 18.2431C5.48298 18.243 5.48317 18.2432 5.48307 18.2431C5.22068 17.9116 5.06641 17.5328 5.06641 17.1737C5.06641 16.7683 5.2113 16.4068 5.47559 16.1465C5.73971 15.8863 6.1066 15.7432 6.5217 15.7432C6.78146 15.7432 7.01754 15.7944 7.23679 15.9188C7.45199 16.0409 7.63291 16.2234 7.80095 16.458L13.3348 23.7018L24.249 6.30961C24.4084 6.05715 24.5785 5.85924 24.797 5.72977C25.0188 5.59836 25.2627 5.55322 25.5397 5.55322C25.9395 5.55322 26.2929 5.68525 26.547 5.93931C26.801 6.19338 26.9331 6.54675 26.9331 6.94661C26.9331 7.29608 26.8233 7.61706 26.5834 8.0035L26.582 8.0058L14.8801 26.4316ZM24.4748 6.45137C24.7719 5.98087 25.0443 5.81991 25.5396 5.81991C26.2206 5.81991 26.6663 6.26563 26.6663 6.94663C26.6663 7.2314 26.5797 7.50379 26.3568 7.86285L14.6563 26.2865C14.3591 26.7446 13.9382 26.9799 13.4057 26.9799C12.8733 26.9799 12.4895 26.7446 12.1181 26.2618L5.69207 18.0776C5.45682 17.7805 5.33301 17.4586 5.33301 17.1737C5.33301 16.4928 5.81589 16.0099 6.52163 16.0099C6.96737 16.0099 7.2769 16.1832 7.58644 16.6166L13.3562 24.1693L24.4748 6.45137Z" fill="currentColor"/></svg>
+        <span class="mi-label">Todos los recuerdos</span>
+      </div>
+      <div class="menu-item">
+        <div style="flex:1">
+          <div class="mi-label">Editar título</div>
+          <div class="mi-details">Cambia el nombre visible</div>
+        </div>
+        <svg class="mi-icon" width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M24.1624 2.92672C23.4519 3.07821 23.2534 3.22448 21.9526 4.50958L20.7563 5.69542L26.5393 11.4627L27.6676 10.3343C28.8796 9.12233 29.0938 8.84024 29.2871 8.20814C29.3811 7.9156 29.3915 7.75888 29.3759 7.26783C29.3341 6.19169 29.1565 5.8887 27.6937 4.43644C26.5392 3.28717 26.3251 3.13568 25.5937 2.94761C25.1288 2.82746 24.6482 2.82224 24.1624 2.92672Z" fill="currentColor"/><path d="M11.6951 14.7235L4.28231 22.1363L3.4517 25.4483C2.9711 27.3812 2.62109 28.8648 2.62109 29.0111C2.62109 29.3715 2.8196 29.57 3.18006 29.57C3.32633 29.57 4.80993 29.22 6.74279 28.7394L10.0548 27.9088L17.4676 20.496C21.5423 16.4213 24.8751 13.0676 24.8751 13.0362C24.8751 12.9683 19.2228 7.31598 19.1549 7.31598C19.1236 7.31598 15.7698 10.6489 11.6951 14.7235Z" fill="currentColor"/></svg>
+      </div>
+      <div class="menu-item">
+        <svg class="mi-chevron" width="14" height="14" viewBox="0 0 32 33" fill="none"><path d="M23.6675 16.241C23.6525 16.7672 23.4574 17.2482 23.0373 17.639L11.3631 29.0633C11.033 29.394 10.6128 29.5744 10.1177 29.5744C9.12732 29.5744 8.33203 28.7927 8.33203 27.8006C8.33203 27.3196 8.5271 26.8536 8.87222 26.5079L19.391 16.2561L8.87222 5.97423C8.54211 5.6285 8.33203 5.17754 8.33203 4.68148C8.33203 3.68938 9.12731 2.90771 10.1177 2.90771C10.6128 2.90771 11.033 3.0881 11.3631 3.4188L23.0373 14.8581C23.4574 15.264 23.6675 15.7149 23.6675 16.241Z" fill="currentColor"/></svg>
+        <span class="mi-label">Ordenar por</span>
+      </div>
+      <div class="menu-div"></div>
+      <div class="menu-item mi-delete">
+        <span class="mi-label">Eliminar dot</span>
+        <svg class="mi-icon" width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M12.7426 25.0807C12.326 25.0807 12.0589 24.8293 12.0376 24.4142L11.7171 12.3854C11.7064 11.9811 11.9735 11.7189 12.4008 11.7189C12.796 11.7189 13.0738 11.9702 13.0845 12.3744L13.4263 24.4142C13.437 24.8184 13.1592 25.0807 12.7426 25.0807ZM16.0008 25.0807C15.5841 25.0807 15.2957 24.8184 15.2957 24.4142V12.3854C15.2957 11.9811 15.5841 11.7189 16.0008 11.7189C16.4174 11.7189 16.7165 11.9811 16.7165 12.3854V24.4142C16.7165 24.8184 16.4174 25.0807 16.0008 25.0807ZM19.2696 25.0807C18.853 25.0807 18.5753 24.8184 18.5859 24.4142L18.9171 12.3854C18.9278 11.9702 19.2055 11.7189 19.6008 11.7189C20.028 11.7189 20.2951 11.9811 20.2844 12.3854L19.9639 24.4142C19.9426 24.8293 19.6755 25.0807 19.2696 25.0807ZM11.3112 9.06406H13.0097V6.72603C13.0097 6.10329 13.437 5.69904 14.0779 5.69904H17.9022C18.5432 5.69904 18.9705 6.10329 18.9705 6.72603V9.06406H20.6689V6.61678C20.6689 5.0326 19.6649 4.07117 18.0197 4.07117H13.9604C12.3153 4.07117 11.3112 5.0326 11.3112 6.61678V9.06406ZM6.46134 9.93809H25.5508C25.9889 9.93809 26.3414 9.5557 26.3414 9.10776C26.3414 8.65983 25.9889 8.28836 25.5508 8.28836H6.46134C6.03404 8.28836 5.66016 8.65983 5.66016 9.10776C5.66016 9.56663 6.03404 9.93809 6.46134 9.93809ZM11.1082 28.402H20.904C22.4316 28.402 23.4571 27.3859 23.5319 25.8235L24.2797 9.70866H7.72187L8.48032 25.8345C8.5551 27.3968 9.55924 28.402 11.1082 28.402Z" fill="currentColor"/></svg>
+      </div>
+    </div>
+
+    <h3>SettingsList · SettingsItemVariant</h3>
+    <div class="set-title">Notificaciones</div>
+    <div class="set-list">
+      <div class="set-item">
+        <svg class="set-icon" width="20" height="20" viewBox="0 0 32 32" fill="none"><path d="M5.96051 24.2534H26.0397C27.2305 24.2534 27.9526 23.6452 27.9526 22.7205C27.9526 21.4537 26.6604 20.3135 25.571 19.186C24.7348 18.312 24.5068 16.5131 24.4054 15.0562C24.3168 10.1916 23.0246 6.84721 19.6549 5.63106C19.1735 3.97151 17.8687 2.66669 15.9938 2.66669C14.1315 2.66669 12.814 3.97151 12.3453 5.63106C8.97555 6.84721 7.68339 10.1916 7.59471 15.0562C7.49337 16.5131 7.26534 18.312 6.42923 19.186C5.32709 20.3135 4.04761 21.4537 4.04761 22.7205C4.04761 23.6452 4.75703 24.2534 5.96051 24.2534ZM15.9938 29.3334C18.1474 29.3334 19.7182 27.7624 19.8829 25.9889H12.1173C12.282 27.7624 13.8528 29.3334 15.9938 29.3334Z" fill="currentColor"/></svg>
+        <span class="set-label">Recordatorios diarios</span>
+        <svg class="set-icon" width="16" height="16" viewBox="0 0 32 33" fill="none"><path d="M23.6675 16.241C23.6525 16.7672 23.4574 17.2482 23.0373 17.639L11.3631 29.0633C11.033 29.394 10.6128 29.5744 10.1177 29.5744C9.12732 29.5744 8.33203 28.7927 8.33203 27.8006C8.33203 27.3196 8.5271 26.8536 8.87222 26.5079L19.391 16.2561L8.87222 5.97423C8.54211 5.6285 8.33203 5.17754 8.33203 4.68148C8.33203 3.68938 9.12731 2.90771 10.1177 2.90771C10.6128 2.90771 11.033 3.0881 11.3631 3.4188L23.0373 14.8581C23.4574 15.264 23.6675 15.7149 23.6675 16.241Z" fill="currentColor"/></svg>
+      </div>
+      <div class="set-div"></div>
+      <div class="set-item toggle-row">
+        <svg class="set-icon" width="20" height="20" viewBox="0 0 32 32" fill="none"><path d="M16 15.6505C13.0929 15.6505 10.6371 13.0753 10.6371 9.74339C10.6371 6.49118 13.1062 3.99561 16 3.99561C18.8805 3.99561 21.3628 6.531 21.3495 9.76994C21.3495 13.0753 18.9071 15.6505 16 15.6505ZM24.2699 27.9956H7.73007C5.5398 27.9956 4.78317 27.3319 4.78317 26.1106C4.78317 22.6991 9.12387 18 16 18C22.8894 18 27.2168 22.6991 27.2168 26.1106C27.2168 27.3319 26.4602 27.9956 24.2699 27.9956Z" fill="currentColor"/></svg>
+        <span class="set-label">Actividad de amigos</span>
+        <span class="toggle off"><span class="knob"></span></span>
+      </div>
+    </div>
+    <div class="set-desc">Puedes cambiar esto más tarde en Ajustes.</div>
+
+    <div class="foot">Tooltip: 3 de 10 tailPosition (top/bottom × leadingEdge/leading/center/trailing/trailingEdge) · omitidas: showCloseButton=false, iconWidget custom, maxWidth≠288 · Menu: omitidas navegación anidada (700ms), scroll &gt;7 subitems (maxHeight 336), addDivider por item</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!-- @dsCard group="Feedback" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · Badges + DotsFilterChip</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  h3 { font-size: 12px; font-weight: 600; margin: 18px 0 8px; opacity: .7; }
+  .light h3 { color: #000; } .dark h3 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+  svg { display: block; flex: none; }
+
+  /* ===== BadgeIcon — circular, style white (bg labelAlwaysWhite, icono #000000D9),
+     sombra 0 0 20 #00000033. Tamaños: large 44/24, medium 36/20, small 28/16 ===== */
+  .badge-icon { border-radius: 50%; background: #FFFFFF; color: #000000D9;
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 20px #00000033; }
+  .bi-large { width: 44px; height: 44px; } .bi-large svg { width: 24px; height: 24px; }
+  .bi-medium { width: 36px; height: 36px; } .bi-medium svg { width: 20px; height: 20px; }
+  .bi-small { width: 28px; height: 28px; } .bi-small svg { width: 16px; height: 16px; }
+
+  /* ===== BadgeLabel — píldora (radio = altura), blur bg (bgBlur 50).
+     large: h34 pad 12 bodyDefaultMedium 14/500 · medium: h22 pad 8 · small: h18 pad 8 labelSmallMedium 11/600 ===== */
+  .badge-label { display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+    backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); white-space: nowrap; box-sizing: border-box; }
+  .bl-large { height: 34px; padding: 0 12px; border-radius: 34px; font-size: 14px; font-weight: 500; }
+  .bl-medium { height: 22px; padding: 0 8px; border-radius: 22px; font-size: 11px; font-weight: 600; }
+  .bl-small { height: 18px; padding: 0 8px; border-radius: 18px; font-size: 11px; font-weight: 600; }
+  /* Variantes BadgeLabelVariant */
+  .light .blv-main { background: #0072EF; color: #FFF; } .dark .blv-main { background: #0A84FF; color: #FFF; }
+  .light .blv-secondary { background: #0072EF33; color: #0072EF; } .dark .blv-secondary { background: #0A84FF33; color: #0A84FF; }
+  .light .blv-green { background: #28CB55; color: #FFF; } .dark .blv-green { background: #3BD866; color: #FFF; }
+  .light .blv-white { background: #F8F7F5D9; color: #000; border: 1px solid #BCBCBC7F; }
+  .dark  .blv-white { background: #191919D9; color: #FFF; border: 1px solid #BCBCBC33; }
+  .light .blv-green-material { background: #28CB551A; color: #28CB55; } .dark .blv-green-material { background: #28CB551A; color: #3BD866; }
+  .blv-warning { background: #EF9148; color: #FFF; }
+  .blv-warning-material { background: #EF91481A; color: #EF9148; }
+  .blv-red { background: #ED2B32; color: #FFF; }
+  .blv-premium { background: linear-gradient(135deg, #C88EFF, #8B84F7); color: #FFF; }
+  .blv-premium-plus { background: linear-gradient(135deg, #E9C058, #B48D2D); color: #FFF; }
+
+  /* ===== BadgeMilestone — radio 22, pad h 12, blur 25, bg bgBase, texto labelDefaultRegular 13/400 textTertiary.
+     main: pad v 9 + borde 1 bgSecondaryBtn · ghost: pad v 6 sin borde ===== */
+  .badge-milestone { display: inline-flex; align-items: center; border-radius: 22px; padding: 9px 12px;
+    font-size: 13px; font-weight: 400; line-height: 1.31;
+    backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); }
+  .light .badge-milestone { background: #F8F7F5; color: #0000008C; border: 1px solid #8C8C8C4D; }
+  .dark  .badge-milestone { background: #191919; color: #FFFFFFA6; border: 1px solid #C8C8C84D; }
+  .bm-ghost { padding: 6px 12px; border: none !important; }
+
+  /* ===== BadgeProgress — h36, radio 22, pad h 6, bg bgContainerSecondaryOnBackground,
+     icono checkCircle 20 labelHighlight + texto labelDefaultMedium 13/500 textSecondary (gap 2) ===== */
+  .badge-progress { display: inline-flex; align-items: center; gap: 2px; height: 36px;
+    padding: 0 6px; border-radius: 22px; font-size: 13px; font-weight: 500; box-sizing: border-box; }
+  .light .badge-progress { background: #8C8C8C1A; color: #000000AB; }
+  .dark  .badge-progress { background: #75757533; color: #FFFFFFBF; }
+  .light .badge-progress svg { color: #0072EF; } .dark .badge-progress svg { color: #0A84FF; }
+
+  /* ===== BadgeTag — min 18x18, pad 5x1, radio 22, bg labelDestructive,
+     texto labelSmallMedium 11/600 labelAlwaysWhite. Posición -5,-5 sobre child ===== */
+  .badge-tag { display: inline-flex; align-items: center; justify-content: center;
+    min-width: 18px; min-height: 18px; padding: 1px 5px; border-radius: 22px; box-sizing: border-box;
+    background: #ED2B32; color: #FFF; font-size: 11px; font-weight: 600; }
+  .tag-host { position: relative; display: inline-block; }
+  .tag-host .badge-tag { position: absolute; top: -5px; right: -5px; }
+
+  /* ===== DotsFilterChip — radio 22, bg bgContainerSecondary, pad 12/6/6/6,
+     label labelDefaultBold 13/600 textSecondary + DotsCloseButton extraSmall (16, icono 10) highContrast ===== */
+  .filter-chip { display: inline-flex; align-items: center; border-radius: 22px;
+    padding: 6px 6px 6px 12px; font-size: 13px; font-weight: 600; }
+  .light .filter-chip { background: #E2E2E2B3; color: #000000AB; }
+  .dark  .filter-chip { background: #282828B3; color: #FFFFFFBF; }
+  .chip-close { width: 16px; height: 16px; border-radius: 50%; margin-left: 8px;
+    display: inline-flex; align-items: center; justify-content: center; }
+  .light .chip-close { background: #8C8C8C4D; color: #0000008C; }
+  .dark  .chip-close { background: #C8C8C84D; color: #FFFFFFA6; }
+  .chip-close svg { width: 10px; height: 10px; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>Badges + DotsFilterChip — Light</h2>
+    <div class="sub">badges/badge_icon · badge_label · badge_milestone · badge_progress · badge_tag · dots_filter_chip</div>
+
+    <h3>BadgeIcon (style: white · large/medium/small)</h3>
+    <div class="row">
+      <span class="badge-icon bi-large"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M15.9991 28.0942C16.3361 28.0942 16.8157 27.8536 17.2045 27.6131C24.4499 23.0552 29.09 17.7124 29.09 12.2935C29.09 7.64704 25.8108 4.40588 21.6762 4.40588C19.0969 4.40588 17.1656 5.79857 15.9991 7.8876C14.8585 5.81123 12.9143 4.40588 10.335 4.40588C6.20037 4.40588 2.9082 7.64704 2.9082 12.2935C2.9082 17.7124 7.54835 23.0552 14.7937 27.6131C15.1955 27.8536 15.6751 28.0942 15.9991 28.0942Z"/></svg></span>
+      <span class="badge-icon bi-medium"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M15.9991 28.0942C16.3361 28.0942 16.8157 27.8536 17.2045 27.6131C24.4499 23.0552 29.09 17.7124 29.09 12.2935C29.09 7.64704 25.8108 4.40588 21.6762 4.40588C19.0969 4.40588 17.1656 5.79857 15.9991 7.8876C14.8585 5.81123 12.9143 4.40588 10.335 4.40588C6.20037 4.40588 2.9082 7.64704 2.9082 12.2935C2.9082 17.7124 7.54835 23.0552 14.7937 27.6131C15.1955 27.8536 15.6751 28.0942 15.9991 28.0942Z"/></svg></span>
+      <span class="badge-icon bi-small"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M15.9991 28.0942C16.3361 28.0942 16.8157 27.8536 17.2045 27.6131C24.4499 23.0552 29.09 17.7124 29.09 12.2935C29.09 7.64704 25.8108 4.40588 21.6762 4.40588C19.0969 4.40588 17.1656 5.79857 15.9991 7.8876C14.8585 5.81123 12.9143 4.40588 10.335 4.40588C6.20037 4.40588 2.9082 7.64704 2.9082 12.2935C2.9082 17.7124 7.54835 23.0552 14.7937 27.6131C15.1955 27.8536 15.6751 28.0942 15.9991 28.0942Z"/></svg></span>
+    </div>
+
+    <h3>BadgeLabel (size × variant)</h3>
+    <div class="row">
+      <span class="badge-label bl-large blv-main">Nuevo · large 34</span>
+      <span class="badge-label bl-medium blv-main">medium 22</span>
+      <span class="badge-label bl-small blv-main">small 18</span>
+    </div>
+    <div class="row">
+      <span class="badge-label bl-medium blv-secondary">secondary</span>
+      <span class="badge-label bl-medium blv-green">green</span>
+      <span class="badge-label bl-medium blv-green-material">greenMaterial</span>
+      <span class="badge-label bl-medium blv-white">white</span>
+    </div>
+    <div class="row">
+      <span class="badge-label bl-medium blv-warning">warning</span>
+      <span class="badge-label bl-medium blv-warning-material">warningMaterial</span>
+      <span class="badge-label bl-medium blv-red">red</span>
+      <span class="badge-label bl-medium blv-premium">premium</span>
+      <span class="badge-label bl-medium blv-premium-plus">premiumPlus</span>
+    </div>
+
+    <h3>BadgeMilestone (main / ghost)</h3>
+    <div class="row">
+      <span class="badge-milestone">100 recuerdos</span>
+      <span class="badge-milestone bm-ghost">1 año juntos</span>
+    </div>
+
+    <h3>BadgeProgress · BadgeTag</h3>
+    <div class="row">
+      <span class="badge-progress"><svg width="20" height="20" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M29.3327 16.4867C29.3327 23.7678 23.2935 29.82 15.9993 29.82C8.71831 29.82 2.66602 23.7678 2.66602 16.4867C2.66602 9.19255 8.70524 3.15332 15.9863 3.15332C23.2805 3.15332 29.3327 9.19255 29.3327 16.4867ZM20.0648 11.2971L14.4831 20.2644L11.8294 16.8396C11.5026 16.4082 11.215 16.2906 10.836 16.2906C10.2477 16.2906 9.79021 16.7742 9.79021 17.3625C9.79021 17.6631 9.90786 17.9507 10.1039 18.2122L13.385 22.2384C13.7249 22.6958 14.0909 22.8789 14.5353 22.8789C14.9798 22.8789 15.3588 22.6697 15.6334 22.2384L21.7772 12.5651C21.934 12.2906 22.104 11.9899 22.104 11.7024C22.104 11.088 21.568 10.6958 20.9929 10.6958C20.653 10.6958 20.3131 10.905 20.0648 11.2971Z"/></svg>3/5</span>
+      <span class="badge-tag">2</span>
+      <span class="tag-host"><span class="badge-icon bi-large"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M6.07536 27.1731H25.9234C28.1818 27.1731 29.3327 26.0439 29.3327 23.8071V12.4391C29.3327 10.2024 28.1818 9.08401 25.9234 9.08401H22.8181C21.9603 9.08401 21.6997 8.91029 21.2111 8.3674L20.3425 7.3902C19.7996 6.79302 19.2458 6.46729 18.1275 6.46729H13.7952C12.6769 6.46729 12.1231 6.79302 11.5803 7.3902L10.7116 8.3674C10.223 8.89943 9.95159 9.08401 9.10468 9.08401H6.07536C3.80608 9.08401 2.66602 10.2024 2.66602 12.4391V23.8071C2.66602 26.0439 3.80608 27.1731 6.07536 27.1731ZM15.9993 23.97C12.7094 23.97 10.071 21.3425 10.071 18.0309C10.071 14.7301 12.7094 12.1025 15.9993 12.1025C19.2893 12.1025 21.9168 14.7301 21.9168 18.0309C21.9168 21.3425 19.2784 23.97 15.9993 23.97ZM15.9993 22.3197C18.3664 22.3197 20.2773 20.4195 20.2773 18.0309C20.2773 15.653 18.3664 13.742 15.9993 13.742C13.6323 13.742 11.7105 15.653 11.7105 18.0309C11.7105 20.4195 13.6433 22.3197 15.9993 22.3197ZM22.6443 14.0352C22.6443 13.2968 23.2958 12.6454 24.0558 12.6454C24.805 12.6454 25.4456 13.2968 25.4456 14.0352C25.4456 14.8061 24.805 15.425 24.0558 15.4358C23.2958 15.4358 22.6443 14.8169 22.6443 14.0352Z"/></svg></span><span class="badge-tag">9</span></span>
+    </div>
+
+    <h3>DotsFilterChip</h3>
+    <div class="row">
+      <span class="filter-chip">Familia<span class="chip-close"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></span></span>
+      <span class="filter-chip">Viajes 2025<span class="chip-close"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></span></span>
+    </div>
+  </div>
+
+  <div class="theme dark">
+    <h2>Badges + DotsFilterChip — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+
+    <h3>BadgeIcon (style: white · large/medium/small)</h3>
+    <div class="row">
+      <span class="badge-icon bi-large"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M15.9991 28.0942C16.3361 28.0942 16.8157 27.8536 17.2045 27.6131C24.4499 23.0552 29.09 17.7124 29.09 12.2935C29.09 7.64704 25.8108 4.40588 21.6762 4.40588C19.0969 4.40588 17.1656 5.79857 15.9991 7.8876C14.8585 5.81123 12.9143 4.40588 10.335 4.40588C6.20037 4.40588 2.9082 7.64704 2.9082 12.2935C2.9082 17.7124 7.54835 23.0552 14.7937 27.6131C15.1955 27.8536 15.6751 28.0942 15.9991 28.0942Z"/></svg></span>
+      <span class="badge-icon bi-medium"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M15.9991 28.0942C16.3361 28.0942 16.8157 27.8536 17.2045 27.6131C24.4499 23.0552 29.09 17.7124 29.09 12.2935C29.09 7.64704 25.8108 4.40588 21.6762 4.40588C19.0969 4.40588 17.1656 5.79857 15.9991 7.8876C14.8585 5.81123 12.9143 4.40588 10.335 4.40588C6.20037 4.40588 2.9082 7.64704 2.9082 12.2935C2.9082 17.7124 7.54835 23.0552 14.7937 27.6131C15.1955 27.8536 15.6751 28.0942 15.9991 28.0942Z"/></svg></span>
+      <span class="badge-icon bi-small"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M15.9991 28.0942C16.3361 28.0942 16.8157 27.8536 17.2045 27.6131C24.4499 23.0552 29.09 17.7124 29.09 12.2935C29.09 7.64704 25.8108 4.40588 21.6762 4.40588C19.0969 4.40588 17.1656 5.79857 15.9991 7.8876C14.8585 5.81123 12.9143 4.40588 10.335 4.40588C6.20037 4.40588 2.9082 7.64704 2.9082 12.2935C2.9082 17.7124 7.54835 23.0552 14.7937 27.6131C15.1955 27.8536 15.6751 28.0942 15.9991 28.0942Z"/></svg></span>
+    </div>
+
+    <h3>BadgeLabel (size × variant)</h3>
+    <div class="row">
+      <span class="badge-label bl-large blv-main">Nuevo · large 34</span>
+      <span class="badge-label bl-medium blv-main">medium 22</span>
+      <span class="badge-label bl-small blv-main">small 18</span>
+    </div>
+    <div class="row">
+      <span class="badge-label bl-medium blv-secondary">secondary</span>
+      <span class="badge-label bl-medium blv-green">green</span>
+      <span class="badge-label bl-medium blv-green-material">greenMaterial</span>
+      <span class="badge-label bl-medium blv-white">white</span>
+    </div>
+    <div class="row">
+      <span class="badge-label bl-medium blv-warning">warning</span>
+      <span class="badge-label bl-medium blv-warning-material">warningMaterial</span>
+      <span class="badge-label bl-medium blv-red">red</span>
+      <span class="badge-label bl-medium blv-premium">premium</span>
+      <span class="badge-label bl-medium blv-premium-plus">premiumPlus</span>
+    </div>
+
+    <h3>BadgeMilestone (main / ghost)</h3>
+    <div class="row">
+      <span class="badge-milestone">100 recuerdos</span>
+      <span class="badge-milestone bm-ghost">1 año juntos</span>
+    </div>
+
+    <h3>BadgeProgress · BadgeTag</h3>
+    <div class="row">
+      <span class="badge-progress"><svg width="20" height="20" viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M29.3327 16.4867C29.3327 23.7678 23.2935 29.82 15.9993 29.82C8.71831 29.82 2.66602 23.7678 2.66602 16.4867C2.66602 9.19255 8.70524 3.15332 15.9863 3.15332C23.2805 3.15332 29.3327 9.19255 29.3327 16.4867ZM20.0648 11.2971L14.4831 20.2644L11.8294 16.8396C11.5026 16.4082 11.215 16.2906 10.836 16.2906C10.2477 16.2906 9.79021 16.7742 9.79021 17.3625C9.79021 17.6631 9.90786 17.9507 10.1039 18.2122L13.385 22.2384C13.7249 22.6958 14.0909 22.8789 14.5353 22.8789C14.9798 22.8789 15.3588 22.6697 15.6334 22.2384L21.7772 12.5651C21.934 12.2906 22.104 11.9899 22.104 11.7024C22.104 11.088 21.568 10.6958 20.9929 10.6958C20.653 10.6958 20.3131 10.905 20.0648 11.2971Z"/></svg>3/5</span>
+      <span class="badge-tag">2</span>
+      <span class="tag-host"><span class="badge-icon bi-large"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M6.07536 27.1731H25.9234C28.1818 27.1731 29.3327 26.0439 29.3327 23.8071V12.4391C29.3327 10.2024 28.1818 9.08401 25.9234 9.08401H22.8181C21.9603 9.08401 21.6997 8.91029 21.2111 8.3674L20.3425 7.3902C19.7996 6.79302 19.2458 6.46729 18.1275 6.46729H13.7952C12.6769 6.46729 12.1231 6.79302 11.5803 7.3902L10.7116 8.3674C10.223 8.89943 9.95159 9.08401 9.10468 9.08401H6.07536C3.80608 9.08401 2.66602 10.2024 2.66602 12.4391V23.8071C2.66602 26.0439 3.80608 27.1731 6.07536 27.1731ZM15.9993 23.97C12.7094 23.97 10.071 21.3425 10.071 18.0309C10.071 14.7301 12.7094 12.1025 15.9993 12.1025C19.2893 12.1025 21.9168 14.7301 21.9168 18.0309C21.9168 21.3425 19.2784 23.97 15.9993 23.97ZM15.9993 22.3197C18.3664 22.3197 20.2773 20.4195 20.2773 18.0309C20.2773 15.653 18.3664 13.742 15.9993 13.742C13.6323 13.742 11.7105 15.653 11.7105 18.0309C11.7105 20.4195 13.6433 22.3197 15.9993 22.3197ZM22.6443 14.0352C22.6443 13.2968 23.2958 12.6454 24.0558 12.6454C24.805 12.6454 25.4456 13.2968 25.4456 14.0352C25.4456 14.8061 24.805 15.425 24.0558 15.4358C23.2958 15.4358 22.6443 14.8169 22.6443 14.0352Z"/></svg></span><span class="badge-tag">9</span></span>
+    </div>
+
+    <h3>DotsFilterChip</h3>
+    <div class="row">
+      <span class="filter-chip">Familia<span class="chip-close"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></span></span>
+      <span class="filter-chip">Viajes 2025<span class="chip-close"><svg viewBox="0 0 32 33" fill="none"><path fill="currentColor" d="M9.13722 25.4281L16.0002 18.5652L22.8631 25.4281C23.5606 26.1257 24.7194 26.1369 25.4282 25.4281C26.137 24.7193 26.1258 23.5605 25.4282 22.863L18.5653 16L25.4282 9.1371C26.1258 8.43956 26.137 7.28074 25.4282 6.57194C24.7194 5.86315 23.5606 5.8744 22.8631 6.57194L16.0002 13.4349L9.13722 6.57194C8.43968 5.8744 7.28086 5.86315 6.57206 6.57194C5.86327 7.28074 5.87452 8.43956 6.57206 9.1371L13.435 16L6.57206 22.863C5.87452 23.5605 5.86327 24.7193 6.57206 25.4281C7.28086 26.1369 8.43968 26.1257 9.13722 25.4281Z"/></svg></span></span>
+    </div>
+  </div>
+</body>
+</html>

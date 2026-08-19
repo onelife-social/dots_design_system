@@ -1,0 +1,15 @@
+/* BadgeIcon — badges/badge_icon/. Círculo con icono centrado.
+   Tamaños (BadgeIconSize): large 44/24 · medium 36/20 · small 28/16 (via style inline). */
+.ds-badge-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%; flex: none; box-sizing: border-box;
+  /* Dart: BoxShadow(color 0x33000000, blur 20, offset 0,0) — sin token, hex del Dart */
+  box-shadow: 0 0 20px #00000033;
+}
+/* BadgeIconStyle.white: bg labelAlwaysWhite; icono 0xD9000000 hardcodeado en Dart (sin token) */
+.ds-badge-icon--white { background: var(--label-always-white); color: #000000D9; }
+
+/* BadgeIconGroup (badge_icon_group.dart): lienzo fijo 63x70, iconos posicionados
+   left/bottom (medium abajo-izda + hasta 2 small). */
+.ds-badge-icon-group { position: relative; display: inline-block; width: 63px; height: 70px; flex: none; }
+.ds-badge-icon-group > .ds-badge-icon { position: absolute; }

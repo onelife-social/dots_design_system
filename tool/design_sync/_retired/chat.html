@@ -1,0 +1,158 @@
+<!-- @dsCard group="Social" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · Chat</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; min-width: 0; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .variant-label { font-size: 10px; font-family: ui-monospace, monospace; opacity: .45; margin: 6px 0 0 16px; }
+  .light .variant-label { color: #000; } .dark .variant-label { color: #FFF; }
+
+  /* MessagePreview — height 92, contenido 62, padding horizontal 16 */
+  .msg-preview { height: 92px; padding: 0 16px; display: flex; align-items: center; cursor: pointer; }
+  .msg-inner { height: 62px; display: flex; align-items: flex-start; gap: 12px; width: 100%; min-width: 0; }
+
+  /* _ImageAlbum — 56x56, squircle16 */
+  .album-img {
+    width: 56px; height: 56px; border-radius: 16px; flex: none;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 18px; color: #FFFFFFD9;
+  }
+  .grad-a { background: linear-gradient(135deg, #FAA25E, #F43C51); }
+  .grad-b { background: linear-gradient(135deg, #9297EF, #8B84F7); }
+  .grad-c { background: linear-gradient(135deg, #28CB55, #0072EF); }
+
+  .msg-col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  /* _ChatHeaderInfo — album bodyLargeBold 16/700 · time bodyDefaultRegular 14/400 */
+  .msg-header { display: flex; align-items: baseline; }
+  .album-name { flex: 1; font-size: 16px; font-weight: 700; letter-spacing: -0.05px; line-height: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .light .album-name { color: #000000; } .dark .album-name { color: #FFFFFF; }
+  .msg-time { font-size: 14px; font-weight: 400; letter-spacing: -0.02px; line-height: 1; }
+  .light .msg-time { color: #000000AB; } .dark .msg-time { color: #FFFFFFBF; }
+
+  /* _ChatContent — sender bodyDefaultBold 14/700 · message bodyDefaultRegular 14/400 · max 2 líneas */
+  .msg-content { display: flex; align-items: flex-start; }
+  .msg-text {
+    flex: 1; min-width: 0; font-size: 14px; letter-spacing: -0.02px; line-height: 1.29;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .light .msg-text { color: #000000AB; } .dark .msg-text { color: #FFFFFFBF; }
+  .msg-sender { font-weight: 700; }
+  .attach-ic { display: inline-block; vertical-align: middle; margin-right: 2px; }
+  .light .attach-ic svg { fill: #000000AB; } .dark .attach-ic svg { fill: #FFFFFFBF; }
+
+  /* BadgeTag — min 18x18, padding 5x1, radio 22, labelDestructive, labelSmallMedium 11/600, cap '+999' */
+  .badge-tag {
+    margin-left: 12px; flex: none; min-width: 18px; height: 18px; box-sizing: border-box;
+    padding: 1px 5px; border-radius: 22px; background: #ED2B32;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.01px; color: #FFFFFF;
+  }
+
+  .footnote { font-size: 9px; opacity: .4; margin-top: 14px; font-family: ui-monospace, monospace; line-height: 1.5; }
+  .light .footnote { color: #000; } .dark .footnote { color: #FFF; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>MessagePreview — Light</h2>
+    <div class="sub">chat/message_preview · h92 · imagen 56 squircle16 · BadgeTag</div>
+
+    <div class="variant-label">message + newMessages</div>
+    <div class="msg-preview">
+      <div class="msg-inner">
+        <div class="album-img grad-a">V</div>
+        <div class="msg-col">
+          <div class="msg-header"><span class="album-name">Verano en familia</span><span class="msg-time">14:32</span></div>
+          <div class="msg-content">
+            <div class="msg-text"><span class="msg-sender">Ana: </span>¡Qué ganas de ver las fotos del viaje! Subid las del sábado cuando podáis.</div>
+            <div class="badge-tag">3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="variant-label">typingText</div>
+    <div class="msg-preview">
+      <div class="msg-inner">
+        <div class="album-img grad-b">A</div>
+        <div class="msg-col">
+          <div class="msg-header"><span class="album-name">Amigos de siempre</span><span class="msg-time">Ayer</span></div>
+          <div class="msg-content"><div class="msg-text">Marta está escribiendo…</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="variant-label">attachmentMessage (MessageType.image)</div>
+    <div class="msg-preview">
+      <div class="msg-inner">
+        <div class="album-img grad-c">B</div>
+        <div class="msg-col">
+          <div class="msg-header"><span class="album-name">Boda de Lucía</span><span class="msg-time">Lun</span></div>
+          <div class="msg-content">
+            <div class="msg-text"><span class="msg-sender">Pablo: </span><span class="attach-ic"><svg width="13" height="13" viewBox="0 0 32 33" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_344_1642_att)"><path d="M28 10.6066V23.0443C28 25.141 26.9415 26.1893 24.8041 26.1893H7.19593C5.0687 26.1893 4 25.141 4 23.0443V10.6066C4 8.50994 5.0687 7.45142 7.19593 7.45142H24.8041C26.9415 7.45142 28 8.50994 28 10.6066ZM18.4224 17.0799L13.5573 21.3955L11.6132 19.6448C11.1654 19.2275 10.6463 19.0239 10.1476 19.0239C9.69975 19.0239 9.2112 19.2275 8.76337 19.6244L5.63868 22.3521V22.9731C5.63868 23.9705 6.22901 24.5608 7.21628 24.5608H24.7939C25.7608 24.5608 26.3613 23.9705 26.3613 22.9934V21.4259L21.6794 17.0901C21.201 16.6422 20.6209 16.4285 20.0611 16.4285C19.4809 16.4285 18.9211 16.6321 18.4224 17.0799ZM9.11959 14.5659C9.11959 15.9502 10.2494 17.0799 11.6336 17.0799C13.0076 17.0799 14.1374 15.9502 14.1374 14.5659C14.1374 13.1919 13.0076 12.0519 11.6336 12.0519C10.2494 12.0519 9.11959 13.1919 9.11959 14.5659Z"/></g><defs><clipPath id="clip0_344_1642_att"><rect y="0.820312" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg></span>Foto</div>
+            <div class="badge-tag">+999</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footnote">MessageType: text · image · video · audio · file (isAttachment = != text). newMessages &gt; 999 → '+999'.</div>
+  </div>
+
+  <div class="theme dark">
+    <h2>MessagePreview — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+
+    <div class="variant-label">message + newMessages</div>
+    <div class="msg-preview">
+      <div class="msg-inner">
+        <div class="album-img grad-a">V</div>
+        <div class="msg-col">
+          <div class="msg-header"><span class="album-name">Verano en familia</span><span class="msg-time">14:32</span></div>
+          <div class="msg-content">
+            <div class="msg-text"><span class="msg-sender">Ana: </span>¡Qué ganas de ver las fotos del viaje! Subid las del sábado cuando podáis.</div>
+            <div class="badge-tag">3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="variant-label">typingText</div>
+    <div class="msg-preview">
+      <div class="msg-inner">
+        <div class="album-img grad-b">A</div>
+        <div class="msg-col">
+          <div class="msg-header"><span class="album-name">Amigos de siempre</span><span class="msg-time">Ayer</span></div>
+          <div class="msg-content"><div class="msg-text">Marta está escribiendo…</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="variant-label">attachmentMessage (MessageType.image)</div>
+    <div class="msg-preview">
+      <div class="msg-inner">
+        <div class="album-img grad-c">B</div>
+        <div class="msg-col">
+          <div class="msg-header"><span class="album-name">Boda de Lucía</span><span class="msg-time">Lun</span></div>
+          <div class="msg-content">
+            <div class="msg-text"><span class="msg-sender">Pablo: </span><span class="attach-ic"><svg width="13" height="13" viewBox="0 0 32 33" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_344_1642_att)"><path d="M28 10.6066V23.0443C28 25.141 26.9415 26.1893 24.8041 26.1893H7.19593C5.0687 26.1893 4 25.141 4 23.0443V10.6066C4 8.50994 5.0687 7.45142 7.19593 7.45142H24.8041C26.9415 7.45142 28 8.50994 28 10.6066ZM18.4224 17.0799L13.5573 21.3955L11.6132 19.6448C11.1654 19.2275 10.6463 19.0239 10.1476 19.0239C9.69975 19.0239 9.2112 19.2275 8.76337 19.6244L5.63868 22.3521V22.9731C5.63868 23.9705 6.22901 24.5608 7.21628 24.5608H24.7939C25.7608 24.5608 26.3613 23.9705 26.3613 22.9934V21.4259L21.6794 17.0901C21.201 16.6422 20.6209 16.4285 20.0611 16.4285C19.4809 16.4285 18.9211 16.6321 18.4224 17.0799ZM9.11959 14.5659C9.11959 15.9502 10.2494 17.0799 11.6336 17.0799C13.0076 17.0799 14.1374 15.9502 14.1374 14.5659C14.1374 13.1919 13.0076 12.0519 11.6336 12.0519C10.2494 12.0519 9.11959 13.1919 9.11959 14.5659Z"/></g><defs><clipPath id="clip0_344_1642_att"><rect y="0.820312" width="32" height="32" rx="5" fill="white"/></clipPath></defs></svg></span>Foto</div>
+            <div class="badge-tag">+999</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footnote">MessageType: text · image · video · audio · file (isAttachment = != text). newMessages &gt; 999 → '+999'.</div>
+  </div>
+</body>
+</html>

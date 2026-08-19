@@ -1,0 +1,275 @@
+<!-- @dsCard group="Cards" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · Cards Extra</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin: 0 0 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .label { font-size: 10px; opacity: .45; margin: 16px 0 8px; font-family: ui-monospace, monospace; }
+  .light .label { color: #000; } .dark .label { color: #FFF; }
+  .row { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+  .foot { font-size: 10px; opacity: .45; margin-top: 20px; font-family: ui-monospace, monospace; }
+  .light .foot { color: #000; } .dark .foot { color: #FFF; }
+  svg { display: block; flex: none; }
+
+  /* ---- RecapCard — aspect 4/5, squircle52, overlay negro .3, borde 2 borderButton, shadow default ---- */
+  .recap-card { position: relative; width: 220px; height: 275px; border-radius: 52px; overflow: hidden;
+    box-shadow: 0 6px 20px #0000001A; box-sizing: border-box; }
+  .recap-card .photo { position: absolute; inset: 0; background: linear-gradient(160deg, #8FA8C8, #D9B8A5, #8E7F9E); }
+  .recap-card .photo.blur15 { filter: blur(15px); transform: scale(1.15); } /* ImageFilter.blur(15) variante blocked */
+  .recap-card .overlay { position: absolute; inset: 0; background: #0000004D; border-radius: 52px; box-sizing: border-box; }
+  .light .recap-card .overlay { border: 2px solid #BCBCBC7F; }
+  .dark .recap-card .overlay { border: 2px solid #BCBCBC33; }
+  .recap-card .inner { position: absolute; inset: 24px; }
+  .recap-card .ttl { display: flex; align-items: center; gap: 4px; color: #FFF; font-size: 14px; font-weight: 500; }
+  .recap-card .ttl svg { width: 16px; height: 16px; }
+  /* DotsIconButton floating large — Ø44, icono 24, bg bgBtnImage + blur10 (blocked: alpha .5) */
+  .icon-btn { position: absolute; top: 0; right: 0; width: 44px; height: 44px; border-radius: 44px;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .light .icon-btn { background: #F3F3F399; color: #000; }
+  .dark  .icon-btn { background: #74747499; color: #FFF; }
+  .light .icon-btn.half { background: #F3F3F380; }
+  .dark  .icon-btn.half { background: #74747480; }
+  .icon-btn svg { width: 24px; height: 24px; }
+  .recap-card .cta { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    height: 44px; padding: 0 20px; border-radius: 44px; border: none; white-space: nowrap;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #FFF;
+    backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); }
+  .light .recap-card .cta { background: #0072EF; } .dark .recap-card .cta { background: #0A84FF; }
+  .recap-card .created-by { position: absolute; bottom: 0; left: 0; right: 0; text-align: center;
+    color: #FFF; font-size: 14px; font-weight: 500; line-height: 1.29; }
+
+  /* ---- RecapCardLocked — aspect 7/8, squircle52, pad 20 ---- */
+  .recap-locked { position: relative; width: 220px; height: 251px; border-radius: 52px; overflow: hidden; }
+  .recap-locked .photo { position: absolute; inset: 0; background: linear-gradient(150deg, #7E9BB8, #C9A98E, #77958E); }
+  .recap-locked .photo.blur15 { filter: blur(15px); transform: scale(1.15); }
+  .recap-locked .inner { position: absolute; inset: 20px; }
+  .recap-locked .icon-btn { width: 36px; height: 36px; border-radius: 36px; } /* medium Ø36 icono 20 */
+  .recap-locked .icon-btn svg { width: 20px; height: 20px; }
+  /* CountdownRecap — w192, r24, bg bgContainerSecondaryOnBackground + borde blanco .3 + blur20 */
+  .countdown { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 192px; box-sizing: border-box; border-radius: 24px; border: 1px solid #FFFFFF4D;
+    padding: 12px 16px 16px; text-align: center; color: #FFF;
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+  .light .countdown { background: #8C8C8C1A; } .dark .countdown { background: #75757533; }
+  .countdown .lock { width: 20px; height: 20px; margin: 0 auto 4px; }
+  .countdown .cd-ttl { font-size: 13px; font-weight: 700; line-height: 1.31; margin-bottom: 6px; }
+  .countdown .times { display: flex; justify-content: center; gap: 10.5px; }
+  .countdown .t { display: flex; flex-direction: column; }
+  .countdown .t .v { font-size: 23px; font-weight: 700; line-height: 1.26; } /* titleH4 */
+  .countdown .t .l { font-size: 11px; font-weight: 600; color: #FFFFFFB2; } /* labelSmallMedium ·70% */
+  .countdown .desc { font-size: 13px; font-weight: 400; color: #FFFFFFB2; }
+  .recap-locked .cta { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    height: 44px; padding: 0 20px; border-radius: 44px; border: none; white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 4px;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #FFF; }
+  .light .recap-locked .cta { background: #0072EF; } .dark .recap-locked .cta { background: #0A84FF; }
+  .recap-locked .cta svg { width: 16px; height: 16px; }
+
+  /* ---- DotBookDeliveryCard — w100%, r32, bg bgContainerSecondaryOnBackground, pad 20 ---- */
+  .delivery { width: 340px; box-sizing: border-box; border-radius: 32px; padding: 20px;
+    display: flex; align-items: center; gap: 24px; }
+  .light .delivery { background: #8C8C8C1A; } .dark .delivery { background: #75757533; }
+  .delivery .img { width: 53px; height: 66px; border-radius: 4px; flex: none;
+    background: linear-gradient(160deg, #C9AE8F, #97B3C4); box-shadow: 0 2px 6px #00000026; }
+  .delivery .ttl { font-size: 16px; font-weight: 500; line-height: 1.31; margin-bottom: 4px; }
+  .light .delivery .ttl { color: #000; } .dark .delivery .ttl { color: #FFF; }
+  .delivery .line { font-size: 14px; line-height: 1.29; }
+  .light .delivery .line { color: #0000008C; } .dark .delivery .line { color: #FFFFFFA6; }
+  .delivery .line b { font-weight: 500; } .delivery .line span { font-weight: 400; }
+  .delivery .link { display: inline-block; padding: 9.5px 0; font-size: 13px; font-weight: 700; line-height: 1.31; }
+  .light .delivery .link { color: #0072EF; } .dark .delivery .link { color: #0A84FF; }
+
+  /* ---- DotBookTestimonialCard — w300, bg bgStrong, r32, shadow 0 5 10 shadowPrimary, pad 8/8/8/20 ---- */
+  .testimonial { width: 300px; box-sizing: border-box; border-radius: 32px;
+    padding: 8px 8px 20px; box-shadow: 0 5px 10px #00000026;
+    display: flex; flex-direction: column; gap: 18px; }
+  .light .testimonial { background: #FFFFFF; } .dark .testimonial { background: #3E3E3E; }
+  .testimonial .img { height: 170px; border-radius: 24px; background: linear-gradient(140deg, #D8B294, #96B4CE, #A08FB0); }
+  .testimonial .txt { padding: 0 12px; }
+  .testimonial .ttl { font-size: 20px; font-weight: 700; line-height: 1.25; letter-spacing: -0.09px; margin-bottom: 8px; } /* titleH5 */
+  .light .testimonial .ttl { color: #000; } .dark .testimonial .ttl { color: #FFF; }
+  .testimonial .desc { font-size: 16px; font-weight: 400; line-height: 1.31; } /* bodyLargeRegular */
+  .light .testimonial .desc { color: #000; } .dark .testimonial .desc { color: #FFF; }
+  .testimonial .user { padding: 0 12px; display: flex; align-items: center; gap: 8px; }
+  .testimonial .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(140deg, #E3C9AE, #A9C0D8); }
+  .testimonial .uname { font-size: 16px; font-weight: 500; }
+  .light .testimonial .uname { color: #0000008C; } .dark .testimonial .uname { color: #FFFFFFA6; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>Cards Extra — Light</h2>
+    <div class="sub">cards/recap · recap_card_locked · dot_book_cards (variantes no cubiertas en cards.html)</div>
+
+    <div class="label">RecapCard.blocked (imagen blur 15 + lock bgBtnImage·50%) / RecapCard.generated (share + createdBy)</div>
+    <div class="row">
+      <div class="recap-card">
+        <div class="photo blur15"></div>
+        <div class="overlay"></div>
+        <div class="inner">
+          <div class="ttl"><svg viewBox="0 0 32 33" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M17.1579 28.4247C23.8063 28.4247 29.3327 22.8984 29.3327 16.25C29.3327 9.58975 23.8063 4.07532 17.1579 4.07532C10.4976 4.07532 4.98321 9.57781 4.98321 16.2381H7.01233C7.01233 10.6043 11.5241 6.11638 17.1579 6.11638C22.7917 6.11638 27.3035 10.6163 27.3035 16.25C27.3035 21.8839 22.7917 26.4195 17.1579 26.3957C13.7562 26.3837 10.7722 24.7366 8.94596 22.1942C8.57594 21.7048 8.01495 21.5496 7.51364 21.848C7.0362 22.1464 6.90491 22.8029 7.31073 23.328C9.57857 26.3717 13.1355 28.4247 17.1579 28.4247ZM3.51508 13.9464C2.65569 13.9464 2.44084 14.5312 2.90635 15.1997L5.58001 18.9953C5.97389 19.5444 6.54682 19.5325 6.92877 18.9953L9.60244 15.1878C10.056 14.5312 9.84116 13.9464 8.99371 13.9464H3.51508Z"/><path d="M16.894 9.11305C16.2734 9.11305 15.772 9.61436 15.772 10.235V17.0027C15.772 17.2892 15.8556 17.5637 16.0943 17.8622L18.9828 21.6817C19.4603 22.3023 20.1048 22.4097 20.6896 22.0159C21.2267 21.6458 21.2626 20.9656 20.8448 20.3806L16.703 14.7588L18.0279 18.8409V10.235C18.0279 9.61436 17.5147 9.11305 16.894 9.11305Z"/></svg>Recap 2025</div>
+          <span class="icon-btn half"><svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M9.44427 29.3334H22.5564C24.6629 29.3334 25.7807 28.187 25.7807 25.9228V16.0493C25.7807 13.7851 24.6629 12.653 22.5564 12.653H9.44427C7.33773 12.653 6.21997 13.7851 6.21997 16.0493V25.9228C6.21997 28.187 7.33773 29.3334 9.44427 29.3334ZM8.72775 13.7565H11.0063V10.3621C11.0063 6.75085 13.3134 4.83061 15.9932 4.83061C18.6729 4.83061 21.0088 6.75085 21.0088 10.3621V13.7565H23.2729V10.6773C23.2729 5.28917 19.7477 2.66675 15.9932 2.66675C12.253 2.66675 8.72775 5.28917 8.72775 10.6773V13.7565Z"/></svg></span>
+          <button class="cta">Desbloquear</button>
+        </div>
+      </div>
+      <div class="recap-card">
+        <div class="photo" style="background:linear-gradient(160deg,#A9BED8,#D8A9C0,#8E9E7F);"></div>
+        <div class="overlay"></div>
+        <div class="inner">
+          <div class="ttl"><svg viewBox="0 0 32 33" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M17.1579 28.4247C23.8063 28.4247 29.3327 22.8984 29.3327 16.25C29.3327 9.58975 23.8063 4.07532 17.1579 4.07532C10.4976 4.07532 4.98321 9.57781 4.98321 16.2381H7.01233C7.01233 10.6043 11.5241 6.11638 17.1579 6.11638C22.7917 6.11638 27.3035 10.6163 27.3035 16.25C27.3035 21.8839 22.7917 26.4195 17.1579 26.3957C13.7562 26.3837 10.7722 24.7366 8.94596 22.1942C8.57594 21.7048 8.01495 21.5496 7.51364 21.848C7.0362 22.1464 6.90491 22.8029 7.31073 23.328C9.57857 26.3717 13.1355 28.4247 17.1579 28.4247ZM3.51508 13.9464C2.65569 13.9464 2.44084 14.5312 2.90635 15.1997L5.58001 18.9953C5.97389 19.5444 6.54682 19.5325 6.92877 18.9953L9.60244 15.1878C10.056 14.5312 9.84116 13.9464 8.99371 13.9464H3.51508Z"/><path d="M16.894 9.11305C16.2734 9.11305 15.772 9.61436 15.772 10.235V17.0027C15.772 17.2892 15.8556 17.5637 16.0943 17.8622L18.9828 21.6817C19.4603 22.3023 20.1048 22.4097 20.6896 22.0159C21.2267 21.6458 21.2626 20.9656 20.8448 20.3806L16.703 14.7588L18.0279 18.8409V10.235C18.0279 9.61436 17.5147 9.11305 16.894 9.11305Z"/></svg>Recap 2025</div>
+          <span class="icon-btn"><svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M26.4886 13.8726V25.6658C26.4886 28.1 25.2478 29.329 22.7781 29.329H9.22416C6.75444 29.329 5.51367 28.1 5.51367 25.6658V13.8726C5.51367 11.4383 6.75444 10.2094 9.22416 10.2094H12.781V12.1119H9.24779C8.06611 12.1119 7.41618 12.75 7.41618 13.9789V25.5594C7.41618 26.7884 8.06611 27.4265 9.24779 27.4265H22.7426C23.9125 27.4265 24.5861 26.7884 24.5861 25.5594V13.9789C24.5861 12.75 23.9125 12.1119 22.7426 12.1119H19.2211V10.2094H22.7781C25.2478 10.2094 26.4886 11.4383 26.4886 13.8726Z"/><path d="M15.9952 20.0804C16.5033 20.0804 16.9405 19.6549 16.9405 19.1586V7.02277L16.8696 5.25024L17.6614 6.08924L19.4575 8.00356C19.623 8.19263 19.8593 8.28716 20.0956 8.28716C20.5801 8.28716 20.9583 7.93266 20.9583 7.44817C20.9583 7.20002 20.8519 7.01095 20.6747 6.8337L16.6806 2.98141C16.4442 2.74507 16.2433 2.66235 15.9952 2.66235C15.7589 2.66235 15.558 2.74507 15.3098 2.98141L11.3157 6.8337C11.1385 7.01095 11.0439 7.20002 11.0439 7.44817C11.0439 7.93266 11.3984 8.28716 11.8947 8.28716C12.1193 8.28716 12.3792 8.19263 12.5447 8.00356L14.329 6.08924L15.1326 5.25024L15.0617 7.02277V19.1586C15.0617 19.6549 15.4871 20.0804 15.9952 20.0804Z"/></svg></span>
+          <div class="created-by">Verano en familia<br>Creado por Ana</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="label">RecapCardLocked — 7:8, squircle52 · countdown (CountdownRecap w192) / locked (blur + botón gallery) · soon: sin botón info</div>
+    <div class="row">
+      <div class="recap-locked">
+        <div class="photo"></div>
+        <div class="inner">
+          <span class="icon-btn"><svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M9.6001 27.3601C9.6001 28.2205 10.2231 28.8 11.1665 28.8H22.4337C23.3771 28.8 24.0001 28.2205 24.0001 27.3601C24.0001 26.5173 23.3771 25.9378 22.4337 25.9378H18.856V12.5397C18.856 11.5915 18.233 10.9593 17.3074 10.9593H11.6649C10.7393 10.9593 10.0985 11.5212 10.0985 12.3641C10.0985 13.2421 10.7393 13.8216 11.6649 13.8216H15.563V25.9378H11.1665C10.2231 25.9378 9.6001 26.5173 9.6001 27.3601ZM14.0144 4.14614C14.0144 5.55092 15.1536 6.67475 16.5776 6.67475C18.0194 6.67475 19.123 5.55092 19.123 4.14614C19.123 2.7238 18.0194 1.59998 16.5776 1.59998C15.1536 1.59998 14.0144 2.7238 14.0144 4.14614Z"/></svg></span>
+          <div class="countdown">
+            <svg class="lock" viewBox="0 0 32 32" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M9.44427 29.3334H22.5564C24.6629 29.3334 25.7807 28.187 25.7807 25.9228V16.0493C25.7807 13.7851 24.6629 12.653 22.5564 12.653H9.44427C7.33773 12.653 6.21997 13.7851 6.21997 16.0493V25.9228C6.21997 28.187 7.33773 29.3334 9.44427 29.3334ZM8.72775 13.7565H11.0063V10.3621C11.0063 6.75085 13.3134 4.83061 15.9932 4.83061C18.6729 4.83061 21.0088 6.75085 21.0088 10.3621V13.7565H23.2729V10.6773C23.2729 5.28917 19.7477 2.66675 15.9932 2.66675C12.253 2.66675 8.72775 5.28917 8.72775 10.6773V13.7565Z"/></svg>
+            <div class="cd-ttl">Recap de agosto</div>
+            <div class="times">
+              <div class="t"><span class="v">02</span><span class="l">días</span></div>
+              <div class="t"><span class="v">11</span><span class="l">h</span></div>
+              <div class="t"><span class="v">36</span><span class="l">min</span></div>
+              <div class="t"><span class="v">54</span><span class="l">seg</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="recap-locked">
+        <div class="photo blur15"></div>
+        <div class="inner">
+          <span class="icon-btn"><svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M9.6001 27.3601C9.6001 28.2205 10.2231 28.8 11.1665 28.8H22.4337C23.3771 28.8 24.0001 28.2205 24.0001 27.3601C24.0001 26.5173 23.3771 25.9378 22.4337 25.9378H18.856V12.5397C18.856 11.5915 18.233 10.9593 17.3074 10.9593H11.6649C10.7393 10.9593 10.0985 11.5212 10.0985 12.3641C10.0985 13.2421 10.7393 13.8216 11.6649 13.8216H15.563V25.9378H11.1665C10.2231 25.9378 9.6001 26.5173 9.6001 27.3601ZM14.0144 4.14614C14.0144 5.55092 15.1536 6.67475 16.5776 6.67475C18.0194 6.67475 19.123 5.55092 19.123 4.14614C19.123 2.7238 18.0194 1.59998 16.5776 1.59998C15.1536 1.59998 14.0144 2.7238 14.0144 4.14614Z"/></svg></span>
+          <div class="countdown">
+            <svg class="lock" viewBox="0 0 32 32" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M9.44427 29.3334H22.5564C24.6629 29.3334 25.7807 28.187 25.7807 25.9228V16.0493C25.7807 13.7851 24.6629 12.653 22.5564 12.653H9.44427C7.33773 12.653 6.21997 13.7851 6.21997 16.0493V25.9228C6.21997 28.187 7.33773 29.3334 9.44427 29.3334ZM8.72775 13.7565H11.0063V10.3621C11.0063 6.75085 13.3134 4.83061 15.9932 4.83061C18.6729 4.83061 21.0088 6.75085 21.0088 10.3621V13.7565H23.2729V10.6773C23.2729 5.28917 19.7477 2.66675 15.9932 2.66675C12.253 2.66675 8.72775 5.28917 8.72775 10.6773V13.7565Z"/></svg>
+            <div class="cd-ttl">Recap bloqueado</div>
+            <div class="desc">Añade más fotos para desbloquearlo</div>
+          </div>
+          <button class="cta"><svg viewBox="0 0 32 32" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M24.843 7.71273V7.91316H10.8603C7.5001 7.91316 5.55477 9.84671 5.55477 13.1714V22.4855H5.03601C2.57193 22.4855 1.33398 21.2711 1.33398 18.8306V7.71273C1.33398 5.28401 2.57193 4.05786 5.03601 4.05786H21.141C23.6051 4.05786 24.843 5.28401 24.843 7.71273Z"/><path d="M30.6673 13.1694V24.2873C30.6673 26.7161 29.4293 27.9422 26.9652 27.9422H10.8603C8.39613 27.9422 7.15818 26.7278 7.15818 24.2873V13.1694C7.15818 10.7407 8.39613 9.51458 10.8603 9.51458H26.9652C29.4293 9.51458 30.6673 10.7407 30.6673 13.1694ZM21.1764 18.2863L16.4133 22.5071L14.5269 20.7975C14.0671 20.3848 13.5837 20.1962 13.0767 20.1962C12.617 20.1962 12.1807 20.3848 11.7208 20.7739L9.05636 23.1202V24.193C9.05636 25.4191 9.71659 26.044 10.8956 26.044H26.9416C28.0971 26.044 28.769 25.4191 28.769 24.193V22.4599L24.3596 18.2981C23.8998 17.8736 23.3457 17.6614 22.768 17.6614C22.1786 17.6614 21.6716 17.8501 21.1764 18.2863ZM13.065 16.0344C13.065 17.4138 14.1849 18.5574 15.5643 18.5574C16.9438 18.5574 18.0638 17.4138 18.0638 16.0344C18.0638 14.6785 16.9438 13.5349 15.5643 13.5349C14.1849 13.5349 13.065 14.6785 13.065 16.0344Z"/></svg>Añadir fotos</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="label">DotBookDeliveryCard — r32 · imagen w53 · standar/express · onTapTitle labelHighlight</div>
+    <div class="delivery">
+      <div class="img"></div>
+      <div>
+        <div class="ttl">Entrega estimada</div>
+        <div class="line"><b>Estándar: </b><span>3 – 5 septiembre</span></div>
+        <div class="line"><b>Exprés: </b><span>28 – 30 agosto</span></div>
+        <span class="link">Más información</span>
+      </div>
+    </div>
+
+    <div class="label">DotBookTestimonialCard — w300 · bgStrong · imagen r24 h170 · DotsProfilePhoto 40</div>
+    <div class="testimonial">
+      <div class="img"></div>
+      <div class="txt">
+        <div class="ttl">Un regalo precioso</div>
+        <div class="desc">Imprimimos el año del abuelo y fue el regalo de la Navidad.</div>
+      </div>
+      <div class="user"><div class="avatar"></div><span class="uname">@martagl</span></div>
+    </div>
+
+    <div class="foot">Cubre: RecapCard.blocked · RecapCard.generated · RecapCardLocked countdown/locked · DotBookDeliveryCard · DotBookTestimonialCard. Notas: RecapCard.onlyTitle = variante active sin título ni botón; RecapCardLocked.soon = countdown sin botón info.</div>
+  </div>
+
+  <div class="theme dark">
+    <h2>Cards Extra — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+
+    <div class="label">RecapCard.blocked (imagen blur 15 + lock bgBtnImage·50%) / RecapCard.generated (share + createdBy)</div>
+    <div class="row">
+      <div class="recap-card">
+        <div class="photo blur15" style="background:linear-gradient(160deg,#3D4E66,#6B5548,#4A4058);"></div>
+        <div class="overlay"></div>
+        <div class="inner">
+          <div class="ttl"><svg viewBox="0 0 32 33" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M17.1579 28.4247C23.8063 28.4247 29.3327 22.8984 29.3327 16.25C29.3327 9.58975 23.8063 4.07532 17.1579 4.07532C10.4976 4.07532 4.98321 9.57781 4.98321 16.2381H7.01233C7.01233 10.6043 11.5241 6.11638 17.1579 6.11638C22.7917 6.11638 27.3035 10.6163 27.3035 16.25C27.3035 21.8839 22.7917 26.4195 17.1579 26.3957C13.7562 26.3837 10.7722 24.7366 8.94596 22.1942C8.57594 21.7048 8.01495 21.5496 7.51364 21.848C7.0362 22.1464 6.90491 22.8029 7.31073 23.328C9.57857 26.3717 13.1355 28.4247 17.1579 28.4247ZM3.51508 13.9464C2.65569 13.9464 2.44084 14.5312 2.90635 15.1997L5.58001 18.9953C5.97389 19.5444 6.54682 19.5325 6.92877 18.9953L9.60244 15.1878C10.056 14.5312 9.84116 13.9464 8.99371 13.9464H3.51508Z"/><path d="M16.894 9.11305C16.2734 9.11305 15.772 9.61436 15.772 10.235V17.0027C15.772 17.2892 15.8556 17.5637 16.0943 17.8622L18.9828 21.6817C19.4603 22.3023 20.1048 22.4097 20.6896 22.0159C21.2267 21.6458 21.2626 20.9656 20.8448 20.3806L16.703 14.7588L18.0279 18.8409V10.235C18.0279 9.61436 17.5147 9.11305 16.894 9.11305Z"/></svg>Recap 2025</div>
+          <span class="icon-btn half"><svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M9.44427 29.3334H22.5564C24.6629 29.3334 25.7807 28.187 25.7807 25.9228V16.0493C25.7807 13.7851 24.6629 12.653 22.5564 12.653H9.44427C7.33773 12.653 6.21997 13.7851 6.21997 16.0493V25.9228C6.21997 28.187 7.33773 29.3334 9.44427 29.3334ZM8.72775 13.7565H11.0063V10.3621C11.0063 6.75085 13.3134 4.83061 15.9932 4.83061C18.6729 4.83061 21.0088 6.75085 21.0088 10.3621V13.7565H23.2729V10.6773C23.2729 5.28917 19.7477 2.66675 15.9932 2.66675C12.253 2.66675 8.72775 5.28917 8.72775 10.6773V13.7565Z"/></svg></span>
+          <button class="cta">Desbloquear</button>
+        </div>
+      </div>
+      <div class="recap-card">
+        <div class="photo" style="background:linear-gradient(160deg,#4A566B,#6B4A5E,#465041);"></div>
+        <div class="overlay"></div>
+        <div class="inner">
+          <div class="ttl"><svg viewBox="0 0 32 33" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M17.1579 28.4247C23.8063 28.4247 29.3327 22.8984 29.3327 16.25C29.3327 9.58975 23.8063 4.07532 17.1579 4.07532C10.4976 4.07532 4.98321 9.57781 4.98321 16.2381H7.01233C7.01233 10.6043 11.5241 6.11638 17.1579 6.11638C22.7917 6.11638 27.3035 10.6163 27.3035 16.25C27.3035 21.8839 22.7917 26.4195 17.1579 26.3957C13.7562 26.3837 10.7722 24.7366 8.94596 22.1942C8.57594 21.7048 8.01495 21.5496 7.51364 21.848C7.0362 22.1464 6.90491 22.8029 7.31073 23.328C9.57857 26.3717 13.1355 28.4247 17.1579 28.4247ZM3.51508 13.9464C2.65569 13.9464 2.44084 14.5312 2.90635 15.1997L5.58001 18.9953C5.97389 19.5444 6.54682 19.5325 6.92877 18.9953L9.60244 15.1878C10.056 14.5312 9.84116 13.9464 8.99371 13.9464H3.51508Z"/><path d="M16.894 9.11305C16.2734 9.11305 15.772 9.61436 15.772 10.235V17.0027C15.772 17.2892 15.8556 17.5637 16.0943 17.8622L18.9828 21.6817C19.4603 22.3023 20.1048 22.4097 20.6896 22.0159C21.2267 21.6458 21.2626 20.9656 20.8448 20.3806L16.703 14.7588L18.0279 18.8409V10.235C18.0279 9.61436 17.5147 9.11305 16.894 9.11305Z"/></svg>Recap 2025</div>
+          <span class="icon-btn"><svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M26.4886 13.8726V25.6658C26.4886 28.1 25.2478 29.329 22.7781 29.329H9.22416C6.75444 29.329 5.51367 28.1 5.51367 25.6658V13.8726C5.51367 11.4383 6.75444 10.2094 9.22416 10.2094H12.781V12.1119H9.24779C8.06611 12.1119 7.41618 12.75 7.41618 13.9789V25.5594C7.41618 26.7884 8.06611 27.4265 9.24779 27.4265H22.7426C23.9125 27.4265 24.5861 26.7884 24.5861 25.5594V13.9789C24.5861 12.75 23.9125 12.1119 22.7426 12.1119H19.2211V10.2094H22.7781C25.2478 10.2094 26.4886 11.4383 26.4886 13.8726Z"/><path d="M15.9952 20.0804C16.5033 20.0804 16.9405 19.6549 16.9405 19.1586V7.02277L16.8696 5.25024L17.6614 6.08924L19.4575 8.00356C19.623 8.19263 19.8593 8.28716 20.0956 8.28716C20.5801 8.28716 20.9583 7.93266 20.9583 7.44817C20.9583 7.20002 20.8519 7.01095 20.6747 6.8337L16.6806 2.98141C16.4442 2.74507 16.2433 2.66235 15.9952 2.66235C15.7589 2.66235 15.558 2.74507 15.3098 2.98141L11.3157 6.8337C11.1385 7.01095 11.0439 7.20002 11.0439 7.44817C11.0439 7.93266 11.3984 8.28716 11.8947 8.28716C12.1193 8.28716 12.3792 8.19263 12.5447 8.00356L14.329 6.08924L15.1326 5.25024L15.0617 7.02277V19.1586C15.0617 19.6549 15.4871 20.0804 15.9952 20.0804Z"/></svg></span>
+          <div class="created-by">Verano en familia<br>Creado por Ana</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="label">RecapCardLocked — 7:8, squircle52 · countdown (CountdownRecap w192) / locked (blur + botón gallery) · soon: sin botón info</div>
+    <div class="row">
+      <div class="recap-locked">
+        <div class="photo" style="background:linear-gradient(150deg,#3E5268,#6A5544,#3D4F4A);"></div>
+        <div class="inner">
+          <span class="icon-btn"><svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M9.6001 27.3601C9.6001 28.2205 10.2231 28.8 11.1665 28.8H22.4337C23.3771 28.8 24.0001 28.2205 24.0001 27.3601C24.0001 26.5173 23.3771 25.9378 22.4337 25.9378H18.856V12.5397C18.856 11.5915 18.233 10.9593 17.3074 10.9593H11.6649C10.7393 10.9593 10.0985 11.5212 10.0985 12.3641C10.0985 13.2421 10.7393 13.8216 11.6649 13.8216H15.563V25.9378H11.1665C10.2231 25.9378 9.6001 26.5173 9.6001 27.3601ZM14.0144 4.14614C14.0144 5.55092 15.1536 6.67475 16.5776 6.67475C18.0194 6.67475 19.123 5.55092 19.123 4.14614C19.123 2.7238 18.0194 1.59998 16.5776 1.59998C15.1536 1.59998 14.0144 2.7238 14.0144 4.14614Z"/></svg></span>
+          <div class="countdown">
+            <svg class="lock" viewBox="0 0 32 32" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M9.44427 29.3334H22.5564C24.6629 29.3334 25.7807 28.187 25.7807 25.9228V16.0493C25.7807 13.7851 24.6629 12.653 22.5564 12.653H9.44427C7.33773 12.653 6.21997 13.7851 6.21997 16.0493V25.9228C6.21997 28.187 7.33773 29.3334 9.44427 29.3334ZM8.72775 13.7565H11.0063V10.3621C11.0063 6.75085 13.3134 4.83061 15.9932 4.83061C18.6729 4.83061 21.0088 6.75085 21.0088 10.3621V13.7565H23.2729V10.6773C23.2729 5.28917 19.7477 2.66675 15.9932 2.66675C12.253 2.66675 8.72775 5.28917 8.72775 10.6773V13.7565Z"/></svg>
+            <div class="cd-ttl">Recap de agosto</div>
+            <div class="times">
+              <div class="t"><span class="v">02</span><span class="l">días</span></div>
+              <div class="t"><span class="v">11</span><span class="l">h</span></div>
+              <div class="t"><span class="v">36</span><span class="l">min</span></div>
+              <div class="t"><span class="v">54</span><span class="l">seg</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="recap-locked">
+        <div class="photo blur15" style="background:linear-gradient(150deg,#3D4E60,#5E4C40,#44394E);"></div>
+        <div class="inner">
+          <span class="icon-btn"><svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M9.6001 27.3601C9.6001 28.2205 10.2231 28.8 11.1665 28.8H22.4337C23.3771 28.8 24.0001 28.2205 24.0001 27.3601C24.0001 26.5173 23.3771 25.9378 22.4337 25.9378H18.856V12.5397C18.856 11.5915 18.233 10.9593 17.3074 10.9593H11.6649C10.7393 10.9593 10.0985 11.5212 10.0985 12.3641C10.0985 13.2421 10.7393 13.8216 11.6649 13.8216H15.563V25.9378H11.1665C10.2231 25.9378 9.6001 26.5173 9.6001 27.3601ZM14.0144 4.14614C14.0144 5.55092 15.1536 6.67475 16.5776 6.67475C18.0194 6.67475 19.123 5.55092 19.123 4.14614C19.123 2.7238 18.0194 1.59998 16.5776 1.59998C15.1536 1.59998 14.0144 2.7238 14.0144 4.14614Z"/></svg></span>
+          <div class="countdown">
+            <svg class="lock" viewBox="0 0 32 32" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M9.44427 29.3334H22.5564C24.6629 29.3334 25.7807 28.187 25.7807 25.9228V16.0493C25.7807 13.7851 24.6629 12.653 22.5564 12.653H9.44427C7.33773 12.653 6.21997 13.7851 6.21997 16.0493V25.9228C6.21997 28.187 7.33773 29.3334 9.44427 29.3334ZM8.72775 13.7565H11.0063V10.3621C11.0063 6.75085 13.3134 4.83061 15.9932 4.83061C18.6729 4.83061 21.0088 6.75085 21.0088 10.3621V13.7565H23.2729V10.6773C23.2729 5.28917 19.7477 2.66675 15.9932 2.66675C12.253 2.66675 8.72775 5.28917 8.72775 10.6773V13.7565Z"/></svg>
+            <div class="cd-ttl">Recap bloqueado</div>
+            <div class="desc">Añade más fotos para desbloquearlo</div>
+          </div>
+          <button class="cta"><svg viewBox="0 0 32 32" fill="#FFF" xmlns="http://www.w3.org/2000/svg"><path d="M24.843 7.71273V7.91316H10.8603C7.5001 7.91316 5.55477 9.84671 5.55477 13.1714V22.4855H5.03601C2.57193 22.4855 1.33398 21.2711 1.33398 18.8306V7.71273C1.33398 5.28401 2.57193 4.05786 5.03601 4.05786H21.141C23.6051 4.05786 24.843 5.28401 24.843 7.71273Z"/><path d="M30.6673 13.1694V24.2873C30.6673 26.7161 29.4293 27.9422 26.9652 27.9422H10.8603C8.39613 27.9422 7.15818 26.7278 7.15818 24.2873V13.1694C7.15818 10.7407 8.39613 9.51458 10.8603 9.51458H26.9652C29.4293 9.51458 30.6673 10.7407 30.6673 13.1694ZM21.1764 18.2863L16.4133 22.5071L14.5269 20.7975C14.0671 20.3848 13.5837 20.1962 13.0767 20.1962C12.617 20.1962 12.1807 20.3848 11.7208 20.7739L9.05636 23.1202V24.193C9.05636 25.4191 9.71659 26.044 10.8956 26.044H26.9416C28.0971 26.044 28.769 25.4191 28.769 24.193V22.4599L24.3596 18.2981C23.8998 17.8736 23.3457 17.6614 22.768 17.6614C22.1786 17.6614 21.6716 17.8501 21.1764 18.2863ZM13.065 16.0344C13.065 17.4138 14.1849 18.5574 15.5643 18.5574C16.9438 18.5574 18.0638 17.4138 18.0638 16.0344C18.0638 14.6785 16.9438 13.5349 15.5643 13.5349C14.1849 13.5349 13.065 14.6785 13.065 16.0344Z"/></svg>Añadir fotos</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="label">DotBookDeliveryCard — r32 · imagen w53 · standar/express · onTapTitle labelHighlight</div>
+    <div class="delivery">
+      <div class="img" style="background:linear-gradient(160deg,#6B5A48,#465B70);"></div>
+      <div>
+        <div class="ttl">Entrega estimada</div>
+        <div class="line"><b>Estándar: </b><span>3 – 5 septiembre</span></div>
+        <div class="line"><b>Exprés: </b><span>28 – 30 agosto</span></div>
+        <span class="link">Más información</span>
+      </div>
+    </div>
+
+    <div class="label">DotBookTestimonialCard — w300 · bgStrong · imagen r24 h170 · DotsProfilePhoto 40</div>
+    <div class="testimonial">
+      <div class="img" style="background:linear-gradient(140deg,#6A5544,#3E5268,#4E4358);"></div>
+      <div class="txt">
+        <div class="ttl">Un regalo precioso</div>
+        <div class="desc">Imprimimos el año del abuelo y fue el regalo de la Navidad.</div>
+      </div>
+      <div class="user"><div class="avatar" style="background:linear-gradient(140deg,#6B5A48,#4A5B70);"></div><span class="uname">@martagl</span></div>
+    </div>
+
+    <div class="foot">Cubre: RecapCard.blocked · RecapCard.generated · RecapCardLocked countdown/locked · DotBookDeliveryCard · DotBookTestimonialCard. Notas: RecapCard.onlyTitle = variante active sin título ni botón; RecapCardLocked.soon = countdown sin botón info.</div>
+  </div>
+</body>
+</html>

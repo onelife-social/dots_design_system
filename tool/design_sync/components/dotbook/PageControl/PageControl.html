@@ -1,0 +1,55 @@
+<!-- @dsCard group="dotbook" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.PageControl;
+    function Animated(props) {
+      var st = React.useState(0);
+      React.useEffect(function () {
+        var id = setInterval(function () {
+          st[1](function (i) { return (i + 1) % 6; });
+        }, 900);
+        return function () { clearInterval(id); };
+      }, []);
+      return h(C, { count: 6, activeIndex: st[0], variant: props.variant });
+    }
+    var variants = [
+      ['main · count 5 · activeIndex 1', h(C, { count: 5, activeIndex: 1 })],
+      ['background · count 5 · activeIndex 2 (píldora bgActive)', h(C, { count: 5, activeIndex: 2, variant: 'background' })],
+      ['background · activeIndex 0 (píldora circular)', h(C, { count: 5, activeIndex: 0, variant: 'background' })],
+      ['background · activeIndex 4 (todos activos)', h(C, { count: 5, activeIndex: 4, variant: 'background' })],
+      ['colores custom (dotColor / activeColor)', h(C, {
+        count: 5, activeIndex: 2,
+        dotColor: 'var(--bg-highlight)', activeColor: 'var(--label-highlight)'
+      })],
+      ['activeIndex fuera de rango (clamp a count-1)', h(C, { count: 4, activeIndex: 9 })],
+      ['main animado', h(Animated, { variant: 'main' })],
+      ['background animado', h(Animated, { variant: 'background' })],
+      ['dark · main / background', h('div', null,
+        h(C, { count: 5, activeIndex: 1 }),
+        h(C, { count: 5, activeIndex: 2, variant: 'background' })
+      ), true]
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2]) { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '8px'; }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

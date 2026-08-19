@@ -1,0 +1,67 @@
+<!-- @dsCard group="overlays" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px 12px 24px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+    .pad-top{padding-top:14px}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsTooltip;
+    var noop = function () {};
+    function wrapTop(node) { return h('div', { className: 'pad-top' }, node); }
+    var variants = [
+      ['bottomAlignCenter + icon', h(C, {
+        text: 'Toca aquí para añadir tu primer recuerdo',
+        icon: 'ic-info-circle',
+        tailPosition: 'bottomAlignCenter',
+        onClose: noop,
+      })],
+      ['topAlignLeadingEdge', wrapTop(h(C, {
+        text: 'Comparte el álbum con tu familia',
+        tailPosition: 'topAlignLeadingEdge',
+        onClose: noop,
+      }))],
+      ['bottomAlignTrailingEdge · sin cerrar', h(C, {
+        text: 'Aquí verás tus grupos',
+        tailPosition: 'bottomAlignTrailingEdge',
+        showCloseButton: false,
+      })],
+      ['topAlignTrailing', wrapTop(h(C, {
+        text: 'Nuevo: crea tu DotBook',
+        icon: 'ic-book-2',
+        tailPosition: 'topAlignTrailing',
+        onClose: noop,
+      }))],
+      ['bottomAlignLeading · maxWidth 220', h(C, {
+        text: 'Un texto más largo que fuerza el ancho máximo del tooltip a dos líneas',
+        tailPosition: 'bottomAlignLeading',
+        maxWidth: 220,
+        onClose: noop,
+      })],
+      ['dark', h(C, {
+        text: 'Toca aquí para añadir tu primer recuerdo',
+        icon: 'ic-info-circle',
+        tailPosition: 'bottomAlignCenter',
+        onClose: noop,
+      }), 'dark'],
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2] === 'dark') { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '16px 12px 24px'; m.style.borderRadius = '6px'; }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

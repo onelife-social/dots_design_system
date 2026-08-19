@@ -1,0 +1,106 @@
+/* UsersList + UsersItemList — users_list/users_list.dart · users_item_list.dart */
+
+/* Contenedor — r26, bgContainerSecondaryOnBackground, pad 13×16, divisores 0.2 */
+.ds-users-list {
+  border-radius: 26px;
+  background: var(--bg-container-secondary-on-bg);
+  padding: 13px 16px;
+  font-family: var(--font-main);
+}
+/* Divider labelSecondary al 30% grosor 0.2 — aproximado con borde fino */
+.ds-users-list > .ds-users-item + .ds-users-item {
+  border-top: 0.4px solid var(--label-secondary);
+}
+
+/* Fila — pad-y 3, gap 8 */
+.ds-users-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+  min-width: 0;
+}
+.ds-users-item[role='button'] {
+  cursor: pointer;
+}
+.ds-users-item__info-fallback {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02px;
+  color: var(--text-primary);
+}
+
+/* textfield — h30, bodyDefaultMedium, hint textQuarternary, caret labelHighlight */
+.ds-users-item__textfield {
+  flex: 1;
+  min-width: 0;
+  height: 30px;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0 12px 0 0;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02px;
+  color: var(--text-primary);
+  caret-color: var(--label-highlight);
+}
+.ds-users-item__textfield::placeholder {
+  color: var(--text-quarternary);
+}
+
+/* button — icono 16 + bodyDefaultMedium, labelHighlight, h30, gap 6 */
+.ds-users-item__add {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02px;
+  color: var(--label-highlight);
+}
+.ds-users-item__add .ds-icon {
+  display: flex;
+}
+
+/* trailing label — labelSmallMedium 11/600 labelActive */
+.ds-users-item__role {
+  flex: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01px;
+  color: var(--label-active);
+}
+/* trailing iconos (clockFilled / chevronRight) */
+.ds-users-item__trail-icon {
+  flex: none;
+  display: flex;
+}
+/* pendingMember — 2 botones small, gap 4 */
+.ds-users-item__btns {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+/* Fallback si DotsCloseButton no está en el bundle */
+.ds-users-item__close-fallback {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  background: var(--bg-btn-disabled);
+  color: var(--label-primary);
+  font-size: 11px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

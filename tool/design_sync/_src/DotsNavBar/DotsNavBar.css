@@ -1,0 +1,96 @@
+/* DotsNavBar — nav_bar/nav_bar.dart · r36 · blur 10 · padding 5 · item 70×55 */
+.ds-nav-bar {
+  position: relative;
+  display: inline-flex;
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 36px; /* DotsBorderRadius.r36 — sin token --squircle-36 */
+  border: 0.7px solid var(--border-button);
+  /* bgContainerSecondary.dotsWithOpacity(0.7) — el token ya lleva alpha ≈ 0.7 */
+  background: var(--bg-container-secondary);
+  backdrop-filter: blur(var(--blur-10));
+  -webkit-backdrop-filter: blur(var(--blur-10));
+  font-family: var(--font-main);
+}
+
+/* Píldora del ítem seleccionado — 70×55, r32, bgFloatingActive, 200ms ease */
+.ds-nav-bar__pill {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 70px;
+  height: 55px;
+  border-radius: var(--squircle-32);
+  background: #00000026; /* bgFloatingActive light — sin token en tokens.css */
+  transition: left 0.2s ease;
+}
+[data-theme="dark"] .ds-nav-bar__pill {
+  background: #C8C8C81A; /* bgFloatingActive dark — sin token en tokens.css */
+}
+
+/* Item — 70×55, icono 20 + label, color textSecondary → labelHighlight */
+.ds-nav-bar__item {
+  position: relative;
+  z-index: 1;
+  width: 70px;
+  height: 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: var(--squircle-32);
+  font: inherit;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: color 0.25s ease; /* AnimatedDefaultTextStyle 250ms */
+  -webkit-tap-highlight-color: transparent;
+}
+.ds-nav-bar__item.is-selected {
+  color: var(--label-highlight);
+}
+
+/* labelDefaultRegular — 13/400, lh 1.31 */
+.ds-nav-bar__label {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.31;
+}
+
+.ds-nav-bar__icon-wrap {
+  position: relative;
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+}
+.ds-nav-bar__icon-fallback {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: currentColor;
+  opacity: 0.35;
+}
+
+/* BadgeTag pendingNumber — min 18×18, r22, labelDestructive, labelSmallMedium 11/600 */
+.ds-nav-bar__badge {
+  position: absolute;
+  top: -7px;
+  right: -14px;
+  min-width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  padding: 1px 5px;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--label-destructive);
+  color: var(--label-always-white);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+}

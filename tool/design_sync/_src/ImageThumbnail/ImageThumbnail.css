@@ -1,0 +1,35 @@
+/* ImageThumbnail — image_thumbnail/image_thumbnail.dart (DotsImageThumbnail)
+   default 40×40 · DotsBorderRadius.r12 */
+.ds-image-thumbnail {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--squircle-12);
+  overflow: hidden;
+  flex: none;
+}
+/* variant icon — bgContainerSecondaryOnBackground; icono hereda text-secondary */
+.ds-image-thumbnail--icon {
+  background: var(--bg-container-secondary-on-bg);
+  color: var(--text-secondary);
+}
+.ds-image-thumbnail__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* El icono centrado queda por encima del cover */
+.ds-image-thumbnail__icon {
+  position: relative;
+  display: inline-flex;
+}
+/* coverImage — Colors.black al 30% (sin token en Dart) */
+.ds-image-thumbnail__cover {
+  position: absolute;
+  inset: 0;
+  background: #0000004d;
+  border-radius: var(--squircle-12);
+}

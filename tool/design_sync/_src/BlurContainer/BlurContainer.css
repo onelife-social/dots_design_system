@@ -1,0 +1,11 @@
+/* BlurContainer / BlurContainer.GradientBlur — port de containers/blur_container.dart
+   y containers/dots_linear_gradient_blur.dart. Shader → filter / backdrop-filter+mask. */
+
+.ds-blur-container { position: relative; }
+
+.ds-gradient-blur { position: relative; }
+.ds-gradient-blur__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}

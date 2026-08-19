@@ -1,0 +1,16 @@
+/* DotsMainContainer — port de lib/src/components/containers/dots_main_container/ (Dart = fuente de verdad) */
+
+.ds-main-container {
+  box-sizing: border-box;
+  width: 100%; /* Dart: width ?? MediaQuery.sizeOf(context).width */
+  background-size: cover; /* DecorationImage por defecto en las llamadas del app */
+  background-position: center;
+  font-family: var(--font-main);
+}
+.ds-main-container--clickable { cursor: pointer; }
+
+/* _getContainerBackgroundColor (dots_main_container.dart) */
+.ds-main-container--main { background-color: var(--bg-container-tertiary); }
+.ds-main-container--secondary,
+.ds-main-container--onBackground { background-color: var(--bg-container-secondary); }
+.ds-main-container--tertiary { background-color: var(--bg-container-primary); }

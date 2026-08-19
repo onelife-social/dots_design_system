@@ -1,0 +1,27 @@
+/* DotsRadioButton — size 24, borde 2, icono ic-selector 15 (dots_radio_button.dart) */
+.ds-radio {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  flex: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  border: 2px solid var(--label-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-radio.is-on { border-color: var(--label-highlight); }
+/* fallback si DotsIcon aún no está en el bundle */
+.ds-radio__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--label-highlight);
+}
+.ds-radio.is-disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}

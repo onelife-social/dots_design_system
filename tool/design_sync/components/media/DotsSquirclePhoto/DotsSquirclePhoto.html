@@ -1,0 +1,41 @@
+<!-- @dsCard group="media" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsSquirclePhoto;
+    function row() {
+      var kids = Array.prototype.slice.call(arguments);
+      return h.apply(null, ['div', { style: { display: 'flex', alignItems: 'flex-end', gap: '16px', flexWrap: 'wrap', padding: '6px' } }].concat(kids));
+    }
+    var variants = [
+      ['default 52 r16 · placeholder', row(h(C, { alt: 'a' }), h(C, { alt: 'bb' }), h(C, { alt: 'ccc' }))],
+      ['hideBorder: false', row(h(C, { alt: 'a', hideBorder: false }), h(C, { alt: 'bb', hideBorder: false, borderSize: 2 }))],
+      ['uploadError: true · cloudFail', row(h(C, { alt: 'ccc', uploadError: true }))],
+      ['size 100 · r24', row(h(C, { alt: 'bb', size: 100, borderRadius: 24 }))],
+      ['Tag · 100 r24 · calendarCheck', row(h(C.Tag, { alt: 'bb' }), h(C.Tag, { alt: 'a', icon: 'ic-check-circle' }))],
+      ['dark', row(h(C, { alt: 'a' }), h(C, { alt: 'ccc', uploadError: true }), h(C.Tag, { alt: 'bb' })), 'dark']
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div');
+      if (v[2] === 'dark') { m.setAttribute('data-theme', 'dark'); m.style.background = 'var(--bg-base)'; m.style.padding = '12px'; m.style.borderRadius = '6px'; }
+      cell.appendChild(m); g.appendChild(cell);
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

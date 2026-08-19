@@ -1,0 +1,16 @@
+/* BadgeMilestone — badges/badge_milestone/. Radio 22, bg bgBase, texto
+   labelDefaultRegular 13/400 textTertiary, blur 25 (Dart ImageFilter.blur sigma 25;
+   no existe --blur-25 en tokens — px literal documentado).
+   main: pad 9x12 + borde 1 bgSecondaryBtn · ghost: pad 6x12 sin borde. */
+.ds-badge-milestone {
+  display: inline-flex; align-items: center; border-radius: 22px;
+  max-width: 100%; box-sizing: border-box;
+  background: var(--bg-base); color: var(--text-tertiary);
+  font-family: var(--font-main);
+  font-size: 13px; font-weight: 400; line-height: 1.31; letter-spacing: -0.01px;
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+}
+.ds-badge-milestone__text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ds-badge-milestone--main { padding: 9px 12px; border: 1px solid var(--bg-secondary-btn); }
+.ds-badge-milestone--ghost { padding: 6px 12px; }

@@ -1,0 +1,66 @@
+/* DotsMenu — menu/dots_menu.dart (+ settings_list.dart, settings_item.dart). */
+.ds-menu {
+  width: 250px;
+  box-sizing: border-box;
+  padding: 8px;
+  border-radius: var(--squircle-20);
+  background: var(--bg-base-contrast);
+  font-family: var(--font-main);
+}
+
+/* _MenuItem — padding 8, r12, spacing 6; pressed bgContainerSecondary */
+.ds-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  border-radius: var(--squircle-12);
+  cursor: pointer;
+}
+.ds-menu__item--details { padding-bottom: 10px; } /* Dart: +2 bottom si hay details */
+.ds-menu__item:active { background: var(--bg-container-secondary); }
+.ds-menu__item-left, .ds-menu__item-right { flex: none; }
+.ds-menu__item-body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+/* label — bodyDefaultMedium 14/500/1.29/-0.02 */
+.ds-menu__item-label { font-size: 14px; font-weight: 500; line-height: 1.29; letter-spacing: -0.02px; color: var(--text-primary); }
+/* details — labelDefaultRegular 13/400, textTertiary */
+.ds-menu__item-details { font-size: 13px; font-weight: 400; line-height: 1.31; letter-spacing: -0.01px; color: var(--text-tertiary); }
+
+/* Divider — thickness 0.5 labelSecondary, indent 8 */
+.ds-menu__divider { height: 0.5px; background: var(--label-secondary); margin: 2px 8px 6px; }
+.ds-menu__divider--item { margin: 2px 8px 6px; }
+.ds-menu__spacer { height: 8px; }
+/* > 7 subitems → maxHeight 336 con scroll (Dart _MenuContainerScrollable) */
+.ds-menu__list--scroll { max-height: 336px; overflow-y: auto; }
+
+/* ===== DotsMenu.SettingsList ===== */
+.ds-menu-settings { font-family: var(--font-main); }
+/* título — labelDefaultMedium uppercase, textTertiary */
+.ds-menu-settings__title { font-size: 13px; font-weight: 500; letter-spacing: -0.01px; line-height: 1.31; text-transform: uppercase; color: var(--text-tertiary); }
+.ds-menu-settings__list { border-radius: var(--squircle-24); background: var(--bg-container-secondary-on-bg); overflow: hidden; }
+.ds-menu-settings__item { display: flex; align-items: center; gap: 8px; padding: 12px 16px; cursor: pointer; }
+.ds-menu-settings__item--toggle { padding: 4px 16px; }
+.ds-menu-settings__start { flex: none; }
+/* label — bodyDefaultMedium 14/500 */
+.ds-menu-settings__label { flex: 1; min-width: 0; font-size: 14px; font-weight: 500; letter-spacing: -0.02px; line-height: 1.29; color: var(--text-primary); }
+/* divider — 0.5 labelSecondary, indent 44 / endIndent 16 */
+.ds-menu-settings__divider { height: 0.5px; background: var(--label-secondary); margin: 0 16px 0 44px; }
+/* descripción — labelDefaultRegular textTertiary */
+.ds-menu-settings__desc { font-size: 13px; font-weight: 400; letter-spacing: -0.01px; line-height: 1.31; color: var(--text-tertiary); }
+
+/* DotsToggle embebido — 44.42×27, knob 23.5 blanco; on labelHighlight,
+   off fillSecondary (sin token: #78788029 / dark #78788052) */
+.ds-menu-settings__toggle {
+  width: 44.42px; height: 27px; border-radius: 13.5px; padding: 1.74px;
+  box-sizing: border-box; display: flex; flex: none; cursor: pointer;
+  background: #78788029;
+}
+[data-theme="dark"] .ds-menu-settings__toggle { background: #78788052; }
+.ds-menu-settings__toggle.is-on,
+[data-theme="dark"] .ds-menu-settings__toggle.is-on { background: var(--label-highlight); }
+.ds-menu-settings__knob {
+  width: 23.5px; height: 23.5px; border-radius: 50%;
+  background: #FFFFFF; /* knob siempre blanco (Dart) */
+  box-shadow: 0 2.61px 6.97px #00000026, 0 2.61px 0.87px #0000000F;
+}
+.ds-menu-settings__toggle.is-on .ds-menu-settings__knob { margin-left: auto; }

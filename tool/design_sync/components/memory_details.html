@@ -1,0 +1,134 @@
+<!-- @dsCard group="Memories" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dots · DotsMemoryDetails / DotsEntryViewer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Inter', sans-serif; display: flex; }
+  .theme { flex: 1; padding: 24px; }
+  .light { background: #F8F7F5; }
+  .dark { background: #191919; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+  .light h2 { color: #000; } .dark h2 { color: #FFF; }
+  .sub { font-size: 10px; opacity: .5; margin-bottom: 16px; font-family: ui-monospace, monospace; }
+  .light .sub { color: #000; } .dark .sub { color: #FFF; }
+  .row { display: flex; align-items: flex-start; gap: 28px; margin-bottom: 20px; flex-wrap: wrap; }
+
+  /* DotsMemoryDetails — foto 88×120, borde 1.5 bgContainerSecondary, DotsBorderRadius.r24,
+     sombra shadowPrimary blur 10 offset (0,4) */
+  .memory-details { display: flex; flex-direction: column; align-items: center; width: 180px; }
+  .memory-photo {
+    width: 88px; height: 120px; border-radius: 24px; overflow: hidden;
+    box-shadow: 0 4px 10px #00000026; margin-bottom: 16px;
+    background: linear-gradient(160deg, #E8C3A0, #C88EA7 55%, #7E6BA8);
+  }
+  .light .memory-photo { border: 1.5px solid #E2E2E2B3; }
+  .dark .memory-photo { border: 1.5px solid #282828B3; }
+  /* labelDefaultRegular 13/400 · labelDefaultBold 13/600 */
+  .memory-caption { font-size: 13px; line-height: 1.31; letter-spacing: -0.01px; text-align: center; }
+  .memory-caption .upload-by { font-weight: 400; }
+  .memory-caption .group-name { font-weight: 600; }
+  .memory-datetime { font-size: 13px; font-weight: 600; line-height: 1.31; letter-spacing: -0.01px; text-align: center; }
+  .light .upload-by, .light .memory-datetime { color: #0000008C; }   /* textTertiary */
+  .light .group-name { color: #000000AB; }                           /* textSecondary */
+  .dark .upload-by, .dark .memory-datetime { color: #FFFFFFA6; }
+  .dark .group-name { color: #FFFFFFBF; }
+
+  /* DotsEntryViewer — fila padding horizontal 16, foto 44 (gap 6+12), nombre bodyLargeRegular 16/400 */
+  .entry-viewer {
+    display: flex; align-items: center; width: 300px; padding: 0 16px; box-sizing: border-box;
+  }
+  .entry-avatar-wrap { margin: 0 6px 4px 0; }
+  .entry-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, #F2B880, #D96D6B);
+  }
+  .entry-avatar.a2 { background: linear-gradient(135deg, #9BC7EE, #6E7FD0); }
+  /* DotsProfilePhotoBited — biteSize 0.25, biteOffset (0.85, 0.85): mordida r11 en (37.4, 37.4) */
+  .entry-avatar.bited {
+    -webkit-mask: radial-gradient(circle 11px at 37.4px 37.4px, transparent 10.5px, #000 11.5px);
+    mask: radial-gradient(circle 11px at 37.4px 37.4px, transparent 10.5px, #000 11.5px);
+  }
+  .bited-wrap { position: relative; width: 44px; height: 44px; }
+  .bited-wrap .reaction {
+    position: absolute; left: 26.4px; top: 26.4px; width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 600; line-height: 1;
+  }
+  .entry-name { flex: 1; margin: 0 12px; font-size: 16px; font-weight: 400; line-height: 1.31; letter-spacing: -0.05px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .light .entry-name { color: #000; } .dark .entry-name { color: #FFF; }
+  .entry-heart { flex: none; width: 20px; height: 20px; color: #E55451; } /* couple007 */
+  .lbl { font-size: 9px; font-family: ui-monospace, monospace; opacity: .45; margin-top: 8px; text-align: center; }
+  .light .lbl { color: #000; } .dark .lbl { color: #FFF; }
+  .footnote { font-size: 9px; opacity: .4; font-family: ui-monospace, monospace; margin-top: 4px; }
+  .light .footnote { color: #000; } .dark .footnote { color: #FFF; }
+  .col { display: flex; flex-direction: column; }
+</style>
+</head>
+<body>
+  <div class="theme light">
+    <h2>DotsMemoryDetails + DotsEntryViewer — Light</h2>
+    <div class="sub">memory_details/memory_details · memory_details/entry_viewer</div>
+    <div class="row">
+      <div class="memory-details">
+        <div class="memory-photo"></div>
+        <div class="memory-caption"><span class="upload-by">Subido por Ana en </span><span class="group-name">Familia Pérez</span></div>
+        <div class="memory-datetime">12 mar 2024, 18:32</div>
+        <div class="lbl">DotsMemoryDetails · 88×120 r24</div>
+      </div>
+      <div class="col">
+        <div class="entry-viewer">
+          <div class="entry-avatar-wrap"><div class="entry-avatar"></div></div>
+          <div class="entry-name">Lucía Fernández</div>
+          <svg class="entry-heart" viewBox="0 0 32 33" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M15.9991 28.0942C16.3361 28.0942 16.8157 27.8536 17.2045 27.6131C24.4499 23.0552 29.09 17.7124 29.09 12.2935C29.09 7.64704 25.8108 4.40588 21.6762 4.40588C19.0969 4.40588 17.1656 5.79857 15.9991 7.8876C14.8585 5.81123 12.9143 4.40588 10.335 4.40588C6.20037 4.40588 2.9082 7.64704 2.9082 12.2935C2.9082 17.7124 7.54835 23.0552 14.7937 27.6131C15.1955 27.8536 15.6751 28.0942 15.9991 28.0942Z"/></svg>
+        </div>
+        <div class="lbl">variant: main · isLiked: true</div>
+        <div class="entry-viewer" style="margin-top:16px">
+          <div class="entry-avatar-wrap">
+            <div class="bited-wrap">
+              <div class="entry-avatar a2 bited"></div>
+              <div class="reaction">😍</div>
+            </div>
+          </div>
+          <div class="entry-name">Marcos Ruiz</div>
+        </div>
+        <div class="lbl">variant: emoji · emojiReaction</div>
+      </div>
+    </div>
+  </div>
+  <div class="theme dark">
+    <h2>DotsMemoryDetails + DotsEntryViewer — Dark</h2>
+    <div class="sub">Mismas variantes, tokens dark</div>
+    <div class="row">
+      <div class="memory-details">
+        <div class="memory-photo"></div>
+        <div class="memory-caption"><span class="upload-by">Subido por Ana en </span><span class="group-name">Familia Pérez</span></div>
+        <div class="memory-datetime">12 mar 2024, 18:32</div>
+        <div class="lbl">DotsMemoryDetails · 88×120 r24</div>
+      </div>
+      <div class="col">
+        <div class="entry-viewer">
+          <div class="entry-avatar-wrap"><div class="entry-avatar"></div></div>
+          <div class="entry-name">Lucía Fernández</div>
+          <svg class="entry-heart" viewBox="0 0 32 33" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M15.9991 28.0942C16.3361 28.0942 16.8157 27.8536 17.2045 27.6131C24.4499 23.0552 29.09 17.7124 29.09 12.2935C29.09 7.64704 25.8108 4.40588 21.6762 4.40588C19.0969 4.40588 17.1656 5.79857 15.9991 7.8876C14.8585 5.81123 12.9143 4.40588 10.335 4.40588C6.20037 4.40588 2.9082 7.64704 2.9082 12.2935C2.9082 17.7124 7.54835 23.0552 14.7937 27.6131C15.1955 27.8536 15.6751 28.0942 15.9991 28.0942Z"/></svg>
+        </div>
+        <div class="lbl">variant: main · isLiked: true</div>
+        <div class="entry-viewer" style="margin-top:16px">
+          <div class="entry-avatar-wrap">
+            <div class="bited-wrap">
+              <div class="entry-avatar a2 bited"></div>
+              <div class="reaction">😍</div>
+            </div>
+          </div>
+          <div class="entry-name">Marcos Ruiz</div>
+        </div>
+        <div class="lbl">variant: emoji · emojiReaction</div>
+      </div>
+    </div>
+    <div class="footnote">Omitidas: DotsMemoryDetails sin imagen (image: null) · DotsEntryViewer sin userImage</div>
+  </div>
+</body>
+</html>

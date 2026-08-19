@@ -1,0 +1,40 @@
+/* BadgeLabel — badges/badge_label/. Píldora (radio = altura), blur bgBlur(50)
+   en todas las variantes (BadgeLabelTheme.blur = true). Gap icono-texto 5. */
+.ds-badge-label {
+  display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+  box-sizing: border-box; max-width: 100%; white-space: nowrap;
+  font-family: var(--font-main);
+  -webkit-backdrop-filter: blur(var(--blur-50));
+  backdrop-filter: blur(var(--blur-50));
+}
+.ds-badge-label__text { overflow: hidden; text-overflow: ellipsis; }
+.ds-badge-label__icon { display: inline-flex; flex: none; }
+
+/* BadgeLabelSize: large h34 pad12 bodyDefaultMedium · medium h22 pad8 · small h18 pad8 labelSmallMedium */
+.ds-badge-label--large {
+  height: 34px; padding: 0 12px; border-radius: 34px;
+  font-size: 14px; font-weight: 500; line-height: 1.29; letter-spacing: -0.02px;
+}
+.ds-badge-label--medium {
+  height: 22px; padding: 0 8px; border-radius: 22px;
+  font-size: 11px; font-weight: 600; line-height: 1.27; letter-spacing: 0.01px;
+}
+.ds-badge-label--small {
+  height: 18px; padding: 0 8px; border-radius: 18px;
+  font-size: 11px; font-weight: 600; line-height: 1.27; letter-spacing: 0.01px;
+}
+
+/* BadgeLabelVariant (badge_label_theme.dart) */
+.ds-badge-label--main { background: var(--label-highlight); color: var(--label-always-white); }
+.ds-badge-label--secondary { background: var(--bg-highlight); color: var(--label-highlight); }
+.ds-badge-label--green { background: var(--label-active); color: var(--label-always-white); }
+.ds-badge-label--white {
+  background: var(--bg-container-primary); color: var(--text-primary);
+  border: 1px solid var(--border-button);
+}
+.ds-badge-label--green-material { background: var(--bg-active); color: var(--label-active); }
+.ds-badge-label--warning { background: var(--label-warning); color: var(--label-always-white); }
+.ds-badge-label--warning-material { background: var(--bg-warning); color: var(--label-warning); }
+.ds-badge-label--red { background: var(--label-destructive); color: var(--label-always-white); }
+.ds-badge-label--premium { background: var(--gradient-bg-premium); color: var(--label-always-white); }
+.ds-badge-label--premium-plus { background: var(--gradient-bg-premium-plus); color: var(--label-always-white); }

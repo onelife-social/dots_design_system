@@ -1,0 +1,88 @@
+/* DotsIconButton — colores de dots_icon_button_theme.dart, medidas de dots_icon_button_enums.dart */
+.ds-icon-btn { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.ds-icon-btn--column { flex-direction: column; }
+.ds-icon-btn--row { flex-direction: row; }
+
+.ds-icon-btn__circle {
+  display: inline-flex; align-items: center; justify-content: center;
+  border: none; padding: 0; cursor: pointer; border-radius: 50%; flex: none;
+  position: relative; background: transparent; color: var(--text-primary);
+  font-family: var(--font-main);
+}
+/* DotsIconButtonSize: size (el iconSize lo pone DotsIcon) */
+.ds-icon-btn__circle--enormous { width: 56px; height: 56px; }
+.ds-icon-btn__circle--extraLarge { width: 52px; height: 52px; }
+.ds-icon-btn__circle--large { width: 44px; height: 44px; }
+.ds-icon-btn__circle--medium { width: 36px; height: 36px; }
+.ds-icon-btn__circle--small { width: 28px; height: 28px; }
+.ds-icon-btn__circle--extraSmall { width: 22px; height: 22px; }
+
+/* DotsIconButtonStyle.defaultStyle × DotsIconButtonState */
+.ds-icon-btn__circle--default-default {
+  background: var(--bg-container-secondary-on-bg); color: var(--text-primary);
+  -webkit-backdrop-filter: blur(var(--blur-50)); backdrop-filter: blur(var(--blur-50));
+}
+.ds-icon-btn__circle--default-active { background: var(--label-highlight); color: var(--label-always-white); }
+.ds-icon-btn__circle--default-disabled {
+  background: var(--bg-btn-disabled); color: var(--text-disabled);
+  -webkit-backdrop-filter: blur(var(--blur-50)); backdrop-filter: blur(var(--blur-50));
+}
+.ds-icon-btn__circle--default-destructive { background: var(--bg-destructive); color: var(--label-destructive); }
+
+/* DotsIconButtonStyle.onPhoto × State (default y active comparten tema) */
+.ds-icon-btn__circle--photo-default,
+.ds-icon-btn__circle--photo-active {
+  background: var(--bg-floating-btn); color: var(--label-always-white);
+  -webkit-backdrop-filter: blur(var(--blur-50)); backdrop-filter: blur(var(--blur-50));
+}
+.ds-icon-btn__circle--photo-disabled {
+  background: var(--bg-btn-disabled); color: var(--label-always-white);
+  -webkit-backdrop-filter: blur(var(--blur-50)); backdrop-filter: blur(var(--blur-50));
+}
+.ds-icon-btn__circle--photo-destructive {
+  background: var(--bg-destructive); color: var(--label-destructive);
+  -webkit-backdrop-filter: blur(var(--blur-50)); backdrop-filter: blur(var(--blur-50));
+}
+
+/* DotsIconButtonStyle.floating — borde 0.7 borderAlert, blur10.
+   borderAlert no existe como token en tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart) */
+.ds-icon-btn__circle--floating {
+  --ds-border-alert: #FFFFFF4D;
+  border: 0.7px solid var(--ds-border-alert);
+  -webkit-backdrop-filter: blur(var(--blur-10)); backdrop-filter: blur(var(--blur-10));
+}
+[data-theme="dark"] .ds-icon-btn__circle--floating { --ds-border-alert: #6E6E6E4D; }
+.ds-icon-btn__circle--floating-default { background: var(--bg-btn-image); color: var(--text-primary); }
+.ds-icon-btn__circle--floating-active { background: var(--label-highlight); color: var(--label-always-white); }
+.ds-icon-btn__circle--floating-disabled { background: transparent; color: var(--bg-btn-disabled); }
+.ds-icon-btn__circle--floating-destructive { background: var(--bg-destructive); color: var(--label-destructive); }
+
+/* DotsIconButtonStyle.noBackground — sin chrome ni tamaño de botón */
+.ds-icon-btn__circle--nobg { width: auto; height: auto; background: none; border: none;
+  -webkit-backdrop-filter: none; backdrop-filter: none; }
+.ds-icon-btn__circle--nobg-default { color: var(--text-primary); }
+.ds-icon-btn__circle--nobg-active { color: var(--label-highlight); }
+.ds-icon-btn__circle--nobg-disabled { color: var(--text-disabled); }
+.ds-icon-btn__circle--nobg-destructive { color: var(--label-destructive); }
+
+/* shouldApplyBlur: false */
+.ds-icon-btn__circle.is-no-blur { -webkit-backdrop-filter: none; backdrop-filter: none; }
+/* showShadow — shadowFolder #00000014 (sin token), blur 10 offset (0,5) */
+.ds-icon-btn__circle.has-shadow { box-shadow: 0 5px 10px #00000014; }
+
+/* BadgeTag (tag) — labelDestructive, r22, min 18×18, labelSmallMedium 11/600 */
+.ds-icon-btn__tagwrap { position: relative; display: inline-flex; }
+.ds-icon-btn__tag {
+  position: absolute; top: -5px; right: -5px; box-sizing: border-box;
+  min-width: 18px; min-height: 18px; padding: 1px 5px; border-radius: 22px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--label-destructive); color: var(--label-always-white);
+  font: 600 11px/1.27 var(--font-main); white-space: nowrap;
+}
+
+/* Label — labelDefaultRegular 13/400, maxLines 2 (1 + ellipsis con overflow) */
+.ds-icon-btn__label {
+  font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px; text-align: center;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.ds-icon-btn__label--ellipsis { display: block; white-space: nowrap; text-overflow: ellipsis; }
