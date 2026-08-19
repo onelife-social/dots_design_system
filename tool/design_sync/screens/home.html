@@ -4,460 +4,271 @@
 <head>
 <meta charset="UTF-8">
 <title>Dots · Screen Home (home_v2)</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../_ds_bundle.css">
 <style>
-  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Book.otf') format('opentype'); font-weight: 400; }
-  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Medium.otf') format('opentype'); font-weight: 500; }
-  @font-face { font-family: 'P22 Mackinac'; src: url('../assets/fonts/P22Mackinac-Bold.otf') format('opentype'); font-weight: 700; }
-
   /* ============ Página ============ */
-  body { margin: 0; font-family: 'Inter', sans-serif; background: #ECEAE5; padding: 28px 24px 20px; }
-  .row-frames { display: flex; gap: 36px; justify-content: center; flex-wrap: wrap; }
+  body { margin: 0; font-family: var(--font-main, 'Inter', sans-serif); background: #ECEAE5; padding: 28px 24px 20px; }
   .device-col { display: flex; flex-direction: column; align-items: center; gap: 10px; }
   .caption { font-size: 11px; font-weight: 600; color: #00000099; }
   .caption span { font-weight: 400; opacity: .7; }
   .foot { max-width: 860px; margin: 26px auto 0; font-size: 10px; line-height: 1.6; color: #00000073; font-family: ui-monospace, monospace; }
   .foot b { color: #000000A6; }
-  /* Tipos de marca (P22 Mackinac con fallback editorial; la Home no lo usa: títulos en Inter) */
-  .serif { font-family: 'P22 Mackinac', Georgia, serif; }
-  .num { font-family: 'Nunito', sans-serif; }
 
-  /* ============ Frame de móvil — 393×852 ============ */
+  /* ============ Frame de móvil — 390×844 ============ */
   .phone {
-    position: relative; width: 393px; height: 852px; border-radius: 54px; overflow: hidden;
+    position: relative; width: 390px; height: 844px; border-radius: 54px; overflow: hidden;
+    background: var(--bg-base);
     box-shadow: 0 18px 40px #00000030, 0 0 0 10px #1C1C1E, 0 0 0 12px #3A3A3C;
   }
-  .phone.light { background: #F8F7F5; }
-  .phone.dark  { background: #191919; }
 
-  /* Status bar simple — solo hora + indicadores */
+  /* Status bar simple — solo hora + indicadores (widget del sistema, no DS) */
   .status { position: absolute; top: 0; left: 0; right: 0; height: 50px; z-index: 40;
             display: flex; align-items: flex-end; justify-content: space-between;
-            padding: 0 34px 6px; box-sizing: border-box; pointer-events: none; }
+            padding: 0 34px 6px; box-sizing: border-box; pointer-events: none;
+            color: var(--text-primary); }
   .status .time { font-size: 15px; font-weight: 600; letter-spacing: -.2px; }
-  .light .status { color: #000; } .dark .status { color: #FFF; }
   .status .indicators { display: flex; align-items: center; gap: 6px; }
   .status svg { display: block; }
 
-  /* ============ DotsHomeTopBar (big h106 = status 50 + DotsHomeTopBarMainSection 56) ============ */
-  .home-top-bar { position: absolute; top: 0; left: 0; right: 0; height: 106px; z-index: 30; }
-  .light .home-top-bar { background: #F8F7F5; }
-  .dark  .home-top-bar { background: #191919; }
-  .htb-main { position: absolute; top: 50px; left: 0; right: 0; height: 56px;
-              display: flex; align-items: center; }
-  /* título labelDefaultBold 13/600 textTertiary, centrado */
-  .htb-title { position: absolute; left: 0; right: 0; text-align: center;
-               font-size: 13px; font-weight: 600; line-height: 1.31; }
-  .light .htb-title { color: #0000008C; } .dark .htb-title { color: #FFFFFFA6; }
-  /* imgProfile — DotsProfilePhoto 32, ml 16 (avatar → iniciales) */
-  .img-profile { margin-left: 16px; width: 32px; height: 32px; border-radius: 50%; z-index: 1;
-                 background: linear-gradient(135deg, #C9A0DC, #7FB5D5);
-                 display: flex; align-items: center; justify-content: center;
-                 color: #FFF; font-size: 12px; font-weight: 600; }
-  /* rightIcon/secondRightIcon — DotsIconButton large 44, noBackground, textTertiary + tag BadgeTag */
-  .htb-right { margin-left: auto; margin-right: 16px; display: flex; align-items: center; z-index: 1; }
-  .icon-btn-nobg { position: relative; width: 44px; height: 44px; display: flex;
-                   align-items: center; justify-content: center; }
-  .light .icon-btn-nobg { color: #0000008C; } .dark .icon-btn-nobg { color: #FFFFFFA6; }
-  .icon-btn-nobg svg { width: 24px; height: 24px; }
-  /* BadgeTag — labelDestructive, min 18×18, r22, 11/600 */
-  .badge-tag { position: absolute; top: 2px; right: -2px; min-width: 18px; height: 18px;
-               padding: 1px 5px; box-sizing: border-box; border-radius: 22px; background: #ED2B32;
-               color: #FFF; font-size: 11px; font-weight: 600;
-               display: flex; align-items: center; justify-content: center; }
-
-  /* ============ Scroll (contenido bajo el top bar) ============ */
-  .scroll { position: absolute; inset: 0; }
+  /* Scroll real del contenido (HomeBody → _HomeScrollableContent) */
+  .scroll { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; }
+  .scroll::-webkit-scrollbar { display: none; }
 
   /* HomePendingMemoriesBarSection — pad top 16 / bottom 11 · Carrousel pad 0 20, gap 24 */
   .pending { padding: 16px 0 11px; }
   .carrousel { display: flex; gap: 24px; padding: 0 20px; overflow: hidden; }
-  /* MemoryCard — 68w · card 60.39×80 r15 · borde 67.53×87.39 r18 w1.45 */
-  .memory-card { width: 68px; flex: none; display: flex; flex-direction: column; align-items: center; }
-  .mc-border { width: 67.53px; height: 87.39px; border-radius: 18px; padding: 1.45px;
-               box-sizing: border-box; display: flex; align-items: center; justify-content: center; }
-  .mc-border.memory { background: linear-gradient(180deg, #77D98A, #28AB87); }
-  .mc-border.recap  { background: conic-gradient(#EF5FC1, #C982F7, #15ABF3, #B295B6, #F5784D, #EF9C5F, #F44E69, #EF5FC1); }
-  .mc-inner { width: 100%; height: 100%; border-radius: 16.5px; display: flex; align-items: center; justify-content: center; }
-  .light .mc-inner { background: #F8F7F5; } .dark .mc-inner { background: #191919; }
-  .mc-img { width: 60.39px; height: 80px; border-radius: 15px; }
-  .memory-card .name { margin-top: 8px; font-size: 13px; font-weight: 500; line-height: 1.31;
-                       max-width: 68px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .light .memory-card .name { color: #000000AB; } .dark .memory-card .name { color: #FFFFFFBF; }
 
-  /* FolderCarrousel · BtnFolder — h44, píldora r1000, pad 0 16, icono 20, gap 6 */
-  .folders { display: flex; align-items: flex-start; padding: 0 16px; overflow: hidden; margin-top: 10px; }
-  .folder-wrap { padding: 4px; flex: none; }
-  .folder { height: 44px; border-radius: 1000px; display: flex; align-items: center;
-            padding: 0 16px; gap: 6px; box-sizing: border-box; white-space: nowrap;
-            font-size: 14px; font-weight: 500; letter-spacing: -0.02px; }
-  .light .folder { background: #8C8C8C1A; color: #00000066; }
-  .dark  .folder { background: #75757533; color: #FFFFFF73; }
-  .light .folder.selected { background: #FFFFFF; color: #000; box-shadow: 1px 4px 4px #00000014; }
-  .dark  .folder.selected { background: #3E3E3E; color: #FFF; box-shadow: 1px 4px 4px #00000014; }
-  .folder.selected svg { color: #3E9ACB; }  /* iconSelectedColor (Todos → child006) */
-  .folder svg { width: 20px; height: 20px; flex: none; }
+  /* GroupFolderCarrouselWidget (el padding H16 lo pone FolderCarrousel) */
+  .folders { margin-top: 10px; }
 
   /* HomeGroupList — expandidos: pad H 25 · pares: 16 ext / 24 medio · gap V 24 */
   .group-list { margin-top: 18px; }
   .expanded-item { padding: 0 25px; }
-  .pair { display: flex; padding: 0 16px; gap: 24px; margin-top: 24px; }
-  .pair .cell { flex: 1; min-width: 0; }
+  .pair { display: flex; justify-content: space-between; padding: 0 16px; margin-top: 24px; }
 
-  /* EventGroupCard active — cuadrado, squircle52 · header + menú de acciones blur */
-  .event-card { position: relative; width: 100%; aspect-ratio: 1; border-radius: 52px; overflow: hidden; }
-  .event-card .top-grad { position: absolute; top: 0; left: 0; right: 0; height: 94px;
-                          background: linear-gradient(180deg, #3C3C3C80, transparent); }
-  .event-card .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 110px;
-                      background: linear-gradient(180deg, #00000000, #00000033); }
-  .event-card .head { position: absolute; top: 24px; left: 52px; right: 52px; text-align: center; color: #FFF; }
-  .event-card .head .ttl { font-size: 16px; font-weight: 700; line-height: 1.31;
-                           overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .event-card .head .sec { margin-top: 4px; font-size: 11px; font-weight: 400; color: #FFFFFFB2;
-                           display: flex; align-items: center; justify-content: center; gap: 3px; }
-  .event-card .head .dot { width: 3px; height: 3px; border-radius: 50%; background: #FFFFFFB2; }
-  .event-menu { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
-                display: flex; align-items: center; padding: 10px; border-radius: 20px;
-                backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); }
-  .light .event-menu { background: #C8C8C866; } .dark .event-menu { background: #C8C8C819; }
-  .event-menu .act { min-width: 46px; display: flex; flex-direction: column; align-items: center;
-                     gap: 2px; color: #FFF; font-size: 11px; font-weight: 400; }
-  .event-menu .act svg { width: 20px; height: 20px; }
-  .event-menu .sep { width: 0.5px; height: 22.78px; background: #0000001A; margin: 0 6px; }
-
-  /* AlbumGroupCard small — cuadrado, squircle32, pad 16 · CardTag 28 blur */
-  .album-card { position: relative; width: 100%; aspect-ratio: 1; border-radius: 32px; overflow: hidden; }
-  .album-card .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 60px;
-                      background: linear-gradient(180deg, #00000000, #00000033);
-                      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-                      mask-image: linear-gradient(180deg, transparent, #000 60%);
-                      -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%); }
-  .album-card .ttl { position: absolute; left: 16px; right: 16px; bottom: 16px; text-align: center;
-                     color: #FFF; font-size: 14px; font-weight: 500; line-height: 1.29;
-                     overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .card-tag { position: absolute; left: 16px; top: 16px; width: 28px; height: 28px; border-radius: 50%;
-              display: flex; align-items: center; justify-content: center;
-              backdrop-filter: blur(60px); -webkit-backdrop-filter: blur(60px); }
-  .light .card-tag { background: #F8F7F5D9; } .dark .card-tag { background: #191919D9; }
-  .card-tag svg { width: 18px; height: 18px; }
-
-  /* HomeAddAlbum — pad top 24 · DotsMainButton secondary medium (h36, r36, 13/600, blur) */
+  /* HomeAddAlbum — pad top 24, botón centrado */
   .add-album { padding-top: 24px; display: flex; justify-content: center; }
-  .btn-secondary-md { height: 36px; padding: 0 16px; border-radius: 36px; border: none;
-                      display: inline-flex; align-items: center; font-family: 'Inter', sans-serif;
-                      font-size: 13px; font-weight: 600;
-                      backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); }
-  .light .btn-secondary-md { background: #8C8C8C4D; color: #000000AB; }
-  .dark  .btn-secondary-md { background: #C8C8C84D; color: #FFFFFFBF; }
 
-  /* HomeRecapsBanner — pad top 26, H 16 · NotificationBannerImage (r24, titleH6, DotsMainButton main large) */
+  /* HomeRecapsBanner — pad top 26, H 16 */
   .recaps-banner { padding: 26px 16px 0; }
-  .banner-img { border-radius: 24px; padding: 20px 20px 16px; text-align: center;
-                display: flex; flex-direction: column; align-items: center; gap: 12px; }
-  .light .banner-img { background: #8C8C8C1A; } .dark .banner-img { background: #75757533; }
-  .banner-img .img { width: calc(100% - 40px); height: 88px; border-radius: 16px;
-                     background: linear-gradient(120deg, #EF5FC1, #C982F7 30%, #15ABF3 55%, #F5784D 85%); opacity: .9; }
-  .banner-img .ttl { margin: 0 28px; font-size: 18px; font-weight: 600; line-height: 1.28; }
-  .light .banner-img .ttl { color: #000; } .dark .banner-img .ttl { color: #FFF; }
-  .btn-main-lg { height: 44px; padding: 0 20px; border-radius: 44px; border: none;
-                 font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #FFF; }
-  .light .btn-main-lg { background: #0072EF; } .dark .btn-main-lg { background: #0A84FF; }
 
-  /* DotsBottomGradient — h104, bgBase transparente → bgBase, opacity .95 */
+  /* DotsBottomGradient — h104, bgBase transparente → bgBase, opacity .95 (widget app, no DS) */
   .bottom-gradient { position: absolute; bottom: 0; left: 0; right: 0; height: 104px;
-                     opacity: .95; z-index: 35; pointer-events: none; }
-  .light .bottom-gradient { background: linear-gradient(180deg, #F8F7F500, #F8F7F5); }
-  .dark  .bottom-gradient { background: linear-gradient(180deg, #19191900, #191919); }
+                     opacity: .95; z-index: 35; pointer-events: none;
+                     background: linear-gradient(180deg, transparent, var(--bg-base)); }
 
-  /* DotsNavBar — flotante centrada (centerFloat) · r36 · pad 5 · blur 10 · item 70×55 */
-  .nav-bar { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
-             display: inline-flex; padding: 5px; border-radius: 36px; z-index: 36;
-             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-  .light .nav-bar { background: #E2E2E2B2; border: 0.7px solid #BCBCBC7F; }
-  .dark  .nav-bar { background: #282828B2; border: 0.7px solid #BCBCBC33; }
-  .nav-pill { position: absolute; top: 5px; left: 75px; width: 70px; height: 55px; border-radius: 32px; }
-  .light .nav-pill { background: #00000026; } .dark .nav-pill { background: #C8C8C81A; }
-  .nav-item { position: relative; width: 70px; height: 55px; display: flex; flex-direction: column;
-              align-items: center; justify-content: center; gap: 2px; z-index: 1; }
-  .nav-item svg { width: 20px; height: 20px; }
-  .nav-item span { font-size: 13px; font-weight: 400; line-height: 1.31; }
-  .light .nav-item { color: #000000AB; } .dark .nav-item { color: #FFFFFFBF; }
-  .light .nav-item.selected { color: #0072EF; } .dark .nav-item.selected { color: #0A84FF; }
-  .nav-icon-wrap { position: relative; }
-  .nav-icon-wrap .badge-tag { top: -7px; right: -14px; }
+  /* DotsNavBar flotante centrada (HomeFloatingNavBar) */
+  .nav-wrap { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 36; }
 
-  /* _TopOverlay (scrolled) — gradiente bgBase → transparente h104 */
-  .top-overlay { position: absolute; top: 0; left: 0; right: 0; height: 104px; z-index: 30; pointer-events: none; }
-  .dark .top-overlay { background: linear-gradient(180deg, #191919, #19191999 50%, #19191900); }
-  .light .top-overlay { background: linear-gradient(180deg, #F8F7F5, #F8F7F599 50%, #F8F7F500); }
+  /* _TopOverlay (scrolled) — gradiente bgBase → transparente h104 (widget app, no DS) */
+  .top-overlay { position: absolute; top: 0; left: 0; right: 0; height: 104px; z-index: 30; pointer-events: none;
+                 background: linear-gradient(180deg, var(--bg-base),
+                             color-mix(in srgb, var(--bg-base) 60%, transparent) 50%, transparent); }
 
-  /* DotsFloatingButton — h36, r22, pad 0 20, bgSecondaryBtn + blur10, texto/ic labelAlwaysWhite */
-  .floating-btn { position: absolute; top: 56px; left: 50%; transform: translateX(-50%); z-index: 34;
-                  height: 36px; padding: 0 20px; border-radius: 22px; display: inline-flex;
-                  align-items: center; gap: 4px; color: #FFF; font-size: 14px; font-weight: 500;
-                  box-shadow: 0 4px 15px #00000026; border: 0.7px solid #FFFFFF80;
-                  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-  .light .floating-btn { background: #8C8C8C4D; }
-  .dark  .floating-btn { background: #C8C8C84D; }
-  .floating-btn svg { width: 16px; height: 16px; }
+  /* DotsFloatingButton «Buscar» — visible solo con scroll, como en la app */
+  .floating-wrap { position: absolute; top: 56px; left: 50%; transform: translateX(-50%); z-index: 34; }
+
+  /* Caja 44×44 de los DotsIconButton large·noBackground del top bar (Dart: SizedBox del size large) */
+  .icon-slot-44 { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+
+  /* imgProfile — DotsProfilePhoto 32 (avatar → iniciales; DotsProfilePhoto no está en el bundle) */
+  .img-profile { width: 32px; height: 32px; border-radius: 50%;
+                 background: linear-gradient(135deg, #C9A0DC, #7FB5D5);
+                 display: flex; align-items: center; justify-content: center;
+                 color: #FFF; font: 600 12px var(--font-main, 'Inter', sans-serif); }
 </style>
 </head>
 <body>
-  <div class="row-frames">
-
-    <!-- ================= FRAME LIGHT — inicio de scroll ================= -->
-    <div class="device-col">
-      <div class="phone light">
-        <div class="status">
-          <span class="time">9:41</span>
-          <span class="indicators">
-            <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
-            <svg width="16" height="11" viewBox="0 0 16 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 4a9.5 9.5 0 0 1 13 0M4 6.7a6 6 0 0 1 8 0M6.5 9.2a2.5 2.5 0 0 1 3 0"/></svg>
-            <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="16" height="8" rx="2" fill="currentColor"/><path d="M23.5 4v4a2 2 0 0 0 0-4Z" fill="currentColor" opacity=".4"/></svg>
-          </span>
-        </div>
-
-        <div class="scroll">
-          <!-- DotsHomeTopBar (MainHomeTopBarSection) -->
-          <div class="home-top-bar">
-            <div class="htb-main">
-              <div class="htb-title">Dots. Memories</div>
-              <div class="img-profile">JL</div>
-              <div class="htb-right">
-                <div class="icon-btn-nobg">
-                  <svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.9991 28.0942C16.3361 28.0942 16.8157 27.8536 17.2045 27.6131C24.4499 23.0552 29.09 17.7124 29.09 12.2935C29.09 7.64704 25.8108 4.40588 21.6762 4.40588C19.0969 4.40588 17.1656 5.79857 15.9991 7.8876C14.8585 5.81123 12.9143 4.40588 10.335 4.40588C6.20037 4.40588 2.9082 7.64704 2.9082 12.2935C2.9082 17.7124 7.54835 23.0552 14.7937 27.6131C15.1955 27.8536 15.6751 28.0942 15.9991 28.0942Z" fill="currentColor"/></svg>
-                  <span class="badge-tag">2</span>
-                </div>
-                <div class="icon-btn-nobg">
-                  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.28471 27.9256C8.68641 27.9256 12.0298 26.5089 14.1208 25.0811C14.3391 24.925 14.523 24.8692 14.7068 24.8692C14.8562 24.8804 14.994 24.8915 15.1204 24.8915C23.4042 24.8804 29.3327 20.4966 29.3327 14.4731C29.3327 8.70622 23.3927 4.06592 15.9936 4.06592C8.59449 4.06592 2.66602 8.70622 2.66602 14.4731C2.66602 18.0649 4.89494 21.2774 8.66343 23.2518C8.87024 23.3745 8.92768 23.5418 8.82428 23.7426C8.1579 24.8246 7.04344 26.0293 6.58387 26.5982C6.06685 27.234 6.36557 27.9256 7.28471 27.9256Z" fill="currentColor"/></svg>
-                  <span class="badge-tag">5</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div style="height:106px;"></div>
-
-          <!-- HomePendingMemoriesBarSection → Carrousel de MemoryCard -->
-          <div class="pending">
-            <div class="carrousel">
-              <div class="memory-card">
-                <div class="mc-border memory"><div class="mc-inner"><div class="mc-img" style="background:linear-gradient(150deg,#A9C0D8,#E3C9AE);"></div></div></div>
-                <div class="name">Familia</div>
-              </div>
-              <div class="memory-card">
-                <div class="mc-border recap"><div class="mc-inner"><div class="mc-img" style="background:linear-gradient(150deg,#D8A9C0,#A9BED8);"></div></div></div>
-                <div class="name">Recap Eva</div>
-              </div>
-              <div class="memory-card">
-                <div class="mc-border memory"><div class="mc-inner"><div class="mc-img" style="background:linear-gradient(150deg,#C8D8B8,#A9C3DB);"></div></div></div>
-                <div class="name">Abuelos</div>
-              </div>
-              <div class="memory-card">
-                <div class="mc-border memory"><div class="mc-inner"><div class="mc-img" style="background:linear-gradient(150deg,#E0C3A4,#96B4CE);"></div></div></div>
-                <div class="name">Boda</div>
-              </div>
-              <div class="memory-card">
-                <div class="mc-border memory"><div class="mc-inner"><div class="mc-img" style="background:linear-gradient(150deg,#B8C6DB,#D9C1B8);"></div></div></div>
-                <div class="name">Viaje a Roma</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- GroupFolderCarrouselWidget → FolderCarrousel · BtnFolder -->
-          <div class="folders">
-            <div class="folder-wrap">
-              <div class="folder">
-                <svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.66602 13.9389C2.66602 19.8859 7.55172 24.7245 13.5565 24.7245C15.9311 24.7245 18.101 23.9677 19.8889 22.6971L26.6033 29.3605C26.9171 29.6713 27.3266 29.82 27.7633 29.82C28.6914 29.82 29.3327 29.1306 29.3327 28.2251C29.3327 27.7926 29.1689 27.4006 28.8823 27.1168L22.2088 20.467C23.6146 18.6559 24.447 16.3988 24.447 13.9389C24.447 7.99197 19.5613 3.15332 13.5565 3.15332C7.55172 3.15332 2.66602 7.99197 2.66602 13.9389ZM4.9997 13.9389C4.9997 9.26246 8.83457 5.46453 13.5565 5.46453C18.2784 5.46453 22.1133 9.26246 22.1133 13.9389C22.1133 18.6153 18.2784 22.4133 13.5565 22.4133C8.83457 22.4133 4.9997 18.6153 4.9997 13.9389Z" fill="currentColor"/></svg>
-                Buscar
-              </div>
-            </div>
-            <div class="folder-wrap">
-              <div class="folder selected">
-                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 14.42C2 13.3688 2 12.8432 2.15838 12.4241C2.40736 11.7651 2.92753 11.2449 3.58649 10.9959C4.00567 10.8376 4.53125 10.8376 5.58242 10.8376C6.63358 10.8376 7.15917 10.8376 7.57835 10.9959C8.23731 11.2449 8.75748 11.7651 9.00646 12.4241C9.16484 12.8432 9.16484 13.3688 9.16484 14.42C9.16484 15.4712 9.16484 15.9967 9.00646 16.4159C8.75748 17.0749 8.23731 17.595 7.57835 17.844C7.15917 18.0024 6.63358 18.0024 5.58242 18.0024C4.53125 18.0024 4.00567 18.0024 3.58649 17.844C2.92753 17.595 2.40736 17.0749 2.15838 16.4159C2 15.9967 2 15.4712 2 14.42Z" fill="currentColor"/><path d="M2 5.58242C2 4.53125 2 4.00567 2.15838 3.58649C2.40736 2.92753 2.92753 2.40736 3.58649 2.15838C4.00567 2 4.53125 2 5.58242 2C6.63358 2 7.15917 2 7.57835 2.15838C8.23731 2.40736 8.75748 2.92753 9.00646 3.58649C9.16484 4.00567 9.16484 4.53125 9.16484 5.58242C9.16484 6.63358 9.16484 7.15917 9.00646 7.57835C8.75748 8.23731 8.23731 8.75748 7.57835 9.00646C7.15917 9.16484 6.63358 9.16484 5.58242 9.16484C4.53125 9.16484 4.00567 9.16484 3.58649 9.00646C2.92753 8.75748 2.40736 8.23731 2.15838 7.57835C2 7.15917 2 6.63358 2 5.58242Z" fill="currentColor"/><path d="M10.8352 5.58242C10.8352 4.53125 10.8352 4.00567 10.9935 3.58649C11.2425 2.92753 11.7627 2.40736 12.4217 2.15838C12.8408 2 13.3664 2 14.4176 2C15.4687 2 15.9943 2 16.4135 2.15838C17.0725 2.40736 17.5926 2.92753 17.8416 3.58649C18 4.00567 18 4.53125 18 5.58242C18 6.63358 18 7.15917 17.8416 7.57835C17.5926 8.23731 17.0725 8.75748 16.4135 9.00646C15.9943 9.16484 15.4687 9.16484 14.4176 9.16484C13.3664 9.16484 12.8408 9.16484 12.4217 9.00646C11.7627 8.75748 11.2425 8.23731 10.9935 7.57835C10.8352 7.15917 10.8352 6.63358 10.8352 5.58242Z" fill="currentColor"/><path d="M10.8343 14.421C10.8343 13.3699 10.8343 12.8443 10.9927 12.4251C11.2416 11.7662 11.7618 11.246 12.4208 10.997C12.84 10.8386 13.3655 10.8386 14.4167 10.8386C15.4679 10.8386 15.9935 10.8386 16.4126 10.997C17.0716 11.246 17.5918 11.7662 17.8407 12.4251C17.9991 12.8443 17.9991 13.3699 17.9991 14.421C17.9991 15.4722 17.9991 15.9978 17.8407 16.417C17.5918 17.0759 17.0716 17.5961 16.4126 17.8451C15.9935 18.0035 15.4679 18.0035 14.4167 18.0035C13.3655 18.0035 12.84 18.0035 12.4208 17.8451C11.7618 17.5961 11.2416 17.0759 10.9927 16.417C10.8343 15.9978 10.8343 15.4722 10.8343 14.421Z" fill="currentColor"/></svg>
-                Todos
-              </div>
-            </div>
-            <div class="folder-wrap">
-              <div class="folder">
-                <svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M27.2114 24.3715C27.2114 25.33 27.2118 26.2884 27.2113 27.2469C27.2109 27.9341 26.7683 28.4201 26.1407 28.4243C25.5102 28.4285 25.0438 27.9265 25.0432 27.2327C25.0415 25.2962 25.0401 23.3598 25.0475 21.4234C25.0483 21.2047 25.0293 21.0778 24.7587 21.0918C24.521 21.1042 24.3562 21.1036 24.3582 21.4259C24.3702 23.3622 24.3647 25.2986 24.3635 27.2351C24.363 27.9046 23.9523 28.3883 23.3593 28.4238C22.7165 28.4623 22.215 27.9809 22.21 27.2991C22.2025 26.2723 22.2086 25.2453 22.2089 24.2184C22.2093 23.2893 22.2021 22.3602 22.2149 21.4312C22.2184 21.1778 22.1443 21.0738 21.883 21.0939C21.6398 21.1126 21.3942 21.1026 21.1497 21.1001C20.8255 21.0966 20.7008 20.9531 20.7686 20.6384C20.9075 19.9937 21.0551 19.3509 21.2034 18.7083C21.6637 16.714 22.1268 14.7204 22.5864 12.7259C22.6578 12.4163 22.5118 12.2386 22.2443 12.2888C22.0786 12.3198 22.0285 12.4523 21.9951 12.5824C21.6496 13.9312 21.1739 15.2394 20.7577 16.5661C20.6266 16.9839 20.3371 17.2084 19.9551 17.2171C19.4285 17.2292 19.0135 16.7203 19.1495 16.2107C19.5774 14.607 19.9998 13.0017 20.5403 11.4305C20.9525 10.2323 21.9837 9.48017 23.2432 9.47432C24.2116 9.46981 25.1801 9.46619 26.1485 9.47271C27.4782 9.48166 28.4807 10.1824 28.8711 11.4613C29.4524 13.3658 30.1112 15.2465 30.6263 17.1712C30.7654 17.6912 30.5421 18.1661 30.0876 18.3138C29.5984 18.4727 29.0999 18.2132 28.9389 17.6851C28.4339 16.0281 27.9408 14.3675 27.4433 12.7082C27.421 12.6337 27.406 12.5568 27.3796 12.4839C27.3216 12.3242 27.2068 12.2522 27.0367 12.2824C26.8625 12.3132 26.7785 12.4288 26.8001 12.5956C26.8273 12.8063 26.8742 13.015 26.9223 13.2223C27.3761 15.1782 27.8332 17.1332 28.2861 19.0893C28.4065 19.6093 28.5197 20.1311 28.6286 20.6536C28.6937 20.9657 28.5886 21.0952 28.2765 21.1004C28.0125 21.1048 27.7477 21.1114 27.4845 21.0963C27.2675 21.0839 27.2026 21.1579 27.2053 21.3789C27.2174 22.3763 27.2106 23.374 27.2114 24.3715Z" fill="currentColor"/><path d="M9.02186 20.1526C9.02186 22.5096 9.00387 24.8668 9.03278 27.2234C9.0415 27.9342 8.51054 28.4281 7.94959 28.423C7.32784 28.4174 6.88466 27.9309 6.88399 27.2368C6.88151 24.6647 6.8817 22.0926 6.88076 19.5205C6.88069 19.317 6.92389 19.101 6.59586 19.0987C6.22176 19.0962 6.19965 19.1014 6.19964 19.4781C6.19963 22.06 6.20021 24.6418 6.1994 27.2237C6.19923 27.7644 5.94222 28.176 5.50692 28.3433C4.82116 28.607 4.08159 28.1259 4.03609 27.3849C4.0295 27.2777 4.03404 27.1698 4.03402 27.0622C4.03325 22.3581 4.03285 17.6539 4.03076 12.9498C4.03067 12.7617 4.08639 12.499 3.8126 12.4864C3.55561 12.4746 3.51143 12.7177 3.49374 12.9319C3.39812 14.0899 3.30358 15.2479 3.2069 16.4057C3.17196 16.8242 3.14269 17.2435 3.09172 17.6601C3.03143 18.1528 2.62149 18.4797 2.13125 18.4486C1.67282 18.4194 1.30723 18.0268 1.33552 17.5325C1.38572 16.6555 1.46553 15.7801 1.53706 14.9044C1.60304 14.0966 1.69963 13.2904 1.73765 12.4813C1.79877 11.1809 2.87473 9.93143 4.15182 9.70532C4.52203 9.63978 4.89099 9.65094 5.26127 9.64977C6.259 9.64659 7.25694 9.66106 8.25445 9.64578C9.79035 9.62226 10.7331 10.5678 11.1247 11.7179C11.4413 12.6481 11.5497 13.6292 11.7697 14.5835C11.8895 15.1031 11.984 15.6288 12.0837 16.1529C12.1744 16.6304 11.9004 17.0845 11.4593 17.2017C10.9908 17.3262 10.5073 17.0848 10.3766 16.596C10.2087 15.9681 10.0966 15.3252 9.96388 14.6881C9.84303 14.108 9.73606 13.5248 9.60351 12.9474C9.55621 12.7414 9.5307 12.4357 9.22879 12.4796C8.96274 12.5182 9.02592 12.7983 9.02564 12.9938C9.02223 15.3801 9.02343 17.7663 9.02343 20.1526H9.02186Z" fill="currentColor"/><path d="M13.6424 24.1359C13.6424 23.0115 13.639 21.8872 13.6456 20.7628C13.6467 20.571 13.598 20.4772 13.3964 20.4109C12.4104 20.0867 11.7462 19.3983 11.3105 18.4769C11.13 18.0951 11.2795 17.6591 11.6339 17.4633C11.9853 17.2693 12.4487 17.3727 12.6557 17.7473C13.2412 18.8068 14.1759 19.1722 15.3222 19.153C15.9256 19.1429 16.5312 19.1932 17.1203 18.9878C17.6992 18.7859 18.1503 18.4419 18.456 17.91C18.6012 17.6575 18.773 17.4369 19.0856 17.3884C19.4041 17.339 19.665 17.4405 19.855 17.7026C20.0381 17.9553 20.05 18.2294 19.9166 18.5044C19.4713 19.4228 18.8035 20.1062 17.8105 20.4148C17.5998 20.4802 17.5985 20.5981 17.5987 20.7614C17.6006 22.5604 17.6 24.3594 17.5998 26.1584C17.5998 26.6081 17.6037 27.0579 17.5973 27.5076C17.5897 28.0476 17.2329 28.4223 16.7385 28.4208C16.2497 28.4193 15.8856 28.0293 15.8849 27.4998C15.8834 26.3559 15.8816 25.2119 15.8877 24.068C15.8888 23.8696 15.8539 23.7641 15.618 23.7657C15.4114 23.7671 15.3535 23.8275 15.355 24.031C15.3634 25.1846 15.3396 26.3388 15.3683 27.4918C15.3797 27.9507 15.0097 28.41 14.515 28.4194C14.0294 28.4287 13.6525 28.0469 13.648 27.509C13.6386 26.3847 13.6452 25.2603 13.6452 24.1359H13.6424Z" fill="currentColor"/><path d="M8.95621 6.4998C8.9593 7.82712 7.87196 8.92011 6.53999 8.92859C5.21916 8.937 4.09547 7.80906 4.10216 6.48156C4.10869 5.18745 5.20612 4.07775 6.48301 4.07411C7.86306 4.07017 8.95305 5.13922 8.95621 6.4998Z" fill="currentColor"/><path d="M27.1041 6.58258C27.1122 7.89555 26.0445 8.98703 24.7418 8.99731C23.372 9.00812 22.2853 7.9483 22.2792 6.59574C22.2732 5.24484 23.3243 4.16712 24.6692 4.14511C26.0016 4.12331 27.0955 5.21846 27.1041 6.58258Z" fill="currentColor"/></svg>
-                Familia
-              </div>
-            </div>
-            <div class="folder-wrap">
-              <div class="folder">
-                <svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.7716 11.9089H27.5679C27.1318 8.12548 23.867 4.00024 18.292 4.00024C17.3962 4.00024 16.7716 4.6485 16.7716 5.5914V11.9089ZM13.766 20.9019H21.2858C26.1182 20.9019 27.4265 17.8492 27.6032 14.9852H27.8626C28.3222 14.9852 28.6876 14.608 28.6876 14.1483C28.6876 13.6887 28.3222 13.3233 27.8626 13.3233H7.16567C6.706 13.3233 6.34062 13.6887 6.34062 14.1483C6.34062 14.608 6.706 14.9852 7.16567 14.9852H7.44854L7.95536 16.977C8.56825 19.3815 10.4423 20.9019 13.766 20.9019ZM11.4559 14.2191H13.9546L7.69606 7.96046C7.42497 7.68938 7.13032 7.57152 6.75315 7.57152H4.1955C3.71226 7.57152 3.31152 7.97225 3.31152 8.45549C3.31152 8.93874 3.71226 9.35126 4.1955 9.35126H6.58814L11.4559 14.2191ZM11.3263 23.8249L12.5638 25.1097L17.1016 20.5719L15.8286 19.3226L11.3263 23.8249ZM22.488 25.2629L23.7727 24.0254L19.2821 19.5465L17.8677 20.6426L22.488 25.2629ZM12.9056 27.0073H22.0636V25.4632H12.9056V27.0073ZM10.2655 29.6002C12.1395 29.6002 13.6128 28.127 13.6128 26.2412C13.6128 24.3671 12.1395 22.8939 10.2655 22.8939C8.37967 22.8939 6.91816 24.3671 6.91816 26.2412C6.91816 28.127 8.37967 29.6002 10.2655 29.6002ZM10.2655 28.0563C9.26365 28.0563 8.46217 27.2548 8.46217 26.2412C8.46217 25.2276 9.26365 24.4378 10.2655 24.4378C11.2791 24.4378 12.0688 25.2276 12.0688 26.2412C12.0688 27.2548 11.2791 28.0563 10.2655 28.0563ZM24.6213 29.3645C26.3421 29.3645 27.7329 27.9737 27.7329 26.2412C27.7329 24.5203 26.3421 23.1295 24.6213 23.1295C22.8887 23.1295 21.4979 24.5203 21.4979 26.2412C21.4979 27.9737 22.9005 29.3645 24.6213 29.3645ZM24.6213 28.0563C23.6195 28.0563 22.8062 27.2548 22.8062 26.2412C22.8062 25.2276 23.6195 24.4378 24.6213 24.4378C25.6349 24.4378 26.4246 25.2276 26.4246 26.2412C26.4246 27.2548 25.6349 28.0563 24.6213 28.0563Z" fill="currentColor"/></svg>
-                Bebé
-              </div>
-            </div>
-            <div class="folder-wrap">
-              <div class="folder">
-                <svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M29.3327 26.5332C29.3327 27.1521 28.8263 27.6584 28.2075 27.6584H7.9265L10.1998 25.3939H28.2075C28.8263 25.3939 29.3327 25.9143 29.3327 26.5332Z" fill="currentColor"/><path d="M6.50415 26.3638L21.8636 11.0325L19.3881 8.55699L4.04271 23.8883L2.69242 27.0249C2.56583 27.3624 2.91747 27.7563 3.25504 27.6157L6.50415 26.3638ZM23.0872 9.82287L24.5078 8.4304C25.2393 7.71306 25.2815 6.93946 24.6204 6.29246L24.1563 5.81423C23.5092 5.18129 22.7357 5.23754 22.0323 5.94082L20.5977 7.34736L23.0872 9.82287Z" fill="currentColor"/></svg>
-                Editar
-              </div>
-            </div>
-          </div>
-
-          <!-- HomeGroupList — item expandido: EventGroupCard active -->
-          <div class="group-list">
-            <div class="expanded-item">
-              <div class="event-card" style="background:linear-gradient(150deg,#7E9BB8,#D8B294,#77958E);">
-                <div class="top-grad"></div>
-                <div class="fade"></div>
-                <span class="card-tag"><svg viewBox="0 0 33 33" fill="#C17FFA"><path d="M16.5266 29.9471C16.9671 29.9471 17.2891 29.6249 17.3738 29.1672C18.5767 19.894 19.8811 18.4701 29.0637 17.453C29.5381 17.402 29.86 17.063 29.86 16.6052C29.86 16.1644 29.5381 15.8255 29.0637 15.7746C19.8811 14.7575 18.5767 13.3334 17.3738 4.04329C17.2891 3.58556 16.9671 3.28043 16.5266 3.28043C16.0861 3.28043 15.7643 3.58556 15.6965 4.04329C14.4937 13.3334 13.1721 14.7575 4.00657 15.7746C3.51525 15.8255 3.19336 16.1644 3.19336 16.6052C3.19336 17.063 3.51525 17.402 4.00657 17.453C13.1552 18.6566 14.4259 19.894 15.6965 29.1672C15.7643 29.6249 16.0861 29.9471 16.5266 29.9471Z"/></svg></span>
-                <div class="head">
-                  <div class="ttl">Boda de Ana y Leo</div>
-                  <div class="sec"><span class="dot"></span>Evento activo</div>
-                </div>
-                <div class="event-menu">
-                  <div class="act"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.28471 27.9256C8.68641 27.9256 12.0298 26.5089 14.1208 25.0811C14.3391 24.925 14.523 24.8692 14.7068 24.8692C14.8562 24.8804 14.994 24.8915 15.1204 24.8915C23.4042 24.8804 29.3327 20.4966 29.3327 14.4731C29.3327 8.70622 23.3927 4.06592 15.9936 4.06592C8.59449 4.06592 2.66602 8.70622 2.66602 14.4731C2.66602 18.0649 4.89494 21.2774 8.66343 23.2518C8.87024 23.3745 8.92768 23.5418 8.82428 23.7426C8.1579 24.8246 7.04344 26.0293 6.58387 26.5982C6.06685 27.234 6.36557 27.9256 7.28471 27.9256Z" fill="currentColor"/></svg>Chat</div>
-                  <div class="sep"></div>
-                  <div class="act"><svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.07536 27.1731H25.9234C28.1818 27.1731 29.3327 26.0439 29.3327 23.8071V12.4391C29.3327 10.2024 28.1818 9.08401 25.9234 9.08401H22.8181C21.9603 9.08401 21.6997 8.91029 21.2111 8.3674L20.3425 7.3902C19.7996 6.79302 19.2458 6.46729 18.1275 6.46729H13.7952C12.6769 6.46729 12.1231 6.79302 11.5803 7.3902L10.7116 8.3674C10.223 8.89943 9.95159 9.08401 9.10468 9.08401H6.07536C3.80608 9.08401 2.66602 10.2024 2.66602 12.4391V23.8071C2.66602 26.0439 3.80608 27.1731 6.07536 27.1731ZM15.9993 23.97C12.7094 23.97 10.071 21.3425 10.071 18.0309C10.071 14.7301 12.7094 12.1025 15.9993 12.1025C19.2893 12.1025 21.9168 14.7301 21.9168 18.0309C21.9168 21.3425 19.2784 23.97 15.9993 23.97ZM15.9993 22.3197C18.3664 22.3197 20.2773 20.4195 20.2773 18.0309C20.2773 15.653 18.3664 13.742 15.9993 13.742C13.6323 13.742 11.7105 15.653 11.7105 18.0309C11.7105 20.4195 13.6433 22.3197 15.9993 22.3197ZM22.6443 14.0352C22.6443 13.2968 23.2958 12.6454 24.0558 12.6454C24.805 12.6454 25.4456 13.2968 25.4456 14.0352C25.4456 14.8061 24.805 15.425 24.0558 15.4358C23.2958 15.4358 22.6443 14.8169 22.6443 14.0352Z" fill="currentColor"/></svg>Subir</div>
-                  <div class="sep"></div>
-                  <div class="act"><svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.7212 8.99171V26.5247C25.7212 28.9518 24.5308 30.1538 22.1383 30.1538H9.86412C7.47169 30.1538 6.28125 28.9518 6.28125 26.5247V8.99171C6.28125 6.5646 7.47169 5.36261 9.86412 5.36261H10.0187C10.0078 5.46009 10.0028 5.56053 10.0028 5.66311V6.87665C10.0028 8.33293 11.0199 9.36156 12.4299 9.36156H19.5726C20.9825 9.36156 21.9997 8.33293 21.9997 6.87665V5.66311C21.9997 5.56053 21.9947 5.46009 21.9838 5.36261H22.1383C24.5308 5.36261 25.7212 6.5646 25.7212 8.99171ZM10.7425 22.4911C10.3264 22.4911 9.99126 22.8262 9.99126 23.2308C9.99126 23.6352 10.338 23.982 10.7425 23.982H16.0359C16.4404 23.982 16.7756 23.6352 16.7756 23.2308C16.7756 22.8262 16.452 22.4911 16.0359 22.4911H10.7425ZM10.7425 18.0298C10.3264 18.0298 9.99126 18.3534 9.99126 18.7694C9.99126 19.1855 10.3264 19.5208 10.7425 19.5208H21.26C21.6761 19.5208 22.0112 19.1855 22.0112 18.7694C22.0112 18.3534 21.6761 18.0298 21.26 18.0298H10.7425ZM10.7425 13.7882C10.338 13.7882 9.99126 14.1348 9.99126 14.5509C9.99126 14.9555 10.338 15.2906 10.7425 15.2906H21.26C21.6645 15.2906 22.0112 14.9555 22.0112 14.5509C22.0112 14.1348 21.6645 13.7882 21.26 13.7882H10.7425Z" fill="currentColor"/><path d="M18.5144 4.5241H19.5778C20.248 4.5241 20.6526 4.95173 20.6526 5.66831V6.88186C20.6526 7.59844 20.248 8.02607 19.5778 8.02607H12.4351C11.7648 8.02607 11.3602 7.59844 11.3602 6.88186V5.66831C11.3602 4.95173 11.7648 4.5241 12.4351 4.5241H13.4984C13.5793 3.21808 14.6657 2.15479 16.0064 2.15479C17.3471 2.15479 18.4335 3.21808 18.5144 4.5241ZM15.0009 4.61656C15.0009 5.15977 15.4517 5.62208 16.0064 5.62208C16.5612 5.62208 17.0119 5.15977 17.0119 4.61656C17.0119 4.05024 16.5612 3.59949 16.0064 3.59949C15.4517 3.59949 15.0009 4.05024 15.0009 4.61656Z" fill="currentColor"/></svg>Planning</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Fila de colapsados: 2 × AlbumGroupCard small -->
-            <div class="pair">
-              <div class="cell">
-                <div class="album-card" style="background:linear-gradient(140deg,#96B4CE,#E0C3A4,#A08FB0);">
-                  <span class="card-tag"><svg viewBox="0 0 33 33" fill="#C17FFA"><path d="M16.5266 29.9471C16.9671 29.9471 17.2891 29.6249 17.3738 29.1672C18.5767 19.894 19.8811 18.4701 29.0637 17.453C29.5381 17.402 29.86 17.063 29.86 16.6052C29.86 16.1644 29.5381 15.8255 29.0637 15.7746C19.8811 14.7575 18.5767 13.3334 17.3738 4.04329C17.2891 3.58556 16.9671 3.28043 16.5266 3.28043C16.0861 3.28043 15.7643 3.58556 15.6965 4.04329C14.4937 13.3334 13.1721 14.7575 4.00657 15.7746C3.51525 15.8255 3.19336 16.1644 3.19336 16.6052C3.19336 17.063 3.51525 17.402 4.00657 17.453C13.1552 18.6566 14.4259 19.894 15.6965 29.1672C15.7643 29.6249 16.0861 29.9471 16.5266 29.9471Z"/></svg></span>
-                  <div class="fade"></div>
-                  <div class="ttl">Familia García</div>
-                </div>
-              </div>
-              <div class="cell">
-                <div class="album-card" style="background:linear-gradient(140deg,#C8D8B8,#A9C3DB,#D8B8C8);">
-                  <div class="fade"></div>
-                  <div class="ttl">Verano 2025</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- DotsBottomGradient + DotsNavBar (HomeFloatingNavBar) -->
-        <div class="bottom-gradient"></div>
-        <div class="nav-bar">
-          <div class="nav-pill"></div>
-          <div class="nav-item">
-            <svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.47986 18.0504H14.1855V27.7561C14.1855 28.7426 14.997 29.5699 15.9993 29.5699C17.0017 29.5699 17.8132 28.7426 17.8132 27.7561V18.0504H27.5188C28.5053 18.0504 29.3327 17.239 29.3327 16.2366C29.3327 15.2342 28.5053 14.4227 27.5188 14.4227H17.8132V4.7171C17.8132 3.73063 17.0017 2.90326 15.9993 2.90326C14.997 2.90326 14.1855 3.73063 14.1855 4.7171V14.4227H4.47986C3.49338 14.4227 2.66602 15.2342 2.66602 16.2366C2.66602 17.239 3.49338 18.0504 4.47986 18.0504Z" fill="currentColor"/></svg>
-            <span>Crear</span>
-          </div>
-          <div class="nav-item selected">
-            <svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.6798 4.63295C17.0996 3.43973 14.9204 3.43973 13.3402 4.63295L4.42908 11.3617C3.12363 12.3474 2.4665 13.9724 2.71948 15.5894L4.26766 25.485C4.60541 27.6439 6.46367 29.2351 8.64708 29.2351H23.2593C25.4279 29.2351 27.2781 27.6649 27.6325 25.5237L29.273 15.612C29.5425 13.9834 28.8863 12.3398 27.5696 11.3456L18.6798 4.63295ZM15.9989 20.3673C18.0741 20.3673 19.7564 18.6849 19.7564 16.6097C19.7564 14.5344 18.0741 12.8521 15.9989 12.8521C13.9236 12.8521 12.2413 14.5344 12.2413 16.6097C12.2413 18.6849 13.9236 20.3673 15.9989 20.3673Z" fill="currentColor"/></svg>
-            <span>Inicio</span>
-          </div>
-          <div class="nav-item">
-            <div class="nav-icon-wrap">
-              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.843 7.71273V7.91316H10.8603C7.5001 7.91316 5.55477 9.84671 5.55477 13.1714V22.4855H5.03601C2.57193 22.4855 1.33398 21.2711 1.33398 18.8306V7.71273C1.33398 5.28401 2.57193 4.05786 5.03601 4.05786H21.141C23.6051 4.05786 24.843 5.28401 24.843 7.71273Z" fill="currentColor"/><path d="M30.6673 13.1694V24.2873C30.6673 26.7161 29.4293 27.9422 26.9652 27.9422H10.8603C8.39613 27.9422 7.15818 26.7278 7.15818 24.2873V13.1694C7.15818 10.7407 8.39613 9.51458 10.8603 9.51458H26.9652C29.4293 9.51458 30.6673 10.7407 30.6673 13.1694ZM21.1764 18.2863L16.4133 22.5071L14.5269 20.7975C14.0671 20.3848 13.5837 20.1962 13.0767 20.1962C12.617 20.1962 12.1807 20.3848 11.7208 20.7739L9.05636 23.1202V24.193C9.05636 25.4191 9.71659 26.044 10.8956 26.044H26.9416C28.0971 26.044 28.769 25.4191 28.769 24.193V22.4599L24.3596 18.2981C23.8998 17.8736 23.3457 17.6614 22.768 17.6614C22.1786 17.6614 21.6716 17.8501 21.1764 18.2863ZM13.065 16.0344C13.065 17.4138 14.1849 18.5574 15.5643 18.5574C16.9438 18.5574 18.0638 17.4138 18.0638 16.0344C18.0638 14.6785 16.9438 13.5349 15.5643 13.5349C14.1849 13.5349 13.065 14.6785 13.065 16.0344Z" fill="currentColor"/></svg>
-              <span class="badge-tag">12</span>
-            </div>
-            <span>Galería</span>
-          </div>
-        </div>
-      </div>
-      <div class="caption">Light · #F8F7F5 <span>— inicio de scroll (top bar visible)</span></div>
-    </div>
-
-    <!-- ================= FRAME DARK — con scroll ================= -->
-    <div class="device-col">
-      <div class="phone dark">
-        <div class="status">
-          <span class="time">9:41</span>
-          <span class="indicators">
-            <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
-            <svg width="16" height="11" viewBox="0 0 16 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 4a9.5 9.5 0 0 1 13 0M4 6.7a6 6 0 0 1 8 0M6.5 9.2a2.5 2.5 0 0 1 3 0"/></svg>
-            <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="16" height="8" rx="2" fill="currentColor"/><path d="M23.5 4v4a2 2 0 0 0 0-4Z" fill="currentColor" opacity=".4"/></svg>
-          </span>
-        </div>
-
-        <div class="scroll">
-          <!-- Contenido desplazado: fila de AlbumGroupCard recortada por arriba -->
-          <div class="pair" style="margin-top:-64px;">
-            <div class="cell">
-              <div class="album-card" style="background:linear-gradient(140deg,#465B70,#6E5847,#4E4358);">
-                <div class="fade"></div>
-                <div class="ttl">Cumple de Marta</div>
-              </div>
-            </div>
-            <div class="cell">
-              <div class="album-card" style="background:linear-gradient(140deg,#3D4E60,#5E4C40,#44394E);">
-                <span class="card-tag"><svg viewBox="0 0 33 33" fill="#C17FFA"><path d="M16.5266 29.9471C16.9671 29.9471 17.2891 29.6249 17.3738 29.1672C18.5767 19.894 19.8811 18.4701 29.0637 17.453C29.5381 17.402 29.86 17.063 29.86 16.6052C29.86 16.1644 29.5381 15.8255 29.0637 15.7746C19.8811 14.7575 18.5767 13.3334 17.3738 4.04329C17.2891 3.58556 16.9671 3.28043 16.5266 3.28043C16.0861 3.28043 15.7643 3.58556 15.6965 4.04329C14.4937 13.3334 13.1721 14.7575 4.00657 15.7746C3.51525 15.8255 3.19336 16.1644 3.19336 16.6052C3.19336 17.063 3.51525 17.402 4.00657 17.453C13.1552 18.6566 14.4259 19.894 15.6965 29.1672C15.7643 29.6249 16.0861 29.9471 16.5266 29.9471Z"/></svg></span>
-                <div class="fade"></div>
-                <div class="ttl">Mascotas</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="pair">
-            <div class="cell">
-              <div class="album-card" style="background:linear-gradient(140deg,#3E5268,#6A5544,#3D4F4A);">
-                <div class="fade"></div>
-                <div class="ttl">Abuelos</div>
-              </div>
-            </div>
-            <div class="cell">
-              <div class="album-card" style="background:linear-gradient(140deg,#4A4058,#3D4E66,#6B5548);">
-                <div class="fade"></div>
-                <div class="ttl">Viaje a Roma</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- HomeAddAlbum → DotsMainButton secondary medium -->
-          <div class="add-album">
-            <button class="btn-secondary-md">Gestionar álbumes</button>
-          </div>
-
-          <!-- HomeRecapsBanner → NotificationBannerImage + DotsMainButton main large -->
-          <div class="recaps-banner">
-            <div class="banner-img">
-              <div class="img"></div>
-              <div class="ttl">¡Revive tus mejores recuerdos en vídeo! Descubre uno nuevo cada vez.</div>
-              <button class="btn-main-lg">Elegir mi álbum</button>
-            </div>
-          </div>
-          <!-- Tras el banner: SizedBox(padding.bottom + 150) — espacio vacío real -->
-        </div>
-
-        <!-- _TopOverlay + DotsFloatingButton (aparecen al cubrirse el top bar) -->
-        <div class="top-overlay"></div>
-        <div class="floating-btn">
-          <svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.66602 13.9389C2.66602 19.8859 7.55172 24.7245 13.5565 24.7245C15.9311 24.7245 18.101 23.9677 19.8889 22.6971L26.6033 29.3605C26.9171 29.6713 27.3266 29.82 27.7633 29.82C28.6914 29.82 29.3327 29.1306 29.3327 28.2251C29.3327 27.7926 29.1689 27.4006 28.8823 27.1168L22.2088 20.467C23.6146 18.6559 24.447 16.3988 24.447 13.9389C24.447 7.99197 19.5613 3.15332 13.5565 3.15332C7.55172 3.15332 2.66602 7.99197 2.66602 13.9389ZM4.9997 13.9389C4.9997 9.26246 8.83457 5.46453 13.5565 5.46453C18.2784 5.46453 22.1133 9.26246 22.1133 13.9389C22.1133 18.6153 18.2784 22.4133 13.5565 22.4133C8.83457 22.4133 4.9997 18.6153 4.9997 13.9389Z" fill="currentColor"/></svg>
-          Buscar
-        </div>
-
-        <div class="bottom-gradient"></div>
-        <div class="nav-bar">
-          <div class="nav-pill"></div>
-          <div class="nav-item">
-            <svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.47986 18.0504H14.1855V27.7561C14.1855 28.7426 14.997 29.5699 15.9993 29.5699C17.0017 29.5699 17.8132 28.7426 17.8132 27.7561V18.0504H27.5188C28.5053 18.0504 29.3327 17.239 29.3327 16.2366C29.3327 15.2342 28.5053 14.4227 27.5188 14.4227H17.8132V4.7171C17.8132 3.73063 17.0017 2.90326 15.9993 2.90326C14.997 2.90326 14.1855 3.73063 14.1855 4.7171V14.4227H4.47986C3.49338 14.4227 2.66602 15.2342 2.66602 16.2366C2.66602 17.239 3.49338 18.0504 4.47986 18.0504Z" fill="currentColor"/></svg>
-            <span>Crear</span>
-          </div>
-          <div class="nav-item selected">
-            <svg viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.6798 4.63295C17.0996 3.43973 14.9204 3.43973 13.3402 4.63295L4.42908 11.3617C3.12363 12.3474 2.4665 13.9724 2.71948 15.5894L4.26766 25.485C4.60541 27.6439 6.46367 29.2351 8.64708 29.2351H23.2593C25.4279 29.2351 27.2781 27.6649 27.6325 25.5237L29.273 15.612C29.5425 13.9834 28.8863 12.3398 27.5696 11.3456L18.6798 4.63295ZM15.9989 20.3673C18.0741 20.3673 19.7564 18.6849 19.7564 16.6097C19.7564 14.5344 18.0741 12.8521 15.9989 12.8521C13.9236 12.8521 12.2413 14.5344 12.2413 16.6097C12.2413 18.6849 13.9236 20.3673 15.9989 20.3673Z" fill="currentColor"/></svg>
-            <span>Inicio</span>
-          </div>
-          <div class="nav-item">
-            <div class="nav-icon-wrap">
-              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.843 7.71273V7.91316H10.8603C7.5001 7.91316 5.55477 9.84671 5.55477 13.1714V22.4855H5.03601C2.57193 22.4855 1.33398 21.2711 1.33398 18.8306V7.71273C1.33398 5.28401 2.57193 4.05786 5.03601 4.05786H21.141C23.6051 4.05786 24.843 5.28401 24.843 7.71273Z" fill="currentColor"/><path d="M30.6673 13.1694V24.2873C30.6673 26.7161 29.4293 27.9422 26.9652 27.9422H10.8603C8.39613 27.9422 7.15818 26.7278 7.15818 24.2873V13.1694C7.15818 10.7407 8.39613 9.51458 10.8603 9.51458H26.9652C29.4293 9.51458 30.6673 10.7407 30.6673 13.1694ZM21.1764 18.2863L16.4133 22.5071L14.5269 20.7975C14.0671 20.3848 13.5837 20.1962 13.0767 20.1962C12.617 20.1962 12.1807 20.3848 11.7208 20.7739L9.05636 23.1202V24.193C9.05636 25.4191 9.71659 26.044 10.8956 26.044H26.9416C28.0971 26.044 28.769 25.4191 28.769 24.193V22.4599L24.3596 18.2981C23.8998 17.8736 23.3457 17.6614 22.768 17.6614C22.1786 17.6614 21.6716 17.8501 21.1764 18.2863ZM13.065 16.0344C13.065 17.4138 14.1849 18.5574 15.5643 18.5574C16.9438 18.5574 18.0638 17.4138 18.0638 16.0344C18.0638 14.6785 16.9438 13.5349 15.5643 13.5349C14.1849 13.5349 13.065 14.6785 13.065 16.0344Z" fill="currentColor"/></svg>
-              <span class="badge-tag">12</span>
-            </div>
-            <span>Galería</span>
-          </div>
-        </div>
-      </div>
-      <div class="caption">Dark · #191919 <span>— con scroll (top bar oculto → DotsFloatingButton «Buscar»)</span></div>
-    </div>
+  <div class="device-col">
+    <div class="phone" id="root"></div>
+    <div class="caption">Home (home_v2) · #F8F7F5 <span>— componentes React del bundle; scroll dentro del frame (o ?scrolled=1) → _TopOverlay + DotsFloatingButton «Buscar»</span></div>
   </div>
 
   <div class="foot">
-    <b>Pantalla:</b> onelife_app · lib/app/features/home_v2 (HomePage → _HomeView → HomeBody → _HomeScrollableContent).
-    <b>Componentes DS usados (orden de aparición):</b> DotsHomeTopBar / DotsHomeTopBarMainSection (h106, título labelDefaultBold textTertiary) · DotsIconButton (large, noBackground, heart y chat, con tag → BadgeTag) · Carrousel + MemoryCard (variants memory/recap; sección HomePendingMemoriesBarSection, pad 16/11) · FolderCarrousel + BtnFolder (Buscar · carpetas · Editar; seleccionada bgStrong+sombra) · EventGroupCard (variant active, squircle52, acciones Chat/Subir/Planning con blur50) · AlbumGroupCard (variant small, squircle32; pares 16 ext / 24 medio / 24 vert; tagIconData prime1 → CardTag) · DotsMainButton (secondary·medium «Gestionar álbumes» en HomeAddAlbum; main·large en banner) · NotificationBannerImage (HomeRecapsBanner, r24 + titleH6) · DotsFloatingButton («Buscar», h36 r22, blur, visible solo con scroll) · DotsNavBar + DotsNavBarItem (Crear/Inicio/Galería, pendingNumber → BadgeTag) · DotsLoading (estado de carga, no mostrado).
-    <b>Aproximaciones:</b> fotos y avatar → gradientes/iniciales · squircles (figma_squircle) → border-radius CSS · SoftEdgeBlur de las cards → gradiente + backdrop-blur enmascarado · DotsBottomGradient y _TopOverlay son widgets de la app (no DS): recreados con tokens bgBase (bgBaseGradientStart ≈ bgBase alpha 0) · HomeDotbookBanner omitido (desactivado por flag `false &&` en código) · HomeProfilePhoto/HomeChatButton son wrappers de la app sobre DotsProfilePhoto/DotsIconButton · barra de estado simplificada (hora + indicadores), sin notch.
+    <b>Pantalla:</b> onelife_app · lib/app/features/home_v2 (HomePage → _HomeView → HomeBody → _HomeScrollableContent), montada con los componentes React de <b>window.DotsDesignSystem_9e41da</b>.
+    <b>Componentes montados (orden de aparición):</b> DotsHomeTopBar (title «Dots. Memories», imgProfile, rightIcon/secondRightIcon) · DotsIconButton (large · noBackground · ic-heart tag 2 / ic-chat tag 5) · MemoryCard ×5 (variants memory/recap; sección HomePendingMemoriesBarSection pad 16/11, carrusel gap 24 pad H20) · FolderCarrousel (ic-search Buscar · ic-grid Todos seleccionada iconSelectedColor #3E9ACB · ic-family Familia · ic-baby-stroller Bebé · ic-edit Editar) · EventGroupCard (active, size 340, tagIcon ic-prime-1, acciones ic-chat Chat / ic-camera Subir / ic-planner Planning) · AlbumGroupCard ×6 (small, size 167; pares 16 ext / 24 medio / 24 vert) · DotsMainButton (secondary · medium · blur «Gestionar álbumes»; el main · large del banner lo monta NotificationBannerImage) · NotificationBannerImage (HomeRecapsBanner, placeholder recap, actionButtonSize large) · DotsFloatingButton («Buscar» + ic-search; visible con scroll) · DotsNavBar (ic-add Crear / ic-home Inicio seleccionada / ic-gallery Galería badge 12).
+    <b>Markup manual (sin componente en el bundle):</b> barra de estado del sistema (hora + indicadores) · avatar 32 con iniciales (DotsProfilePhoto no portado) · DotsBottomGradient y _TopOverlay (widgets de la app, no DS; recreados con var(--bg-base)) · fotos → gradientes como data URIs SVG (mismos colores que la versión estática).
   </div>
+
+  <script src="../_vendor/react.js"></script>
+  <script src="../_vendor/react-dom.js"></script>
+  <script src="../_ds_bundle.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da;
+    function noop() {}
+
+    /* Fotos placeholder — los mismos gradientes de la versión estática, como data URI SVG */
+    function photo(stops, vec) {
+      var n = stops.length - 1;
+      var s = stops.map(function (c, i) {
+        return '<stop offset="' + (i / n) + '" stop-color="' + c + '"/>';
+      }).join('');
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" preserveAspectRatio="none">' +
+        '<defs><linearGradient id="g" x1="0" y1="0" x2="' + vec[0] + '" y2="' + vec[1] + '">' + s +
+        '</linearGradient></defs><rect width="200" height="200" fill="url(#g)"/></svg>';
+      return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+    }
+    var d150 = [0.5, 0.87], d140 = [0.64, 0.77]; /* ≈ CSS 150deg / 140deg */
+
+    var MEMORIES = [
+      { groupName: 'Familia',      variant: 'memory', imageSrc: photo(['#A9C0D8', '#E3C9AE'], d150) },
+      { groupName: 'Recap Eva',    variant: 'recap',  imageSrc: photo(['#D8A9C0', '#A9BED8'], d150) },
+      { groupName: 'Abuelos',      variant: 'memory', imageSrc: photo(['#C8D8B8', '#A9C3DB'], d150) },
+      { groupName: 'Boda',         variant: 'memory', imageSrc: photo(['#E0C3A4', '#96B4CE'], d150) },
+      { groupName: 'Viaje a Roma', variant: 'memory', imageSrc: photo(['#B8C6DB', '#D9C1B8'], d150) }
+    ];
+    var ALBUMS = [
+      { title: 'Familia García',  tagIcon: 'ic-prime-1', imageSrc: photo(['#96B4CE', '#E0C3A4', '#A08FB0'], d140) },
+      { title: 'Verano 2025',                            imageSrc: photo(['#C8D8B8', '#A9C3DB', '#D8B8C8'], d140) },
+      { title: 'Cumple de Marta',                        imageSrc: photo(['#465B70', '#6E5847', '#4E4358'], d140) },
+      { title: 'Mascotas',        tagIcon: 'ic-prime-1', imageSrc: photo(['#3D4E60', '#5E4C40', '#44394E'], d140) },
+      { title: 'Abuelos',                                imageSrc: photo(['#3E5268', '#6A5544', '#3D4F4A'], d140) },
+      { title: 'Viaje a Roma',                           imageSrc: photo(['#4A4058', '#3D4E66', '#6B5548'], d140) }
+    ];
+
+    /* Barra de estado del sistema — markup mínimo (no es un componente del DS) */
+    var STATUS_ICONS =
+      '<svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>' +
+      '<svg width="16" height="11" viewBox="0 0 16 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 4a9.5 9.5 0 0 1 13 0M4 6.7a6 6 0 0 1 8 0M6.5 9.2a2.5 2.5 0 0 1 3 0"/></svg>' +
+      '<svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="16" height="8" rx="2" fill="currentColor"/><path d="M23.5 4v4a2 2 0 0 0 0-4Z" fill="currentColor" opacity=".4"/></svg>';
+
+    function statusBar() {
+      return h('div', { className: 'status' },
+        h('span', { className: 'time' }, '9:41'),
+        h('span', {
+          className: 'indicators',
+          dangerouslySetInnerHTML: { __html: STATUS_ICONS }
+        })
+      );
+    }
+
+    function albumPair(a, b) {
+      return h('div', { className: 'pair' },
+        h(NS.AlbumGroupCard, Object.assign({ variant: 'small', size: 167, onClick: noop }, a)),
+        h(NS.AlbumGroupCard, Object.assign({ variant: 'small', size: 167, onClick: noop }, b))
+      );
+    }
+
+    function HomeScreen() {
+      var st = React.useState(/[?&]scrolled=1/.test(location.search));
+      var scrolled = st[0], setScrolled = st[1];
+      var scrollRef = React.useRef(null);
+      React.useEffect(function () {
+        if (scrolled && scrollRef.current) scrollRef.current.scrollTop = 690;
+      }, []);
+
+      return h(React.Fragment, null,
+        h('div', {
+          className: 'scroll', ref: scrollRef,
+          onScroll: function (e) { setScrolled(e.target.scrollTop > 60); }
+        },
+          /* DotsHomeTopBar (MainHomeTopBarSection) */
+          h(NS.DotsHomeTopBar, {
+            title: 'Dots. Memories',
+            imgProfile: h('span', { className: 'img-profile' }, 'JL'),
+            rightIcon: h('span', { className: 'icon-slot-44' },
+              h(NS.DotsIconButton, { icon: 'ic-heart', size: 'large', variant: 'noBackground', tag: '2', color: 'var(--text-tertiary)', onClick: noop })),
+            secondRightIcon: h('span', { className: 'icon-slot-44' },
+              h(NS.DotsIconButton, { icon: 'ic-chat', size: 'large', variant: 'noBackground', tag: '5', color: 'var(--text-tertiary)', onClick: noop }))
+          }),
+
+          /* HomePendingMemoriesBarSection → Carrousel de MemoryCard */
+          h('div', { className: 'pending' },
+            h('div', { className: 'carrousel' },
+              MEMORIES.map(function (m, i) {
+                return h(NS.MemoryCard, Object.assign({ key: i, onClick: noop }, m));
+              })
+            )
+          ),
+
+          /* GroupFolderCarrouselWidget → FolderCarrousel */
+          h('div', { className: 'folders' },
+            h(NS.FolderCarrousel, {
+              items: [
+                { icon: 'ic-search', text: 'Buscar' },
+                { icon: 'ic-grid', text: 'Todos', isSelected: true, iconSelectedColor: '#3E9ACB' },
+                { icon: 'ic-family', text: 'Familia' },
+                { icon: 'ic-baby-stroller', text: 'Bebé' },
+                { icon: 'ic-edit', text: 'Editar' }
+              ],
+              showEditIcon: false,
+              onSelect: noop
+            })
+          ),
+
+          /* HomeGroupList — expandido (EventGroupCard active) + pares de AlbumGroupCard small */
+          h('div', { className: 'group-list' },
+            h('div', { className: 'expanded-item' },
+              h(NS.EventGroupCard, {
+                variant: 'active', size: 340,
+                title: 'Boda de Ana y Leo', secondaryText: 'Evento activo',
+                tagIcon: 'ic-prime-1',
+                imageSrc: photo(['#7E9BB8', '#D8B294', '#77958E'], d150),
+                actions: [
+                  { icon: 'ic-chat', text: 'Chat', onClick: noop },
+                  { icon: 'ic-camera', text: 'Subir', onClick: noop },
+                  { icon: 'ic-planner', text: 'Planning', onClick: noop }
+                ],
+                onClick: noop
+              })
+            ),
+            albumPair(ALBUMS[0], ALBUMS[1]),
+            albumPair(ALBUMS[2], ALBUMS[3]),
+            albumPair(ALBUMS[4], ALBUMS[5])
+          ),
+
+          /* HomeAddAlbum → DotsMainButton secondary medium */
+          h('div', { className: 'add-album' },
+            h(NS.DotsMainButton, {
+              label: 'Gestionar álbumes', variant: 'secondary', size: 'medium',
+              expand: false, shouldApplyBlur: true, onClick: noop
+            })
+          ),
+
+          /* HomeRecapsBanner → NotificationBannerImage (monta su DotsMainButton main·large) */
+          h('div', { className: 'recaps-banner' },
+            h(NS.NotificationBannerImage, {
+              title: '¡Revive tus mejores recuerdos en vídeo! Descubre uno nuevo cada vez.',
+              actionButtonText: 'Elegir mi álbum',
+              actionButtonSize: 'large',
+              showCloseButton: false,
+              onActionClick: noop
+            })
+          ),
+
+          /* Tras el banner: SizedBox(padding.bottom + 150) */
+          h('div', { style: { height: '184px' } })
+        ),
+
+        /* _TopOverlay + DotsFloatingButton — aparecen al cubrirse el top bar */
+        scrolled ? h('div', { className: 'top-overlay' }) : null,
+        scrolled ? h('div', { className: 'floating-wrap' },
+          h(NS.DotsFloatingButton, { content: 'Buscar', icon: 'ic-search', onClick: noop })
+        ) : null,
+
+        /* DotsBottomGradient + DotsNavBar (HomeFloatingNavBar) */
+        h('div', { className: 'bottom-gradient' }),
+        h('div', { className: 'nav-wrap' },
+          h(NS.DotsNavBar, {
+            items: [
+              { icon: 'ic-add', label: 'Crear' },
+              { icon: 'ic-home', label: 'Inicio' },
+              { icon: 'ic-gallery', label: 'Galería', badge: 12 }
+            ],
+            selectedIndex: 1,
+            onSelect: noop
+          })
+        ),
+
+        statusBar()
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(h(HomeScreen));
+  })();
+  </script>
 </body>
 </html>
