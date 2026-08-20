@@ -14,8 +14,8 @@ enum PageControlVariant {
 /// Internally lays out as `SizedBox(width: double.infinity)`, so it REQUIRES
 /// a bounded width. In unbounded contexts (`Positioned` without right/width,
 /// `Row` without Expanded, scrollables' cross axis) wrap it in a `SizedBox`;
-/// its natural width is `count × (dotSize + dotSpacing) + horizontal
-/// contentPadding` (main variant: `count × 16 + 24`).
+/// its natural width is `count × (dotSize + dotSpacing)` plus the horizontal
+/// `contentPadding` (main variant: `count × 16 + 24`).
 class PageControl extends StatelessWidget {
   /// Total number of dots to render.
   final int count;
