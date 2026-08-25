@@ -21,6 +21,7 @@ class ProductCard extends StatelessWidget {
     this.subtitle,
     this.caption,
     this.captionPrevious,
+    this.captionPlaceholder,
     this.badge,
     this.pageCount = 0,
     this.activePage = 0,
@@ -45,6 +46,11 @@ class ProductCard extends StatelessWidget {
   /// Value shown struck through after [caption], e.g. the price before a
   /// discount. Ignored when [caption] is null.
   final String? captionPrevious;
+
+  /// Shown in the caption's place while its value is still unknown — a price
+  /// being fetched from the store, typically a skeleton. Keeps the copy block
+  /// from resizing when the value lands. Ignored when [caption] is set.
+  final Widget? captionPlaceholder;
 
   /// Badge pinned to the top-right corner, e.g. a [BadgeLabel].
   final Widget? badge;
@@ -240,6 +246,9 @@ class ProductCard extends StatelessWidget {
                                     ],
                                   ],
                                 ),
+                              ] else if (captionPlaceholder != null) ...[
+                                const SizedBox(height: _copyGap),
+                                captionPlaceholder!,
                               ],
                             ],
                           ),
