@@ -1,0 +1,13 @@
+# Categorías de las release notes autogeneradas (gh release create --generate-notes)
+changelog:
+  exclude:
+    labels: ["release:skip"]
+  categories:
+    - title: "💥 Breaking changes"
+      labels: ["release:major"]
+    - title: "✨ Features"
+      labels: ["release:minor"]
+    - title: "🐛 Fixes"
+      labels: ["release:patch"]
+    - title: "Otros"
+      labels: ["*"]

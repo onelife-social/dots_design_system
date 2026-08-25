@@ -1,0 +1,98 @@
+# Crea tag + GitHub Release automáticamente al mergear una PR en develop.
+# El tipo de bump lo decide la label de la PR: release:major | release:minor | release:patch | release:skip
+name: Release
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [develop]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve bump from PR label
+        id: bump
+        env:
+          LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+        run: |
+          case ",$LABELS," in
+            *,release:major,*) bump=major ;;
+            *,release:minor,*) bump=minor ;;
+            *,release:patch,*) bump=patch ;;
+            *,release:skip,*)  bump=skip ;;
+            *) echo "::error::La PR no tiene label release:* (major|minor|patch|skip). No se crea release."; exit 1 ;;
+          esac
+          echo "bump=$bump" >> "$GITHUB_OUTPUT"
+          echo "Bump: $bump"
+
+      - uses: actions/checkout@v4
+        if: steps.bump.outputs.bump != 'skip'
+        with:
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Compute next version
+        if: steps.bump.outputs.bump != 'skip'
+        id: ver
+        env:
+          BUMP: ${{ steps.bump.outputs.bump }}
+        run: |
+          # Solo tags estrictamente vX.Y.Z (ignora cosas como "v.1.53.16")
+          last=$(git tag -l 'v*' | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -1)
+          last=${last:-v0.0.0}
+          IFS=. read -r M m p <<< "${last#v}"
+          case "$BUMP" in
+            major) M=$((M+1)); m=0; p=0 ;;
+            minor) m=$((m+1)); p=0 ;;
+            patch) p=$((p+1)) ;;
+          esac
+          next="v$M.$m.$p"
+          if git rev-parse -q --verify "refs/tags/$next" >/dev/null; then
+            echo "::error::El tag $next ya existe"; exit 1
+          fi
+          echo "last=$last" >> "$GITHUB_OUTPUT"
+          echo "tag=$next"   >> "$GITHUB_OUTPUT"
+          echo "$last -> $next"
+
+      - name: Create tag
+        if: steps.bump.outputs.bump != 'skip'
+        env:
+          TAG: ${{ steps.ver.outputs.tag }}
+          SHA: ${{ github.event.pull_request.merge_commit_sha }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$TAG" "$SHA" -m "$TAG: $PR_TITLE (#$PR_NUMBER)"
+          git push origin "refs/tags/$TAG"
+
+      - name: Create GitHub Release
+        if: steps.bump.outputs.bump != 'skip'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.ver.outputs.tag }}
+          LAST: ${{ steps.ver.outputs.last }}
+        run: |
+          gh release create "$TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "$TAG" \
+            --generate-notes \
+            --notes-start-tag "$LAST"
+          echo "## Release $TAG creada ($LAST → $TAG)" >> "$GITHUB_STEP_SUMMARY"
+          echo "https://github.com/$GITHUB_REPOSITORY/releases/tag/$TAG" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Skipped
+        if: steps.bump.outputs.bump == 'skip'
+        run: echo "## release:skip — no se crea tag ni release" >> "$GITHUB_STEP_SUMMARY"
