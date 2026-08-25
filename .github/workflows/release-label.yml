@@ -1,0 +1,29 @@
+# Check que obliga a que toda PR contra develop lleve exactamente una label release:*
+name: Release label
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, labeled, unlabeled]
+    branches: [develop]
+
+permissions:
+  pull-requests: read
+
+jobs:
+  require-release-label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check release:* label
+        env:
+          LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+        run: |
+          count=$(tr ',' '\n' <<< "$LABELS" | grep -cE '^release:(major|minor|patch|skip)$' || true)
+          if [ "$count" -eq 0 ]; then
+            echo "::error::Falta la label de release. Añade una de: release:major, release:minor, release:patch, release:skip"
+            exit 1
+          fi
+          if [ "$count" -gt 1 ]; then
+            echo "::error::Hay más de una label release:*. Deja solo una."
+            exit 1
+          fi
+          echo "OK: $(tr ',' '\n' <<< "$LABELS" | grep -E '^release:')"
