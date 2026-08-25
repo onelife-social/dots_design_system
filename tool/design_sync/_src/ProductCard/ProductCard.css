@@ -1,0 +1,59 @@
+/* ProductCard — media card con la copy sobre el fondo (Dart: 358×358, squircle32) */
+.ds-product-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: var(--squircle-32);
+  /* defaultShadow del tema: 0 6 / blur 20 / #0000001A */
+  box-shadow: 0 6px 20px #0000001a;
+}
+.ds-product-card__bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+/* Placeholder cuando no llega imageSrc (degradado, sin token — como AlbumGroupCard) */
+.ds-product-card__bg--ph { background-image: linear-gradient(140deg, #96b4ce, #e0c3a4, #a08fb0); }
+/* SoftEdgeBlur bottomEdge 160 σ12 + degradado negro 0→45% */
+.ds-product-card__scrim {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 160px; pointer-events: none;
+  background: linear-gradient(180deg, #00000000, #00000073);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  mask-image: linear-gradient(180deg, transparent, #000 60%);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%);
+}
+.ds-product-card__badge { position: absolute; top: 20px; right: 20px; }
+/* PageControl: puntos centrados a 122 del fondo (centro visual, ver Dart) */
+.ds-product-card__pagecontrol {
+  position: absolute; left: 0; right: 0; bottom: 118px;
+  display: flex; justify-content: center; pointer-events: none;
+}
+.ds-product-card__dots { display: flex; gap: 8px; align-items: center; }
+.ds-product-card__dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: color-mix(in srgb, var(--label-always-white) 60%, transparent);
+}
+.ds-product-card__dot.is-active { background: var(--label-always-white); }
+/* Copy: padding 20 (el bloque de texto lleva 4 extra a la izquierda) */
+.ds-product-card__bottom {
+  position: absolute; left: 20px; right: 20px; bottom: 20px;
+  display: flex; align-items: flex-end; gap: 12px;
+}
+.ds-product-card__copy { flex: 1; min-width: 0; padding-left: 4px; color: var(--label-always-white); }
+/* titleH6 18/600 · labelDefaultRegular 13/400 · bodyDefaultMedium 14/500, gaps de 6 */
+.ds-product-card__title { font: 600 18px/1.28 var(--font-main); letter-spacing: -0.08px; }
+.ds-product-card__subtitle {
+  margin-top: 6px; font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px;
+  color: color-mix(in srgb, var(--label-always-white) 80%, transparent);
+}
+.ds-product-card__caption { margin-top: 6px; font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px; }
+.ds-product-card__caption-prev {
+  margin-left: 6px; font: 400 13px/1.31 var(--font-main); text-decoration: line-through;
+  color: color-mix(in srgb, var(--label-always-white) 70%, transparent);
+}
+/* DotsIconButton medium (36) estilo floating — Figma lo llama "Surface" */
+.ds-product-card__action {
+  flex: none; width: 36px; height: 36px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border-alert); background: var(--bg-btn-image); color: var(--text-primary);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  padding: 0; cursor: pointer;
+}

@@ -1,0 +1,57 @@
+<!-- @dsCard group="cards" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.ProductCard;
+    var PHOTO = 'https://picsum.photos/id/1015/800/800';
+    var variants = [
+      ['completa', h(C, {
+        title: 'La Misión Secreta', subtitle: 'Retos sorpresa para cada invitado',
+        caption: 'Desde 29,99 €', imageSrc: PHOTO, pageCount: 3, activePage: 0,
+        onClick: function () {}, onActionClick: function () {}
+      })],
+      ['sin dots ni botón', h(C, {
+        title: 'El Confesionario', subtitle: 'Tus invitados, con sus propias palabras',
+        caption: 'Desde 29,90 €', imageSrc: PHOTO
+      })],
+      ['solo título', h(C, { title: 'Solo título', imageSrc: PHOTO })],
+      ['precio anterior + badge', h(C, {
+        title: 'Pack Boda', subtitle: 'Los dos juegos, en un solo pedido',
+        caption: '49,90 €', captionPrevious: 'antes 59,89 €',
+        aspectRatio: 358 / 264,
+        badge: NS.BadgeLabel ? h(NS.BadgeLabel, { content: '17% OFF', size: 'small' }) : null,
+        onActionClick: function () {}
+      })],
+      ['sin imagen (placeholder)', h(C, {
+        title: 'Sin foto', subtitle: 'Se pinta el degradado por defecto',
+        caption: 'Desde 9,99 €', pageCount: 4, activePage: 2, onActionClick: function () {}
+      })],
+      ['dark', h(C, {
+        title: 'La Misión Secreta', subtitle: 'Retos sorpresa para cada invitado',
+        caption: 'Desde 29,99 €', imageSrc: PHOTO, pageCount: 3, onActionClick: function () {}
+      })]
+    ];
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div');
+      if (v[0] === 'dark') { m.setAttribute('data-theme','dark'); m.style.background='var(--bg-base)'; m.style.padding='12px'; }
+      cell.appendChild(m); g.appendChild(cell);
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

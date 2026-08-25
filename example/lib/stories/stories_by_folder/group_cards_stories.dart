@@ -305,4 +305,49 @@ List<Story> get cards => [
           ),
         ),
       ),
+      Story(
+        name: 'Cards/Product card',
+        description: 'Square media card with the copy over a blurred bottom scrim',
+        builder: (context) {
+          final int pageCount = context.knobs.sliderInt(
+            label: 'Page control dots (0 hides it)',
+            initial: 3,
+            min: 0,
+            max: 6,
+          );
+          final bool hasBadge = context.knobs.boolean(label: 'Badge', initial: true);
+          final bool hasAction = context.knobs.boolean(label: 'Action button', initial: true);
+          final String subtitle = context.knobs.text(
+            label: 'Subtitle (empty hides it)',
+            initial: 'Retos sorpresa para cada invitado',
+          );
+          final String caption = context.knobs.text(
+            label: 'Caption (empty hides it)',
+            initial: 'Desde 29,99 €',
+          );
+
+          return Padding(
+            padding: const EdgeInsets.all(16),
+            child: ProductCard(
+              title: context.knobs.text(label: 'Title', initial: 'La Misión Secreta'),
+              subtitle: subtitle.isEmpty ? null : subtitle,
+              caption: caption.isEmpty ? null : caption,
+              pageCount: pageCount,
+              activePage: 0,
+              badge: hasBadge
+                  ? const BadgeLabel(content: 'Badge Content', size: BadgeLabelSize.small)
+                  : null,
+              background: Image(
+                image: NetworkImage(context.knobs.text(
+                  label: 'Background image',
+                  initial: 'https://picsum.photos/id/1015/800/800',
+                )),
+                fit: BoxFit.cover,
+              ),
+              onTap: () {},
+              onActionTap: hasAction ? () {} : null,
+            ),
+          );
+        },
+      ),
     ];
