@@ -1,4 +1,5 @@
 ## X.X.X Pending
+* Product card component.
 * Container component.
 * Icon component.
 * Icon button component.
