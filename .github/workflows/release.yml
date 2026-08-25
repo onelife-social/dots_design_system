@@ -1,11 +1,21 @@
-# Crea tag + GitHub Release automáticamente al mergear una PR en develop.
-# El tipo de bump lo decide la label de la PR: release:major | release:minor | release:patch | release:skip
+# Al mergear una PR en develop: crea tag + GitHub Release según la label de la PR
+# (release:major | release:minor | release:patch | release:skip) y abre/actualiza
+# una PR en onelife_app que sube el ref de dots_design_system a la nueva versión
+# (con auto-merge: entra sola cuando sus checks pasan).
+#
+# workflow_dispatch: propaga a onelife_app un tag YA existente (sin crear release).
 name: Release
 
 on:
   pull_request:
     types: [closed]
     branches: [develop]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag existente a propagar a onelife_app (p.ej. v1.72.0)"
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -15,10 +25,17 @@ concurrency:
   group: release
   cancel-in-progress: false
 
+env:
+  APP_REPO: onelife-social/onelife_app
+  APP_BASE: develop
+  APP_BRANCH: task-bump-dots-design-system
+
 jobs:
   release:
-    if: github.event.pull_request.merged == true
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.ver.outputs.tag }}
     steps:
       - name: Resolve bump from PR label
         id: bump
@@ -96,3 +113,170 @@ jobs:
       - name: Skipped
         if: steps.bump.outputs.bump == 'skip'
         run: echo "## release:skip — no se crea tag ni release" >> "$GITHUB_STEP_SUMMARY"
+
+  # Sube el ref de dots_design_system en onelife_app y abre (o actualiza) la PR.
+  # Usa la GitHub App dots-github-bot (secrets de organización DOTS_GITHUB_BOT_*).
+  bump-onelife-app:
+    name: Bump onelife_app
+    needs: release
+    if: ${{ !cancelled() && (needs.release.outputs.tag != '' || inputs.tag != '') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check bot secrets are available
+        env:
+          HAS_ID: ${{ secrets.DOTS_GITHUB_BOT_ID != '' }}
+          HAS_KEY: ${{ secrets.DOTS_GITHUB_BOT_PRIVATE_KEY != '' }}
+        run: |
+          if [ "$HAS_ID" != "true" ] || [ "$HAS_KEY" != "true" ]; then
+            echo "::error::Faltan los secrets DOTS_GITHUB_BOT_ID / DOTS_GITHUB_BOT_PRIVATE_KEY en este repo. Un admin de la org debe dar acceso a dots_design_system en Settings → Secrets → Actions (visibilidad del secret)."
+            exit 1
+          fi
+
+      - name: Get token for dots-github-bot
+        id: app
+        uses: peter-murray/workflow-application-token-action@v3
+        with:
+          application_id: ${{ secrets.DOTS_GITHUB_BOT_ID }}
+          application_private_key: ${{ secrets.DOTS_GITHUB_BOT_PRIVATE_KEY }}
+          organization: onelife-social
+
+      - name: Resolve tag and commit
+        id: ds
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag || needs.release.outputs.tag }}
+        run: |
+          if ! [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Tag inválido: '$TAG' (esperado vX.Y.Z)"; exit 1
+          fi
+          sha=$(gh api "repos/$GITHUB_REPOSITORY/commits/$TAG" --jq .sha)
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "$TAG -> $sha"
+
+      - name: Checkout onelife_app (develop)
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.APP_REPO }}
+          ref: ${{ env.APP_BASE }}
+          token: ${{ steps.app.outputs.token }}
+          path: app
+          fetch-depth: 1
+
+      - name: Prepare bot branch
+        id: branch
+        working-directory: app
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          TAG: ${{ steps.ds.outputs.tag }}
+        run: |
+          dev_cur=$(perl -0ne 'print $1 if /\n  dots_design_system:\n    git:\n      url: [^\n]*\n      ref: (\S+)/' pubspec.yaml)
+          echo "develop está en: ${dev_cur:-<no encontrado>}"
+          if [ -z "$dev_cur" ]; then
+            echo "::error::No encuentro el bloque dots_design_system (git/url/ref) en pubspec.yaml"; exit 1
+          fi
+          if [ "$dev_cur" = "$TAG" ]; then
+            echo "onelife_app/develop ya está en $TAG; nada que hacer."
+            echo "needs_pr=false" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          echo "needs_pr=true" >> "$GITHUB_OUTPUT"
+          echo "dev_cur=$dev_cur" >> "$GITHUB_OUTPUT"
+
+          if git ls-remote --exit-code --heads origin "$APP_BRANCH" >/dev/null; then
+            # El ruleset de la org prohíbe force-push y develop exige rama al día (strict):
+            # se pone al día con un merge server-side y se reutiliza.
+            echo "La rama $APP_BRANCH ya existe: merge de $APP_BASE server-side y la reutilizo"
+            status=$(gh api -X POST "repos/$APP_REPO/merges" \
+                       -f base="$APP_BRANCH" -f head="$APP_BASE" \
+                       -f commit_message="Merge $APP_BASE into $APP_BRANCH" \
+                       -i 2>/dev/null | head -1 || true)
+            echo "merge API: $status"
+            case "$status" in
+              *201*|*204*) ;;
+              *) echo "::error::No pude poner al día $APP_BRANCH con $APP_BASE (¿conflicto?). Cierra la PR abierta, borra la rama y relanza."; exit 1 ;;
+            esac
+            git fetch --depth=1 origin "$APP_BRANCH"
+            git switch -c "$APP_BRANCH" FETCH_HEAD
+          else
+            git switch -c "$APP_BRANCH"
+          fi
+
+      - name: Update pubspec.yaml and pubspec.lock
+        if: steps.branch.outputs.needs_pr == 'true'
+        id: update
+        working-directory: app
+        env:
+          TAG: ${{ steps.ds.outputs.tag }}
+          SHA: ${{ steps.ds.outputs.sha }}
+        run: |
+          cur=$(perl -0ne 'print $1 if /\n  dots_design_system:\n    git:\n      url: [^\n]*\n      ref: (\S+)/' pubspec.yaml)
+          echo "Rama está en: $cur  →  Nuevo: $TAG"
+          if [ "$cur" = "$TAG" ]; then
+            echo "La rama ya está en $TAG; no hace falta commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+
+          perl -0pi -e 's/(\n  dots_design_system:\n    git:\n      url: [^\n]*\n      ref: )\S+/$1$ENV{TAG}/' pubspec.yaml
+          perl -0pi -e 's/(\n  dots_design_system:\n    dependency: "direct main"\n    description:\n      path: "\."\n      ref: )"[^"]*"(\n      resolved-ref: )[0-9a-f]+/$1"$ENV{TAG}"$2$ENV{SHA}/' pubspec.lock
+
+          # Verificación estricta: si algo no cuadra, mejor fallar que abrir una PR rota
+          grep -A3 '^  dots_design_system:' pubspec.yaml | grep -q "ref: $TAG" \
+            || { echo "::error::pubspec.yaml no quedó con ref: $TAG"; exit 1; }
+          grep -A6 '^  dots_design_system:' pubspec.lock | grep -q "ref: \"$TAG\"" \
+            || { echo "::error::pubspec.lock no quedó con ref: \"$TAG\""; exit 1; }
+          grep -A6 '^  dots_design_system:' pubspec.lock | grep -q "resolved-ref: $SHA" \
+            || { echo "::error::pubspec.lock no quedó con resolved-ref: $SHA"; exit 1; }
+
+          git diff --stat
+          git config user.name  "dots-github-bot[bot]"
+          git config user.email "dots-github-bot[bot]@users.noreply.github.com"
+          git commit -am "chore(deps): bump dots_design_system $cur → $TAG"
+          git push origin "HEAD:refs/heads/$APP_BRANCH"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Open or update PR in onelife_app (auto-merge)
+        if: steps.branch.outputs.needs_pr == 'true'
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          DS_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.ds.outputs.tag }}
+          CUR: ${{ steps.branch.outputs.dev_cur }}
+        run: |
+          title="chore(deps): bump dots_design_system to $TAG"
+          notes=$(GH_TOKEN="$DS_TOKEN" gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json body --jq .body 2>/dev/null || true)
+          body=$(cat <<MD
+          Sube \`dots_design_system\` de \`$CUR\` a **\`$TAG\`** en \`pubspec.yaml\` y \`pubspec.lock\`.
+
+          Release: https://github.com/$GITHUB_REPOSITORY/releases/tag/$TAG
+
+          <details><summary>Release notes</summary>
+
+          $notes
+
+          </details>
+
+          _PR generada automáticamente por el workflow Release de dots_design_system, con auto-merge: entra sola cuando pasan los checks. Si sale otra versión antes, esta PR se actualiza._
+          MD
+          )
+          n=$(gh pr list --repo "$APP_REPO" --head "$APP_BRANCH" --base "$APP_BASE" --state open --json number --jq '.[0].number')
+          if [ -n "$n" ]; then
+            gh pr edit "$n" --repo "$APP_REPO" --title "$title" --body "$body"
+            echo "PR actualizada: #$n"
+          else
+            url=$(gh pr create --repo "$APP_REPO" --base "$APP_BASE" --head "$APP_BRANCH" \
+              --title "$title" --body "$body" --label dependencies)
+            n=${url##*/}
+            echo "PR creada: #$n"
+          fi
+          url="https://github.com/$APP_REPO/pull/$n"
+
+          # Auto-merge: se mergea sola cuando pasen los checks requeridos (quality, check-branch-name).
+          # dots-github-bot está en la lista de bypass de develop, así que no espera review.
+          if [ "$(gh pr view "$n" --repo "$APP_REPO" --json autoMergeRequest --jq '.autoMergeRequest != null')" = "true" ]; then
+            echo "Auto-merge ya estaba activado"
+          else
+            gh pr merge "$n" --repo "$APP_REPO" --auto --squash
+            echo "Auto-merge activado"
+          fi
+          echo "## onelife_app → $TAG" >> "$GITHUB_STEP_SUMMARY"
+          echo "$url (auto-merge activado)" >> "$GITHUB_STEP_SUMMARY"
