@@ -111,7 +111,8 @@ class DotsUploadItem extends StatelessWidget {
                         : CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        // Keeps the icon on the first line once the text wraps.
+                        // Text allowed past one line grows downward, so top-align
+                        // and nudge the icon onto the first line.
                         padding: EdgeInsets.only(
                           top: processTextMaxLines == 1 ? 0 : 2,
                         ),
