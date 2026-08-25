@@ -1,6 +1,7 @@
 # Al mergear una PR en develop: crea tag + GitHub Release según la label de la PR
 # (release:major | release:minor | release:patch | release:skip) y abre/actualiza
-# una PR en onelife_app que sube el ref de dots_design_system a la nueva versión.
+# una PR en onelife_app que sube el ref de dots_design_system a la nueva versión
+# (con auto-merge: entra sola cuando sus checks pasan).
 #
 # workflow_dispatch: propaga a onelife_app un tag YA existente (sin crear release).
 name: Release
@@ -241,5 +242,14 @@ jobs:
               --title "$title" --body "$body" --label dependencies)
             echo "PR creada: $url"
           fi
+          # Auto-merge: se mergea sola cuando pasen los checks requeridos (quality, check-branch-name).
+          # dots-github-bot está en la lista de bypass de develop, así que no espera review.
+          n=${url##*/}
+          if [ "$(gh pr view "$n" --repo "$APP_REPO" --json autoMergeRequest --jq '.autoMergeRequest != null')" = "true" ]; then
+            echo "Auto-merge ya estaba activado"
+          else
+            gh pr merge "$n" --repo "$APP_REPO" --auto --squash
+            echo "Auto-merge activado"
+          fi
           echo "## onelife_app → $TAG" >> "$GITHUB_STEP_SUMMARY"
-          echo "$url" >> "$GITHUB_STEP_SUMMARY"
+          echo "$url (auto-merge activado)" >> "$GITHUB_STEP_SUMMARY"
