@@ -28,6 +28,10 @@ class DotsUploadItem extends StatelessWidget {
   /// Elapsed time text to display when the upload is successful.
   final String? timeElapsed;
 
+  /// Maximum lines for [processText]. Null lets a long message wrap instead of
+  /// being cut with an ellipsis — used when the message carries a file name.
+  final int? processTextMaxLines;
+
   /// Text for the button displayed on the right side.
   final String? btnText;
 
@@ -42,6 +46,7 @@ class DotsUploadItem extends StatelessWidget {
     this.onError,
     this.textDate,
     this.processText,
+    this.processTextMaxLines = 1,
     this.timeElapsed,
     this.percentage,
     this.btnText,
@@ -98,13 +103,22 @@ class DotsUploadItem extends StatelessWidget {
                   ),
                   SizedBox(height: 6),
                   Row(
+                    crossAxisAlignment: processTextMaxLines == 1
+                        ? CrossAxisAlignment.center
+                        : CrossAxisAlignment.start,
                     children: [
-                      _RotatingIcon(
-                        animate: variant.isProcessing,
-                        child: DotsIcon(
-                          iconData: iconData,
-                          size: 14,
-                          color: iconColor,
+                      Padding(
+                        // Keeps the icon on the first line once the text wraps.
+                        padding: EdgeInsets.only(
+                          top: processTextMaxLines == 1 ? 0 : 2,
+                        ),
+                        child: _RotatingIcon(
+                          animate: variant.isProcessing,
+                          child: DotsIcon(
+                            iconData: iconData,
+                            size: 14,
+                            color: iconColor,
+                          ),
                         ),
                       ),
                       SizedBox(width: 3),
@@ -114,8 +128,10 @@ class DotsUploadItem extends StatelessWidget {
                           style: theme.typo.main.labelDefaultRegular.copyWith(
                             color: theme.colors.textSecondary,
                           ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                          maxLines: processTextMaxLines,
+                          overflow: processTextMaxLines == null
+                              ? TextOverflow.clip
+                              : TextOverflow.ellipsis,
                         ),
                       ),
                     ],
