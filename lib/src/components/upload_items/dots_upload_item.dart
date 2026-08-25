@@ -51,7 +51,10 @@ class DotsUploadItem extends StatelessWidget {
     this.percentage,
     this.btnText,
     this.btnOnTap,
-  });
+  }) : assert(
+         processTextMaxLines == null || processTextMaxLines > 0,
+         'processTextMaxLines must be null (wrap freely) or greater than zero',
+       );
 
   @override
   Widget build(BuildContext context) {
