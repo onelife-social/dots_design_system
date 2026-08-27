@@ -27,6 +27,8 @@ class ProductCard extends StatelessWidget {
     this.activePage = 0,
     this.actionIcon = DotsIconData.right,
     this.aspectRatio = 1,
+    this.scrimOpacity = _defaultScrimOpacity,
+    this.scrimBlurSigma = _defaultScrimBlurSigma,
     this.onTap,
     this.onActionTap,
   });
@@ -68,6 +70,15 @@ class ProductCard extends StatelessWidget {
   /// screens that lay the card out at another height override it.
   final double aspectRatio;
 
+  /// Opacity of the bottom gradient that keeps the copy readable. `0` removes
+  /// it — only for backgrounds that already contrast with white text.
+  final double scrimOpacity;
+
+  /// Blur sigma of the bottom edge, on top of the gradient. `null` disables the
+  /// blur, leaving the gradient alone: lighter, and it dodges the Android
+  /// rendering issue of the shader-based blur.
+  final double? scrimBlurSigma;
+
   /// Tap on the whole card.
   final VoidCallback? onTap;
 
@@ -76,6 +87,10 @@ class ProductCard extends StatelessWidget {
 
   /// Height of the bottom blur + gradient band.
   static const double _scrimHeight = 160;
+
+  /// Scrim defaults: enough to read white copy over a photo.
+  static const double _defaultScrimOpacity = 0.45;
+  static const double _defaultScrimBlurSigma = 12;
 
   /// Distance from the bottom edge to the copy block and to the dots.
   static const double _contentBottomInset = 20;
@@ -129,40 +144,43 @@ class ProductCard extends StatelessWidget {
             child: Stack(
               children: [
                 Positioned.fill(
-                  child: SoftEdgeBlur(
-                    edges: [
-                      EdgeBlur(
-                        type: EdgeType.bottomEdge,
-                        size: _scrimHeight,
-                        sigma: 12,
-                        controlPoints: [
-                          ControlPoint(position: 0.5, type: ControlPointType.visible),
-                          ControlPoint(position: 1, type: ControlPointType.transparent),
-                        ],
-                      ),
-                    ],
-                    child: background,
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: IgnorePointer(
-                    child: Container(
-                      height: _scrimHeight,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Colors.black.withValues(alpha: 0),
-                            Colors.black.withValues(alpha: 0.45),
+                  child: scrimBlurSigma == null
+                      ? background
+                      : SoftEdgeBlur(
+                          edges: [
+                            EdgeBlur(
+                              type: EdgeType.bottomEdge,
+                              size: _scrimHeight,
+                              sigma: scrimBlurSigma!,
+                              controlPoints: [
+                                ControlPoint(position: 0.5, type: ControlPointType.visible),
+                                ControlPoint(position: 1, type: ControlPointType.transparent),
+                              ],
+                            ),
                           ],
+                          child: background,
+                        ),
+                ),
+                if (scrimOpacity > 0)
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: IgnorePointer(
+                      child: Container(
+                        height: _scrimHeight,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.black.withValues(alpha: 0),
+                              Colors.black.withValues(alpha: scrimOpacity),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
                 if (badge != null)
                   Positioned(
                     top: _contentBottomInset,
@@ -227,8 +245,9 @@ class ProductCard extends StatelessWidget {
                                     Flexible(
                                       child: Text(
                                         caption!,
-                                        style: theme.typo.main.bodyDefaultMedium
-                                            .copyWith(color: white),
+                                        style: theme.typo.main.bodyDefaultMedium.copyWith(
+                                          color: white,
+                                        ),
                                       ),
                                     ),
                                     if (captionPrevious != null) ...[
