@@ -1,25 +1,39 @@
+import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
-/// Progressive bottom-edge blur over [child], built from stacked
-/// [BackdropFilter] bands.
+/// Progressive bottom-edge blur over [child]: a blurred copy of the content
+/// is painted on top, faded in with a vertical gradient over the bottom
+/// [edgeSize].
 ///
-/// Replaces `soft_edge_blur`'s `SoftEdgeBlur`: its per-frame
-/// `Picture.toImageSync` capture misrenders on Impeller Android (blank first
-/// paint, artifacts while scrolling), and since Flutter 3.44 Android cannot
-/// fall back to Skia.
+/// Replaces the previous stacked-[BackdropFilter] approach: backdrop filters
+/// sample the backdrop in screen space, which shimmers while scrolling on
+/// Impeller, escapes ancestor smooth-corner clips, and the discrete bands
+/// produced visible steps in the blur ramp. Blurring a copy of the child with
+/// [ImageFiltered] keeps everything in the widget's own layer, so it clips
+/// and scrolls like any other content.
 class DotsBottomEdgeBlur extends StatelessWidget {
   const DotsBottomEdgeBlur({
     super.key,
     required this.child,
     required this.edgeSize,
     this.sigma = 12,
+    this.blurChild,
   })  : assert(edgeSize >= 0, 'edgeSize must be >= 0'),
         assert(sigma >= 0, 'sigma must be >= 0');
 
   /// Content the blur band is painted over.
+  ///
+  /// It is instantiated twice (once sharp, once blurred), so it must render
+  /// the same pixels in both places: images, gradients and other visually
+  /// stateless widgets are fine, but interactive content (e.g. a carousel)
+  /// would desynchronise from its blurred copy — pass [blurChild] instead.
   final Widget child;
+
+  /// Widget to blur instead of [child] when [child] cannot be safely
+  /// duplicated (holds state, uses GlobalKeys, responds to input).
+  final Widget? blurChild;
 
   /// Height of the blurred bottom band.
   final double edgeSize;
@@ -27,42 +41,74 @@ class DotsBottomEdgeBlur extends StatelessWidget {
   /// Blur strength at the very bottom of the band.
   final double sigma;
 
-  /// Overlapping bands compose as sqrt of the sum of squared sigmas, so these
-  /// factors ramp the effective blur from ~0.17×[sigma] at the top of the band
-  /// to [sigma] at the bottom, approximating the soft edge they replace.
-  static const List<({double height, double sigma})> _bands = [
-    (height: 1.0, sigma: 0.17),
-    (height: 0.83, sigma: 0.33),
-    (height: 0.66, sigma: 0.5),
-    (height: 0.5, sigma: 0.78),
-  ];
+  /// Smoothstep-shaped fade of the blurred copy, top → bottom of the band.
+  static const List<double> _fadeOpacities = [0.0, 0.11, 0.35, 0.65, 0.89, 1.0];
 
   @override
   Widget build(BuildContext context) {
+    if (edgeSize <= 0 || sigma <= 0) return child;
     return Stack(
       fit: StackFit.passthrough,
       children: [
         child,
-        for (final band in _bands)
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            height: edgeSize * band.height,
-            child: IgnorePointer(
-              child: ClipRect(
-                child: BackdropFilter(
-                  filter: ui.ImageFilter.blur(
-                    sigmaX: sigma * band.sigma,
-                    sigmaY: sigma * band.sigma,
-                    tileMode: TileMode.clamp,
+        Positioned.fill(
+          child: IgnorePointer(
+            // The mask leaves everything above the band fully transparent, so
+            // clipping to the band lets the engine restrict the blur filter's
+            // coverage instead of filtering the whole child offscreen.
+            child: ClipRect(
+              clipper: _BottomBandClipper(edgeSize),
+              child: ShaderMask(
+                shaderCallback: (bounds) {
+                  final bandStart = bounds.height <= edgeSize
+                      ? 0.0
+                      : 1 - edgeSize / bounds.height;
+                  final step = (1 - bandStart) / (_fadeOpacities.length - 1);
+                  return LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      for (final opacity in _fadeOpacities)
+                        Colors.white.withValues(alpha: opacity),
+                    ],
+                    stops: [
+                      for (var i = 0; i < _fadeOpacities.length; i++)
+                        bandStart + step * i,
+                    ],
+                  ).createShader(bounds);
+                },
+                blendMode: BlendMode.dstIn,
+                child: ImageFiltered(
+                  imageFilter: ui.ImageFilter.blur(
+                    sigmaX: sigma,
+                    sigmaY: sigma,
+                    tileMode: ui.TileMode.clamp,
                   ),
-                  child: const SizedBox.expand(),
+                  child: blurChild ?? child,
                 ),
               ),
             ),
           ),
+        ),
       ],
     );
   }
+}
+
+class _BottomBandClipper extends CustomClipper<Rect> {
+  const _BottomBandClipper(this.bandHeight);
+
+  final double bandHeight;
+
+  @override
+  Rect getClip(Size size) => Rect.fromLTRB(
+        0,
+        math.max(0, size.height - bandHeight),
+        size.width,
+        size.height,
+      );
+
+  @override
+  bool shouldReclip(_BottomBandClipper oldClipper) =>
+      oldClipper.bandHeight != bandHeight;
 }
