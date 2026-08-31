@@ -15,7 +15,8 @@ class DotsBottomEdgeBlur extends StatelessWidget {
     required this.child,
     required this.edgeSize,
     this.sigma = 12,
-  });
+  })  : assert(edgeSize >= 0, 'edgeSize must be >= 0'),
+        assert(sigma >= 0, 'sigma must be >= 0');
 
   /// Content the blur band is painted over.
   final Widget child;
