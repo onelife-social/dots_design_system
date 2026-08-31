@@ -1,4 +1,5 @@
 ## X.X.X Pending
+* Replace soft_edge_blur with DotsBottomEdgeBlur (BackdropFilter-based) in ProductCard, AlbumGroupCard and EventGroupCard to fix Impeller Android misrendering.
 * Product card component.
 * Container component.
 * Icon component.
