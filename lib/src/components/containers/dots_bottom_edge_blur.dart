@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -52,33 +53,39 @@ class DotsBottomEdgeBlur extends StatelessWidget {
         child,
         Positioned.fill(
           child: IgnorePointer(
-            child: ShaderMask(
-              shaderCallback: (bounds) {
-                final bandStart = bounds.height <= edgeSize
-                    ? 0.0
-                    : 1 - edgeSize / bounds.height;
-                final step = (1 - bandStart) / (_fadeOpacities.length - 1);
-                return LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    for (final opacity in _fadeOpacities)
-                      Colors.white.withValues(alpha: opacity),
-                  ],
-                  stops: [
-                    for (var i = 0; i < _fadeOpacities.length; i++)
-                      bandStart + step * i,
-                  ],
-                ).createShader(bounds);
-              },
-              blendMode: BlendMode.dstIn,
-              child: ImageFiltered(
-                imageFilter: ui.ImageFilter.blur(
-                  sigmaX: sigma,
-                  sigmaY: sigma,
-                  tileMode: ui.TileMode.clamp,
+            // The mask leaves everything above the band fully transparent, so
+            // clipping to the band lets the engine restrict the blur filter's
+            // coverage instead of filtering the whole child offscreen.
+            child: ClipRect(
+              clipper: _BottomBandClipper(edgeSize),
+              child: ShaderMask(
+                shaderCallback: (bounds) {
+                  final bandStart = bounds.height <= edgeSize
+                      ? 0.0
+                      : 1 - edgeSize / bounds.height;
+                  final step = (1 - bandStart) / (_fadeOpacities.length - 1);
+                  return LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      for (final opacity in _fadeOpacities)
+                        Colors.white.withValues(alpha: opacity),
+                    ],
+                    stops: [
+                      for (var i = 0; i < _fadeOpacities.length; i++)
+                        bandStart + step * i,
+                    ],
+                  ).createShader(bounds);
+                },
+                blendMode: BlendMode.dstIn,
+                child: ImageFiltered(
+                  imageFilter: ui.ImageFilter.blur(
+                    sigmaX: sigma,
+                    sigmaY: sigma,
+                    tileMode: ui.TileMode.clamp,
+                  ),
+                  child: blurChild ?? child,
                 ),
-                child: blurChild ?? child,
               ),
             ),
           ),
@@ -86,4 +93,22 @@ class DotsBottomEdgeBlur extends StatelessWidget {
       ],
     );
   }
+}
+
+class _BottomBandClipper extends CustomClipper<Rect> {
+  const _BottomBandClipper(this.bandHeight);
+
+  final double bandHeight;
+
+  @override
+  Rect getClip(Size size) => Rect.fromLTRB(
+        0,
+        math.max(0, size.height - bandHeight),
+        size.width,
+        size.height,
+      );
+
+  @override
+  bool shouldReclip(_BottomBandClipper oldClipper) =>
+      oldClipper.bandHeight != bandHeight;
 }
