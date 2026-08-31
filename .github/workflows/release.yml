@@ -217,14 +217,15 @@ jobs:
           fi
 
           perl -0pi -e 's/(\n  dots_design_system:\n    git:\n      url: [^\n]*\n      ref: )\S+/$1$ENV{TAG}/' pubspec.yaml
-          perl -0pi -e 's/(\n  dots_design_system:\n    dependency: "direct main"\n    description:\n      path: "\."\n      ref: )"[^"]*"(\n      resolved-ref: )[0-9a-f]+/$1"$ENV{TAG}"$2$ENV{SHA}/' pubspec.lock
+          # Nuevas versiones de pub escriben resolved-ref entre comillas; aceptar ambas formas.
+          perl -0pi -e 's/(\n  dots_design_system:\n    dependency: "direct main"\n    description:\n      path: "\."\n      ref: )"[^"]*"(\n      resolved-ref: )"?[0-9a-f]+"?/$1"$ENV{TAG}"$2"$ENV{SHA}"/' pubspec.lock
 
           # Verificación estricta: si algo no cuadra, mejor fallar que abrir una PR rota
           grep -A3 '^  dots_design_system:' pubspec.yaml | grep -q "ref: $TAG" \
             || { echo "::error::pubspec.yaml no quedó con ref: $TAG"; exit 1; }
           grep -A6 '^  dots_design_system:' pubspec.lock | grep -q "ref: \"$TAG\"" \
             || { echo "::error::pubspec.lock no quedó con ref: \"$TAG\""; exit 1; }
-          grep -A6 '^  dots_design_system:' pubspec.lock | grep -q "resolved-ref: $SHA" \
+          grep -A6 '^  dots_design_system:' pubspec.lock | grep -Eq "resolved-ref: \"?$SHA\"?" \
             || { echo "::error::pubspec.lock no quedó con resolved-ref: $SHA"; exit 1; }
 
           git diff --stat
