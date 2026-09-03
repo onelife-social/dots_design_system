@@ -7,6 +7,36 @@ import '../../components/event_group_card_demo_page.dart';
 
 List<Story> get cards => [
       Story(
+        name: 'Cards/Game Card',
+        description: 'Purchased game card — processing, error and active',
+        builder: (context) => Center(
+          child: DotsGameCard(
+            status: context.knobs.options<DotsGameCardStatus>(
+              label: 'Status',
+              initial: DotsGameCardStatus.active,
+              options: DotsGameCardStatus.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
+            image: Image.network('https://picsum.photos/276/200?image=1064', fit: BoxFit.contain),
+            badgeText: context.knobs.text(label: 'Badge', initial: 'ACTIVO'),
+            title: context.knobs.text(label: 'Title', initial: 'La Misión Secreta'),
+            description: context.knobs.text(
+              label: 'Description',
+              initial: 'Estamos terminando de preparar vuestro acceso. '
+                  'En unos segundos podréis configurarlo',
+            ),
+            actionText: context.knobs.text(label: 'Action', initial: 'Ir al panel'),
+            progressIndicator: const SizedBox(
+              width: 16,
+              height: 16,
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
+            onActionTap: () {},
+          ),
+        ),
+      ),
+      Story(
         name: 'Cards/Recap Card Locked',
         description: 'Recap Page locked',
         builder: (context) => RecapCardLocked(
@@ -137,7 +167,7 @@ List<Story> get cards => [
         builder: (context) => Padding(
           padding: const EdgeInsets.all(16.0),
           child: AlbumGroupCardDemoPage(
-            imageProvider:  NetworkImage(context.knobs
+            imageProvider: NetworkImage(context.knobs
                 .text(label: 'Feature image', initial: 'https://picsum.photos/250?image=9')),
             title: context.knobs.text(label: 'Group Name', initial: 'My Group'),
             variant: context.knobs.options<AlbumGroupCardVariant>(
@@ -169,7 +199,7 @@ List<Story> get cards => [
         builder: (context) => Padding(
           padding: const EdgeInsets.all(16.0),
           child: EventGroupCardDemoPage(
-            imageProvider:  NetworkImage(context.knobs
+            imageProvider: NetworkImage(context.knobs
                 .text(label: 'Feature image', initial: 'https://picsum.photos/250?image=9')),
             title: context.knobs.text(label: 'Group Name', initial: 'My Group'),
             variant: context.knobs.options<EventGroupCardVariant>(
