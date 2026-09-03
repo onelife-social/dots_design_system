@@ -67,8 +67,8 @@ class AlbumGroupCard extends StatelessWidget {
           constraints: BoxConstraints(
             minWidth: variant.isSmall ? 135 : 288,
             minHeight: variant.isSmall ? 135 : 288,
-            maxHeight: variant.isSmall ? 160 : 340,
-            maxWidth: variant.isSmall ? 160 : 340,
+            maxHeight: variant.isSmall ? 160 : kAlbumLargeCardSize,
+            maxWidth: variant.isSmall ? 160 : kAlbumLargeCardSize,
           ),
           child: DotsDecoratedBox(
             styleType: styleType,
