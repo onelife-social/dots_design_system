@@ -1,6 +1,7 @@
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
+import 'package:soft_edge_blur/soft_edge_blur.dart';
 
 enum AlbumGroupCardVariant {
   small,
@@ -79,9 +80,24 @@ class AlbumGroupCard extends StatelessWidget {
                     cornerRadius: styleType.radius,
                     cornerSmoothing: styleType.cornerSmoothing,
                   ),
-                  child: DotsBottomEdgeBlur(
-                    edgeSize: bottomBlurHeight,
-                    sigma: blurSigma ?? 12,
+                  child: SoftEdgeBlur(
+                    edges: [
+                      EdgeBlur(
+                        type: EdgeType.bottomEdge,
+                        size: bottomBlurHeight,
+                        sigma: blurSigma ?? 12,
+                        controlPoints: [
+                          ControlPoint(
+                            position: 0.5,
+                            type: ControlPointType.visible,
+                          ),
+                          ControlPoint(
+                            position: 1,
+                            type: ControlPointType.transparent,
+                          ),
+                        ],
+                      ),
+                    ],
                     child: Image(
                       image: imageProvider,
                       fit: BoxFit.cover,

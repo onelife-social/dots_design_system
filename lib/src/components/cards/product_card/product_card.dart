@@ -1,5 +1,6 @@
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
+import 'package:soft_edge_blur/soft_edge_blur.dart';
 
 import '../../../../dots_design_system.dart';
 
@@ -14,6 +15,7 @@ import '../../../../dots_design_system.dart';
 /// Figma: Chronicle Design System › `product-card` (358 × 358).
 class ProductCard extends StatelessWidget {
   const ProductCard({
+    this.blurBackground = true,
     super.key,
     required this.title,
     required this.background,
@@ -32,6 +34,14 @@ class ProductCard extends StatelessWidget {
 
   /// Main line, always shown.
   final String title;
+
+  /// Whether the bottom scrim also blurs the background.
+  ///
+  /// Turn it off when [background] holds state — a `PageView`, say. The blur
+  /// paints a second, independent copy of the background, which a carousel
+  /// desynchronises from: the band keeps showing the page you swiped away
+  /// from. Without it the scrim is the gradient alone.
+  final bool blurBackground;
 
   /// Fills the whole card behind the scrim: photo, `PageView`, gradient…
   final Widget background;
@@ -127,12 +137,25 @@ class ProductCard extends StatelessWidget {
             aspectRatio: aspectRatio,
             child: Stack(
               children: [
-                Positioned.fill(
-                  child: DotsBottomEdgeBlur(
-                    edgeSize: _scrimHeight,
-                    child: background,
+                if (!blurBackground)
+                  Positioned.fill(child: background)
+                else
+                  Positioned.fill(
+                    child: SoftEdgeBlur(
+                      edges: [
+                        EdgeBlur(
+                          type: EdgeType.bottomEdge,
+                          size: _scrimHeight,
+                          sigma: 12,
+                          controlPoints: [
+                            ControlPoint(position: 0.5, type: ControlPointType.visible),
+                            ControlPoint(position: 1, type: ControlPointType.transparent),
+                          ],
+                        ),
+                      ],
+                      child: background,
+                    ),
                   ),
-                ),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: IgnorePointer(
@@ -216,8 +239,9 @@ class ProductCard extends StatelessWidget {
                                     Flexible(
                                       child: Text(
                                         caption!,
-                                        style: theme.typo.main.bodyDefaultMedium
-                                            .copyWith(color: white),
+                                        style: theme.typo.main.bodyDefaultMedium.copyWith(
+                                          color: white,
+                                        ),
                                       ),
                                     ),
                                     if (captionPrevious != null) ...[
