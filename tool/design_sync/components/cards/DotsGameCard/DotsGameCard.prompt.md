@@ -11,6 +11,7 @@ DotsGameCard from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Do
 | `actionText` | `string` | Obligatorio. Texto del botón, o la etiqueta de progreso en `processing` |
 | `imageSrc` | `string` | Artwork en caja 138×100, `object-fit: contain` |
 | `image` | `ReactNode` | Alternativa a `imageSrc` (espejo del slot `image` de Dart) |
+| `imageAlt` | `string` | Texto alternativo cuando se usa `imageSrc` |
 | `onActionClick` | `() => void` | `onActionTap`. **Se ignora en `processing`** |
 | `progressIndicator` | `ReactNode` | Solo `processing`. Sin él, anillo de 16px de placeholder |
 

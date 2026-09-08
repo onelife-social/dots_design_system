@@ -33,6 +33,7 @@ __ds.DotsGameCard = (function () {
             onClick: props.onActionClick,
           })
         : h('button', {
+            type: 'button',
             className: 'ds-game-card__action-fb',
             onClick: props.onActionClick,
           }, props.actionText);
@@ -50,7 +51,9 @@ __ds.DotsGameCard = (function () {
   function DotsGameCard(props) {
     var status = props.status || 'active';
 
-    var art = props.image !== undefined
+    // `!= null` a propósito: un `image={cond ? <X/> : null}` debe caer a imageSrc,
+    // no dejar el artwork vacío (mismo criterio que title/primaryLabel en otros ports).
+    var art = props.image != null
       ? props.image
       : (props.imageSrc
           ? h('img', { className: 'ds-game-card__img', src: props.imageSrc, alt: props.imageAlt || '' })
