@@ -1563,10 +1563,13 @@ __ds.DotsBottomEdgeBlur = (function () {
 
     // Dart: `if (edgeSize <= 0 || sigma <= 0) return child;` — devolvemos el hijo
     // sin envolver, para no alterar su layout (margin collapsing, flex/grid…).
-    // Solo si llega className hace falta el contenedor para poder aplicarlo.
+    // Si llega className sí hace falta un contenedor donde aplicarlo, pero SIN la
+    // clase del componente: `ds-bottom-edge-blur` solo existe para que la banda
+    // absoluta tenga contenedor, y su `position: relative` crearía un containing
+    // block para descendientes absolutos que aquí no pinta nada.
     if (!(edgeSize > 0) || !(sigma > 0)) {
       return props.className
-        ? h('div', { className: 'ds-bottom-edge-blur ' + props.className }, props.children)
+        ? h('div', { className: props.className }, props.children)
         : props.children;
     }
 
