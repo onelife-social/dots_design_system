@@ -35,7 +35,10 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
-          files=$(git diff --diff-filter=A --name-only "$BASE_SHA" "$HEAD_SHA" -- 'lib/src/components/**/*.dart' | tr '\n' ' ')
+          # `...` compara contra el merge-base, que es el diff real de la PR. Con
+          # dos puntos, un archivo que develop haya borrado después de ramificar
+          # aparecería como "añadido" y el check exigiría portarlo.
+          files=$(git diff --diff-filter=A --name-only "$BASE_SHA...$HEAD_SHA" -- 'lib/src/components/**/*.dart' | tr '\n' ' ')
           echo "files=$files" >> "$GITHUB_OUTPUT"
           echo "Nuevos: ${files:-(ninguno)}"
 
