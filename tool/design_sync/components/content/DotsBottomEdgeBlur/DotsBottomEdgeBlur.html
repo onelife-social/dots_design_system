@@ -47,9 +47,7 @@
       ['edgeSize 120 · sobre texto', frame(h(C, { edgeSize: 120 }, text))],
       ['edgeSize 0 → passthrough (sin banda)', frame(h(C, { edgeSize: 0 }, photos(9)))],
       ['sigma 0 → passthrough (sin banda)', frame(h(C, { edgeSize: 80, sigma: 0 }, photos(9)))],
-      ['dark — edgeSize 80', h('div', { 'data-theme': 'dark', style: {
-          background: 'var(--bg-base)', padding: '16px', borderRadius: '12px' } },
-        frame(h(C, { edgeSize: 80 }, text)))],
+      ['dark — edgeSize 80', frame(h(C, { edgeSize: 80 }, text)), 'dark'],
     ];
 
     var g = document.getElementById('g');
@@ -57,6 +55,12 @@
       var cell = document.createElement('div'); cell.className = 'ds-cell';
       var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
       var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2] === 'dark') {
+        m.setAttribute('data-theme', 'dark');
+        m.style.background = 'var(--bg-base)';
+        m.style.padding = '12px';
+        m.style.borderRadius = '8px';
+      }
       try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
     });
   </script>
