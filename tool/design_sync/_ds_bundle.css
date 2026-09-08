@@ -435,6 +435,66 @@
   color: var(--label-destructive);
 }
 
+/* ── EventGroupCard ── */
+/* EventGroupCard — cuadrada 1:1 (Dart: 135–160 small / 288–340 active·passed), squircle32/52 */
+.ds-event-card { position: relative; overflow: hidden; cursor: pointer; flex: none; box-sizing: border-box; }
+.ds-event-card--small { border-radius: var(--squircle-32); }
+.ds-event-card--active, .ds-event-card--passed { border-radius: var(--squircle-52); }
+.ds-event-card__img { position: absolute; inset: 0; background-size: cover; background-position: center; }
+/* Placeholder de foto cuando no llega imageSrc (degradado, sin token — como las tarjetas planas) */
+.ds-event-card__img--ph { background-image: linear-gradient(150deg, #7E9BB8, #D8B294, #77958E); }
+/* SoftEdgeBlur bottomEdge σ12 + degradado negro 0→20% (aprox: backdrop-blur con máscara) */
+.ds-event-card__fade {
+  position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none;
+  background: linear-gradient(180deg, #00000000, #00000033);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  mask-image: linear-gradient(180deg, transparent, #000 60%);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%);
+}
+/* Degradado superior 94px — Color(0x803c3c3c), sin token */
+.ds-event-card__top-grad { position: absolute; top: 0; left: 0; right: 0; height: 94px; pointer-events: none; background: linear-gradient(180deg, #3C3C3C80, transparent); }
+/* Título small — labelDefaultMedium 13/500, pad 16 */
+.ds-event-card__title--small {
+  position: absolute; left: 16px; right: 16px; bottom: 16px; text-align: center;
+  color: var(--label-always-white); font: 500 13px/1.31 var(--font-main);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+/* Cabecera active/passed — pad 24 + margen horizontal 28 del título (24+28=52) */
+.ds-event-card__head { position: absolute; top: 24px; left: 52px; right: 52px; text-align: center; color: var(--label-always-white); }
+.ds-event-card__head-title { font: 700 16px/1.31 var(--font-main); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } /* bodyLargeBold */
+.ds-event-card__sec { margin-top: 4px; display: flex; align-items: center; justify-content: center; gap: 3px; font: 400 11px/1.29 var(--font-main); color: #FFFFFFB2; cursor: pointer; } /* labelSmallRegular · labelAlwaysWhite 70% */
+.ds-event-card__sec-dot { width: 3px; height: 3px; border-radius: 50%; background: #FFFFFFB2; flex: none; }
+.ds-event-card__sec-wrap { margin-top: 5px; display: flex; justify-content: center; }
+/* Fallback del botón secundario si DotsMainButton no está en el bundle */
+.ds-event-card__sec-fb {
+  height: 28px; padding: 0 12px; border: none; border-radius: 28px; cursor: pointer;
+  background: var(--bg-secondary-btn); color: var(--label-always-white);
+  font: 500 12px/1.29 var(--font-main);
+}
+/* CardTag — Ø28, bgContainerPrimary + blur60; color = aproximación del ShaderMask lineal #AE98F3→#3478F6 (sin token) */
+.ds-event-card__tag {
+  position: absolute; width: 28px; height: 28px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--bg-container-primary); color: #7188F5;
+  backdrop-filter: blur(60px); -webkit-backdrop-filter: blur(60px);
+}
+.ds-event-card__tag--small { left: 16px; top: 16px; }
+.ds-event-card__tag--big { left: 24px; top: 24px; }
+.ds-event-card__lock { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--label-always-white); }
+/* _MenuEvent — píldora r20, pad 10, bgBtnDisabled + blur50 */
+.ds-event-card__menu {
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; padding: 10px; border-radius: var(--squircle-20);
+  background: var(--bg-btn-disabled);
+  backdrop-filter: blur(var(--blur-50)); -webkit-backdrop-filter: blur(var(--blur-50));
+}
+.ds-event-card__act {
+  min-width: 46px; display: flex; flex-direction: column; align-items: center;
+  border: none; background: none; padding: 0; cursor: pointer;
+  color: var(--label-always-white); font: 400 11px/1.29 var(--font-main); /* labelSmallRegular */
+}
+.ds-event-card__sep { width: 0.5px; height: 22.78px; margin: 0 6px; flex: none; background: #0000001A; } /* negro 10%, sin token */
+
 /* ── PageControl ── */
 /* PageControl — dot_book/page_control.dart · main (8px, pad 18/12) · background (6px, píldora bgActive) */
 .ds-page-control {
@@ -3322,66 +3382,6 @@
 .ds-dropdown__item--destructive .ds-dropdown__item-subtitle { color: inherit; }
 .ds-dropdown__item-leading { margin-right: 6px; display: inline-flex; flex: none; }
 .ds-dropdown__item-icon { margin-left: 6px; flex: none; }
-
-/* ── EventGroupCard ── */
-/* EventGroupCard — cuadrada 1:1 (Dart: 135–160 small / 288–340 active·passed), squircle32/52 */
-.ds-event-card { position: relative; overflow: hidden; cursor: pointer; flex: none; box-sizing: border-box; }
-.ds-event-card--small { border-radius: var(--squircle-32); }
-.ds-event-card--active, .ds-event-card--passed { border-radius: var(--squircle-52); }
-.ds-event-card__img { position: absolute; inset: 0; background-size: cover; background-position: center; }
-/* Placeholder de foto cuando no llega imageSrc (degradado, sin token — como las tarjetas planas) */
-.ds-event-card__img--ph { background-image: linear-gradient(150deg, #7E9BB8, #D8B294, #77958E); }
-/* SoftEdgeBlur bottomEdge σ12 + degradado negro 0→20% (aprox: backdrop-blur con máscara) */
-.ds-event-card__fade {
-  position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none;
-  background: linear-gradient(180deg, #00000000, #00000033);
-  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-  mask-image: linear-gradient(180deg, transparent, #000 60%);
-  -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%);
-}
-/* Degradado superior 94px — Color(0x803c3c3c), sin token */
-.ds-event-card__top-grad { position: absolute; top: 0; left: 0; right: 0; height: 94px; pointer-events: none; background: linear-gradient(180deg, #3C3C3C80, transparent); }
-/* Título small — labelDefaultMedium 13/500, pad 16 */
-.ds-event-card__title--small {
-  position: absolute; left: 16px; right: 16px; bottom: 16px; text-align: center;
-  color: var(--label-always-white); font: 500 13px/1.31 var(--font-main);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-/* Cabecera active/passed — pad 24 + margen horizontal 28 del título (24+28=52) */
-.ds-event-card__head { position: absolute; top: 24px; left: 52px; right: 52px; text-align: center; color: var(--label-always-white); }
-.ds-event-card__head-title { font: 700 16px/1.31 var(--font-main); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } /* bodyLargeBold */
-.ds-event-card__sec { margin-top: 4px; display: flex; align-items: center; justify-content: center; gap: 3px; font: 400 11px/1.29 var(--font-main); color: #FFFFFFB2; cursor: pointer; } /* labelSmallRegular · labelAlwaysWhite 70% */
-.ds-event-card__sec-dot { width: 3px; height: 3px; border-radius: 50%; background: #FFFFFFB2; flex: none; }
-.ds-event-card__sec-wrap { margin-top: 5px; display: flex; justify-content: center; }
-/* Fallback del botón secundario si DotsMainButton no está en el bundle */
-.ds-event-card__sec-fb {
-  height: 28px; padding: 0 12px; border: none; border-radius: 28px; cursor: pointer;
-  background: var(--bg-secondary-btn); color: var(--label-always-white);
-  font: 500 12px/1.29 var(--font-main);
-}
-/* CardTag — Ø28, bgContainerPrimary + blur60; color = aproximación del ShaderMask lineal #AE98F3→#3478F6 (sin token) */
-.ds-event-card__tag {
-  position: absolute; width: 28px; height: 28px; border-radius: 50%;
-  display: inline-flex; align-items: center; justify-content: center;
-  background: var(--bg-container-primary); color: #7188F5;
-  backdrop-filter: blur(60px); -webkit-backdrop-filter: blur(60px);
-}
-.ds-event-card__tag--small { left: 16px; top: 16px; }
-.ds-event-card__tag--big { left: 24px; top: 24px; }
-.ds-event-card__lock { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--label-always-white); }
-/* _MenuEvent — píldora r20, pad 10, bgBtnDisabled + blur50 */
-.ds-event-card__menu {
-  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
-  display: flex; align-items: center; padding: 10px; border-radius: var(--squircle-20);
-  background: var(--bg-btn-disabled);
-  backdrop-filter: blur(var(--blur-50)); -webkit-backdrop-filter: blur(var(--blur-50));
-}
-.ds-event-card__act {
-  min-width: 46px; display: flex; flex-direction: column; align-items: center;
-  border: none; background: none; padding: 0; cursor: pointer;
-  color: var(--label-always-white); font: 400 11px/1.29 var(--font-main); /* labelSmallRegular */
-}
-.ds-event-card__sep { width: 0.5px; height: 22.78px; margin: 0 6px; flex: none; background: #0000001A; } /* negro 10%, sin token */
 
 /* ── FeatureItem ── */
 /* FeatureItem — port de lib/src/components/feature_item/feature_item.dart

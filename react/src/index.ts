@@ -23,3 +23,5 @@ export { DotsTextField } from './components/DotsTextField/DotsTextField';
 export type { DotsTextFieldProps } from './components/DotsTextField/DotsTextField';
 export { DotsTextFieldDate } from './components/DotsTextFieldDate/DotsTextFieldDate';
 export type { DotsTextFieldDateProps } from './components/DotsTextFieldDate/DotsTextFieldDate';
+export { EventGroupCard } from './components/EventGroupCard/EventGroupCard';
+export type { EventGroupCardProps, EventGroupCardAction, EventGroupCardVariant } from './components/EventGroupCard/EventGroupCard';
