@@ -6,7 +6,7 @@
 //
 // Uso:  node tool/design_sync/check-ports.mjs <archivo.dart> [<archivo.dart>…]
 // Sin argumentos no comprueba nada (no hay ficheros nuevos que mirar).
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -15,14 +15,30 @@ const REPO = resolve(SYNC_DIR, '..', '..');
 const EXCEPTIONS = join(SYNC_DIR, '.port-exceptions.json');
 
 // Clases públicas que extienden un widget de Flutter. Las privadas (_Foo) son
-// internas del propio archivo y nunca se portan.
-const WIDGET_RX = /^class\s+([A-Z]\w*)\s+extends\s+(?:StatelessWidget|StatefulWidget)\b/gm;
+// internas del propio archivo y nunca se portan. El `<T>` opcional cubre los
+// widgets genéricos (p.ej. `class DotsMenu<T> extends StatefulWidget`).
+const WIDGET_RX =
+  /^class\s+([A-Z]\w*)(?:<[^>]*>)?\s+extends\s+(?:StatelessWidget|StatefulWidget)\b/gm;
 
 const cfg = existsSync(EXCEPTIONS)
   ? JSON.parse(readFileSync(EXCEPTIONS, 'utf8'))
   : { ignore: [], aliases: {} };
 const ignore = new Set(cfg.ignore ?? []);
 const aliases = cfg.aliases ?? {};
+
+// La tarjeta vive en components/<grupo>/<Name>/<Name>.html y el grupo lo elige
+// quien porta, así que se busca por todos los grupos.
+function findCard(port) {
+  const root = join(SYNC_DIR, 'components');
+  if (!existsSync(root)) return null;
+  for (const group of readdirSync(root)) {
+    const p = join(root, group, port, `${port}.html`);
+    if (statSync(join(root, group)).isDirectory() && existsSync(p)) {
+      return `components/${group}/${port}/${port}.html`;
+    }
+  }
+  return null;
+}
 
 const files = process.argv.slice(2).filter((f) => f.endsWith('.dart'));
 const missing = [];
@@ -39,10 +55,12 @@ for (const rel of files) {
       continue;
     }
     const port = aliases[cls] ?? cls;
-    if (existsSync(join(SYNC_DIR, '_src', port, `${port}.impl.js`))) {
-      console.log(`  ✓ ${cls} → _src/${port}/`);
+    const hasImpl = existsSync(join(SYNC_DIR, '_src', port, `${port}.impl.js`));
+    const card = findCard(port);
+    if (hasImpl && card) {
+      console.log(`  ✓ ${cls} → _src/${port}/ + ${card}`);
     } else {
-      missing.push({ cls, port, rel });
+      missing.push({ cls, port, rel, hasImpl, card });
     }
   }
 }
@@ -58,11 +76,13 @@ if (!missing.length) {
   process.exit(0);
 }
 
-for (const { cls, port, rel } of missing) {
-  console.log(
-    `::error file=${rel}::${cls} no tiene port web. Falta tool/design_sync/_src/${port}/${port}.impl.js ` +
-      `(y su tarjeta en components/<grupo>/${port}/).`,
-  );
+for (const { cls, port, rel, hasImpl, card } of missing) {
+  const falta = !hasImpl && !card
+    ? `Faltan tool/design_sync/_src/${port}/${port}.impl.js y su tarjeta components/<grupo>/${port}/${port}.html`
+    : !hasImpl
+      ? `Falta tool/design_sync/_src/${port}/${port}.impl.js (la tarjeta ${card} sí está)`
+      : `Falta la tarjeta components/<grupo>/${port}/${port}.html (el _src/${port}/ sí está)`;
+  console.log(`::error file=${rel}::${cls} no tiene port web completo. ${falta}.`);
 }
 console.log(`
 Cómo resolverlo, según el caso:

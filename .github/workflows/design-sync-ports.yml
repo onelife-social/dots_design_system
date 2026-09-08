@@ -21,7 +21,9 @@ permissions:
 jobs:
   check-ports:
     runs-on: ubuntu-latest
-    if: "!contains(join(github.event.pull_request.labels.*.name, ','), 'design-sync:skip')"
+    # contains() sobre el array compara elemento a elemento: una label como
+    # design-sync:skip-temporal NO cuela (con join + substring sí colaría).
+    if: "!contains(github.event.pull_request.labels.*.name, 'design-sync:skip')"
     steps:
       - uses: actions/checkout@v4
         with:
