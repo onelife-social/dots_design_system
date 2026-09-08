@@ -147,9 +147,14 @@
   -webkit-box-orient: vertical;
   white-space: normal;
   overflow: hidden;
+  /* La prop existe justamente para mensajes con nombre de archivo: un token
+     largo sin espacios debe partirse en vez de desbordar (Flutter parte por
+     carácter cuando la palabra no cabe). */
+  overflow-wrap: anywhere;
 }
 .ds-upload-item__process-text--wrap {
   white-space: normal;
   overflow: visible;
   text-overflow: clip;
+  overflow-wrap: anywhere;
 }

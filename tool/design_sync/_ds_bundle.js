@@ -1561,23 +1561,26 @@ __ds.DotsBottomEdgeBlur = (function () {
     var edgeSize = props.edgeSize;
     var sigma = props.sigma === undefined ? 12 : props.sigma;
 
-    // Dart: `if (edgeSize <= 0 || sigma <= 0) return child;`
+    // Dart: `if (edgeSize <= 0 || sigma <= 0) return child;` — devolvemos el hijo
+    // sin envolver, para no alterar su layout (margin collapsing, flex/grid…).
+    // Solo si llega className hace falta el contenedor para poder aplicarlo.
     if (!(edgeSize > 0) || !(sigma > 0)) {
-      return h('div', {
-        className: 'ds-bottom-edge-blur' + (props.className ? ' ' + props.className : ''),
-      }, props.children);
+      return props.className
+        ? h('div', { className: 'ds-bottom-edge-blur ' + props.className }, props.children)
+        : props.children;
     }
 
-    return h('div', {
-      className: 'ds-bottom-edge-blur' + (props.className ? ' ' + props.className : ''),
-    }, [
+    // Hijos como argumentos posicionales (no como array): así React no los trata
+    // como lista y no exige `key` en el children que llegue de fuera.
+    return h(
+      'div',
+      { className: 'ds-bottom-edge-blur' + (props.className ? ' ' + props.className : '') },
       props.children,
       h('div', {
-        key: 'band',
         className: 'ds-bottom-edge-blur__band',
         style: { height: edgeSize + 'px', '--ds-beb-sigma': sigma + 'px' },
-      }),
-    ]);
+      })
+    );
   }
 
   return DotsBottomEdgeBlur;
@@ -4717,7 +4720,12 @@ __ds.DotsUploadItem = (function () {
     // Fila de estado — icono 14 (girando si processing) + processText.
     // processTextMaxLines (Dart): 1 = una línea con ellipsis (por defecto),
     // n>1 = recorta a n líneas, null = deja que el texto haga wrap libre.
-    var maxLines = props.processTextMaxLines === undefined ? 1 : props.processTextMaxLines;
+    // El Dart tiene `assert(processTextMaxLines == null || > 0)`; aquí no hay
+    // asserts, así que normalizamos: null = wrap libre, entero > 1 = recorte a n
+    // líneas, y cualquier otra cosa (0, negativos, NaN…) cae a una sola línea
+    // en vez de dejar el texto invisible con un clamp de 0.
+    var raw = props.processTextMaxLines === undefined ? 1 : props.processTextMaxLines;
+    var maxLines = raw === null ? null : (Number.isFinite(raw) && raw > 1 ? Math.floor(raw) : 1);
     var multiline = maxLines !== 1;
     var textClass = 'ds-upload-item__process-text';
     var textStyle = null;

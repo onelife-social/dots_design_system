@@ -41,7 +41,12 @@ __ds.DotsUploadItem = (function () {
     // Fila de estado — icono 14 (girando si processing) + processText.
     // processTextMaxLines (Dart): 1 = una línea con ellipsis (por defecto),
     // n>1 = recorta a n líneas, null = deja que el texto haga wrap libre.
-    var maxLines = props.processTextMaxLines === undefined ? 1 : props.processTextMaxLines;
+    // El Dart tiene `assert(processTextMaxLines == null || > 0)`; aquí no hay
+    // asserts, así que normalizamos: null = wrap libre, entero > 1 = recorte a n
+    // líneas, y cualquier otra cosa (0, negativos, NaN…) cae a una sola línea
+    // en vez de dejar el texto invisible con un clamp de 0.
+    var raw = props.processTextMaxLines === undefined ? 1 : props.processTextMaxLines;
+    var maxLines = raw === null ? null : (Number.isFinite(raw) && raw > 1 ? Math.floor(raw) : 1);
     var multiline = maxLines !== 1;
     var textClass = 'ds-upload-item__process-text';
     var textStyle = null;

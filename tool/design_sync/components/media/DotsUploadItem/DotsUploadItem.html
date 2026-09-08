@@ -43,6 +43,10 @@
         variant: 'error', textDate: '12 de marzo, 2024', processText: LONG,
         processTextMaxLines: 2, btnText: 'Reintentar', onBtnClick: function () {}, alt: 'ccc'
       })],
+      ['token largo sin espacios (overflow-wrap)', h('div', { style: { width: '260px' } },
+        h(C, { variant: 'processing', percentage: 0.4, textDate: '12 de marzo, 2024',
+          processText: 'IMG_20260908_vacaciones_playa_familia_completo_sin_espacios.heic',
+          processTextMaxLines: null, alt: 'a' }))],
       ['dark', h('div', null,
         h(C, { variant: 'processing', percentage: 0.32, textDate: '12 de marzo, 2024', processText: 'Subiendo 4 recuerdos…', alt: 'a' }),
         h(C, { variant: 'error', textDate: '12 de marzo, 2024', processText: 'Error al subir', btnText: 'Reintentar', alt: 'ccc' })
