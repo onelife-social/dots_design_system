@@ -1,0 +1,31 @@
+{
+  "_comment": "Excepciones del check de ports (tool/design_sync/check-ports.mjs). 'ignore': widgets Dart que NO deben tener port web. 'aliases': clase Dart -> carpeta en _src/ cuando el port existe con otro nombre o vive dentro de otro componente (p.ej. sub-widgets expuestos como miembro: DropdownMenu.Item).",
+  "ignore": [
+    "DotsDecoratedBox",
+    "DotsStyleText",
+    "DotsShaderMask"
+  ],
+  "aliases": {
+    "DotsListsItem": "DotsListItem",
+    "SpinnerRound": "DotsSpinner",
+    "DotsImageThumbnail": "ImageThumbnail",
+    "CountdownRecap": "DotsCountdown",
+    "CountdownEventFinished": "DotsCountdown",
+    "DotsLinearGradientBlur": "BlurContainer",
+    "DotsColorOptionsRow": "ColorSelector",
+    "DotsColorSelectorRow": "ColorSelector",
+    "DotsSquircleImageTag": "DotsSquirclePhoto",
+    "DotsProfilePhotoBited": "DotsProfilePhoto",
+    "SettingsItem": "DotsMenu",
+    "SettingsList": "DotsMenu",
+    "UserInfo": "UserItem",
+    "DropdownItem": "DropdownMenu",
+    "DropdownList": "DropdownMenu",
+    "ActivityOverviewItem": "ActivityPreview",
+    "UsersItemList": "UsersList",
+    "RecapCardLocked": "RecapCard",
+    "BadgeIconGroup": "BadgeIcon",
+    "DotsSelectorRadioButtonLabel": "DotsSelectorRadioButton",
+    "DotsSettingItemRadioBtn": "DotsSelectorRadioButton"
+  }
+}

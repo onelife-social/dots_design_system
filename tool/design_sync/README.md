@@ -74,6 +74,31 @@ nada — pero re-sincronizad de uno en uno y siempre desde `develop` al día
 La coherencia entre las copias de cada cuenta la garantiza git, no claude.ai:
 tras un `git pull` que toque `tool/design_sync/`, re-sincroniza.
 
+## Mantener las dos mitades en sync
+
+Cada componente vive en dos mitades: la **Flutter** (`lib/src/components/`, la que
+usa la app) y el **port web** (`_src/<Name>/` + `components/<grupo>/<Name>/`, el que
+consume claude.ai/design). Si una PR añade solo la primera, el design system se
+desincroniza en silencio: los diseños dejan de poder montar ese componente y lo
+reconstruyen a mano.
+
+Para evitarlo, el workflow `.github/workflows/design-sync-ports.yml` comprueba en
+cada PR contra `develop` que todo widget **nuevo** de `lib/src/components/` tenga
+su port. En local:
+
+```
+node tool/design_sync/check-ports.mjs <archivos .dart nuevos>
+```
+
+Cuando el check salta hay cuatro salidas, según el caso:
+
+| Situación | Qué hacer |
+|---|---|
+| Es un componente con UI montable | Escribe el port (ver `_src/CONVENTIONS.md`) y `node tool/design_sync/_src/build.mjs` |
+| Es un helper interno sin identidad visual | Añádelo a `ignore` en `.port-exceptions.json` |
+| Ya está portado dentro de otro componente | Mapéalo en `aliases` de ese mismo archivo |
+| Se porta en otra PR | Label `design-sync:skip` (y abre issue para no perderlo) |
+
 ## Sync notes (Claude Code / DesignSync)
 
 Bundle rebuilt with `node tool/design_sync/_src/build.mjs` from the per-component
