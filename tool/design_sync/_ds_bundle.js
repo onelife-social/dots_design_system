@@ -2016,9 +2016,10 @@ __ds.DotsGameCard = (function () {
   function DotsGameCard(props) {
     var status = props.status || 'active';
 
-    // `!= null` a propósito: un `image={cond ? <X/> : null}` debe caer a imageSrc,
-    // no dejar el artwork vacío (mismo criterio que title/primaryLabel en otros ports).
-    var art = props.image != null
+    // Comprobación truthy (como los slots `badge`/`icon` de otros ports): cubre
+    // undefined, null y `false`, de modo que tanto `image={cond ? <X/> : null}`
+    // como `image={cond && <X/>}` caigan a imageSrc en vez de vaciar el artwork.
+    var art = props.image
       ? props.image
       : (props.imageSrc
           ? h('img', { className: 'ds-game-card__img', src: props.imageSrc, alt: props.imageAlt || '' })
