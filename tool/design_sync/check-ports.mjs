@@ -50,6 +50,22 @@ if (
 ) {
   badType.push(`"aliases" debe ser un objeto ClaseDart -> CarpetaPort (llegó ${Array.isArray(cfg.aliases) ? 'array' : typeof cfg.aliases})`);
 }
+// Y los valores de dentro: un número o un null acabarían en path.join() como un
+// TypeError sin contexto, justo lo que este bloque existe para evitar.
+if (Array.isArray(cfg.ignore)) {
+  for (const [i, v] of cfg.ignore.entries()) {
+    if (typeof v !== 'string') {
+      badType.push(`"ignore[${i}]" debe ser el nombre de una clase Dart (string), llegó ${JSON.stringify(v)}`);
+    }
+  }
+}
+if (cfg.aliases && typeof cfg.aliases === 'object' && !Array.isArray(cfg.aliases)) {
+  for (const [k, v] of Object.entries(cfg.aliases)) {
+    if (typeof v !== 'string') {
+      badType.push(`"aliases.${k}" debe ser el nombre de la carpeta del port (string), llegó ${JSON.stringify(v)}`);
+    }
+  }
+}
 if (badType.length) {
   for (const msg of badType) {
     console.log(`::error file=tool/design_sync/.port-exceptions.json::${msg}`);
