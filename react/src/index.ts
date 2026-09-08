@@ -25,3 +25,16 @@ export { DotsTextFieldDate } from './components/DotsTextFieldDate/DotsTextFieldD
 export type { DotsTextFieldDateProps } from './components/DotsTextFieldDate/DotsTextFieldDate';
 export { EventGroupCard } from './components/EventGroupCard/EventGroupCard';
 export type { EventGroupCardProps, EventGroupCardAction, EventGroupCardVariant } from './components/EventGroupCard/EventGroupCard';
+export { DotsToggle } from './components/DotsToggle/DotsToggle';
+export type { DotsToggleProps } from './components/DotsToggle/DotsToggle';
+export { DotsRichButton } from './components/DotsRichButton/DotsRichButton';
+export type { DotsRichButtonProps } from './components/DotsRichButton/DotsRichButton';
+export { DotsActionSheet, DotsActionSheetListItem } from './components/DotsActionSheet/DotsActionSheet';
+export type {
+  DotsActionSheetProps,
+  DotsActionSheetVariant,
+  DotsActionSheetListItemProps,
+  DotsActionSheetRadioOption,
+  DotsActionSheetSelectedItem,
+  DotsActionSheetSystemButton,
+} from './components/DotsActionSheet/DotsActionSheet';
