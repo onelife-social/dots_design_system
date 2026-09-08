@@ -17,8 +17,11 @@ const EXCEPTIONS = join(SYNC_DIR, '.port-exceptions.json');
 // Clases públicas que extienden un widget de Flutter. Las privadas (_Foo) son
 // internas del propio archivo y nunca se portan. El `<T>` opcional cubre los
 // widgets genéricos (p.ej. `class DotsMenu<T> extends StatefulWidget`).
+// Los modificadores son los de Dart 3 (el paquete va con sdk ^3.9.0): hoy no
+// se usan en widgets, pero `final class Foo extends StatelessWidget` es legal
+// y no debería colarse.
 const WIDGET_RX =
-  /^class\s+([A-Z]\w*)(?:<[^>]*>)?\s+extends\s+(?:StatelessWidget|StatefulWidget)\b/gm;
+  /^\s*(?:(?:abstract|base|final|interface|sealed|mixin)\s+)*class\s+([A-Z]\w*)(?:<[^>]*>)?\s+extends\s+(?:StatelessWidget|StatefulWidget)\b/gm;
 
 let cfg = { ignore: [], aliases: {} };
 if (existsSync(EXCEPTIONS)) {
@@ -34,6 +37,26 @@ if (existsSync(EXCEPTIONS)) {
     process.exit(1);
   }
 }
+// JSON válido pero mal tipado (ignore como objeto, aliases como array…) haría
+// reventar el Set o daría alias que nunca resuelven; se avisa igual que con el
+// JSON roto, porque este archivo lo edita gente a mano.
+const badType = [];
+if (cfg.ignore !== undefined && !Array.isArray(cfg.ignore)) {
+  badType.push(`"ignore" debe ser un array de nombres de clase (llegó ${typeof cfg.ignore})`);
+}
+if (
+  cfg.aliases !== undefined &&
+  (typeof cfg.aliases !== 'object' || cfg.aliases === null || Array.isArray(cfg.aliases))
+) {
+  badType.push(`"aliases" debe ser un objeto ClaseDart -> CarpetaPort (llegó ${Array.isArray(cfg.aliases) ? 'array' : typeof cfg.aliases})`);
+}
+if (badType.length) {
+  for (const msg of badType) {
+    console.log(`::error file=tool/design_sync/.port-exceptions.json::${msg}`);
+  }
+  process.exit(1);
+}
+
 const ignore = new Set(cfg.ignore ?? []);
 const aliases = cfg.aliases ?? {};
 
