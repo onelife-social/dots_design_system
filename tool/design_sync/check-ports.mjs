@@ -20,6 +20,11 @@ const EXCEPTIONS = join(SYNC_DIR, '.port-exceptions.json');
 // Los modificadores son los de Dart 3 (el paquete va con sdk ^3.9.0): hoy no
 // se usan en widgets, pero `final class Foo extends StatelessWidget` es legal
 // y no debería colarse.
+// Nombres de clase / carpeta: identificador simple. Sirve para cazar erratas
+// del tipo "cards/DotsGameCard", que si no acabarían buscando en un sitio raro
+// y dando un error confuso.
+const NAME_RX = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
+
 const WIDGET_RX =
   /^\s*(?:(?:abstract|base|final|interface|sealed|mixin)\s+)*class\s+([A-Z]\w*)(?:<[^>]*>)?\s+extends\s+(?:StatelessWidget|StatefulWidget)\b/gm;
 
@@ -56,6 +61,8 @@ if (Array.isArray(cfg.ignore)) {
   for (const [i, v] of cfg.ignore.entries()) {
     if (typeof v !== 'string') {
       badType.push(`"ignore[${i}]" debe ser el nombre de una clase Dart (string), llegó ${JSON.stringify(v)}`);
+    } else if (!NAME_RX.test(v)) {
+      badType.push(`"ignore[${i}]" debe ser un nombre de clase simple: llegó ${JSON.stringify(v)}`);
     }
   }
 }
@@ -63,6 +70,8 @@ if (cfg.aliases && typeof cfg.aliases === 'object' && !Array.isArray(cfg.aliases
   for (const [k, v] of Object.entries(cfg.aliases)) {
     if (typeof v !== 'string') {
       badType.push(`"aliases.${k}" debe ser el nombre de la carpeta del port (string), llegó ${JSON.stringify(v)}`);
+    } else if (!NAME_RX.test(v)) {
+      badType.push(`"aliases.${k}" debe ser un nombre simple de carpeta, sin barras ni "..": llegó ${JSON.stringify(v)}`);
     }
   }
 }
@@ -84,7 +93,7 @@ function findCard(port) {
   for (const group of readdirSync(root)) {
     const p = join(root, group, port, `${port}.html`);
     if (statSync(join(root, group)).isDirectory() && existsSync(p)) {
-      return `components/${group}/${port}/${port}.html`;
+      return `tool/design_sync/components/${group}/${port}/${port}.html`;
     }
   }
   return null;
@@ -115,7 +124,7 @@ for (const rel of files) {
     const hasImpl = existsSync(join(SYNC_DIR, '_src', port, `${port}.impl.js`));
     const card = findCard(port);
     if (hasImpl && card) {
-      console.log(`  ✓ ${cls} → _src/${port}/ + ${card}`);
+      console.log(`  ✓ ${cls} → tool/design_sync/_src/${port}/ + ${card}`);
     } else {
       missing.push({ cls, port, rel, hasImpl, card });
     }
@@ -135,10 +144,10 @@ if (!missing.length) {
 
 for (const { cls, port, rel, hasImpl, card } of missing) {
   const falta = !hasImpl && !card
-    ? `Faltan tool/design_sync/_src/${port}/${port}.impl.js y su tarjeta components/<grupo>/${port}/${port}.html`
+    ? `Faltan tool/design_sync/_src/${port}/${port}.impl.js y su tarjeta tool/design_sync/components/<grupo>/${port}/${port}.html`
     : !hasImpl
       ? `Falta tool/design_sync/_src/${port}/${port}.impl.js (la tarjeta ${card} sí está)`
-      : `Falta la tarjeta components/<grupo>/${port}/${port}.html (el _src/${port}/ sí está)`;
+      : `Falta la tarjeta tool/design_sync/components/<grupo>/${port}/${port}.html (el tool/design_sync/_src/${port}/ sí está)`;
   console.log(`::error file=${rel}::${cls} no tiene port web completo. ${falta}.`);
 }
 console.log(`
