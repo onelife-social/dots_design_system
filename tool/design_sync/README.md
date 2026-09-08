@@ -76,10 +76,23 @@ tras un `git pull` que toque `tool/design_sync/`, re-sincroniza.
 
 ## Sync notes (Claude Code / DesignSync)
 
-Bundle rebuilt with `node tool/design_sync/_src/build.mjs` from the per-component
-sources in `tool/design_sync/_src/` (staging, not uploaded). Cards carry a
-first-line `<!-- @dsCard group="…" -->` marker. If Dart tokens or components
-change, regenerate the affected port and re-run the build + sync.
+This directory is a **build output** of the React package in `react/` (the
+TSX implementation of the design system, consumed by the web apps). Rebuild it
+with:
+
+```sh
+cd react && npm install && npm run build
+```
+
+- Ported components live in `react/src/components/<Name>/` (TSX + CSS). Their
+  `.d.ts` card file is regenerated from the TSX by the build.
+- Components not yet ported still live in `_src/<Name>/` in the legacy
+  `impl.js` + CSS format (see `_src/CONVENTIONS.md`); the build concatenates
+  both sets into `_ds_bundle.js`. Porting a component = writing it in
+  `react/src/components/` and deleting its `_src/<Name>/` dir.
+- `foundations/tokens.css` and `assets/fonts/` are copied from `react/src/`
+  (single source; edit them there).
+- Cards carry a first-line `<!-- @dsCard group="…" -->` marker.
 
 Approximations kept from the card layer: squircles → `border-radius`
 (no cornerSmoothing), blurs → `backdrop-filter`.

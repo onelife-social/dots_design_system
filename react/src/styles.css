@@ -1,0 +1,6 @@
+/* Single stylesheet entry of the design system: tokens + every component's styles.
+   Apps import "@dots/design-system/styles.css" once. */
+@import "./foundations/tokens.css";
+@import "./components/DotsIcon/DotsIcon.css";
+@import "./components/DotsSpinner/DotsSpinner.css";
+@import "./components/DotsMainButton/DotsMainButton.css";
