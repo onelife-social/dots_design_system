@@ -9,6 +9,13 @@ enum PageControlVariant {
   bool get isBackground => this == PageControlVariant.background;
 }
 
+/// Page indicator dots, centered across the full width of its parent.
+///
+/// Internally lays out as `SizedBox(width: double.infinity)`, so it REQUIRES
+/// a bounded width. In unbounded contexts (`Positioned` without right/width,
+/// `Row` without Expanded, scrollables' cross axis) wrap it in a `SizedBox`;
+/// its natural width is `count × (dotSize + dotSpacing)` plus the horizontal
+/// `contentPadding` (main variant: `count × 16 + 24`).
 class PageControl extends StatelessWidget {
   /// Total number of dots to render.
   final int count;
