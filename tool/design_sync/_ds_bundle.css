@@ -4155,18 +4155,22 @@
 .ds-product-card__bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
 /* Placeholder cuando no llega imageSrc (degradado, sin token — como AlbumGroupCard) */
 .ds-product-card__bg--ph { background-image: linear-gradient(140deg, #96b4ce, #e0c3a4, #a08fb0); }
-/* SoftEdgeBlur bottomEdge 160 σ12 + degradado negro 0→45% */
+/* Degradado 160 alto, #272727 0→alpha final. Sin blur: el diseño no lo lleva.
+   --scrim-end-alpha equivale a scrimEndAlpha en Dart; bajarlo sobre un fondo
+   claro que el degradado completo aplanaría (la card de pack usa 0.3). */
 .ds-product-card__scrim {
+  --scrim-end-alpha: 0.9;
   position: absolute; left: 0; right: 0; bottom: 0; height: 160px; pointer-events: none;
-  background: linear-gradient(180deg, #00000000, #00000073);
-  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-  mask-image: linear-gradient(180deg, transparent, #000 60%);
-  -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%);
+  background: linear-gradient(
+    180deg,
+    rgb(39 39 39 / 0),
+    rgb(39 39 39 / var(--scrim-end-alpha))
+  );
 }
 .ds-product-card__badge { position: absolute; top: 20px; right: 20px; }
-/* PageControl: puntos centrados a 122 del fondo (centro visual, ver Dart) */
+/* PageControl: 20 por encima del título (bottom 20 + copy 62 + gap 20, ver Dart) */
 .ds-product-card__pagecontrol {
-  position: absolute; left: 0; right: 0; bottom: 118px;
+  position: absolute; left: 0; right: 0; bottom: 102px;
   display: flex; justify-content: center; pointer-events: none;
 }
 .ds-product-card__dots { display: flex; gap: 8px; align-items: center; }
@@ -4181,13 +4185,13 @@
   display: flex; align-items: flex-end; gap: 12px;
 }
 .ds-product-card__copy { flex: 1; min-width: 0; padding-left: 4px; color: var(--label-always-white); }
-/* titleH6 18/600 · labelDefaultRegular 13/400 · bodyDefaultMedium 14/500, gaps de 6 */
+/* titleH6 18/600 · labelDefaultRegular 13/400 · bodyDefaultMedium 14/500, gaps de 4 */
 .ds-product-card__title { font: 600 18px/1.28 var(--font-main); letter-spacing: -0.08px; }
 .ds-product-card__subtitle {
-  margin-top: 6px; font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px;
+  margin-top: 4px; font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px;
   color: color-mix(in srgb, var(--label-always-white) 80%, transparent);
 }
-.ds-product-card__caption { margin-top: 6px; font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px; }
+.ds-product-card__caption { margin-top: 4px; font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px; }
 .ds-product-card__caption-prev {
   margin-left: 6px; font: 400 13px/1.31 var(--font-main); text-decoration: line-through;
   color: color-mix(in srgb, var(--label-always-white) 70%, transparent);
