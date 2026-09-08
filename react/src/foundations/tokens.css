@@ -24,6 +24,7 @@
   --bg-container-tertiary: #BABABAE6;
   --bg-secondary-btn: #8C8C8C4D;
   --bg-floating-btn: #303030B3;
+  --bg-floating-active: #00000026;
   --bg-btn-image: #F3F3F399;
   --bg-btn-disabled: #C8C8C866;
   --bg-btn-disabled-opaque: #D8D8D8;
@@ -88,6 +89,7 @@
   --bg-container-tertiary: #414141E6;
   --bg-secondary-btn: #C8C8C84D;
   --bg-floating-btn: #C8C8C866;
+  --bg-floating-active: #C8C8C81A;
   --bg-btn-image: #74747499;
   --bg-btn-disabled: #C8C8C819;
   --bg-btn-disabled-opaque: #313131;

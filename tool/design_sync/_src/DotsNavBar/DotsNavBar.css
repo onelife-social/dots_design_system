@@ -21,11 +21,8 @@
   width: 70px;
   height: 55px;
   border-radius: var(--squircle-32);
-  background: #00000026; /* bgFloatingActive light — sin token en tokens.css */
+  background: var(--bg-floating-active);
   transition: left 0.2s ease;
-}
-[data-theme="dark"] .ds-nav-bar__pill {
-  background: #C8C8C81A; /* bgFloatingActive dark — sin token en tokens.css */
 }
 
 /* Item — 70×55, icono 20 + label, color textSecondary → labelHighlight */
