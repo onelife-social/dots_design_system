@@ -45,6 +45,13 @@ jobs:
           # `...` compara contra el merge-base, que es el diff real de la PR. Con
           # dos puntos, un archivo que develop haya borrado después de ramificar
           # aparecería como "añadido" y el check exigiría portarlo.
-          files=$(git diff --diff-filter=A --name-only "$BASE_SHA...$HEAD_SHA" -- 'lib/src/components/**/*.dart' | tr '\n' ' ')
-          echo "Widgets nuevos a comprobar: ${files:-(ninguno)}"
-          node tool/design_sync/check-ports.mjs $files
+          # Lista como array separada por NUL: cada ruta llega a node como un único
+          # argumento aunque tuviera espacios o caracteres de glob. (La expansión
+          # sin comillas no permite inyección — nunca re-interpreta metacaracteres —,
+          # pero sí partiría por espacios; este es el idioma correcto y no cuesta nada.)
+          files=()
+          while IFS= read -r -d '' f; do files+=("$f"); done < <(
+            git diff -z --diff-filter=A --name-only "$BASE_SHA...$HEAD_SHA" -- 'lib/src/components/**/*.dart'
+          )
+          echo "Widgets nuevos a comprobar: ${files[*]:-(ninguno)}"
+          node tool/design_sync/check-ports.mjs "${files[@]}"
