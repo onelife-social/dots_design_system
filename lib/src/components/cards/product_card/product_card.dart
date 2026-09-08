@@ -1,12 +1,10 @@
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
-import 'package:soft_edge_blur/soft_edge_blur.dart';
 
 import '../../../../dots_design_system.dart';
 
 /// Product card: a square media card whose copy sits **over** the background,
-/// kept readable by a bottom blur + gradient scrim (same technique as
-/// [AlbumGroupCard]).
+/// kept readable by a bottom gradient scrim.
 ///
 /// The background is a slot, so the card works with a single photo, a photo
 /// carousel, a gradient or any other widget. Everything above the background
@@ -15,7 +13,6 @@ import '../../../../dots_design_system.dart';
 /// Figma: Chronicle Design System › `product-card` (358 × 358).
 class ProductCard extends StatelessWidget {
   const ProductCard({
-    this.blurBackground = true,
     super.key,
     required this.title,
     required this.background,
@@ -28,20 +25,13 @@ class ProductCard extends StatelessWidget {
     this.activePage = 0,
     this.actionIcon = DotsIconData.right,
     this.aspectRatio = 1,
+    this.scrimEndAlpha = _defaultScrimEndAlpha,
     this.onTap,
     this.onActionTap,
   });
 
   /// Main line, always shown.
   final String title;
-
-  /// Whether the bottom scrim also blurs the background.
-  ///
-  /// Turn it off when [background] holds state — a `PageView`, say. The blur
-  /// paints a second, independent copy of the background, which a carousel
-  /// desynchronises from: the band keeps showing the page you swiped away
-  /// from. Without it the scrim is the gradient alone.
-  final bool blurBackground;
 
   /// Fills the whole card behind the scrim: photo, `PageView`, gradient…
   final Widget background;
@@ -77,30 +67,49 @@ class ProductCard extends StatelessWidget {
   /// screens that lay the card out at another height override it.
   final double aspectRatio;
 
+  /// Alpha the scrim reaches at the bottom edge, `0`–`1`. Defaults to the
+  /// design value; dial it down over a light background it would flatten.
+  final double scrimEndAlpha;
+
   /// Tap on the whole card.
   final VoidCallback? onTap;
 
   /// Tap on the trailing action button. `null` hides the button.
   final VoidCallback? onActionTap;
 
-  /// Height of the bottom blur + gradient band.
+  /// Height of the bottom gradient band.
   static const double _scrimHeight = 160;
 
   /// Distance from the bottom edge to the copy block and to the dots.
   static const double _contentBottomInset = 20;
 
-  /// The design places a 24-tall PageControl 110 from the bottom, so its dots
-  /// are centred at 122. `PageControlVariant.main` adds 18 of vertical
-  /// contentPadding around its 8px dots, making the widget 44 tall — position
-  /// it by that centre instead of its edge.
-  static const double _dotsBottomInset = 122 - 44 / 2;
+  /// Line boxes of the three copy lines (18/13/14 type at 23/17/18 leading).
+  static const double _copyBlockHeight = 23 + _copyGap + 17 + _copyGap + 18;
+
+  /// `PageControlVariant.main` wraps its 8px dots in 18 of vertical
+  /// contentPadding, so the widget's edge sits that far off the dots.
+  static const double _pageControlPadding = 18;
+
+  /// Visible gap from the dots down to the title.
+  static const double _dotsToTitleGap = 20;
+
+  /// Dots are positioned by the widget's bottom edge, so the copy block, the
+  /// wanted gap and the control's own padding all come off it.
+  static const double _dotsBottomInset =
+      _contentBottomInset + _copyBlockHeight + _dotsToTitleGap - _pageControlPadding;
 
   /// Horizontal padding, plus the extra left inset the design gives the copy.
   static const double _horizontalPadding = 20;
   static const double _copyLeftInset = 4;
 
   /// Vertical rhythm inside the copy block.
-  static const double _copyGap = 6;
+  static const double _copyGap = 4;
+
+  /// Scrim tint. Figma uses a neutral dark grey, not pure black.
+  static const Color _scrimColor = Color(0xFF272727);
+
+  /// Alpha at the bottom edge of the scrim in the Figma component.
+  static const double _defaultScrimEndAlpha = 0.9;
 
   @override
   Widget build(BuildContext context) {
@@ -137,25 +146,7 @@ class ProductCard extends StatelessWidget {
             aspectRatio: aspectRatio,
             child: Stack(
               children: [
-                if (!blurBackground)
-                  Positioned.fill(child: background)
-                else
-                  Positioned.fill(
-                    child: SoftEdgeBlur(
-                      edges: [
-                        EdgeBlur(
-                          type: EdgeType.bottomEdge,
-                          size: _scrimHeight,
-                          sigma: 12,
-                          controlPoints: [
-                            ControlPoint(position: 0.5, type: ControlPointType.visible),
-                            ControlPoint(position: 1, type: ControlPointType.transparent),
-                          ],
-                        ),
-                      ],
-                      child: background,
-                    ),
-                  ),
+                Positioned.fill(child: background),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: IgnorePointer(
@@ -167,8 +158,8 @@ class ProductCard extends StatelessWidget {
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
-                            Colors.black.withValues(alpha: 0),
-                            Colors.black.withValues(alpha: 0.45),
+                            _scrimColor.withValues(alpha: 0),
+                            _scrimColor.withValues(alpha: scrimEndAlpha),
                           ],
                         ),
                       ),
@@ -181,7 +172,6 @@ class ProductCard extends StatelessWidget {
                     right: _horizontalPadding,
                     child: badge!,
                   ),
-                // Painted outside the SoftEdgeBlur so the dots stay sharp.
                 if (pageCount > 0)
                   Positioned(
                     left: 0,
