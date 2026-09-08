@@ -1,8 +1,14 @@
 # Avisa cuando una PR añade un widget nuevo en lib/src/components/ sin su port
-# web en tool/design_sync/_src/. Cada componente tiene dos mitades: la Flutter
-# (la que usa la app) y el port React que consume el design system de
-# claude.ai/design. Si solo llega la primera, el design system se desincroniza
-# en silencio y los diseños no pueden montar ese componente.
+# web en tool/design_sync/_src/ (+ su tarjeta en components/<grupo>/). Cada
+# componente tiene dos mitades: la Flutter (la que usa la app) y el port React
+# que consume el design system de claude.ai/design. Si solo llega la primera,
+# el design system se desincroniza en silencio y los diseños no pueden montar
+# ese componente.
+#
+# Corre en TODA PR contra develop (sin filtro de paths) y siempre termina en
+# success o failure, nunca en "skipped": así puede marcarse como required check
+# sin que se quede colgado en pending. Cuando no hay .dart nuevos que mirar,
+# pasa en verde diciéndolo.
 #
 # Escapes: label design-sync:skip, o declarar el widget en
 # tool/design_sync/.port-exceptions.json (ignore / aliases).
@@ -12,8 +18,6 @@ on:
   pull_request:
     types: [opened, reopened, synchronize, labeled, unlabeled]
     branches: [develop]
-    paths:
-      - 'lib/src/components/**'
 
 permissions:
   contents: read
@@ -21,26 +25,26 @@ permissions:
 jobs:
   check-ports:
     runs-on: ubuntu-latest
-    # contains() sobre el array compara elemento a elemento: una label como
-    # design-sync:skip-temporal NO cuela (con join + substring sí colaría).
-    if: "!contains(github.event.pull_request.labels.*.name, 'design-sync:skip')"
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Archivos .dart NUEVOS bajo lib/src/components/
-        id: added
+      - name: Comprobar que cada widget nuevo tiene su port web
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          # contains() sobre el array compara elemento a elemento: una label
+          # design-sync:skip-temporal NO cuela (con join + substring sí colaría).
+          SKIP: ${{ contains(github.event.pull_request.labels.*.name, 'design-sync:skip') }}
         run: |
+          if [ "$SKIP" = "true" ]; then
+            echo "::notice::Check saltado a propósito por la label design-sync:skip. Abre issue para no perder el port."
+            exit 0
+          fi
           # `...` compara contra el merge-base, que es el diff real de la PR. Con
           # dos puntos, un archivo que develop haya borrado después de ramificar
           # aparecería como "añadido" y el check exigiría portarlo.
           files=$(git diff --diff-filter=A --name-only "$BASE_SHA...$HEAD_SHA" -- 'lib/src/components/**/*.dart' | tr '\n' ' ')
-          echo "files=$files" >> "$GITHUB_OUTPUT"
-          echo "Nuevos: ${files:-(ninguno)}"
-
-      - name: Comprobar que cada widget nuevo tiene su port web
-        run: node tool/design_sync/check-ports.mjs ${{ steps.added.outputs.files }}
+          echo "Widgets nuevos a comprobar: ${files:-(ninguno)}"
+          node tool/design_sync/check-ports.mjs $files

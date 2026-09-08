@@ -20,9 +20,20 @@ const EXCEPTIONS = join(SYNC_DIR, '.port-exceptions.json');
 const WIDGET_RX =
   /^class\s+([A-Z]\w*)(?:<[^>]*>)?\s+extends\s+(?:StatelessWidget|StatefulWidget)\b/gm;
 
-const cfg = existsSync(EXCEPTIONS)
-  ? JSON.parse(readFileSync(EXCEPTIONS, 'utf8'))
-  : { ignore: [], aliases: {} };
+let cfg = { ignore: [], aliases: {} };
+if (existsSync(EXCEPTIONS)) {
+  try {
+    cfg = JSON.parse(readFileSync(EXCEPTIONS, 'utf8'));
+  } catch (e) {
+    // Sin esto, un JSON mal formado revienta con un stacktrace que no dice
+    // qué arreglar; el fallo del workflow debe ser accionable.
+    console.log(
+      `::error file=tool/design_sync/.port-exceptions.json::JSON inválido: ${e.message}. ` +
+        'Corrige el archivo (o bórralo para volver al comportamiento por defecto: sin ignore ni aliases).',
+    );
+    process.exit(1);
+  }
+}
 const ignore = new Set(cfg.ignore ?? []);
 const aliases = cfg.aliases ?? {};
 
@@ -45,8 +56,15 @@ const missing = [];
 let checked = 0;
 
 for (const rel of files) {
-  const abs = resolve(REPO, rel);
-  if (!existsSync(abs)) continue; // borrado en la misma PR
+  // El workflow pasa rutas relativas a la raíz del repo; en local es cómodo
+  // poder pasarlas relativas al cwd. Si no aparece por ninguna de las dos vías
+  // se avisa, en vez de ignorarlo en silencio (se pierde el aviso más útil:
+  // que el archivo no era el que creías).
+  const abs = [resolve(REPO, rel), resolve(process.cwd(), rel)].find((p) => existsSync(p));
+  if (!abs) {
+    console.log(`  · ${rel} — no existe (¿borrado en esta PR?), se omite`);
+    continue;
+  }
   const src = readFileSync(abs, 'utf8');
   for (const [, cls] of src.matchAll(WIDGET_RX)) {
     checked++;
