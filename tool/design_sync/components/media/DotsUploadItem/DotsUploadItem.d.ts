@@ -16,6 +16,9 @@ export interface DotsUploadItemProps {
   textDate?: string;
   /** Texto de estado junto al icono (labelDefaultRegular). */
   processText?: string;
+  /** Máximo de líneas de `processText`: 1 (por defecto) una línea con ellipsis,
+   *  n>1 recorta a n líneas, `null` deja que el texto haga wrap libre. */
+  processTextMaxLines?: number | null;
   /** (success) Tiempo transcurrido bajo el estado. */
   timeElapsed?: string;
   /** (success/error) Texto del botón derecho (DotsMainButton medium). */

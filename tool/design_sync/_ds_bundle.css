@@ -939,6 +939,47 @@
   background: var(--bg-secondary-btn); color: var(--text-secondary); font-size: 16px; line-height: 1;
 }
 
+/* ── DotsBottomEdgeBlur ── */
+/* DotsBottomEdgeBlur — desenfoque progresivo en el borde inferior.
+   El Dart pinta una copia borrosa del hijo y la funde con una máscara vertical
+   (dejó atrás BackdropFilter por el shimmer de Impeller al hacer scroll). En web
+   no existe ese problema y `backdrop-filter` da el mismo resultado sin duplicar
+   el DOM — por eso el port no necesita el `blurChild` del Dart. */
+.ds-bottom-edge-blur {
+  position: relative;
+}
+
+/* Banda de alto `edgeSize` pegada abajo. La máscara replica el smoothstep del
+   Dart (_fadeOpacities 0 / .11 / .35 / .65 / .89 / 1 repartidos por la banda):
+   arriba no hay desenfoque y abajo está al máximo. */
+.ds-bottom-edge-blur__band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;          /* Dart: IgnorePointer */
+  backdrop-filter: blur(var(--ds-beb-sigma, 12px));
+  -webkit-backdrop-filter: blur(var(--ds-beb-sigma, 12px));
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0) 0%,
+    rgb(0 0 0 / 0.11) 20%,
+    rgb(0 0 0 / 0.35) 40%,
+    rgb(0 0 0 / 0.65) 60%,
+    rgb(0 0 0 / 0.89) 80%,
+    rgb(0 0 0 / 1) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0) 0%,
+    rgb(0 0 0 / 0.11) 20%,
+    rgb(0 0 0 / 0.35) 40%,
+    rgb(0 0 0 / 0.65) 60%,
+    rgb(0 0 0 / 0.89) 80%,
+    rgb(0 0 0 / 1) 100%
+  );
+}
+
 /* ── DotsCaptureButton ── */
 /* DotsCaptureButton — Ø80, inner Ø68 (photo·recording Ø60), ring 6 (capture_button/) */
 .ds-capture {
@@ -3331,6 +3372,32 @@
   background: var(--bg-secondary-btn);
   color: var(--text-secondary);
   backdrop-filter: blur(var(--blur-50));
+}
+
+/* processTextMaxLines — Dart: 1 (por defecto) una línea con ellipsis; n>1 recorta
+   a n líneas; null deja el wrap libre. Con multilínea la fila se alinea arriba y
+   el icono baja 2px para caer en la primera línea. */
+.ds-upload-item__process--multiline {
+  align-items: flex-start;
+}
+.ds-upload-item__process--multiline .ds-upload-item__process-icon {
+  padding-top: 2px;
+}
+.ds-upload-item__process-text--clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  overflow: hidden;
+  /* La prop existe justamente para mensajes con nombre de archivo: un token
+     largo sin espacios debe partirse en vez de desbordar (Flutter parte por
+     carácter cuando la palabra no cabe). */
+  overflow-wrap: anywhere;
+}
+.ds-upload-item__process-text--wrap {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
 }
 
 /* ── DropdownMenu ── */

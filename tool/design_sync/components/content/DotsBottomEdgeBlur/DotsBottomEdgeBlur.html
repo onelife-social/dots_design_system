@@ -1,0 +1,67 @@
+<!-- @dsCard group="content" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsBottomEdgeBlur;
+
+    // Contenido de ejemplo: rejilla de fotos, el caso real (fundido al pie de una card)
+    function photos(n) {
+      var cells = [];
+      var g = ['linear-gradient(140deg,#96b4ce,#e0c3a4)', 'linear-gradient(140deg,#c9a6d6,#8fb0d9)',
+               'linear-gradient(140deg,#e0c3a4,#a08fb0)', 'linear-gradient(140deg,#8fb0d9,#96b4ce)'];
+      for (var i = 0; i < n; i++) {
+        cells.push(h('div', { key: 'p' + i, style: {
+          aspectRatio: '1', borderRadius: '12px', background: g[i % 4] } }));
+      }
+      return h('div', { style: {
+        display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '8px', padding: '12px' } }, cells);
+    }
+
+    function frame(children) {
+      return h('div', { style: { width: '280px', height: '220px', overflow: 'hidden',
+        borderRadius: 'var(--squircle-24)', background: 'var(--bg-container-secondary)' } }, children);
+    }
+
+    var text = h('div', { style: { padding: '14px 16px', fontFamily: 'var(--font-main)',
+      fontSize: '14px', lineHeight: '1.5', color: 'var(--text-secondary)' } },
+      'El desenfoque del borde inferior se usa para que el contenido se funda con el pie de la card ' +
+      'en vez de cortarse en seco. La banda solo afecta a los últimos píxeles, y por encima el ' +
+      'contenido se ve nítido. Este párrafo es largo a propósito para que se note el degradado.');
+
+    var variants = [
+      ['edgeSize 80 · sigma 12 (por defecto)', frame(h(C, { edgeSize: 80 }, photos(9)))],
+      ['edgeSize 80 · sigma 24 (más fuerte)', frame(h(C, { edgeSize: 80, sigma: 24 }, photos(9)))],
+      ['edgeSize 120 · sobre texto', frame(h(C, { edgeSize: 120 }, text))],
+      ['edgeSize 0 → passthrough (sin banda)', frame(h(C, { edgeSize: 0 }, photos(9)))],
+      ['sigma 0 → passthrough (sin banda)', frame(h(C, { edgeSize: 80, sigma: 0 }, photos(9)))],
+      ['dark — edgeSize 80', frame(h(C, { edgeSize: 80 }, text)), 'dark'],
+    ];
+
+    var g = document.getElementById('g');
+    variants.forEach(function (v) {
+      var cell = document.createElement('div'); cell.className = 'ds-cell';
+      var t = document.createElement('h4'); t.textContent = v[0]; cell.appendChild(t);
+      var m = document.createElement('div'); cell.appendChild(m); g.appendChild(cell);
+      if (v[2] === 'dark') {
+        m.setAttribute('data-theme', 'dark');
+        m.style.background = 'var(--bg-base)';
+        m.style.padding = '12px';
+        m.style.borderRadius = '8px';
+      }
+      try { ReactDOM.createRoot(m).render(v[1]); } catch (e) { m.textContent = '⚠ ' + e.message; }
+    });
+  </script>
+</body></html>

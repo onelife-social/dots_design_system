@@ -38,10 +38,31 @@ __ds.DotsUploadItem = (function () {
         })
       : h('span', { className: 'ds-upload-item__photo-fallback' });
 
-    // Fila de estado — icono 14 (girando si processing) + processText
+    // Fila de estado — icono 14 (girando si processing) + processText.
+    // processTextMaxLines (Dart): 1 = una línea con ellipsis (por defecto),
+    // n>1 = recorta a n líneas, null = deja que el texto haga wrap libre.
+    // El Dart tiene `assert(processTextMaxLines == null || > 0)`; aquí no hay
+    // asserts, así que normalizamos: null = wrap libre, entero > 1 = recorte a n
+    // líneas, y cualquier otra cosa (0, negativos, NaN…) cae a una sola línea
+    // en vez de dejar el texto invisible con un clamp de 0.
+    var raw = props.processTextMaxLines === undefined ? 1 : props.processTextMaxLines;
+    var maxLines = raw === null ? null : (Number.isFinite(raw) && raw > 1 ? Math.floor(raw) : 1);
+    var multiline = maxLines !== 1;
+    var textClass = 'ds-upload-item__process-text';
+    var textStyle = null;
+    if (maxLines === null) {
+      textClass += ' ds-upload-item__process-text--wrap';
+    } else if (multiline) {
+      textClass += ' ds-upload-item__process-text--clamp';
+      textStyle = { WebkitLineClamp: String(maxLines) };
+    }
     var processRow = h(
       'span',
-      { className: 'ds-upload-item__process' },
+      {
+        // Con más de una línea el texto crece hacia abajo: la fila se alinea
+        // arriba y el icono se empuja 2px para quedar en la primera línea (Dart).
+        className: 'ds-upload-item__process' + (multiline ? ' ds-upload-item__process--multiline' : ''),
+      },
       h(
         'span',
         {
@@ -51,7 +72,7 @@ __ds.DotsUploadItem = (function () {
         },
         icon({ name: v.icon, size: 14, color: v.color })
       ),
-      h('span', { className: 'ds-upload-item__process-text' }, props.processText || '')
+      h('span', { className: textClass, style: textStyle }, props.processText || '')
     );
 
     // Progreso — DotsProgressBar(percentage, parts: 1) + '64%'
