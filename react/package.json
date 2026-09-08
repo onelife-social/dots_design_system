@@ -2,19 +2,23 @@
   "name": "@dots/design-system",
   "version": "0.1.0",
   "private": true,
-  "description": "Dots. Memories design system — React implementation. Source of truth for the web/Claude Design bundle; the Dart package at the repo root is the Flutter implementation.",
+  "description": "Dots. Memories design system \u2014 React implementation. Source of truth for the web/Claude Design bundle; the Dart package at the repo root is the Flutter implementation.",
   "type": "module",
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
     ".": "./src/index.ts",
     "./styles.css": "./src/styles.css",
     "./tokens.css": "./src/foundations/tokens.css"
   },
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "scripts": {
     "typecheck": "tsc --noEmit",
     "build:bundle": "node scripts/build-bundle.mjs",
-    "build": "npm run typecheck && npm run build:bundle"
+    "build": "npm run build:bundle && npm run typecheck"
   },
   "peerDependencies": {
     "react": ">=18",

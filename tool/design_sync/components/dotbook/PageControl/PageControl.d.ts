@@ -1,22 +1,16 @@
 import * as React from 'react';
 
-/**
- * PageControl — port web de PageControl (Flutter, dot_book). Puntos de
- * paginación del dotbook: variante `main` (punto activo único) y `background`
- * (progreso acumulado con píldora bgActive del primer punto al activo).
- */
 export interface PageControlProps {
-  /** Número total de puntos — Dart `count` */
-  count: number;
-  /** Índice activo, clampado a [0, count-1] — Dart `activeIndex`. Default: 0 */
-  activeIndex?: number;
-  /** Variante — enum Dart PageControlVariant. Default: 'main' */
-  variant?: 'main' | 'background';
-  /** Color de los puntos no activos — Dart `dotColor`. Default: labelSecondary */
-  dotColor?: string;
-  /** Color del punto activo — Dart `activeColor`. Default: labelPrimary (main) / labelActive (background) */
-  activeColor?: string;
-  className?: string;
+    /** Total number of dots — Dart `count` */
+    count: number;
+    /** Active index, clamped to [0, count-1] — Dart `activeIndex`. Default: 0 */
+    activeIndex?: number;
+    /** Variant — Dart enum PageControlVariant. Default: 'main' */
+    variant?: 'main' | 'background';
+    /** Color of inactive dots — Dart `dotColor`. Default: labelSecondary */
+    dotColor?: string;
+    /** Color of the active dot — Dart `activeColor`. Default: labelPrimary (main) / labelActive (background) */
+    activeColor?: string;
+    className?: string;
 }
-
-export declare const PageControl: React.ComponentType<PageControlProps>;
+export declare function PageControl({ count, activeIndex: rawIndex, variant: rawVariant, dotColor, activeColor, className }: PageControlProps): import("react").JSX.Element;

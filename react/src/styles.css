@@ -4,3 +4,9 @@
 @import "./components/DotsIcon/DotsIcon.css";
 @import "./components/DotsSpinner/DotsSpinner.css";
 @import "./components/DotsMainButton/DotsMainButton.css";
+@import "./components/DotsMainContainer/DotsMainContainer.css";
+@import "./components/DotsIconButton/DotsIconButton.css";
+@import "./components/DotsProfilePhoto/DotsProfilePhoto.css";
+@import "./components/PageControl/PageControl.css";
+@import "./components/DotsTextField/DotsTextField.css";
+@import "./components/DotsTextFieldDate/DotsTextFieldDate.css";

@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"DotsDesignSystem_9e41da","components":[{"name":"DotsIcon","sourcePath":"components/icons/DotsIcon/DotsIcon.jsx"},{"name":"DotsMainButton","sourcePath":"components/buttons/DotsMainButton/DotsMainButton.jsx"},{"name":"DotsSpinner","sourcePath":"components/indicators/DotsSpinner/DotsSpinner.jsx"},{"name":"ActivityPreview","sourcePath":"components/social/ActivityPreview/ActivityPreview.jsx"},{"name":"AlbumGroupCard","sourcePath":"components/cards/AlbumGroupCard/AlbumGroupCard.jsx"},{"name":"BadgeIcon","sourcePath":"components/feedback/BadgeIcon/BadgeIcon.jsx"},{"name":"BadgeLabel","sourcePath":"components/feedback/BadgeLabel/BadgeLabel.jsx"},{"name":"BadgeMilestone","sourcePath":"components/feedback/BadgeMilestone/BadgeMilestone.jsx"},{"name":"BadgeProgress","sourcePath":"components/feedback/BadgeProgress/BadgeProgress.jsx"},{"name":"BadgeTag","sourcePath":"components/feedback/BadgeTag/BadgeTag.jsx"},{"name":"BlurContainer","sourcePath":"components/content/BlurContainer/BlurContainer.jsx"},{"name":"BtnFolder","sourcePath":"components/buttons/BtnFolder/BtnFolder.jsx"},{"name":"ColorSelector","sourcePath":"components/content/ColorSelector/ColorSelector.jsx"},{"name":"CreateCard","sourcePath":"components/cards/CreateCard/CreateCard.jsx"},{"name":"DotsAccordion","sourcePath":"components/content/DotsAccordion/DotsAccordion.jsx"},{"name":"DotsActionSheet","sourcePath":"components/overlays/DotsActionSheet/DotsActionSheet.jsx"},{"name":"DotsAlert","sourcePath":"components/feedback/DotsAlert/DotsAlert.jsx"},{"name":"DotsCaptureButton","sourcePath":"components/buttons/DotsCaptureButton/DotsCaptureButton.jsx"},{"name":"DotsCloseButton","sourcePath":"components/buttons/DotsCloseButton/DotsCloseButton.jsx"},{"name":"DotsCountdown","sourcePath":"components/indicators/DotsCountdown/DotsCountdown.jsx"},{"name":"DotsDivider","sourcePath":"components/content/DotsDivider/DotsDivider.jsx"},{"name":"DotsEmptyStateCard","sourcePath":"components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx"},{"name":"DotsFilterChip","sourcePath":"components/feedback/DotsFilterChip/DotsFilterChip.jsx"},{"name":"DotsFloatingButton","sourcePath":"components/buttons/DotsFloatingButton/DotsFloatingButton.jsx"},{"name":"DotsHomeTopBar","sourcePath":"components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx"},{"name":"DotsIconButton","sourcePath":"components/buttons/DotsIconButton/DotsIconButton.jsx"},{"name":"DotsInputStepper","sourcePath":"components/buttons/DotsInputStepper/DotsInputStepper.jsx"},{"name":"DotsItemInput","sourcePath":"components/inputs/DotsItemInput/DotsItemInput.jsx"},{"name":"DotsListItem","sourcePath":"components/content/DotsListItem/DotsListItem.jsx"},{"name":"DotsMainContainer","sourcePath":"components/content/DotsMainContainer/DotsMainContainer.jsx"},{"name":"DotsMenu","sourcePath":"components/overlays/DotsMenu/DotsMenu.jsx"},{"name":"DotsNavBar","sourcePath":"components/navigation/DotsNavBar/DotsNavBar.jsx"},{"name":"DotsPlanningItem","sourcePath":"components/planning/DotsPlanningItem/DotsPlanningItem.jsx"},{"name":"DotsPlanSelector","sourcePath":"components/premium/DotsPlanSelector/DotsPlanSelector.jsx"},{"name":"DotsProfilePhoto","sourcePath":"components/media/DotsProfilePhoto/DotsProfilePhoto.jsx"},{"name":"DotsProgressBar","sourcePath":"components/indicators/DotsProgressBar/DotsProgressBar.jsx"},{"name":"DotsRadioButton","sourcePath":"components/buttons/DotsRadioButton/DotsRadioButton.jsx"},{"name":"DotsRichButton","sourcePath":"components/buttons/DotsRichButton/DotsRichButton.jsx"},{"name":"DotsSegmentedControl","sourcePath":"components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx"},{"name":"DotsSelector","sourcePath":"components/buttons/DotsSelector/DotsSelector.jsx"},{"name":"DotsSelectorRadioButton","sourcePath":"components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx"},{"name":"DotsSlider","sourcePath":"components/content/DotsSlider/DotsSlider.jsx"},{"name":"DotsSquirclePhoto","sourcePath":"components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx"},{"name":"DotsSystemButton","sourcePath":"components/buttons/DotsSystemButton/DotsSystemButton.jsx"},{"name":"DotsTextArea","sourcePath":"components/inputs/DotsTextArea/DotsTextArea.jsx"},{"name":"DotsTextField","sourcePath":"components/inputs/DotsTextField/DotsTextField.jsx"},{"name":"DotsTextFieldButton","sourcePath":"components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx"},{"name":"DotsTextFieldDate","sourcePath":"components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx"},{"name":"DotsTextFieldPhone","sourcePath":"components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx"},{"name":"DotsToast","sourcePath":"components/feedback/DotsToast/DotsToast.jsx"},{"name":"DotsToggle","sourcePath":"components/buttons/DotsToggle/DotsToggle.jsx"},{"name":"DotsTooltip","sourcePath":"components/overlays/DotsTooltip/DotsTooltip.jsx"},{"name":"DotsTopBar","sourcePath":"components/navigation/DotsTopBar/DotsTopBar.jsx"},{"name":"DotsUploadItem","sourcePath":"components/media/DotsUploadItem/DotsUploadItem.jsx"},{"name":"DropdownMenu","sourcePath":"components/overlays/DropdownMenu/DropdownMenu.jsx"},{"name":"EventGroupCard","sourcePath":"components/cards/EventGroupCard/EventGroupCard.jsx"},{"name":"FeatureItem","sourcePath":"components/content/FeatureItem/FeatureItem.jsx"},{"name":"FolderCarrousel","sourcePath":"components/navigation/FolderCarrousel/FolderCarrousel.jsx"},{"name":"ImageThumbnail","sourcePath":"components/indicators/ImageThumbnail/ImageThumbnail.jsx"},{"name":"ImageWithIcon","sourcePath":"components/social/ImageWithIcon/ImageWithIcon.jsx"},{"name":"ImageWithProgressAround","sourcePath":"components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx"},{"name":"MemoryCard","sourcePath":"components/cards/MemoryCard/MemoryCard.jsx"},{"name":"MessagePreview","sourcePath":"components/social/MessagePreview/MessagePreview.jsx"},{"name":"MilestoneCard","sourcePath":"components/memories/MilestoneCard/MilestoneCard.jsx"},{"name":"MilestonesList","sourcePath":"components/memories/MilestonesList/MilestonesList.jsx"},{"name":"NotificationBanner","sourcePath":"components/social/NotificationBanner/NotificationBanner.jsx"},{"name":"NotificationBannerImage","sourcePath":"components/social/NotificationBannerImage/NotificationBannerImage.jsx"},{"name":"PageControl","sourcePath":"components/dotbook/PageControl/PageControl.jsx"},{"name":"ProductCard","sourcePath":"components/cards/ProductCard/ProductCard.jsx"},{"name":"RatingRow","sourcePath":"components/content/RatingRow/RatingRow.jsx"},{"name":"RecapCard","sourcePath":"components/cards/RecapCard/RecapCard.jsx"},{"name":"UserItem","sourcePath":"components/social/UserItem/UserItem.jsx"},{"name":"UsersList","sourcePath":"components/social/UsersList/UsersList.jsx"}],"sourceHashes":{"components/icons/DotsIcon/DotsIcon.jsx":"335df31c211a","components/icons/DotsIcon/DotsIcon.d.ts":"87b2028cfb22","components/icons/DotsIcon/DotsIcon.prompt.md":"fe2f27eb49fe","components/buttons/DotsMainButton/DotsMainButton.jsx":"ae2cd12f68a1","components/buttons/DotsMainButton/DotsMainButton.d.ts":"cddb89971081","components/buttons/DotsMainButton/DotsMainButton.prompt.md":"a221cf629ffc","components/indicators/DotsSpinner/DotsSpinner.jsx":"a12be39b5926","components/indicators/DotsSpinner/DotsSpinner.d.ts":"92a18d75b986","components/indicators/DotsSpinner/DotsSpinner.prompt.md":"eea0999cfa40","components/social/ActivityPreview/ActivityPreview.jsx":"b4b80f9e800f","components/social/ActivityPreview/ActivityPreview.d.ts":"e2fd20a2da58","components/social/ActivityPreview/ActivityPreview.prompt.md":"239a5fa193fe","components/cards/AlbumGroupCard/AlbumGroupCard.jsx":"19e3745d2c01","components/cards/AlbumGroupCard/AlbumGroupCard.d.ts":"250a72265114","components/cards/AlbumGroupCard/AlbumGroupCard.prompt.md":"6dd66b80e55e","components/feedback/BadgeIcon/BadgeIcon.jsx":"a75a6074ba60","components/feedback/BadgeIcon/BadgeIcon.d.ts":"1bccac9e9356","components/feedback/BadgeIcon/BadgeIcon.prompt.md":"929b4a0e194c","components/feedback/BadgeLabel/BadgeLabel.jsx":"f330d80f7db6","components/feedback/BadgeLabel/BadgeLabel.d.ts":"40c7a2f37790","components/feedback/BadgeLabel/BadgeLabel.prompt.md":"ed1b903fbe5a","components/feedback/BadgeMilestone/BadgeMilestone.jsx":"4c02ad66c2be","components/feedback/BadgeMilestone/BadgeMilestone.d.ts":"811738e29f12","components/feedback/BadgeMilestone/BadgeMilestone.prompt.md":"48a757bc2910","components/feedback/BadgeProgress/BadgeProgress.jsx":"71554919d446","components/feedback/BadgeProgress/BadgeProgress.d.ts":"7012fa757c46","components/feedback/BadgeProgress/BadgeProgress.prompt.md":"b147f3bbf27b","components/feedback/BadgeTag/BadgeTag.jsx":"07499192e79b","components/feedback/BadgeTag/BadgeTag.d.ts":"b01377bc343d","components/feedback/BadgeTag/BadgeTag.prompt.md":"0dc17ea4fe03","components/content/BlurContainer/BlurContainer.jsx":"4f3158bee2a7","components/content/BlurContainer/BlurContainer.d.ts":"e06f388d3283","components/content/BlurContainer/BlurContainer.prompt.md":"47fb1619efac","components/buttons/BtnFolder/BtnFolder.jsx":"5818c75ea3ef","components/buttons/BtnFolder/BtnFolder.d.ts":"cb0f0c7974cf","components/buttons/BtnFolder/BtnFolder.prompt.md":"409f1a511b12","components/content/ColorSelector/ColorSelector.jsx":"08ac3ae6676f","components/content/ColorSelector/ColorSelector.d.ts":"fbf55305330f","components/content/ColorSelector/ColorSelector.prompt.md":"b98eac18525b","components/cards/CreateCard/CreateCard.jsx":"9f5acf670673","components/cards/CreateCard/CreateCard.d.ts":"5c0ad3f5a79e","components/cards/CreateCard/CreateCard.prompt.md":"845e444d73f8","components/content/DotsAccordion/DotsAccordion.jsx":"84ac87f036d4","components/content/DotsAccordion/DotsAccordion.d.ts":"fe68787fde6c","components/content/DotsAccordion/DotsAccordion.prompt.md":"1657898cd0de","components/overlays/DotsActionSheet/DotsActionSheet.jsx":"6aea0de1baad","components/overlays/DotsActionSheet/DotsActionSheet.d.ts":"e7e276192b0c","components/overlays/DotsActionSheet/DotsActionSheet.prompt.md":"6c6162a444ea","components/feedback/DotsAlert/DotsAlert.jsx":"31e443a1a6c9","components/feedback/DotsAlert/DotsAlert.d.ts":"de5c4919a68d","components/feedback/DotsAlert/DotsAlert.prompt.md":"55d3d3c12e0b","components/buttons/DotsCaptureButton/DotsCaptureButton.jsx":"b327fc4eacd1","components/buttons/DotsCaptureButton/DotsCaptureButton.d.ts":"444cf57dfc42","components/buttons/DotsCaptureButton/DotsCaptureButton.prompt.md":"04b427a10e12","components/buttons/DotsCloseButton/DotsCloseButton.jsx":"f989f50ce37d","components/buttons/DotsCloseButton/DotsCloseButton.d.ts":"d7b8c0cf5bb5","components/buttons/DotsCloseButton/DotsCloseButton.prompt.md":"2202cc87900c","components/indicators/DotsCountdown/DotsCountdown.jsx":"e6a30324d478","components/indicators/DotsCountdown/DotsCountdown.d.ts":"31a583d1076c","components/indicators/DotsCountdown/DotsCountdown.prompt.md":"698be70ac531","components/content/DotsDivider/DotsDivider.jsx":"614a3fa428a4","components/content/DotsDivider/DotsDivider.d.ts":"4505568c5bcd","components/content/DotsDivider/DotsDivider.prompt.md":"608e2d568e01","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx":"7be6c63ad360","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.d.ts":"29b7ef23a048","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.prompt.md":"204299d95767","components/feedback/DotsFilterChip/DotsFilterChip.jsx":"f70922a222e4","components/feedback/DotsFilterChip/DotsFilterChip.d.ts":"303cfa6352c0","components/feedback/DotsFilterChip/DotsFilterChip.prompt.md":"4e2d4316b2c5","components/buttons/DotsFloatingButton/DotsFloatingButton.jsx":"07ef21cbcf69","components/buttons/DotsFloatingButton/DotsFloatingButton.d.ts":"582d163c4a73","components/buttons/DotsFloatingButton/DotsFloatingButton.prompt.md":"9385b6723151","components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx":"3740529a645f","components/navigation/DotsHomeTopBar/DotsHomeTopBar.d.ts":"2ddf25716a9c","components/navigation/DotsHomeTopBar/DotsHomeTopBar.prompt.md":"36a11970a144","components/buttons/DotsIconButton/DotsIconButton.jsx":"ffcab2eedea4","components/buttons/DotsIconButton/DotsIconButton.d.ts":"4695894c7165","components/buttons/DotsIconButton/DotsIconButton.prompt.md":"c4bb14d7759c","components/buttons/DotsInputStepper/DotsInputStepper.jsx":"fe711e75f2b8","components/buttons/DotsInputStepper/DotsInputStepper.d.ts":"0627f3845ad8","components/buttons/DotsInputStepper/DotsInputStepper.prompt.md":"6d3798eb4e5e","components/inputs/DotsItemInput/DotsItemInput.jsx":"fdda4bc0b529","components/inputs/DotsItemInput/DotsItemInput.d.ts":"3773e592f555","components/inputs/DotsItemInput/DotsItemInput.prompt.md":"f643916e19cd","components/content/DotsListItem/DotsListItem.jsx":"6157f22e738a","components/content/DotsListItem/DotsListItem.d.ts":"51cd8f74cfcb","components/content/DotsListItem/DotsListItem.prompt.md":"40bdc5fff354","components/content/DotsMainContainer/DotsMainContainer.jsx":"4ddd06a6ad9e","components/content/DotsMainContainer/DotsMainContainer.d.ts":"8e26d3c07a0c","components/content/DotsMainContainer/DotsMainContainer.prompt.md":"9598eb0321bd","components/overlays/DotsMenu/DotsMenu.jsx":"250fcc9b1d35","components/overlays/DotsMenu/DotsMenu.d.ts":"007c0322a634","components/overlays/DotsMenu/DotsMenu.prompt.md":"4f8bd72c1108","components/navigation/DotsNavBar/DotsNavBar.jsx":"16123dd053b7","components/navigation/DotsNavBar/DotsNavBar.d.ts":"d766f315c268","components/navigation/DotsNavBar/DotsNavBar.prompt.md":"d212413051ce","components/planning/DotsPlanningItem/DotsPlanningItem.jsx":"c17bedb8d20b","components/planning/DotsPlanningItem/DotsPlanningItem.d.ts":"48d04352a47d","components/planning/DotsPlanningItem/DotsPlanningItem.prompt.md":"a8e792ac3dac","components/premium/DotsPlanSelector/DotsPlanSelector.jsx":"9e8354546c8e","components/premium/DotsPlanSelector/DotsPlanSelector.d.ts":"5b77d82f0400","components/premium/DotsPlanSelector/DotsPlanSelector.prompt.md":"31125956fd1c","components/media/DotsProfilePhoto/DotsProfilePhoto.jsx":"92e613449ad2","components/media/DotsProfilePhoto/DotsProfilePhoto.d.ts":"2c2c7d732006","components/media/DotsProfilePhoto/DotsProfilePhoto.prompt.md":"636c54ee6feb","components/indicators/DotsProgressBar/DotsProgressBar.jsx":"d6f31abf3d70","components/indicators/DotsProgressBar/DotsProgressBar.d.ts":"ee2eb37eb671","components/indicators/DotsProgressBar/DotsProgressBar.prompt.md":"2dad7693c604","components/buttons/DotsRadioButton/DotsRadioButton.jsx":"7a4e9fc06d16","components/buttons/DotsRadioButton/DotsRadioButton.d.ts":"9ffccefab4d0","components/buttons/DotsRadioButton/DotsRadioButton.prompt.md":"d6e35d04a2c5","components/buttons/DotsRichButton/DotsRichButton.jsx":"f445085fc5ca","components/buttons/DotsRichButton/DotsRichButton.d.ts":"988a435eb021","components/buttons/DotsRichButton/DotsRichButton.prompt.md":"94e43f6c7d5f","components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx":"63c3134be5e4","components/inputs/DotsSegmentedControl/DotsSegmentedControl.d.ts":"aa4b83624d09","components/inputs/DotsSegmentedControl/DotsSegmentedControl.prompt.md":"780587c9cea5","components/buttons/DotsSelector/DotsSelector.jsx":"32a1fa2354c2","components/buttons/DotsSelector/DotsSelector.d.ts":"8371f7ea93d5","components/buttons/DotsSelector/DotsSelector.prompt.md":"3ca0254c3375","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx":"ca91ce72bf06","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.d.ts":"452a97eb30f8","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.prompt.md":"0f43fa3291a0","components/content/DotsSlider/DotsSlider.jsx":"11ddb3b9d671","components/content/DotsSlider/DotsSlider.d.ts":"30a75a21af71","components/content/DotsSlider/DotsSlider.prompt.md":"b91814ec96a9","components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx":"be4633716883","components/media/DotsSquirclePhoto/DotsSquirclePhoto.d.ts":"e6eb4abc3fbf","components/media/DotsSquirclePhoto/DotsSquirclePhoto.prompt.md":"7bf60628c1fe","components/buttons/DotsSystemButton/DotsSystemButton.jsx":"61ef368899c8","components/buttons/DotsSystemButton/DotsSystemButton.d.ts":"4c662f2b1a53","components/buttons/DotsSystemButton/DotsSystemButton.prompt.md":"09363a30bf00","components/inputs/DotsTextArea/DotsTextArea.jsx":"f5e66264f111","components/inputs/DotsTextArea/DotsTextArea.d.ts":"c0f65e12c920","components/inputs/DotsTextArea/DotsTextArea.prompt.md":"63170a772fb6","components/inputs/DotsTextField/DotsTextField.jsx":"f072f4f3eb62","components/inputs/DotsTextField/DotsTextField.d.ts":"51fc3ecfa39c","components/inputs/DotsTextField/DotsTextField.prompt.md":"42536ffb516a","components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx":"163b6c3eb5a2","components/inputs/DotsTextFieldButton/DotsTextFieldButton.d.ts":"69d562a11b16","components/inputs/DotsTextFieldButton/DotsTextFieldButton.prompt.md":"cd2a18ca1749","components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx":"bd28881afb3c","components/inputs/DotsTextFieldDate/DotsTextFieldDate.d.ts":"1a2be3a14437","components/inputs/DotsTextFieldDate/DotsTextFieldDate.prompt.md":"2944cdc9159d","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx":"ee02df22e4b1","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.d.ts":"3e321bce70f9","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.prompt.md":"32c5dd3fc02b","components/feedback/DotsToast/DotsToast.jsx":"9875719b818a","components/feedback/DotsToast/DotsToast.d.ts":"f35b4f9e35cb","components/feedback/DotsToast/DotsToast.prompt.md":"e7dade8e5042","components/buttons/DotsToggle/DotsToggle.jsx":"d580e9128f26","components/buttons/DotsToggle/DotsToggle.d.ts":"245a32715b3e","components/buttons/DotsToggle/DotsToggle.prompt.md":"c8b4344a32ac","components/overlays/DotsTooltip/DotsTooltip.jsx":"690646cedff8","components/overlays/DotsTooltip/DotsTooltip.d.ts":"57fcd8d2ce51","components/overlays/DotsTooltip/DotsTooltip.prompt.md":"8e2e72fa4034","components/navigation/DotsTopBar/DotsTopBar.jsx":"bab2b068b924","components/navigation/DotsTopBar/DotsTopBar.d.ts":"82b60ca70acc","components/navigation/DotsTopBar/DotsTopBar.prompt.md":"6f2c5073c6e6","components/media/DotsUploadItem/DotsUploadItem.jsx":"b5b296dabbb0","components/media/DotsUploadItem/DotsUploadItem.d.ts":"81e7fb9ba5e0","components/media/DotsUploadItem/DotsUploadItem.prompt.md":"063ce14a5d25","components/overlays/DropdownMenu/DropdownMenu.jsx":"e990079ce8af","components/overlays/DropdownMenu/DropdownMenu.d.ts":"f4b48717fe80","components/overlays/DropdownMenu/DropdownMenu.prompt.md":"b8ca4e74f03e","components/cards/EventGroupCard/EventGroupCard.jsx":"a156456590e1","components/cards/EventGroupCard/EventGroupCard.d.ts":"8b168eb2615c","components/cards/EventGroupCard/EventGroupCard.prompt.md":"456df0915b54","components/content/FeatureItem/FeatureItem.jsx":"bb22c6b112e0","components/content/FeatureItem/FeatureItem.d.ts":"5b02831affdc","components/content/FeatureItem/FeatureItem.prompt.md":"8eed7e79d9a6","components/navigation/FolderCarrousel/FolderCarrousel.jsx":"fe669a8466ea","components/navigation/FolderCarrousel/FolderCarrousel.d.ts":"517a1f6c511d","components/navigation/FolderCarrousel/FolderCarrousel.prompt.md":"ed1bca9712aa","components/indicators/ImageThumbnail/ImageThumbnail.jsx":"eba358df1cbe","components/indicators/ImageThumbnail/ImageThumbnail.d.ts":"e09a2ac117ef","components/indicators/ImageThumbnail/ImageThumbnail.prompt.md":"f1d009a529a1","components/social/ImageWithIcon/ImageWithIcon.jsx":"c6c587c966d1","components/social/ImageWithIcon/ImageWithIcon.d.ts":"0ffc16494e27","components/social/ImageWithIcon/ImageWithIcon.prompt.md":"0c2c7229692c","components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx":"806a6150545b","components/indicators/ImageWithProgressAround/ImageWithProgressAround.d.ts":"0156a3f1afb2","components/indicators/ImageWithProgressAround/ImageWithProgressAround.prompt.md":"dcf89fcfbb8a","components/cards/MemoryCard/MemoryCard.jsx":"3a0db91b5a78","components/cards/MemoryCard/MemoryCard.d.ts":"133524ff6528","components/cards/MemoryCard/MemoryCard.prompt.md":"429e9792f2cc","components/social/MessagePreview/MessagePreview.jsx":"215094a5eccd","components/social/MessagePreview/MessagePreview.d.ts":"bb652c774f28","components/social/MessagePreview/MessagePreview.prompt.md":"8429677865ce","components/memories/MilestoneCard/MilestoneCard.jsx":"f41829c3c1f0","components/memories/MilestoneCard/MilestoneCard.d.ts":"eed7542b8e03","components/memories/MilestoneCard/MilestoneCard.prompt.md":"ed078065e85c","components/memories/MilestonesList/MilestonesList.jsx":"48f44b1ed490","components/memories/MilestonesList/MilestonesList.d.ts":"10cad4068b69","components/memories/MilestonesList/MilestonesList.prompt.md":"739f1eedb6e7","components/social/NotificationBanner/NotificationBanner.jsx":"3047bcebf969","components/social/NotificationBanner/NotificationBanner.d.ts":"4f82b841d8c3","components/social/NotificationBanner/NotificationBanner.prompt.md":"57060dbd2686","components/social/NotificationBannerImage/NotificationBannerImage.jsx":"9d5214f16bde","components/social/NotificationBannerImage/NotificationBannerImage.d.ts":"0488d329db36","components/social/NotificationBannerImage/NotificationBannerImage.prompt.md":"01904774056d","components/dotbook/PageControl/PageControl.jsx":"7d3c2f0a4143","components/dotbook/PageControl/PageControl.d.ts":"0c2d22f9780a","components/dotbook/PageControl/PageControl.prompt.md":"2dcd422b32cb","components/cards/ProductCard/ProductCard.jsx":"60765da3d430","components/cards/ProductCard/ProductCard.d.ts":"77da73cd7ba1","components/cards/ProductCard/ProductCard.prompt.md":"bddfb1317e70","components/content/RatingRow/RatingRow.jsx":"c648699f7d52","components/content/RatingRow/RatingRow.d.ts":"b8541da81acd","components/content/RatingRow/RatingRow.prompt.md":"d36b1b43f630","components/cards/RecapCard/RecapCard.jsx":"5b5a0051efa7","components/cards/RecapCard/RecapCard.d.ts":"80b636ffc554","components/cards/RecapCard/RecapCard.prompt.md":"8fff796309ab","components/social/UserItem/UserItem.jsx":"8ca2155b51f1","components/social/UserItem/UserItem.d.ts":"9733979d627a","components/social/UserItem/UserItem.prompt.md":"ec0b0a01c16b","components/social/UsersList/UsersList.jsx":"263f90a7d807","components/social/UsersList/UsersList.d.ts":"b34733911d1c","components/social/UsersList/UsersList.prompt.md":"e19600d69967"},"inlinedExternals":[],"unexposedExports":[],"builtBy":"dots-design-system-react"} */
+/* @ds-bundle: {"format":4,"namespace":"DotsDesignSystem_9e41da","components":[{"name":"DotsIcon","sourcePath":"components/icons/DotsIcon/DotsIcon.jsx"},{"name":"DotsIconButton","sourcePath":"components/buttons/DotsIconButton/DotsIconButton.jsx"},{"name":"DotsMainButton","sourcePath":"components/buttons/DotsMainButton/DotsMainButton.jsx"},{"name":"DotsMainContainer","sourcePath":"components/content/DotsMainContainer/DotsMainContainer.jsx"},{"name":"DotsProfilePhoto","sourcePath":"components/media/DotsProfilePhoto/DotsProfilePhoto.jsx"},{"name":"DotsSpinner","sourcePath":"components/indicators/DotsSpinner/DotsSpinner.jsx"},{"name":"DotsTextField","sourcePath":"components/inputs/DotsTextField/DotsTextField.jsx"},{"name":"DotsTextFieldDate","sourcePath":"components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx"},{"name":"PageControl","sourcePath":"components/dotbook/PageControl/PageControl.jsx"},{"name":"ActivityPreview","sourcePath":"components/social/ActivityPreview/ActivityPreview.jsx"},{"name":"AlbumGroupCard","sourcePath":"components/cards/AlbumGroupCard/AlbumGroupCard.jsx"},{"name":"BadgeIcon","sourcePath":"components/feedback/BadgeIcon/BadgeIcon.jsx"},{"name":"BadgeLabel","sourcePath":"components/feedback/BadgeLabel/BadgeLabel.jsx"},{"name":"BadgeMilestone","sourcePath":"components/feedback/BadgeMilestone/BadgeMilestone.jsx"},{"name":"BadgeProgress","sourcePath":"components/feedback/BadgeProgress/BadgeProgress.jsx"},{"name":"BadgeTag","sourcePath":"components/feedback/BadgeTag/BadgeTag.jsx"},{"name":"BlurContainer","sourcePath":"components/content/BlurContainer/BlurContainer.jsx"},{"name":"BtnFolder","sourcePath":"components/buttons/BtnFolder/BtnFolder.jsx"},{"name":"ColorSelector","sourcePath":"components/content/ColorSelector/ColorSelector.jsx"},{"name":"CreateCard","sourcePath":"components/cards/CreateCard/CreateCard.jsx"},{"name":"DotsAccordion","sourcePath":"components/content/DotsAccordion/DotsAccordion.jsx"},{"name":"DotsActionSheet","sourcePath":"components/overlays/DotsActionSheet/DotsActionSheet.jsx"},{"name":"DotsAlert","sourcePath":"components/feedback/DotsAlert/DotsAlert.jsx"},{"name":"DotsCaptureButton","sourcePath":"components/buttons/DotsCaptureButton/DotsCaptureButton.jsx"},{"name":"DotsCloseButton","sourcePath":"components/buttons/DotsCloseButton/DotsCloseButton.jsx"},{"name":"DotsCountdown","sourcePath":"components/indicators/DotsCountdown/DotsCountdown.jsx"},{"name":"DotsDivider","sourcePath":"components/content/DotsDivider/DotsDivider.jsx"},{"name":"DotsEmptyStateCard","sourcePath":"components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx"},{"name":"DotsFilterChip","sourcePath":"components/feedback/DotsFilterChip/DotsFilterChip.jsx"},{"name":"DotsFloatingButton","sourcePath":"components/buttons/DotsFloatingButton/DotsFloatingButton.jsx"},{"name":"DotsHomeTopBar","sourcePath":"components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx"},{"name":"DotsInputStepper","sourcePath":"components/buttons/DotsInputStepper/DotsInputStepper.jsx"},{"name":"DotsItemInput","sourcePath":"components/inputs/DotsItemInput/DotsItemInput.jsx"},{"name":"DotsListItem","sourcePath":"components/content/DotsListItem/DotsListItem.jsx"},{"name":"DotsMenu","sourcePath":"components/overlays/DotsMenu/DotsMenu.jsx"},{"name":"DotsNavBar","sourcePath":"components/navigation/DotsNavBar/DotsNavBar.jsx"},{"name":"DotsPlanningItem","sourcePath":"components/planning/DotsPlanningItem/DotsPlanningItem.jsx"},{"name":"DotsPlanSelector","sourcePath":"components/premium/DotsPlanSelector/DotsPlanSelector.jsx"},{"name":"DotsProgressBar","sourcePath":"components/indicators/DotsProgressBar/DotsProgressBar.jsx"},{"name":"DotsRadioButton","sourcePath":"components/buttons/DotsRadioButton/DotsRadioButton.jsx"},{"name":"DotsRichButton","sourcePath":"components/buttons/DotsRichButton/DotsRichButton.jsx"},{"name":"DotsSegmentedControl","sourcePath":"components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx"},{"name":"DotsSelector","sourcePath":"components/buttons/DotsSelector/DotsSelector.jsx"},{"name":"DotsSelectorRadioButton","sourcePath":"components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx"},{"name":"DotsSlider","sourcePath":"components/content/DotsSlider/DotsSlider.jsx"},{"name":"DotsSquirclePhoto","sourcePath":"components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx"},{"name":"DotsSystemButton","sourcePath":"components/buttons/DotsSystemButton/DotsSystemButton.jsx"},{"name":"DotsTextArea","sourcePath":"components/inputs/DotsTextArea/DotsTextArea.jsx"},{"name":"DotsTextFieldButton","sourcePath":"components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx"},{"name":"DotsTextFieldPhone","sourcePath":"components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx"},{"name":"DotsToast","sourcePath":"components/feedback/DotsToast/DotsToast.jsx"},{"name":"DotsToggle","sourcePath":"components/buttons/DotsToggle/DotsToggle.jsx"},{"name":"DotsTooltip","sourcePath":"components/overlays/DotsTooltip/DotsTooltip.jsx"},{"name":"DotsTopBar","sourcePath":"components/navigation/DotsTopBar/DotsTopBar.jsx"},{"name":"DotsUploadItem","sourcePath":"components/media/DotsUploadItem/DotsUploadItem.jsx"},{"name":"DropdownMenu","sourcePath":"components/overlays/DropdownMenu/DropdownMenu.jsx"},{"name":"EventGroupCard","sourcePath":"components/cards/EventGroupCard/EventGroupCard.jsx"},{"name":"FeatureItem","sourcePath":"components/content/FeatureItem/FeatureItem.jsx"},{"name":"FolderCarrousel","sourcePath":"components/navigation/FolderCarrousel/FolderCarrousel.jsx"},{"name":"ImageThumbnail","sourcePath":"components/indicators/ImageThumbnail/ImageThumbnail.jsx"},{"name":"ImageWithIcon","sourcePath":"components/social/ImageWithIcon/ImageWithIcon.jsx"},{"name":"ImageWithProgressAround","sourcePath":"components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx"},{"name":"MemoryCard","sourcePath":"components/cards/MemoryCard/MemoryCard.jsx"},{"name":"MessagePreview","sourcePath":"components/social/MessagePreview/MessagePreview.jsx"},{"name":"MilestoneCard","sourcePath":"components/memories/MilestoneCard/MilestoneCard.jsx"},{"name":"MilestonesList","sourcePath":"components/memories/MilestonesList/MilestonesList.jsx"},{"name":"NotificationBanner","sourcePath":"components/social/NotificationBanner/NotificationBanner.jsx"},{"name":"NotificationBannerImage","sourcePath":"components/social/NotificationBannerImage/NotificationBannerImage.jsx"},{"name":"ProductCard","sourcePath":"components/cards/ProductCard/ProductCard.jsx"},{"name":"RatingRow","sourcePath":"components/content/RatingRow/RatingRow.jsx"},{"name":"RecapCard","sourcePath":"components/cards/RecapCard/RecapCard.jsx"},{"name":"UserItem","sourcePath":"components/social/UserItem/UserItem.jsx"},{"name":"UsersList","sourcePath":"components/social/UsersList/UsersList.jsx"}],"sourceHashes":{"components/icons/DotsIcon/DotsIcon.jsx":"335df31c211a","components/icons/DotsIcon/DotsIcon.d.ts":"87b2028cfb22","components/icons/DotsIcon/DotsIcon.prompt.md":"fe2f27eb49fe","components/buttons/DotsIconButton/DotsIconButton.jsx":"ffcab2eedea4","components/buttons/DotsIconButton/DotsIconButton.d.ts":"4695894c7165","components/buttons/DotsIconButton/DotsIconButton.prompt.md":"c4bb14d7759c","components/buttons/DotsMainButton/DotsMainButton.jsx":"ae2cd12f68a1","components/buttons/DotsMainButton/DotsMainButton.d.ts":"cddb89971081","components/buttons/DotsMainButton/DotsMainButton.prompt.md":"a221cf629ffc","components/content/DotsMainContainer/DotsMainContainer.jsx":"4ddd06a6ad9e","components/content/DotsMainContainer/DotsMainContainer.d.ts":"8e26d3c07a0c","components/content/DotsMainContainer/DotsMainContainer.prompt.md":"9598eb0321bd","components/media/DotsProfilePhoto/DotsProfilePhoto.jsx":"92e613449ad2","components/media/DotsProfilePhoto/DotsProfilePhoto.d.ts":"2c2c7d732006","components/media/DotsProfilePhoto/DotsProfilePhoto.prompt.md":"636c54ee6feb","components/indicators/DotsSpinner/DotsSpinner.jsx":"a12be39b5926","components/indicators/DotsSpinner/DotsSpinner.d.ts":"92a18d75b986","components/indicators/DotsSpinner/DotsSpinner.prompt.md":"eea0999cfa40","components/inputs/DotsTextField/DotsTextField.jsx":"f072f4f3eb62","components/inputs/DotsTextField/DotsTextField.d.ts":"51fc3ecfa39c","components/inputs/DotsTextField/DotsTextField.prompt.md":"42536ffb516a","components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx":"bd28881afb3c","components/inputs/DotsTextFieldDate/DotsTextFieldDate.d.ts":"1a2be3a14437","components/inputs/DotsTextFieldDate/DotsTextFieldDate.prompt.md":"2944cdc9159d","components/dotbook/PageControl/PageControl.jsx":"7d3c2f0a4143","components/dotbook/PageControl/PageControl.d.ts":"0c2d22f9780a","components/dotbook/PageControl/PageControl.prompt.md":"2dcd422b32cb","components/social/ActivityPreview/ActivityPreview.jsx":"b4b80f9e800f","components/social/ActivityPreview/ActivityPreview.d.ts":"e2fd20a2da58","components/social/ActivityPreview/ActivityPreview.prompt.md":"239a5fa193fe","components/cards/AlbumGroupCard/AlbumGroupCard.jsx":"19e3745d2c01","components/cards/AlbumGroupCard/AlbumGroupCard.d.ts":"250a72265114","components/cards/AlbumGroupCard/AlbumGroupCard.prompt.md":"6dd66b80e55e","components/feedback/BadgeIcon/BadgeIcon.jsx":"a75a6074ba60","components/feedback/BadgeIcon/BadgeIcon.d.ts":"1bccac9e9356","components/feedback/BadgeIcon/BadgeIcon.prompt.md":"929b4a0e194c","components/feedback/BadgeLabel/BadgeLabel.jsx":"f330d80f7db6","components/feedback/BadgeLabel/BadgeLabel.d.ts":"40c7a2f37790","components/feedback/BadgeLabel/BadgeLabel.prompt.md":"ed1b903fbe5a","components/feedback/BadgeMilestone/BadgeMilestone.jsx":"4c02ad66c2be","components/feedback/BadgeMilestone/BadgeMilestone.d.ts":"811738e29f12","components/feedback/BadgeMilestone/BadgeMilestone.prompt.md":"48a757bc2910","components/feedback/BadgeProgress/BadgeProgress.jsx":"71554919d446","components/feedback/BadgeProgress/BadgeProgress.d.ts":"7012fa757c46","components/feedback/BadgeProgress/BadgeProgress.prompt.md":"b147f3bbf27b","components/feedback/BadgeTag/BadgeTag.jsx":"07499192e79b","components/feedback/BadgeTag/BadgeTag.d.ts":"b01377bc343d","components/feedback/BadgeTag/BadgeTag.prompt.md":"0dc17ea4fe03","components/content/BlurContainer/BlurContainer.jsx":"4f3158bee2a7","components/content/BlurContainer/BlurContainer.d.ts":"e06f388d3283","components/content/BlurContainer/BlurContainer.prompt.md":"47fb1619efac","components/buttons/BtnFolder/BtnFolder.jsx":"5818c75ea3ef","components/buttons/BtnFolder/BtnFolder.d.ts":"cb0f0c7974cf","components/buttons/BtnFolder/BtnFolder.prompt.md":"409f1a511b12","components/content/ColorSelector/ColorSelector.jsx":"08ac3ae6676f","components/content/ColorSelector/ColorSelector.d.ts":"fbf55305330f","components/content/ColorSelector/ColorSelector.prompt.md":"b98eac18525b","components/cards/CreateCard/CreateCard.jsx":"9f5acf670673","components/cards/CreateCard/CreateCard.d.ts":"5c0ad3f5a79e","components/cards/CreateCard/CreateCard.prompt.md":"845e444d73f8","components/content/DotsAccordion/DotsAccordion.jsx":"84ac87f036d4","components/content/DotsAccordion/DotsAccordion.d.ts":"fe68787fde6c","components/content/DotsAccordion/DotsAccordion.prompt.md":"1657898cd0de","components/overlays/DotsActionSheet/DotsActionSheet.jsx":"6aea0de1baad","components/overlays/DotsActionSheet/DotsActionSheet.d.ts":"e7e276192b0c","components/overlays/DotsActionSheet/DotsActionSheet.prompt.md":"6c6162a444ea","components/feedback/DotsAlert/DotsAlert.jsx":"31e443a1a6c9","components/feedback/DotsAlert/DotsAlert.d.ts":"de5c4919a68d","components/feedback/DotsAlert/DotsAlert.prompt.md":"55d3d3c12e0b","components/buttons/DotsCaptureButton/DotsCaptureButton.jsx":"b327fc4eacd1","components/buttons/DotsCaptureButton/DotsCaptureButton.d.ts":"444cf57dfc42","components/buttons/DotsCaptureButton/DotsCaptureButton.prompt.md":"04b427a10e12","components/buttons/DotsCloseButton/DotsCloseButton.jsx":"f989f50ce37d","components/buttons/DotsCloseButton/DotsCloseButton.d.ts":"d7b8c0cf5bb5","components/buttons/DotsCloseButton/DotsCloseButton.prompt.md":"2202cc87900c","components/indicators/DotsCountdown/DotsCountdown.jsx":"e6a30324d478","components/indicators/DotsCountdown/DotsCountdown.d.ts":"31a583d1076c","components/indicators/DotsCountdown/DotsCountdown.prompt.md":"698be70ac531","components/content/DotsDivider/DotsDivider.jsx":"614a3fa428a4","components/content/DotsDivider/DotsDivider.d.ts":"4505568c5bcd","components/content/DotsDivider/DotsDivider.prompt.md":"608e2d568e01","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx":"7be6c63ad360","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.d.ts":"29b7ef23a048","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.prompt.md":"204299d95767","components/feedback/DotsFilterChip/DotsFilterChip.jsx":"f70922a222e4","components/feedback/DotsFilterChip/DotsFilterChip.d.ts":"303cfa6352c0","components/feedback/DotsFilterChip/DotsFilterChip.prompt.md":"4e2d4316b2c5","components/buttons/DotsFloatingButton/DotsFloatingButton.jsx":"07ef21cbcf69","components/buttons/DotsFloatingButton/DotsFloatingButton.d.ts":"582d163c4a73","components/buttons/DotsFloatingButton/DotsFloatingButton.prompt.md":"9385b6723151","components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx":"3740529a645f","components/navigation/DotsHomeTopBar/DotsHomeTopBar.d.ts":"2ddf25716a9c","components/navigation/DotsHomeTopBar/DotsHomeTopBar.prompt.md":"36a11970a144","components/buttons/DotsInputStepper/DotsInputStepper.jsx":"fe711e75f2b8","components/buttons/DotsInputStepper/DotsInputStepper.d.ts":"0627f3845ad8","components/buttons/DotsInputStepper/DotsInputStepper.prompt.md":"6d3798eb4e5e","components/inputs/DotsItemInput/DotsItemInput.jsx":"fdda4bc0b529","components/inputs/DotsItemInput/DotsItemInput.d.ts":"3773e592f555","components/inputs/DotsItemInput/DotsItemInput.prompt.md":"f643916e19cd","components/content/DotsListItem/DotsListItem.jsx":"6157f22e738a","components/content/DotsListItem/DotsListItem.d.ts":"51cd8f74cfcb","components/content/DotsListItem/DotsListItem.prompt.md":"40bdc5fff354","components/overlays/DotsMenu/DotsMenu.jsx":"250fcc9b1d35","components/overlays/DotsMenu/DotsMenu.d.ts":"007c0322a634","components/overlays/DotsMenu/DotsMenu.prompt.md":"4f8bd72c1108","components/navigation/DotsNavBar/DotsNavBar.jsx":"16123dd053b7","components/navigation/DotsNavBar/DotsNavBar.d.ts":"d766f315c268","components/navigation/DotsNavBar/DotsNavBar.prompt.md":"d212413051ce","components/planning/DotsPlanningItem/DotsPlanningItem.jsx":"c17bedb8d20b","components/planning/DotsPlanningItem/DotsPlanningItem.d.ts":"48d04352a47d","components/planning/DotsPlanningItem/DotsPlanningItem.prompt.md":"a8e792ac3dac","components/premium/DotsPlanSelector/DotsPlanSelector.jsx":"9e8354546c8e","components/premium/DotsPlanSelector/DotsPlanSelector.d.ts":"5b77d82f0400","components/premium/DotsPlanSelector/DotsPlanSelector.prompt.md":"31125956fd1c","components/indicators/DotsProgressBar/DotsProgressBar.jsx":"d6f31abf3d70","components/indicators/DotsProgressBar/DotsProgressBar.d.ts":"ee2eb37eb671","components/indicators/DotsProgressBar/DotsProgressBar.prompt.md":"2dad7693c604","components/buttons/DotsRadioButton/DotsRadioButton.jsx":"7a4e9fc06d16","components/buttons/DotsRadioButton/DotsRadioButton.d.ts":"9ffccefab4d0","components/buttons/DotsRadioButton/DotsRadioButton.prompt.md":"d6e35d04a2c5","components/buttons/DotsRichButton/DotsRichButton.jsx":"f445085fc5ca","components/buttons/DotsRichButton/DotsRichButton.d.ts":"988a435eb021","components/buttons/DotsRichButton/DotsRichButton.prompt.md":"94e43f6c7d5f","components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx":"63c3134be5e4","components/inputs/DotsSegmentedControl/DotsSegmentedControl.d.ts":"aa4b83624d09","components/inputs/DotsSegmentedControl/DotsSegmentedControl.prompt.md":"780587c9cea5","components/buttons/DotsSelector/DotsSelector.jsx":"32a1fa2354c2","components/buttons/DotsSelector/DotsSelector.d.ts":"8371f7ea93d5","components/buttons/DotsSelector/DotsSelector.prompt.md":"3ca0254c3375","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx":"ca91ce72bf06","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.d.ts":"452a97eb30f8","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.prompt.md":"0f43fa3291a0","components/content/DotsSlider/DotsSlider.jsx":"11ddb3b9d671","components/content/DotsSlider/DotsSlider.d.ts":"30a75a21af71","components/content/DotsSlider/DotsSlider.prompt.md":"b91814ec96a9","components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx":"be4633716883","components/media/DotsSquirclePhoto/DotsSquirclePhoto.d.ts":"e6eb4abc3fbf","components/media/DotsSquirclePhoto/DotsSquirclePhoto.prompt.md":"7bf60628c1fe","components/buttons/DotsSystemButton/DotsSystemButton.jsx":"61ef368899c8","components/buttons/DotsSystemButton/DotsSystemButton.d.ts":"4c662f2b1a53","components/buttons/DotsSystemButton/DotsSystemButton.prompt.md":"09363a30bf00","components/inputs/DotsTextArea/DotsTextArea.jsx":"f5e66264f111","components/inputs/DotsTextArea/DotsTextArea.d.ts":"c0f65e12c920","components/inputs/DotsTextArea/DotsTextArea.prompt.md":"63170a772fb6","components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx":"163b6c3eb5a2","components/inputs/DotsTextFieldButton/DotsTextFieldButton.d.ts":"69d562a11b16","components/inputs/DotsTextFieldButton/DotsTextFieldButton.prompt.md":"cd2a18ca1749","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx":"ee02df22e4b1","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.d.ts":"3e321bce70f9","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.prompt.md":"32c5dd3fc02b","components/feedback/DotsToast/DotsToast.jsx":"9875719b818a","components/feedback/DotsToast/DotsToast.d.ts":"f35b4f9e35cb","components/feedback/DotsToast/DotsToast.prompt.md":"e7dade8e5042","components/buttons/DotsToggle/DotsToggle.jsx":"d580e9128f26","components/buttons/DotsToggle/DotsToggle.d.ts":"245a32715b3e","components/buttons/DotsToggle/DotsToggle.prompt.md":"c8b4344a32ac","components/overlays/DotsTooltip/DotsTooltip.jsx":"690646cedff8","components/overlays/DotsTooltip/DotsTooltip.d.ts":"57fcd8d2ce51","components/overlays/DotsTooltip/DotsTooltip.prompt.md":"8e2e72fa4034","components/navigation/DotsTopBar/DotsTopBar.jsx":"bab2b068b924","components/navigation/DotsTopBar/DotsTopBar.d.ts":"82b60ca70acc","components/navigation/DotsTopBar/DotsTopBar.prompt.md":"6f2c5073c6e6","components/media/DotsUploadItem/DotsUploadItem.jsx":"b5b296dabbb0","components/media/DotsUploadItem/DotsUploadItem.d.ts":"81e7fb9ba5e0","components/media/DotsUploadItem/DotsUploadItem.prompt.md":"063ce14a5d25","components/overlays/DropdownMenu/DropdownMenu.jsx":"e990079ce8af","components/overlays/DropdownMenu/DropdownMenu.d.ts":"f4b48717fe80","components/overlays/DropdownMenu/DropdownMenu.prompt.md":"b8ca4e74f03e","components/cards/EventGroupCard/EventGroupCard.jsx":"a156456590e1","components/cards/EventGroupCard/EventGroupCard.d.ts":"8b168eb2615c","components/cards/EventGroupCard/EventGroupCard.prompt.md":"456df0915b54","components/content/FeatureItem/FeatureItem.jsx":"bb22c6b112e0","components/content/FeatureItem/FeatureItem.d.ts":"5b02831affdc","components/content/FeatureItem/FeatureItem.prompt.md":"8eed7e79d9a6","components/navigation/FolderCarrousel/FolderCarrousel.jsx":"fe669a8466ea","components/navigation/FolderCarrousel/FolderCarrousel.d.ts":"517a1f6c511d","components/navigation/FolderCarrousel/FolderCarrousel.prompt.md":"ed1bca9712aa","components/indicators/ImageThumbnail/ImageThumbnail.jsx":"eba358df1cbe","components/indicators/ImageThumbnail/ImageThumbnail.d.ts":"e09a2ac117ef","components/indicators/ImageThumbnail/ImageThumbnail.prompt.md":"f1d009a529a1","components/social/ImageWithIcon/ImageWithIcon.jsx":"c6c587c966d1","components/social/ImageWithIcon/ImageWithIcon.d.ts":"0ffc16494e27","components/social/ImageWithIcon/ImageWithIcon.prompt.md":"0c2c7229692c","components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx":"806a6150545b","components/indicators/ImageWithProgressAround/ImageWithProgressAround.d.ts":"0156a3f1afb2","components/indicators/ImageWithProgressAround/ImageWithProgressAround.prompt.md":"dcf89fcfbb8a","components/cards/MemoryCard/MemoryCard.jsx":"3a0db91b5a78","components/cards/MemoryCard/MemoryCard.d.ts":"133524ff6528","components/cards/MemoryCard/MemoryCard.prompt.md":"429e9792f2cc","components/social/MessagePreview/MessagePreview.jsx":"215094a5eccd","components/social/MessagePreview/MessagePreview.d.ts":"bb652c774f28","components/social/MessagePreview/MessagePreview.prompt.md":"8429677865ce","components/memories/MilestoneCard/MilestoneCard.jsx":"f41829c3c1f0","components/memories/MilestoneCard/MilestoneCard.d.ts":"eed7542b8e03","components/memories/MilestoneCard/MilestoneCard.prompt.md":"ed078065e85c","components/memories/MilestonesList/MilestonesList.jsx":"48f44b1ed490","components/memories/MilestonesList/MilestonesList.d.ts":"10cad4068b69","components/memories/MilestonesList/MilestonesList.prompt.md":"739f1eedb6e7","components/social/NotificationBanner/NotificationBanner.jsx":"3047bcebf969","components/social/NotificationBanner/NotificationBanner.d.ts":"4f82b841d8c3","components/social/NotificationBanner/NotificationBanner.prompt.md":"57060dbd2686","components/social/NotificationBannerImage/NotificationBannerImage.jsx":"9d5214f16bde","components/social/NotificationBannerImage/NotificationBannerImage.d.ts":"0488d329db36","components/social/NotificationBannerImage/NotificationBannerImage.prompt.md":"01904774056d","components/cards/ProductCard/ProductCard.jsx":"60765da3d430","components/cards/ProductCard/ProductCard.d.ts":"77da73cd7ba1","components/cards/ProductCard/ProductCard.prompt.md":"bddfb1317e70","components/content/RatingRow/RatingRow.jsx":"c648699f7d52","components/content/RatingRow/RatingRow.d.ts":"b8541da81acd","components/content/RatingRow/RatingRow.prompt.md":"d36b1b43f630","components/cards/RecapCard/RecapCard.jsx":"5b5a0051efa7","components/cards/RecapCard/RecapCard.d.ts":"80b636ffc554","components/cards/RecapCard/RecapCard.prompt.md":"8fff796309ab","components/social/UserItem/UserItem.jsx":"8ca2155b51f1","components/social/UserItem/UserItem.d.ts":"9733979d627a","components/social/UserItem/UserItem.prompt.md":"ec0b0a01c16b","components/social/UsersList/UsersList.jsx":"263f90a7d807","components/social/UsersList/UsersList.d.ts":"b34733911d1c","components/social/UsersList/UsersList.prompt.md":"e19600d69967"},"inlinedExternals":[],"unexposedExports":[],"builtBy":"dots-design-system-react"} */
 (() => {
 
 const __ds_ns = (window.DotsDesignSystem_9e41da = window.DotsDesignSystem_9e41da || {});
@@ -65,8 +65,14 @@ const hooks = () => window.React;
   var index_exports = {};
   __export(index_exports, {
     DotsIcon: () => DotsIcon,
+    DotsIconButton: () => DotsIconButton,
     DotsMainButton: () => DotsMainButton,
+    DotsMainContainer: () => DotsMainContainer,
+    DotsProfilePhoto: () => DotsProfilePhoto,
     DotsSpinner: () => DotsSpinner,
+    DotsTextField: () => DotsTextField,
+    DotsTextFieldDate: () => DotsTextFieldDate,
+    PageControl: () => PageControl,
     dotsIconNames: () => dotsIconNames
   });
   init_react_shim();
@@ -452,6 +458,291 @@ const hooks = () => window.React;
       },
       children
     );
+  }
+
+  // src/components/DotsMainContainer/DotsMainContainer.tsx
+  init_react_shim();
+  var VARIANTS2 = ["main", "secondary", "onBackground", "tertiary"];
+  var toCssSize = (v) => typeof v === "number" ? `${v}px` : v;
+  function DotsMainContainer(props) {
+    const variant = props.variant && VARIANTS2.includes(props.variant) ? props.variant : "main";
+    const forceHeight = props.forceHeight !== false;
+    const padding = props.padding ?? 16;
+    const radius = props.radius ?? (typeof props.height === "number" && props.height <= 100 ? 24 : 32);
+    let className = `ds-main-container ds-main-container--${variant}`;
+    if (props.onClick) className += " ds-main-container--clickable";
+    if (props.className) className += ` ${props.className}`;
+    const style = { borderRadius: toCssSize(radius) };
+    if (props.width != null) style.width = toCssSize(props.width);
+    if (props.height != null && forceHeight) style.height = toCssSize(props.height);
+    if (props.children != null) style.padding = toCssSize(padding);
+    if (props.backgroundColor) style.backgroundColor = props.backgroundColor;
+    if (props.backgroundImage) {
+      style.backgroundImage = props.backgroundImage.includes("(") ? props.backgroundImage : `url(${props.backgroundImage})`;
+    }
+    Object.assign(style, props.style);
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className,
+        style,
+        onClick: props.onClick,
+        role: props.onClick ? "button" : void 0,
+        tabIndex: props.onClick ? 0 : void 0
+      },
+      props.children
+    );
+  }
+
+  // src/components/DotsIconButton/DotsIconButton.tsx
+  init_react_shim();
+  var SIZES = {
+    enormous: { size: 56, iconSize: 32, spacing: 2 },
+    extraLarge: { size: 52, iconSize: 32, spacing: 2 },
+    large: { size: 44, iconSize: 24, spacing: 2 },
+    medium: { size: 36, iconSize: 20, spacing: 2 },
+    small: { size: 28, iconSize: 14, spacing: 2 },
+    extraSmall: { size: 22, iconSize: 14, spacing: 0 }
+  };
+  var VARIANT_MAP = {
+    solid: ["defaultStyle", "defaultState"],
+    photo: ["onPhoto", "defaultState"],
+    active: ["defaultStyle", "active"],
+    noBackground: ["noBackground", "defaultState"],
+    photoDisable: ["onPhoto", "disabled"]
+  };
+  var STYLE_CLASS = { defaultStyle: "default", onPhoto: "photo", floating: "floating", noBackground: "nobg" };
+  var STATE_CLASS = { defaultState: "default", active: "active", disabled: "disabled", destructive: "destructive" };
+  function labelColor(style, state) {
+    if (style === "noBackground") {
+      if (state === "active") return "var(--label-highlight)";
+      if (state === "disabled") return "var(--text-disabled)";
+      if (state === "destructive") return "var(--label-destructive)";
+      return "var(--text-primary)";
+    }
+    if (state === "disabled" && (style === "defaultStyle" || style === "floating")) return "var(--text-disabled)";
+    return "var(--text-primary)";
+  }
+  function DotsIconButton(props) {
+    const sizeName = props.size && SIZES[props.size] ? props.size : "large";
+    const sz = SIZES[sizeName];
+    let style = props.style && STYLE_CLASS[props.style] ? props.style : "defaultStyle";
+    let state = props.state && STATE_CLASS[props.state] ? props.state : "defaultState";
+    if (style === "defaultStyle" && state === "defaultState" && props.variant && props.variant !== "solid" && VARIANT_MAP[props.variant]) {
+      [style, state] = VARIANT_MAP[props.variant];
+    }
+    const direction = props.direction === "row" ? "row" : "column";
+    const noBg = style === "noBackground";
+    const shouldApplyBlur = props.shouldApplyBlur !== false;
+    const showShadow = !!props.showShadow && !noBg;
+    const hasLabel = props.label != null && props.label !== "";
+    const gap = hasLabel ? sz.spacing + (showShadow ? 4 : 0) : 0;
+    const iconSize = props.iconSize || sz.iconSize;
+    const textTappable = !!props.textTappable && hasLabel;
+    const circleCls = `ds-icon-btn__circle ds-icon-btn__circle--${sizeName} ds-icon-btn__circle--${STYLE_CLASS[style]}-${STATE_CLASS[state]}` + (style === "floating" ? " ds-icon-btn__circle--floating" : "") + (noBg ? " ds-icon-btn__circle--nobg" : "") + (!shouldApplyBlur ? " is-no-blur" : "") + (showShadow ? " has-shadow" : "");
+    const circleStyle = {};
+    if (props.backgroundColor) circleStyle.background = props.backgroundColor;
+    if (props.color) circleStyle.color = props.color;
+    const icon = /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: iconSize, color: props.color });
+    const iconContent = props.tag != null ? /* @__PURE__ */ React.createElement("span", { className: "ds-icon-btn__tagwrap" }, icon, /* @__PURE__ */ React.createElement("span", { className: "ds-icon-btn__tag" }, props.tag)) : icon;
+    const labelStyle = { color: props.color || labelColor(style, state) };
+    if (direction === "column" && !noBg) labelStyle.width = sz.size;
+    return /* @__PURE__ */ React.createElement("span", { className: `ds-icon-btn ds-icon-btn--${direction}`, style: { gap }, onClick: textTappable ? props.onClick : void 0 }, /* @__PURE__ */ React.createElement("button", { type: "button", className: circleCls, style: circleStyle, onClick: textTappable ? void 0 : props.onClick }, iconContent), hasLabel ? /* @__PURE__ */ React.createElement("span", { className: `ds-icon-btn__label${props.overflow ? " ds-icon-btn__label--ellipsis" : ""}`, style: labelStyle }, props.label) : null);
+  }
+
+  // src/components/DotsProfilePhoto/DotsProfilePhoto.tsx
+  init_react_shim();
+  var import_react2 = __toESM(require_react(), 1);
+  function gradVariant(seed) {
+    const s = seed ?? "";
+    let n = 0;
+    for (let i = 0; i < s.length; i++) n = (n + s.charCodeAt(i)) % 997;
+    return "abcd"[n % 4];
+  }
+  function DotsProfilePhoto(props) {
+    const [hasError, setError] = (0, import_react2.useState)(false);
+    const bited = !!props.bited;
+    const width = props.width ?? (bited ? 44 : 32);
+    const height = props.height ?? (bited ? 44 : 32);
+    const showImg = !!props.src && !hasError;
+    const inner = showImg ? /* @__PURE__ */ React.createElement(
+      "img",
+      {
+        className: "ds-profile-photo__img",
+        src: props.src,
+        alt: props.alt ?? "",
+        onError: (e) => {
+          setError(true);
+          props.onError?.(e);
+        }
+      }
+    ) : /* @__PURE__ */ React.createElement("span", { className: `ds-profile-photo__ph ds-profile-photo__ph--${gradVariant(props.src || props.alt)}` });
+    const rootProps = {
+      className: `ds-profile-photo${props.className ? ` ${props.className}` : ""}`,
+      style: { width, height },
+      onClick: props.onClick,
+      role: props.onClick ? "button" : void 0
+    };
+    if (!bited) {
+      return /* @__PURE__ */ React.createElement("span", { ...rootProps }, /* @__PURE__ */ React.createElement("span", { className: "ds-profile-photo__circle" }, inner));
+    }
+    const biteSize = props.biteSize ?? 0.25;
+    const off = props.biteOffset ?? { x: 0.85, y: 0.85 };
+    const d = Math.min(width, height);
+    const left = (width - d) / 2;
+    const top = (height - d) / 2;
+    const r = d * biteSize;
+    const cx = left + d * off.x;
+    const cy = top + d * off.y;
+    const mask = `radial-gradient(circle ${r}px at ${cx}px ${cy}px, transparent ${r - 0.5}px, #000 ${r + 0.5}px)`;
+    return /* @__PURE__ */ React.createElement("span", { ...rootProps }, /* @__PURE__ */ React.createElement("span", { className: "ds-profile-photo__circle", style: { WebkitMask: mask, mask } }, inner), props.reaction ? /* @__PURE__ */ React.createElement("span", { className: "ds-profile-photo__reaction", style: { left: cx - r, top: cy - r, width: 2 * r, height: 2 * r } }, props.reaction) : null);
+  }
+
+  // src/components/PageControl/PageControl.tsx
+  init_react_shim();
+  var THEMES = {
+    main: { dotSize: 8, dotSpacing: 8, activeColor: "var(--label-primary)", dotColor: "var(--label-secondary)", activeBackgroundColor: void 0 },
+    background: { dotSize: 6, dotSpacing: 12, activeColor: "var(--label-active)", dotColor: "var(--label-secondary)", activeBackgroundColor: "var(--bg-active)" }
+  };
+  function cellRadius(i, activeIndex, radius) {
+    const r = `${radius}px`;
+    if (i === 0) return i === activeIndex ? r : `${r} 0 0 ${r}`;
+    if (i === activeIndex) return `0 ${r} ${r} 0`;
+    return "0";
+  }
+  function PageControl({ count = 0, activeIndex: rawIndex = 0, variant: rawVariant, dotColor, activeColor, className }) {
+    const variant = rawVariant === "background" ? "background" : "main";
+    const t = THEMES[variant];
+    const isBg = variant === "background";
+    const activeIndex = count <= 0 || rawIndex < 0 ? 0 : Math.min(rawIndex, count - 1);
+    const inactive = dotColor ?? t.dotColor;
+    const active = activeColor ?? t.activeColor;
+    const dots = [];
+    for (let i = 0; i < count; i++) {
+      const isActive = isBg ? i <= activeIndex : i === activeIndex;
+      const cellStyle = isBg ? { padding: t.dotSpacing / 2 } : { padding: `0 ${t.dotSpacing / 2}px` };
+      if (isBg && isActive) {
+        cellStyle.background = t.activeBackgroundColor;
+        cellStyle.borderRadius = cellRadius(i, activeIndex, (t.dotSize + t.dotSpacing) / 2);
+      }
+      dots.push(
+        /* @__PURE__ */ React.createElement("span", { key: i, className: "ds-page-control__cell", style: cellStyle }, /* @__PURE__ */ React.createElement("span", { className: "ds-page-control__dot", style: { width: t.dotSize, height: t.dotSize, background: isActive ? active : inactive } }))
+      );
+    }
+    return /* @__PURE__ */ React.createElement(
+      "span",
+      {
+        className: `ds-page-control ds-page-control--${variant}${className ? ` ${className}` : ""}`,
+        style: count <= 0 ? { height: t.dotSize + (isBg ? t.dotSpacing : 0) } : void 0,
+        role: "tablist"
+      },
+      dots
+    );
+  }
+
+  // src/components/DotsTextField/DotsTextField.tsx
+  init_react_shim();
+  var import_react3 = __toESM(require_react(), 1);
+  var KEYBOARD = {
+    emailAddress: { type: "email", inputMode: "email" },
+    phone: { type: "tel", inputMode: "tel" },
+    number: { type: "text", inputMode: "numeric" },
+    url: { type: "url", inputMode: "url" }
+  };
+  function DotsTextField(props) {
+    const controlled = props.value !== void 0 && props.value !== null;
+    const [innerText, setText] = (0, import_react3.useState)(props.defaultValue != null ? String(props.defaultValue) : "");
+    const [focused, setFocused] = (0, import_react3.useState)(false);
+    const inputRef = (0, import_react3.useRef)(null);
+    const text = controlled ? String(props.value) : innerText;
+    const enabled = props.enabled !== false;
+    const background = props.background !== false;
+    const showUnderline = !!props.showUnderline;
+    const alignCenter = !!props.alignCenter;
+    const isError = !!props.isError;
+    const showClear = enabled && focused && text.length > 0;
+    const kb = props.keyboardType && KEYBOARD[props.keyboardType] || { type: "text", inputMode: void 0 };
+    function handleChange(e) {
+      const v = e.target.value;
+      if (!controlled) setText(v);
+      props.onChanged?.(v);
+    }
+    function handleKeyDown(e) {
+      if (e.key === "Enter") props.onSubmitted?.(e.currentTarget.value);
+    }
+    function handleBlur(e) {
+      setFocused(false);
+      props.onFocusLost?.(e.target.value);
+    }
+    function handleClear() {
+      if (!controlled) setText("");
+      props.onChanged?.("");
+      inputRef.current?.focus();
+    }
+    function handleBoxClick() {
+      if (enabled) inputRef.current?.focus();
+    }
+    const rootCls = `ds-textfield${alignCenter ? " ds-textfield--center" : ""}`;
+    const boxCls = "ds-textfield__box" + (background ? "" : " ds-textfield__box--no-bg") + (!background && showUnderline ? " ds-textfield__box--underline" : "");
+    const inputCls = "ds-textfield__input" + (isError && !background && !focused ? " ds-textfield__input--error" : "") + (props.addHintTextColorError === true && isError && !focused ? " ds-textfield__input--hint-error" : "");
+    const iconCls = `ds-textfield__icon${!background && isError ? " ds-textfield__icon--error" : ""}`;
+    return /* @__PURE__ */ React.createElement("div", { className: rootCls }, /* @__PURE__ */ React.createElement("div", { className: boxCls, onClick: handleBoxClick }, props.leading ?? null, props.icon ? /* @__PURE__ */ React.createElement("span", { className: iconCls, "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: 20, color: "currentColor" })) : null, /* @__PURE__ */ React.createElement(
+      "input",
+      {
+        ref: inputRef,
+        className: inputCls,
+        type: kb.type,
+        inputMode: kb.inputMode,
+        value: text,
+        placeholder: props.hintText,
+        maxLength: props.maxTextLength,
+        disabled: !enabled,
+        autoFocus: !!props.autoFocus,
+        autoCapitalize: props.textCapitalization ?? "none",
+        onChange: handleChange,
+        onKeyDown: handleKeyDown,
+        onFocus: () => setFocused(true),
+        onBlur: handleBlur
+      }
+    ), showClear ? /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        type: "button",
+        className: `ds-textfield__clear ${background ? "ds-textfield__clear--inverted" : "ds-textfield__clear--soft"}`,
+        "aria-label": "Clear text",
+        onMouseDown: (e) => e.preventDefault(),
+        onClick: handleClear
+      },
+      /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-cross", size: 10, color: "currentColor" })
+    ) : null), background && isError && props.errorText ? /* @__PURE__ */ React.createElement("div", { className: "ds-textfield__error-text" }, props.errorText) : null);
+  }
+
+  // src/components/DotsTextFieldDate/DotsTextFieldDate.tsx
+  init_react_shim();
+  function DotsTextFieldDate(props) {
+    const background = props.background !== false;
+    const isError = !!props.isError;
+    const chip = (text) => text ? /* @__PURE__ */ React.createElement("span", { className: `ds-tf-date__chip${isError ? " ds-tf-date__chip--error" : ""}` }, text) : null;
+    function handleKeyDown(e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        props.onClick();
+      }
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: "ds-tf-date" }, /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-tf-date__box${background ? "" : " ds-tf-date__box--no-bg"}`,
+        role: "button",
+        tabIndex: 0,
+        onClick: props.onClick,
+        onKeyDown: handleKeyDown
+      },
+      props.icon ? /* @__PURE__ */ React.createElement("span", { className: "ds-tf-date__icon", "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: 20, color: "currentColor" })) : null,
+      props.label ? /* @__PURE__ */ React.createElement("span", { className: "ds-tf-date__label" }, props.label) : null,
+      /* @__PURE__ */ React.createElement("span", { className: "ds-tf-date__spacer" }),
+      /* @__PURE__ */ React.createElement("span", { className: "ds-tf-date__chips" }, chip(props.date), chip(props.time))
+    ), background && isError && props.errorText ? /* @__PURE__ */ React.createElement("div", { className: "ds-tf-date__error-text" }, props.errorText) : null);
   }
 
   // src/bundle.ts
@@ -2249,108 +2540,6 @@ __ds.DotsHomeTopBar = (function () {
 })();
 
 
-// DotsIconButton — port de lib/src/components/buttons/dots_icon_button/ (Dart = fuente de verdad)
-__ds.DotsIconButton = (function () {
-  'use strict';
-
-  // DotsIconButtonSize: size × iconSize × spacing
-  var SIZES = {
-    enormous: { size: 56, iconSize: 32, spacing: 2 },
-    extraLarge: { size: 52, iconSize: 32, spacing: 2 },
-    large: { size: 44, iconSize: 24, spacing: 2 },
-    medium: { size: 36, iconSize: 20, spacing: 2 },
-    small: { size: 28, iconSize: 14, spacing: 2 },
-    extraSmall: { size: 22, iconSize: 14, spacing: 0 },
-  };
-
-  // @deprecated DotsIconButtonVariant → [style, state] (getIconButtonThemeByVariant)
-  var VARIANT_MAP = {
-    solid: ['defaultStyle', 'defaultState'],
-    photo: ['onPhoto', 'defaultState'],
-    active: ['defaultStyle', 'active'],
-    noBackground: ['noBackground', 'defaultState'],
-    photoDisable: ['onPhoto', 'disabled'],
-  };
-
-  var STYLE_CLASS = { defaultStyle: 'default', onPhoto: 'photo', floating: 'floating', noBackground: 'nobg' };
-  var STATE_CLASS = { defaultState: 'default', active: 'active', disabled: 'disabled', destructive: 'destructive' };
-
-  // labelColor de DotsIconButtonTheme (dots_icon_button_theme.dart)
-  function labelColor(style, state) {
-    if (style === 'noBackground') {
-      if (state === 'active') return 'var(--label-highlight)';
-      if (state === 'disabled') return 'var(--text-disabled)';
-      if (state === 'destructive') return 'var(--label-destructive)';
-      return 'var(--text-primary)';
-    }
-    if (state === 'disabled' && (style === 'defaultStyle' || style === 'floating')) {
-      return 'var(--text-disabled)';
-    }
-    return 'var(--text-primary)';
-  }
-
-  function DotsIconButton(props) {
-    var sizeName = SIZES[props.size] ? props.size : 'large';
-    var sz = SIZES[sizeName];
-    var style = STYLE_CLASS[props.style] ? props.style : 'defaultStyle';
-    var state = STATE_CLASS[props.state] ? props.state : 'defaultState';
-    // Compat: variant deprecado solo cuando style/state son los defaults
-    if (style === 'defaultStyle' && state === 'defaultState' && props.variant && props.variant !== 'solid' && VARIANT_MAP[props.variant]) {
-      style = VARIANT_MAP[props.variant][0];
-      state = VARIANT_MAP[props.variant][1];
-    }
-    var direction = props.direction === 'row' ? 'row' : 'column';
-    var noBg = style === 'noBackground';
-    var shouldApplyBlur = props.shouldApplyBlur !== false;
-    var showShadow = !!props.showShadow && !noBg;
-    var hasLabel = props.label != null && props.label !== '';
-    var gap = hasLabel ? sz.spacing + (showShadow ? 4 : 0) : 0;
-    var iconSize = props.iconSize || sz.iconSize;
-    var textTappable = !!props.textTappable && hasLabel;
-
-    var circleCls =
-      'ds-icon-btn__circle ds-icon-btn__circle--' + sizeName +
-      ' ds-icon-btn__circle--' + STYLE_CLASS[style] + '-' + STATE_CLASS[state] +
-      (style === 'floating' ? ' ds-icon-btn__circle--floating' : '') +
-      (noBg ? ' ds-icon-btn__circle--nobg' : '') +
-      (!shouldApplyBlur ? ' is-no-blur' : '') +
-      (showShadow ? ' has-shadow' : '');
-
-    var circleStyle = {};
-    if (props.backgroundColor) circleStyle.background = props.backgroundColor;
-    if (props.color) circleStyle.color = props.color;
-
-    var icon = h(__ds.DotsIcon, { name: props.icon, size: iconSize, color: props.color });
-    var iconContent = props.tag != null
-      ? h('span', { className: 'ds-icon-btn__tagwrap' }, icon, h('span', { className: 'ds-icon-btn__tag' }, props.tag))
-      : icon;
-
-    var circle = h('button', {
-      type: 'button',
-      className: circleCls,
-      style: circleStyle,
-      onClick: textTappable ? undefined : props.onClick,
-    }, iconContent);
-
-    var labelStyle = { color: props.color || labelColor(style, state) };
-    if (direction === 'column' && !noBg) labelStyle.width = sz.size + 'px';
-    var label = hasLabel
-      ? h('span', {
-          className: 'ds-icon-btn__label' + (props.overflow ? ' ds-icon-btn__label--ellipsis' : ''),
-          style: labelStyle,
-        }, props.label)
-      : null;
-
-    return h('span', {
-      className: 'ds-icon-btn ds-icon-btn--' + direction,
-      style: { gap: gap + 'px' },
-      onClick: textTappable ? props.onClick : undefined,
-    }, circle, label);
-  }
-  return DotsIconButton;
-})();
-
-
 // DotsInputStepper — port de lib/src/components/buttons/dots_input_stepper.dart (Dart = fuente de verdad)
 __ds.DotsInputStepper = (function () {
   'use strict';
@@ -2526,61 +2715,6 @@ __ds.DotsListItem = (function () {
     );
   }
   return DotsListItem;
-})();
-
-
-// DotsMainContainer — port de lib/src/components/containers/dots_main_container/ (Dart = fuente de verdad)
-__ds.DotsMainContainer = (function () {
-  'use strict';
-
-  var VARIANTS = ['main', 'secondary', 'onBackground', 'tertiary'];
-
-  function toCssSize(v) {
-    return typeof v === 'number' ? v + 'px' : v;
-  }
-
-  function DotsMainContainer(props) {
-    var variant = VARIANTS.indexOf(props.variant) >= 0 ? props.variant : 'main'; // DotsMainContainerVariant.main
-    var forceHeight = props.forceHeight !== false;
-    var padding = props.padding == null ? 16 : props.padding;
-
-    // Dart: radius ?? (containerHeight > 100 ? 32 : 24); sin height → alto de pantalla → 32
-    var radius = props.radius;
-    if (radius == null) {
-      radius = typeof props.height === 'number' && props.height <= 100 ? 24 : 32;
-    }
-
-    var className = 'ds-main-container ds-main-container--' + variant;
-    if (props.onClick) className += ' ds-main-container--clickable';
-    if (props.className) className += ' ' + props.className;
-
-    var style = { borderRadius: toCssSize(radius) };
-    if (props.width != null) style.width = toCssSize(props.width);
-    if (props.height != null && forceHeight) style.height = toCssSize(props.height);
-    if (props.children != null) style.padding = toCssSize(padding); // Dart: Padding solo con child
-    if (props.backgroundColor) style.backgroundColor = props.backgroundColor;
-    if (props.backgroundImage) {
-      // acepta un valor CSS de background-image o una URL/data URI a pelo
-      style.backgroundImage = props.backgroundImage.indexOf('(') >= 0
-        ? props.backgroundImage
-        : 'url(' + props.backgroundImage + ')';
-    }
-    if (props.style) for (var k in props.style) style[k] = props.style[k];
-
-    return h(
-      'div',
-      {
-        className: className,
-        style: style,
-        onClick: props.onClick || undefined, // Dart: GestureDetector(onTap)
-        role: props.onClick ? 'button' : undefined,
-        tabIndex: props.onClick ? 0 : undefined,
-      },
-      props.children
-    );
-  }
-
-  return DotsMainContainer;
 })();
 
 
@@ -2952,104 +3086,6 @@ __ds.DotsPlanSelector = (function () {
     );
   }
   return DotsPlanSelector;
-})();
-
-
-// DotsProfilePhoto — port de lib/src/components/photos_components/dots_profile_photo.dart
-// (+ dots_profile_photo_bited.dart como variante `bited`). Dart = fuente de verdad.
-__ds.DotsProfilePhoto = (function () {
-  'use strict';
-
-  // Placeholder degradado determinista cuando no hay `src` (o falla la carga)
-  function gradVariant(seed) {
-    var s = String(seed == null ? '' : seed);
-    var n = 0;
-    for (var i = 0; i < s.length; i++) n = (n + s.charCodeAt(i)) % 997;
-    return 'abcd'[n % 4];
-  }
-
-  function DotsProfilePhoto(props) {
-    var useState = hooks().useState;
-    var errState = useState(false);
-    var hasError = errState[0];
-    var setError = errState[1];
-
-    var bited = !!props.bited; // DotsProfilePhotoBited
-    var width = props.width == null ? (bited ? 44 : 32) : props.width;   // Dart defaults 32 / 44
-    var height = props.height == null ? (bited ? 44 : 32) : props.height;
-    var showImg = !!props.src && !hasError;
-
-    var inner = showImg
-      ? h('img', {
-          className: 'ds-profile-photo__img',
-          src: props.src,
-          alt: props.alt || '',
-          onError: function (e) {
-            setError(true);
-            if (props.onError) props.onError(e);
-          },
-        })
-      : h('span', {
-          className:
-            'ds-profile-photo__ph ds-profile-photo__ph--' + gradVariant(props.src || props.alt),
-        });
-
-    var rootProps = {
-      className: 'ds-profile-photo' + (props.className ? ' ' + props.className : ''),
-      style: { width: width + 'px', height: height + 'px' },
-      onClick: props.onClick,
-      role: props.onClick ? 'button' : undefined,
-    };
-
-    if (!bited) {
-      return h('span', rootProps, h('span', { className: 'ds-profile-photo__circle' }, inner));
-    }
-
-    // _BiteCircleClipper: círculo de diámetro min(w,h) menos mordida r = d*biteSize
-    // centrada en (d*biteOffset.x, d*biteOffset.y) — aproximado con mask radial.
-    var biteSize = props.biteSize == null ? 0.25 : props.biteSize;
-    var off = props.biteOffset || { x: 0.85, y: 0.85 };
-    var d = Math.min(width, height);
-    var left = (width - d) / 2;
-    var top = (height - d) / 2;
-    var r = d * biteSize;
-    var cx = left + d * off.x;
-    var cy = top + d * off.y;
-    var mask =
-      'radial-gradient(circle ' + r + 'px at ' + cx + 'px ' + cy + 'px, transparent ' +
-      (r - 0.5) + 'px, #000 ' + (r + 0.5) + 'px)';
-
-    return h(
-      'span',
-      rootProps,
-      h(
-        'span',
-        {
-          className: 'ds-profile-photo__circle',
-          style: { WebkitMask: mask, mask: mask },
-        },
-        inner
-      ),
-      // Reaction — caja 2r×2r centrada en la mordida (Dart: Positioned + Align.center)
-      props.reaction
-        ? h(
-            'span',
-            {
-              className: 'ds-profile-photo__reaction',
-              style: {
-                left: cx - r + 'px',
-                top: cy - r + 'px',
-                width: 2 * r + 'px',
-                height: 2 * r + 'px',
-              },
-            },
-            props.reaction
-          )
-        : null
-    );
-  }
-
-  return DotsProfilePhoto;
 })();
 
 
@@ -3831,134 +3867,6 @@ __ds.DotsTextArea = (function () {
 })();
 
 
-// DotsTextField — port de lib/src/components/text_fields/dots_textfield.dart (Dart = fuente de verdad)
-__ds.DotsTextField = (function () {
-  'use strict';
-
-  // TextInputType (Dart) → atributos del <input>
-  var KEYBOARD = {
-    emailAddress: { type: 'email', inputMode: 'email' },
-    phone: { type: 'tel', inputMode: 'tel' },
-    number: { type: 'text', inputMode: 'numeric' },
-    url: { type: 'url', inputMode: 'url' },
-  };
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  function DotsTextField(props) {
-    var R = hooks();
-    var controlled = props.value !== undefined && props.value !== null;
-    var innerState = R.useState(props.defaultValue != null ? String(props.defaultValue) : '');
-    var focusState = R.useState(false);
-    var inputRef = R.useRef(null);
-
-    var text = controlled ? String(props.value) : innerState[0];
-    var setText = innerState[1];
-    var focused = focusState[0];
-    var setFocused = focusState[1];
-
-    var enabled = props.enabled !== false;        // Dart: enabled = true
-    var background = props.background !== false;  // Dart: background = true
-    var showUnderline = !!props.showUnderline;    // Dart: showUnderline = false
-    var alignCenter = !!props.alignCenter;        // Dart: alignCenter = false
-    var isError = !!props.isError;                // Dart: isError = false
-
-    var showClear = enabled && focused && text.length > 0; // Dart: _showClearButton
-    var kb = KEYBOARD[props.keyboardType] || { type: 'text', inputMode: undefined };
-
-    function handleChange(e) {
-      var v = e.target.value;
-      if (!controlled) setText(v);
-      if (props.onChanged) props.onChanged(v);
-    }
-    function handleKeyDown(e) {
-      if (e.key === 'Enter' && props.onSubmitted) props.onSubmitted(e.target.value);
-    }
-    function handleFocus() { setFocused(true); }
-    function handleBlur(e) {
-      setFocused(false);
-      if (props.onFocusLost) props.onFocusLost(e.target.value); // Dart: onFocusLost
-    }
-    function handleClear() {
-      if (!controlled) setText('');
-      if (props.onChanged) props.onChanged('');
-      if (inputRef.current) inputRef.current.focus();
-    }
-    function handleBoxClick() {
-      // Dart: GestureDetector → focusNode.requestFocus()
-      if (enabled && inputRef.current) inputRef.current.focus();
-    }
-
-    var rootCls = 'ds-textfield' + (alignCenter ? ' ds-textfield--center' : '');
-    var boxCls =
-      'ds-textfield__box' +
-      (background ? '' : ' ds-textfield__box--no-bg') +
-      (!background && showUnderline ? ' ds-textfield__box--underline' : '');
-    // Dart: color texto = labelDestructive solo si isError && !background && !focus
-    var inputCls =
-      'ds-textfield__input' +
-      (isError && !background && !focused ? ' ds-textfield__input--error' : '') +
-      (props.addHintTextColorError === true && isError && !focused ? ' ds-textfield__input--hint-error' : '');
-    // Dart: icono destructive solo si !background && isError
-    var iconCls = 'ds-textfield__icon' + (!background && isError ? ' ds-textfield__icon--error' : '');
-
-    return h(
-      'div',
-      { className: rootCls },
-      h(
-        'div',
-        { className: boxCls, onClick: handleBoxClick },
-        props.leading || null,
-        props.icon
-          ? h('span', { className: iconCls, 'aria-hidden': true }, icon({ name: props.icon, size: 20, color: 'currentColor' }))
-          : null,
-        h('input', {
-          ref: inputRef,
-          className: inputCls,
-          type: kb.type,
-          inputMode: kb.inputMode,
-          value: text,
-          placeholder: props.hintText,
-          maxLength: props.maxTextLength,
-          disabled: !enabled,
-          autoFocus: !!props.autoFocus,
-          autoCapitalize: props.textCapitalization || 'none', // Dart: TextCapitalization.none
-          onChange: handleChange,
-          onKeyDown: handleKeyDown,
-          onFocus: handleFocus,
-          onBlur: handleBlur,
-        }),
-        showClear
-          ? h(
-              'button',
-              {
-                type: 'button',
-                // Dart: DotsCloseButton extraSmall — inverted (con fondo) / softContrast (sin fondo)
-                className:
-                  'ds-textfield__clear ' +
-                  (background ? 'ds-textfield__clear--inverted' : 'ds-textfield__clear--soft'),
-                'aria-label': 'Borrar texto',
-                onMouseDown: function (e) { e.preventDefault(); }, // no robar el foco al input
-                onClick: handleClear,
-              },
-              icon({ name: 'ic-cross', size: 10, color: 'currentColor' })
-            )
-          : null
-      ),
-      background && isError && props.errorText
-        ? h('div', { className: 'ds-textfield__error-text' }, props.errorText)
-        : null
-    );
-  }
-
-  return DotsTextField;
-})();
-
-
 // DotsTextFieldButton — port de lib/src/components/text_fields/dots_textfield_button.dart (Dart = fuente de verdad)
 __ds.DotsTextFieldButton = (function () {
   'use strict';
@@ -4098,66 +4006,6 @@ __ds.DotsTextFieldButton = (function () {
   }
 
   return DotsTextFieldButton;
-})();
-
-
-// DotsTextFieldDate — port de lib/src/components/text_fields/dots_textfield_date.dart (Dart = fuente de verdad)
-__ds.DotsTextFieldDate = (function () {
-  'use strict';
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  function DotsTextFieldDate(props) {
-    var background = props.background !== false; // Dart: background = true
-    var isError = !!props.isError;               // Dart: isError = false
-
-    // Dart: buildTextWidget — chip bgSecondaryBtn r24, minWidth 56, padding 10x4,
-    // bodyDefaultMedium, texto destructive si isError
-    function chip(text) {
-      if (!text) return null;
-      return h('span',
-        { className: 'ds-tf-date__chip' + (isError ? ' ds-tf-date__chip--error' : '') },
-        text);
-    }
-
-    function handleKeyDown(e) {
-      if ((e.key === 'Enter' || e.key === ' ') && props.onClick) {
-        e.preventDefault();
-        props.onClick();
-      }
-    }
-
-    return h(
-      'div',
-      { className: 'ds-tf-date' },
-      h(
-        'div',
-        {
-          className: 'ds-tf-date__box' + (background ? '' : ' ds-tf-date__box--no-bg'),
-          role: 'button',
-          tabIndex: 0,
-          onClick: props.onClick, // Dart: onTap
-          onKeyDown: handleKeyDown,
-        },
-        props.icon
-          ? h('span', { className: 'ds-tf-date__icon', 'aria-hidden': true },
-              icon({ name: props.icon, size: 20, color: 'currentColor' }))
-          : null,
-        props.label ? h('span', { className: 'ds-tf-date__label' }, props.label) : null,
-        h('span', { className: 'ds-tf-date__spacer' }),
-        h('span', { className: 'ds-tf-date__chips' }, chip(props.date), chip(props.time))
-      ),
-      background && isError && props.errorText
-        ? h('div', { className: 'ds-tf-date__error-text' }, props.errorText)
-        : null
-    );
-  }
-
-  return DotsTextFieldDate;
 })();
 
 
@@ -5936,99 +5784,6 @@ __ds.NotificationBannerImage = (function () {
   }
 
   return NotificationBannerImage;
-})();
-
-
-// PageControl — port de lib/src/components/dot_book/page_control.dart (+ page_control_theme.dart)
-// (Dart = fuente de verdad)
-__ds.PageControl = (function () {
-  'use strict';
-
-  // getPageControlTheme (page_control_theme.dart)
-  var THEMES = {
-    main: {
-      dotSize: 8,
-      dotSpacing: 8,
-      activeColor: 'var(--label-primary)',
-      dotColor: 'var(--label-secondary)',
-      activeBackgroundColor: null,
-    },
-    background: {
-      dotSize: 6,
-      dotSpacing: 12,
-      activeColor: 'var(--label-active)',
-      dotColor: 'var(--label-secondary)',
-      activeBackgroundColor: 'var(--bg-active)',
-    },
-  };
-
-  // _getBorderRadius (Dart): píldora continua del primer dot al activo
-  function cellRadius(i, activeIndex, radius) {
-    var r = radius + 'px';
-    if (i === 0) {
-      if (i === activeIndex) return r;
-      return r + ' 0 0 ' + r;
-    }
-    if (i === activeIndex) return '0 ' + r + ' ' + r + ' 0';
-    return '0';
-  }
-
-  function PageControl(props) {
-    var variant = props.variant === 'background' ? 'background' : 'main';
-    var t = THEMES[variant];
-    var count = props.count || 0;
-    // Clamp de activeIndex como el constructor Dart
-    var activeIndex = props.activeIndex == null ? 0 : props.activeIndex;
-    activeIndex = count <= 0 || activeIndex < 0 ? 0 : Math.min(activeIndex, count - 1);
-
-    var dotColor = props.dotColor || t.dotColor;
-    var activeColor = props.activeColor || t.activeColor;
-    var isBg = variant === 'background';
-
-    var dots = [];
-    for (var i = 0; i < count; i++) {
-      // background: activos todos hasta activeIndex; main: solo el activo
-      var isActive = isBg ? i <= activeIndex : i === activeIndex;
-      var cellStyle = isBg
-        ? { padding: t.dotSpacing / 2 + 'px' }
-        : { padding: '0 ' + t.dotSpacing / 2 + 'px' };
-      if (isBg && isActive) {
-        cellStyle.background = t.activeBackgroundColor;
-        cellStyle.borderRadius = cellRadius(i, activeIndex, (t.dotSize + t.dotSpacing) / 2);
-      }
-      dots.push(
-        h(
-          'span',
-          { key: i, className: 'ds-page-control__cell', style: cellStyle },
-          h('span', {
-            className: 'ds-page-control__dot',
-            style: {
-              width: t.dotSize + 'px',
-              height: t.dotSize + 'px',
-              background: isActive ? activeColor : dotColor,
-            },
-          })
-        )
-      );
-    }
-
-    return h(
-      'span',
-      {
-        className:
-          'ds-page-control ds-page-control--' + variant +
-          (props.className ? ' ' + props.className : ''),
-        // count <= 0: reserva la altura del dot (+ spacing en background), como el SizedBox Dart
-        style:
-          count <= 0
-            ? { height: t.dotSize + (isBg ? t.dotSpacing : 0) + 'px' }
-            : undefined,
-        role: 'tablist',
-      },
-      dots
-    );
-  }
-  return PageControl;
 })();
 
 

@@ -3,6 +3,96 @@
 .ds-icon svg{width:100%;height:100%;display:block}
 .ds-icon--missing{border:1px dashed var(--label-secondary);border-radius:2px;box-sizing:border-box}
 
+/* ── DotsIconButton ── */
+/* DotsIconButton — colores de dots_icon_button_theme.dart, medidas de dots_icon_button_enums.dart */
+.ds-icon-btn { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.ds-icon-btn--column { flex-direction: column; }
+.ds-icon-btn--row { flex-direction: row; }
+
+.ds-icon-btn__circle {
+  display: inline-flex; align-items: center; justify-content: center;
+  border: none; padding: 0; cursor: pointer; border-radius: 50%; flex: none;
+  position: relative; background: transparent; color: var(--text-primary);
+  font-family: var(--font-main);
+}
+/* DotsIconButtonSize: size (el iconSize lo pone DotsIcon) */
+.ds-icon-btn__circle--enormous { width: 56px; height: 56px; }
+.ds-icon-btn__circle--extraLarge { width: 52px; height: 52px; }
+.ds-icon-btn__circle--large { width: 44px; height: 44px; }
+.ds-icon-btn__circle--medium { width: 36px; height: 36px; }
+.ds-icon-btn__circle--small { width: 28px; height: 28px; }
+.ds-icon-btn__circle--extraSmall { width: 22px; height: 22px; }
+
+/* DotsIconButtonStyle.defaultStyle × DotsIconButtonState */
+.ds-icon-btn__circle--default-default {
+  background: var(--bg-container-secondary-on-bg); color: var(--text-primary);
+  -webkit-backdrop-filter: blur(var(--blur-50)); backdrop-filter: blur(var(--blur-50));
+}
+.ds-icon-btn__circle--default-active { background: var(--label-highlight); color: var(--label-always-white); }
+.ds-icon-btn__circle--default-disabled {
+  background: var(--bg-btn-disabled); color: var(--text-disabled);
+  -webkit-backdrop-filter: blur(var(--blur-50)); backdrop-filter: blur(var(--blur-50));
+}
+.ds-icon-btn__circle--default-destructive { background: var(--bg-destructive); color: var(--label-destructive); }
+
+/* DotsIconButtonStyle.onPhoto × State (default y active comparten tema) */
+.ds-icon-btn__circle--photo-default,
+.ds-icon-btn__circle--photo-active {
+  background: var(--bg-floating-btn); color: var(--label-always-white);
+  -webkit-backdrop-filter: blur(var(--blur-50)); backdrop-filter: blur(var(--blur-50));
+}
+.ds-icon-btn__circle--photo-disabled {
+  background: var(--bg-btn-disabled); color: var(--label-always-white);
+  -webkit-backdrop-filter: blur(var(--blur-50)); backdrop-filter: blur(var(--blur-50));
+}
+.ds-icon-btn__circle--photo-destructive {
+  background: var(--bg-destructive); color: var(--label-destructive);
+  -webkit-backdrop-filter: blur(var(--blur-50)); backdrop-filter: blur(var(--blur-50));
+}
+
+/* DotsIconButtonStyle.floating — borde 0.7 borderAlert, blur10.
+   borderAlert no existe como token en tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart) */
+.ds-icon-btn__circle--floating {
+  --ds-border-alert: #FFFFFF4D;
+  border: 0.7px solid var(--ds-border-alert);
+  -webkit-backdrop-filter: blur(var(--blur-10)); backdrop-filter: blur(var(--blur-10));
+}
+[data-theme="dark"] .ds-icon-btn__circle--floating { --ds-border-alert: #6E6E6E4D; }
+.ds-icon-btn__circle--floating-default { background: var(--bg-btn-image); color: var(--text-primary); }
+.ds-icon-btn__circle--floating-active { background: var(--label-highlight); color: var(--label-always-white); }
+.ds-icon-btn__circle--floating-disabled { background: transparent; color: var(--bg-btn-disabled); }
+.ds-icon-btn__circle--floating-destructive { background: var(--bg-destructive); color: var(--label-destructive); }
+
+/* DotsIconButtonStyle.noBackground — sin chrome ni tamaño de botón */
+.ds-icon-btn__circle--nobg { width: auto; height: auto; background: none; border: none;
+  -webkit-backdrop-filter: none; backdrop-filter: none; }
+.ds-icon-btn__circle--nobg-default { color: var(--text-primary); }
+.ds-icon-btn__circle--nobg-active { color: var(--label-highlight); }
+.ds-icon-btn__circle--nobg-disabled { color: var(--text-disabled); }
+.ds-icon-btn__circle--nobg-destructive { color: var(--label-destructive); }
+
+/* shouldApplyBlur: false */
+.ds-icon-btn__circle.is-no-blur { -webkit-backdrop-filter: none; backdrop-filter: none; }
+/* showShadow — shadowFolder #00000014 (sin token), blur 10 offset (0,5) */
+.ds-icon-btn__circle.has-shadow { box-shadow: 0 5px 10px #00000014; }
+
+/* BadgeTag (tag) — labelDestructive, r22, min 18×18, labelSmallMedium 11/600 */
+.ds-icon-btn__tagwrap { position: relative; display: inline-flex; }
+.ds-icon-btn__tag {
+  position: absolute; top: -5px; right: -5px; box-sizing: border-box;
+  min-width: 18px; min-height: 18px; padding: 1px 5px; border-radius: 22px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--label-destructive); color: var(--label-always-white);
+  font: 600 11px/1.27 var(--font-main); white-space: nowrap;
+}
+
+/* Label — labelDefaultRegular 13/400, maxLines 2 (1 + ellipsis con overflow) */
+.ds-icon-btn__label {
+  font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px; text-align: center;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.ds-icon-btn__label--ellipsis { display: block; white-space: nowrap; text-overflow: ellipsis; }
+
 /* ── DotsMainButton ── */
 /* DotsMainButton — port de lib/src/components/buttons/dots_main_button/ (Dart = fuente de verdad) */
 
@@ -138,6 +228,67 @@
 }
 @keyframes ds-main-btn-spin { to { transform: rotate(360deg); } }
 
+/* ── DotsMainContainer ── */
+/* DotsMainContainer — port de lib/src/components/containers/dots_main_container/ (Dart = fuente de verdad) */
+
+.ds-main-container {
+  box-sizing: border-box;
+  width: 100%; /* Dart: width ?? MediaQuery.sizeOf(context).width */
+  background-size: cover; /* DecorationImage por defecto en las llamadas del app */
+  background-position: center;
+  font-family: var(--font-main);
+}
+.ds-main-container--clickable { cursor: pointer; }
+
+/* _getContainerBackgroundColor (dots_main_container.dart) */
+.ds-main-container--main { background-color: var(--bg-container-tertiary); }
+.ds-main-container--secondary,
+.ds-main-container--onBackground { background-color: var(--bg-container-secondary); }
+.ds-main-container--tertiary { background-color: var(--bg-container-primary); }
+
+/* ── DotsProfilePhoto ── */
+/* DotsProfilePhoto — photos_components/dots_profile_photo(_bited).dart · círculo (OvalBorder) */
+.ds-profile-photo {
+  position: relative;
+  display: inline-block;
+  flex: none;
+}
+.ds-profile-photo[role='button'] {
+  cursor: pointer;
+}
+.ds-profile-photo__circle {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.ds-profile-photo__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.ds-profile-photo__ph {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* Placeholder degradado — arte sin token (no existe en foundations) */
+.ds-profile-photo__ph--a { background: linear-gradient(135deg, #faa25e, #f43c51); }
+.ds-profile-photo__ph--b { background: linear-gradient(135deg, #9297ef, #8b84f7); }
+.ds-profile-photo__ph--c { background: linear-gradient(135deg, #28cb55, #0072ef); }
+.ds-profile-photo__ph--d { background: linear-gradient(135deg, #c88eff, #8b84f7); }
+/* Reaction — labelDefaultBold 13/600, centrada en la mordida */
+.ds-profile-photo__reaction {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 600 13px/1 var(--font-main);
+  color: var(--text-primary);
+}
+
 /* ── DotsSpinner ── */
 /* DotsSpinner — spinner/spinner_round.dart (SpinnerRound) · size 43 · stroke 4 */
 .ds-spinner {
@@ -175,6 +326,139 @@
 }
 @keyframes ds-spinner-rotate {
   to { transform: rotate(360deg); }
+}
+
+/* ── DotsTextField ── */
+/* DotsTextField — dots_textfield.dart. Contenedor h44, píldora r1000,
+   bg bgContainerSecondaryOnBackground, padding 0 16. */
+.ds-textfield { display: block; width: 100%; font-family: var(--font-main); }
+
+.ds-textfield__box {
+  display: flex; align-items: center;
+  height: 44px; box-sizing: border-box;
+  border-radius: 1000px; /* DotsBorderRadius.r1000 */
+  background: var(--bg-container-secondary-on-bg);
+  padding: 0 16px;
+  cursor: text;
+}
+.ds-textfield__box--no-bg { background: transparent; border-radius: 0; padding: 0; }
+/* showUnderline: borde inferior 0.5 labelSecondary con opacidad 0.3 multiplicada */
+.ds-textfield__box--underline {
+  border-bottom: 0.5px solid color-mix(in srgb, var(--label-secondary) 30%, transparent);
+}
+
+/* icono 20 textTertiary (destructive si !background && isError), gap 6 */
+.ds-textfield__icon { display: inline-flex; flex: none; margin-right: 6px; color: var(--text-tertiary); }
+.ds-textfield__icon--error { color: var(--label-destructive); }
+
+/* input: typo.main.bodyDefaultMedium (Inter 14/500, height 1.29, ls -0.02) */
+.ds-textfield__input {
+  flex: 1 1 auto; min-width: 0;
+  border: 0; outline: none; background: transparent; padding: 0; margin: 0;
+  font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px;
+  color: var(--text-primary);
+  caret-color: var(--label-highlight); /* cursorColor: labelHighlight */
+}
+.ds-textfield__input::placeholder { color: var(--text-quarternary); }
+.ds-textfield__input--error { color: var(--label-destructive); }
+.ds-textfield__input--hint-error::placeholder { color: var(--label-destructive); }
+.ds-textfield__input:disabled {
+  color: var(--text-disabled);
+  -webkit-text-fill-color: var(--text-disabled);
+}
+.ds-textfield--center .ds-textfield__input { text-align: center; }
+.ds-textfield--center .ds-textfield__error-text { text-align: center; }
+
+/* clear = DotsCloseButton extraSmall (16, icono 10) */
+.ds-textfield__clear {
+  flex: none; display: flex; align-items: center; justify-content: center;
+  width: 16px; height: 16px; padding: 0; border: 0; border-radius: 50%;
+  cursor: pointer;
+}
+/* variant inverted: bg textQuarternary, fg bgContainerPrimary */
+.ds-textfield__clear--inverted { background: var(--text-quarternary); color: var(--bg-container-primary); }
+/* variant softContrast: bg bgBtnDisabled, fg labelPrimary */
+.ds-textfield__clear--soft { background: var(--bg-btn-disabled); color: var(--label-primary); }
+
+/* errorText: typo.main.labelDefaultRegular (13/400, h1.31, ls -0.01) labelDestructive */
+.ds-textfield__error-text {
+  padding: 4px 16px 0;
+  font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px;
+  color: var(--label-destructive);
+}
+
+/* ── DotsTextFieldDate ── */
+/* DotsTextFieldDate — dots_textfield_date.dart. Pastilla h44 r1000,
+   bg bgContainerSecondaryOnBackground, padding 16/8, chips de valor bgSecondaryBtn r24. */
+.ds-tf-date { display: block; width: 100%; font-family: var(--font-main); }
+
+.ds-tf-date__box {
+  display: flex; align-items: center;
+  height: 44px; box-sizing: border-box;
+  border-radius: 1000px; /* DotsBorderRadius.r1000 */
+  background: var(--bg-container-secondary-on-bg);
+  padding: 0 8px 0 16px;
+  cursor: pointer;
+}
+.ds-tf-date__box--no-bg { background: transparent; }
+
+/* icono 20 textSecondary + gap 6 */
+.ds-tf-date__icon { display: inline-flex; flex: none; margin-right: 6px; color: var(--text-secondary); }
+
+/* label: bodyDefaultRegular (14/400, h1.29, ls -0.02) textPrimary */
+.ds-tf-date__label {
+  font: 400 14px/1.29 var(--font-main); letter-spacing: -0.02px;
+  color: var(--text-primary);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* Dart: Spacer() + SizedBox(width: 12) antes de los chips */
+.ds-tf-date__spacer { flex: 1 1 auto; min-width: 12px; }
+
+/* chips (date/time): gap 4, bg bgSecondaryBtn, r24, minWidth 56, padding 10x4,
+   bodyDefaultMedium (14/500, h1.29, ls -0.02) textPrimary (destructive si isError) */
+.ds-tf-date__chips { display: flex; align-items: center; gap: 4px; }
+.ds-tf-date__chip {
+  box-sizing: border-box; min-width: 56px; padding: 4px 10px;
+  border-radius: 24px; /* DotsBorderRadius.r24 */
+  background: var(--bg-secondary-btn);
+  text-align: center; white-space: nowrap;
+  font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px;
+  color: var(--text-primary);
+}
+.ds-tf-date__chip--error { color: var(--label-destructive); }
+
+/* errorText: labelDefaultRegular destructive (solo con background) */
+.ds-tf-date__error-text {
+  padding: 4px 16px 0;
+  font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px;
+  color: var(--label-destructive);
+}
+
+/* ── PageControl ── */
+/* PageControl — dot_book/page_control.dart · main (8px, pad 18/12) · background (6px, píldora bgActive) */
+.ds-page-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+/* main: contentPadding 18 vertical / 12 horizontal */
+.ds-page-control--main {
+  padding: 18px 12px;
+}
+/* background: contentPadding zero */
+.ds-page-control--background {
+  padding: 0;
+}
+.ds-page-control__cell {
+  display: inline-flex;
+  flex: none;
+}
+.ds-page-control__dot {
+  display: inline-block;
+  border-radius: 50%;
 }
 
 /* ── ActivityPreview ── */
@@ -1453,96 +1737,6 @@
   margin-right: 16px;
 }
 
-/* ── DotsIconButton ── */
-/* DotsIconButton — colores de dots_icon_button_theme.dart, medidas de dots_icon_button_enums.dart */
-.ds-icon-btn { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
-.ds-icon-btn--column { flex-direction: column; }
-.ds-icon-btn--row { flex-direction: row; }
-
-.ds-icon-btn__circle {
-  display: inline-flex; align-items: center; justify-content: center;
-  border: none; padding: 0; cursor: pointer; border-radius: 50%; flex: none;
-  position: relative; background: transparent; color: var(--text-primary);
-  font-family: var(--font-main);
-}
-/* DotsIconButtonSize: size (el iconSize lo pone DotsIcon) */
-.ds-icon-btn__circle--enormous { width: 56px; height: 56px; }
-.ds-icon-btn__circle--extraLarge { width: 52px; height: 52px; }
-.ds-icon-btn__circle--large { width: 44px; height: 44px; }
-.ds-icon-btn__circle--medium { width: 36px; height: 36px; }
-.ds-icon-btn__circle--small { width: 28px; height: 28px; }
-.ds-icon-btn__circle--extraSmall { width: 22px; height: 22px; }
-
-/* DotsIconButtonStyle.defaultStyle × DotsIconButtonState */
-.ds-icon-btn__circle--default-default {
-  background: var(--bg-container-secondary-on-bg); color: var(--text-primary);
-  -webkit-backdrop-filter: blur(var(--blur-50)); backdrop-filter: blur(var(--blur-50));
-}
-.ds-icon-btn__circle--default-active { background: var(--label-highlight); color: var(--label-always-white); }
-.ds-icon-btn__circle--default-disabled {
-  background: var(--bg-btn-disabled); color: var(--text-disabled);
-  -webkit-backdrop-filter: blur(var(--blur-50)); backdrop-filter: blur(var(--blur-50));
-}
-.ds-icon-btn__circle--default-destructive { background: var(--bg-destructive); color: var(--label-destructive); }
-
-/* DotsIconButtonStyle.onPhoto × State (default y active comparten tema) */
-.ds-icon-btn__circle--photo-default,
-.ds-icon-btn__circle--photo-active {
-  background: var(--bg-floating-btn); color: var(--label-always-white);
-  -webkit-backdrop-filter: blur(var(--blur-50)); backdrop-filter: blur(var(--blur-50));
-}
-.ds-icon-btn__circle--photo-disabled {
-  background: var(--bg-btn-disabled); color: var(--label-always-white);
-  -webkit-backdrop-filter: blur(var(--blur-50)); backdrop-filter: blur(var(--blur-50));
-}
-.ds-icon-btn__circle--photo-destructive {
-  background: var(--bg-destructive); color: var(--label-destructive);
-  -webkit-backdrop-filter: blur(var(--blur-50)); backdrop-filter: blur(var(--blur-50));
-}
-
-/* DotsIconButtonStyle.floating — borde 0.7 borderAlert, blur10.
-   borderAlert no existe como token en tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart) */
-.ds-icon-btn__circle--floating {
-  --ds-border-alert: #FFFFFF4D;
-  border: 0.7px solid var(--ds-border-alert);
-  -webkit-backdrop-filter: blur(var(--blur-10)); backdrop-filter: blur(var(--blur-10));
-}
-[data-theme="dark"] .ds-icon-btn__circle--floating { --ds-border-alert: #6E6E6E4D; }
-.ds-icon-btn__circle--floating-default { background: var(--bg-btn-image); color: var(--text-primary); }
-.ds-icon-btn__circle--floating-active { background: var(--label-highlight); color: var(--label-always-white); }
-.ds-icon-btn__circle--floating-disabled { background: transparent; color: var(--bg-btn-disabled); }
-.ds-icon-btn__circle--floating-destructive { background: var(--bg-destructive); color: var(--label-destructive); }
-
-/* DotsIconButtonStyle.noBackground — sin chrome ni tamaño de botón */
-.ds-icon-btn__circle--nobg { width: auto; height: auto; background: none; border: none;
-  -webkit-backdrop-filter: none; backdrop-filter: none; }
-.ds-icon-btn__circle--nobg-default { color: var(--text-primary); }
-.ds-icon-btn__circle--nobg-active { color: var(--label-highlight); }
-.ds-icon-btn__circle--nobg-disabled { color: var(--text-disabled); }
-.ds-icon-btn__circle--nobg-destructive { color: var(--label-destructive); }
-
-/* shouldApplyBlur: false */
-.ds-icon-btn__circle.is-no-blur { -webkit-backdrop-filter: none; backdrop-filter: none; }
-/* showShadow — shadowFolder #00000014 (sin token), blur 10 offset (0,5) */
-.ds-icon-btn__circle.has-shadow { box-shadow: 0 5px 10px #00000014; }
-
-/* BadgeTag (tag) — labelDestructive, r22, min 18×18, labelSmallMedium 11/600 */
-.ds-icon-btn__tagwrap { position: relative; display: inline-flex; }
-.ds-icon-btn__tag {
-  position: absolute; top: -5px; right: -5px; box-sizing: border-box;
-  min-width: 18px; min-height: 18px; padding: 1px 5px; border-radius: 22px;
-  display: inline-flex; align-items: center; justify-content: center;
-  background: var(--label-destructive); color: var(--label-always-white);
-  font: 600 11px/1.27 var(--font-main); white-space: nowrap;
-}
-
-/* Label — labelDefaultRegular 13/400, maxLines 2 (1 + ellipsis con overflow) */
-.ds-icon-btn__label {
-  font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px; text-align: center;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-}
-.ds-icon-btn__label--ellipsis { display: block; white-space: nowrap; text-overflow: ellipsis; }
-
 /* ── DotsInputStepper ── */
 /* DotsInputStepper — 116 × 41, píldora r1000 (dots_input_stepper.dart) */
 .ds-stepper {
@@ -1738,24 +1932,6 @@
   background: var(--label-secondary);
   opacity: 0.5;
 }
-
-/* ── DotsMainContainer ── */
-/* DotsMainContainer — port de lib/src/components/containers/dots_main_container/ (Dart = fuente de verdad) */
-
-.ds-main-container {
-  box-sizing: border-box;
-  width: 100%; /* Dart: width ?? MediaQuery.sizeOf(context).width */
-  background-size: cover; /* DecorationImage por defecto en las llamadas del app */
-  background-position: center;
-  font-family: var(--font-main);
-}
-.ds-main-container--clickable { cursor: pointer; }
-
-/* _getContainerBackgroundColor (dots_main_container.dart) */
-.ds-main-container--main { background-color: var(--bg-container-tertiary); }
-.ds-main-container--secondary,
-.ds-main-container--onBackground { background-color: var(--bg-container-secondary); }
-.ds-main-container--tertiary { background-color: var(--bg-container-primary); }
 
 /* ── DotsMenu ── */
 /* DotsMenu — menu/dots_menu.dart (+ settings_list.dart, settings_item.dart). */
@@ -2029,49 +2205,6 @@
 .ds-plan-selector__desc {
   font: 400 11px/1.27 var(--font-main); /* labelSmallRegular */
   letter-spacing: 0.01px;
-}
-
-/* ── DotsProfilePhoto ── */
-/* DotsProfilePhoto — photos_components/dots_profile_photo(_bited).dart · círculo (OvalBorder) */
-.ds-profile-photo {
-  position: relative;
-  display: inline-block;
-  flex: none;
-}
-.ds-profile-photo[role='button'] {
-  cursor: pointer;
-}
-.ds-profile-photo__circle {
-  position: absolute;
-  inset: 0;
-  display: block;
-  border-radius: 50%;
-  overflow: hidden;
-}
-.ds-profile-photo__img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.ds-profile-photo__ph {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-/* Placeholder degradado — arte sin token (no existe en foundations) */
-.ds-profile-photo__ph--a { background: linear-gradient(135deg, #faa25e, #f43c51); }
-.ds-profile-photo__ph--b { background: linear-gradient(135deg, #9297ef, #8b84f7); }
-.ds-profile-photo__ph--c { background: linear-gradient(135deg, #28cb55, #0072ef); }
-.ds-profile-photo__ph--d { background: linear-gradient(135deg, #c88eff, #8b84f7); }
-/* Reaction — labelDefaultBold 13/600, centrada en la mordida */
-.ds-profile-photo__reaction {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font: 600 13px/1 var(--font-main);
-  color: var(--text-primary);
 }
 
 /* ── DotsProgressBar ── */
@@ -2628,65 +2761,6 @@
   color: var(--label-destructive);
 }
 
-/* ── DotsTextField ── */
-/* DotsTextField — dots_textfield.dart. Contenedor h44, píldora r1000,
-   bg bgContainerSecondaryOnBackground, padding 0 16. */
-.ds-textfield { display: block; width: 100%; font-family: var(--font-main); }
-
-.ds-textfield__box {
-  display: flex; align-items: center;
-  height: 44px; box-sizing: border-box;
-  border-radius: 1000px; /* DotsBorderRadius.r1000 */
-  background: var(--bg-container-secondary-on-bg);
-  padding: 0 16px;
-  cursor: text;
-}
-.ds-textfield__box--no-bg { background: transparent; border-radius: 0; padding: 0; }
-/* showUnderline: borde inferior 0.5 labelSecondary con opacidad 0.3 multiplicada */
-.ds-textfield__box--underline {
-  border-bottom: 0.5px solid color-mix(in srgb, var(--label-secondary) 30%, transparent);
-}
-
-/* icono 20 textTertiary (destructive si !background && isError), gap 6 */
-.ds-textfield__icon { display: inline-flex; flex: none; margin-right: 6px; color: var(--text-tertiary); }
-.ds-textfield__icon--error { color: var(--label-destructive); }
-
-/* input: typo.main.bodyDefaultMedium (Inter 14/500, height 1.29, ls -0.02) */
-.ds-textfield__input {
-  flex: 1 1 auto; min-width: 0;
-  border: 0; outline: none; background: transparent; padding: 0; margin: 0;
-  font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px;
-  color: var(--text-primary);
-  caret-color: var(--label-highlight); /* cursorColor: labelHighlight */
-}
-.ds-textfield__input::placeholder { color: var(--text-quarternary); }
-.ds-textfield__input--error { color: var(--label-destructive); }
-.ds-textfield__input--hint-error::placeholder { color: var(--label-destructive); }
-.ds-textfield__input:disabled {
-  color: var(--text-disabled);
-  -webkit-text-fill-color: var(--text-disabled);
-}
-.ds-textfield--center .ds-textfield__input { text-align: center; }
-.ds-textfield--center .ds-textfield__error-text { text-align: center; }
-
-/* clear = DotsCloseButton extraSmall (16, icono 10) */
-.ds-textfield__clear {
-  flex: none; display: flex; align-items: center; justify-content: center;
-  width: 16px; height: 16px; padding: 0; border: 0; border-radius: 50%;
-  cursor: pointer;
-}
-/* variant inverted: bg textQuarternary, fg bgContainerPrimary */
-.ds-textfield__clear--inverted { background: var(--text-quarternary); color: var(--bg-container-primary); }
-/* variant softContrast: bg bgBtnDisabled, fg labelPrimary */
-.ds-textfield__clear--soft { background: var(--bg-btn-disabled); color: var(--label-primary); }
-
-/* errorText: typo.main.labelDefaultRegular (13/400, h1.31, ls -0.01) labelDestructive */
-.ds-textfield__error-text {
-  padding: 4px 16px 0;
-  font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px;
-  color: var(--label-destructive);
-}
-
 /* ── DotsTextFieldButton ── */
 /* DotsTextFieldButton — dots_textfield_button.dart. Pastilla h44 r1000,
    bg bgContainerSecondaryOnBackground, padding 0 16; clear (DotsCloseButton),
@@ -2758,54 +2832,6 @@
   color: var(--label-destructive);
 }
 .ds-tf-btn--center .ds-tf-btn__error-text { text-align: center; }
-
-/* ── DotsTextFieldDate ── */
-/* DotsTextFieldDate — dots_textfield_date.dart. Pastilla h44 r1000,
-   bg bgContainerSecondaryOnBackground, padding 16/8, chips de valor bgSecondaryBtn r24. */
-.ds-tf-date { display: block; width: 100%; font-family: var(--font-main); }
-
-.ds-tf-date__box {
-  display: flex; align-items: center;
-  height: 44px; box-sizing: border-box;
-  border-radius: 1000px; /* DotsBorderRadius.r1000 */
-  background: var(--bg-container-secondary-on-bg);
-  padding: 0 8px 0 16px;
-  cursor: pointer;
-}
-.ds-tf-date__box--no-bg { background: transparent; }
-
-/* icono 20 textSecondary + gap 6 */
-.ds-tf-date__icon { display: inline-flex; flex: none; margin-right: 6px; color: var(--text-secondary); }
-
-/* label: bodyDefaultRegular (14/400, h1.29, ls -0.02) textPrimary */
-.ds-tf-date__label {
-  font: 400 14px/1.29 var(--font-main); letter-spacing: -0.02px;
-  color: var(--text-primary);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-
-/* Dart: Spacer() + SizedBox(width: 12) antes de los chips */
-.ds-tf-date__spacer { flex: 1 1 auto; min-width: 12px; }
-
-/* chips (date/time): gap 4, bg bgSecondaryBtn, r24, minWidth 56, padding 10x4,
-   bodyDefaultMedium (14/500, h1.29, ls -0.02) textPrimary (destructive si isError) */
-.ds-tf-date__chips { display: flex; align-items: center; gap: 4px; }
-.ds-tf-date__chip {
-  box-sizing: border-box; min-width: 56px; padding: 4px 10px;
-  border-radius: 24px; /* DotsBorderRadius.r24 */
-  background: var(--bg-secondary-btn);
-  text-align: center; white-space: nowrap;
-  font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px;
-  color: var(--text-primary);
-}
-.ds-tf-date__chip--error { color: var(--label-destructive); }
-
-/* errorText: labelDefaultRegular destructive (solo con background) */
-.ds-tf-date__error-text {
-  padding: 4px 16px 0;
-  font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px;
-  color: var(--label-destructive);
-}
 
 /* ── DotsTextFieldPhone ── */
 /* DotsTextFieldPhone — dots_textfield_phone.dart. Leading de DotsTextField:
@@ -4109,32 +4135,6 @@
   color: var(--label-primary);
   font-size: 16px;
   line-height: 1;
-}
-
-/* ── PageControl ── */
-/* PageControl — dot_book/page_control.dart · main (8px, pad 18/12) · background (6px, píldora bgActive) */
-.ds-page-control {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  box-sizing: border-box;
-}
-/* main: contentPadding 18 vertical / 12 horizontal */
-.ds-page-control--main {
-  padding: 18px 12px;
-}
-/* background: contentPadding zero */
-.ds-page-control--background {
-  padding: 0;
-}
-.ds-page-control__cell {
-  display: inline-flex;
-  flex: none;
-}
-.ds-page-control__dot {
-  display: inline-block;
-  border-radius: 50%;
 }
 
 /* ── ProductCard ── */
