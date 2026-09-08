@@ -68,6 +68,12 @@ if (Array.isArray(cfg.ignore)) {
 }
 if (cfg.aliases && typeof cfg.aliases === 'object' && !Array.isArray(cfg.aliases)) {
   for (const [k, v] of Object.entries(cfg.aliases)) {
+    // La clave es el nombre de la clase Dart: si lleva una errata (espacios,
+    // barras…) el alias no llega a aplicarse nunca y el check reclama un port
+    // que creías mapeado, que es un falso positivo incómodo de diagnosticar.
+    if (!NAME_RX.test(k)) {
+      badType.push(`la clave "aliases.${k}" debe ser un nombre de clase Dart simple, sin espacios ni barras`);
+    }
     if (typeof v !== 'string') {
       badType.push(`"aliases.${k}" debe ser el nombre de la carpeta del port (string), llegó ${JSON.stringify(v)}`);
     } else if (!NAME_RX.test(v)) {
