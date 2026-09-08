@@ -3374,6 +3374,27 @@
   backdrop-filter: blur(var(--blur-50));
 }
 
+/* processTextMaxLines — Dart: 1 (por defecto) una línea con ellipsis; n>1 recorta
+   a n líneas; null deja el wrap libre. Con multilínea la fila se alinea arriba y
+   el icono baja 2px para caer en la primera línea. */
+.ds-upload-item__process--multiline {
+  align-items: flex-start;
+}
+.ds-upload-item__process--multiline .ds-upload-item__process-icon {
+  padding-top: 2px;
+}
+.ds-upload-item__process-text--clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  overflow: hidden;
+}
+.ds-upload-item__process-text--wrap {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
 /* ── DropdownMenu ── */
 /* DropdownMenu — dropdowns/ (dropdown_list + dropdown_menu + dropdown_item). */
 .ds-dropdown { position: relative; display: inline-block; font-family: var(--font-main); }

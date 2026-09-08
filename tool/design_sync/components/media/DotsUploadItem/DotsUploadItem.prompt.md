@@ -9,6 +9,7 @@ DotsUploadItem from dots_design_system. Use via `window.DotsDesignSystem_9e41da.
 | `percentage` | `number` | — | (processing) 0..1; barra `DotsProgressBar(parts: 1)` + 'NN%'. |
 | `textDate` | `string` | `''` | Línea superior (bodyDefaultMedium, textPrimary). |
 | `processText` | `string` | `''` | Estado junto al icono 14 (labelDefaultRegular, textSecondary). |
+| `processTextMaxLines` | `number \| null` | `1` | Una línea con ellipsis; `n>1` recorta a n líneas; `null` hace wrap libre. Con multilínea la fila se alinea arriba y el icono cae en la primera línea |
 | `timeElapsed` | `string` | `''` | (success) Bajo el estado (textQuarternary). |
 | `btnText` | `string` | `''` | (success → secondary · error → main) DotsMainButton medium. |
 | `onBtnClick` | `() => void` | — | Tap del botón (Dart `btnOnTap`). |

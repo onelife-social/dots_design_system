@@ -16,6 +16,7 @@
   <script src="../../../_ds_bundle.js"></script>
   <script>
     var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsUploadItem;
+    var LONG = 'Subiendo IMG_20260908_vacaciones_playa_familia.heic y 3 archivos más…';
     var variants = [
       ['processing · spinner + progress', h(C, {
         variant: 'processing', percentage: 0.64,
@@ -29,6 +30,18 @@
       ['error · crossCircle + overlay', h(C, {
         variant: 'error', textDate: '12 de marzo, 2024',
         processText: 'Error al subir', btnText: 'Reintentar', onBtnClick: function () {}, alt: 'ccc'
+      })],
+      ['processTextMaxLines: 1 (defecto) — corta con ellipsis', h(C, {
+        variant: 'processing', percentage: 0.4, textDate: '12 de marzo, 2024',
+        processText: LONG, alt: 'a'
+      })],
+      ['processTextMaxLines: null — wrap libre (nombre de archivo completo)', h(C, {
+        variant: 'processing', percentage: 0.4, textDate: '12 de marzo, 2024',
+        processText: LONG, processTextMaxLines: null, alt: 'a'
+      })],
+      ['processTextMaxLines: 2 — recorta a dos líneas', h(C, {
+        variant: 'error', textDate: '12 de marzo, 2024', processText: LONG,
+        processTextMaxLines: 2, btnText: 'Reintentar', onBtnClick: function () {}, alt: 'ccc'
       })],
       ['dark', h('div', null,
         h(C, { variant: 'processing', percentage: 0.32, textDate: '12 de marzo, 2024', processText: 'Subiendo 4 recuerdos…', alt: 'a' }),
