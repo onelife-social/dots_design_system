@@ -1,0 +1,65 @@
+/* DotsTopBar — navigation/top_bar.dart · normal 50 (kTopBarNormalHeight) / big 106 (50 status + 56 content) */
+.ds-top-bar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  background: var(--bg-container-primary);
+  font-family: var(--font-main);
+}
+.ds-top-bar--normal { height: 50px; }
+/* Dart reserves a fixed 50px for the status bar; on device the strip grows with the safe area (web extension) */
+.ds-top-bar--big { height: calc(56px + max(50px, env(safe-area-inset-top, 0px))); }
+/* showBottomBorder — Colors.black @0.2 (no token) */
+.ds-top-bar--bordered { box-shadow: 0 1px 0 #00000033; }
+.ds-top-bar__status { height: max(50px, env(safe-area-inset-top, 0px)); flex: none; }
+.ds-top-bar__content { flex: 1; position: relative; min-height: 0; }
+.ds-top-bar__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-top-bar__title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  /* keep clear of the 36px buttons + 16px margins on both sides */
+  max-width: calc(100% - 128px);
+}
+/* titleH6 — 18/600, lh 1.28, textPrimary */
+.ds-top-bar__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.28;
+  letter-spacing: -0.03px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* subtitle — labelSmallRegular 11/400, lh 1.27, textSecondary */
+.ds-top-bar__subtitle {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.27;
+  letter-spacing: 0.01px;
+  color: var(--text-secondary);
+}
+.ds-top-bar__row {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+}
+.ds-top-bar__slot { display: inline-flex; z-index: 1; }
+.ds-top-bar__slot--left { margin-left: 16px; }
+.ds-top-bar__spacer { flex: 1; }
+.ds-top-bar__slot--right { margin-right: 16px; }

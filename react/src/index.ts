@@ -38,3 +38,5 @@ export type {
   DotsActionSheetSelectedItem,
   DotsActionSheetSystemButton,
 } from './components/DotsActionSheet/DotsActionSheet';
+export { DotsTopBar } from './components/DotsTopBar/DotsTopBar';
+export type { DotsTopBarProps, DotsTopBarVariant } from './components/DotsTopBar/DotsTopBar';

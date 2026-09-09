@@ -1,44 +1,40 @@
 import * as React from 'react';
 
-/**
- * DotsTopBar — port web de DotsTopBar (Flutter). Barra superior de pantalla con
- * status bar (50px), título/subtítulo centrados, botón atrás, iconos laterales
- * y CTA opcional; variantes espejo de los constructores Dart.
- */
+import type { ReactNode } from 'react';
+export type DotsTopBarVariant = 'onlyStatusBar' | 'title' | 'widget' | 'cta';
 export interface DotsTopBarProps {
-  /** Constructor Dart equivalente. Si se omite se deduce: children→widget, ctaLabel→cta, title→title, si no onlyStatusBar */
-  variant?: 'onlyStatusBar' | 'title' | 'widget' | 'cta';
-  /** Título centrado — titleH6 textPrimary */
-  title?: string;
-  /** Subtítulo bajo el título — labelSmallRegular textSecondary */
-  subtitle?: string;
-  /** URL de imagen 20×20 redonda junto al título — Dart `imageTitle` (DotsProfilePhoto) */
-  imageTitle?: string;
-  /** Contenido central custom (variant widget) — Dart `child` */
-  children?: React.ReactNode;
-  /** Nodo a la izquierda (no combinable con onBack) — Dart `leftIcon` */
-  leftIcon?: React.ReactNode;
-  /** Nodo a la derecha (normalmente un DotsIconButton) — Dart `rightIcon` */
-  rightIcon?: React.ReactNode;
-  /** Muestra el botón atrás (chevron-left, DotsIconButton medium) — Dart `onTapBack` */
-  onBack?: () => void;
-  /** Botón atrás dentro de círculo gris (DotsIconButton solid) */
-  showCircleBackButton?: boolean;
-  /** Texto del CTA (DotsMainButton main·small) — Dart `ctaLabel` */
-  ctaLabel?: string;
-  /** Callback del CTA — Dart `onCtaTap` */
-  onCtaClick?: () => void;
-  /** CTA habilitado (default true) */
-  ctaEnabled?: boolean;
-  /** Altura grande 106px con hueco de status (default true; onlyStatusBar fuerza 50px) */
-  bigStatusBar?: boolean;
-  /** Fondo transparente en vez de bgContainerPrimary */
-  hideBackground?: boolean;
-  /** Color CSS que fuerza el fondo (ignora hideBackground) */
-  color?: string;
-  /** Borde inferior 1px negro @0.2 */
-  showBottomBorder?: boolean;
-  className?: string;
+    /** Dart constructor; inferred from the props when omitted */
+    variant?: DotsTopBarVariant;
+    /** Centered title — titleH6 (Dart `title`) */
+    title?: string;
+    /** Under the title — labelSmallRegular (Dart `subtitle`) */
+    subtitle?: string;
+    /** 20×20 DotsProfilePhoto before the title — Dart `imageTitle` */
+    imageTitle?: string;
+    /** Center content of the `widget` variant — Dart `child` */
+    children?: ReactNode;
+    /** Leading widget when there is no back button — Dart `leftIcon` */
+    leftIcon?: ReactNode;
+    /** Trailing widget (a DotsIconButton in Dart) — Dart `rightIcon` */
+    rightIcon?: ReactNode;
+    /** Shows the back button (DotsIconButton chevronLeft medium) — Dart `onTapBack` */
+    onBack?: () => void;
+    /** Transparent instead of bgContainerPrimary — Dart `hideBackground` */
+    hideBackground?: boolean;
+    /** Reserve the 50px status-bar strip above the content (default true) — Dart `bigStatusBar` */
+    bigStatusBar?: boolean;
+    /** Back button `solid` instead of `noBackground` — Dart `showCircleBackButton` */
+    showCircleBackButton?: boolean;
+    /** Explicit background color — Dart `color` */
+    color?: string;
+    /** 1px black @20% bottom border — Dart `showBottomBorder` */
+    showBottomBorder?: boolean;
+    /** `cta` variant: DotsMainButton main/small at the trailing edge — Dart `ctaLabel` */
+    ctaLabel?: string;
+    /** Dart `onCtaTap` */
+    onCtaClick?: () => void;
+    /** Dart `ctaEnabled` */
+    ctaEnabled?: boolean;
+    className?: string;
 }
-
-export declare const DotsTopBar: React.ComponentType<DotsTopBarProps>;
+export declare function DotsTopBar(props: DotsTopBarProps): import("react").JSX.Element;
