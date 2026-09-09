@@ -55,11 +55,13 @@ export function EventGroupCard(props: EventGroupCardProps) {
   if (!isSmall) {
     secondary =
       variant === 'active' ? (
-        // 3×3 dot + labelSmallRegular white 70%
+        // 3×3 dot + labelSmallRegular white 70% (web: hidden while there is no text, so no lone dot)
+        !props.secondaryText ? null : (
         <div className="ds-event-card__sec" onClick={stopWrap(props.onSecondaryClick)}>
           <span className="ds-event-card__sec-dot" />
-          {props.secondaryText ?? ''}
+          {props.secondaryText}
         </div>
+        )
       ) : (
         // passed → DotsMainButton secondary small with ic-exit-fullscreen (iconSize 14, white text)
         <div className="ds-event-card__sec-wrap">
