@@ -262,6 +262,105 @@
 .ds-action-sheet__spot-desc { font-size: 14px; font-weight: 400; line-height: 1.29; letter-spacing: -0.02px; margin: 12px 0 0; text-align: center; color: var(--text-secondary); }
 .ds-action-sheet__spot-footer { margin: 28px 0 15px; }
 
+/* ── DotsAlert ── */
+/* DotsAlert — alerts/dots_alert.dart. 320px card, bgContainerSecondary, radius 32, border 1.4 borderAlert,
+   padding 16. bgAlert (DotsStyleColorDodge, blur 50) approximated: translucent bg + backdrop-filter. */
+.ds-alert {
+  /* borderAlert is not a token in tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart) */
+  --ds-border-alert: #FFFFFF4D;
+  box-sizing: border-box;
+  width: 320px; max-width: 100%;
+  border-radius: var(--squircle-32);
+  border: 1.4px solid var(--ds-border-alert);
+  background: var(--bg-container-secondary);
+  padding: 16px;
+  display: flex; flex-direction: column; align-items: center;
+  font-family: var(--font-main);
+}
+[data-theme="dark"] .ds-alert { --ds-border-alert: #6E6E6E4D; }
+.ds-alert--blur {
+  backdrop-filter: blur(var(--blur-50));
+  -webkit-backdrop-filter: blur(var(--blur-50));
+}
+
+/* Scrim (Positioned.fill Colors.black 50% + Center) */
+.ds-alert__scrim {
+  position: fixed; inset: 0; z-index: 1000;
+  background: #00000080; /* Colors.black.dotsWithOpacity(0.5) — no token */
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px; box-sizing: border-box;
+}
+
+/* Header: [spacer 30 (DotsCloseButtonSize.medium)] + centered icon + [close] */
+.ds-alert__header { display: flex; align-items: flex-start; width: 100%; }
+.ds-alert__header-spacer { width: 30px; flex: none; }
+.ds-alert__icon-center { flex: 1; display: flex; justify-content: center; min-width: 0; }
+.ds-alert__icon-pad { padding: 8px; }
+/* Chip 48×48 r24.5, bg labelHighlight 20% (== --bg-highlight), icon labelHighlight */
+.ds-alert__icon-chip {
+  width: 48px; height: 48px; box-sizing: border-box;
+  border-radius: 24.5px; padding: 12px;
+  background: var(--bg-highlight);
+  color: var(--label-highlight);
+  display: flex; align-items: center; justify-content: center;
+}
+.ds-alert__icon-img { width: 48px; height: 48px; object-fit: cover; display: block; }
+
+/* Body: padding 16 (input: 16 vertical; selector: only 16 top) */
+.ds-alert__body { width: 100%; box-sizing: border-box; padding: 16px; text-align: center; }
+.ds-alert--input .ds-alert__body { padding: 16px 0; }
+.ds-alert--selector .ds-alert__body { padding: 16px 0 0; }
+
+/* typo.main.bodyLargeBold (Inter 16/700, h1.31, ls -0.05) textPrimary */
+.ds-alert__title {
+  font: 700 16px/1.31 var(--font-main); letter-spacing: -0.05px;
+  color: var(--text-primary); margin: 0;
+}
+/* Gap 8 title→description only when both exist */
+.ds-alert__title + * { margin-top: 8px; }
+/* typo.main.bodyDefaultRegular (Inter 14/400, h1.29, ls -0.02) */
+.ds-alert__msg {
+  font: 400 14px/1.29 var(--font-main); letter-spacing: -0.02px;
+  color: var(--text-primary); margin: 0;
+}
+
+/* input variant — Row(DotsTextFieldButton) */
+.ds-alert__input { width: 100%; }
+
+/* selector variant — DotsMainContainer r24 padding 12, rows gap 8 */
+.ds-alert__selector { width: 100%; }
+.ds-alert__selector-msg { padding: 0 16px; }
+.ds-alert__list {
+  margin-top: 16px; width: 100%; box-sizing: border-box;
+  background: var(--bg-container-secondary-on-bg);
+  border-radius: var(--squircle-24); padding: 12px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+/* DotsListsItem.main approximation: 40×40 r12 thumb + gap 12 + bodyDefaultMedium label */
+.ds-alert__list-item {
+  display: flex; align-items: center; gap: 12px;
+  border: 0; background: none; padding: 0; margin: 0; cursor: pointer;
+  font-family: var(--font-main); text-align: start;
+}
+.ds-alert__list-thumb {
+  width: 40px; height: 40px; flex: none; border-radius: var(--squircle-12);
+  object-fit: cover; background: var(--bg-base-contrast); display: block;
+}
+.ds-alert__list-label {
+  flex: 1; min-width: 0;
+  font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px;
+  color: var(--text-primary);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* Actions: gap 8 over the body (selector: 16) */
+.ds-alert__actions { width: 100%; margin-top: 8px; }
+.ds-alert--selector .ds-alert__actions { margin-top: 16px; }
+.ds-alert__actions--row { display: flex; gap: 12px; }
+.ds-alert__actions--row > * { flex: 1; min-width: 0; }
+.ds-alert__actions--col { display: flex; flex-direction: column; align-items: stretch; }
+.ds-alert__actions--gap8 { gap: 8px; }
+
 /* ── DotsCalendar ── */
 /* DotsCalendar — inline month calendar (styles mirror CupertinoCalendarPickerUtils in onelife_app:
    mainTitle for days, primary for today/selected, onSurface @0.2 for disabled) */
@@ -1666,127 +1765,6 @@
 }
 .ds-accordion__divider-l1 { height: 1px; background: var(--label-secondary); }
 .ds-accordion__divider-l2 { height: 1px; background: var(--bg-strong); }
-
-/* ── DotsAlert ── */
-/* DotsAlert — alerts/dots_alert.dart. Tarjeta 320, bgContainerSecondary, radio 32,
-   borde 1.4 borderAlert, padding 16. bgAlert (DotsStyleColorDodge, blur 50)
-   aproximado: bg translúcido + backdrop-filter. */
-.ds-alert {
-  /* borderAlert no existe como token en tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart) */
-  --ds-border-alert: #FFFFFF4D;
-  box-sizing: border-box;
-  width: 320px; max-width: 100%;
-  border-radius: var(--squircle-32);
-  border: 1.4px solid var(--ds-border-alert);
-  background: var(--bg-container-secondary);
-  padding: 16px;
-  display: flex; flex-direction: column; align-items: center;
-  font-family: var(--font-main);
-}
-[data-theme="dark"] .ds-alert { --ds-border-alert: #6E6E6E4D; }
-.ds-alert--blur {
-  backdrop-filter: blur(var(--blur-50));
-  -webkit-backdrop-filter: blur(var(--blur-50));
-}
-
-/* Scrim opcional (Positioned.fill Colors.black 50% + Center) */
-.ds-alert__scrim {
-  position: fixed; inset: 0; z-index: 1000;
-  background: #00000080; /* Colors.black.dotsWithOpacity(0.5) — sin token */
-  display: flex; align-items: center; justify-content: center;
-}
-
-/* Cabecera: [spacer 30 (DotsCloseButtonSize.medium)] + icono centrado + [close] */
-.ds-alert__header { display: flex; align-items: flex-start; width: 100%; }
-.ds-alert__header-spacer { width: 30px; flex: none; }
-.ds-alert__icon-center { flex: 1; display: flex; justify-content: center; min-width: 0; }
-.ds-alert__icon-pad { padding: 8px; }
-/* Chip 48×48 r24.5, bg labelHighlight 20% (== --bg-highlight), icono labelHighlight */
-.ds-alert__icon-chip {
-  width: 48px; height: 48px; box-sizing: border-box;
-  border-radius: 24.5px; padding: 12px;
-  background: var(--bg-highlight);
-  color: var(--label-highlight);
-}
-.ds-alert__icon-img { width: 48px; height: 48px; object-fit: cover; display: block; }
-
-/* Cuerpo: padding 16 (input: 16 vertical; selector: solo 16 arriba) */
-.ds-alert__body { width: 100%; box-sizing: border-box; padding: 16px; text-align: center; }
-.ds-alert--input .ds-alert__body { padding: 16px 0; }
-.ds-alert--selector .ds-alert__body { padding: 16px 0 0; }
-
-/* typo.main.bodyLargeBold (Inter 16/700, h1.31, ls -0.05) textPrimary */
-.ds-alert__title {
-  font: 700 16px/1.31 var(--font-main); letter-spacing: -0.05px;
-  color: var(--text-primary); margin: 0;
-}
-/* Gap 8 título→descripción solo si hay ambos */
-.ds-alert__title + * { margin-top: 8px; }
-/* typo.main.bodyDefaultRegular (Inter 14/400, h1.29, ls -0.02) */
-.ds-alert__msg {
-  font: 400 14px/1.29 var(--font-main); letter-spacing: -0.02px;
-  color: var(--text-primary); margin: 0;
-}
-
-/* Variante input — DotsTextFieldButton: 44 alto, r1000, bgContainerSecondaryOnBackground */
-.ds-alert__input {
-  display: flex; align-items: center; gap: 8px;
-  width: 100%; box-sizing: border-box;
-  height: 44px; border-radius: 9999px;
-  background: var(--bg-container-secondary-on-bg);
-  padding: 0 16px;
-}
-.ds-alert__input-el {
-  flex: 1; min-width: 0; border: 0; background: transparent; outline: none;
-  font: 400 14px/1.29 var(--font-main); letter-spacing: -0.02px;
-  color: var(--text-primary); padding: 0;
-}
-.ds-alert__input-el::placeholder { color: var(--text-tertiary); }
-
-/* Variante selector — DotsMainContainer r24 padding 12, items gap 8 */
-.ds-alert__selector { width: 100%; }
-.ds-alert__selector-msg { padding: 0 16px; }
-.ds-alert__list {
-  margin-top: 16px; width: 100%; box-sizing: border-box;
-  background: var(--bg-container-secondary-on-bg);
-  border-radius: var(--squircle-24); padding: 12px;
-  display: flex; flex-direction: column; gap: 8px;
-}
-/* DotsListsItem aproximado: thumb 40×40 + gap 12 + label bodyDefaultMedium */
-.ds-alert__list-item {
-  display: flex; align-items: center; gap: 12px;
-  border: 0; background: none; padding: 0; margin: 0; cursor: pointer;
-  font-family: var(--font-main); text-align: start;
-}
-.ds-alert__list-thumb {
-  width: 40px; height: 40px; flex: none; border-radius: var(--squircle-12);
-  object-fit: cover; background: var(--bg-container-secondary); display: block;
-}
-.ds-alert__list-label {
-  flex: 1; min-width: 0;
-  font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px;
-  color: var(--text-primary);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-
-/* Acciones: gap 8 sobre el cuerpo (selector: 16) */
-.ds-alert__actions { width: 100%; margin-top: 8px; }
-.ds-alert--selector .ds-alert__actions { margin-top: 16px; }
-.ds-alert__actions--row { display: flex; gap: 12px; }
-.ds-alert__actions--row > * { flex: 1; min-width: 0; }
-.ds-alert__actions--col { display: flex; flex-direction: column; align-items: stretch; }
-.ds-alert__actions--gap8 { gap: 8px; }
-
-/* Fallbacks si DotsMainButton / DotsCloseButton no están en el bundle */
-.ds-alert__btn-fallback {
-  height: 44px; border: 0; border-radius: 44px; padding: 0 20px; cursor: pointer;
-  background: var(--label-highlight); color: var(--label-always-white);
-  font: 500 14px/1.29 var(--font-main);
-}
-.ds-alert__close-fallback {
-  width: 30px; height: 30px; flex: none; border: 0; border-radius: 50%; cursor: pointer;
-  background: var(--bg-secondary-btn); color: var(--text-secondary); font-size: 16px; line-height: 1;
-}
 
 /* ── DotsCaptureButton ── */
 /* DotsCaptureButton — Ø80, inner Ø68 (photo·recording Ø60), ring 6 (capture_button/) */

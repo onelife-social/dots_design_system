@@ -40,6 +40,8 @@ export type {
 } from './components/DotsActionSheet/DotsActionSheet';
 export { DotsTopBar } from './components/DotsTopBar/DotsTopBar';
 export type { DotsTopBarProps, DotsTopBarVariant } from './components/DotsTopBar/DotsTopBar';
+export { DotsAlert } from './components/DotsAlert/DotsAlert';
+export type { DotsAlertProps, DotsAlertVariant, DotsAlertSelectorItem } from './components/DotsAlert/DotsAlert';
 export { DotsCalendar } from './components/DotsCalendar/DotsCalendar';
 export type { DotsCalendarProps } from './components/DotsCalendar/DotsCalendar';
 export { DotsCloseButton } from './components/DotsCloseButton/DotsCloseButton';

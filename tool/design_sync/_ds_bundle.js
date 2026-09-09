@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"DotsDesignSystem_9e41da","components":[{"name":"DotsIcon","sourcePath":"components/icons/DotsIcon/DotsIcon.jsx"},{"name":"DotsActionSheet","sourcePath":"components/overlays/DotsActionSheet/DotsActionSheet.jsx"},{"name":"DotsCalendar","sourcePath":"components/inputs/DotsCalendar/DotsCalendar.jsx"},{"name":"DotsCloseButton","sourcePath":"components/buttons/DotsCloseButton/DotsCloseButton.jsx"},{"name":"DotsIconButton","sourcePath":"components/buttons/DotsIconButton/DotsIconButton.jsx"},{"name":"DotsMainButton","sourcePath":"components/buttons/DotsMainButton/DotsMainButton.jsx"},{"name":"DotsMainContainer","sourcePath":"components/content/DotsMainContainer/DotsMainContainer.jsx"},{"name":"DotsProfilePhoto","sourcePath":"components/media/DotsProfilePhoto/DotsProfilePhoto.jsx"},{"name":"DotsRichButton","sourcePath":"components/buttons/DotsRichButton/DotsRichButton.jsx"},{"name":"DotsSpinner","sourcePath":"components/indicators/DotsSpinner/DotsSpinner.jsx"},{"name":"DotsTextField","sourcePath":"components/inputs/DotsTextField/DotsTextField.jsx"},{"name":"DotsTextFieldButton","sourcePath":"components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx"},{"name":"DotsTextFieldDate","sourcePath":"components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx"},{"name":"DotsToggle","sourcePath":"components/buttons/DotsToggle/DotsToggle.jsx"},{"name":"DotsTopBar","sourcePath":"components/navigation/DotsTopBar/DotsTopBar.jsx"},{"name":"EventGroupCard","sourcePath":"components/cards/EventGroupCard/EventGroupCard.jsx"},{"name":"PageControl","sourcePath":"components/dotbook/PageControl/PageControl.jsx"},{"name":"ActivityPreview","sourcePath":"components/social/ActivityPreview/ActivityPreview.jsx"},{"name":"AlbumGroupCard","sourcePath":"components/cards/AlbumGroupCard/AlbumGroupCard.jsx"},{"name":"BadgeIcon","sourcePath":"components/feedback/BadgeIcon/BadgeIcon.jsx"},{"name":"BadgeLabel","sourcePath":"components/feedback/BadgeLabel/BadgeLabel.jsx"},{"name":"BadgeMilestone","sourcePath":"components/feedback/BadgeMilestone/BadgeMilestone.jsx"},{"name":"BadgeProgress","sourcePath":"components/feedback/BadgeProgress/BadgeProgress.jsx"},{"name":"BadgeTag","sourcePath":"components/feedback/BadgeTag/BadgeTag.jsx"},{"name":"BlurContainer","sourcePath":"components/content/BlurContainer/BlurContainer.jsx"},{"name":"BtnFolder","sourcePath":"components/buttons/BtnFolder/BtnFolder.jsx"},{"name":"ColorSelector","sourcePath":"components/content/ColorSelector/ColorSelector.jsx"},{"name":"CreateCard","sourcePath":"components/cards/CreateCard/CreateCard.jsx"},{"name":"DotsAccordion","sourcePath":"components/content/DotsAccordion/DotsAccordion.jsx"},{"name":"DotsAlert","sourcePath":"components/feedback/DotsAlert/DotsAlert.jsx"},{"name":"DotsCaptureButton","sourcePath":"components/buttons/DotsCaptureButton/DotsCaptureButton.jsx"},{"name":"DotsCountdown","sourcePath":"components/indicators/DotsCountdown/DotsCountdown.jsx"},{"name":"DotsDivider","sourcePath":"components/content/DotsDivider/DotsDivider.jsx"},{"name":"DotsEmptyStateCard","sourcePath":"components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx"},{"name":"DotsFilterChip","sourcePath":"components/feedback/DotsFilterChip/DotsFilterChip.jsx"},{"name":"DotsFloatingButton","sourcePath":"components/buttons/DotsFloatingButton/DotsFloatingButton.jsx"},{"name":"DotsHomeTopBar","sourcePath":"components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx"},{"name":"DotsInputStepper","sourcePath":"components/buttons/DotsInputStepper/DotsInputStepper.jsx"},{"name":"DotsItemInput","sourcePath":"components/inputs/DotsItemInput/DotsItemInput.jsx"},{"name":"DotsListItem","sourcePath":"components/content/DotsListItem/DotsListItem.jsx"},{"name":"DotsMenu","sourcePath":"components/overlays/DotsMenu/DotsMenu.jsx"},{"name":"DotsNavBar","sourcePath":"components/navigation/DotsNavBar/DotsNavBar.jsx"},{"name":"DotsPlanningItem","sourcePath":"components/planning/DotsPlanningItem/DotsPlanningItem.jsx"},{"name":"DotsPlanSelector","sourcePath":"components/premium/DotsPlanSelector/DotsPlanSelector.jsx"},{"name":"DotsProgressBar","sourcePath":"components/indicators/DotsProgressBar/DotsProgressBar.jsx"},{"name":"DotsRadioButton","sourcePath":"components/buttons/DotsRadioButton/DotsRadioButton.jsx"},{"name":"DotsSegmentedControl","sourcePath":"components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx"},{"name":"DotsSelector","sourcePath":"components/buttons/DotsSelector/DotsSelector.jsx"},{"name":"DotsSelectorRadioButton","sourcePath":"components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx"},{"name":"DotsSlider","sourcePath":"components/content/DotsSlider/DotsSlider.jsx"},{"name":"DotsSquirclePhoto","sourcePath":"components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx"},{"name":"DotsSystemButton","sourcePath":"components/buttons/DotsSystemButton/DotsSystemButton.jsx"},{"name":"DotsTextArea","sourcePath":"components/inputs/DotsTextArea/DotsTextArea.jsx"},{"name":"DotsTextFieldPhone","sourcePath":"components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx"},{"name":"DotsToast","sourcePath":"components/feedback/DotsToast/DotsToast.jsx"},{"name":"DotsTooltip","sourcePath":"components/overlays/DotsTooltip/DotsTooltip.jsx"},{"name":"DotsUploadItem","sourcePath":"components/media/DotsUploadItem/DotsUploadItem.jsx"},{"name":"DropdownMenu","sourcePath":"components/overlays/DropdownMenu/DropdownMenu.jsx"},{"name":"FeatureItem","sourcePath":"components/content/FeatureItem/FeatureItem.jsx"},{"name":"FolderCarrousel","sourcePath":"components/navigation/FolderCarrousel/FolderCarrousel.jsx"},{"name":"ImageThumbnail","sourcePath":"components/indicators/ImageThumbnail/ImageThumbnail.jsx"},{"name":"ImageWithIcon","sourcePath":"components/social/ImageWithIcon/ImageWithIcon.jsx"},{"name":"ImageWithProgressAround","sourcePath":"components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx"},{"name":"MemoryCard","sourcePath":"components/cards/MemoryCard/MemoryCard.jsx"},{"name":"MessagePreview","sourcePath":"components/social/MessagePreview/MessagePreview.jsx"},{"name":"MilestoneCard","sourcePath":"components/memories/MilestoneCard/MilestoneCard.jsx"},{"name":"MilestonesList","sourcePath":"components/memories/MilestonesList/MilestonesList.jsx"},{"name":"NotificationBanner","sourcePath":"components/social/NotificationBanner/NotificationBanner.jsx"},{"name":"NotificationBannerImage","sourcePath":"components/social/NotificationBannerImage/NotificationBannerImage.jsx"},{"name":"ProductCard","sourcePath":"components/cards/ProductCard/ProductCard.jsx"},{"name":"RatingRow","sourcePath":"components/content/RatingRow/RatingRow.jsx"},{"name":"RecapCard","sourcePath":"components/cards/RecapCard/RecapCard.jsx"},{"name":"UserItem","sourcePath":"components/social/UserItem/UserItem.jsx"},{"name":"UsersList","sourcePath":"components/social/UsersList/UsersList.jsx"}],"sourceHashes":{"components/icons/DotsIcon/DotsIcon.jsx":"335df31c211a","components/icons/DotsIcon/DotsIcon.d.ts":"87b2028cfb22","components/icons/DotsIcon/DotsIcon.prompt.md":"fe2f27eb49fe","components/overlays/DotsActionSheet/DotsActionSheet.jsx":"6aea0de1baad","components/overlays/DotsActionSheet/DotsActionSheet.d.ts":"c04efccc1150","components/overlays/DotsActionSheet/DotsActionSheet.prompt.md":"6c6162a444ea","components/inputs/DotsCalendar/DotsCalendar.jsx":"a4bb0de5b1bf","components/inputs/DotsCalendar/DotsCalendar.d.ts":"4d7457cdfa80","components/inputs/DotsCalendar/DotsCalendar.prompt.md":"bc6385a3b1b1","components/buttons/DotsCloseButton/DotsCloseButton.jsx":"f989f50ce37d","components/buttons/DotsCloseButton/DotsCloseButton.d.ts":"63e7ca18df69","components/buttons/DotsCloseButton/DotsCloseButton.prompt.md":"2202cc87900c","components/buttons/DotsIconButton/DotsIconButton.jsx":"ffcab2eedea4","components/buttons/DotsIconButton/DotsIconButton.d.ts":"54238dbe6046","components/buttons/DotsIconButton/DotsIconButton.prompt.md":"c4bb14d7759c","components/buttons/DotsMainButton/DotsMainButton.jsx":"ae2cd12f68a1","components/buttons/DotsMainButton/DotsMainButton.d.ts":"cddb89971081","components/buttons/DotsMainButton/DotsMainButton.prompt.md":"a221cf629ffc","components/content/DotsMainContainer/DotsMainContainer.jsx":"4ddd06a6ad9e","components/content/DotsMainContainer/DotsMainContainer.d.ts":"dd9fc89aff3e","components/content/DotsMainContainer/DotsMainContainer.prompt.md":"9598eb0321bd","components/media/DotsProfilePhoto/DotsProfilePhoto.jsx":"92e613449ad2","components/media/DotsProfilePhoto/DotsProfilePhoto.d.ts":"d95296f257ad","components/media/DotsProfilePhoto/DotsProfilePhoto.prompt.md":"636c54ee6feb","components/buttons/DotsRichButton/DotsRichButton.jsx":"f445085fc5ca","components/buttons/DotsRichButton/DotsRichButton.d.ts":"c58744c3cec5","components/buttons/DotsRichButton/DotsRichButton.prompt.md":"94e43f6c7d5f","components/indicators/DotsSpinner/DotsSpinner.jsx":"a12be39b5926","components/indicators/DotsSpinner/DotsSpinner.d.ts":"92a18d75b986","components/indicators/DotsSpinner/DotsSpinner.prompt.md":"eea0999cfa40","components/inputs/DotsTextField/DotsTextField.jsx":"f072f4f3eb62","components/inputs/DotsTextField/DotsTextField.d.ts":"0c0151ef4b44","components/inputs/DotsTextField/DotsTextField.prompt.md":"42536ffb516a","components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx":"163b6c3eb5a2","components/inputs/DotsTextFieldButton/DotsTextFieldButton.d.ts":"69d562a11b16","components/inputs/DotsTextFieldButton/DotsTextFieldButton.prompt.md":"cd2a18ca1749","components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx":"bd28881afb3c","components/inputs/DotsTextFieldDate/DotsTextFieldDate.d.ts":"8d7f859c0a67","components/inputs/DotsTextFieldDate/DotsTextFieldDate.prompt.md":"2944cdc9159d","components/buttons/DotsToggle/DotsToggle.jsx":"d580e9128f26","components/buttons/DotsToggle/DotsToggle.d.ts":"7e48d0107831","components/buttons/DotsToggle/DotsToggle.prompt.md":"c8b4344a32ac","components/navigation/DotsTopBar/DotsTopBar.jsx":"bab2b068b924","components/navigation/DotsTopBar/DotsTopBar.d.ts":"182b7686120b","components/navigation/DotsTopBar/DotsTopBar.prompt.md":"6f2c5073c6e6","components/cards/EventGroupCard/EventGroupCard.jsx":"a156456590e1","components/cards/EventGroupCard/EventGroupCard.d.ts":"cf79b8f6b27b","components/cards/EventGroupCard/EventGroupCard.prompt.md":"456df0915b54","components/dotbook/PageControl/PageControl.jsx":"7d3c2f0a4143","components/dotbook/PageControl/PageControl.d.ts":"58a5a9e129ae","components/dotbook/PageControl/PageControl.prompt.md":"2dcd422b32cb","components/social/ActivityPreview/ActivityPreview.jsx":"b4b80f9e800f","components/social/ActivityPreview/ActivityPreview.d.ts":"e2fd20a2da58","components/social/ActivityPreview/ActivityPreview.prompt.md":"239a5fa193fe","components/cards/AlbumGroupCard/AlbumGroupCard.jsx":"19e3745d2c01","components/cards/AlbumGroupCard/AlbumGroupCard.d.ts":"250a72265114","components/cards/AlbumGroupCard/AlbumGroupCard.prompt.md":"6dd66b80e55e","components/feedback/BadgeIcon/BadgeIcon.jsx":"a75a6074ba60","components/feedback/BadgeIcon/BadgeIcon.d.ts":"1bccac9e9356","components/feedback/BadgeIcon/BadgeIcon.prompt.md":"929b4a0e194c","components/feedback/BadgeLabel/BadgeLabel.jsx":"f330d80f7db6","components/feedback/BadgeLabel/BadgeLabel.d.ts":"40c7a2f37790","components/feedback/BadgeLabel/BadgeLabel.prompt.md":"ed1b903fbe5a","components/feedback/BadgeMilestone/BadgeMilestone.jsx":"4c02ad66c2be","components/feedback/BadgeMilestone/BadgeMilestone.d.ts":"811738e29f12","components/feedback/BadgeMilestone/BadgeMilestone.prompt.md":"48a757bc2910","components/feedback/BadgeProgress/BadgeProgress.jsx":"71554919d446","components/feedback/BadgeProgress/BadgeProgress.d.ts":"7012fa757c46","components/feedback/BadgeProgress/BadgeProgress.prompt.md":"b147f3bbf27b","components/feedback/BadgeTag/BadgeTag.jsx":"07499192e79b","components/feedback/BadgeTag/BadgeTag.d.ts":"b01377bc343d","components/feedback/BadgeTag/BadgeTag.prompt.md":"0dc17ea4fe03","components/content/BlurContainer/BlurContainer.jsx":"4f3158bee2a7","components/content/BlurContainer/BlurContainer.d.ts":"e06f388d3283","components/content/BlurContainer/BlurContainer.prompt.md":"47fb1619efac","components/buttons/BtnFolder/BtnFolder.jsx":"5818c75ea3ef","components/buttons/BtnFolder/BtnFolder.d.ts":"cb0f0c7974cf","components/buttons/BtnFolder/BtnFolder.prompt.md":"409f1a511b12","components/content/ColorSelector/ColorSelector.jsx":"08ac3ae6676f","components/content/ColorSelector/ColorSelector.d.ts":"fbf55305330f","components/content/ColorSelector/ColorSelector.prompt.md":"b98eac18525b","components/cards/CreateCard/CreateCard.jsx":"9f5acf670673","components/cards/CreateCard/CreateCard.d.ts":"5c0ad3f5a79e","components/cards/CreateCard/CreateCard.prompt.md":"845e444d73f8","components/content/DotsAccordion/DotsAccordion.jsx":"84ac87f036d4","components/content/DotsAccordion/DotsAccordion.d.ts":"fe68787fde6c","components/content/DotsAccordion/DotsAccordion.prompt.md":"1657898cd0de","components/feedback/DotsAlert/DotsAlert.jsx":"31e443a1a6c9","components/feedback/DotsAlert/DotsAlert.d.ts":"de5c4919a68d","components/feedback/DotsAlert/DotsAlert.prompt.md":"55d3d3c12e0b","components/buttons/DotsCaptureButton/DotsCaptureButton.jsx":"b327fc4eacd1","components/buttons/DotsCaptureButton/DotsCaptureButton.d.ts":"444cf57dfc42","components/buttons/DotsCaptureButton/DotsCaptureButton.prompt.md":"04b427a10e12","components/indicators/DotsCountdown/DotsCountdown.jsx":"e6a30324d478","components/indicators/DotsCountdown/DotsCountdown.d.ts":"31a583d1076c","components/indicators/DotsCountdown/DotsCountdown.prompt.md":"698be70ac531","components/content/DotsDivider/DotsDivider.jsx":"614a3fa428a4","components/content/DotsDivider/DotsDivider.d.ts":"4505568c5bcd","components/content/DotsDivider/DotsDivider.prompt.md":"608e2d568e01","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx":"7be6c63ad360","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.d.ts":"29b7ef23a048","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.prompt.md":"204299d95767","components/feedback/DotsFilterChip/DotsFilterChip.jsx":"f70922a222e4","components/feedback/DotsFilterChip/DotsFilterChip.d.ts":"303cfa6352c0","components/feedback/DotsFilterChip/DotsFilterChip.prompt.md":"4e2d4316b2c5","components/buttons/DotsFloatingButton/DotsFloatingButton.jsx":"07ef21cbcf69","components/buttons/DotsFloatingButton/DotsFloatingButton.d.ts":"582d163c4a73","components/buttons/DotsFloatingButton/DotsFloatingButton.prompt.md":"9385b6723151","components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx":"3740529a645f","components/navigation/DotsHomeTopBar/DotsHomeTopBar.d.ts":"2ddf25716a9c","components/navigation/DotsHomeTopBar/DotsHomeTopBar.prompt.md":"36a11970a144","components/buttons/DotsInputStepper/DotsInputStepper.jsx":"fe711e75f2b8","components/buttons/DotsInputStepper/DotsInputStepper.d.ts":"0627f3845ad8","components/buttons/DotsInputStepper/DotsInputStepper.prompt.md":"6d3798eb4e5e","components/inputs/DotsItemInput/DotsItemInput.jsx":"fdda4bc0b529","components/inputs/DotsItemInput/DotsItemInput.d.ts":"3773e592f555","components/inputs/DotsItemInput/DotsItemInput.prompt.md":"f643916e19cd","components/content/DotsListItem/DotsListItem.jsx":"6157f22e738a","components/content/DotsListItem/DotsListItem.d.ts":"51cd8f74cfcb","components/content/DotsListItem/DotsListItem.prompt.md":"40bdc5fff354","components/overlays/DotsMenu/DotsMenu.jsx":"250fcc9b1d35","components/overlays/DotsMenu/DotsMenu.d.ts":"007c0322a634","components/overlays/DotsMenu/DotsMenu.prompt.md":"4f8bd72c1108","components/navigation/DotsNavBar/DotsNavBar.jsx":"16123dd053b7","components/navigation/DotsNavBar/DotsNavBar.d.ts":"d766f315c268","components/navigation/DotsNavBar/DotsNavBar.prompt.md":"d212413051ce","components/planning/DotsPlanningItem/DotsPlanningItem.jsx":"c17bedb8d20b","components/planning/DotsPlanningItem/DotsPlanningItem.d.ts":"48d04352a47d","components/planning/DotsPlanningItem/DotsPlanningItem.prompt.md":"a8e792ac3dac","components/premium/DotsPlanSelector/DotsPlanSelector.jsx":"9e8354546c8e","components/premium/DotsPlanSelector/DotsPlanSelector.d.ts":"5b77d82f0400","components/premium/DotsPlanSelector/DotsPlanSelector.prompt.md":"31125956fd1c","components/indicators/DotsProgressBar/DotsProgressBar.jsx":"d6f31abf3d70","components/indicators/DotsProgressBar/DotsProgressBar.d.ts":"ee2eb37eb671","components/indicators/DotsProgressBar/DotsProgressBar.prompt.md":"2dad7693c604","components/buttons/DotsRadioButton/DotsRadioButton.jsx":"7a4e9fc06d16","components/buttons/DotsRadioButton/DotsRadioButton.d.ts":"9ffccefab4d0","components/buttons/DotsRadioButton/DotsRadioButton.prompt.md":"d6e35d04a2c5","components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx":"63c3134be5e4","components/inputs/DotsSegmentedControl/DotsSegmentedControl.d.ts":"aa4b83624d09","components/inputs/DotsSegmentedControl/DotsSegmentedControl.prompt.md":"780587c9cea5","components/buttons/DotsSelector/DotsSelector.jsx":"32a1fa2354c2","components/buttons/DotsSelector/DotsSelector.d.ts":"8371f7ea93d5","components/buttons/DotsSelector/DotsSelector.prompt.md":"3ca0254c3375","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx":"ca91ce72bf06","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.d.ts":"452a97eb30f8","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.prompt.md":"0f43fa3291a0","components/content/DotsSlider/DotsSlider.jsx":"11ddb3b9d671","components/content/DotsSlider/DotsSlider.d.ts":"30a75a21af71","components/content/DotsSlider/DotsSlider.prompt.md":"b91814ec96a9","components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx":"be4633716883","components/media/DotsSquirclePhoto/DotsSquirclePhoto.d.ts":"e6eb4abc3fbf","components/media/DotsSquirclePhoto/DotsSquirclePhoto.prompt.md":"7bf60628c1fe","components/buttons/DotsSystemButton/DotsSystemButton.jsx":"61ef368899c8","components/buttons/DotsSystemButton/DotsSystemButton.d.ts":"4c662f2b1a53","components/buttons/DotsSystemButton/DotsSystemButton.prompt.md":"09363a30bf00","components/inputs/DotsTextArea/DotsTextArea.jsx":"f5e66264f111","components/inputs/DotsTextArea/DotsTextArea.d.ts":"c0f65e12c920","components/inputs/DotsTextArea/DotsTextArea.prompt.md":"63170a772fb6","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx":"ee02df22e4b1","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.d.ts":"3e321bce70f9","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.prompt.md":"32c5dd3fc02b","components/feedback/DotsToast/DotsToast.jsx":"9875719b818a","components/feedback/DotsToast/DotsToast.d.ts":"f35b4f9e35cb","components/feedback/DotsToast/DotsToast.prompt.md":"e7dade8e5042","components/overlays/DotsTooltip/DotsTooltip.jsx":"690646cedff8","components/overlays/DotsTooltip/DotsTooltip.d.ts":"57fcd8d2ce51","components/overlays/DotsTooltip/DotsTooltip.prompt.md":"8e2e72fa4034","components/media/DotsUploadItem/DotsUploadItem.jsx":"b5b296dabbb0","components/media/DotsUploadItem/DotsUploadItem.d.ts":"81e7fb9ba5e0","components/media/DotsUploadItem/DotsUploadItem.prompt.md":"063ce14a5d25","components/overlays/DropdownMenu/DropdownMenu.jsx":"e990079ce8af","components/overlays/DropdownMenu/DropdownMenu.d.ts":"f4b48717fe80","components/overlays/DropdownMenu/DropdownMenu.prompt.md":"b8ca4e74f03e","components/content/FeatureItem/FeatureItem.jsx":"bb22c6b112e0","components/content/FeatureItem/FeatureItem.d.ts":"5b02831affdc","components/content/FeatureItem/FeatureItem.prompt.md":"8eed7e79d9a6","components/navigation/FolderCarrousel/FolderCarrousel.jsx":"fe669a8466ea","components/navigation/FolderCarrousel/FolderCarrousel.d.ts":"517a1f6c511d","components/navigation/FolderCarrousel/FolderCarrousel.prompt.md":"ed1bca9712aa","components/indicators/ImageThumbnail/ImageThumbnail.jsx":"eba358df1cbe","components/indicators/ImageThumbnail/ImageThumbnail.d.ts":"e09a2ac117ef","components/indicators/ImageThumbnail/ImageThumbnail.prompt.md":"f1d009a529a1","components/social/ImageWithIcon/ImageWithIcon.jsx":"c6c587c966d1","components/social/ImageWithIcon/ImageWithIcon.d.ts":"0ffc16494e27","components/social/ImageWithIcon/ImageWithIcon.prompt.md":"0c2c7229692c","components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx":"806a6150545b","components/indicators/ImageWithProgressAround/ImageWithProgressAround.d.ts":"0156a3f1afb2","components/indicators/ImageWithProgressAround/ImageWithProgressAround.prompt.md":"dcf89fcfbb8a","components/cards/MemoryCard/MemoryCard.jsx":"3a0db91b5a78","components/cards/MemoryCard/MemoryCard.d.ts":"133524ff6528","components/cards/MemoryCard/MemoryCard.prompt.md":"429e9792f2cc","components/social/MessagePreview/MessagePreview.jsx":"215094a5eccd","components/social/MessagePreview/MessagePreview.d.ts":"bb652c774f28","components/social/MessagePreview/MessagePreview.prompt.md":"8429677865ce","components/memories/MilestoneCard/MilestoneCard.jsx":"f41829c3c1f0","components/memories/MilestoneCard/MilestoneCard.d.ts":"eed7542b8e03","components/memories/MilestoneCard/MilestoneCard.prompt.md":"ed078065e85c","components/memories/MilestonesList/MilestonesList.jsx":"48f44b1ed490","components/memories/MilestonesList/MilestonesList.d.ts":"10cad4068b69","components/memories/MilestonesList/MilestonesList.prompt.md":"739f1eedb6e7","components/social/NotificationBanner/NotificationBanner.jsx":"3047bcebf969","components/social/NotificationBanner/NotificationBanner.d.ts":"4f82b841d8c3","components/social/NotificationBanner/NotificationBanner.prompt.md":"57060dbd2686","components/social/NotificationBannerImage/NotificationBannerImage.jsx":"9d5214f16bde","components/social/NotificationBannerImage/NotificationBannerImage.d.ts":"0488d329db36","components/social/NotificationBannerImage/NotificationBannerImage.prompt.md":"01904774056d","components/cards/ProductCard/ProductCard.jsx":"60765da3d430","components/cards/ProductCard/ProductCard.d.ts":"77da73cd7ba1","components/cards/ProductCard/ProductCard.prompt.md":"bddfb1317e70","components/content/RatingRow/RatingRow.jsx":"c648699f7d52","components/content/RatingRow/RatingRow.d.ts":"b8541da81acd","components/content/RatingRow/RatingRow.prompt.md":"d36b1b43f630","components/cards/RecapCard/RecapCard.jsx":"5b5a0051efa7","components/cards/RecapCard/RecapCard.d.ts":"80b636ffc554","components/cards/RecapCard/RecapCard.prompt.md":"8fff796309ab","components/social/UserItem/UserItem.jsx":"8ca2155b51f1","components/social/UserItem/UserItem.d.ts":"9733979d627a","components/social/UserItem/UserItem.prompt.md":"ec0b0a01c16b","components/social/UsersList/UsersList.jsx":"263f90a7d807","components/social/UsersList/UsersList.d.ts":"b34733911d1c","components/social/UsersList/UsersList.prompt.md":"e19600d69967"},"inlinedExternals":[],"unexposedExports":[],"builtBy":"dots-design-system-react"} */
+/* @ds-bundle: {"format":4,"namespace":"DotsDesignSystem_9e41da","components":[{"name":"DotsIcon","sourcePath":"components/icons/DotsIcon/DotsIcon.jsx"},{"name":"DotsActionSheet","sourcePath":"components/overlays/DotsActionSheet/DotsActionSheet.jsx"},{"name":"DotsAlert","sourcePath":"components/feedback/DotsAlert/DotsAlert.jsx"},{"name":"DotsCalendar","sourcePath":"components/inputs/DotsCalendar/DotsCalendar.jsx"},{"name":"DotsCloseButton","sourcePath":"components/buttons/DotsCloseButton/DotsCloseButton.jsx"},{"name":"DotsIconButton","sourcePath":"components/buttons/DotsIconButton/DotsIconButton.jsx"},{"name":"DotsMainButton","sourcePath":"components/buttons/DotsMainButton/DotsMainButton.jsx"},{"name":"DotsMainContainer","sourcePath":"components/content/DotsMainContainer/DotsMainContainer.jsx"},{"name":"DotsProfilePhoto","sourcePath":"components/media/DotsProfilePhoto/DotsProfilePhoto.jsx"},{"name":"DotsRichButton","sourcePath":"components/buttons/DotsRichButton/DotsRichButton.jsx"},{"name":"DotsSpinner","sourcePath":"components/indicators/DotsSpinner/DotsSpinner.jsx"},{"name":"DotsTextField","sourcePath":"components/inputs/DotsTextField/DotsTextField.jsx"},{"name":"DotsTextFieldButton","sourcePath":"components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx"},{"name":"DotsTextFieldDate","sourcePath":"components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx"},{"name":"DotsToggle","sourcePath":"components/buttons/DotsToggle/DotsToggle.jsx"},{"name":"DotsTopBar","sourcePath":"components/navigation/DotsTopBar/DotsTopBar.jsx"},{"name":"EventGroupCard","sourcePath":"components/cards/EventGroupCard/EventGroupCard.jsx"},{"name":"PageControl","sourcePath":"components/dotbook/PageControl/PageControl.jsx"},{"name":"ActivityPreview","sourcePath":"components/social/ActivityPreview/ActivityPreview.jsx"},{"name":"AlbumGroupCard","sourcePath":"components/cards/AlbumGroupCard/AlbumGroupCard.jsx"},{"name":"BadgeIcon","sourcePath":"components/feedback/BadgeIcon/BadgeIcon.jsx"},{"name":"BadgeLabel","sourcePath":"components/feedback/BadgeLabel/BadgeLabel.jsx"},{"name":"BadgeMilestone","sourcePath":"components/feedback/BadgeMilestone/BadgeMilestone.jsx"},{"name":"BadgeProgress","sourcePath":"components/feedback/BadgeProgress/BadgeProgress.jsx"},{"name":"BadgeTag","sourcePath":"components/feedback/BadgeTag/BadgeTag.jsx"},{"name":"BlurContainer","sourcePath":"components/content/BlurContainer/BlurContainer.jsx"},{"name":"BtnFolder","sourcePath":"components/buttons/BtnFolder/BtnFolder.jsx"},{"name":"ColorSelector","sourcePath":"components/content/ColorSelector/ColorSelector.jsx"},{"name":"CreateCard","sourcePath":"components/cards/CreateCard/CreateCard.jsx"},{"name":"DotsAccordion","sourcePath":"components/content/DotsAccordion/DotsAccordion.jsx"},{"name":"DotsCaptureButton","sourcePath":"components/buttons/DotsCaptureButton/DotsCaptureButton.jsx"},{"name":"DotsCountdown","sourcePath":"components/indicators/DotsCountdown/DotsCountdown.jsx"},{"name":"DotsDivider","sourcePath":"components/content/DotsDivider/DotsDivider.jsx"},{"name":"DotsEmptyStateCard","sourcePath":"components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx"},{"name":"DotsFilterChip","sourcePath":"components/feedback/DotsFilterChip/DotsFilterChip.jsx"},{"name":"DotsFloatingButton","sourcePath":"components/buttons/DotsFloatingButton/DotsFloatingButton.jsx"},{"name":"DotsHomeTopBar","sourcePath":"components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx"},{"name":"DotsInputStepper","sourcePath":"components/buttons/DotsInputStepper/DotsInputStepper.jsx"},{"name":"DotsItemInput","sourcePath":"components/inputs/DotsItemInput/DotsItemInput.jsx"},{"name":"DotsListItem","sourcePath":"components/content/DotsListItem/DotsListItem.jsx"},{"name":"DotsMenu","sourcePath":"components/overlays/DotsMenu/DotsMenu.jsx"},{"name":"DotsNavBar","sourcePath":"components/navigation/DotsNavBar/DotsNavBar.jsx"},{"name":"DotsPlanningItem","sourcePath":"components/planning/DotsPlanningItem/DotsPlanningItem.jsx"},{"name":"DotsPlanSelector","sourcePath":"components/premium/DotsPlanSelector/DotsPlanSelector.jsx"},{"name":"DotsProgressBar","sourcePath":"components/indicators/DotsProgressBar/DotsProgressBar.jsx"},{"name":"DotsRadioButton","sourcePath":"components/buttons/DotsRadioButton/DotsRadioButton.jsx"},{"name":"DotsSegmentedControl","sourcePath":"components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx"},{"name":"DotsSelector","sourcePath":"components/buttons/DotsSelector/DotsSelector.jsx"},{"name":"DotsSelectorRadioButton","sourcePath":"components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx"},{"name":"DotsSlider","sourcePath":"components/content/DotsSlider/DotsSlider.jsx"},{"name":"DotsSquirclePhoto","sourcePath":"components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx"},{"name":"DotsSystemButton","sourcePath":"components/buttons/DotsSystemButton/DotsSystemButton.jsx"},{"name":"DotsTextArea","sourcePath":"components/inputs/DotsTextArea/DotsTextArea.jsx"},{"name":"DotsTextFieldPhone","sourcePath":"components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx"},{"name":"DotsToast","sourcePath":"components/feedback/DotsToast/DotsToast.jsx"},{"name":"DotsTooltip","sourcePath":"components/overlays/DotsTooltip/DotsTooltip.jsx"},{"name":"DotsUploadItem","sourcePath":"components/media/DotsUploadItem/DotsUploadItem.jsx"},{"name":"DropdownMenu","sourcePath":"components/overlays/DropdownMenu/DropdownMenu.jsx"},{"name":"FeatureItem","sourcePath":"components/content/FeatureItem/FeatureItem.jsx"},{"name":"FolderCarrousel","sourcePath":"components/navigation/FolderCarrousel/FolderCarrousel.jsx"},{"name":"ImageThumbnail","sourcePath":"components/indicators/ImageThumbnail/ImageThumbnail.jsx"},{"name":"ImageWithIcon","sourcePath":"components/social/ImageWithIcon/ImageWithIcon.jsx"},{"name":"ImageWithProgressAround","sourcePath":"components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx"},{"name":"MemoryCard","sourcePath":"components/cards/MemoryCard/MemoryCard.jsx"},{"name":"MessagePreview","sourcePath":"components/social/MessagePreview/MessagePreview.jsx"},{"name":"MilestoneCard","sourcePath":"components/memories/MilestoneCard/MilestoneCard.jsx"},{"name":"MilestonesList","sourcePath":"components/memories/MilestonesList/MilestonesList.jsx"},{"name":"NotificationBanner","sourcePath":"components/social/NotificationBanner/NotificationBanner.jsx"},{"name":"NotificationBannerImage","sourcePath":"components/social/NotificationBannerImage/NotificationBannerImage.jsx"},{"name":"ProductCard","sourcePath":"components/cards/ProductCard/ProductCard.jsx"},{"name":"RatingRow","sourcePath":"components/content/RatingRow/RatingRow.jsx"},{"name":"RecapCard","sourcePath":"components/cards/RecapCard/RecapCard.jsx"},{"name":"UserItem","sourcePath":"components/social/UserItem/UserItem.jsx"},{"name":"UsersList","sourcePath":"components/social/UsersList/UsersList.jsx"}],"sourceHashes":{"components/icons/DotsIcon/DotsIcon.jsx":"335df31c211a","components/icons/DotsIcon/DotsIcon.d.ts":"87b2028cfb22","components/icons/DotsIcon/DotsIcon.prompt.md":"fe2f27eb49fe","components/overlays/DotsActionSheet/DotsActionSheet.jsx":"6aea0de1baad","components/overlays/DotsActionSheet/DotsActionSheet.d.ts":"c04efccc1150","components/overlays/DotsActionSheet/DotsActionSheet.prompt.md":"6c6162a444ea","components/feedback/DotsAlert/DotsAlert.jsx":"31e443a1a6c9","components/feedback/DotsAlert/DotsAlert.d.ts":"de5c4919a68d","components/feedback/DotsAlert/DotsAlert.prompt.md":"e6eb80571d37","components/inputs/DotsCalendar/DotsCalendar.jsx":"a4bb0de5b1bf","components/inputs/DotsCalendar/DotsCalendar.d.ts":"4d7457cdfa80","components/inputs/DotsCalendar/DotsCalendar.prompt.md":"bc6385a3b1b1","components/buttons/DotsCloseButton/DotsCloseButton.jsx":"f989f50ce37d","components/buttons/DotsCloseButton/DotsCloseButton.d.ts":"63e7ca18df69","components/buttons/DotsCloseButton/DotsCloseButton.prompt.md":"2202cc87900c","components/buttons/DotsIconButton/DotsIconButton.jsx":"ffcab2eedea4","components/buttons/DotsIconButton/DotsIconButton.d.ts":"54238dbe6046","components/buttons/DotsIconButton/DotsIconButton.prompt.md":"c4bb14d7759c","components/buttons/DotsMainButton/DotsMainButton.jsx":"ae2cd12f68a1","components/buttons/DotsMainButton/DotsMainButton.d.ts":"cddb89971081","components/buttons/DotsMainButton/DotsMainButton.prompt.md":"a221cf629ffc","components/content/DotsMainContainer/DotsMainContainer.jsx":"4ddd06a6ad9e","components/content/DotsMainContainer/DotsMainContainer.d.ts":"dd9fc89aff3e","components/content/DotsMainContainer/DotsMainContainer.prompt.md":"9598eb0321bd","components/media/DotsProfilePhoto/DotsProfilePhoto.jsx":"92e613449ad2","components/media/DotsProfilePhoto/DotsProfilePhoto.d.ts":"d95296f257ad","components/media/DotsProfilePhoto/DotsProfilePhoto.prompt.md":"636c54ee6feb","components/buttons/DotsRichButton/DotsRichButton.jsx":"f445085fc5ca","components/buttons/DotsRichButton/DotsRichButton.d.ts":"c58744c3cec5","components/buttons/DotsRichButton/DotsRichButton.prompt.md":"94e43f6c7d5f","components/indicators/DotsSpinner/DotsSpinner.jsx":"a12be39b5926","components/indicators/DotsSpinner/DotsSpinner.d.ts":"92a18d75b986","components/indicators/DotsSpinner/DotsSpinner.prompt.md":"eea0999cfa40","components/inputs/DotsTextField/DotsTextField.jsx":"f072f4f3eb62","components/inputs/DotsTextField/DotsTextField.d.ts":"0c0151ef4b44","components/inputs/DotsTextField/DotsTextField.prompt.md":"42536ffb516a","components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx":"163b6c3eb5a2","components/inputs/DotsTextFieldButton/DotsTextFieldButton.d.ts":"69d562a11b16","components/inputs/DotsTextFieldButton/DotsTextFieldButton.prompt.md":"cd2a18ca1749","components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx":"bd28881afb3c","components/inputs/DotsTextFieldDate/DotsTextFieldDate.d.ts":"8d7f859c0a67","components/inputs/DotsTextFieldDate/DotsTextFieldDate.prompt.md":"2944cdc9159d","components/buttons/DotsToggle/DotsToggle.jsx":"d580e9128f26","components/buttons/DotsToggle/DotsToggle.d.ts":"7e48d0107831","components/buttons/DotsToggle/DotsToggle.prompt.md":"c8b4344a32ac","components/navigation/DotsTopBar/DotsTopBar.jsx":"bab2b068b924","components/navigation/DotsTopBar/DotsTopBar.d.ts":"182b7686120b","components/navigation/DotsTopBar/DotsTopBar.prompt.md":"6f2c5073c6e6","components/cards/EventGroupCard/EventGroupCard.jsx":"a156456590e1","components/cards/EventGroupCard/EventGroupCard.d.ts":"cf79b8f6b27b","components/cards/EventGroupCard/EventGroupCard.prompt.md":"456df0915b54","components/dotbook/PageControl/PageControl.jsx":"7d3c2f0a4143","components/dotbook/PageControl/PageControl.d.ts":"58a5a9e129ae","components/dotbook/PageControl/PageControl.prompt.md":"2dcd422b32cb","components/social/ActivityPreview/ActivityPreview.jsx":"b4b80f9e800f","components/social/ActivityPreview/ActivityPreview.d.ts":"e2fd20a2da58","components/social/ActivityPreview/ActivityPreview.prompt.md":"239a5fa193fe","components/cards/AlbumGroupCard/AlbumGroupCard.jsx":"19e3745d2c01","components/cards/AlbumGroupCard/AlbumGroupCard.d.ts":"250a72265114","components/cards/AlbumGroupCard/AlbumGroupCard.prompt.md":"6dd66b80e55e","components/feedback/BadgeIcon/BadgeIcon.jsx":"a75a6074ba60","components/feedback/BadgeIcon/BadgeIcon.d.ts":"1bccac9e9356","components/feedback/BadgeIcon/BadgeIcon.prompt.md":"929b4a0e194c","components/feedback/BadgeLabel/BadgeLabel.jsx":"f330d80f7db6","components/feedback/BadgeLabel/BadgeLabel.d.ts":"40c7a2f37790","components/feedback/BadgeLabel/BadgeLabel.prompt.md":"ed1b903fbe5a","components/feedback/BadgeMilestone/BadgeMilestone.jsx":"4c02ad66c2be","components/feedback/BadgeMilestone/BadgeMilestone.d.ts":"811738e29f12","components/feedback/BadgeMilestone/BadgeMilestone.prompt.md":"48a757bc2910","components/feedback/BadgeProgress/BadgeProgress.jsx":"71554919d446","components/feedback/BadgeProgress/BadgeProgress.d.ts":"7012fa757c46","components/feedback/BadgeProgress/BadgeProgress.prompt.md":"b147f3bbf27b","components/feedback/BadgeTag/BadgeTag.jsx":"07499192e79b","components/feedback/BadgeTag/BadgeTag.d.ts":"b01377bc343d","components/feedback/BadgeTag/BadgeTag.prompt.md":"0dc17ea4fe03","components/content/BlurContainer/BlurContainer.jsx":"4f3158bee2a7","components/content/BlurContainer/BlurContainer.d.ts":"e06f388d3283","components/content/BlurContainer/BlurContainer.prompt.md":"47fb1619efac","components/buttons/BtnFolder/BtnFolder.jsx":"5818c75ea3ef","components/buttons/BtnFolder/BtnFolder.d.ts":"cb0f0c7974cf","components/buttons/BtnFolder/BtnFolder.prompt.md":"409f1a511b12","components/content/ColorSelector/ColorSelector.jsx":"08ac3ae6676f","components/content/ColorSelector/ColorSelector.d.ts":"fbf55305330f","components/content/ColorSelector/ColorSelector.prompt.md":"b98eac18525b","components/cards/CreateCard/CreateCard.jsx":"9f5acf670673","components/cards/CreateCard/CreateCard.d.ts":"5c0ad3f5a79e","components/cards/CreateCard/CreateCard.prompt.md":"845e444d73f8","components/content/DotsAccordion/DotsAccordion.jsx":"84ac87f036d4","components/content/DotsAccordion/DotsAccordion.d.ts":"fe68787fde6c","components/content/DotsAccordion/DotsAccordion.prompt.md":"1657898cd0de","components/buttons/DotsCaptureButton/DotsCaptureButton.jsx":"b327fc4eacd1","components/buttons/DotsCaptureButton/DotsCaptureButton.d.ts":"444cf57dfc42","components/buttons/DotsCaptureButton/DotsCaptureButton.prompt.md":"04b427a10e12","components/indicators/DotsCountdown/DotsCountdown.jsx":"e6a30324d478","components/indicators/DotsCountdown/DotsCountdown.d.ts":"31a583d1076c","components/indicators/DotsCountdown/DotsCountdown.prompt.md":"698be70ac531","components/content/DotsDivider/DotsDivider.jsx":"614a3fa428a4","components/content/DotsDivider/DotsDivider.d.ts":"4505568c5bcd","components/content/DotsDivider/DotsDivider.prompt.md":"608e2d568e01","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx":"7be6c63ad360","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.d.ts":"29b7ef23a048","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.prompt.md":"204299d95767","components/feedback/DotsFilterChip/DotsFilterChip.jsx":"f70922a222e4","components/feedback/DotsFilterChip/DotsFilterChip.d.ts":"303cfa6352c0","components/feedback/DotsFilterChip/DotsFilterChip.prompt.md":"4e2d4316b2c5","components/buttons/DotsFloatingButton/DotsFloatingButton.jsx":"07ef21cbcf69","components/buttons/DotsFloatingButton/DotsFloatingButton.d.ts":"582d163c4a73","components/buttons/DotsFloatingButton/DotsFloatingButton.prompt.md":"9385b6723151","components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx":"3740529a645f","components/navigation/DotsHomeTopBar/DotsHomeTopBar.d.ts":"2ddf25716a9c","components/navigation/DotsHomeTopBar/DotsHomeTopBar.prompt.md":"36a11970a144","components/buttons/DotsInputStepper/DotsInputStepper.jsx":"fe711e75f2b8","components/buttons/DotsInputStepper/DotsInputStepper.d.ts":"0627f3845ad8","components/buttons/DotsInputStepper/DotsInputStepper.prompt.md":"6d3798eb4e5e","components/inputs/DotsItemInput/DotsItemInput.jsx":"fdda4bc0b529","components/inputs/DotsItemInput/DotsItemInput.d.ts":"3773e592f555","components/inputs/DotsItemInput/DotsItemInput.prompt.md":"f643916e19cd","components/content/DotsListItem/DotsListItem.jsx":"6157f22e738a","components/content/DotsListItem/DotsListItem.d.ts":"51cd8f74cfcb","components/content/DotsListItem/DotsListItem.prompt.md":"40bdc5fff354","components/overlays/DotsMenu/DotsMenu.jsx":"250fcc9b1d35","components/overlays/DotsMenu/DotsMenu.d.ts":"007c0322a634","components/overlays/DotsMenu/DotsMenu.prompt.md":"4f8bd72c1108","components/navigation/DotsNavBar/DotsNavBar.jsx":"16123dd053b7","components/navigation/DotsNavBar/DotsNavBar.d.ts":"d766f315c268","components/navigation/DotsNavBar/DotsNavBar.prompt.md":"d212413051ce","components/planning/DotsPlanningItem/DotsPlanningItem.jsx":"c17bedb8d20b","components/planning/DotsPlanningItem/DotsPlanningItem.d.ts":"48d04352a47d","components/planning/DotsPlanningItem/DotsPlanningItem.prompt.md":"a8e792ac3dac","components/premium/DotsPlanSelector/DotsPlanSelector.jsx":"9e8354546c8e","components/premium/DotsPlanSelector/DotsPlanSelector.d.ts":"5b77d82f0400","components/premium/DotsPlanSelector/DotsPlanSelector.prompt.md":"31125956fd1c","components/indicators/DotsProgressBar/DotsProgressBar.jsx":"d6f31abf3d70","components/indicators/DotsProgressBar/DotsProgressBar.d.ts":"ee2eb37eb671","components/indicators/DotsProgressBar/DotsProgressBar.prompt.md":"2dad7693c604","components/buttons/DotsRadioButton/DotsRadioButton.jsx":"7a4e9fc06d16","components/buttons/DotsRadioButton/DotsRadioButton.d.ts":"9ffccefab4d0","components/buttons/DotsRadioButton/DotsRadioButton.prompt.md":"d6e35d04a2c5","components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx":"63c3134be5e4","components/inputs/DotsSegmentedControl/DotsSegmentedControl.d.ts":"aa4b83624d09","components/inputs/DotsSegmentedControl/DotsSegmentedControl.prompt.md":"780587c9cea5","components/buttons/DotsSelector/DotsSelector.jsx":"32a1fa2354c2","components/buttons/DotsSelector/DotsSelector.d.ts":"8371f7ea93d5","components/buttons/DotsSelector/DotsSelector.prompt.md":"3ca0254c3375","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx":"ca91ce72bf06","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.d.ts":"452a97eb30f8","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.prompt.md":"0f43fa3291a0","components/content/DotsSlider/DotsSlider.jsx":"11ddb3b9d671","components/content/DotsSlider/DotsSlider.d.ts":"30a75a21af71","components/content/DotsSlider/DotsSlider.prompt.md":"b91814ec96a9","components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx":"be4633716883","components/media/DotsSquirclePhoto/DotsSquirclePhoto.d.ts":"e6eb4abc3fbf","components/media/DotsSquirclePhoto/DotsSquirclePhoto.prompt.md":"7bf60628c1fe","components/buttons/DotsSystemButton/DotsSystemButton.jsx":"61ef368899c8","components/buttons/DotsSystemButton/DotsSystemButton.d.ts":"4c662f2b1a53","components/buttons/DotsSystemButton/DotsSystemButton.prompt.md":"09363a30bf00","components/inputs/DotsTextArea/DotsTextArea.jsx":"f5e66264f111","components/inputs/DotsTextArea/DotsTextArea.d.ts":"c0f65e12c920","components/inputs/DotsTextArea/DotsTextArea.prompt.md":"63170a772fb6","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx":"ee02df22e4b1","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.d.ts":"3e321bce70f9","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.prompt.md":"32c5dd3fc02b","components/feedback/DotsToast/DotsToast.jsx":"9875719b818a","components/feedback/DotsToast/DotsToast.d.ts":"f35b4f9e35cb","components/feedback/DotsToast/DotsToast.prompt.md":"e7dade8e5042","components/overlays/DotsTooltip/DotsTooltip.jsx":"690646cedff8","components/overlays/DotsTooltip/DotsTooltip.d.ts":"57fcd8d2ce51","components/overlays/DotsTooltip/DotsTooltip.prompt.md":"8e2e72fa4034","components/media/DotsUploadItem/DotsUploadItem.jsx":"b5b296dabbb0","components/media/DotsUploadItem/DotsUploadItem.d.ts":"81e7fb9ba5e0","components/media/DotsUploadItem/DotsUploadItem.prompt.md":"063ce14a5d25","components/overlays/DropdownMenu/DropdownMenu.jsx":"e990079ce8af","components/overlays/DropdownMenu/DropdownMenu.d.ts":"f4b48717fe80","components/overlays/DropdownMenu/DropdownMenu.prompt.md":"b8ca4e74f03e","components/content/FeatureItem/FeatureItem.jsx":"bb22c6b112e0","components/content/FeatureItem/FeatureItem.d.ts":"5b02831affdc","components/content/FeatureItem/FeatureItem.prompt.md":"8eed7e79d9a6","components/navigation/FolderCarrousel/FolderCarrousel.jsx":"fe669a8466ea","components/navigation/FolderCarrousel/FolderCarrousel.d.ts":"517a1f6c511d","components/navigation/FolderCarrousel/FolderCarrousel.prompt.md":"ed1bca9712aa","components/indicators/ImageThumbnail/ImageThumbnail.jsx":"eba358df1cbe","components/indicators/ImageThumbnail/ImageThumbnail.d.ts":"e09a2ac117ef","components/indicators/ImageThumbnail/ImageThumbnail.prompt.md":"f1d009a529a1","components/social/ImageWithIcon/ImageWithIcon.jsx":"c6c587c966d1","components/social/ImageWithIcon/ImageWithIcon.d.ts":"0ffc16494e27","components/social/ImageWithIcon/ImageWithIcon.prompt.md":"0c2c7229692c","components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx":"806a6150545b","components/indicators/ImageWithProgressAround/ImageWithProgressAround.d.ts":"0156a3f1afb2","components/indicators/ImageWithProgressAround/ImageWithProgressAround.prompt.md":"dcf89fcfbb8a","components/cards/MemoryCard/MemoryCard.jsx":"3a0db91b5a78","components/cards/MemoryCard/MemoryCard.d.ts":"133524ff6528","components/cards/MemoryCard/MemoryCard.prompt.md":"429e9792f2cc","components/social/MessagePreview/MessagePreview.jsx":"215094a5eccd","components/social/MessagePreview/MessagePreview.d.ts":"bb652c774f28","components/social/MessagePreview/MessagePreview.prompt.md":"8429677865ce","components/memories/MilestoneCard/MilestoneCard.jsx":"f41829c3c1f0","components/memories/MilestoneCard/MilestoneCard.d.ts":"eed7542b8e03","components/memories/MilestoneCard/MilestoneCard.prompt.md":"ed078065e85c","components/memories/MilestonesList/MilestonesList.jsx":"48f44b1ed490","components/memories/MilestonesList/MilestonesList.d.ts":"10cad4068b69","components/memories/MilestonesList/MilestonesList.prompt.md":"739f1eedb6e7","components/social/NotificationBanner/NotificationBanner.jsx":"3047bcebf969","components/social/NotificationBanner/NotificationBanner.d.ts":"4f82b841d8c3","components/social/NotificationBanner/NotificationBanner.prompt.md":"57060dbd2686","components/social/NotificationBannerImage/NotificationBannerImage.jsx":"9d5214f16bde","components/social/NotificationBannerImage/NotificationBannerImage.d.ts":"0488d329db36","components/social/NotificationBannerImage/NotificationBannerImage.prompt.md":"01904774056d","components/cards/ProductCard/ProductCard.jsx":"60765da3d430","components/cards/ProductCard/ProductCard.d.ts":"77da73cd7ba1","components/cards/ProductCard/ProductCard.prompt.md":"bddfb1317e70","components/content/RatingRow/RatingRow.jsx":"c648699f7d52","components/content/RatingRow/RatingRow.d.ts":"b8541da81acd","components/content/RatingRow/RatingRow.prompt.md":"d36b1b43f630","components/cards/RecapCard/RecapCard.jsx":"5b5a0051efa7","components/cards/RecapCard/RecapCard.d.ts":"80b636ffc554","components/cards/RecapCard/RecapCard.prompt.md":"8fff796309ab","components/social/UserItem/UserItem.jsx":"8ca2155b51f1","components/social/UserItem/UserItem.d.ts":"9733979d627a","components/social/UserItem/UserItem.prompt.md":"ec0b0a01c16b","components/social/UsersList/UsersList.jsx":"263f90a7d807","components/social/UsersList/UsersList.d.ts":"b34733911d1c","components/social/UsersList/UsersList.prompt.md":"e19600d69967"},"inlinedExternals":[],"unexposedExports":[],"builtBy":"dots-design-system-react"} */
 (() => {
 
 const __ds_ns = (window.DotsDesignSystem_9e41da = window.DotsDesignSystem_9e41da || {});
@@ -66,6 +66,7 @@ const hooks = () => window.React;
   __export(index_exports, {
     DotsActionSheet: () => DotsActionSheet,
     DotsActionSheetListItem: () => DotsActionSheetListItem,
+    DotsAlert: () => DotsAlert,
     DotsCalendar: () => DotsCalendar,
     DotsCloseButton: () => DotsCloseButton,
     DotsIcon: () => DotsIcon,
@@ -971,144 +972,9 @@ const hooks = () => window.React;
     );
   }
 
-  // src/components/DotsCalendar/DotsCalendar.tsx
+  // src/components/DotsAlert/DotsAlert.tsx
   init_react_shim();
-  var import_react5 = __toESM(require_react(), 1);
-  var pad = (n) => String(n).padStart(2, "0");
-  var toISO = (y, m, d) => `${y}-${pad(m + 1)}-${pad(d)}`;
-  var parseISO = (iso) => {
-    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso ?? "");
-    return m ? [Number(m[1]), Number(m[2]) - 1, Number(m[3])] : null;
-  };
-  var todayISO = () => {
-    const t = /* @__PURE__ */ new Date();
-    return toISO(t.getFullYear(), t.getMonth(), t.getDate());
-  };
-  var capitalize = (s) => s ? s[0].toLocaleUpperCase() + s.slice(1) : s;
-  function monthGrid(y, m, firstDayOfWeek) {
-    const first = new Date(y, m, 1);
-    const lead = (first.getDay() - firstDayOfWeek + 7) % 7;
-    const daysInMonth = new Date(y, m + 1, 0).getDate();
-    const total = Math.ceil((lead + daysInMonth) / 7) * 7;
-    const days = [];
-    for (let i = 0; i < total; i++) {
-      const date = new Date(y, m, 1 - lead + i);
-      days.push({ y: date.getFullYear(), m: date.getMonth(), d: date.getDate(), iso: toISO(date.getFullYear(), date.getMonth(), date.getDate()), outside: date.getMonth() !== m });
-    }
-    return days;
-  }
-  var ITEM = 44;
-  var VISIBLE = 5;
-  function DotsCalendar(props) {
-    const locale = props.locale ?? (typeof navigator !== "undefined" ? navigator.language : "es");
-    const firstDayOfWeek = props.firstDayOfWeek ?? 1;
-    const pastDays = props.pastDays ?? "muted";
-    const today = props.today ?? todayISO();
-    const selected = parseISO(props.value);
-    const initial = (0, import_react5.useMemo)(() => {
-      const m = /^(\d{4})-(\d{2})$/.exec(props.initialMonth ?? "");
-      if (m) return [Number(m[1]), Number(m[2]) - 1];
-      const src = selected ?? parseISO(today);
-      return [src[0], src[1]];
-    }, []);
-    const [year, setYear] = (0, import_react5.useState)(initial[0]);
-    const [month, setMonth] = (0, import_react5.useState)(initial[1]);
-    const [picking, setPicking] = (0, import_react5.useState)(!!props.initialPicking);
-    const monthFmt = (0, import_react5.useMemo)(() => new Intl.DateTimeFormat(locale, { month: "long" }), [locale]);
-    const weekdayFmt = (0, import_react5.useMemo)(() => new Intl.DateTimeFormat(locale, { weekday: "narrow" }), [locale]);
-    const monthNames = (0, import_react5.useMemo)(() => Array.from({ length: 12 }, (_, i) => capitalize(monthFmt.format(new Date(2024, i, 1)))), [monthFmt]);
-    const weekdays = (0, import_react5.useMemo)(
-      () => Array.from({ length: 7 }, (_, i) => weekdayFmt.format(new Date(2024, 0, 7 + firstDayOfWeek + i))),
-      // 2024-01-07 is a Sunday
-      [weekdayFmt, firstDayOfWeek]
-    );
-    const todayYear = parseISO(today)[0];
-    const [yearFrom, yearTo] = props.yearRange ?? [todayYear - 5, todayYear + 10];
-    const years = (0, import_react5.useMemo)(() => Array.from({ length: Math.max(1, yearTo - yearFrom + 1) }, (_, i) => yearFrom + i), [yearFrom, yearTo]);
-    const days = (0, import_react5.useMemo)(() => monthGrid(year, month, firstDayOfWeek), [year, month, firstDayOfWeek]);
-    const isDisabled = (iso) => pastDays === "disabled" && iso < today || props.minDate !== void 0 && iso < props.minDate || props.maxDate !== void 0 && iso > props.maxDate;
-    const go = (delta) => {
-      const date = new Date(year, month + delta, 1);
-      setYear(date.getFullYear());
-      setMonth(date.getMonth());
-    };
-    const pick = (day) => {
-      if (isDisabled(day.iso)) return;
-      if (day.outside) {
-        setYear(day.y);
-        setMonth(day.m);
-      }
-      props.onChange?.(day.iso);
-    };
-    const label = `${monthNames[month]} ${year}`;
-    return /* @__PURE__ */ React.createElement("div", { className: `ds-calendar${props.className ? ` ${props.className}` : ""}` }, /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__header" }, /* @__PURE__ */ React.createElement("button", { type: "button", className: "ds-calendar__month-btn", "aria-expanded": picking, onClick: () => setPicking((v) => !v) }, /* @__PURE__ */ React.createElement("span", { className: "ds-calendar__month-label" }, label), /* @__PURE__ */ React.createElement("span", { className: `ds-calendar__chevron${picking ? " ds-calendar__chevron--open" : ""}`, "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-chevron-down", size: 16 }))), /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__spacer" }), !picking ? /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__nav" }, /* @__PURE__ */ React.createElement(DotsIconButton, { icon: "ic-chevron-left", size: "small", style: "noBackground", onClick: () => go(-1) }), /* @__PURE__ */ React.createElement(DotsIconButton, { icon: "ic-chevron-right", size: "small", style: "noBackground", onClick: () => go(1) })) : null), !picking ? /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__grid", role: "grid", "aria-label": label }, weekdays.map((w2, i) => /* @__PURE__ */ React.createElement("div", { key: `w${i}`, className: "ds-calendar__weekday", role: "columnheader" }, w2)), days.map((day) => {
-      const isSelected = !!selected && day.iso === toISO(selected[0], selected[1], selected[2]);
-      const isToday = day.iso === today;
-      const disabled = isDisabled(day.iso);
-      const muted = pastDays === "muted" && day.iso < today && !isSelected;
-      const cls = [
-        "ds-calendar__day",
-        day.outside ? "ds-calendar__day--outside" : "",
-        muted ? "ds-calendar__day--muted" : "",
-        isToday ? "ds-calendar__day--today" : "",
-        isSelected ? "ds-calendar__day--selected" : "",
-        disabled ? "ds-calendar__day--disabled" : ""
-      ].filter(Boolean).join(" ");
-      return /* @__PURE__ */ React.createElement(
-        "button",
-        {
-          key: day.iso,
-          type: "button",
-          role: "gridcell",
-          className: cls,
-          "aria-selected": isSelected,
-          "aria-current": isToday ? "date" : void 0,
-          "aria-disabled": disabled || void 0,
-          onClick: () => pick(day)
-        },
-        /* @__PURE__ */ React.createElement("span", { className: "ds-calendar__num" }, day.d)
-      );
-    })) : /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__picker" }, /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__band", "aria-hidden": true }), /* @__PURE__ */ React.createElement(WheelColumn, { items: monthNames, index: month, onIndexChange: setMonth, ariaLabel: "month" }), /* @__PURE__ */ React.createElement(WheelColumn, { items: years.map(String), index: Math.max(0, years.indexOf(year)), onIndexChange: (i) => setYear(years[i]), ariaLabel: "year" })));
-  }
-  function WheelColumn(props) {
-    const ref = (0, import_react5.useRef)(null);
-    const settle = (0, import_react5.useRef)(void 0);
-    const lastReported = (0, import_react5.useRef)(props.index);
-    const mounted = (0, import_react5.useRef)(false);
-    (0, import_react5.useEffect)(() => {
-      const el = ref.current;
-      if (!el) return;
-      const top = props.index * ITEM;
-      if (Math.abs(el.scrollTop - top) > 1) el.scrollTo({ top, behavior: mounted.current ? "smooth" : "auto" });
-      mounted.current = true;
-      lastReported.current = props.index;
-    }, [props.index]);
-    const onScroll = () => {
-      window.clearTimeout(settle.current);
-      settle.current = window.setTimeout(() => {
-        const el = ref.current;
-        if (!el) return;
-        const i = Math.max(0, Math.min(props.items.length - 1, Math.round(el.scrollTop / ITEM)));
-        if (i !== lastReported.current) {
-          lastReported.current = i;
-          props.onIndexChange(i);
-        }
-      }, 80);
-    };
-    const padRows = Math.floor(VISIBLE / 2);
-    return /* @__PURE__ */ React.createElement("div", { ref, className: "ds-calendar__col", role: "listbox", "aria-label": props.ariaLabel, onScroll }, /* @__PURE__ */ React.createElement("div", { style: { height: padRows * ITEM, flex: "none" } }), props.items.map((item, i) => /* @__PURE__ */ React.createElement(
-      "button",
-      {
-        key: item,
-        type: "button",
-        role: "option",
-        "aria-selected": i === props.index,
-        className: `ds-calendar__item${i === props.index ? " ds-calendar__item--selected" : ""}`,
-        onClick: () => props.onIndexChange(i)
-      },
-      item
-    )), /* @__PURE__ */ React.createElement("div", { style: { height: padRows * ITEM, flex: "none" } }));
-  }
+  var import_react6 = __toESM(require_react(), 1);
 
   // src/components/DotsCloseButton/DotsCloseButton.tsx
   init_react_shim();
@@ -1136,12 +1002,12 @@ const hooks = () => window.React;
 
   // src/components/DotsTextFieldButton/DotsTextFieldButton.tsx
   init_react_shim();
-  var import_react6 = __toESM(require_react(), 1);
+  var import_react5 = __toESM(require_react(), 1);
   function DotsTextFieldButton(props) {
     const controlled = props.value !== void 0 && props.value !== null;
-    const [innerText, setText] = (0, import_react6.useState)(props.defaultValue != null ? String(props.defaultValue) : "");
-    const [focused, setFocused] = (0, import_react6.useState)(false);
-    const inputRef = (0, import_react6.useRef)(null);
+    const [innerText, setText] = (0, import_react5.useState)(props.defaultValue != null ? String(props.defaultValue) : "");
+    const [focused, setFocused] = (0, import_react5.useState)(false);
+    const inputRef = (0, import_react5.useRef)(null);
     const text = controlled ? String(props.value) : innerText;
     const enabled = props.enabled !== false;
     const background = props.background !== false;
@@ -1210,6 +1076,223 @@ const hooks = () => window.React;
       },
       props.endButtonText
     )) : null), isError && props.errorText != null ? /* @__PURE__ */ React.createElement("div", { className: "ds-tf-btn__error-text" }, applyErrorAsterisk ? `* ${props.errorText}` : props.errorText) : null);
+  }
+
+  // src/components/DotsAlert/DotsAlert.tsx
+  var VARIANTS3 = [
+    "noButtons",
+    "oneButton",
+    "twoHorizontalButtons",
+    "twoHorizontalButtonsDestructive",
+    "twoVerticalButtons",
+    "twoVerticalButtonsNoActive",
+    "twoVerticalButtonsDestructive",
+    "input",
+    "selector"
+  ];
+  var hasText = (v) => v != null && v.trim() !== "";
+  function DotsAlert(props) {
+    const [imgFailed, setImgFailed] = (0, import_react6.useState)(false);
+    const variant = props.variant && VARIANTS3.includes(props.variant) ? props.variant : "noButtons";
+    const isInput = variant === "input";
+    const isSelector = variant === "selector";
+    const showBlur = props.showBlurBackground !== false;
+    const button = (key, v, text, onClick) => /* @__PURE__ */ React.createElement(DotsMainButton, { key, label: text ?? "", variant: v, size: "large", adaptPaddingForText: true, onClick });
+    const chip = /* @__PURE__ */ React.createElement("div", { className: "ds-alert__icon-chip" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: 24, color: "currentColor" }));
+    const header = /* @__PURE__ */ React.createElement("div", { className: "ds-alert__header" }, props.showCloseButton ? /* @__PURE__ */ React.createElement("span", { className: "ds-alert__header-spacer" }) : null, /* @__PURE__ */ React.createElement("div", { className: "ds-alert__icon-center" }, /* @__PURE__ */ React.createElement("div", { className: "ds-alert__icon-pad" }, props.iconImage && !imgFailed ? /* @__PURE__ */ React.createElement("img", { className: "ds-alert__icon-img", src: props.iconImage, alt: "", onError: () => setImgFailed(true) }) : chip)), props.showCloseButton ? /* @__PURE__ */ React.createElement(DotsCloseButton, { icon: "ic-cross", size: "medium", variant: "softContrast", onClick: props.onClose }) : null);
+    let description = null;
+    if (isInput) {
+      description = /* @__PURE__ */ React.createElement("div", { className: "ds-alert__input" }, /* @__PURE__ */ React.createElement(DotsTextFieldButton, { icon: "ic-search", hintText: props.inputHint, onChanged: props.onInputChanged }));
+    } else if (isSelector) {
+      const items = props.selectorItems ?? [];
+      description = /* @__PURE__ */ React.createElement("div", { className: "ds-alert__selector" }, hasText(props.message) ? /* @__PURE__ */ React.createElement("p", { className: "ds-alert__msg ds-alert__selector-msg" }, props.message) : null, /* @__PURE__ */ React.createElement("div", { className: "ds-alert__list" }, items.map((it, i) => /* @__PURE__ */ React.createElement("button", { key: i, type: "button", className: "ds-alert__list-item", onClick: it.onClick }, it.image ? /* @__PURE__ */ React.createElement("img", { className: "ds-alert__list-thumb", src: it.image, alt: "" }) : /* @__PURE__ */ React.createElement("span", { className: "ds-alert__list-thumb" }), /* @__PURE__ */ React.createElement("span", { className: "ds-alert__list-label" }, it.label)))));
+    } else if (hasText(props.message)) {
+      description = /* @__PURE__ */ React.createElement("p", { className: "ds-alert__msg" }, props.message);
+    }
+    let actions = null;
+    switch (variant) {
+      case "oneButton":
+        actions = /* @__PURE__ */ React.createElement("div", { className: "ds-alert__actions" }, button("m", "main", props.mainButtonText, props.onMainButtonClick));
+        break;
+      case "twoHorizontalButtons":
+      case "twoHorizontalButtonsDestructive":
+      case "input":
+      case "selector":
+        actions = /* @__PURE__ */ React.createElement("div", { className: "ds-alert__actions ds-alert__actions--row" }, button("s", "secondary", props.secondaryButtonText, props.onSecondaryButtonClick), button("m", variant === "twoHorizontalButtonsDestructive" ? "destructive" : "main", props.mainButtonText, props.onMainButtonClick));
+        break;
+      case "twoVerticalButtons":
+        actions = /* @__PURE__ */ React.createElement("div", { className: "ds-alert__actions ds-alert__actions--col" }, button("m", "main", props.mainButtonText, props.onMainButtonClick), button("s", "ghost", props.secondaryButtonText, props.onSecondaryButtonClick));
+        break;
+      case "twoVerticalButtonsDestructive":
+        actions = /* @__PURE__ */ React.createElement("div", { className: "ds-alert__actions ds-alert__actions--col" }, button("m", "destructive", props.mainButtonText, props.onMainButtonClick), button("s", "ghost", props.secondaryButtonText, props.onSecondaryButtonClick));
+        break;
+      case "twoVerticalButtonsNoActive":
+        actions = /* @__PURE__ */ React.createElement("div", { className: "ds-alert__actions ds-alert__actions--col ds-alert__actions--gap8" }, button("m", "secondary", props.mainButtonText, props.onMainButtonClick), button("s", "secondary", props.secondaryButtonText, props.onSecondaryButtonClick));
+        break;
+      default:
+        actions = null;
+    }
+    const card = /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-alert ds-alert--${variant}${showBlur ? " ds-alert--blur" : ""}${props.className ? ` ${props.className}` : ""}`,
+        role: "alertdialog",
+        "aria-label": props.title
+      },
+      header,
+      /* @__PURE__ */ React.createElement("div", { className: "ds-alert__body" }, hasText(props.title) ? /* @__PURE__ */ React.createElement("p", { className: "ds-alert__title" }, props.title) : null, description),
+      actions
+    );
+    if (!props.showScrim) return card;
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: "ds-alert__scrim",
+        onClick: (e) => {
+          if (e.target === e.currentTarget && props.enableCloseOnTapOutside !== false) props.onClose?.();
+        }
+      },
+      card
+    );
+  }
+
+  // src/components/DotsCalendar/DotsCalendar.tsx
+  init_react_shim();
+  var import_react7 = __toESM(require_react(), 1);
+  var pad = (n) => String(n).padStart(2, "0");
+  var toISO = (y, m, d) => `${y}-${pad(m + 1)}-${pad(d)}`;
+  var parseISO = (iso) => {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso ?? "");
+    return m ? [Number(m[1]), Number(m[2]) - 1, Number(m[3])] : null;
+  };
+  var todayISO = () => {
+    const t = /* @__PURE__ */ new Date();
+    return toISO(t.getFullYear(), t.getMonth(), t.getDate());
+  };
+  var capitalize = (s) => s ? s[0].toLocaleUpperCase() + s.slice(1) : s;
+  function monthGrid(y, m, firstDayOfWeek) {
+    const first = new Date(y, m, 1);
+    const lead = (first.getDay() - firstDayOfWeek + 7) % 7;
+    const daysInMonth = new Date(y, m + 1, 0).getDate();
+    const total = Math.ceil((lead + daysInMonth) / 7) * 7;
+    const days = [];
+    for (let i = 0; i < total; i++) {
+      const date = new Date(y, m, 1 - lead + i);
+      days.push({ y: date.getFullYear(), m: date.getMonth(), d: date.getDate(), iso: toISO(date.getFullYear(), date.getMonth(), date.getDate()), outside: date.getMonth() !== m });
+    }
+    return days;
+  }
+  var ITEM = 44;
+  var VISIBLE = 5;
+  function DotsCalendar(props) {
+    const locale = props.locale ?? (typeof navigator !== "undefined" ? navigator.language : "es");
+    const firstDayOfWeek = props.firstDayOfWeek ?? 1;
+    const pastDays = props.pastDays ?? "muted";
+    const today = props.today ?? todayISO();
+    const selected = parseISO(props.value);
+    const initial = (0, import_react7.useMemo)(() => {
+      const m = /^(\d{4})-(\d{2})$/.exec(props.initialMonth ?? "");
+      if (m) return [Number(m[1]), Number(m[2]) - 1];
+      const src = selected ?? parseISO(today);
+      return [src[0], src[1]];
+    }, []);
+    const [year, setYear] = (0, import_react7.useState)(initial[0]);
+    const [month, setMonth] = (0, import_react7.useState)(initial[1]);
+    const [picking, setPicking] = (0, import_react7.useState)(!!props.initialPicking);
+    const monthFmt = (0, import_react7.useMemo)(() => new Intl.DateTimeFormat(locale, { month: "long" }), [locale]);
+    const weekdayFmt = (0, import_react7.useMemo)(() => new Intl.DateTimeFormat(locale, { weekday: "narrow" }), [locale]);
+    const monthNames = (0, import_react7.useMemo)(() => Array.from({ length: 12 }, (_, i) => capitalize(monthFmt.format(new Date(2024, i, 1)))), [monthFmt]);
+    const weekdays = (0, import_react7.useMemo)(
+      () => Array.from({ length: 7 }, (_, i) => weekdayFmt.format(new Date(2024, 0, 7 + firstDayOfWeek + i))),
+      // 2024-01-07 is a Sunday
+      [weekdayFmt, firstDayOfWeek]
+    );
+    const todayYear = parseISO(today)[0];
+    const [yearFrom, yearTo] = props.yearRange ?? [todayYear - 5, todayYear + 10];
+    const years = (0, import_react7.useMemo)(() => Array.from({ length: Math.max(1, yearTo - yearFrom + 1) }, (_, i) => yearFrom + i), [yearFrom, yearTo]);
+    const days = (0, import_react7.useMemo)(() => monthGrid(year, month, firstDayOfWeek), [year, month, firstDayOfWeek]);
+    const isDisabled = (iso) => pastDays === "disabled" && iso < today || props.minDate !== void 0 && iso < props.minDate || props.maxDate !== void 0 && iso > props.maxDate;
+    const go = (delta) => {
+      const date = new Date(year, month + delta, 1);
+      setYear(date.getFullYear());
+      setMonth(date.getMonth());
+    };
+    const pick = (day) => {
+      if (isDisabled(day.iso)) return;
+      if (day.outside) {
+        setYear(day.y);
+        setMonth(day.m);
+      }
+      props.onChange?.(day.iso);
+    };
+    const label = `${monthNames[month]} ${year}`;
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-calendar${props.className ? ` ${props.className}` : ""}` }, /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__header" }, /* @__PURE__ */ React.createElement("button", { type: "button", className: "ds-calendar__month-btn", "aria-expanded": picking, onClick: () => setPicking((v) => !v) }, /* @__PURE__ */ React.createElement("span", { className: "ds-calendar__month-label" }, label), /* @__PURE__ */ React.createElement("span", { className: `ds-calendar__chevron${picking ? " ds-calendar__chevron--open" : ""}`, "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-chevron-down", size: 16 }))), /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__spacer" }), !picking ? /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__nav" }, /* @__PURE__ */ React.createElement(DotsIconButton, { icon: "ic-chevron-left", size: "small", style: "noBackground", onClick: () => go(-1) }), /* @__PURE__ */ React.createElement(DotsIconButton, { icon: "ic-chevron-right", size: "small", style: "noBackground", onClick: () => go(1) })) : null), !picking ? /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__grid", role: "grid", "aria-label": label }, weekdays.map((w2, i) => /* @__PURE__ */ React.createElement("div", { key: `w${i}`, className: "ds-calendar__weekday", role: "columnheader" }, w2)), days.map((day) => {
+      const isSelected = !!selected && day.iso === toISO(selected[0], selected[1], selected[2]);
+      const isToday = day.iso === today;
+      const disabled = isDisabled(day.iso);
+      const muted = pastDays === "muted" && day.iso < today && !isSelected;
+      const cls = [
+        "ds-calendar__day",
+        day.outside ? "ds-calendar__day--outside" : "",
+        muted ? "ds-calendar__day--muted" : "",
+        isToday ? "ds-calendar__day--today" : "",
+        isSelected ? "ds-calendar__day--selected" : "",
+        disabled ? "ds-calendar__day--disabled" : ""
+      ].filter(Boolean).join(" ");
+      return /* @__PURE__ */ React.createElement(
+        "button",
+        {
+          key: day.iso,
+          type: "button",
+          role: "gridcell",
+          className: cls,
+          "aria-selected": isSelected,
+          "aria-current": isToday ? "date" : void 0,
+          "aria-disabled": disabled || void 0,
+          onClick: () => pick(day)
+        },
+        /* @__PURE__ */ React.createElement("span", { className: "ds-calendar__num" }, day.d)
+      );
+    })) : /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__picker" }, /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__band", "aria-hidden": true }), /* @__PURE__ */ React.createElement(WheelColumn, { items: monthNames, index: month, onIndexChange: setMonth, ariaLabel: "month" }), /* @__PURE__ */ React.createElement(WheelColumn, { items: years.map(String), index: Math.max(0, years.indexOf(year)), onIndexChange: (i) => setYear(years[i]), ariaLabel: "year" })));
+  }
+  function WheelColumn(props) {
+    const ref = (0, import_react7.useRef)(null);
+    const settle = (0, import_react7.useRef)(void 0);
+    const lastReported = (0, import_react7.useRef)(props.index);
+    const mounted = (0, import_react7.useRef)(false);
+    (0, import_react7.useEffect)(() => {
+      const el = ref.current;
+      if (!el) return;
+      const top = props.index * ITEM;
+      if (Math.abs(el.scrollTop - top) > 1) el.scrollTo({ top, behavior: mounted.current ? "smooth" : "auto" });
+      mounted.current = true;
+      lastReported.current = props.index;
+    }, [props.index]);
+    const onScroll = () => {
+      window.clearTimeout(settle.current);
+      settle.current = window.setTimeout(() => {
+        const el = ref.current;
+        if (!el) return;
+        const i = Math.max(0, Math.min(props.items.length - 1, Math.round(el.scrollTop / ITEM)));
+        if (i !== lastReported.current) {
+          lastReported.current = i;
+          props.onIndexChange(i);
+        }
+      }, 80);
+    };
+    const padRows = Math.floor(VISIBLE / 2);
+    return /* @__PURE__ */ React.createElement("div", { ref, className: "ds-calendar__col", role: "listbox", "aria-label": props.ariaLabel, onScroll }, /* @__PURE__ */ React.createElement("div", { style: { height: padRows * ITEM, flex: "none" } }), props.items.map((item, i) => /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        key: item,
+        type: "button",
+        role: "option",
+        "aria-selected": i === props.index,
+        className: `ds-calendar__item${i === props.index ? " ds-calendar__item--selected" : ""}`,
+        onClick: () => props.onIndexChange(i)
+      },
+      item
+    )), /* @__PURE__ */ React.createElement("div", { style: { height: padRows * ITEM, flex: "none" } }));
   }
 
   // src/bundle.ts
@@ -2039,176 +2122,6 @@ __ds.DotsAccordion = (function () {
     );
   }
   return DotsAccordion;
-})();
-
-
-// DotsAlert — port de lib/src/components/alerts/ (Dart = fuente de verdad).
-// Las factories Dart (DotsAlert.oneButton…) se expresan con la prop `variant`.
-// El scrim full-screen (Stack + Positioned.fill negro 50%) es opt-in vía `showScrim`
-// para poder componer la tarjeta suelta en diseños.
-__ds.DotsAlert = (function () {
-  'use strict';
-
-  // DotsAlertVariant
-  var VARIANTS = [
-    'noButtons', 'oneButton', 'twoHorizontalButtons', 'twoHorizontalButtonsDestructive',
-    'twoVerticalButtons', 'twoVerticalButtonsNoActive', 'twoVerticalButtonsDestructive',
-    'input', 'selector',
-  ];
-
-  function dsIcon(name, size, color) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, { name: name, size: size, color: color })
-      : h('span', { style: { width: size + 'px', height: size + 'px', display: 'inline-block' } });
-  }
-
-  // _mainButton: DotsMainButton(adaptPaddingForText, size large)
-  function mainBtn(key, variant, text, onClick) {
-    return __ds.DotsMainButton
-      ? h(__ds.DotsMainButton, {
-          key: key, label: text || '', variant: variant, size: 'large',
-          adaptPaddingForText: true, onClick: onClick,
-        })
-      : h('button', { key: key, type: 'button', className: 'ds-alert__btn-fallback', onClick: onClick }, text || '');
-  }
-
-  function hasText(v) { return v != null && String(v).trim() !== ''; }
-
-  function DotsAlert(props) {
-    var useState = hooks().useState;
-    var imgState = useState(false);
-    var imgFailed = imgState[0], setImgFailed = imgState[1];
-
-    var variant = VARIANTS.indexOf(props.variant) >= 0 ? props.variant : 'noButtons';
-    var isInput = variant === 'input';
-    var isSelector = variant === 'selector';
-    var showCloseButton = !!props.showCloseButton;
-    var showBlur = props.showBlurBackground !== false;
-
-    // ── _icon: Padding(8) > chip 48×48 r24.5 bgHighlight, icono 24 labelHighlight;
-    //    iconImage 48×48 cover con fallback al chip si falla (errorBuilder) ──
-    var chip = h('div', { className: 'ds-alert__icon-chip' }, dsIcon(props.icon, 24));
-    var iconContent = (props.iconImage && !imgFailed)
-      ? h('img', {
-          className: 'ds-alert__icon-img', src: props.iconImage, alt: '',
-          onError: function () { setImgFailed(true); },
-        })
-      : chip;
-
-    var header = h(
-      'div', { className: 'ds-alert__header' },
-      showCloseButton ? h('span', { className: 'ds-alert__header-spacer' }) : null,
-      h('div', { className: 'ds-alert__icon-center' }, h('div', { className: 'ds-alert__icon-pad' }, iconContent)),
-      showCloseButton
-        ? (__ds.DotsCloseButton
-            ? h(__ds.DotsCloseButton, { icon: 'ic-cross', size: 'medium', variant: 'softContrast', onClick: props.onClose })
-            : h('button', { type: 'button', className: 'ds-alert__close-fallback', onClick: props.onClose, 'aria-label': 'Cerrar' }, '×'))
-        : null
-    );
-
-    // ── _description según variante ──
-    var description = null;
-    if (isInput) {
-      // DotsTextFieldButton(iconData: search): pilar 44 r1000 bgContainerSecondaryOnBackground
-      description = h(
-        'div', { className: 'ds-alert__input' },
-        dsIcon('ic-search', 20, 'var(--text-tertiary)'),
-        h('input', {
-          className: 'ds-alert__input-el',
-          type: 'text',
-          placeholder: props.inputHint || '',
-          onChange: props.onInputChanged
-            ? function (e) { props.onInputChanged(e.target.value); }
-            : undefined,
-        })
-      );
-    } else if (isSelector) {
-      var items = props.selectorItems || [];
-      description = h(
-        'div', { className: 'ds-alert__selector' },
-        hasText(props.message) ? h('p', { className: 'ds-alert__msg ds-alert__selector-msg' }, props.message) : null,
-        h('div', { className: 'ds-alert__list' }, items.map(function (it, i) {
-          // DotsListsItem aproximado: thumb 40×40 + label bodyDefaultMedium
-          return h(
-            'button', { key: i, type: 'button', className: 'ds-alert__list-item', onClick: it.onClick },
-            it.image
-              ? h('img', { className: 'ds-alert__list-thumb', src: it.image, alt: '' })
-              : h('span', { className: 'ds-alert__list-thumb' }),
-            h('span', { className: 'ds-alert__list-label' }, it.label)
-          );
-        }))
-      );
-    } else if (hasText(props.message)) {
-      description = h('p', { className: 'ds-alert__msg' }, props.message);
-    }
-
-    // ── _actions según variante ──
-    var actions = null;
-    switch (variant) {
-      case 'oneButton':
-        actions = h('div', { className: 'ds-alert__actions' },
-          mainBtn('m', 'main', props.mainButtonText, props.onMainButtonClick));
-        break;
-      case 'twoHorizontalButtons':
-      case 'twoHorizontalButtonsDestructive':
-      case 'input':
-      case 'selector':
-        actions = h('div', { className: 'ds-alert__actions ds-alert__actions--row' },
-          mainBtn('s', 'secondary', props.secondaryButtonText, props.onSecondaryButtonClick),
-          mainBtn('m', variant === 'twoHorizontalButtonsDestructive' ? 'destructive' : 'main',
-            props.mainButtonText, props.onMainButtonClick));
-        break;
-      case 'twoVerticalButtons':
-        actions = h('div', { className: 'ds-alert__actions ds-alert__actions--col' },
-          mainBtn('m', 'main', props.mainButtonText, props.onMainButtonClick),
-          mainBtn('s', 'ghost', props.secondaryButtonText, props.onSecondaryButtonClick));
-        break;
-      case 'twoVerticalButtonsDestructive':
-        actions = h('div', { className: 'ds-alert__actions ds-alert__actions--col' },
-          mainBtn('m', 'destructive', props.mainButtonText, props.onMainButtonClick),
-          mainBtn('s', 'ghost', props.secondaryButtonText, props.onSecondaryButtonClick));
-        break;
-      case 'twoVerticalButtonsNoActive':
-        actions = h('div', { className: 'ds-alert__actions ds-alert__actions--col ds-alert__actions--gap8' },
-          mainBtn('m', 'secondary', props.mainButtonText, props.onMainButtonClick),
-          mainBtn('s', 'secondary', props.secondaryButtonText, props.onSecondaryButtonClick));
-        break;
-      default: // noButtons
-        actions = null;
-    }
-
-    var card = h(
-      'div',
-      {
-        className: 'ds-alert ds-alert--' + variant + (showBlur ? ' ds-alert--blur' : '') +
-          (props.className ? ' ' + props.className : ''),
-        role: 'alertdialog',
-        'aria-label': props.title,
-      },
-      header,
-      h(
-        'div', { className: 'ds-alert__body' },
-        hasText(props.title) ? h('p', { className: 'ds-alert__title' }, props.title) : null,
-        description
-      ),
-      actions
-    );
-
-    if (!props.showScrim) return card;
-    // Stack: Positioned.fill negro 50% + tarjeta centrada; tap fuera cierra
-    return h(
-      'div',
-      {
-        className: 'ds-alert__scrim',
-        onClick: function (e) {
-          if (e.target === e.currentTarget && props.enableCloseOnTapOutside !== false && props.onClose) props.onClose();
-        },
-      },
-      card
-    );
-  }
-
-  return DotsAlert;
 })();
 
 
