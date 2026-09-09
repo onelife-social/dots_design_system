@@ -40,3 +40,5 @@ export type {
 } from './components/DotsActionSheet/DotsActionSheet';
 export { DotsTopBar } from './components/DotsTopBar/DotsTopBar';
 export type { DotsTopBarProps, DotsTopBarVariant } from './components/DotsTopBar/DotsTopBar';
+export { DotsCalendar } from './components/DotsCalendar/DotsCalendar';
+export type { DotsCalendarProps } from './components/DotsCalendar/DotsCalendar';
