@@ -42,3 +42,7 @@ export { DotsTopBar } from './components/DotsTopBar/DotsTopBar';
 export type { DotsTopBarProps, DotsTopBarVariant } from './components/DotsTopBar/DotsTopBar';
 export { DotsCalendar } from './components/DotsCalendar/DotsCalendar';
 export type { DotsCalendarProps } from './components/DotsCalendar/DotsCalendar';
+export { DotsCloseButton } from './components/DotsCloseButton/DotsCloseButton';
+export type { DotsCloseButtonProps, DotsCloseButtonSize, DotsCloseButtonVariant } from './components/DotsCloseButton/DotsCloseButton';
+export { DotsTextFieldButton } from './components/DotsTextFieldButton/DotsTextFieldButton';
+export type { DotsTextFieldButtonProps } from './components/DotsTextFieldButton/DotsTextFieldButton';

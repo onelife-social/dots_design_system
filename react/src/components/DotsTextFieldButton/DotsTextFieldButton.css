@@ -41,12 +41,6 @@
 
 /* clear = DotsCloseButton extraSmall (16, icono 10) inverted */
 .ds-tf-btn__clear { display: inline-flex; flex: none; margin-left: 6px; }
-.ds-tf-btn__clear-fallback {
-  display: flex; align-items: center; justify-content: center;
-  width: 16px; height: 16px; padding: 0; border: 0; border-radius: 50%;
-  background: var(--text-quarternary); color: var(--bg-container-primary);
-  cursor: pointer;
-}
 
 /* endButton: divisor 0.5 textDisabled (margins 8/12/16) + bodyDefaultMedium labelHighlight */
 .ds-tf-btn__end-divider {
