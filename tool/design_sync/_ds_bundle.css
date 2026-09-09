@@ -753,6 +753,30 @@
   color: var(--text-primary);
 }
 
+/* ── DotsProgressBar ── */
+/* DotsProgressBar — progress_bar/dots_progress_bar.dart · h5 · parts · gap 5 · r100 */
+.ds-progress-bar {
+  display: flex;
+  height: 5px;
+}
+.ds-progress-bar__seg {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 100px;
+  background: var(--label-secondary); /* bgColor default */
+}
+.ds-progress-bar__fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 100px;
+  background: var(--label-highlight); /* barColor default */
+  transition: width 0.3s ease;
+}
+
 /* ── DotsRichButton ── */
 /* DotsRichButton — bgContainerSecondary + blur50; large 358×75 r100 · medium 358×60 r32 · small 248×60 r32 */
 .ds-rich-btn {
@@ -2554,30 +2578,6 @@
 .ds-plan-selector__desc {
   font: 400 11px/1.27 var(--font-main); /* labelSmallRegular */
   letter-spacing: 0.01px;
-}
-
-/* ── DotsProgressBar ── */
-/* DotsProgressBar — progress_bar/dots_progress_bar.dart · h5 · parts · gap 5 · r100 */
-.ds-progress-bar {
-  display: flex;
-  height: 5px;
-}
-.ds-progress-bar__seg {
-  position: relative;
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  border-radius: 100px;
-  background: var(--label-secondary); /* bgColor default */
-}
-.ds-progress-bar__fill {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: 100px;
-  background: var(--label-highlight); /* barColor default */
-  transition: width 0.3s ease;
 }
 
 /* ── DotsRadioButton ── */

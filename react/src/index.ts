@@ -15,6 +15,8 @@ export { DotsMainContainer } from './components/DotsMainContainer/DotsMainContai
 export type { DotsMainContainerProps, DotsMainContainerVariant } from './components/DotsMainContainer/DotsMainContainer';
 export { DotsIconButton } from './components/DotsIconButton/DotsIconButton';
 export type { DotsIconButtonProps, DotsIconButtonSize, DotsIconButtonStyle, DotsIconButtonState } from './components/DotsIconButton/DotsIconButton';
+export { DotsProgressBar } from './components/DotsProgressBar/DotsProgressBar';
+export type { DotsProgressBarProps } from './components/DotsProgressBar/DotsProgressBar';
 export { DotsProfilePhoto } from './components/DotsProfilePhoto/DotsProfilePhoto';
 export type { DotsProfilePhotoProps } from './components/DotsProfilePhoto/DotsProfilePhoto';
 export { PageControl } from './components/PageControl/PageControl';

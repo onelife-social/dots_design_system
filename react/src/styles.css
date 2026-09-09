@@ -7,6 +7,7 @@
 @import "./components/DotsMainContainer/DotsMainContainer.css";
 @import "./components/DotsIconButton/DotsIconButton.css";
 @import "./components/DotsProfilePhoto/DotsProfilePhoto.css";
+@import "./components/DotsProgressBar/DotsProgressBar.css";
 @import "./components/PageControl/PageControl.css";
 @import "./components/DotsTextField/DotsTextField.css";
 @import "./components/DotsTextFieldDate/DotsTextFieldDate.css";
