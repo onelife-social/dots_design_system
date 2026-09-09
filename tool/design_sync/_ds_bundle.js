@@ -805,6 +805,17 @@ const hooks = () => window.React;
           style: props.imageSrc ? { backgroundImage: `url("${props.imageSrc}")` } : void 0
         }
       ),
+      /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          className: `ds-event-card__blur${props.imageSrc ? "" : " ds-event-card__img--ph"}`,
+          style: {
+            ...props.imageSrc ? { backgroundImage: `url("${props.imageSrc}")` } : {},
+            maskImage: `linear-gradient(180deg, transparent calc(100% - ${edge}px), #000 100%)`,
+            WebkitMaskImage: `linear-gradient(180deg, transparent calc(100% - ${edge}px), #000 100%)`
+          }
+        }
+      ),
       /* @__PURE__ */ React.createElement("div", { className: "ds-event-card__fade", style: { height: edge } }),
       !isSmall ? /* @__PURE__ */ React.createElement("div", { className: "ds-event-card__top-grad" }) : null,
       isSmall ? /* @__PURE__ */ React.createElement("div", { className: "ds-event-card__title--small" }, props.title ?? "") : null,

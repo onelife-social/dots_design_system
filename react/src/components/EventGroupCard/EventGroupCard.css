@@ -5,13 +5,18 @@
 .ds-event-card__img { position: absolute; inset: 0; background-size: cover; background-position: center; }
 /* Placeholder de foto cuando no llega imageSrc (degradado, sin token — como las tarjetas planas) */
 .ds-event-card__img--ph { background-image: linear-gradient(150deg, #7E9BB8, #D8B294, #77958E); }
-/* SoftEdgeBlur bottomEdge σ12 + degradado negro 0→20% (aprox: backdrop-blur con máscara) */
+/* SoftEdgeBlur bottomEdge σ12: a blurred copy of the same image, masked to the bottom edge. It is
+   painted over the sharp image (no backdrop-filter: WebKit samples the page outside the card and
+   leaves a light halo on the rounded corners) */
+.ds-event-card__blur {
+  position: absolute; inset: 0; pointer-events: none;
+  background-size: cover; background-position: center;
+  filter: blur(12px);
+}
+/* degradado negro 0→20% sobre el borde inferior */
 .ds-event-card__fade {
   position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none;
   background: linear-gradient(180deg, #00000000, #00000033);
-  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-  mask-image: linear-gradient(180deg, transparent, #000 60%);
-  -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%);
 }
 /* Degradado superior 94px — Color(0x803c3c3c), sin token */
 .ds-event-card__top-grad { position: absolute; top: 0; left: 0; right: 0; height: 94px; pointer-events: none; background: linear-gradient(180deg, #3C3C3C80, transparent); }

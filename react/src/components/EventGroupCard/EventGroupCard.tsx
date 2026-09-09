@@ -91,6 +91,14 @@ export function EventGroupCard(props: EventGroupCardProps) {
         className={`ds-event-card__img${props.imageSrc ? '' : ' ds-event-card__img--ph'}`}
         style={props.imageSrc ? { backgroundImage: `url("${props.imageSrc}")` } : undefined}
       />
+      <div
+        className={`ds-event-card__blur${props.imageSrc ? '' : ' ds-event-card__img--ph'}`}
+        style={{
+          ...(props.imageSrc ? { backgroundImage: `url("${props.imageSrc}")` } : {}),
+          maskImage: `linear-gradient(180deg, transparent calc(100% - ${edge}px), #000 100%)`,
+          WebkitMaskImage: `linear-gradient(180deg, transparent calc(100% - ${edge}px), #000 100%)`,
+        }}
+      />
       <div className="ds-event-card__fade" style={{ height: edge }} />
       {!isSmall ? <div className="ds-event-card__top-grad" /> : null}
       {isSmall ? <div className="ds-event-card__title--small">{props.title ?? ''}</div> : null}
