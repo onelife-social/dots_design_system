@@ -60,3 +60,5 @@ export { AlbumGroupCard } from './components/AlbumGroupCard/AlbumGroupCard';
 export type { AlbumGroupCardProps, AlbumGroupCardVariant } from './components/AlbumGroupCard/AlbumGroupCard';
 export { CreateCard } from './components/CreateCard/CreateCard';
 export type { CreateCardProps, CreateCardVariant } from './components/CreateCard/CreateCard';
+export { MemoryCard } from './components/MemoryCard/MemoryCard';
+export type { MemoryCardProps, MemoryCardVariant } from './components/MemoryCard/MemoryCard';
