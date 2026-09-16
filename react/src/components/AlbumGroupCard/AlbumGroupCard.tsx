@@ -1,5 +1,6 @@
 // AlbumGroupCard — port of lib/src/components/cards/group_cards/album_group_card.dart (Dart = source of truth).
 import { DotsIcon } from '../DotsIcon/DotsIcon';
+import { pressable } from '../../internal/pressable';
 
 /** Dart enum AlbumGroupCardVariant */
 export type AlbumGroupCardVariant = 'small' | 'large';
@@ -38,8 +39,7 @@ export function AlbumGroupCard(props: AlbumGroupCardProps) {
     <div
       className={`ds-album-card ds-album-card--${variant}${props.className ? ` ${props.className}` : ''}`}
       style={{ width: size, height: size }}
-      onClick={props.onClick}
-      role={props.onClick ? 'button' : undefined}
+      {...pressable(props.onClick)}
     >
       <div
         className={`ds-album-card__img${props.imageSrc ? '' : ' ds-album-card__img--ph'}`}
