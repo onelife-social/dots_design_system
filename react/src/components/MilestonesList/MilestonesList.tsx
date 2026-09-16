@@ -74,12 +74,13 @@ function verticalSpacing(curr: MilestonesListItem, next: MilestonesListItem, ran
 
 function layout(list: MilestonesListItem[], seed: number, centerX: number) {
   const rand = rng(seed);
-  // Dart assumes the first item is always a badge (badgeHeight / 2); the web list accepts any order,
-  // so the first center sits at half of the first item's real height (a leading card is not clipped
-  // by the overflow-hidden container).
-  const topPadding = list.length ? itemHeight(list[0]) / 2 : BADGE_HEIGHT / 2;
-  const bottomPadding = CARD_HEIGHT / 2 + TAIL_EXTENSION; // Dart: last item is always a card + tail
   const count = list.length;
+  // Dart assumes the first item is always a badge (badgeHeight / 2) and the last one always a card
+  // (cardHeight / 2 + tailExtension); the web list accepts any sequence, so both ends come from the
+  // real height of the first and last items (a leading card is not clipped by the overflow-hidden
+  // container, a trailing badge gets no card-sized blank) and an empty list takes no height at all.
+  const topPadding = count ? itemHeight(list[0]) / 2 : 0;
+  const bottomPadding = count ? itemHeight(list[count - 1]) / 2 + TAIL_EXTENSION : 0;
 
   // x patterns: starts with pattern1, then alternates randomly
   const xs: number[] = [];
@@ -101,8 +102,8 @@ function layout(list: MilestonesListItem[], seed: number, centerX: number) {
     }
   }
   total += bottomPadding;
-  // Tail: extends the line as if there were a last ghost card
-  if (count > 0) points.push({ x: centerX + xs[count - 1], y: y + CARD_HEIGHT / 2 + TAIL_EXTENSION });
+  // Tail: extends the line tailExtension past the last item's edge (Dart: "as if there were a last card")
+  if (count > 0) points.push({ x: centerX + xs[count - 1], y: y + bottomPadding });
   return { points, totalHeight: total };
 }
 
@@ -163,10 +164,12 @@ export function MilestonesList(props: MilestonesListProps) {
 
   return (
     <div ref={ref} className={`ds-milestones-list${props.className ? ` ${props.className}` : ''}`} style={{ height: `${lay.totalHeight}px` }}>
-      <svg className="ds-milestones-list__line" width="100%" height={lay.totalHeight} viewBox={`0 0 ${width} ${lay.totalHeight}`} fill="none" aria-hidden>
-        {/* Dotted: r1 circles every 8px (lineWidth 2, lineDotsSpacing 8, labelSecondary) */}
-        <path d={pathD(lay.points)} stroke="var(--label-secondary)" strokeWidth={2} strokeDasharray="0.1 8" strokeLinecap="round" />
-      </svg>
+      {list.length > 0 && (
+        <svg className="ds-milestones-list__line" width="100%" height={lay.totalHeight} viewBox={`0 0 ${width} ${lay.totalHeight}`} fill="none" aria-hidden>
+          {/* Dotted: r1 circles every 8px (lineWidth 2, lineDotsSpacing 8, labelSecondary) */}
+          <path d={pathD(lay.points)} stroke="var(--label-secondary)" strokeWidth={2} strokeDasharray="0.1 8" strokeLinecap="round" />
+        </svg>
+      )}
       {list.map((item, i) => (
         <span
           key={i}
