@@ -73,7 +73,7 @@ export interface UsersListItemProps {
     autofocusOnEmpty?: boolean;
     /** (pending/join) Trailing icon size */
     iconSize?: number;
-    /** Row tap / close button; receives the id */
+    /** Row tap (a native button named by `name`, or `label` for the button rows) / close button; receives the id */
     onClick?: (id: string) => void;
     /** (pendingMember) Button 1 (main) label */
     buttonLabel1?: string;

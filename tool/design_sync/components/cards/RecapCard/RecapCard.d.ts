@@ -40,6 +40,11 @@ export interface RecapCardProps {
     blurImage?: boolean;
     /** Tap on the card / main button without locked (Dart onTap) */
     onClick?: () => void;
+    /**
+     * Accessible name of the card action (`onClick`, without locked). Defaults to `title`; set it
+     * when the card has no title to read (onlyTitle variant, or no `title`)
+     */
+    ariaLabel?: string;
     /** Tap on the info/share/lock button (Dart onInfoTap) */
     onInfoClick?: () => void;
     /** Tap on the bottom button with locked (Dart onButtonTap) */

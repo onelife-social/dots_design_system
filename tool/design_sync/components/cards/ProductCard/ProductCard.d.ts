@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import type { ReactNode } from 'react';
 export interface ProductCardProps {
-    /** Main line, always visible */
+    /** Main line, always visible. Also the accessible name of the card action (`onClick`) */
     title: string;
     /** Background image (URL). Without it a gradient placeholder is painted */
     imageSrc?: string;

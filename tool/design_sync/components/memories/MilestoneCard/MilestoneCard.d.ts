@@ -15,6 +15,8 @@ export interface MilestoneCardProps {
     date?: string;
     /** Dart `onTap` (tap on the photo/card) */
     onClick?: () => void;
+    /** Accessible name of the card action (`onClick`). Defaults to `title`; set it when the card has no title */
+    ariaLabel?: string;
     /** Show the badge-milestone-1.svg badge top-right — Dart `showBadge` (default false) */
     showBadge?: boolean;
     /** Show the edit button (DotsIconButton pencil) — Dart `showEdit` (default false) */

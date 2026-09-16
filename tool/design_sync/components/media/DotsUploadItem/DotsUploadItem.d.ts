@@ -17,7 +17,7 @@ export interface DotsUploadItemProps {
     processText?: string;
     /** (success) Elapsed time under the status. */
     timeElapsed?: string;
-    /** (success/error) Text of the right button (DotsMainButton medium). */
+    /** (success/error) Text of the right button (DotsMainButton medium). Without it no button is rendered. */
     btnText?: string;
     /** (success/error) Callback of the right button (Dart btnOnTap). */
     onBtnClick?: () => void;

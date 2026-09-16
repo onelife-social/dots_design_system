@@ -57,5 +57,5 @@ export declare function DotsSquirclePhoto(props: DotsSquirclePhotoProps): import
 export declare namespace DotsSquirclePhoto {
     var Tag: typeof DotsSquirclePhotoTag;
 }
-declare function DotsSquirclePhotoTag(props: DotsSquirclePhotoTagProps): import("react").JSX.Element;
-export {};
+/** Mirror of the Dart DotsSquircleImageTag — (size+10)² canvas, bordered image + 40px tag circle bottom-right */
+export declare function DotsSquirclePhotoTag(props: DotsSquirclePhotoTagProps): import("react").JSX.Element;

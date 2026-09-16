@@ -19,6 +19,8 @@ export interface FolderCarrouselItem {
     isNonExpandable?: boolean;
     /** The folder is editable (shows the pencil badge when showEditIcon) */
     isEditable?: boolean;
+    /** Accessible name for icon-only items (isNonExpandable / no text), e.g. the '+' one — BtnFolder `ariaLabel` */
+    ariaLabel?: string;
 }
 export interface FolderCarrouselProps {
     /** Folders rendered as BtnFolder — Dart `buttonsData` */

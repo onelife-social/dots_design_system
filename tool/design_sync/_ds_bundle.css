@@ -221,11 +221,11 @@
 .ds-album-card__img { position: absolute; inset: 0; background-size: cover; background-position: center; }
 /* Placeholder de foto cuando no llega imageSrc (degradado, sin token — como las tarjetas planas) */
 .ds-album-card__img--ph { background-image: linear-gradient(140deg, #96B4CE, #E0C3A4, #A08FB0); }
-/* SoftEdgeBlur bottomEdge σ12 (blurSigma) + degradado negro 0→20% (aprox: backdrop-blur con máscara) */
+/* SoftEdgeBlur bottomEdge (σ = --ds-agc-blur, blurSigma; Dart default 12) + degradado negro 0→20% (aprox: backdrop-blur con máscara) */
 .ds-album-card__fade {
   position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none;
   background: linear-gradient(180deg, #00000000, #00000033);
-  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(var(--ds-agc-blur, 12px)); -webkit-backdrop-filter: blur(var(--ds-agc-blur, 12px));
   mask-image: linear-gradient(180deg, transparent, #000 60%);
   -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%);
 }
@@ -2826,6 +2826,7 @@
 .ds-toast {
   /* borderAlert has no token in tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart) */
   --ds-border-alert: #FFFFFF4D;
+  position: relative;
   box-sizing: border-box;
   border-radius: var(--squircle-24);
   padding: 16px;
@@ -2838,6 +2839,26 @@
 }
 [data-theme="dark"] .ds-toast { --ds-border-alert: #6E6E6E4D; }
 .ds-toast--clickable { cursor: pointer; }
+
+/* onClick: transparent native button covering the toast (sibling of the content, which stays a
+   static live region). Only visible as a focus ring on keyboard focus. */
+.ds-toast__hit {
+  position: absolute; z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.ds-toast__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
+/* Ghost button (progress, isAction false) above the hit target so it receives its own clicks */
+.ds-toast__btn { position: relative; z-index: 2; }
 
 /* isAction: false — DotsToastInfo, 358 row with gap 12 */
 .ds-toast--info {
@@ -2906,6 +2927,7 @@
 /* DotsTooltip — tooltip/dots_tooltip.dart. bgBaseContrast + border 1 bgContainerSecondary
    + defaultShadow; tail TrianglePainter 21×13; corner 14 on the tail side. */
 .ds-tooltip {
+  isolation: isolate; /* keeps the __hit and control z-indices inside the component */
   position: relative;
   display: flex;
   align-items: center;
@@ -2937,7 +2959,26 @@
   color: var(--text-primary);
 }
 
-.ds-tooltip__close { position: absolute; top: 16px; right: 16px; display: inline-flex; }
+/* onClick on the body: transparent native button covering the tooltip (sibling of the close button,
+   which sits above it). Only visible as a focus ring on keyboard focus. */
+.ds-tooltip__hit {
+  position: absolute; z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.ds-tooltip__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
+
+/* Above the hit target so the close button receives its own clicks */
+.ds-tooltip__close { position: absolute; top: 16px; right: 16px; z-index: 2; display: inline-flex; }
 
 /* Tail — 21×13, fill bgBaseContrast, stroke 2 bgContainerSecondary */
 .ds-tooltip__tail { position: absolute; width: 21px; height: 13px; }
@@ -3640,6 +3681,7 @@
 /* MilestoneCard — milestones/milestone_card.dart · aspect 3:4 · big(r32)/small(r24) · borde 3 blanco */
 .ds-milestone-card {
   position: relative;
+  isolation: isolate; /* keeps the __hit / __edit / __badges z-indices inside the card */
   display: block;
   aspect-ratio: 3 / 4;
   overflow: hidden;
@@ -3651,6 +3693,28 @@
 }
 .ds-milestone-card--big { border-radius: var(--squircle-32); }   /* isBig = width > 150 */
 .ds-milestone-card--small { border-radius: var(--squircle-24); }
+/* Card action (onClick): transparent native button covering the card — first child, sibling of the
+   edit button and the badge group. z-index 1 clears the absolute layers (img, blur, title); the two
+   controls sit at 2. */
+.ds-milestone-card__hit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.ds-milestone-card__hit:focus-visible {
+  outline: 2px solid var(--label-highlight);
+  outline-offset: -2px;
+}
 .ds-milestone-card__img {
   position: absolute;
   inset: 0;
@@ -3716,12 +3780,14 @@
   position: absolute;
   bottom: 16px;
   right: 16px;
+  z-index: 2; /* above __hit: gets its own clicks */
 }
 /* _MilestoneBadges — BadgeIconGroup 63×70, bottom 16 left 16 */
 .ds-milestone-card__badges {
   position: absolute;
   bottom: 16px;
   left: 16px;
+  z-index: 2; /* above __hit: own role=button control */
   width: 63px;
   height: 70px;
   display: block;
@@ -3822,6 +3888,24 @@
 }
 .ds-notif-banner-img--clickable { cursor: pointer; }
 
+/* Banner-level onActionClick: transparent native button covering the banner (sibling of the inner
+   controls, which sit above it with z-index). Only visible as a focus ring on keyboard focus. */
+.ds-notif-banner-img__hit {
+  position: absolute; z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.ds-notif-banner-img__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
+
 .ds-notif-banner-img__img-wrap {
   box-sizing: border-box;
   width: 100%;
@@ -3875,13 +3959,15 @@
 }
 .ds-notif-banner-img__desc-appended { color: var(--label-highlight); }
 
-.ds-notif-banner-img__action { display: flex; justify-content: center; }
+/* Above the hit target so the button receives its own clicks */
+.ds-notif-banner-img__action { position: relative; z-index: 2; display: flex; justify-content: center; }
 
-/* Positioned(top: 12, right: 12) */
+/* Positioned(top: 12, right: 12) — above the hit target */
 .ds-notif-banner-img__close {
   position: absolute;
   top: 12px;
   right: 12px;
+  z-index: 2;
 }
 
 /* ── PageControl ── */
@@ -3914,6 +4000,7 @@
 /* ProductCard — media card con la copy sobre el fondo (Dart: 358×358, squircle32) */
 .ds-product-card {
   position: relative;
+  isolation: isolate; /* keeps the __hit / __action z-indices inside the card */
   overflow: hidden;
   cursor: pointer;
   box-sizing: border-box;
@@ -3922,6 +4009,14 @@
   /* defaultShadow del tema: 0 6 / blur 20 / #0000001A */
   box-shadow: 0 6px 20px #0000001a;
 }
+/* Card action (onClick): transparent native button covering the card — first child, sibling of the
+   action button. z-index 1 clears the absolute layers (bg, scrim, bottom); the action sits at 2. */
+.ds-product-card__hit {
+  position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; margin: 0; padding: 0;
+  border: 0; background: transparent; border-radius: inherit; cursor: pointer;
+  appearance: none; -webkit-appearance: none;
+}
+.ds-product-card__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
 .ds-product-card__bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
 /* Placeholder cuando no llega imageSrc (degradado, sin token — como AlbumGroupCard) */
 .ds-product-card__bg--ph { background-image: linear-gradient(140deg, #96b4ce, #e0c3a4, #a08fb0); }
@@ -3973,6 +4068,7 @@
   border: 1px solid var(--border-alert); background: var(--bg-btn-image); color: var(--text-primary);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   padding: 0; cursor: pointer;
+  position: relative; z-index: 2; /* above __hit: gets its own clicks */
 }
 
 /* ── RatingRow ── */
@@ -4040,10 +4136,19 @@
 /* ── RecapCard ── */
 /* RecapCard — 4:5 squircle52 con overlay (recap_card.dart) · locked: 7:8 pad 20 (recap_card_locked.dart) */
 .ds-recap-card {
-  position: relative; overflow: hidden; flex: none; box-sizing: border-box; cursor: pointer;
+  position: relative; isolation: isolate; overflow: hidden; flex: none; box-sizing: border-box; cursor: pointer;
   aspect-ratio: 4 / 5; border-radius: var(--squircle-52); box-shadow: var(--shadow-default);
 }
 .ds-recap-card--locked { aspect-ratio: 7 / 8; box-shadow: none; cursor: default; }
+/* Card action (onClick, without locked): transparent native button covering the card — first child,
+   sibling of the icon/main buttons. z-index 1 clears the absolute layers (img, overlay, inner); the
+   buttons sit at 2. The card isolates these indices (isolation: isolate above). */
+.ds-recap-card__hit {
+  position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; margin: 0; padding: 0;
+  border: 0; background: transparent; border-radius: inherit; cursor: pointer;
+  appearance: none; -webkit-appearance: none;
+}
+.ds-recap-card__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
 .ds-recap-card__img { position: absolute; inset: 0; background-size: cover; background-position: center; }
 /* Placeholder de foto cuando no llega imageSrc (degradado, sin token — como las tarjetas planas) */
 .ds-recap-card__img--ph { background-image: linear-gradient(160deg, #8FA8C8, #D9B8A5, #8E7F9E); }
@@ -4062,6 +4167,7 @@
 /* DotsIconButton floating — Ø44 icono 24 (large) / Ø36 icono 20 (medium), bgBtnImage + blur10 */
 .ds-recap-card__icon-btn {
   width: 44px; height: 44px; border: none; padding: 0; cursor: pointer; border-radius: 50%; flex: none;
+  position: relative; z-index: 2; /* above __hit (the locked __info overrides position, keeps z) */
   display: inline-flex; align-items: center; justify-content: center;
   background: var(--bg-btn-image); color: var(--text-primary);
   backdrop-filter: blur(var(--blur-10)); -webkit-backdrop-filter: blur(var(--blur-10));
@@ -4072,6 +4178,8 @@
 [data-theme="dark"] .ds-recap-card__icon-btn--half { background: #74747480; }
 .ds-recap-card__info { position: absolute; top: 0; right: 0; }
 .ds-recap-card__bottom { position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: center; }
+/* Only the main button goes above __hit; the strip (and the created-by text) stays under it */
+.ds-recap-card__bottom .ds-main-btn { position: relative; z-index: 2; }
 /* _CreatedByText — bodyDefaultMedium blanco, una línea cada texto */
 .ds-recap-card__created-by { width: 100%; text-align: center; color: var(--label-always-white); font: 500 14px/1.29 var(--font-main); }
 .ds-recap-card__created-by span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -4227,14 +4335,35 @@
 
 /* Fila — pad-y 3, gap 8 */
 .ds-users-item {
+  position: relative; /* anchors __hit */
+  isolation: isolate; /* keeps the __hit z-index inside the row */
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 3px 0;
   min-width: 0;
 }
-.ds-users-item[role='button'] {
+/* Row tap (onClick): transparent native button covering the row — first child, sibling of the row
+   content (a role=button row would make any nested control presentational). The rows that hold
+   native controls (main/textfield/pendingMember) never get it. */
+.ds-users-list__hit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: inherit;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.ds-users-list__hit:focus-visible {
+  outline: 2px solid var(--label-highlight);
+  outline-offset: -2px;
 }
 
 /* textfield — h30, bodyDefaultMedium, hint textQuarternary, caret labelHighlight */

@@ -15,7 +15,11 @@ export interface AlbumGroupCardProps {
     isBlocked?: boolean;
     /** Height of the bottom fade (Dart edgeSize; default 60 small / 110 large) */
     edgeSize?: number;
-    /** Blur sigma (Dart blurSigma) — approximated in CSS, no direct effect */
+    /**
+     * Gaussian sigma of the bottom-edge blur — Dart `blurSigma` (SoftEdgeBlur `sigma: blurSigma ?? 12`).
+     * Flutter's ImageFilter.blur sigma and CSS `blur()` are both the standard deviation of the Gaussian,
+     * so the value is applied 1:1 as px (`--ds-agc-blur` on the fade) with no conversion. Default 12.
+     */
     blurSigma?: number;
     /** Side in px (the card is 1:1; Dart clamps 135–160 small / 288–340 large). Default 148 / 288 */
     size?: number;
