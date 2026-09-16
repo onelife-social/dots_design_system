@@ -64,3 +64,5 @@ export type {
 } from './components/UsersList/UsersList';
 export { ActivityPreview, ActivityOverviewItem } from './components/ActivityPreview/ActivityPreview';
 export type { ActivityPreviewProps, ActivityOverviewItemProps, ActivityPreviewVariant } from './components/ActivityPreview/ActivityPreview';
+export { ImageWithIcon } from './components/ImageWithIcon/ImageWithIcon';
+export type { ImageWithIconProps } from './components/ImageWithIcon/ImageWithIcon';
