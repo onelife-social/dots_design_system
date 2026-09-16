@@ -52,3 +52,5 @@ export { DotsCloseButton } from './components/DotsCloseButton/DotsCloseButton';
 export type { DotsCloseButtonProps, DotsCloseButtonSize, DotsCloseButtonVariant } from './components/DotsCloseButton/DotsCloseButton';
 export { DotsTextFieldButton } from './components/DotsTextFieldButton/DotsTextFieldButton';
 export type { DotsTextFieldButtonProps } from './components/DotsTextFieldButton/DotsTextFieldButton';
+export { BadgeIcon } from './components/BadgeIcon/BadgeIcon';
+export type { BadgeIconProps, BadgeIconSize, BadgeIconStyle } from './components/BadgeIcon/BadgeIcon';
