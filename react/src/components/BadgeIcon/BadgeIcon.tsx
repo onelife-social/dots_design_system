@@ -2,6 +2,7 @@
 // Includes the group mode (`icons` prop) mirroring BadgeIconGroup (badge_icon_group.dart).
 import type { CSSProperties } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
+import { pressable } from '../../internal/pressable';
 
 /** Dart enum BadgeIconSize (circle 44/36/28 · icon 24/20/16) */
 export type BadgeIconSize = 'large' | 'medium' | 'small';
@@ -49,8 +50,7 @@ function single(
     <span
       className={`ds-badge-icon ds-badge-icon--${style && STYLES[style] ? style : 'white'}`}
       style={{ width: `${s.size}px`, height: `${s.size}px`, ...posStyle }}
-      onClick={onClick}
-      role={onClick ? 'button' : undefined}
+      {...pressable(onClick)}
     >
       <DotsIcon name={name ?? ''} size={s.iconSize} color={iconColor || 'currentColor'} />
     </span>
@@ -64,7 +64,7 @@ export function BadgeIcon(props: BadgeIconProps) {
     if (!icons.length) return null; // Dart: SizedBox.shrink()
     const colors = props.iconColors ?? [];
     return (
-      <span className="ds-badge-icon-group" onClick={props.onClick} role={props.onClick ? 'button' : undefined}>
+      <span className="ds-badge-icon-group" {...pressable(props.onClick)}>
         {single(icons[0], 'medium', props.style, colors[0], undefined, { left: 0, bottom: 0 })}
         {icons.length >= 2
           ? single(
