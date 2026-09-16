@@ -3,6 +3,7 @@
 // DotsSquirclePhoto.Tag. Dart = source of truth.
 import { useState, type SyntheticEvent } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
+import { pressable } from '../../internal/pressable';
 
 export interface DotsSquirclePhotoProps {
   /** Image URL. Without `src` (or when it fails to load) a gradient placeholder is painted. */
@@ -84,7 +85,7 @@ export function DotsSquirclePhoto(props: DotsSquirclePhotoProps) {
     <span
       className={`ds-squircle-photo${props.className ? ` ${props.className}` : ''}`}
       style={{ width: size, height: size, borderRadius: br }}
-      onClick={props.onClick}
+      {...pressable(props.onClick)}
     >
       {showImg ? (
         <img
@@ -126,7 +127,7 @@ function DotsSquirclePhotoTag(props: DotsSquirclePhotoTagProps) {
     <span
       className={`ds-squircle-photo-tag${props.className ? ` ${props.className}` : ''}`}
       style={{ width: size + 10, height: size + 10 }}
-      onClick={props.onClick}
+      {...pressable(props.onClick)}
     >
       <DotsSquirclePhoto
         src={props.src}
