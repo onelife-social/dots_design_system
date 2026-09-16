@@ -88,7 +88,7 @@ export { DotsSlider } from './components/DotsSlider/DotsSlider';
 export type { DotsSliderProps } from './components/DotsSlider/DotsSlider';
 export { ColorSelector } from './components/ColorSelector/ColorSelector';
 export type { ColorSelectorProps, ColorSelectorVariant, DotsColorOption } from './components/ColorSelector/ColorSelector';
-export { BlurContainer } from './components/BlurContainer/BlurContainer';
+export { BlurContainer, GradientBlur } from './components/BlurContainer/BlurContainer';
 export type { BlurContainerProps, GradientBlurProps, BlurAlignment } from './components/BlurContainer/BlurContainer';
 export { FeatureItem } from './components/FeatureItem/FeatureItem';
 export type { FeatureItemProps } from './components/FeatureItem/FeatureItem';

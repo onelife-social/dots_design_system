@@ -64,7 +64,7 @@ function clamp01(v: number) {
 }
 
 /** DotsLinearGradientBlur — progressive blur defined by values/stops/start/end + tint. */
-function GradientBlur(props: GradientBlurProps) {
+export function GradientBlur(props: GradientBlurProps) {
   const sigma = props.sigma == null ? 8 : +props.sigma; // Dart requires it; 8 = typical home usage
   const values = Array.isArray(props.values) && props.values.length ? props.values : [0, 1];
   const stops =
