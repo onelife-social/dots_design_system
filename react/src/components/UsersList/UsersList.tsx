@@ -1,10 +1,12 @@
 // UsersList — port of lib/src/components/users_list/users_list.dart
 // (+ users_item_list.dart → UsersList.Item with `variant` = UserItemListVariant).
 // Dart = source of truth.
+import type { SyntheticEvent } from 'react';
 import { DotsCloseButton } from '../DotsCloseButton/DotsCloseButton';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsMainButton, type DotsMainButtonVariant } from '../DotsMainButton/DotsMainButton';
 import { UserInfo, type UserInfoSize } from '../UserItem/UserItem';
+import { pressable } from '../../internal/pressable';
 
 /** Dart enum UserItemListVariant */
 export type UsersListItemVariant =
@@ -123,6 +125,11 @@ function mainButton(label: string | undefined, variant: DotsMainButtonVariant, o
   return <DotsMainButton label={label || ''} variant={variant} size="small" expand={false} onClick={onClick} />;
 }
 
+// Inner native buttons keep their click/keys to themselves so the row action never fires twice
+function stop(e: SyntheticEvent) {
+  e.stopPropagation();
+}
+
 // UsersItemList — one row (leading + trailing per variant)
 export function UsersListItem(props: UsersListItemProps) {
   const variant: UsersListItemVariant = VARIANTS[props.variant] ? props.variant : 'main';
@@ -161,7 +168,11 @@ export function UsersListItem(props: UsersListItemProps) {
   // _TrailingWidget
   let trailing = null;
   if (variant === 'main' || variant === 'textfield') {
-    trailing = <DotsCloseButton size="extraSmall" onClick={tap} />;
+    trailing = (
+      <span style={{ display: 'contents' }} onClick={stop} onKeyDown={stop}>
+        <DotsCloseButton size="extraSmall" onClick={tap} />
+      </span>
+    );
   } else if (variant === 'pending' || variant === 'join') {
     trailing = (
       <span className="ds-users-item__trail-icon">
@@ -176,7 +187,7 @@ export function UsersListItem(props: UsersListItemProps) {
     trailing = <span className="ds-users-item__role">{props.label || ''}</span>;
   } else if (variant === 'pendingMember') {
     trailing = (
-      <span className="ds-users-item__btns">
+      <span className="ds-users-item__btns" onClick={stop} onKeyDown={stop}>
         {mainButton(props.buttonLabel1, 'main', () => props.onButton1Click?.(tapValue))}
         {mainButton(props.buttonLabel2, 'secondary', () => props.onButton2Click?.(tapValue))}
       </span>
@@ -188,8 +199,7 @@ export function UsersListItem(props: UsersListItemProps) {
   return (
     <div
       className={`ds-users-item ds-users-item--${variant}${props.className ? ` ${props.className}` : ''}`}
-      onClick={rowClickable ? tap : undefined}
-      role={rowClickable ? 'button' : undefined}
+      {...pressable(rowClickable ? tap : undefined)}
     >
       {main}
       {trailing}
