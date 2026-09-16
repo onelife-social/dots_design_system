@@ -35,7 +35,9 @@ function gradVariant(seed: string | undefined) {
 }
 
 export function DotsProfilePhoto(props: DotsProfilePhotoProps) {
-  const [hasError, setError] = useState(false);
+  // Keep the failed URL (not a boolean) so a new `src` is attempted after a broken one
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  const hasError = !!props.src && failedSrc === props.src;
   const bited = !!props.bited; // DotsProfilePhotoBited
   const width = props.width ?? (bited ? 44 : 32); // Dart defaults 32 / 44
   const height = props.height ?? (bited ? 44 : 32);
@@ -47,7 +49,7 @@ export function DotsProfilePhoto(props: DotsProfilePhotoProps) {
       src={props.src}
       alt={props.alt ?? ''}
       onError={(e) => {
-        setError(true);
+        setFailedSrc(props.src ?? null);
         props.onError?.(e);
       }}
     />
