@@ -68,3 +68,5 @@ export { MilestoneCard } from './components/MilestoneCard/MilestoneCard';
 export type { MilestoneCardProps, MilestoneBadgeType } from './components/MilestoneCard/MilestoneCard';
 export { MilestonesList } from './components/MilestonesList/MilestonesList';
 export type { MilestonesListProps, MilestonesListItem } from './components/MilestonesList/MilestonesList';
+export { RecapCard } from './components/RecapCard/RecapCard';
+export type { RecapCardProps, RecapCardVariant, RecapCardLockedVariant } from './components/RecapCard/RecapCard';
