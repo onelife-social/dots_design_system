@@ -29,8 +29,10 @@ export interface GradientBlurProps {
     /** Extra CSS class */
     className?: string;
 }
+/** DotsLinearGradientBlur — progressive blur defined by values/stops/start/end + tint. */
+export declare function GradientBlur(props: GradientBlurProps): import("react").JSX.Element;
 /** BlurContainer(sigma 0–5, child) — blurs ALL its content (BlurPainter). */
 export declare function BlurContainer(props: BlurContainerProps): import("react").JSX.Element;
 export declare namespace BlurContainer {
-    var GradientBlur: (props: GradientBlurProps) => import("react").JSX.Element;
+    var GradientBlur: typeof import("./BlurContainer").GradientBlur;
 }

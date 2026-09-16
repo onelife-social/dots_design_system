@@ -19,6 +19,10 @@ export interface DotsSegmentedControlProps {
     leftOptionIcon?: string;
     /** type 'icon': DotsIcon name ('ic-…') — Dart `rightOptionIcon` */
     rightOptionIcon?: string;
+    /** type 'icon': accessible name (aria-label) of the left icon button — web extension, localizable */
+    leftOptionLabel?: string;
+    /** type 'icon': accessible name (aria-label) of the right icon button — web extension, localizable */
+    rightOptionLabel?: string;
     /** type 'single': button label — Dart `buttonName` */
     buttonName?: string;
     /** type 'single': badge — Dart `buttonTag` */

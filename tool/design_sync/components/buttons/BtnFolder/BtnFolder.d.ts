@@ -19,5 +19,7 @@ export interface BtnFolderProps {
     showEditIcon?: boolean;
     /** The folder is editable */
     isEditable?: boolean;
+    /** Accessible name for icon-only folders (isNonExpandable / no text), e.g. 'Nueva carpeta' */
+    ariaLabel?: string;
 }
 export declare function BtnFolder(props: BtnFolderProps): import("react").JSX.Element;
