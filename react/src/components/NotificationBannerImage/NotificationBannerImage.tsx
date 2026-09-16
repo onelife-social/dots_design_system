@@ -43,7 +43,9 @@ export interface NotificationBannerImageProps {
 }
 
 export function NotificationBannerImage(props: NotificationBannerImageProps) {
-  const [imgError, setImgError] = useState(false);
+  // Keep the failed URL (not a boolean) so a new `src` is attempted after a broken one
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  const imgError = !!props.src && failedSrc === props.src;
 
   const imagePadding = props.imagePadding ?? 20;
   const showClose = props.showCloseButton !== false;
@@ -62,7 +64,7 @@ export function NotificationBannerImage(props: NotificationBannerImageProps) {
         alt=""
         style={sized}
         onError={(e) => {
-          setImgError(true); // Dart: errorBuilder → SizedBox.shrink()
+          setFailedSrc(props.src ?? null); // Dart: errorBuilder → SizedBox.shrink()
           props.onError?.(e);
         }}
       />
