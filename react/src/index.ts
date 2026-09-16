@@ -70,3 +70,5 @@ export { DotsCountdown } from './components/DotsCountdown/DotsCountdown';
 export type { DotsCountdownProps, DotsCountdownVariant } from './components/DotsCountdown/DotsCountdown';
 export { ImageThumbnail } from './components/ImageThumbnail/ImageThumbnail';
 export type { ImageThumbnailProps, ImageThumbnailVariant } from './components/ImageThumbnail/ImageThumbnail';
+export { ImageWithProgressAround } from './components/ImageWithProgressAround/ImageWithProgressAround';
+export type { ImageWithProgressAroundProps, ImageWithProgressAroundAspectRatio } from './components/ImageWithProgressAround/ImageWithProgressAround';
