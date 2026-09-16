@@ -68,3 +68,5 @@ export { ImageWithIcon } from './components/ImageWithIcon/ImageWithIcon';
 export type { ImageWithIconProps } from './components/ImageWithIcon/ImageWithIcon';
 export { MessagePreview } from './components/MessagePreview/MessagePreview';
 export type { MessagePreviewProps, MessagePreviewAttachmentType } from './components/MessagePreview/MessagePreview';
+export { NotificationBanner } from './components/NotificationBanner/NotificationBanner';
+export type { NotificationBannerProps } from './components/NotificationBanner/NotificationBanner';
