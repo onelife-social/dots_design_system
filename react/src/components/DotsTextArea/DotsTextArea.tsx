@@ -51,7 +51,10 @@ export function DotsTextArea(props: DotsTextAreaProps) {
   }
   function handleKeyDown(e: KeyboardEvent<HTMLTextAreaElement>) {
     // Dart: keyboardType multiline — Enter inserts a newline; web submit = Ctrl/Cmd+Enter
-    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) props.onSubmitted?.(e.currentTarget.value);
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey) && props.onSubmitted) {
+      e.preventDefault(); // submitting must not also insert a newline (and fire onChanged)
+      props.onSubmitted(e.currentTarget.value);
+    }
   }
   function handleBoxClick() {
     // Dart: GestureDetector → focusNode.requestFocus()
@@ -69,6 +72,7 @@ export function DotsTextArea(props: DotsTextAreaProps) {
     <div className="ds-textarea__grow" data-value={text}>
       <textarea
         aria-labelledby={hasLabel ? labelId : undefined}
+        aria-invalid={isError || undefined}
         ref={areaRef}
         className="ds-textarea__input"
         value={text}

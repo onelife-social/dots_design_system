@@ -1910,7 +1910,10 @@ const hooks = () => window.React;
       props.onChanged?.(v);
     }
     function handleKeyDown(e) {
-      if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) props.onSubmitted?.(e.currentTarget.value);
+      if (e.key === "Enter" && (e.metaKey || e.ctrlKey) && props.onSubmitted) {
+        e.preventDefault();
+        props.onSubmitted(e.currentTarget.value);
+      }
     }
     function handleBoxClick() {
       areaRef.current?.focus();
@@ -1922,6 +1925,7 @@ const hooks = () => window.React;
       "textarea",
       {
         "aria-labelledby": hasLabel ? labelId : void 0,
+        "aria-invalid": isError || void 0,
         ref: areaRef,
         className: "ds-textarea__input",
         value: text,
