@@ -1,5 +1,5 @@
 // DotsTextArea — port of lib/src/components/text_fields/dots_textarea.dart (Dart = source of truth).
-import { useRef, useState, type ChangeEvent, type CSSProperties, type KeyboardEvent } from 'react';
+import { useId, useRef, useState, type ChangeEvent, type CSSProperties, type KeyboardEvent } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 
 export interface DotsTextAreaProps {
@@ -37,6 +37,7 @@ export function DotsTextArea(props: DotsTextAreaProps) {
   const controlled = props.value !== undefined && props.value !== null;
   const [innerText, setText] = useState(props.defaultValue != null ? String(props.defaultValue) : '');
   const areaRef = useRef<HTMLTextAreaElement>(null);
+  const labelId = useId();
 
   const text = controlled ? String(props.value) : innerText;
   const hasLabel = !!props.label;
@@ -67,6 +68,7 @@ export function DotsTextArea(props: DotsTextAreaProps) {
   const area = (
     <div className="ds-textarea__grow" data-value={text}>
       <textarea
+        aria-labelledby={hasLabel ? labelId : undefined}
         ref={areaRef}
         className="ds-textarea__input"
         value={text}
@@ -89,7 +91,7 @@ export function DotsTextArea(props: DotsTextAreaProps) {
 
   const body = hasLabel ? (
     <>
-      <div className="ds-textarea__label">
+      <div className="ds-textarea__label" id={labelId}>
         {leadingIcon}
         {props.label}
       </div>
