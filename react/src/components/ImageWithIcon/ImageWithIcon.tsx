@@ -40,7 +40,9 @@ export interface ImageWithIconProps {
 }
 
 export function ImageWithIcon(props: ImageWithIconProps) {
-  const [imgError, setImgError] = useState(false);
+  // Keep the failed URL (not a boolean) so a new `src` is attempted after a broken one
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  const imgError = !!props.src && failedSrc === props.src;
 
   const width = props.width ?? 53;
   const height = props.height ?? 68;
@@ -75,7 +77,7 @@ export function ImageWithIcon(props: ImageWithIconProps) {
             src={props.src}
             alt=""
             onError={(e) => {
-              setImgError(true); // Dart: errorBuilder → defaultImage
+              setFailedSrc(props.src ?? null); // Dart: errorBuilder → defaultImage
               props.onError?.(e);
             }}
           />
