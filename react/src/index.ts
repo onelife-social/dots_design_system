@@ -58,3 +58,5 @@ export { DotsSegmentedControl } from './components/DotsSegmentedControl/DotsSegm
 export type { DotsSegmentedControlProps, DotsSegmentedControlOption, DotsSegmentedControlType, DotsSegmentedControlVariant } from './components/DotsSegmentedControl/DotsSegmentedControl';
 export { DotsTextArea } from './components/DotsTextArea/DotsTextArea';
 export type { DotsTextAreaProps } from './components/DotsTextArea/DotsTextArea';
+export { DotsTextFieldPhone } from './components/DotsTextFieldPhone/DotsTextFieldPhone';
+export type { DotsTextFieldPhoneProps, PhoneCountryCode } from './components/DotsTextFieldPhone/DotsTextFieldPhone';

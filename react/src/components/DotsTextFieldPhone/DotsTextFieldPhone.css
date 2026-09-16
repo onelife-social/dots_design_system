@@ -28,5 +28,3 @@
   background: var(--label-secondary); opacity: 0.3;
   margin-right: 12px;
 }
-
-.ds-tf-phone__fallback { font: 500 14px/1.29 var(--font-main); color: var(--text-quarternary); }
