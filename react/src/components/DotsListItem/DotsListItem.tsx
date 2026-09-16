@@ -2,6 +2,7 @@
 import type { SyntheticEvent } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsRadioButton } from '../DotsRadioButton/DotsRadioButton';
+import { pressable } from '../../internal/pressable';
 
 /** Dart enum DotsListsItemVariant */
 export type DotsListItemVariant = 'main' | 'selector' | 'icon' | 'check' | 'radioButton' | 'divider';
@@ -76,7 +77,7 @@ export function DotsListItem(props: DotsListItemProps) {
   }
 
   return (
-    <div className={`ds-list-item${props.onClick ? ' is-tappable' : ''}`} onClick={props.onClick} role={props.onClick ? 'button' : undefined}>
+    <div className={`ds-list-item${props.onClick ? ' is-tappable' : ''}`} {...pressable(props.onClick)}>
       {renderThumb(props)}
       {props.label != null ? <span className="ds-list-item__label">{props.label}</span> : null}
       {renderTrailing(variant)}

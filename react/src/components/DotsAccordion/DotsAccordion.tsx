@@ -1,6 +1,7 @@
 // DotsAccordion — port of lib/src/components/accordion/dots_accordion.dart (Dart = source of truth).
 import { useState, type CSSProperties, type ReactNode } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
+import { pressable } from '../../internal/pressable';
 
 export interface DotsAccordionSection {
   /** Header title — bodyLargeMedium textPrimary */
@@ -64,7 +65,7 @@ export function DotsAccordion(props: DotsAccordionProps) {
         className={`ds-accordion__section${expanded[i] ? ' is-expanded' : ''}`}
         style={{ '--ds-accordion-duration': `${duration}ms` } as CSSProperties}
       >
-        <div className="ds-accordion__header" role="button" aria-expanded={!!expanded[i]} onClick={() => toggle(i)}>
+        <div className="ds-accordion__header" aria-expanded={!!expanded[i]} {...pressable(() => toggle(i))}>
           {s.leadingIcon ? <DotsIcon name={s.leadingIcon} size={20} color="var(--text-tertiary)" className="ds-accordion__leading" /> : null}
           <span className="ds-accordion__title">{s.title}</span>
           <DotsIcon name="ic-chevron-down" size={16} color="var(--text-tertiary)" className="ds-accordion__chevron" />

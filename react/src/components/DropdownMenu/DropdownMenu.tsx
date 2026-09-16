@@ -2,6 +2,7 @@
 // dropdown_item → a single API; Dart = source of truth).
 import { useState, type CSSProperties, type ReactNode } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
+import { activateOnKey } from '../../internal/pressable';
 
 /** Dart enum DropdownListSize */
 export type DropdownMenuSize = 'small' | 'medium';
@@ -66,7 +67,14 @@ export function DropdownMenuItem(props: DropdownMenuItemProps) {
   const cls =
     'ds-dropdown__item' + (props.destructive ? ' ds-dropdown__item--destructive' : '') + (props.minSize ? ' ds-dropdown__item--min' : '');
   return (
-    <div className={cls} style={style} role="menuitem" tabIndex={0} onClick={props.onClick}>
+    <div
+      className={cls}
+      style={style}
+      role="menuitem"
+      tabIndex={0}
+      onClick={props.onClick}
+      onKeyDown={props.onClick ? activateOnKey(props.onClick) : undefined}
+    >
       {props.leading ? <span className="ds-dropdown__item-leading">{props.leading}</span> : null}
       <span className="ds-dropdown__item-text">
         {props.text}
