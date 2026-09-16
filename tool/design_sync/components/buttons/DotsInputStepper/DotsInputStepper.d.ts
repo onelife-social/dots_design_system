@@ -15,5 +15,9 @@ export interface DotsInputStepperProps {
     onDecrement?: () => void;
     /** Called with the new value after each press (web extension) */
     onChanged?: (value: number) => void;
+    /** Accessible name of the − button (default 'Decrement'; localize from the app) */
+    decrementLabel?: string;
+    /** Accessible name of the + button (default 'Increment'; localize from the app) */
+    incrementLabel?: string;
 }
 export declare function DotsInputStepper(props: DotsInputStepperProps): import("react").JSX.Element;
