@@ -66,3 +66,5 @@ export { DotsAccordion } from './components/DotsAccordion/DotsAccordion';
 export type { DotsAccordionProps, DotsAccordionSection } from './components/DotsAccordion/DotsAccordion';
 export { DotsSlider } from './components/DotsSlider/DotsSlider';
 export type { DotsSliderProps } from './components/DotsSlider/DotsSlider';
+export { ColorSelector } from './components/ColorSelector/ColorSelector';
+export type { ColorSelectorProps, ColorSelectorVariant, DotsColorOption } from './components/ColorSelector/ColorSelector';
