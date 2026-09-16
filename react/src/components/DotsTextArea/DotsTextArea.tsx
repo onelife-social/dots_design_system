@@ -38,6 +38,7 @@ export function DotsTextArea(props: DotsTextAreaProps) {
   const [innerText, setText] = useState(props.defaultValue != null ? String(props.defaultValue) : '');
   const areaRef = useRef<HTMLTextAreaElement>(null);
   const labelId = useId();
+  const errorId = useId();
 
   const text = controlled ? String(props.value) : innerText;
   const hasLabel = !!props.label;
@@ -73,6 +74,7 @@ export function DotsTextArea(props: DotsTextAreaProps) {
       <textarea
         aria-labelledby={hasLabel ? labelId : undefined}
         aria-invalid={isError || undefined}
+        aria-describedby={isError && props.errorText ? errorId : undefined}
         ref={areaRef}
         className="ds-textarea__input"
         value={text}
@@ -114,7 +116,7 @@ export function DotsTextArea(props: DotsTextAreaProps) {
         {body}
         {remaining != null ? <span className="ds-textarea__counter">{String(remaining)}</span> : null}
       </div>
-      {isError && props.errorText ? <div className="ds-textarea__error-text">{props.errorText}</div> : null}
+      {isError && props.errorText ? <div className="ds-textarea__error-text" id={errorId}>{props.errorText}</div> : null}
     </div>
   );
 }
