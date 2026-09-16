@@ -67,7 +67,9 @@ function initials(name: string | undefined) {
 
 // UserInfo — avatar 26 (small) / 40 (large) + name (+ details)
 export function UserInfo(props: UserInfoProps) {
-  const [hasError, setError] = useState(false);
+  // Keep the failed URL (not a boolean) so a new `src` is attempted after a broken one
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  const hasError = !!props.src && failedSrc === props.src;
   const size: UserInfoSize = props.size === 'large' ? 'large' : 'small'; // UserInfoSize (default small)
   const showImg = !!props.src && !hasError;
 
@@ -80,7 +82,7 @@ export function UserInfo(props: UserInfoProps) {
           src={props.src}
           alt={props.name || ''}
           onError={(e) => {
-            setError(true);
+            setFailedSrc(props.src ?? null);
             props.onError?.(e);
           }}
         />
