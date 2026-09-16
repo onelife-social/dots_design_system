@@ -3,7 +3,12 @@ import { isValidElement, useLayoutEffect, useMemo, useRef, useState, type ReactE
 import { BadgeMilestone } from '../BadgeMilestone/BadgeMilestone';
 import { MilestoneCard, type MilestoneCardProps } from '../MilestoneCard/MilestoneCard';
 
-/** string ⇒ BadgeMilestone ghost · object ⇒ MilestoneCard props · or an already built element */
+/**
+ * string ⇒ BadgeMilestone ghost · object ⇒ MilestoneCard props · or an already built element.
+ * A built element is laid out as a badge (17px) when its type is `BadgeMilestone` and as a card
+ * (326px) otherwise. The list's fixed card width (244.5px, aspect 3:4) is authoritative: a
+ * `MilestoneCardProps.width` is ignored so every card stays aligned on the path.
+ */
 export type MilestonesListItem = string | MilestoneCardProps | ReactElement;
 
 export interface MilestonesListProps {
@@ -44,7 +49,10 @@ function rng(seed: number) {
 }
 
 function isCard(item: MilestonesListItem) {
-  return typeof item !== 'string';
+  if (typeof item === 'string') return false;
+  // A pre-built BadgeMilestone element gets the badge spacing, any other element is a card
+  if (isValidElement(item)) return item.type !== BadgeMilestone;
+  return true;
 }
 
 function itemHeight(item: MilestonesListItem) {
@@ -110,8 +118,8 @@ function renderItem(item: MilestonesListItem) {
   // Dart: BadgeMilestone(content, variant: ghost)
   if (typeof item === 'string') return <BadgeMilestone content={item} variant="ghost" />;
   if (isValidElement(item)) return item; // already built element
-  // MilestoneCard props object
-  return <MilestoneCard width={CARD_WIDTH} {...(item as MilestoneCardProps)} />;
+  // MilestoneCard props object — the list's width wins over item.width (see MilestonesListItem)
+  return <MilestoneCard {...(item as MilestoneCardProps)} width={CARD_WIDTH} />;
 }
 
 export function MilestonesList(props: MilestonesListProps) {
