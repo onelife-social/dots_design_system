@@ -45,10 +45,15 @@ export function DotsHomeTopBar(props: DotsHomeTopBarProps) {
   if (props.child != null) {
     center = props.child;
   } else if (variant === 'title' && props.title != null) {
-    center = (
-      <button type="button" className="ds-home-top-bar__title" onClick={props.onTitleClick} style={props.onTitleClick ? undefined : { cursor: 'default' }}>
+    // A control only when there is a tap handler; otherwise plain text with the same classes
+    center = props.onTitleClick ? (
+      <button type="button" className="ds-home-top-bar__title" onClick={props.onTitleClick}>
         {props.title}
       </button>
+    ) : (
+      <span className="ds-home-top-bar__title" style={{ cursor: 'default' }}>
+        {props.title}
+      </span>
     );
   }
 
