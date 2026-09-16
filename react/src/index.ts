@@ -62,3 +62,5 @@ export { BadgeProgress } from './components/BadgeProgress/BadgeProgress';
 export type { BadgeProgressProps } from './components/BadgeProgress/BadgeProgress';
 export { BadgeTag } from './components/BadgeTag/BadgeTag';
 export type { BadgeTagProps } from './components/BadgeTag/BadgeTag';
+export { DotsSelectorRadioButton, DotsSelectorRadioButtonLabel, DotsSettingItemRadioBtn } from './components/DotsSelectorRadioButton/DotsSelectorRadioButton';
+export type { DotsSelectorRadioButtonProps, DotsSelectorRadioButtonLabelProps, DotsSettingItemRadioBtnProps, SelectorRadioButtonLabelVariant } from './components/DotsSelectorRadioButton/DotsSelectorRadioButton';

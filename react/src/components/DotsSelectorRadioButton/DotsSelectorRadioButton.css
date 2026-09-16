@@ -41,17 +41,6 @@
 .ds-sel-card__title-serif { font: 500 18px/1.28 var(--font-secondary); letter-spacing: -0.08px; color: var(--text-primary); }
 .ds-sel-card__detail1 { font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px; color: var(--text-tertiary); }
 .ds-sel-card__detail2 { font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px; color: var(--text-tertiary); }
-/* fallback si BadgeLabel no está en el bundle */
-.ds-sel-card__badge-ph {
-  display: inline-flex;
-  align-items: center;
-  height: 22px;
-  padding: 0 8px;
-  border-radius: 22px;
-  background: var(--label-highlight);
-  color: var(--label-always-white);
-  font: 600 11px/1 var(--font-main);
-}
 
 /* DotsSettingItemRadioBtn — padding 16/12, radio 22, gaps 12 */
 .ds-setting-radio {
@@ -66,12 +55,3 @@
 }
 .ds-setting-radio__leading { flex: 1; min-width: 0; font: 700 14px/1.29 var(--font-main); letter-spacing: -0.02px; color: var(--text-primary); }
 .ds-setting-radio__trailing { font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px; color: var(--text-tertiary); }
-
-/* fallback si DotsRadioButton no está en el bundle */
-.ds-sel-radio-fallback {
-  box-sizing: border-box;
-  flex: none;
-  border-radius: 50%;
-  border: 2px solid var(--label-secondary);
-}
-.ds-sel-radio-fallback.is-on { border-color: var(--label-highlight); }
