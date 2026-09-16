@@ -62,3 +62,5 @@ export { DotsCaptureButton } from './components/DotsCaptureButton/DotsCaptureBut
 export type { DotsCaptureButtonProps, DotsCaptureButtonType, DotsCaptureButtonState } from './components/DotsCaptureButton/DotsCaptureButton';
 export { DotsInputStepper } from './components/DotsInputStepper/DotsInputStepper';
 export type { DotsInputStepperProps } from './components/DotsInputStepper/DotsInputStepper';
+export { BtnFolder } from './components/BtnFolder/BtnFolder';
+export type { BtnFolderProps } from './components/BtnFolder/BtnFolder';
