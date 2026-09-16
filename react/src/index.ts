@@ -56,3 +56,5 @@ export { DotsItemInput } from './components/DotsItemInput/DotsItemInput';
 export type { DotsItemInputProps, DotsItemInputPosition } from './components/DotsItemInput/DotsItemInput';
 export { DotsSegmentedControl } from './components/DotsSegmentedControl/DotsSegmentedControl';
 export type { DotsSegmentedControlProps, DotsSegmentedControlOption, DotsSegmentedControlType, DotsSegmentedControlVariant } from './components/DotsSegmentedControl/DotsSegmentedControl';
+export { DotsTextArea } from './components/DotsTextArea/DotsTextArea';
+export type { DotsTextAreaProps } from './components/DotsTextArea/DotsTextArea';
