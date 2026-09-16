@@ -4067,11 +4067,14 @@
 .ds-product-card__action {
   flex: none; width: 36px; height: 36px; border-radius: 50%;
   display: inline-flex; align-items: center; justify-content: center;
-  border: 1px solid var(--border-alert); background: var(--bg-btn-image); color: var(--text-primary);
+  /* borderAlert has no token in tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart), as DotsIconButton/DotsToast */
+  --ds-border-alert: #FFFFFF4D;
+  border: 1px solid var(--ds-border-alert); background: var(--bg-btn-image); color: var(--text-primary);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   padding: 0; cursor: pointer;
   position: relative; z-index: 2; /* above __hit: gets its own clicks */
 }
+[data-theme="dark"] .ds-product-card__action { --ds-border-alert: #6E6E6E4D; }
 
 /* ── RatingRow ── */
 /* RatingRow — port de lib/src/components/rating/rating_row.dart + rating_star.dart */
