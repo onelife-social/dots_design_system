@@ -761,8 +761,10 @@ const hooks = () => window.React;
     const [focused, setFocused] = (0, import_react3.useState)(false);
     const inputRef = (0, import_react3.useRef)(null);
     const filter = props.inputFilter;
+    const limit = props.maxTextLength;
+    const clip = (t) => filter && limit != null && t.length > limit ? t.slice(0, limit) : t;
     const rawText = controlled ? String(props.value) : innerText;
-    const text = filter ? filter(rawText) : rawText;
+    const text = clip(filter ? filter(rawText) : rawText);
     const enabled = props.enabled !== false;
     const background = props.background !== false;
     const showUnderline = !!props.showUnderline;
@@ -771,7 +773,7 @@ const hooks = () => window.React;
     const showClear = enabled && focused && text.length > 0;
     const kb = props.keyboardType && KEYBOARD[props.keyboardType] || { type: "text", inputMode: void 0 };
     function handleChange(e) {
-      const v = filter ? filter(e.target.value) : e.target.value;
+      const v = clip(filter ? filter(e.target.value) : e.target.value);
       if (!controlled) setText(v);
       props.onChanged?.(v);
     }
@@ -803,7 +805,7 @@ const hooks = () => window.React;
         inputMode: kb.inputMode,
         value: text,
         placeholder: props.hintText,
-        maxLength: props.maxTextLength,
+        maxLength: filter ? void 0 : props.maxTextLength,
         disabled: !enabled,
         autoFocus: !!props.autoFocus,
         autoCapitalize: props.textCapitalization ?? "none",

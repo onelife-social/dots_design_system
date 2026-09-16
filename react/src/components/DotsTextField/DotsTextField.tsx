@@ -63,8 +63,12 @@ export function DotsTextField(props: DotsTextFieldProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const filter = props.inputFilter;
+  // With a filter, maxTextLength is enforced here AFTER filtering (the native maxLength would
+  // truncate the raw text first and drop valid characters, e.g. a pasted '123 456 789').
+  const limit = props.maxTextLength;
+  const clip = (t: string) => (filter && limit != null && t.length > limit ? t.slice(0, limit) : t);
   const rawText = controlled ? String(props.value) : innerText;
-  const text = filter ? filter(rawText) : rawText;
+  const text = clip(filter ? filter(rawText) : rawText);
   const enabled = props.enabled !== false; // Dart: enabled = true
   const background = props.background !== false; // Dart: background = true
   const showUnderline = !!props.showUnderline; // Dart: showUnderline = false
@@ -75,7 +79,7 @@ export function DotsTextField(props: DotsTextFieldProps) {
   const kb = (props.keyboardType && KEYBOARD[props.keyboardType]) || { type: 'text', inputMode: undefined };
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const v = filter ? filter(e.target.value) : e.target.value;
+    const v = clip(filter ? filter(e.target.value) : e.target.value);
     if (!controlled) setText(v);
     props.onChanged?.(v);
   }
@@ -123,7 +127,7 @@ export function DotsTextField(props: DotsTextFieldProps) {
           inputMode={kb.inputMode}
           value={text}
           placeholder={props.hintText}
-          maxLength={props.maxTextLength}
+          maxLength={filter ? undefined : props.maxTextLength}
           disabled={!enabled}
           autoFocus={!!props.autoFocus}
           autoCapitalize={props.textCapitalization ?? 'none'} // Dart: TextCapitalization.none
