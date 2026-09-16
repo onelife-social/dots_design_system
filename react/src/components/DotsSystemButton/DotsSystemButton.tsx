@@ -1,4 +1,5 @@
 // DotsSystemButton — port of lib/src/components/buttons/dots_system_button/ (Dart = source of truth).
+import type { MouseEvent } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 
 /** Dart enum DotsSystemButtonVariant */
@@ -18,8 +19,8 @@ export interface DotsSystemButtonProps {
    * Note: 'disabled' is only visual, the button still emits onClick (as in Dart).
    */
   variant?: DotsSystemButtonVariant;
-  /** Tap callback — Dart `onTap` */
-  onClick?: () => void;
+  /** Tap callback — Dart `onTap`. Receives the native click event (a `() => void` is also accepted) */
+  onClick?: (e?: MouseEvent<HTMLButtonElement>) => void;
   /** Full width (the Flutter Row mainAxisSize.max filling the parent) */
   expand?: boolean;
   /** Extra CSS class */

@@ -2,6 +2,7 @@
 import { BadgeLabel, type BadgeLabelVariant } from '../BadgeLabel/BadgeLabel';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsRadioButton } from '../DotsRadioButton/DotsRadioButton';
+import { pressable } from '../../internal/pressable';
 
 export interface DotsSelectorRadioButtonProps {
   /** Selected (1.5px labelHighlight border) — Dart `isSelected` */
@@ -52,6 +53,17 @@ export interface DotsSettingItemRadioBtnProps {
   onClick?: () => void;
 }
 
+// The card/row is the radio control: its inner DotsRadioButton is only the visual indicator, so it is
+// taken out of the accessibility tree, the tab order and pointer hit-testing (never two controls for
+// one action). `display: contents` keeps the flex layout untouched.
+function visualRadio(selected: boolean, size: number) {
+  return (
+    <span aria-hidden inert style={{ display: 'contents', pointerEvents: 'none' }}>
+      <DotsRadioButton isSelected={selected} size={size} />
+    </span>
+  );
+}
+
 function detailIcon(name: string, size: number) {
   return <DotsIcon name={name} size={size} color="var(--text-tertiary)" />;
 }
@@ -60,7 +72,7 @@ function detailIcon(name: string, size: number) {
 export function DotsSelectorRadioButton(props: DotsSelectorRadioButtonProps) {
   const selected = !!props.isSelected;
   return (
-    <div className={`ds-sel-card${selected ? ' is-selected' : ''}`} role="radio" aria-checked={selected} tabIndex={0} onClick={props.onClick}>
+    <div className={`ds-sel-card${selected ? ' is-selected' : ''}`} role="radio" aria-checked={selected} {...pressable(props.onClick, 'radio')}>
       <div className="ds-sel-card__body ds-sel-card__body--gap10">
         <div className="ds-sel-card__title">{props.title}</div>
         <div className="ds-sel-card__detail">
@@ -72,7 +84,7 @@ export function DotsSelectorRadioButton(props: DotsSelectorRadioButtonProps) {
           {props.details2}
         </div>
       </div>
-      <DotsRadioButton isSelected={selected} size={24} />
+      {visualRadio(selected, 24)}
     </div>
   );
 }
@@ -95,8 +107,7 @@ export function DotsSelectorRadioButtonLabel(props: DotsSelectorRadioButtonLabel
       className={`ds-sel-card${selected ? ' is-selected' : ''}`}
       role={selectable ? 'radio' : undefined}
       aria-checked={selectable ? selected : undefined}
-      tabIndex={selectable ? 0 : undefined}
-      onClick={selectable ? props.onClick : undefined}
+      {...(selectable ? pressable(props.onClick, 'radio') : {})}
     >
       <div className="ds-sel-card__body ds-sel-card__body--gap8">
         <div>
@@ -108,7 +119,7 @@ export function DotsSelectorRadioButtonLabel(props: DotsSelectorRadioButtonLabel
         </div>
         <div className="ds-sel-card__detail2">{props.details2}</div>
       </div>
-      {selectable ? <DotsRadioButton isSelected={selected} size={24} /> : null}
+      {selectable ? visualRadio(selected, 24) : null}
     </div>
   );
 }
@@ -117,8 +128,8 @@ export function DotsSelectorRadioButtonLabel(props: DotsSelectorRadioButtonLabel
 export function DotsSettingItemRadioBtn(props: DotsSettingItemRadioBtnProps) {
   const selected = !!props.isSelected;
   return (
-    <div className="ds-setting-radio" role="radio" aria-checked={selected} tabIndex={0} onClick={props.onClick}>
-      <DotsRadioButton isSelected={selected} size={22} />
+    <div className="ds-setting-radio" role="radio" aria-checked={selected} {...pressable(props.onClick, 'radio')}>
+      {visualRadio(selected, 22)}
       <span className="ds-setting-radio__leading">{props.leadingLabel}</span>
       {props.trailingLabel != null ? <span className="ds-setting-radio__trailing">{props.trailingLabel}</span> : null}
     </div>

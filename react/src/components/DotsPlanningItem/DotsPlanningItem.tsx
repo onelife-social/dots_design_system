@@ -2,6 +2,7 @@
 // dots_planning_info_item.dart + dots_planning_row_builder.dart) (Dart = source of truth).
 import { useState } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
+import { pressable } from '../../internal/pressable';
 
 /** Mirror of the Dart class DotsPlanningInfoItem */
 export interface DotsPlanningInfoItem {
@@ -63,7 +64,7 @@ export function DotsPlanningItem(props: DotsPlanningItemProps) {
   const subItems = props.subItems ?? [];
 
   return (
-    <div className={`ds-planning-item${props.className ? ` ${props.className}` : ''}`} onClick={toggle}>
+    <div className={`ds-planning-item${props.className ? ` ${props.className}` : ''}`} aria-expanded={expanded} {...pressable(toggle)}>
       {/* _PlanningImage: DotsSquircleImage 52 squircle16, default default_section_planning.webp */}
       <span className="ds-planning-item__img" style={props.sectionImage ? { backgroundImage: `url(${props.sectionImage})` } : undefined} />
       <span className="ds-planning-item__col">
