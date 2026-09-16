@@ -1,5 +1,5 @@
 // MilestonesList — port of lib/src/components/milestones/milestones_list.dart (Dart = source of truth).
-import { isValidElement, useLayoutEffect, useMemo, useRef, useState, type ReactElement } from 'react';
+import { isValidElement, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactElement } from 'react';
 import { BadgeMilestone } from '../BadgeMilestone/BadgeMilestone';
 import { MilestoneCard, type MilestoneCardProps } from '../MilestoneCard/MilestoneCard';
 
@@ -57,6 +57,13 @@ function isCard(item: MilestonesListItem) {
 
 function itemHeight(item: MilestonesListItem) {
   return isCard(item) ? CARD_HEIGHT : BADGE_HEIGHT;
+}
+
+// Dart: `item is MilestoneCard && item.isSelected` — props object or a pre-built MilestoneCard element
+function isSelectedCard(item: MilestonesListItem) {
+  if (typeof item === 'string') return false;
+  if (isValidElement(item)) return item.type === MilestoneCard && Boolean((item.props as MilestoneCardProps).isSelected);
+  return Boolean(item.isSelected);
 }
 
 // gap = random 20–34 between cards, 64 between badge and card (or vice versa)
@@ -126,6 +133,7 @@ export function MilestonesList(props: MilestonesListProps) {
   const list = props.list ?? [];
   const seed = props.seed ?? 1;
   const ref = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const [measured, setMeasured] = useState(props.width || 0);
   const width = props.width || measured || 375;
 
@@ -144,6 +152,15 @@ export function MilestonesList(props: MilestonesListProps) {
 
   const lay = useMemo(() => layout(list, seed, width / 2), [list, seed, width]);
 
+  // Dart _scrollToSelectedItem: post-frame after initState and every didUpdateWidget, the first
+  // selected MilestoneCard is brought into view (ensureVisible alignment 0.5, 50ms easeInOut)
+  const selectedIndex = list.findIndex(isSelectedCard);
+  useEffect(() => {
+    if (selectedIndex < 0) return;
+    const el = itemRefs.current[selectedIndex];
+    if (el && typeof el.scrollIntoView === 'function') el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  }, [list, selectedIndex]);
+
   return (
     <div ref={ref} className={`ds-milestones-list${props.className ? ` ${props.className}` : ''}`} style={{ height: `${lay.totalHeight}px` }}>
       <svg className="ds-milestones-list__line" width="100%" height={lay.totalHeight} viewBox={`0 0 ${width} ${lay.totalHeight}`} fill="none" aria-hidden>
@@ -151,7 +168,14 @@ export function MilestonesList(props: MilestonesListProps) {
         <path d={pathD(lay.points)} stroke="var(--label-secondary)" strokeWidth={2} strokeDasharray="0.1 8" strokeLinecap="round" />
       </svg>
       {list.map((item, i) => (
-        <span key={i} className="ds-milestones-list__item" style={{ left: `${lay.points[i].x}px`, top: `${lay.points[i].y}px` }}>
+        <span
+          key={i}
+          ref={(el) => {
+            itemRefs.current[i] = el;
+          }}
+          className="ds-milestones-list__item"
+          style={{ left: `${lay.points[i].x}px`, top: `${lay.points[i].y}px` }}
+        >
           {renderItem(item)}
         </span>
       ))}
