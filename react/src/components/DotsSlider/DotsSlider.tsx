@@ -1,5 +1,5 @@
 // DotsSlider — port of lib/src/components/slider/dots_slider.dart (Dart = source of truth).
-import { useRef, useState, type PointerEvent, type ReactNode } from 'react';
+import { useRef, useState, type KeyboardEvent, type PointerEvent, type ReactNode } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 
 export interface DotsSliderProps {
@@ -62,6 +62,36 @@ export function DotsSlider(props: DotsSliderProps) {
     draggingRef.current = false;
   }
 
+  // Keyboard (WAI-ARIA slider pattern): arrows move one step (a division, or 1% of the range when
+  // continuous), Home/End jump to the ends. Inert when the slider is not interactive.
+  const step = divisions ? max / divisions : max / 100;
+  function onKeyDown(e: KeyboardEvent<HTMLDivElement>) {
+    if (!interactive) return;
+    let next: number;
+    switch (e.key) {
+      case 'ArrowLeft':
+      case 'ArrowDown':
+        next = value - step;
+        break;
+      case 'ArrowRight':
+      case 'ArrowUp':
+        next = value + step;
+        break;
+      case 'Home':
+        next = 0;
+        break;
+      case 'End':
+        next = max;
+        break;
+      default:
+        return;
+    }
+    e.preventDefault();
+    next = clamp(next, 0, max);
+    if (divisions && max > 0) next = (Math.round((next / max) * divisions) / divisions) * max;
+    if (next !== value) commit(next);
+  }
+
   const pct = max > 0 ? (value / max) * 100 : 0;
 
   const ticks: ReactNode[] = [];
@@ -81,6 +111,9 @@ export function DotsSlider(props: DotsSliderProps) {
         aria-valuemin={0}
         aria-valuemax={max}
         aria-valuenow={value}
+        aria-disabled={interactive ? undefined : true}
+        tabIndex={interactive ? 0 : undefined}
+        onKeyDown={onKeyDown}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
