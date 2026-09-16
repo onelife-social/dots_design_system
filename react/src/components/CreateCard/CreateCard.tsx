@@ -1,6 +1,7 @@
 // CreateCard — port of lib/src/components/cards/create_card/create_card.dart (Dart = source of truth).
 import type { CSSProperties } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
+import { pressable } from '../../internal/pressable';
 
 /** Dart enum CreateCardVariant */
 export type CreateCardVariant = 'label' | 'button';
@@ -33,8 +34,7 @@ export function CreateCard(props: CreateCardProps) {
       <div
         className={`ds-create-card ds-create-card--button${props.className ? ` ${props.className}` : ''}`}
         style={{ width }}
-        onClick={props.onClick}
-        role={props.onClick ? 'button' : undefined}
+        {...pressable(props.onClick)}
       >
         <span className="ds-create-card__circle">
           <DotsIcon name="ic-add" size={16} color="currentColor" />
@@ -54,8 +54,7 @@ export function CreateCard(props: CreateCardProps) {
     <div
       className={`ds-create-card ds-create-card--label${props.className ? ` ${props.className}` : ''}`}
       style={style}
-      onClick={props.onClick}
-      role={props.onClick ? 'button' : undefined}
+      {...pressable(props.onClick)}
     >
       {props.icon ? (
         <span className="ds-create-card__icon">
