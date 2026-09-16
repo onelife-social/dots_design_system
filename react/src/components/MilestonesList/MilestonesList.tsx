@@ -16,7 +16,7 @@ export interface MilestonesListProps {
   list: MilestonesListItem[];
   /** Seed of the path (20–34 gaps between cards and x-pattern alternation) — Dart `seed` (default 1) */
   seed?: number;
-  /** Fixed width in px; when omitted the container is measured (centerX = width/2) */
+  /** Fixed width in px; when omitted the container is measured and observed (ResizeObserver; centerX = width/2) */
   width?: number;
   className?: string;
 }
@@ -131,12 +131,15 @@ export function MilestonesList(props: MilestonesListProps) {
 
   useLayoutEffect(() => {
     if (props.width) return;
-    function measure() {
-      if (ref.current) setMeasured(ref.current.clientWidth);
-    }
+    const el = ref.current;
+    if (!el) return;
+    const measure = () => setMeasured(el.clientWidth);
     measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
+    // Re-layout when the container itself resizes (a window listener misses layout-driven changes)
+    if (typeof ResizeObserver === 'undefined') return;
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
   }, [props.width]);
 
   const lay = useMemo(() => layout(list, seed, width / 2), [list, seed, width]);
