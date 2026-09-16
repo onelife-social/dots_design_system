@@ -1,6 +1,7 @@
 /* NotificationBannerImage — port de lib/src/components/notifications/notification_banner_image.dart (Dart = fuente de verdad) */
 
 .ds-notif-banner-img {
+  isolation: isolate; /* keeps the __hit and control z-indices inside the component */
   position: relative;
   box-sizing: border-box;
   background: var(--bg-container-secondary-on-bg); /* bgContainerSecondaryOnBackground */

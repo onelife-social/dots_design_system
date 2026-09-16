@@ -2824,6 +2824,7 @@
    borderAlert, squircle24, padding 16, toastShadow (blur 20 #00000033, BlurStyle.outer).
    bgToast (DotsStyleColorDodge, blur 50) approximated: translucent bg + backdrop-filter. */
 .ds-toast {
+  isolation: isolate; /* keeps the __hit and control z-indices inside the component */
   /* borderAlert has no token in tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart) */
   --ds-border-alert: #FFFFFF4D;
   position: relative;
@@ -3874,6 +3875,7 @@
 /* NotificationBannerImage — port de lib/src/components/notifications/notification_banner_image.dart (Dart = fuente de verdad) */
 
 .ds-notif-banner-img {
+  isolation: isolate; /* keeps the __hit and control z-indices inside the component */
   position: relative;
   box-sizing: border-box;
   background: var(--bg-container-secondary-on-bg); /* bgContainerSecondaryOnBackground */
