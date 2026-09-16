@@ -66,3 +66,5 @@ export { ActivityPreview, ActivityOverviewItem } from './components/ActivityPrev
 export type { ActivityPreviewProps, ActivityOverviewItemProps, ActivityPreviewVariant } from './components/ActivityPreview/ActivityPreview';
 export { ImageWithIcon } from './components/ImageWithIcon/ImageWithIcon';
 export type { ImageWithIconProps } from './components/ImageWithIcon/ImageWithIcon';
+export { MessagePreview } from './components/MessagePreview/MessagePreview';
+export type { MessagePreviewProps, MessagePreviewAttachmentType } from './components/MessagePreview/MessagePreview';
