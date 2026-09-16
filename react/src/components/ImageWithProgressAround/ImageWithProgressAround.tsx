@@ -1,5 +1,5 @@
 // ImageWithProgressAround — port of lib/src/components/progress_bar/image_with_progress_around.dart (Dart = source of truth).
-import { useRef } from 'react';
+import { useId } from 'react';
 
 /** 'standard' = 9:16 (kStandardAspectRatio) · 'small' = 3:4 (kSmallAspectRatio, isSmallScreen) */
 export type ImageWithProgressAroundAspectRatio = 'standard' | 'small';
@@ -28,12 +28,10 @@ export interface ImageWithProgressAroundProps {
 
 // DotsColors.recapGradientColors (SweepGradient of the painter → approx. SVG linearGradient)
 const RECAP_GRADIENT = ['#EF5FC1', '#C982F7', '#15ABF3', '#B295B6', '#F5784D', '#EF9C5F', '#F44E69', '#EF5FC1'];
-let uid = 0;
 
 export function ImageWithProgressAround(props: ImageWithProgressAroundProps) {
-  const idRef = useRef<string | null>(null);
-  if (idRef.current == null) idRef.current = `ds-iwpa-grad-${++uid}`;
-  const gradId = idRef.current;
+  // useId is stable between server and client render (a module counter is not SSR-safe)
+  const gradId = `ds-iwpa-grad-${useId().replace(/:/g, '')}`;
 
   const width = props.width ?? 150;
   // kStandardAspectRatio 9/16 · kSmallAspectRatio 3/4 (isSmallScreen)
