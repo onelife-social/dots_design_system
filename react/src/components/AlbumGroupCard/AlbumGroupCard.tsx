@@ -1,4 +1,5 @@
 // AlbumGroupCard — port of lib/src/components/cards/group_cards/album_group_card.dart (Dart = source of truth).
+import type { CSSProperties } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { pressable } from '../../internal/pressable';
 
@@ -18,7 +19,11 @@ export interface AlbumGroupCardProps {
   isBlocked?: boolean;
   /** Height of the bottom fade (Dart edgeSize; default 60 small / 110 large) */
   edgeSize?: number;
-  /** Blur sigma (Dart blurSigma) — approximated in CSS, no direct effect */
+  /**
+   * Gaussian sigma of the bottom-edge blur — Dart `blurSigma` (SoftEdgeBlur `sigma: blurSigma ?? 12`).
+   * Flutter's ImageFilter.blur sigma and CSS `blur()` are both the standard deviation of the Gaussian,
+   * so the value is applied 1:1 as px (`--ds-agc-blur` on the fade) with no conversion. Default 12.
+   */
   blurSigma?: number;
   /** Side in px (the card is 1:1; Dart clamps 135–160 small / 288–340 large). Default 148 / 288 */
   size?: number;
@@ -33,6 +38,7 @@ export function AlbumGroupCard(props: AlbumGroupCardProps) {
   // Dart: AspectRatio 1:1 with constraints 135–160 (small) / 288–340 (large)
   const size = props.size ?? (isSmall ? 148 : 288);
   const edge = props.edgeSize ?? (isSmall ? 60 : 110);
+  const blurSigma = props.blurSigma ?? 12; // Dart: sigma: blurSigma ?? 12
   const isBlocked = !!props.isBlocked;
 
   return (
@@ -45,7 +51,7 @@ export function AlbumGroupCard(props: AlbumGroupCardProps) {
         className={`ds-album-card__img${props.imageSrc ? '' : ' ds-album-card__img--ph'}`}
         style={props.imageSrc ? { backgroundImage: `url("${props.imageSrc}")` } : undefined}
       />
-      <div className="ds-album-card__fade" style={{ height: edge }} />
+      <div className="ds-album-card__fade" style={{ height: edge, '--ds-agc-blur': `${blurSigma}px` } as CSSProperties} />
       <div className={`ds-album-card__title ds-album-card__title--${variant}`}>{props.title ?? ''}</div>
       {!isBlocked && props.tagIcon ? (
         <span className={`ds-album-card__tag ${isSmall ? 'ds-album-card__tag--small' : 'ds-album-card__tag--large'}`}>
