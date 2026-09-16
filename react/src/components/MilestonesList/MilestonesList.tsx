@@ -47,18 +47,23 @@ function isCard(item: MilestonesListItem) {
   return typeof item !== 'string';
 }
 
+function itemHeight(item: MilestonesListItem) {
+  return isCard(item) ? CARD_HEIGHT : BADGE_HEIGHT;
+}
+
 // gap = random 20–34 between cards, 64 between badge and card (or vice versa)
 function verticalSpacing(curr: MilestonesListItem, next: MilestonesListItem, rand: () => number) {
-  const currH = isCard(curr) ? CARD_HEIGHT : BADGE_HEIGHT;
-  const nextH = isCard(next) ? CARD_HEIGHT : BADGE_HEIGHT;
   const gap = isCard(curr) && isCard(next) ? 20 + Math.floor(rand() * 15) : 64;
-  return currH / 2 + gap + nextH / 2;
+  return itemHeight(curr) / 2 + gap + itemHeight(next) / 2;
 }
 
 function layout(list: MilestonesListItem[], seed: number, centerX: number) {
   const rand = rng(seed);
-  const topPadding = BADGE_HEIGHT / 2;
-  const bottomPadding = CARD_HEIGHT / 2 + TAIL_EXTENSION;
+  // Dart assumes the first item is always a badge (badgeHeight / 2); the web list accepts any order,
+  // so the first center sits at half of the first item's real height (a leading card is not clipped
+  // by the overflow-hidden container).
+  const topPadding = list.length ? itemHeight(list[0]) / 2 : BADGE_HEIGHT / 2;
+  const bottomPadding = CARD_HEIGHT / 2 + TAIL_EXTENSION; // Dart: last item is always a card + tail
   const count = list.length;
 
   // x patterns: starts with pattern1, then alternates randomly
