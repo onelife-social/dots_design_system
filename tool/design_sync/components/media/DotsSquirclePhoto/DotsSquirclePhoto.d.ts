@@ -1,62 +1,61 @@
 import * as React from 'react';
 
-/**
- * DotsSquirclePhoto — port web de DotsSquircleImage (Flutter, dots_squircle_photo.dart).
- * Imagen squircle con sombra default, borde opcional y overlay de error de subida.
- */
+import { type SyntheticEvent } from 'react';
 export interface DotsSquirclePhotoProps {
-  /** URL de la imagen. Sin `src` (o si falla) se pinta un placeholder degradado. */
-  src?: string;
-  /** Texto alternativo; semilla del placeholder degradado. */
-  alt?: string;
-  /** Lado en px (cuadrada). Default 52. */
-  size?: number;
-  /** Radio (número → px). Default 16 (DotsBorderRadius.r16). */
-  borderRadius?: number | string;
-  /** Ocultar el borde. Default true. */
-  hideBorder?: boolean;
-  /** Grosor del borde en px. Default 1. */
-  borderSize?: number;
-  /** Color CSS del borde. Default `var(--bg-btn-image)` (bgBtnImage al 60%). */
-  borderColor?: string;
-  /** Overlay de error de subida (negro 20% + icono blanco centrado). Default false. */
-  uploadError?: boolean;
-  /** Icono del overlay de error. Default 'ic-cloud-fail' (DotsIconData.cloudFail). */
-  uploadErrorIcon?: string;
-  onClick?: () => void;
-  /** Callback si la imagen falla al cargar (Dart onError). */
-  onError?: (event: unknown) => void;
-  className?: string;
+    /** Image URL. Without `src` (or when it fails to load) a gradient placeholder is painted. */
+    src?: string;
+    /** Alt text; also seeds the gradient placeholder. */
+    alt?: string;
+    /** Side in px (square). Default 52. */
+    size?: number;
+    /** Radius (number → px). Default 16 (DotsBorderRadius.r16). */
+    borderRadius?: number | string;
+    /** Hide the border. Default true. */
+    hideBorder?: boolean;
+    /** Border width in px. Default 1. */
+    borderSize?: number;
+    /** CSS color of the border. Default `var(--bg-btn-image)` (bgBtnImage at 60%). */
+    borderColor?: string;
+    /** Upload-error overlay (black 20% + centered white icon). Default false. */
+    uploadError?: boolean;
+    /** Icon of the error overlay. Default 'ic-cloud-fail' (DotsIconData.cloudFail). */
+    uploadErrorIcon?: string;
+    /** Tap callback (Dart onTap). */
+    onClick?: () => void;
+    /** Image load error callback (Dart onError). */
+    onError?: (event: SyntheticEvent<HTMLImageElement>) => void;
+    className?: string;
 }
-
-/**
- * DotsSquirclePhoto.Tag — port web de DotsSquircleImageTag (dots_squircle_photo_tag.dart).
- * Squircle con borde blanco + círculo tag labelHighlight con icono abajo-derecha.
- */
 export interface DotsSquirclePhotoTagProps {
-  src?: string;
-  alt?: string;
-  /** Lado de la imagen en px (lienzo = size + 10). Default 100. */
-  size?: number;
-  /** Radio. Default 24 (DotsBorderRadius.r24). */
-  borderRadius?: number | string;
-  /** Color del borde. Default `var(--label-always-white)`. */
-  borderColor?: string;
-  /** Grosor del borde. Default 2. */
-  borderSize?: number;
-  /** Icono del tag. Default 'ic-calendar--check' (DotsIconData.calendarCheck). */
-  icon?: string;
-  /** Tamaño del icono. Default 24. */
-  iconSize?: number;
-  /** Color del icono. Default `var(--label-always-white)`. */
-  iconColor?: string;
-  /** Diámetro del círculo tag. Default 40. */
-  tagCircleSize?: number;
-  onClick?: () => void;
-  onError?: (event: unknown) => void;
-  className?: string;
+    /** Image URL. Without `src` (or when it fails to load) a gradient placeholder is painted. */
+    src?: string;
+    /** Alt text; also seeds the gradient placeholder. */
+    alt?: string;
+    /** Image side in px (canvas = size + 10). Default 100. */
+    size?: number;
+    /** Radius. Default 24 (DotsBorderRadius.r24). */
+    borderRadius?: number | string;
+    /** Border color. Default `var(--label-always-white)`. */
+    borderColor?: string;
+    /** Border width. Default 2. */
+    borderSize?: number;
+    /** Tag icon. Default 'ic-calendar--check' (DotsIconData.calendarCheck). */
+    icon?: string;
+    /** Icon size. Default 24. */
+    iconSize?: number;
+    /** Icon color. Default `var(--label-always-white)`. */
+    iconColor?: string;
+    /** Tag circle diameter. Default 40. */
+    tagCircleSize?: number;
+    /** Tap callback (Dart onTap). */
+    onClick?: () => void;
+    /** Image load error callback (Dart onError). */
+    onError?: (event: SyntheticEvent<HTMLImageElement>) => void;
+    className?: string;
 }
-
-export declare const DotsSquirclePhoto: React.ComponentType<DotsSquirclePhotoProps> & {
-  Tag: React.ComponentType<DotsSquirclePhotoTagProps>;
-};
+export declare function DotsSquirclePhoto(props: DotsSquirclePhotoProps): import("react").JSX.Element;
+export declare namespace DotsSquirclePhoto {
+    var Tag: typeof DotsSquirclePhotoTag;
+}
+/** Mirror of the Dart DotsSquircleImageTag — (size+10)² canvas, bordered image + 40px tag circle bottom-right */
+export declare function DotsSquirclePhotoTag(props: DotsSquirclePhotoTagProps): import("react").JSX.Element;

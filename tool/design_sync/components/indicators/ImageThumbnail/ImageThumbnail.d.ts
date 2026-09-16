@@ -1,29 +1,27 @@
 import * as React from 'react';
 
-/**
- * ImageThumbnail — port web de DotsImageThumbnail (Flutter). Miniatura cuadrada
- * r12 que muestra una imagen (cover) o un icono centrado sobre fondo secundario.
- */
+import type { ReactEventHandler } from 'react';
+/** Dart enum DotsImageThumbnailVariant */
+export type ImageThumbnailVariant = 'image' | 'icon';
 export interface ImageThumbnailProps {
-  /** Variante — enum Dart DotsImageThumbnailVariant. Default: 'image' */
-  variant?: 'image' | 'icon';
-  /** URL de la imagen (variant image) — equivale al `image` (ImageProvider) Dart */
-  src?: string;
-  /** Texto alternativo de la imagen */
-  alt?: string;
-  /** Lado en px — Dart `size`. Default: 40 */
-  size?: number;
-  /** Nombre de DotsIcon (variant icon) — Dart `iconData`. Default: 'ic-user' */
-  icon?: string;
-  /** Tamaño del icono — Dart `iconSize`. Default: 20 */
-  iconSize?: number;
-  /** Color CSS del icono — Dart `iconColor`. Default: text-secondary */
-  iconColor?: string;
-  /** Overlay negro 30 % sobre la imagen — Dart `coverImage`. Default: false */
-  coverImage?: boolean;
-  /** Error de carga de la imagen — Dart `onError` */
-  onError?: React.ReactEventHandler<HTMLImageElement>;
-  className?: string;
+    /** Variant — Dart enum DotsImageThumbnailVariant. Default: 'image' */
+    variant?: ImageThumbnailVariant;
+    /** Image URL (variant image) — the Dart `image` (ImageProvider) */
+    src?: string;
+    /** Image alt text */
+    alt?: string;
+    /** Side in px — Dart `size`. Default: 40 */
+    size?: number;
+    /** DotsIcon name (variant icon) — Dart `iconData`. Default: 'ic-user' */
+    icon?: string;
+    /** Icon size — Dart `iconSize`. Default: 20 */
+    iconSize?: number;
+    /** CSS color of the icon — Dart `iconColor`. Default: text-secondary */
+    iconColor?: string;
+    /** Black 30% overlay over the image — Dart `coverImage`. Default: false */
+    coverImage?: boolean;
+    /** Image load error — Dart `onError` */
+    onError?: ReactEventHandler<HTMLImageElement>;
+    className?: string;
 }
-
-export declare const ImageThumbnail: React.ComponentType<ImageThumbnailProps>;
+export declare function ImageThumbnail(props: ImageThumbnailProps): import("react").JSX.Element;

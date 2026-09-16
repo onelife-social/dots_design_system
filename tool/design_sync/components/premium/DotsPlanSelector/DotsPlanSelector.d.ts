@@ -1,24 +1,20 @@
 import * as React from 'react';
 
-/**
- * DotsPlanSelector — port web de DotsPlanSelector (Flutter). Tarjeta selectora de
- * plan (Básico / Premium / Premium+) que al seleccionarse muestra el fondo webp
- * de marca del plan (bg_basic / bg_premium / bg_premium_plus).
- */
+/** Dart enum DotsPlanSelectorVariant */
+export type DotsPlanSelectorVariant = 'basic' | 'premium' | 'premiumPlus';
 export interface DotsPlanSelectorProps {
-  /** Título del plan (bodyDefaultBold) */
-  title: string;
-  /** Descripción opcional bajo el título (labelSmallRegular) */
-  description?: string;
-  /** Variante visual — enum Dart DotsPlanSelectorVariant */
-  variant: 'basic' | 'premium' | 'premiumPlus';
-  /** Si está seleccionado (con enabled, pinta el fondo webp del plan) */
-  selected: boolean;
-  /** Dart `enabled`. Default: true. Deshabilitado: texto textQuarternary y sin fondo */
-  enabled?: boolean;
-  /** Dart `onTap` */
-  onClick?: () => void;
-  className?: string;
+    /** Plan title (bodyDefaultBold) */
+    title: string;
+    /** Optional description under the title (labelSmallRegular) */
+    description?: string;
+    /** Visual variant — Dart enum DotsPlanSelectorVariant (required, as in Dart) */
+    variant: DotsPlanSelectorVariant;
+    /** Selected (with enabled, paints the plan's webp background) */
+    selected: boolean;
+    /** Dart `enabled` (default true). Disabled: textQuarternary text and no background */
+    enabled?: boolean;
+    /** Dart `onTap` */
+    onClick?: () => void;
+    className?: string;
 }
-
-export declare const DotsPlanSelector: React.ComponentType<DotsPlanSelectorProps>;
+export declare function DotsPlanSelector(props: DotsPlanSelectorProps): import("react").JSX.Element;

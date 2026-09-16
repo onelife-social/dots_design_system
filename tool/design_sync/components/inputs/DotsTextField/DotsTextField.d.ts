@@ -22,6 +22,11 @@ export interface DotsTextFieldProps {
     onFocusLost?: (text: string) => void;
     /** Max length. Dart: maxTextLength */
     maxTextLength?: number;
+    /**
+     * Input filter applied to every change and to the displayed value (typed or pasted text) —
+     * web counterpart of Dart `inputFormatters`, e.g. digits only for the phone field.
+     */
+    inputFilter?: (text: string) => string;
     /** Error state. Dart: isError (default false) */
     isError?: boolean;
     /** Error text under the field (only with background). Dart: errorText */

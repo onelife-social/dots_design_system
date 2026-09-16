@@ -1,39 +1,39 @@
 import * as React from 'react';
 
+import { type SyntheticEvent } from 'react';
 /**
- * NotificationBannerImage — port web de NotificationBannerImage (Flutter).
- * Banner r24 con imagen superior, título (titleH6), descripción opcional con
- * apéndice destacado, botón de acción (main/secondary) y botón de cierre.
- * El banner del home (HomeRecapsBanner) es este componente.
+ * NotificationBannerImage — web port of NotificationBannerImage (Flutter). r24 banner with a
+ * top image, title (titleH6), optional description with highlighted appendix, action button
+ * (main/secondary) and close button. The home banner (HomeRecapsBanner) is this component.
  */
 export interface NotificationBannerImageProps {
-  /** URL de la imagen (imageProvider de Dart). Sin src se muestra un placeholder degradado */
-  src?: string;
-  /** Lado en px de la imagen (cuadrada). Sin él, la imagen ocupa el ancho */
-  imageSize?: number;
-  /** Padding horizontal alrededor de la imagen (por defecto 20) */
-  imagePadding?: number;
-  /** Título — typo.main.titleH6, textPrimary */
-  title: string;
-  /** Descripción — bodyDefaultRegular, textTertiary */
-  description?: string;
-  /** Apéndice de la descripción en labelHighlight (se antepone un espacio) */
-  appendedDescription?: string;
-  /** Texto del botón de acción; sin él no hay botón */
-  actionButtonText?: string;
-  /** Tamaño del DotsMainButton — enum Dart DotsMainButtonSize */
-  actionButtonSize?: 'mainAction' | 'large' | 'medium' | 'small';
-  /** true → variant main; false → variant secondary (por defecto true) */
-  isBtnActive?: boolean;
-  /** onActionTap de Dart — también hace clicable todo el banner */
-  onActionClick?: () => void;
-  /** onClose de Dart */
-  onClose?: () => void;
-  /** Mostrar botón de cierre (por defecto true) */
-  showCloseButton?: boolean;
-  /** Error de carga de la imagen (Dart: errorBuilder → se oculta la imagen) */
-  onError?: (event: unknown) => void;
-  className?: string;
+    /** Image URL (Dart imageProvider). Without src a gradient placeholder is shown */
+    src?: string;
+    /** Image side in px (square). Without it the image fills the width */
+    imageSize?: number;
+    /** Horizontal padding around the image (default 20) */
+    imagePadding?: number;
+    /** Title — typo.main.titleH6, textPrimary */
+    title: string;
+    /** Description — bodyDefaultRegular, textTertiary */
+    description?: string;
+    /** Description appendix in labelHighlight (a space is prepended) */
+    appendedDescription?: string;
+    /** Action button text; without it there is no button */
+    actionButtonText?: string;
+    /** DotsMainButton size — Dart enum DotsMainButtonSize (default 'medium'). Inlined so the
+     *  generated .d.ts stays self-contained. */
+    actionButtonSize?: 'mainAction' | 'large' | 'medium' | 'small';
+    /** true → variant main; false → variant secondary (default true) */
+    isBtnActive?: boolean;
+    /** Dart onActionTap — also makes the whole banner clickable */
+    onActionClick?: () => void;
+    /** Dart onClose */
+    onClose?: () => void;
+    /** Show the close button (default true) */
+    showCloseButton?: boolean;
+    /** Image load error (Dart: errorBuilder → the image is hidden) */
+    onError?: (event: SyntheticEvent<HTMLImageElement>) => void;
+    className?: string;
 }
-
-export declare const NotificationBannerImage: React.ComponentType<NotificationBannerImageProps>;
+export declare function NotificationBannerImage(props: NotificationBannerImageProps): import("react").JSX.Element;
