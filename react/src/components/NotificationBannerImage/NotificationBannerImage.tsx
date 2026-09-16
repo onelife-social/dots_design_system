@@ -2,6 +2,7 @@
 import { useState, type SyntheticEvent } from 'react';
 import { DotsCloseButton } from '../DotsCloseButton/DotsCloseButton';
 import { DotsMainButton, type DotsMainButtonSize } from '../DotsMainButton/DotsMainButton';
+import { pressable } from '../../internal/pressable';
 
 const BTN_SIZES: Record<DotsMainButtonSize, true> = { mainAction: true, large: true, medium: true, small: true };
 
@@ -99,11 +100,13 @@ export function NotificationBannerImage(props: NotificationBannerImageProps) {
     </div>
   ) : null;
 
-  // Dart: with onActionTap != null the whole banner is GestureDetector(onTap: onActionTap)
+  // Dart: with onActionTap != null the whole banner is GestureDetector(onTap: onActionTap) →
+  // complete button semantics (role, tab stop, Enter/Space). The action and close controls above
+  // stop propagation so they never trigger the banner's own handler.
   return (
     <div
       className={`ds-notif-banner-img${clickable ? ' ds-notif-banner-img--clickable' : ''}${props.className ? ` ${props.className}` : ''}`}
-      onClick={clickable ? props.onActionClick : undefined}
+      {...pressable(clickable ? props.onActionClick : undefined)}
     >
       {imageEl ? (
         <div className="ds-notif-banner-img__img-wrap" style={{ paddingLeft: imagePadding, paddingRight: imagePadding }}>
