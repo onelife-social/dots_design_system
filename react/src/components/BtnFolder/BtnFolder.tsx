@@ -1,5 +1,5 @@
 // BtnFolder — port of lib/src/components/buttons/btn_folder/ (Dart = source of truth).
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 
 export interface BtnFolderProps {
@@ -43,6 +43,8 @@ export function BtnFolder(props: BtnFolderProps) {
       timer.current = null;
     }
   }
+  // A pending long-press must not fire after the component is gone.
+  useEffect(() => cancelPress, []);
   function handleClick() {
     if (fired.current) {
       fired.current = false; // the long-press already consumed the gesture
@@ -70,6 +72,7 @@ export function BtnFolder(props: BtnFolderProps) {
       onPointerDown={startPress}
       onPointerUp={cancelPress}
       onPointerLeave={cancelPress}
+      onPointerCancel={cancelPress}
       onContextMenu={(e) => {
         if (props.onLongPress) e.preventDefault();
       }}

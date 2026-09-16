@@ -1597,6 +1597,7 @@ const hooks = () => window.React;
         timer.current = null;
       }
     }
+    (0, import_react12.useEffect)(() => cancelPress, []);
     function handleClick() {
       if (fired.current) {
         fired.current = false;
@@ -1618,6 +1619,7 @@ const hooks = () => window.React;
         onPointerDown: startPress,
         onPointerUp: cancelPress,
         onPointerLeave: cancelPress,
+        onPointerCancel: cancelPress,
         onContextMenu: (e) => {
           if (props.onLongPress) e.preventDefault();
         }
