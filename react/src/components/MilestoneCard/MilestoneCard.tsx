@@ -1,8 +1,9 @@
 // MilestoneCard — port of lib/src/components/milestones/milestone_card.dart
 // (+ milestone_badge_type.dart / milestone_badge_info.dart) (Dart = source of truth).
-import type { MouseEvent } from 'react';
+import type { KeyboardEvent, MouseEvent } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsIconButton } from '../DotsIconButton/DotsIconButton';
+import { activateOnKey, pressable } from '../../internal/pressable';
 
 /** Mirror of the Dart enum MilestoneBadgeType */
 export type MilestoneBadgeType = 'video' | 'description' | 'audio';
@@ -53,14 +54,26 @@ function badgeGroup(types: MilestoneBadgeType[], onClick?: () => void) {
     list.length === 3 ? { left: 4, bottom: 42, size: 28, iconSize: 16 } : { left: 31, bottom: 31, size: 28, iconSize: 16 },
     { left: 35, bottom: 26, size: 28, iconSize: 16 },
   ];
+  // Own control nested in the card: click/keys stop here so the card's onClick does not fire too
+  const activate = onClick ? activateOnKey(onClick) : undefined;
   return (
     <span
       className="ds-milestone-card__badges"
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
       onClick={
         onClick
           ? (e: MouseEvent) => {
               e.stopPropagation();
               onClick();
+            }
+          : undefined
+      }
+      onKeyDown={
+        activate
+          ? (e: KeyboardEvent<HTMLElement>) => {
+              e.stopPropagation();
+              activate(e);
             }
           : undefined
       }
@@ -93,7 +106,7 @@ export function MilestoneCard(props: MilestoneCardProps) {
     (props.className ? ` ${props.className}` : '');
 
   return (
-    <span className={cls} style={{ width: `${width}px` }} onClick={props.onClick}>
+    <span className={cls} style={{ width: `${width}px` }} {...pressable(props.onClick)}>
       {props.src ? (
         <img className="ds-milestone-card__img" src={props.src} alt={props.title || ''} />
       ) : (
@@ -111,7 +124,11 @@ export function MilestoneCard(props: MilestoneCardProps) {
       {props.showBadge ? <span className="ds-milestone-card__badge1" aria-hidden /> : null}
       {/* _BtnEdit: DotsIconButton pencil (size default large), bgBtnImage; the wrapper keeps the tap off the card */}
       {props.showEdit ? (
-        <span className="ds-milestone-card__edit" onClick={(e) => e.stopPropagation()}>
+        <span
+          className="ds-milestone-card__edit"
+          onClick={(e: MouseEvent<HTMLSpanElement>) => e.stopPropagation()}
+          onKeyDown={(e: KeyboardEvent<HTMLSpanElement>) => e.stopPropagation()}
+        >
           <DotsIconButton icon="ic-pencil" backgroundColor="var(--bg-btn-image)" onClick={props.onClickEdit} />
         </span>
       ) : null}
