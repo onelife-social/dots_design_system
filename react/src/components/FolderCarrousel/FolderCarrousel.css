@@ -1,0 +1,18 @@
+/* FolderCarrousel — carrousels/folder_carrousel.dart · horizontal scroll, pad 0 16 */
+.ds-folder-carrousel {
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 0 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* the SingleChildScrollView shows no bar */
+}
+.ds-folder-carrousel::-webkit-scrollbar {
+  display: none;
+}
+/* Row without gap: the spacing (4px per side) comes from BtnFolder itself */
+.ds-folder-carrousel > * {
+  flex: none;
+}

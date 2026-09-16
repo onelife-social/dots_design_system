@@ -64,3 +64,5 @@ export { DotsInputStepper } from './components/DotsInputStepper/DotsInputStepper
 export type { DotsInputStepperProps } from './components/DotsInputStepper/DotsInputStepper';
 export { BtnFolder } from './components/BtnFolder/BtnFolder';
 export type { BtnFolderProps } from './components/BtnFolder/BtnFolder';
+export { FolderCarrousel } from './components/FolderCarrousel/FolderCarrousel';
+export type { FolderCarrouselProps, FolderCarrouselItem } from './components/FolderCarrousel/FolderCarrousel';
