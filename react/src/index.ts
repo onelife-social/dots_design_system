@@ -64,3 +64,5 @@ export { DotsDivider } from './components/DotsDivider/DotsDivider';
 export type { DotsDividerProps } from './components/DotsDivider/DotsDivider';
 export { DotsAccordion } from './components/DotsAccordion/DotsAccordion';
 export type { DotsAccordionProps, DotsAccordionSection } from './components/DotsAccordion/DotsAccordion';
+export { DotsSlider } from './components/DotsSlider/DotsSlider';
+export type { DotsSliderProps } from './components/DotsSlider/DotsSlider';
