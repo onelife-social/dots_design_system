@@ -54,3 +54,5 @@ export { DotsTextFieldButton } from './components/DotsTextFieldButton/DotsTextFi
 export type { DotsTextFieldButtonProps } from './components/DotsTextFieldButton/DotsTextFieldButton';
 export { BadgeIcon } from './components/BadgeIcon/BadgeIcon';
 export type { BadgeIconProps, BadgeIconSize, BadgeIconStyle } from './components/BadgeIcon/BadgeIcon';
+export { BadgeLabel } from './components/BadgeLabel/BadgeLabel';
+export type { BadgeLabelProps, BadgeLabelSize, BadgeLabelVariant } from './components/BadgeLabel/BadgeLabel';
