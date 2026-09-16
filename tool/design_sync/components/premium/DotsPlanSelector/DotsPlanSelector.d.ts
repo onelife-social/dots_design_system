@@ -7,7 +7,7 @@ export interface DotsPlanSelectorProps {
     title: string;
     /** Optional description under the title (labelSmallRegular) */
     description?: string;
-    /** Visual variant — Dart enum DotsPlanSelectorVariant (default 'basic') */
+    /** Visual variant — Dart enum DotsPlanSelectorVariant (required, as in Dart) */
     variant: DotsPlanSelectorVariant;
     /** Selected (with enabled, paints the plan's webp background) */
     selected: boolean;

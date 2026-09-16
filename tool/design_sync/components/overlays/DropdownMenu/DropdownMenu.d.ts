@@ -44,11 +44,11 @@ export interface DropdownMenuProps {
     defaultActive?: boolean;
     /** The button shrinks to its content — Dart `minSize` (default true) */
     minSize?: boolean;
-    /** Max width of the dropped menu — Dart `menuMaxWidth` */
+    /** Max width of the dropped menu; the menu never exceeds the button width — Dart `menuMaxWidth` */
     menuMaxWidth?: number;
     /** Max height of the dropped menu — Dart `menuMaxHeight` */
     menuMaxHeight?: number;
-    /** Notifies the next open/closed state after a button tap */
+    /** Notifies the next open/closed state: after a button tap, and `false` on outside pointer / Escape */
     onToggle?: (active: boolean) => void;
     /** Tap on the button — Dart `DropdownList.onTap` */
     onClick?: () => void;
