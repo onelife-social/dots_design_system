@@ -54,3 +54,5 @@ export { DotsTextFieldButton } from './components/DotsTextFieldButton/DotsTextFi
 export type { DotsTextFieldButtonProps } from './components/DotsTextFieldButton/DotsTextFieldButton';
 export { DotsSelector } from './components/DotsSelector/DotsSelector';
 export type { DotsSelectorProps, DotsSelectorSize, DotsSelectorVariant } from './components/DotsSelector/DotsSelector';
+export { DotsSystemButton } from './components/DotsSystemButton/DotsSystemButton';
+export type { DotsSystemButtonProps, DotsSystemButtonSize, DotsSystemButtonVariant } from './components/DotsSystemButton/DotsSystemButton';
