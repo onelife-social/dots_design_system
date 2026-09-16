@@ -18,8 +18,8 @@ export interface DotsSystemButtonProps {
      * button stays enabled, exposes no `disabled`/`aria-disabled`, and still emits onClick.
      */
     variant?: DotsSystemButtonVariant;
-    /** Tap callback — Dart `onTap`. Receives the native click event (a `() => void` is also accepted) */
-    onClick?: (e?: MouseEvent<HTMLButtonElement>) => void;
+    /** Tap callback — Dart `onTap`. Receives the native click event (a `() => void` is also assignable) */
+    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
     /** Full width (the Flutter Row mainAxisSize.max filling the parent) */
     expand?: boolean;
     /** Extra CSS class */
