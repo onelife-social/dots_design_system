@@ -28,7 +28,10 @@ export function DotsInputStepper(props: DotsInputStepperProps) {
   const max = props.maxValue ?? 99; // Dart: required (web default: 99)
   const controlled = props.value !== undefined && props.value !== null;
   const [internal, setInternal] = useState(props.defaultValue ?? min);
-  const value = controlled ? (props.value as number) : internal;
+  // Web guard: a value outside [min, max] is shown clamped and steps from the edge (the Dart widget
+  // only disables the buttons at the edges and trusts the caller).
+  const clamp = (v: number) => Math.min(max, Math.max(min, v));
+  const value = clamp(controlled ? (props.value as number) : internal);
   const canDecrement = value > min;
   const canIncrement = value < max;
 
