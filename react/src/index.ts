@@ -54,3 +54,11 @@ export { DotsTextFieldButton } from './components/DotsTextFieldButton/DotsTextFi
 export type { DotsTextFieldButtonProps } from './components/DotsTextFieldButton/DotsTextFieldButton';
 export { UserItem, UserInfo } from './components/UserItem/UserItem';
 export type { UserItemProps, UserInfoProps, UserInfoSize } from './components/UserItem/UserItem';
+export { UsersList, UsersListItem } from './components/UsersList/UsersList';
+export type {
+  UsersListProps,
+  UsersListItemProps,
+  UsersListItemVariant,
+  UsersListMember,
+  UsersListMemberType,
+} from './components/UsersList/UsersList';
