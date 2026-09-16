@@ -54,3 +54,5 @@ export { DotsTextFieldButton } from './components/DotsTextFieldButton/DotsTextFi
 export type { DotsTextFieldButtonProps } from './components/DotsTextFieldButton/DotsTextFieldButton';
 export { DotsEmptyStateCard } from './components/DotsEmptyStateCard/DotsEmptyStateCard';
 export type { DotsEmptyStateCardProps, DotsEmptyStateCardVariant } from './components/DotsEmptyStateCard/DotsEmptyStateCard';
+export { DotsFilterChip } from './components/DotsFilterChip/DotsFilterChip';
+export type { DotsFilterChipProps } from './components/DotsFilterChip/DotsFilterChip';

@@ -1,5 +1,5 @@
-/* DotsFilterChip — dots_filter_chip.dart. Radio r22, bg bgContainerSecondary,
-   padding 6 (izq 12), label labelDefaultBold textSecondary, gap 8 al close. */
+/* DotsFilterChip — dots_filter_chip.dart. Radius r22, bg bgContainerSecondary,
+   padding 6 (left 12), label labelDefaultBold textSecondary, gap 8 to the close button. */
 .ds-filter-chip {
   display: inline-flex; align-items: center;
   box-sizing: border-box; border: 0; margin: 0;
@@ -8,6 +8,7 @@
   padding: 6px 6px 6px 12px;
   font-family: var(--font-main);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 /* typo.main.labelDefaultBold (Inter 13/600, h1.31, ls -0.01) textSecondary */
 .ds-filter-chip__label {
@@ -15,10 +16,8 @@
   color: var(--text-secondary);
   white-space: nowrap;
 }
-/* DotsCloseButton extraSmall highContrast: 16px, bg bgSecondaryBtn, fg textTertiary */
+/* Slot of the DotsCloseButton extraSmall highContrast (16px, bgSecondaryBtn / textTertiary) */
 .ds-filter-chip__close {
-  display: inline-flex; align-items: center; justify-content: center; flex: none;
-  width: 16px; height: 16px; margin-left: 8px; border-radius: 50%;
-  background: var(--bg-secondary-btn);
-  color: var(--text-tertiary);
+  display: inline-flex; flex: none;
+  margin-left: 8px;
 }
