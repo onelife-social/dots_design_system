@@ -64,7 +64,8 @@ export function DotsUploadItem(props: DotsUploadItemProps) {
         {isProcessing ? (
           <span className="ds-upload-item__progress">
             <span className="ds-upload-item__progress-bar">
-              <DotsProgressBar percentage={percentage ?? 1} parts={1} />
+              {/* No percentage yet → empty bar (0), matching the empty percentage label */}
+              <DotsProgressBar percentage={percentage ?? 0} parts={1} />
             </span>
             <span className="ds-upload-item__progress-pct">{percentage != null ? `${Math.round(percentage * 100)}%` : ''}</span>
           </span>
