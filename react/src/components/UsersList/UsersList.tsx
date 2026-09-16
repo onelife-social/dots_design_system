@@ -1,12 +1,10 @@
 // UsersList — port of lib/src/components/users_list/users_list.dart
 // (+ users_item_list.dart → UsersList.Item with `variant` = UserItemListVariant).
 // Dart = source of truth.
-import type { SyntheticEvent } from 'react';
 import { DotsCloseButton } from '../DotsCloseButton/DotsCloseButton';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsMainButton, type DotsMainButtonVariant } from '../DotsMainButton/DotsMainButton';
 import { UserInfo, type UserInfoSize } from '../UserItem/UserItem';
-import { pressable } from '../../internal/pressable';
 
 /** Dart enum UserItemListVariant */
 export type UsersListItemVariant =
@@ -108,7 +106,7 @@ export interface UsersListItemProps {
   autofocusOnEmpty?: boolean;
   /** (pending/join) Trailing icon size */
   iconSize?: number;
-  /** Row tap / close button; receives the id */
+  /** Row tap (a native button named by `name`, or `label` for the button rows) / close button; receives the id */
   onClick?: (id: string) => void;
   /** (pendingMember) Button 1 (main) label */
   buttonLabel1?: string;
@@ -123,11 +121,6 @@ export interface UsersListItemProps {
 
 function mainButton(label: string | undefined, variant: DotsMainButtonVariant, onClick: () => void) {
   return <DotsMainButton label={label || ''} variant={variant} size="small" expand={false} onClick={onClick} />;
-}
-
-// Inner native buttons keep their click/keys to themselves so the row action never fires twice
-function stop(e: SyntheticEvent) {
-  e.stopPropagation();
 }
 
 // UsersItemList — one row (leading + trailing per variant)
@@ -168,11 +161,7 @@ export function UsersListItem(props: UsersListItemProps) {
   // _TrailingWidget
   let trailing = null;
   if (variant === 'main' || variant === 'textfield') {
-    trailing = (
-      <span style={{ display: 'contents' }} onClick={stop} onKeyDown={stop}>
-        <DotsCloseButton size="extraSmall" onClick={tap} />
-      </span>
-    );
+    trailing = <DotsCloseButton size="extraSmall" onClick={tap} />;
   } else if (variant === 'pending' || variant === 'join') {
     trailing = (
       <span className="ds-users-item__trail-icon">
@@ -187,20 +176,22 @@ export function UsersListItem(props: UsersListItemProps) {
     trailing = <span className="ds-users-item__role">{props.label || ''}</span>;
   } else if (variant === 'pendingMember') {
     trailing = (
-      <span className="ds-users-item__btns" onClick={stop} onKeyDown={stop}>
+      <span className="ds-users-item__btns">
         {mainButton(props.buttonLabel1, 'main', () => props.onButton1Click?.(tapValue))}
         {mainButton(props.buttonLabel2, 'secondary', () => props.onButton2Click?.(tapValue))}
       </span>
     );
   }
 
+  // The rows that hold native controls (close button / button pair) are never tappable as a whole
   const clickableRow = variant !== 'textfield' && variant !== 'main' && variant !== 'pendingMember';
   const rowClickable = clickableRow && !!props.onClick;
   return (
-    <div
-      className={`ds-users-item ds-users-item--${variant}${props.className ? ` ${props.className}` : ''}`}
-      {...pressable(rowClickable ? tap : undefined)}
-    >
+    <div className={`ds-users-item ds-users-item--${variant}${props.className ? ` ${props.className}` : ''}`}>
+      {/* Row tap: a transparent native button that covers the row, rendered as the first child and a
+          sibling of the row content — not as a role=button row, which would make any nested control
+          presentational. */}
+      {rowClickable ? <button type="button" className="ds-users-list__hit" aria-label={props.name || props.label} onClick={tap} /> : null}
       {main}
       {trailing}
     </div>
