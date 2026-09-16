@@ -17,7 +17,7 @@
   border-radius: var(--squircle-12);
   cursor: pointer;
 }
-.ds-menu__item--details { padding-bottom: 10px; } /* Dart: +2 bottom si hay details */
+.ds-menu__item--details { padding-bottom: 10px; } /* Dart: +2 bottom when there are details */
 .ds-menu__item:active { background: var(--bg-container-secondary); }
 .ds-menu__item-left, .ds-menu__item-right { flex: none; }
 .ds-menu__item-body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
@@ -30,12 +30,12 @@
 .ds-menu__divider { height: 0.5px; background: var(--label-secondary); margin: 2px 8px 6px; }
 .ds-menu__divider--item { margin: 2px 8px 6px; }
 .ds-menu__spacer { height: 8px; }
-/* > 7 subitems → maxHeight 336 con scroll (Dart _MenuContainerScrollable) */
+/* > 7 subitems → maxHeight 336 with scroll (Dart _MenuContainerScrollable) */
 .ds-menu__list--scroll { max-height: 336px; overflow-y: auto; }
 
 /* ===== DotsMenu.SettingsList ===== */
 .ds-menu-settings { font-family: var(--font-main); }
-/* título — labelDefaultMedium uppercase, textTertiary */
+/* title — labelDefaultMedium uppercase, textTertiary */
 .ds-menu-settings__title { font-size: 13px; font-weight: 500; letter-spacing: -0.01px; line-height: 1.31; text-transform: uppercase; color: var(--text-tertiary); }
 .ds-menu-settings__list { border-radius: var(--squircle-24); background: var(--bg-container-secondary-on-bg); overflow: hidden; }
 .ds-menu-settings__item { display: flex; align-items: center; gap: 8px; padding: 12px 16px; cursor: pointer; }
@@ -45,22 +45,7 @@
 .ds-menu-settings__label { flex: 1; min-width: 0; font-size: 14px; font-weight: 500; letter-spacing: -0.02px; line-height: 1.29; color: var(--text-primary); }
 /* divider — 0.5 labelSecondary, indent 44 / endIndent 16 */
 .ds-menu-settings__divider { height: 0.5px; background: var(--label-secondary); margin: 0 16px 0 44px; }
-/* descripción — labelDefaultRegular textTertiary */
+/* description — labelDefaultRegular textTertiary */
 .ds-menu-settings__desc { font-size: 13px; font-weight: 400; letter-spacing: -0.01px; line-height: 1.31; color: var(--text-tertiary); }
-
-/* DotsToggle embebido — 44.42×27, knob 23.5 blanco; on labelHighlight,
-   off fillSecondary (sin token: #78788029 / dark #78788052) */
-.ds-menu-settings__toggle {
-  width: 44.42px; height: 27px; border-radius: 13.5px; padding: 1.74px;
-  box-sizing: border-box; display: flex; flex: none; cursor: pointer;
-  background: #78788029;
-}
-[data-theme="dark"] .ds-menu-settings__toggle { background: #78788052; }
-.ds-menu-settings__toggle.is-on,
-[data-theme="dark"] .ds-menu-settings__toggle.is-on { background: var(--label-highlight); }
-.ds-menu-settings__knob {
-  width: 23.5px; height: 23.5px; border-radius: 50%;
-  background: #FFFFFF; /* knob siempre blanco (Dart) */
-  box-shadow: 0 2.61px 6.97px #00000026, 0 2.61px 0.87px #0000000F;
-}
-.ds-menu-settings__toggle.is-on .ds-menu-settings__knob { margin-left: auto; }
+/* Slot of the embedded DotsToggle (44.42×27) */
+.ds-menu-settings__toggle { display: inline-flex; flex: none; }

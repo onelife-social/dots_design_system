@@ -22,14 +22,13 @@
 .ds-dropdown__btn-subtitle { color: var(--text-tertiary); }
 .ds-dropdown__chevron { margin-left: 4px; flex: none; }
 .ds-dropdown__btn--medium .ds-dropdown__chevron { margin-left: 8px; }
-/* isActive — bgFloatingActive (sin token en tokens.css: #00000026 / dark #C8C8C81A) */
-.ds-dropdown__btn--active { background: #00000026; }
-[data-theme="dark"] .ds-dropdown__btn--active { background: #C8C8C81A; }
-/* onBackgroundVariant — bgChip (sin token: #30303099) + labelAlwaysWhite */
+/* isActive — bgFloatingActive */
+.ds-dropdown__btn--active { background: var(--bg-floating-active); }
+/* onBackgroundVariant — bgChip (no token in tokens.css: #30303099, dots_colors.dart) + labelAlwaysWhite */
 .ds-dropdown__btn--on-bg { background: #30303099; color: var(--label-always-white); }
 .ds-dropdown__btn--on-bg .ds-dropdown__btn-subtitle { color: var(--label-always-white); }
 
-/* DropdownMenu — w250 por defecto, r24, bgBaseContrast, padding 8 */
+/* DropdownMenu — w250 by default, r24, bgBaseContrast, padding 8 */
 .ds-dropdown__menu {
   border-radius: var(--squircle-24);
   padding: 8px;
@@ -39,7 +38,7 @@
 }
 .ds-dropdown__overlay { position: absolute; top: calc(100% + 8px); left: 0; z-index: 30; box-shadow: var(--shadow-default); border-radius: var(--squircle-24); }
 
-/* DropdownItem — padding 8, r12, margen vertical 4, bodyDefaultMedium 14/500;
+/* DropdownItem — padding 8, r12, vertical margin 4, bodyDefaultMedium 14/500;
    pressed → bgContainerSecondary */
 .ds-dropdown__item {
   display: flex;

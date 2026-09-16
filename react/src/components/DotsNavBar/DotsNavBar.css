@@ -4,16 +4,16 @@
   display: inline-flex;
   box-sizing: border-box;
   padding: 5px;
-  border-radius: 36px; /* DotsBorderRadius.r36 — sin token --squircle-36 */
+  border-radius: 36px; /* DotsBorderRadius.r36 — no --squircle-36 token */
   border: 0.7px solid var(--border-button);
-  /* bgContainerSecondary.dotsWithOpacity(0.7) — el token ya lleva alpha ≈ 0.7 */
+  /* bgContainerSecondary.dotsWithOpacity(0.7) — the token already carries alpha ≈ 0.7 */
   background: var(--bg-container-secondary);
   backdrop-filter: blur(var(--blur-10));
   -webkit-backdrop-filter: blur(var(--blur-10));
   font-family: var(--font-main);
 }
 
-/* Píldora del ítem seleccionado — 70×55, r32, bgFloatingActive, 200ms ease */
+/* Selected item pill — 70×55, r32, bgFloatingActive, 200ms ease */
 .ds-nav-bar__pill {
   position: absolute;
   top: 5px;
@@ -25,7 +25,7 @@
   transition: left 0.2s ease;
 }
 
-/* Item — 70×55, icono 20 + label, color textSecondary → labelHighlight */
+/* Item — 70×55, icon 20 + label, color textSecondary → labelHighlight */
 .ds-nav-bar__item {
   position: relative;
   z-index: 1;
@@ -63,13 +63,6 @@
   display: inline-flex;
   width: 20px;
   height: 20px;
-}
-.ds-nav-bar__icon-fallback {
-  width: 20px;
-  height: 20px;
-  border-radius: 6px;
-  background: currentColor;
-  opacity: 0.35;
 }
 
 /* BadgeTag pendingNumber — min 18×18, r22, labelDestructive, labelSmallMedium 11/600 */

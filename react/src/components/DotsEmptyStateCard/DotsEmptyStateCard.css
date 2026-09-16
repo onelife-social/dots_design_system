@@ -1,9 +1,9 @@
-/* DotsEmptyStateCard — empty_state/empty_state_card.dart. Columna centrada,
-   padding horizontal 20 (getByRatio(20,12) → phone). Título title02H5
-   (P22 Mackinac 20/500), descripción bodyDefaultRegular textQuarternary. */
+/* DotsEmptyStateCard — empty_state/empty_state_card.dart. Centered column,
+   horizontal padding 20 (getByRatio(20,12) → phone). Title title02H5
+   (P22 Mackinac 20/500), description bodyDefaultRegular textQuarternary. */
 .ds-empty-card {
   box-sizing: border-box;
-  width: 100%; /* Dart: 82% del ancho de pantalla — en web dimensiona el padre */
+  width: 100%; /* Dart: 82% of the screen width — on web the parent sizes it */
   padding: 0 20px;
   display: flex; flex-direction: column; align-items: center;
   text-align: center;
@@ -21,7 +21,7 @@
 .ds-empty-card__desc {
   font: 400 14px/1.29 var(--font-main); letter-spacing: -0.02px;
   color: var(--text-quarternary);
-  margin: 8px 0 0; /* gap 8 título→descripción */
+  margin: 8px 0 0; /* gap 8 title→description */
 }
-/* Gap 16 descripción→botón (getByRatio(16,10) → phone) */
+/* Gap 16 description→button (getByRatio(16,10) → phone) */
 .ds-empty-card__button { margin-top: 16px; }

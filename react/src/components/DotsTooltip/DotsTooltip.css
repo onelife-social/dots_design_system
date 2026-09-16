@@ -1,5 +1,5 @@
-/* DotsTooltip — tooltip/dots_tooltip.dart. bgBaseContrast + borde 1 bgContainerSecondary
-   + defaultShadow; cola TrianglePainter 21×13; esquina 14 en el lado de la cola. */
+/* DotsTooltip — tooltip/dots_tooltip.dart. bgBaseContrast + border 1 bgContainerSecondary
+   + defaultShadow; tail TrianglePainter 21×13; corner 14 on the tail side. */
 .ds-tooltip {
   position: relative;
   display: flex;
@@ -16,7 +16,7 @@
   box-shadow: var(--shadow-default);
   font-family: var(--font-main);
 }
-/* Esquina 14 en el lado de la cola (tailPosition *Edge) */
+/* Corner 14 on the tail side (tailPosition *Edge) */
 .ds-tooltip--corner-tl { border-top-left-radius: 14px; }
 .ds-tooltip--corner-tr { border-top-right-radius: 14px; }
 .ds-tooltip--corner-bl { border-bottom-left-radius: 14px; }
@@ -32,13 +32,8 @@
   color: var(--text-primary);
 }
 
-.ds-tooltip__close { position: absolute; top: 16px; right: 16px; }
-.ds-tooltip__close-fallback {
-  width: 24px; height: 24px; border-radius: 50%; border: none; cursor: pointer;
-  background: var(--bg-btn-disabled); color: var(--label-primary);
-  display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1;
-}
+.ds-tooltip__close { position: absolute; top: 16px; right: 16px; display: inline-flex; }
 
-/* Cola — 21×13, fill bgBaseContrast, stroke 2 bgContainerSecondary */
+/* Tail — 21×13, fill bgBaseContrast, stroke 2 bgContainerSecondary */
 .ds-tooltip__tail { position: absolute; width: 21px; height: 13px; }
 .ds-tooltip__tail path { fill: var(--bg-base-contrast); stroke: var(--bg-container-secondary); }
