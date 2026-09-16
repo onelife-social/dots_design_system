@@ -1,10 +1,9 @@
 // ProductCard — port of lib/src/components/cards/product_card/product_card.dart (Dart = source of truth).
-import type { KeyboardEvent, MouseEvent, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
-import { pressable } from '../../internal/pressable';
 
 export interface ProductCardProps {
-  /** Main line, always visible */
+  /** Main line, always visible. Also the accessible name of the card action (`onClick`) */
   title: string;
   /** Background image (URL). Without it a gradient placeholder is painted */
   imageSrc?: string;
@@ -49,11 +48,13 @@ export function ProductCard(props: ProductCardProps) {
   const onActionClick = props.onActionClick;
 
   return (
-    <div
-      className={`ds-product-card${props.className ? ` ${props.className}` : ''}`}
-      style={{ aspectRatio: String(ratio) }}
-      {...pressable(props.onClick)}
-    >
+    <div className={`ds-product-card${props.className ? ` ${props.className}` : ''}`} style={{ aspectRatio: String(ratio) }}>
+      {/* Card action (Dart onTap): a transparent native button that covers the card, rendered as a
+          sibling of the action button — not as a role=button ancestor, which would make the action
+          button presentational. The action button sits above it (z-index) and gets its own clicks. */}
+      {props.onClick ? (
+        <button type="button" className="ds-product-card__hit" aria-label={props.title} onClick={props.onClick} />
+      ) : null}
       <div
         className={`ds-product-card__bg${props.imageSrc ? '' : ' ds-product-card__bg--ph'}`}
         style={props.imageSrc ? { backgroundImage: `url("${props.imageSrc}")` } : undefined}
@@ -77,17 +78,7 @@ export function ProductCard(props: ProductCardProps) {
           ) : null}
         </div>
         {onActionClick ? (
-          // Native button: its own click/keys must not bubble into the card's pressable handlers
-          <button
-            type="button"
-            className="ds-product-card__action"
-            aria-label={props.actionLabel ?? 'Open'}
-            onClick={(e: MouseEvent<HTMLButtonElement>) => {
-              e.stopPropagation();
-              onActionClick();
-            }}
-            onKeyDown={(e: KeyboardEvent<HTMLButtonElement>) => e.stopPropagation()}
-          >
+          <button type="button" className="ds-product-card__action" aria-label={props.actionLabel ?? 'Open'} onClick={onActionClick}>
             <DotsIcon name={props.actionIcon || 'ic-arrow-right'} size={20} color="currentColor" />
           </button>
         ) : null}
