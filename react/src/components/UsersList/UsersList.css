@@ -23,8 +23,8 @@
   min-width: 0;
 }
 /* Row tap (onClick): transparent native button covering the row — first child, sibling of the row
-   content (a role=button row would make any nested control presentational). The rows that hold
-   native controls (main/textfield/pendingMember) never get it. */
+   content (a role=button row would make any nested control presentational). textfield and
+   pendingMember rows never get it; main keeps it under its close button (raised below). */
 .ds-users-list__hit {
   position: absolute;
   inset: 0;
@@ -43,6 +43,11 @@
 .ds-users-list__hit:focus-visible {
   outline: 2px solid var(--label-highlight);
   outline-offset: -2px;
+}
+/* main: the close button stacks above the row hit so both stay independently clickable */
+.ds-users-item--main > .ds-close-btn {
+  position: relative;
+  z-index: 2;
 }
 
 /* textfield — h30, bodyDefaultMedium, hint textQuarternary, caret labelHighlight */
