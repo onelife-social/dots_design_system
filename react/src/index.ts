@@ -72,3 +72,5 @@ export { DropdownMenu, DropdownMenuItem } from './components/DropdownMenu/Dropdo
 export type { DropdownMenuProps, DropdownMenuItemProps, DropdownMenuSize, DropdownMenuVariant } from './components/DropdownMenu/DropdownMenu';
 export { DotsListItem } from './components/DotsListItem/DotsListItem';
 export type { DotsListItemProps, DotsListItemVariant, DotsListItemPicType } from './components/DotsListItem/DotsListItem';
+export { DotsHomeTopBar } from './components/DotsHomeTopBar/DotsHomeTopBar';
+export type { DotsHomeTopBarProps, DotsHomeTopBarVariant } from './components/DotsHomeTopBar/DotsHomeTopBar';
