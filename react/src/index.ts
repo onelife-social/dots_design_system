@@ -60,3 +60,5 @@ export { BadgeMilestone } from './components/BadgeMilestone/BadgeMilestone';
 export type { BadgeMilestoneProps, BadgeMilestoneVariant } from './components/BadgeMilestone/BadgeMilestone';
 export { BadgeProgress } from './components/BadgeProgress/BadgeProgress';
 export type { BadgeProgressProps } from './components/BadgeProgress/BadgeProgress';
+export { BadgeTag } from './components/BadgeTag/BadgeTag';
+export type { BadgeTagProps } from './components/BadgeTag/BadgeTag';
