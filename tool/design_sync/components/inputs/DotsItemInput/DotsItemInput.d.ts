@@ -1,20 +1,16 @@
 import * as React from 'react';
 
-/**
- * DotsItemInput — port web de DotsItemInput (Flutter). Fila de formulario de 42px
- * (icono + label + caja de valor de 120px) apilable en grupo con radios por posición.
- */
+export type DotsItemInputPosition = 'onlyOne' | 'first' | 'middle' | 'last';
 export interface DotsItemInputProps {
-  /** Texto de la fila. Dart: label */
-  label?: string;
-  /** Valor mostrado en la caja derecha (120×r7). Dart: value */
-  value?: string;
-  /** Nombre real del icono Dots. Dart: icon (default DotsIconData.calendar → 'ic-calendar') */
-  icon?: string;
-  /** Posición en el grupo — enum Dart DotsItemInputPosition (default onlyOne) */
-  position?: 'onlyOne' | 'first' | 'middle' | 'last';
-  /** Pulsación en la fila. Dart: onTap */
-  onClick?: () => void;
+    /** Row text. Dart: label */
+    label?: string;
+    /** Value shown in the right box (120×r7). Dart: value */
+    value?: string;
+    /** Real Dots icon name. Dart: icon (default DotsIconData.calendar → 'ic-calendar') */
+    icon?: string;
+    /** Position in the group — Dart enum DotsItemInputPosition (default onlyOne) */
+    position?: DotsItemInputPosition;
+    /** Row tap. Dart: onTap */
+    onClick?: () => void;
 }
-
-export declare const DotsItemInput: React.ComponentType<DotsItemInputProps>;
+export declare function DotsItemInput(props: DotsItemInputProps): import("react").JSX.Element;

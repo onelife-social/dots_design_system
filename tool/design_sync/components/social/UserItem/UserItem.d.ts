@@ -1,43 +1,50 @@
 import * as React from 'react';
 
+import { type SyntheticEvent } from 'react';
+/** Dart enum UserInfoSize (avatar 26 / 40) */
+export type UserInfoSize = 'small' | 'large';
 /**
- * UserItem.Info — port web de UserInfo (Flutter). Avatar circular (imagen, alias
- * o placeholder degradado con iniciales) + nombre y detalles opcionales.
+ * UserItem.Info — web port of UserInfo (Flutter). Circular avatar (image, alias or
+ * gradient placeholder with initials) + name and optional details.
  */
 export interface UserInfoProps {
-  /** Nombre del usuario (UserInfoData.name). */
-  name: string;
-  /** Línea secundaria (UserInfoData.details). */
-  details?: string;
-  /** URL del avatar (UserInfoData.imageProvider). */
-  src?: string;
-  /** Texto del círculo de alias (UserInfoData.aliasLabelImageText). */
-  alias?: string;
-  /** Tamaño — enum Dart UserInfoSize (avatar 26 / 40). Default 'small'. */
-  size?: 'small' | 'large';
-  /** Callback si el avatar falla al cargar (UserInfoData.imageOnError). */
-  onError?: (event: unknown) => void;
-  className?: string;
+    /** User name (UserInfoData.name) */
+    name: string;
+    /** Secondary line (UserInfoData.details) */
+    details?: string;
+    /** Avatar URL (UserInfoData.imageProvider) */
+    src?: string;
+    /** Alias circle text (UserInfoData.aliasLabelImageText) */
+    alias?: string;
+    /** Dart enum UserInfoSize (avatar 26 / 40). Default 'small' */
+    size?: UserInfoSize;
+    /** Avatar load error callback (UserInfoData.imageOnError) */
+    onError?: (event: SyntheticEvent<HTMLImageElement>) => void;
+    className?: string;
 }
-
 /**
- * UserItem — port web de UserItem (Flutter). Píldora 170×45 (squircle24, bgStrong,
- * sombra flotante) con UserInfo small + icono addCircle labelHighlight.
+ * UserItem — web port of UserItem (Flutter). 170×45 pill (squircle24, bgStrong,
+ * floating shadow) with UserInfo small + addCircle labelHighlight icon.
  */
 export interface UserItemProps {
-  /** Id del usuario; se pasa al onClick. */
-  id?: string;
-  /** Nombre a mostrar. */
-  name: string;
-  details?: string;
-  src?: string;
-  alias?: string;
-  /** Callback al pulsar, recibe el id (Dart onTap(id)). */
-  onClick?: (id: string | null) => void;
-  onError?: (event: unknown) => void;
-  className?: string;
+    /** User id; passed to onClick */
+    id?: string;
+    /** Name to display */
+    name: string;
+    /** Secondary line */
+    details?: string;
+    /** Avatar URL */
+    src?: string;
+    /** Alias circle text when there is no image */
+    alias?: string;
+    /** Tap callback, receives the id (Dart onTap(id)) */
+    onClick?: (id: string | null) => void;
+    /** Avatar load error callback */
+    onError?: (event: SyntheticEvent<HTMLImageElement>) => void;
+    className?: string;
 }
-
-export declare const UserItem: React.ComponentType<UserItemProps> & {
-  Info: React.ComponentType<UserInfoProps>;
-};
+export declare function UserInfo(props: UserInfoProps): import("react").JSX.Element;
+export declare function UserItem(props: UserItemProps): import("react").JSX.Element;
+export declare namespace UserItem {
+    var Info: typeof UserInfo;
+}

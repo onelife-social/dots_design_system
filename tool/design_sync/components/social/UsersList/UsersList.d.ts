@@ -1,94 +1,92 @@
 import * as React from 'react';
 
-/** Miembro de la lista — Dart MemberInfo + UserInfoData aplanados. */
+/** Dart enum UserItemListVariant */
+export type UsersListItemVariant = 'main' | 'label' | 'textfield' | 'button' | 'pending' | 'join' | 'waiting' | 'basic' | 'existingAlias' | 'pendingMember';
+/** Dart enum MemberType */
+export type UsersListMemberType = 'creator' | 'admin' | 'friend' | 'alias' | 'member' | 'existingAlias';
+/** List member — Dart MemberInfo + UserInfoData flattened. */
 export interface UsersListMember {
-  id?: string;
-  name: string;
-  details?: string;
-  /** URL del avatar. */
-  src?: string;
-  /** Texto del círculo de alias. */
-  alias?: string;
-  /** Enum Dart MemberType. El índice 0 siempre se pinta como creador. */
-  memberType: 'creator' | 'admin' | 'friend' | 'alias' | 'member' | 'existingAlias';
+    id?: string;
+    name: string;
+    details?: string;
+    /** Avatar URL */
+    src?: string;
+    /** Alias circle text */
+    alias?: string;
+    /** Dart enum MemberType. Index 0 is always painted as the creator. */
+    memberType: UsersListMemberType;
 }
-
 /**
- * UsersList — port web de UsersList (Flutter). Contenedor r26 con filas de
- * miembros según su MemberType y botones de añadir al final.
+ * UsersList — web port of UsersList (Flutter). r26 container with one row per member
+ * according to its MemberType, plus trailing add buttons.
  */
 export interface UsersListProps {
-  /** Miembros; el primero es siempre el creador. Vacío → no se renderiza nada. */
-  members: UsersListMember[];
-  /** Etiqueta del creador (trailing label verde). */
-  creatorLabel: string;
-  /** Etiqueta del admin. */
-  adminLabel: string;
-  /** Tap en un miembro; recibe su id (Dart memberOnTap). */
-  memberOnClick?: (id: string) => void;
-  /** Placeholder de los textfield de alias. */
-  textfieldLabel?: string;
-  /** Cambio en un textfield de alias: (id, value) (Dart textOnChanged). */
-  textOnChange?: (id: string, value: string) => void;
-  /** Etiqueta y tap del botón 'añadir participante' (icono ic-add). */
-  addParticipantLabel?: string;
-  addParticipantOnClick?: (id?: string) => void;
-  /** Etiqueta y tap del botón 'añadir amigo' (icono ic-user). */
-  addFriendLabel?: string;
-  addFriendOnClick?: (id?: string) => void;
-  /** Mostrar el botón 'añadir amigo'. Default false. */
-  showAddFriendButton?: boolean;
-  /** member → fila `join` (chevron) en vez de `basic`. Default false. */
-  canModifyMembers?: boolean;
-  /** Autofocus en textfields vacíos. Default true. */
-  autofocusOnEmpty?: boolean;
-  className?: string;
+    /** Members; the first one is always the creator. Empty → renders nothing. */
+    members: UsersListMember[];
+    /** Creator label (green trailing label) */
+    creatorLabel: string;
+    /** Admin label */
+    adminLabel: string;
+    /** Tap on a member; receives its id (Dart memberOnTap) */
+    memberOnClick?: (id: string) => void;
+    /** Placeholder of the alias textfields */
+    textfieldLabel?: string;
+    /** Change in an alias textfield: (id, value) (Dart textOnChanged) */
+    textOnChange?: (id: string, value: string) => void;
+    /** Label of the 'add participant' button (ic-add); both label and tap are required to show it */
+    addParticipantLabel?: string;
+    /** Tap of the 'add participant' button (Dart addParticipantOnTap) */
+    addParticipantOnClick?: (id?: string) => void;
+    /** Label of the 'add friend' button (ic-user) */
+    addFriendLabel?: string;
+    /** Tap of the 'add friend' button (Dart addFriendOnTap) */
+    addFriendOnClick?: (id?: string) => void;
+    /** Show the 'add friend' button. Default false */
+    showAddFriendButton?: boolean;
+    /** member → `join` row (chevron) instead of `basic`. Default false */
+    canModifyMembers?: boolean;
+    /** Autofocus on empty textfields. Default true */
+    autofocusOnEmpty?: boolean;
+    className?: string;
 }
-
 /**
- * UsersList.Item — port web de UsersItemList. Una fila suelta con su variante.
+ * UsersList.Item — web port of UsersItemList. A single row with its variant.
  */
 export interface UsersListItemProps {
-  /** Variante — enum Dart UserItemListVariant. */
-  variant:
-    | 'main'
-    | 'label'
-    | 'textfield'
-    | 'button'
-    | 'pending'
-    | 'join'
-    | 'waiting'
-    | 'basic'
-    | 'existingAlias'
-    | 'pendingMember';
-  id?: string;
-  /** Datos de usuario (variantes con UserInfo). */
-  name?: string;
-  details?: string;
-  src?: string;
-  alias?: string;
-  /** (label/button/textfield) Etiqueta / placeholder. */
-  label?: string;
-  /** (button) Nombre DotsIcon. Default 'ic-add'. */
-  icon?: string;
-  /** (textfield) Valor inicial (máx. 50 caracteres). */
-  textValue?: string;
-  /** (textfield) (id, value) al cambiar. */
-  textOnChange?: (id: string, value: string) => void;
-  /** (textfield) Autofocus si está vacío. Default true. */
-  autofocusOnEmpty?: boolean;
-  /** (pending/join) Tamaño del icono trailing. */
-  iconSize?: number;
-  /** Tap de la fila / botón de cierre; recibe el id. */
-  onClick?: (id: string) => void;
-  /** (pendingMember) Botón 1 (main) y botón 2 (secondary). */
-  buttonLabel1?: string;
-  buttonLabel2?: string;
-  onButton1Click?: (id: string) => void;
-  onButton2Click?: (id: string) => void;
-  className?: string;
+    /** Dart enum UserItemListVariant */
+    variant: UsersListItemVariant;
+    id?: string;
+    /** User data (variants with UserInfo) */
+    name?: string;
+    details?: string;
+    src?: string;
+    alias?: string;
+    /** (label/button/textfield) Label / placeholder */
+    label?: string;
+    /** (button) DotsIcon name. Default 'ic-add' */
+    icon?: string;
+    /** (textfield) Initial value (max 50 chars) */
+    textValue?: string;
+    /** (textfield) (id, value) on change */
+    textOnChange?: (id: string, value: string) => void;
+    /** (textfield) Autofocus when empty. Default true */
+    autofocusOnEmpty?: boolean;
+    /** (pending/join) Trailing icon size */
+    iconSize?: number;
+    /** Row tap / close button; receives the id */
+    onClick?: (id: string) => void;
+    /** (pendingMember) Button 1 (main) label */
+    buttonLabel1?: string;
+    /** (pendingMember) Button 2 (secondary) label */
+    buttonLabel2?: string;
+    /** (pendingMember) Button 1 tap; receives the id */
+    onButton1Click?: (id: string) => void;
+    /** (pendingMember) Button 2 tap; receives the id */
+    onButton2Click?: (id: string) => void;
+    className?: string;
 }
-
-export declare const UsersList: React.ComponentType<UsersListProps> & {
-  Item: React.ComponentType<UsersListItemProps>;
-};
+export declare function UsersListItem(props: UsersListItemProps): import("react").JSX.Element;
+export declare function UsersList(props: UsersListProps): import("react").JSX.Element | null;
+export declare namespace UsersList {
+    var Item: typeof UsersListItem;
+}

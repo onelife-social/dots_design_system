@@ -1,43 +1,38 @@
 import * as React from 'react';
 
-/**
- * MilestoneCard — port web de MilestoneCard (Flutter). Tarjeta de hito 3:4 con
- * foto, borde blanco de 3px, título sobre blur degradado, badge de hito,
- * botón de editar y grupo de badges de contenido (vídeo / audio / descripción).
- */
-
-/** Espejo del enum Dart MilestoneBadgeType */
+/** Mirror of the Dart enum MilestoneBadgeType */
 export type MilestoneBadgeType = 'video' | 'description' | 'audio';
-
 export interface MilestoneCardProps {
-  /** Ancho en px — Dart `width`. > 150 ⇒ big (r32); si no small (r24). Alto = 4/3 del ancho */
-  width: number;
-  /** URL de la foto — Dart `imageProvider`. Sin src pinta el placeholder (defaultImage) */
-  src?: string;
-  /** Título centrado sobre el blur superior — Dart `title` */
-  title?: string;
-  /** Limita el título a 1 línea con ellipsis — Dart `limitTitle`. Default: false */
-  limitTitle?: boolean;
-  /** Fecha bajo el título — Dart `date` */
-  date?: string;
-  /** Dart `onTap` (tap en la foto/tarjeta) */
-  onClick?: () => void;
-  /** Muestra el badge badge-milestone-1.svg arriba a la derecha — Dart `showBadge`. Default: false */
-  showBadge?: boolean;
-  /** Muestra el botón de editar (DotsIconButton pencil) — Dart `showEdit`. Default: false */
-  showEdit?: boolean;
-  /** Dart `onTapEdit` */
-  onClickEdit?: () => void;
-  /** Marca de selección (en Flutter se usa para el auto-scroll de la lista) */
-  isSelected?: boolean;
-  /** Badges de contenido, máx. 3 — Dart `badgeTypes`. Default: [] */
-  badgeTypes?: MilestoneBadgeType[];
-  /** Dart `onBadgesTap` */
-  onBadgesClick?: () => void;
-  className?: string;
+    /** Width in px — Dart `width`. > 150 ⇒ big (r32); otherwise small (r24). Height = 4/3 of the width. Default 170 */
+    width?: number;
+    /** Photo URL — Dart `imageProvider`. Without src the placeholder (defaultImage) is painted */
+    src?: string;
+    /** Title centered over the top blur — Dart `title` */
+    title?: string;
+    /** Limit the title to 1 line with ellipsis — Dart `limitTitle` (default false) */
+    limitTitle?: boolean;
+    /** Date under the title — Dart `date` */
+    date?: string;
+    /** Dart `onTap` (tap on the photo/card) */
+    onClick?: () => void;
+    /** Show the badge-milestone-1.svg badge top-right — Dart `showBadge` (default false) */
+    showBadge?: boolean;
+    /** Show the edit button (DotsIconButton pencil) — Dart `showEdit` (default false) */
+    showEdit?: boolean;
+    /** Dart `onTapEdit` */
+    onClickEdit?: () => void;
+    /** Selection mark (Flutter uses it for the list auto-scroll) */
+    isSelected?: boolean;
+    /** Content badges, max 3 — Dart `badgeTypes` (default []) */
+    badgeTypes?: MilestoneBadgeType[];
+    /** Dart `onBadgesTap` */
+    onBadgesClick?: () => void;
+    className?: string;
 }
-
-export declare const MilestoneCard: React.ComponentType<MilestoneCardProps> & {
-  /** Catálogo icon+color por tipo (espejo de MilestoneBadgeType) */
-  badgeTypes: Record<MilestoneBadgeType, { icon: string; color: string }>;
-};
+export declare function MilestoneCard(props: MilestoneCardProps): import("react").JSX.Element;
+export declare namespace MilestoneCard {
+    var badgeTypes: Record<MilestoneBadgeType, {
+        icon: string;
+        color: string;
+    }>;
+}

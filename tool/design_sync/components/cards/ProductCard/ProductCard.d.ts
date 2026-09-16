@@ -1,36 +1,31 @@
 import * as React from 'react';
 
-/**
- * ProductCard — port web de ProductCard (Flutter). Media card cuadrada con la
- * copy sobre el fondo, legible gracias a un blur + degradado inferior. El fondo
- * es un slot (foto, carrusel, degradado); todo lo demás salvo `title` es opcional.
- */
+import type { ReactNode } from 'react';
 export interface ProductCardProps {
-  /** Línea principal, siempre visible */
-  title: string;
-  /** Imagen de fondo (URL). Sin ella se pinta un degradado placeholder */
-  imageSrc?: string;
-  /** Segunda línea bajo el título */
-  subtitle?: string;
-  /** Tercera línea, normalmente el precio ("Desde 29,99 €") */
-  caption?: string;
-  /** Valor tachado tras `caption`, p. ej. el precio anterior. Se ignora sin `caption` */
-  captionPrevious?: string;
-  /** Contenido del badge de la esquina superior derecha (p. ej. un BadgeLabel) */
-  badge?: React.ReactNode;
-  /** Número de puntos del PageControl. `0` lo oculta */
-  pageCount?: number;
-  /** Índice del punto activo */
-  activePage?: number;
-  /** Nombre del icono DotsIcon del botón de acción (por defecto `ic-arrow-right`) */
-  actionIcon?: string;
-  /** Ancho / alto. Por defecto 1 (cuadrada, como el componente de Figma) */
-  aspectRatio?: number;
-  /** onTap de Dart — toda la card */
-  onClick?: () => void;
-  /** onActionTap de Dart. Sin él, el botón no se pinta */
-  onActionClick?: () => void;
-  className?: string;
+    /** Main line, always visible */
+    title: string;
+    /** Background image (URL). Without it a gradient placeholder is painted */
+    imageSrc?: string;
+    /** Second line under the title */
+    subtitle?: string;
+    /** Third line, usually the price ("Desde 29,99 €") */
+    caption?: string;
+    /** Strikethrough value after `caption`, e.g. the previous price. Ignored without `caption` */
+    captionPrevious?: string;
+    /** Content of the top-right badge (e.g. a BadgeLabel) */
+    badge?: ReactNode;
+    /** Number of dots of the PageControl. `0` hides it */
+    pageCount?: number;
+    /** Index of the active dot */
+    activePage?: number;
+    /** DotsIcon name of the action button (default `ic-arrow-right`) */
+    actionIcon?: string;
+    /** Width / height. Default 1 (square, like the Figma component) */
+    aspectRatio?: number;
+    /** Dart onTap — the whole card */
+    onClick?: () => void;
+    /** Dart onActionTap. Without it the button is not painted */
+    onActionClick?: () => void;
+    className?: string;
 }
-
-export declare const ProductCard: React.ComponentType<ProductCardProps>;
+export declare function ProductCard(props: ProductCardProps): import("react").JSX.Element;

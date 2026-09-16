@@ -1,62 +1,61 @@
 import * as React from 'react';
 
-/**
- * DropdownMenu — port web de dropdowns/ (Flutter: DropdownList + DropdownMenu +
- * DropdownItem en una sola API). Con `label` renderiza el botón desplegable con su
- * menú debajo; sin `label` renderiza solo el panel del menú.
- */
+import { type ReactNode } from 'react';
+/** Dart enum DropdownListSize */
+export type DropdownMenuSize = 'small' | 'medium';
+/** Dart enum DropdownListVariant (defaultVariant → 'default', onBackgroundVariant → 'onBackground') */
+export type DropdownMenuVariant = 'default' | 'onBackground';
 export interface DropdownMenuItemProps {
-  /** Texto principal (bodyDefaultMedium). Dart: DropdownItem.text */
-  text: string;
-  /** Subtítulo inline en textSecondary. Dart: subtitle */
-  subtitle?: string;
-  /** Nodo inicial opcional. Dart: leading */
-  leading?: React.ReactNode;
-  /** Nombre real del icono Dots trailing (16px). Dart: icon (DotsIconData) */
-  icon?: string;
-  /** Color CSS que tiñe texto e icono. Dart: itemColor */
-  itemColor?: string;
-  /** Atajo para itemColor = labelDestructive. */
-  destructive?: boolean;
-  /** El item se encoge a su contenido. Dart: minSize (default false) */
-  minSize?: boolean;
-  /** Dart: onTap */
-  onClick?: () => void;
+    /** Main text (bodyDefaultMedium) — Dart `DropdownItem.text` */
+    text: string;
+    /** Inline subtitle in textSecondary — Dart `subtitle` */
+    subtitle?: string;
+    /** Optional leading node — Dart `leading` */
+    leading?: ReactNode;
+    /** Trailing DotsIcon name (16px) — Dart `icon` (DotsIconData) */
+    icon?: string;
+    /** CSS color tinting text and icon — Dart `itemColor` */
+    itemColor?: string;
+    /** Shortcut for itemColor = labelDestructive */
+    destructive?: boolean;
+    /** The item shrinks to its content — Dart `minSize` (default false) */
+    minSize?: boolean;
+    /** Dart `onTap` */
+    onClick?: () => void;
 }
-
 export interface DropdownMenuProps {
-  /** Items del menú. Dart: DropdownMenu.items / DropdownList.items */
-  items: DropdownMenuItemProps[];
-  /** Ancho del panel en px. Dart: DropdownMenu.width (default 250) */
-  width?: number;
-  /** Alto máximo del panel con scroll. Dart: maxHeight */
-  maxHeight?: number;
-  /** Texto del botón desplegable. Si se omite, solo se pinta el panel. Dart: DropdownList.label */
-  label?: string;
-  /** Subtítulo del botón en textTertiary. Dart: subtitle */
-  subtitle?: string;
-  /** Tamaño del botón — enum Dart DropdownListSize. */
-  size?: 'small' | 'medium';
-  /** Variante — enum Dart DropdownListVariant (defaultVariant → 'default'). */
-  variant?: 'default' | 'onBackground';
-  /** Menú abierto (controlado). Dart: isActive */
-  isActive?: boolean;
-  /** Estado inicial abierto en modo no controlado. */
-  defaultActive?: boolean;
-  /** El botón se encoge a su contenido. Dart: minSize (default true) */
-  minSize?: boolean;
-  /** Ancho máximo del menú desplegado. Dart: menuMaxWidth */
-  menuMaxWidth?: number;
-  /** Alto máximo del menú desplegado. Dart: menuMaxHeight */
-  menuMaxHeight?: number;
-  /** Notifica el nuevo estado abierto/cerrado tras un tap en el botón. */
-  onToggle?: (active: boolean) => void;
-  /** Tap en el botón. Dart: DropdownList.onTap */
-  onClick?: () => void;
-  className?: string;
+    /** Menu items — Dart `DropdownMenu.items` / `DropdownList.items` */
+    items: DropdownMenuItemProps[];
+    /** Panel width in px — Dart `DropdownMenu.width` (default 250) */
+    width?: number;
+    /** Max panel height, scrolls beyond it — Dart `maxHeight` */
+    maxHeight?: number;
+    /** Dropdown button text. Omitted → only the panel is painted — Dart `DropdownList.label` */
+    label?: string;
+    /** Button subtitle in textTertiary — Dart `subtitle` */
+    subtitle?: string;
+    /** Button size — Dart enum DropdownListSize (default 'small') */
+    size?: DropdownMenuSize;
+    /** Variant — Dart enum DropdownListVariant (default 'default') */
+    variant?: DropdownMenuVariant;
+    /** Open menu (controlled) — Dart `isActive` */
+    isActive?: boolean;
+    /** Initial open state in uncontrolled mode */
+    defaultActive?: boolean;
+    /** The button shrinks to its content — Dart `minSize` (default true) */
+    minSize?: boolean;
+    /** Max width of the dropped menu — Dart `menuMaxWidth` */
+    menuMaxWidth?: number;
+    /** Max height of the dropped menu — Dart `menuMaxHeight` */
+    menuMaxHeight?: number;
+    /** Notifies the next open/closed state after a button tap */
+    onToggle?: (active: boolean) => void;
+    /** Tap on the button — Dart `DropdownList.onTap` */
+    onClick?: () => void;
+    className?: string;
 }
-
-export declare const DropdownMenu: React.ComponentType<DropdownMenuProps> & {
-  /** Fila individual del menú (DropdownItem). */
-  Item: React.ComponentType<DropdownMenuItemProps>;
-};
+export declare function DropdownMenuItem(props: DropdownMenuItemProps): import("react").JSX.Element;
+export declare function DropdownMenu(props: DropdownMenuProps): import("react").JSX.Element;
+export declare namespace DropdownMenu {
+    var Item: typeof DropdownMenuItem;
+}

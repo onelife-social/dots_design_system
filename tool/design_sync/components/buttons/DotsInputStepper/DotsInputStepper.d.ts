@@ -1,25 +1,19 @@
 import * as React from 'react';
 
-/**
- * DotsInputStepper — port web de DotsInputStepper (Flutter). Píldora 116 × 41
- * con botones − / + (`ic-rest` / `ic-add`) y el valor centrado; los botones se
- * deshabilitan al llegar a minValue / maxValue.
- */
 export interface DotsInputStepperProps {
-  /** Valor actual (modo controlado) — Dart `value` */
-  value?: number;
-  /** Valor inicial (modo no controlado) */
-  defaultValue?: number;
-  /** Mínimo permitido — Dart `minValue` (requerido en Dart) */
-  minValue?: number;
-  /** Máximo permitido — Dart `maxValue` (requerido en Dart) */
-  maxValue?: number;
-  /** Callback del botón + — Dart `onIncrement` */
-  onIncrement?: () => void;
-  /** Callback del botón − — Dart `onDecrement` */
-  onDecrement?: () => void;
-  /** Se invoca con el nuevo valor tras cada pulsación (extensión web) */
-  onChanged?: (value: number) => void;
+    /** Current value (controlled) — Dart `value` */
+    value?: number;
+    /** Initial value (uncontrolled; default minValue) */
+    defaultValue?: number;
+    /** Minimum allowed — Dart `minValue` (required in Dart; web default 0) */
+    minValue?: number;
+    /** Maximum allowed — Dart `maxValue` (required in Dart; web default 99) */
+    maxValue?: number;
+    /** + button callback — Dart `onIncrement` */
+    onIncrement?: () => void;
+    /** − button callback — Dart `onDecrement` */
+    onDecrement?: () => void;
+    /** Called with the new value after each press (web extension) */
+    onChanged?: (value: number) => void;
 }
-
-export declare const DotsInputStepper: React.ComponentType<DotsInputStepperProps>;
+export declare function DotsInputStepper(props: DotsInputStepperProps): import("react").JSX.Element;

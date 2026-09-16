@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"DotsDesignSystem_9e41da","components":[{"name":"DotsIcon","sourcePath":"components/icons/DotsIcon/DotsIcon.jsx"},{"name":"DotsActionSheet","sourcePath":"components/overlays/DotsActionSheet/DotsActionSheet.jsx"},{"name":"DotsAlert","sourcePath":"components/feedback/DotsAlert/DotsAlert.jsx"},{"name":"DotsCalendar","sourcePath":"components/inputs/DotsCalendar/DotsCalendar.jsx"},{"name":"DotsCloseButton","sourcePath":"components/buttons/DotsCloseButton/DotsCloseButton.jsx"},{"name":"DotsIconButton","sourcePath":"components/buttons/DotsIconButton/DotsIconButton.jsx"},{"name":"DotsMainButton","sourcePath":"components/buttons/DotsMainButton/DotsMainButton.jsx"},{"name":"DotsMainContainer","sourcePath":"components/content/DotsMainContainer/DotsMainContainer.jsx"},{"name":"DotsProfilePhoto","sourcePath":"components/media/DotsProfilePhoto/DotsProfilePhoto.jsx"},{"name":"DotsProgressBar","sourcePath":"components/indicators/DotsProgressBar/DotsProgressBar.jsx"},{"name":"DotsRadioButton","sourcePath":"components/buttons/DotsRadioButton/DotsRadioButton.jsx"},{"name":"DotsRichButton","sourcePath":"components/buttons/DotsRichButton/DotsRichButton.jsx"},{"name":"DotsSpinner","sourcePath":"components/indicators/DotsSpinner/DotsSpinner.jsx"},{"name":"DotsTextField","sourcePath":"components/inputs/DotsTextField/DotsTextField.jsx"},{"name":"DotsTextFieldButton","sourcePath":"components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx"},{"name":"DotsTextFieldDate","sourcePath":"components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx"},{"name":"DotsToggle","sourcePath":"components/buttons/DotsToggle/DotsToggle.jsx"},{"name":"DotsTopBar","sourcePath":"components/navigation/DotsTopBar/DotsTopBar.jsx"},{"name":"EventGroupCard","sourcePath":"components/cards/EventGroupCard/EventGroupCard.jsx"},{"name":"PageControl","sourcePath":"components/dotbook/PageControl/PageControl.jsx"},{"name":"ActivityPreview","sourcePath":"components/social/ActivityPreview/ActivityPreview.jsx"},{"name":"AlbumGroupCard","sourcePath":"components/cards/AlbumGroupCard/AlbumGroupCard.jsx"},{"name":"BadgeIcon","sourcePath":"components/feedback/BadgeIcon/BadgeIcon.jsx"},{"name":"BadgeLabel","sourcePath":"components/feedback/BadgeLabel/BadgeLabel.jsx"},{"name":"BadgeMilestone","sourcePath":"components/feedback/BadgeMilestone/BadgeMilestone.jsx"},{"name":"BadgeProgress","sourcePath":"components/feedback/BadgeProgress/BadgeProgress.jsx"},{"name":"BadgeTag","sourcePath":"components/feedback/BadgeTag/BadgeTag.jsx"},{"name":"BlurContainer","sourcePath":"components/content/BlurContainer/BlurContainer.jsx"},{"name":"BtnFolder","sourcePath":"components/buttons/BtnFolder/BtnFolder.jsx"},{"name":"ColorSelector","sourcePath":"components/content/ColorSelector/ColorSelector.jsx"},{"name":"CreateCard","sourcePath":"components/cards/CreateCard/CreateCard.jsx"},{"name":"DotsAccordion","sourcePath":"components/content/DotsAccordion/DotsAccordion.jsx"},{"name":"DotsCaptureButton","sourcePath":"components/buttons/DotsCaptureButton/DotsCaptureButton.jsx"},{"name":"DotsCountdown","sourcePath":"components/indicators/DotsCountdown/DotsCountdown.jsx"},{"name":"DotsDivider","sourcePath":"components/content/DotsDivider/DotsDivider.jsx"},{"name":"DotsEmptyStateCard","sourcePath":"components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx"},{"name":"DotsFilterChip","sourcePath":"components/feedback/DotsFilterChip/DotsFilterChip.jsx"},{"name":"DotsFloatingButton","sourcePath":"components/buttons/DotsFloatingButton/DotsFloatingButton.jsx"},{"name":"DotsHomeTopBar","sourcePath":"components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx"},{"name":"DotsInputStepper","sourcePath":"components/buttons/DotsInputStepper/DotsInputStepper.jsx"},{"name":"DotsItemInput","sourcePath":"components/inputs/DotsItemInput/DotsItemInput.jsx"},{"name":"DotsListItem","sourcePath":"components/content/DotsListItem/DotsListItem.jsx"},{"name":"DotsMenu","sourcePath":"components/overlays/DotsMenu/DotsMenu.jsx"},{"name":"DotsNavBar","sourcePath":"components/navigation/DotsNavBar/DotsNavBar.jsx"},{"name":"DotsPlanningItem","sourcePath":"components/planning/DotsPlanningItem/DotsPlanningItem.jsx"},{"name":"DotsPlanSelector","sourcePath":"components/premium/DotsPlanSelector/DotsPlanSelector.jsx"},{"name":"DotsSegmentedControl","sourcePath":"components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx"},{"name":"DotsSelector","sourcePath":"components/buttons/DotsSelector/DotsSelector.jsx"},{"name":"DotsSelectorRadioButton","sourcePath":"components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx"},{"name":"DotsSlider","sourcePath":"components/content/DotsSlider/DotsSlider.jsx"},{"name":"DotsSquirclePhoto","sourcePath":"components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx"},{"name":"DotsSystemButton","sourcePath":"components/buttons/DotsSystemButton/DotsSystemButton.jsx"},{"name":"DotsTextArea","sourcePath":"components/inputs/DotsTextArea/DotsTextArea.jsx"},{"name":"DotsTextFieldPhone","sourcePath":"components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx"},{"name":"DotsToast","sourcePath":"components/feedback/DotsToast/DotsToast.jsx"},{"name":"DotsTooltip","sourcePath":"components/overlays/DotsTooltip/DotsTooltip.jsx"},{"name":"DotsUploadItem","sourcePath":"components/media/DotsUploadItem/DotsUploadItem.jsx"},{"name":"DropdownMenu","sourcePath":"components/overlays/DropdownMenu/DropdownMenu.jsx"},{"name":"FeatureItem","sourcePath":"components/content/FeatureItem/FeatureItem.jsx"},{"name":"FolderCarrousel","sourcePath":"components/navigation/FolderCarrousel/FolderCarrousel.jsx"},{"name":"ImageThumbnail","sourcePath":"components/indicators/ImageThumbnail/ImageThumbnail.jsx"},{"name":"ImageWithIcon","sourcePath":"components/social/ImageWithIcon/ImageWithIcon.jsx"},{"name":"ImageWithProgressAround","sourcePath":"components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx"},{"name":"MemoryCard","sourcePath":"components/cards/MemoryCard/MemoryCard.jsx"},{"name":"MessagePreview","sourcePath":"components/social/MessagePreview/MessagePreview.jsx"},{"name":"MilestoneCard","sourcePath":"components/memories/MilestoneCard/MilestoneCard.jsx"},{"name":"MilestonesList","sourcePath":"components/memories/MilestonesList/MilestonesList.jsx"},{"name":"NotificationBanner","sourcePath":"components/social/NotificationBanner/NotificationBanner.jsx"},{"name":"NotificationBannerImage","sourcePath":"components/social/NotificationBannerImage/NotificationBannerImage.jsx"},{"name":"ProductCard","sourcePath":"components/cards/ProductCard/ProductCard.jsx"},{"name":"RatingRow","sourcePath":"components/content/RatingRow/RatingRow.jsx"},{"name":"RecapCard","sourcePath":"components/cards/RecapCard/RecapCard.jsx"},{"name":"UserItem","sourcePath":"components/social/UserItem/UserItem.jsx"},{"name":"UsersList","sourcePath":"components/social/UsersList/UsersList.jsx"}],"sourceHashes":{"components/icons/DotsIcon/DotsIcon.jsx":"335df31c211a","components/icons/DotsIcon/DotsIcon.d.ts":"87b2028cfb22","components/icons/DotsIcon/DotsIcon.prompt.md":"fe2f27eb49fe","components/overlays/DotsActionSheet/DotsActionSheet.jsx":"6aea0de1baad","components/overlays/DotsActionSheet/DotsActionSheet.d.ts":"c04efccc1150","components/overlays/DotsActionSheet/DotsActionSheet.prompt.md":"6c6162a444ea","components/feedback/DotsAlert/DotsAlert.jsx":"31e443a1a6c9","components/feedback/DotsAlert/DotsAlert.d.ts":"ae6723947810","components/feedback/DotsAlert/DotsAlert.prompt.md":"e6eb80571d37","components/inputs/DotsCalendar/DotsCalendar.jsx":"a4bb0de5b1bf","components/inputs/DotsCalendar/DotsCalendar.d.ts":"4d7457cdfa80","components/inputs/DotsCalendar/DotsCalendar.prompt.md":"bc6385a3b1b1","components/buttons/DotsCloseButton/DotsCloseButton.jsx":"f989f50ce37d","components/buttons/DotsCloseButton/DotsCloseButton.d.ts":"63e7ca18df69","components/buttons/DotsCloseButton/DotsCloseButton.prompt.md":"2202cc87900c","components/buttons/DotsIconButton/DotsIconButton.jsx":"ffcab2eedea4","components/buttons/DotsIconButton/DotsIconButton.d.ts":"54238dbe6046","components/buttons/DotsIconButton/DotsIconButton.prompt.md":"c4bb14d7759c","components/buttons/DotsMainButton/DotsMainButton.jsx":"ae2cd12f68a1","components/buttons/DotsMainButton/DotsMainButton.d.ts":"cddb89971081","components/buttons/DotsMainButton/DotsMainButton.prompt.md":"a221cf629ffc","components/content/DotsMainContainer/DotsMainContainer.jsx":"4ddd06a6ad9e","components/content/DotsMainContainer/DotsMainContainer.d.ts":"dd9fc89aff3e","components/content/DotsMainContainer/DotsMainContainer.prompt.md":"9598eb0321bd","components/media/DotsProfilePhoto/DotsProfilePhoto.jsx":"92e613449ad2","components/media/DotsProfilePhoto/DotsProfilePhoto.d.ts":"d95296f257ad","components/media/DotsProfilePhoto/DotsProfilePhoto.prompt.md":"636c54ee6feb","components/indicators/DotsProgressBar/DotsProgressBar.jsx":"d6f31abf3d70","components/indicators/DotsProgressBar/DotsProgressBar.d.ts":"aeaed55683ca","components/indicators/DotsProgressBar/DotsProgressBar.prompt.md":"2dad7693c604","components/buttons/DotsRadioButton/DotsRadioButton.jsx":"7a4e9fc06d16","components/buttons/DotsRadioButton/DotsRadioButton.d.ts":"4bc28714a5d9","components/buttons/DotsRadioButton/DotsRadioButton.prompt.md":"d6e35d04a2c5","components/buttons/DotsRichButton/DotsRichButton.jsx":"f445085fc5ca","components/buttons/DotsRichButton/DotsRichButton.d.ts":"c58744c3cec5","components/buttons/DotsRichButton/DotsRichButton.prompt.md":"94e43f6c7d5f","components/indicators/DotsSpinner/DotsSpinner.jsx":"a12be39b5926","components/indicators/DotsSpinner/DotsSpinner.d.ts":"92a18d75b986","components/indicators/DotsSpinner/DotsSpinner.prompt.md":"eea0999cfa40","components/inputs/DotsTextField/DotsTextField.jsx":"f072f4f3eb62","components/inputs/DotsTextField/DotsTextField.d.ts":"0c0151ef4b44","components/inputs/DotsTextField/DotsTextField.prompt.md":"42536ffb516a","components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx":"163b6c3eb5a2","components/inputs/DotsTextFieldButton/DotsTextFieldButton.d.ts":"69d562a11b16","components/inputs/DotsTextFieldButton/DotsTextFieldButton.prompt.md":"cd2a18ca1749","components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx":"bd28881afb3c","components/inputs/DotsTextFieldDate/DotsTextFieldDate.d.ts":"8d7f859c0a67","components/inputs/DotsTextFieldDate/DotsTextFieldDate.prompt.md":"2944cdc9159d","components/buttons/DotsToggle/DotsToggle.jsx":"d580e9128f26","components/buttons/DotsToggle/DotsToggle.d.ts":"7e48d0107831","components/buttons/DotsToggle/DotsToggle.prompt.md":"c8b4344a32ac","components/navigation/DotsTopBar/DotsTopBar.jsx":"bab2b068b924","components/navigation/DotsTopBar/DotsTopBar.d.ts":"182b7686120b","components/navigation/DotsTopBar/DotsTopBar.prompt.md":"6f2c5073c6e6","components/cards/EventGroupCard/EventGroupCard.jsx":"a156456590e1","components/cards/EventGroupCard/EventGroupCard.d.ts":"cf79b8f6b27b","components/cards/EventGroupCard/EventGroupCard.prompt.md":"456df0915b54","components/dotbook/PageControl/PageControl.jsx":"7d3c2f0a4143","components/dotbook/PageControl/PageControl.d.ts":"58a5a9e129ae","components/dotbook/PageControl/PageControl.prompt.md":"2dcd422b32cb","components/social/ActivityPreview/ActivityPreview.jsx":"b4b80f9e800f","components/social/ActivityPreview/ActivityPreview.d.ts":"e2fd20a2da58","components/social/ActivityPreview/ActivityPreview.prompt.md":"239a5fa193fe","components/cards/AlbumGroupCard/AlbumGroupCard.jsx":"19e3745d2c01","components/cards/AlbumGroupCard/AlbumGroupCard.d.ts":"250a72265114","components/cards/AlbumGroupCard/AlbumGroupCard.prompt.md":"6dd66b80e55e","components/feedback/BadgeIcon/BadgeIcon.jsx":"a75a6074ba60","components/feedback/BadgeIcon/BadgeIcon.d.ts":"1bccac9e9356","components/feedback/BadgeIcon/BadgeIcon.prompt.md":"929b4a0e194c","components/feedback/BadgeLabel/BadgeLabel.jsx":"f330d80f7db6","components/feedback/BadgeLabel/BadgeLabel.d.ts":"40c7a2f37790","components/feedback/BadgeLabel/BadgeLabel.prompt.md":"ed1b903fbe5a","components/feedback/BadgeMilestone/BadgeMilestone.jsx":"4c02ad66c2be","components/feedback/BadgeMilestone/BadgeMilestone.d.ts":"811738e29f12","components/feedback/BadgeMilestone/BadgeMilestone.prompt.md":"48a757bc2910","components/feedback/BadgeProgress/BadgeProgress.jsx":"71554919d446","components/feedback/BadgeProgress/BadgeProgress.d.ts":"7012fa757c46","components/feedback/BadgeProgress/BadgeProgress.prompt.md":"b147f3bbf27b","components/feedback/BadgeTag/BadgeTag.jsx":"07499192e79b","components/feedback/BadgeTag/BadgeTag.d.ts":"b01377bc343d","components/feedback/BadgeTag/BadgeTag.prompt.md":"0dc17ea4fe03","components/content/BlurContainer/BlurContainer.jsx":"4f3158bee2a7","components/content/BlurContainer/BlurContainer.d.ts":"e06f388d3283","components/content/BlurContainer/BlurContainer.prompt.md":"47fb1619efac","components/buttons/BtnFolder/BtnFolder.jsx":"5818c75ea3ef","components/buttons/BtnFolder/BtnFolder.d.ts":"cb0f0c7974cf","components/buttons/BtnFolder/BtnFolder.prompt.md":"409f1a511b12","components/content/ColorSelector/ColorSelector.jsx":"08ac3ae6676f","components/content/ColorSelector/ColorSelector.d.ts":"fbf55305330f","components/content/ColorSelector/ColorSelector.prompt.md":"b98eac18525b","components/cards/CreateCard/CreateCard.jsx":"9f5acf670673","components/cards/CreateCard/CreateCard.d.ts":"5c0ad3f5a79e","components/cards/CreateCard/CreateCard.prompt.md":"845e444d73f8","components/content/DotsAccordion/DotsAccordion.jsx":"84ac87f036d4","components/content/DotsAccordion/DotsAccordion.d.ts":"fe68787fde6c","components/content/DotsAccordion/DotsAccordion.prompt.md":"1657898cd0de","components/buttons/DotsCaptureButton/DotsCaptureButton.jsx":"b327fc4eacd1","components/buttons/DotsCaptureButton/DotsCaptureButton.d.ts":"444cf57dfc42","components/buttons/DotsCaptureButton/DotsCaptureButton.prompt.md":"04b427a10e12","components/indicators/DotsCountdown/DotsCountdown.jsx":"e6a30324d478","components/indicators/DotsCountdown/DotsCountdown.d.ts":"31a583d1076c","components/indicators/DotsCountdown/DotsCountdown.prompt.md":"698be70ac531","components/content/DotsDivider/DotsDivider.jsx":"614a3fa428a4","components/content/DotsDivider/DotsDivider.d.ts":"4505568c5bcd","components/content/DotsDivider/DotsDivider.prompt.md":"608e2d568e01","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx":"7be6c63ad360","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.d.ts":"29b7ef23a048","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.prompt.md":"204299d95767","components/feedback/DotsFilterChip/DotsFilterChip.jsx":"f70922a222e4","components/feedback/DotsFilterChip/DotsFilterChip.d.ts":"303cfa6352c0","components/feedback/DotsFilterChip/DotsFilterChip.prompt.md":"4e2d4316b2c5","components/buttons/DotsFloatingButton/DotsFloatingButton.jsx":"07ef21cbcf69","components/buttons/DotsFloatingButton/DotsFloatingButton.d.ts":"582d163c4a73","components/buttons/DotsFloatingButton/DotsFloatingButton.prompt.md":"9385b6723151","components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx":"3740529a645f","components/navigation/DotsHomeTopBar/DotsHomeTopBar.d.ts":"2ddf25716a9c","components/navigation/DotsHomeTopBar/DotsHomeTopBar.prompt.md":"36a11970a144","components/buttons/DotsInputStepper/DotsInputStepper.jsx":"fe711e75f2b8","components/buttons/DotsInputStepper/DotsInputStepper.d.ts":"0627f3845ad8","components/buttons/DotsInputStepper/DotsInputStepper.prompt.md":"6d3798eb4e5e","components/inputs/DotsItemInput/DotsItemInput.jsx":"fdda4bc0b529","components/inputs/DotsItemInput/DotsItemInput.d.ts":"3773e592f555","components/inputs/DotsItemInput/DotsItemInput.prompt.md":"f643916e19cd","components/content/DotsListItem/DotsListItem.jsx":"6157f22e738a","components/content/DotsListItem/DotsListItem.d.ts":"51cd8f74cfcb","components/content/DotsListItem/DotsListItem.prompt.md":"40bdc5fff354","components/overlays/DotsMenu/DotsMenu.jsx":"250fcc9b1d35","components/overlays/DotsMenu/DotsMenu.d.ts":"007c0322a634","components/overlays/DotsMenu/DotsMenu.prompt.md":"4f8bd72c1108","components/navigation/DotsNavBar/DotsNavBar.jsx":"16123dd053b7","components/navigation/DotsNavBar/DotsNavBar.d.ts":"d766f315c268","components/navigation/DotsNavBar/DotsNavBar.prompt.md":"d212413051ce","components/planning/DotsPlanningItem/DotsPlanningItem.jsx":"c17bedb8d20b","components/planning/DotsPlanningItem/DotsPlanningItem.d.ts":"48d04352a47d","components/planning/DotsPlanningItem/DotsPlanningItem.prompt.md":"a8e792ac3dac","components/premium/DotsPlanSelector/DotsPlanSelector.jsx":"9e8354546c8e","components/premium/DotsPlanSelector/DotsPlanSelector.d.ts":"5b77d82f0400","components/premium/DotsPlanSelector/DotsPlanSelector.prompt.md":"31125956fd1c","components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx":"63c3134be5e4","components/inputs/DotsSegmentedControl/DotsSegmentedControl.d.ts":"aa4b83624d09","components/inputs/DotsSegmentedControl/DotsSegmentedControl.prompt.md":"780587c9cea5","components/buttons/DotsSelector/DotsSelector.jsx":"32a1fa2354c2","components/buttons/DotsSelector/DotsSelector.d.ts":"8371f7ea93d5","components/buttons/DotsSelector/DotsSelector.prompt.md":"3ca0254c3375","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx":"ca91ce72bf06","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.d.ts":"452a97eb30f8","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.prompt.md":"0f43fa3291a0","components/content/DotsSlider/DotsSlider.jsx":"11ddb3b9d671","components/content/DotsSlider/DotsSlider.d.ts":"30a75a21af71","components/content/DotsSlider/DotsSlider.prompt.md":"b91814ec96a9","components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx":"be4633716883","components/media/DotsSquirclePhoto/DotsSquirclePhoto.d.ts":"e6eb4abc3fbf","components/media/DotsSquirclePhoto/DotsSquirclePhoto.prompt.md":"7bf60628c1fe","components/buttons/DotsSystemButton/DotsSystemButton.jsx":"61ef368899c8","components/buttons/DotsSystemButton/DotsSystemButton.d.ts":"4c662f2b1a53","components/buttons/DotsSystemButton/DotsSystemButton.prompt.md":"09363a30bf00","components/inputs/DotsTextArea/DotsTextArea.jsx":"f5e66264f111","components/inputs/DotsTextArea/DotsTextArea.d.ts":"c0f65e12c920","components/inputs/DotsTextArea/DotsTextArea.prompt.md":"63170a772fb6","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx":"ee02df22e4b1","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.d.ts":"3e321bce70f9","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.prompt.md":"32c5dd3fc02b","components/feedback/DotsToast/DotsToast.jsx":"9875719b818a","components/feedback/DotsToast/DotsToast.d.ts":"f35b4f9e35cb","components/feedback/DotsToast/DotsToast.prompt.md":"e7dade8e5042","components/overlays/DotsTooltip/DotsTooltip.jsx":"690646cedff8","components/overlays/DotsTooltip/DotsTooltip.d.ts":"57fcd8d2ce51","components/overlays/DotsTooltip/DotsTooltip.prompt.md":"8e2e72fa4034","components/media/DotsUploadItem/DotsUploadItem.jsx":"b5b296dabbb0","components/media/DotsUploadItem/DotsUploadItem.d.ts":"81e7fb9ba5e0","components/media/DotsUploadItem/DotsUploadItem.prompt.md":"063ce14a5d25","components/overlays/DropdownMenu/DropdownMenu.jsx":"e990079ce8af","components/overlays/DropdownMenu/DropdownMenu.d.ts":"f4b48717fe80","components/overlays/DropdownMenu/DropdownMenu.prompt.md":"b8ca4e74f03e","components/content/FeatureItem/FeatureItem.jsx":"bb22c6b112e0","components/content/FeatureItem/FeatureItem.d.ts":"5b02831affdc","components/content/FeatureItem/FeatureItem.prompt.md":"8eed7e79d9a6","components/navigation/FolderCarrousel/FolderCarrousel.jsx":"fe669a8466ea","components/navigation/FolderCarrousel/FolderCarrousel.d.ts":"517a1f6c511d","components/navigation/FolderCarrousel/FolderCarrousel.prompt.md":"ed1bca9712aa","components/indicators/ImageThumbnail/ImageThumbnail.jsx":"eba358df1cbe","components/indicators/ImageThumbnail/ImageThumbnail.d.ts":"e09a2ac117ef","components/indicators/ImageThumbnail/ImageThumbnail.prompt.md":"f1d009a529a1","components/social/ImageWithIcon/ImageWithIcon.jsx":"c6c587c966d1","components/social/ImageWithIcon/ImageWithIcon.d.ts":"0ffc16494e27","components/social/ImageWithIcon/ImageWithIcon.prompt.md":"0c2c7229692c","components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx":"806a6150545b","components/indicators/ImageWithProgressAround/ImageWithProgressAround.d.ts":"0156a3f1afb2","components/indicators/ImageWithProgressAround/ImageWithProgressAround.prompt.md":"dcf89fcfbb8a","components/cards/MemoryCard/MemoryCard.jsx":"3a0db91b5a78","components/cards/MemoryCard/MemoryCard.d.ts":"133524ff6528","components/cards/MemoryCard/MemoryCard.prompt.md":"429e9792f2cc","components/social/MessagePreview/MessagePreview.jsx":"215094a5eccd","components/social/MessagePreview/MessagePreview.d.ts":"bb652c774f28","components/social/MessagePreview/MessagePreview.prompt.md":"8429677865ce","components/memories/MilestoneCard/MilestoneCard.jsx":"f41829c3c1f0","components/memories/MilestoneCard/MilestoneCard.d.ts":"eed7542b8e03","components/memories/MilestoneCard/MilestoneCard.prompt.md":"ed078065e85c","components/memories/MilestonesList/MilestonesList.jsx":"48f44b1ed490","components/memories/MilestonesList/MilestonesList.d.ts":"10cad4068b69","components/memories/MilestonesList/MilestonesList.prompt.md":"739f1eedb6e7","components/social/NotificationBanner/NotificationBanner.jsx":"3047bcebf969","components/social/NotificationBanner/NotificationBanner.d.ts":"4f82b841d8c3","components/social/NotificationBanner/NotificationBanner.prompt.md":"57060dbd2686","components/social/NotificationBannerImage/NotificationBannerImage.jsx":"9d5214f16bde","components/social/NotificationBannerImage/NotificationBannerImage.d.ts":"0488d329db36","components/social/NotificationBannerImage/NotificationBannerImage.prompt.md":"01904774056d","components/cards/ProductCard/ProductCard.jsx":"60765da3d430","components/cards/ProductCard/ProductCard.d.ts":"77da73cd7ba1","components/cards/ProductCard/ProductCard.prompt.md":"bddfb1317e70","components/content/RatingRow/RatingRow.jsx":"c648699f7d52","components/content/RatingRow/RatingRow.d.ts":"b8541da81acd","components/content/RatingRow/RatingRow.prompt.md":"d36b1b43f630","components/cards/RecapCard/RecapCard.jsx":"5b5a0051efa7","components/cards/RecapCard/RecapCard.d.ts":"80b636ffc554","components/cards/RecapCard/RecapCard.prompt.md":"8fff796309ab","components/social/UserItem/UserItem.jsx":"8ca2155b51f1","components/social/UserItem/UserItem.d.ts":"9733979d627a","components/social/UserItem/UserItem.prompt.md":"ec0b0a01c16b","components/social/UsersList/UsersList.jsx":"263f90a7d807","components/social/UsersList/UsersList.d.ts":"b34733911d1c","components/social/UsersList/UsersList.prompt.md":"e19600d69967"},"inlinedExternals":[],"unexposedExports":[],"builtBy":"dots-design-system-react"} */
+/* @ds-bundle: {"format":4,"namespace":"DotsDesignSystem_9e41da","components":[{"name":"DotsIcon","sourcePath":"components/icons/DotsIcon/DotsIcon.jsx"},{"name":"ActivityPreview","sourcePath":"components/social/ActivityPreview/ActivityPreview.jsx"},{"name":"AlbumGroupCard","sourcePath":"components/cards/AlbumGroupCard/AlbumGroupCard.jsx"},{"name":"BadgeIcon","sourcePath":"components/feedback/BadgeIcon/BadgeIcon.jsx"},{"name":"BadgeLabel","sourcePath":"components/feedback/BadgeLabel/BadgeLabel.jsx"},{"name":"BadgeMilestone","sourcePath":"components/feedback/BadgeMilestone/BadgeMilestone.jsx"},{"name":"BadgeProgress","sourcePath":"components/feedback/BadgeProgress/BadgeProgress.jsx"},{"name":"BadgeTag","sourcePath":"components/feedback/BadgeTag/BadgeTag.jsx"},{"name":"BlurContainer","sourcePath":"components/content/BlurContainer/BlurContainer.jsx"},{"name":"BtnFolder","sourcePath":"components/buttons/BtnFolder/BtnFolder.jsx"},{"name":"ColorSelector","sourcePath":"components/content/ColorSelector/ColorSelector.jsx"},{"name":"CreateCard","sourcePath":"components/cards/CreateCard/CreateCard.jsx"},{"name":"DotsAccordion","sourcePath":"components/content/DotsAccordion/DotsAccordion.jsx"},{"name":"DotsActionSheet","sourcePath":"components/overlays/DotsActionSheet/DotsActionSheet.jsx"},{"name":"DotsAlert","sourcePath":"components/feedback/DotsAlert/DotsAlert.jsx"},{"name":"DotsCalendar","sourcePath":"components/inputs/DotsCalendar/DotsCalendar.jsx"},{"name":"DotsCaptureButton","sourcePath":"components/buttons/DotsCaptureButton/DotsCaptureButton.jsx"},{"name":"DotsCloseButton","sourcePath":"components/buttons/DotsCloseButton/DotsCloseButton.jsx"},{"name":"DotsCountdown","sourcePath":"components/indicators/DotsCountdown/DotsCountdown.jsx"},{"name":"DotsDivider","sourcePath":"components/content/DotsDivider/DotsDivider.jsx"},{"name":"DotsEmptyStateCard","sourcePath":"components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx"},{"name":"DotsFilterChip","sourcePath":"components/feedback/DotsFilterChip/DotsFilterChip.jsx"},{"name":"DotsFloatingButton","sourcePath":"components/buttons/DotsFloatingButton/DotsFloatingButton.jsx"},{"name":"DotsHomeTopBar","sourcePath":"components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx"},{"name":"DotsIconButton","sourcePath":"components/buttons/DotsIconButton/DotsIconButton.jsx"},{"name":"DotsInputStepper","sourcePath":"components/buttons/DotsInputStepper/DotsInputStepper.jsx"},{"name":"DotsItemInput","sourcePath":"components/inputs/DotsItemInput/DotsItemInput.jsx"},{"name":"DotsListItem","sourcePath":"components/content/DotsListItem/DotsListItem.jsx"},{"name":"DotsMainButton","sourcePath":"components/buttons/DotsMainButton/DotsMainButton.jsx"},{"name":"DotsMainContainer","sourcePath":"components/content/DotsMainContainer/DotsMainContainer.jsx"},{"name":"DotsMenu","sourcePath":"components/overlays/DotsMenu/DotsMenu.jsx"},{"name":"DotsNavBar","sourcePath":"components/navigation/DotsNavBar/DotsNavBar.jsx"},{"name":"DotsPlanningItem","sourcePath":"components/planning/DotsPlanningItem/DotsPlanningItem.jsx"},{"name":"DotsPlanSelector","sourcePath":"components/premium/DotsPlanSelector/DotsPlanSelector.jsx"},{"name":"DotsProfilePhoto","sourcePath":"components/media/DotsProfilePhoto/DotsProfilePhoto.jsx"},{"name":"DotsProgressBar","sourcePath":"components/indicators/DotsProgressBar/DotsProgressBar.jsx"},{"name":"DotsRadioButton","sourcePath":"components/buttons/DotsRadioButton/DotsRadioButton.jsx"},{"name":"DotsRichButton","sourcePath":"components/buttons/DotsRichButton/DotsRichButton.jsx"},{"name":"DotsSegmentedControl","sourcePath":"components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx"},{"name":"DotsSelector","sourcePath":"components/buttons/DotsSelector/DotsSelector.jsx"},{"name":"DotsSelectorRadioButton","sourcePath":"components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx"},{"name":"DotsSlider","sourcePath":"components/content/DotsSlider/DotsSlider.jsx"},{"name":"DotsSpinner","sourcePath":"components/indicators/DotsSpinner/DotsSpinner.jsx"},{"name":"DotsSquirclePhoto","sourcePath":"components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx"},{"name":"DotsSystemButton","sourcePath":"components/buttons/DotsSystemButton/DotsSystemButton.jsx"},{"name":"DotsTextArea","sourcePath":"components/inputs/DotsTextArea/DotsTextArea.jsx"},{"name":"DotsTextField","sourcePath":"components/inputs/DotsTextField/DotsTextField.jsx"},{"name":"DotsTextFieldButton","sourcePath":"components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx"},{"name":"DotsTextFieldDate","sourcePath":"components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx"},{"name":"DotsTextFieldPhone","sourcePath":"components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx"},{"name":"DotsToast","sourcePath":"components/feedback/DotsToast/DotsToast.jsx"},{"name":"DotsToggle","sourcePath":"components/buttons/DotsToggle/DotsToggle.jsx"},{"name":"DotsTooltip","sourcePath":"components/overlays/DotsTooltip/DotsTooltip.jsx"},{"name":"DotsTopBar","sourcePath":"components/navigation/DotsTopBar/DotsTopBar.jsx"},{"name":"DotsUploadItem","sourcePath":"components/media/DotsUploadItem/DotsUploadItem.jsx"},{"name":"DropdownMenu","sourcePath":"components/overlays/DropdownMenu/DropdownMenu.jsx"},{"name":"EventGroupCard","sourcePath":"components/cards/EventGroupCard/EventGroupCard.jsx"},{"name":"FeatureItem","sourcePath":"components/content/FeatureItem/FeatureItem.jsx"},{"name":"FolderCarrousel","sourcePath":"components/navigation/FolderCarrousel/FolderCarrousel.jsx"},{"name":"ImageThumbnail","sourcePath":"components/indicators/ImageThumbnail/ImageThumbnail.jsx"},{"name":"ImageWithIcon","sourcePath":"components/social/ImageWithIcon/ImageWithIcon.jsx"},{"name":"ImageWithProgressAround","sourcePath":"components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx"},{"name":"MemoryCard","sourcePath":"components/cards/MemoryCard/MemoryCard.jsx"},{"name":"MessagePreview","sourcePath":"components/social/MessagePreview/MessagePreview.jsx"},{"name":"MilestoneCard","sourcePath":"components/memories/MilestoneCard/MilestoneCard.jsx"},{"name":"MilestonesList","sourcePath":"components/memories/MilestonesList/MilestonesList.jsx"},{"name":"NotificationBanner","sourcePath":"components/social/NotificationBanner/NotificationBanner.jsx"},{"name":"NotificationBannerImage","sourcePath":"components/social/NotificationBannerImage/NotificationBannerImage.jsx"},{"name":"PageControl","sourcePath":"components/dotbook/PageControl/PageControl.jsx"},{"name":"ProductCard","sourcePath":"components/cards/ProductCard/ProductCard.jsx"},{"name":"RatingRow","sourcePath":"components/content/RatingRow/RatingRow.jsx"},{"name":"RecapCard","sourcePath":"components/cards/RecapCard/RecapCard.jsx"},{"name":"UserItem","sourcePath":"components/social/UserItem/UserItem.jsx"},{"name":"UsersList","sourcePath":"components/social/UsersList/UsersList.jsx"}],"sourceHashes":{"components/icons/DotsIcon/DotsIcon.jsx":"335df31c211a","components/icons/DotsIcon/DotsIcon.d.ts":"87b2028cfb22","components/icons/DotsIcon/DotsIcon.prompt.md":"fe2f27eb49fe","components/social/ActivityPreview/ActivityPreview.jsx":"b4b80f9e800f","components/social/ActivityPreview/ActivityPreview.d.ts":"9fa1929faede","components/social/ActivityPreview/ActivityPreview.prompt.md":"239a5fa193fe","components/cards/AlbumGroupCard/AlbumGroupCard.jsx":"19e3745d2c01","components/cards/AlbumGroupCard/AlbumGroupCard.d.ts":"3d5ea491b5a3","components/cards/AlbumGroupCard/AlbumGroupCard.prompt.md":"6dd66b80e55e","components/feedback/BadgeIcon/BadgeIcon.jsx":"a75a6074ba60","components/feedback/BadgeIcon/BadgeIcon.d.ts":"3aee2eb66b82","components/feedback/BadgeIcon/BadgeIcon.prompt.md":"929b4a0e194c","components/feedback/BadgeLabel/BadgeLabel.jsx":"f330d80f7db6","components/feedback/BadgeLabel/BadgeLabel.d.ts":"2b2e6a1c6d4d","components/feedback/BadgeLabel/BadgeLabel.prompt.md":"ed1b903fbe5a","components/feedback/BadgeMilestone/BadgeMilestone.jsx":"4c02ad66c2be","components/feedback/BadgeMilestone/BadgeMilestone.d.ts":"68d56286ee8c","components/feedback/BadgeMilestone/BadgeMilestone.prompt.md":"48a757bc2910","components/feedback/BadgeProgress/BadgeProgress.jsx":"71554919d446","components/feedback/BadgeProgress/BadgeProgress.d.ts":"1a294876e6b4","components/feedback/BadgeProgress/BadgeProgress.prompt.md":"b147f3bbf27b","components/feedback/BadgeTag/BadgeTag.jsx":"07499192e79b","components/feedback/BadgeTag/BadgeTag.d.ts":"7df3c446a845","components/feedback/BadgeTag/BadgeTag.prompt.md":"0dc17ea4fe03","components/content/BlurContainer/BlurContainer.jsx":"4f3158bee2a7","components/content/BlurContainer/BlurContainer.d.ts":"328979ce2d56","components/content/BlurContainer/BlurContainer.prompt.md":"47fb1619efac","components/buttons/BtnFolder/BtnFolder.jsx":"5818c75ea3ef","components/buttons/BtnFolder/BtnFolder.d.ts":"d97a1c1273e8","components/buttons/BtnFolder/BtnFolder.prompt.md":"409f1a511b12","components/content/ColorSelector/ColorSelector.jsx":"08ac3ae6676f","components/content/ColorSelector/ColorSelector.d.ts":"b7cd2cb1ca99","components/content/ColorSelector/ColorSelector.prompt.md":"b98eac18525b","components/cards/CreateCard/CreateCard.jsx":"9f5acf670673","components/cards/CreateCard/CreateCard.d.ts":"91d4448378d1","components/cards/CreateCard/CreateCard.prompt.md":"845e444d73f8","components/content/DotsAccordion/DotsAccordion.jsx":"84ac87f036d4","components/content/DotsAccordion/DotsAccordion.d.ts":"b321840ed28d","components/content/DotsAccordion/DotsAccordion.prompt.md":"1657898cd0de","components/overlays/DotsActionSheet/DotsActionSheet.jsx":"6aea0de1baad","components/overlays/DotsActionSheet/DotsActionSheet.d.ts":"c04efccc1150","components/overlays/DotsActionSheet/DotsActionSheet.prompt.md":"6c6162a444ea","components/feedback/DotsAlert/DotsAlert.jsx":"31e443a1a6c9","components/feedback/DotsAlert/DotsAlert.d.ts":"ae6723947810","components/feedback/DotsAlert/DotsAlert.prompt.md":"e6eb80571d37","components/inputs/DotsCalendar/DotsCalendar.jsx":"a4bb0de5b1bf","components/inputs/DotsCalendar/DotsCalendar.d.ts":"4d7457cdfa80","components/inputs/DotsCalendar/DotsCalendar.prompt.md":"bc6385a3b1b1","components/buttons/DotsCaptureButton/DotsCaptureButton.jsx":"b327fc4eacd1","components/buttons/DotsCaptureButton/DotsCaptureButton.d.ts":"18cb59b229d3","components/buttons/DotsCaptureButton/DotsCaptureButton.prompt.md":"04b427a10e12","components/buttons/DotsCloseButton/DotsCloseButton.jsx":"f989f50ce37d","components/buttons/DotsCloseButton/DotsCloseButton.d.ts":"63e7ca18df69","components/buttons/DotsCloseButton/DotsCloseButton.prompt.md":"2202cc87900c","components/indicators/DotsCountdown/DotsCountdown.jsx":"e6a30324d478","components/indicators/DotsCountdown/DotsCountdown.d.ts":"95ae10f7bd3d","components/indicators/DotsCountdown/DotsCountdown.prompt.md":"698be70ac531","components/content/DotsDivider/DotsDivider.jsx":"614a3fa428a4","components/content/DotsDivider/DotsDivider.d.ts":"396c1505b9b8","components/content/DotsDivider/DotsDivider.prompt.md":"608e2d568e01","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx":"7be6c63ad360","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.d.ts":"b63e53cbdac6","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.prompt.md":"204299d95767","components/feedback/DotsFilterChip/DotsFilterChip.jsx":"f70922a222e4","components/feedback/DotsFilterChip/DotsFilterChip.d.ts":"d86eb7bc7f14","components/feedback/DotsFilterChip/DotsFilterChip.prompt.md":"4e2d4316b2c5","components/buttons/DotsFloatingButton/DotsFloatingButton.jsx":"07ef21cbcf69","components/buttons/DotsFloatingButton/DotsFloatingButton.d.ts":"3c11508674c1","components/buttons/DotsFloatingButton/DotsFloatingButton.prompt.md":"9385b6723151","components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx":"3740529a645f","components/navigation/DotsHomeTopBar/DotsHomeTopBar.d.ts":"dd599e57fa1b","components/navigation/DotsHomeTopBar/DotsHomeTopBar.prompt.md":"36a11970a144","components/buttons/DotsIconButton/DotsIconButton.jsx":"ffcab2eedea4","components/buttons/DotsIconButton/DotsIconButton.d.ts":"54238dbe6046","components/buttons/DotsIconButton/DotsIconButton.prompt.md":"c4bb14d7759c","components/buttons/DotsInputStepper/DotsInputStepper.jsx":"fe711e75f2b8","components/buttons/DotsInputStepper/DotsInputStepper.d.ts":"439cfe2f385c","components/buttons/DotsInputStepper/DotsInputStepper.prompt.md":"6d3798eb4e5e","components/inputs/DotsItemInput/DotsItemInput.jsx":"fdda4bc0b529","components/inputs/DotsItemInput/DotsItemInput.d.ts":"5b6dbb4a7f30","components/inputs/DotsItemInput/DotsItemInput.prompt.md":"f643916e19cd","components/content/DotsListItem/DotsListItem.jsx":"6157f22e738a","components/content/DotsListItem/DotsListItem.d.ts":"e8d018898a64","components/content/DotsListItem/DotsListItem.prompt.md":"40bdc5fff354","components/buttons/DotsMainButton/DotsMainButton.jsx":"ae2cd12f68a1","components/buttons/DotsMainButton/DotsMainButton.d.ts":"cddb89971081","components/buttons/DotsMainButton/DotsMainButton.prompt.md":"a221cf629ffc","components/content/DotsMainContainer/DotsMainContainer.jsx":"4ddd06a6ad9e","components/content/DotsMainContainer/DotsMainContainer.d.ts":"dd9fc89aff3e","components/content/DotsMainContainer/DotsMainContainer.prompt.md":"9598eb0321bd","components/overlays/DotsMenu/DotsMenu.jsx":"250fcc9b1d35","components/overlays/DotsMenu/DotsMenu.d.ts":"35db23e7d5f8","components/overlays/DotsMenu/DotsMenu.prompt.md":"4f8bd72c1108","components/navigation/DotsNavBar/DotsNavBar.jsx":"16123dd053b7","components/navigation/DotsNavBar/DotsNavBar.d.ts":"5ba4d1599ac0","components/navigation/DotsNavBar/DotsNavBar.prompt.md":"d212413051ce","components/planning/DotsPlanningItem/DotsPlanningItem.jsx":"c17bedb8d20b","components/planning/DotsPlanningItem/DotsPlanningItem.d.ts":"b30aea250c2b","components/planning/DotsPlanningItem/DotsPlanningItem.prompt.md":"a8e792ac3dac","components/premium/DotsPlanSelector/DotsPlanSelector.jsx":"9e8354546c8e","components/premium/DotsPlanSelector/DotsPlanSelector.d.ts":"38b302df35c5","components/premium/DotsPlanSelector/DotsPlanSelector.prompt.md":"31125956fd1c","components/media/DotsProfilePhoto/DotsProfilePhoto.jsx":"92e613449ad2","components/media/DotsProfilePhoto/DotsProfilePhoto.d.ts":"d95296f257ad","components/media/DotsProfilePhoto/DotsProfilePhoto.prompt.md":"636c54ee6feb","components/indicators/DotsProgressBar/DotsProgressBar.jsx":"d6f31abf3d70","components/indicators/DotsProgressBar/DotsProgressBar.d.ts":"aeaed55683ca","components/indicators/DotsProgressBar/DotsProgressBar.prompt.md":"2dad7693c604","components/buttons/DotsRadioButton/DotsRadioButton.jsx":"7a4e9fc06d16","components/buttons/DotsRadioButton/DotsRadioButton.d.ts":"4bc28714a5d9","components/buttons/DotsRadioButton/DotsRadioButton.prompt.md":"d6e35d04a2c5","components/buttons/DotsRichButton/DotsRichButton.jsx":"f445085fc5ca","components/buttons/DotsRichButton/DotsRichButton.d.ts":"c58744c3cec5","components/buttons/DotsRichButton/DotsRichButton.prompt.md":"94e43f6c7d5f","components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx":"63c3134be5e4","components/inputs/DotsSegmentedControl/DotsSegmentedControl.d.ts":"16bfdd90a3f0","components/inputs/DotsSegmentedControl/DotsSegmentedControl.prompt.md":"780587c9cea5","components/buttons/DotsSelector/DotsSelector.jsx":"32a1fa2354c2","components/buttons/DotsSelector/DotsSelector.d.ts":"894b48d908a4","components/buttons/DotsSelector/DotsSelector.prompt.md":"3ca0254c3375","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx":"ca91ce72bf06","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.d.ts":"b4cc4df2c9e9","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.prompt.md":"0f43fa3291a0","components/content/DotsSlider/DotsSlider.jsx":"11ddb3b9d671","components/content/DotsSlider/DotsSlider.d.ts":"c62bd623eb54","components/content/DotsSlider/DotsSlider.prompt.md":"b91814ec96a9","components/indicators/DotsSpinner/DotsSpinner.jsx":"a12be39b5926","components/indicators/DotsSpinner/DotsSpinner.d.ts":"92a18d75b986","components/indicators/DotsSpinner/DotsSpinner.prompt.md":"eea0999cfa40","components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx":"be4633716883","components/media/DotsSquirclePhoto/DotsSquirclePhoto.d.ts":"59b3e6087b91","components/media/DotsSquirclePhoto/DotsSquirclePhoto.prompt.md":"7bf60628c1fe","components/buttons/DotsSystemButton/DotsSystemButton.jsx":"61ef368899c8","components/buttons/DotsSystemButton/DotsSystemButton.d.ts":"037592e5ec84","components/buttons/DotsSystemButton/DotsSystemButton.prompt.md":"09363a30bf00","components/inputs/DotsTextArea/DotsTextArea.jsx":"f5e66264f111","components/inputs/DotsTextArea/DotsTextArea.d.ts":"1dc2847b22ea","components/inputs/DotsTextArea/DotsTextArea.prompt.md":"63170a772fb6","components/inputs/DotsTextField/DotsTextField.jsx":"f072f4f3eb62","components/inputs/DotsTextField/DotsTextField.d.ts":"0c0151ef4b44","components/inputs/DotsTextField/DotsTextField.prompt.md":"42536ffb516a","components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx":"163b6c3eb5a2","components/inputs/DotsTextFieldButton/DotsTextFieldButton.d.ts":"69d562a11b16","components/inputs/DotsTextFieldButton/DotsTextFieldButton.prompt.md":"cd2a18ca1749","components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx":"bd28881afb3c","components/inputs/DotsTextFieldDate/DotsTextFieldDate.d.ts":"8d7f859c0a67","components/inputs/DotsTextFieldDate/DotsTextFieldDate.prompt.md":"2944cdc9159d","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx":"ee02df22e4b1","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.d.ts":"19f04ea85841","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.prompt.md":"32c5dd3fc02b","components/feedback/DotsToast/DotsToast.jsx":"9875719b818a","components/feedback/DotsToast/DotsToast.d.ts":"8df7532627c4","components/feedback/DotsToast/DotsToast.prompt.md":"e7dade8e5042","components/buttons/DotsToggle/DotsToggle.jsx":"d580e9128f26","components/buttons/DotsToggle/DotsToggle.d.ts":"7e48d0107831","components/buttons/DotsToggle/DotsToggle.prompt.md":"c8b4344a32ac","components/overlays/DotsTooltip/DotsTooltip.jsx":"690646cedff8","components/overlays/DotsTooltip/DotsTooltip.d.ts":"caf4c5e9e69e","components/overlays/DotsTooltip/DotsTooltip.prompt.md":"8e2e72fa4034","components/navigation/DotsTopBar/DotsTopBar.jsx":"bab2b068b924","components/navigation/DotsTopBar/DotsTopBar.d.ts":"182b7686120b","components/navigation/DotsTopBar/DotsTopBar.prompt.md":"6f2c5073c6e6","components/media/DotsUploadItem/DotsUploadItem.jsx":"b5b296dabbb0","components/media/DotsUploadItem/DotsUploadItem.d.ts":"1a66444ee7e7","components/media/DotsUploadItem/DotsUploadItem.prompt.md":"063ce14a5d25","components/overlays/DropdownMenu/DropdownMenu.jsx":"e990079ce8af","components/overlays/DropdownMenu/DropdownMenu.d.ts":"2347c73211f2","components/overlays/DropdownMenu/DropdownMenu.prompt.md":"b8ca4e74f03e","components/cards/EventGroupCard/EventGroupCard.jsx":"a156456590e1","components/cards/EventGroupCard/EventGroupCard.d.ts":"cf79b8f6b27b","components/cards/EventGroupCard/EventGroupCard.prompt.md":"456df0915b54","components/content/FeatureItem/FeatureItem.jsx":"bb22c6b112e0","components/content/FeatureItem/FeatureItem.d.ts":"fb28da894a55","components/content/FeatureItem/FeatureItem.prompt.md":"8eed7e79d9a6","components/navigation/FolderCarrousel/FolderCarrousel.jsx":"fe669a8466ea","components/navigation/FolderCarrousel/FolderCarrousel.d.ts":"6e1966b63a67","components/navigation/FolderCarrousel/FolderCarrousel.prompt.md":"ed1bca9712aa","components/indicators/ImageThumbnail/ImageThumbnail.jsx":"eba358df1cbe","components/indicators/ImageThumbnail/ImageThumbnail.d.ts":"bec7b569e561","components/indicators/ImageThumbnail/ImageThumbnail.prompt.md":"f1d009a529a1","components/social/ImageWithIcon/ImageWithIcon.jsx":"c6c587c966d1","components/social/ImageWithIcon/ImageWithIcon.d.ts":"9c75d2ab8229","components/social/ImageWithIcon/ImageWithIcon.prompt.md":"0c2c7229692c","components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx":"806a6150545b","components/indicators/ImageWithProgressAround/ImageWithProgressAround.d.ts":"f57071d0494b","components/indicators/ImageWithProgressAround/ImageWithProgressAround.prompt.md":"dcf89fcfbb8a","components/cards/MemoryCard/MemoryCard.jsx":"3a0db91b5a78","components/cards/MemoryCard/MemoryCard.d.ts":"01aacc288262","components/cards/MemoryCard/MemoryCard.prompt.md":"429e9792f2cc","components/social/MessagePreview/MessagePreview.jsx":"215094a5eccd","components/social/MessagePreview/MessagePreview.d.ts":"b36b48649a80","components/social/MessagePreview/MessagePreview.prompt.md":"8429677865ce","components/memories/MilestoneCard/MilestoneCard.jsx":"f41829c3c1f0","components/memories/MilestoneCard/MilestoneCard.d.ts":"d56ad4dfa7ef","components/memories/MilestoneCard/MilestoneCard.prompt.md":"ed078065e85c","components/memories/MilestonesList/MilestonesList.jsx":"48f44b1ed490","components/memories/MilestonesList/MilestonesList.d.ts":"10cad4068b69","components/memories/MilestonesList/MilestonesList.prompt.md":"739f1eedb6e7","components/social/NotificationBanner/NotificationBanner.jsx":"3047bcebf969","components/social/NotificationBanner/NotificationBanner.d.ts":"8312db4e4385","components/social/NotificationBanner/NotificationBanner.prompt.md":"57060dbd2686","components/social/NotificationBannerImage/NotificationBannerImage.jsx":"9d5214f16bde","components/social/NotificationBannerImage/NotificationBannerImage.d.ts":"4a3f335923fb","components/social/NotificationBannerImage/NotificationBannerImage.prompt.md":"01904774056d","components/dotbook/PageControl/PageControl.jsx":"7d3c2f0a4143","components/dotbook/PageControl/PageControl.d.ts":"58a5a9e129ae","components/dotbook/PageControl/PageControl.prompt.md":"2dcd422b32cb","components/cards/ProductCard/ProductCard.jsx":"60765da3d430","components/cards/ProductCard/ProductCard.d.ts":"50b7a2c95957","components/cards/ProductCard/ProductCard.prompt.md":"bddfb1317e70","components/content/RatingRow/RatingRow.jsx":"c648699f7d52","components/content/RatingRow/RatingRow.d.ts":"76cc81cbabc9","components/content/RatingRow/RatingRow.prompt.md":"d36b1b43f630","components/cards/RecapCard/RecapCard.jsx":"5b5a0051efa7","components/cards/RecapCard/RecapCard.d.ts":"e8173e5e2e63","components/cards/RecapCard/RecapCard.prompt.md":"8fff796309ab","components/social/UserItem/UserItem.jsx":"8ca2155b51f1","components/social/UserItem/UserItem.d.ts":"2539d766d947","components/social/UserItem/UserItem.prompt.md":"ec0b0a01c16b","components/social/UsersList/UsersList.jsx":"263f90a7d807","components/social/UsersList/UsersList.d.ts":"bf1170d7516a","components/social/UsersList/UsersList.prompt.md":"e19600d69967"},"inlinedExternals":[],"unexposedExports":[],"builtBy":"dots-design-system-react"} */
 (() => {
 
 const __ds_ns = (window.DotsDesignSystem_9e41da = window.DotsDesignSystem_9e41da || {});
@@ -64,27 +64,89 @@ const hooks = () => window.React;
   // src/index.ts
   var index_exports = {};
   __export(index_exports, {
+    ActivityOverviewItem: () => ActivityOverviewItem,
+    ActivityPreview: () => ActivityPreview,
+    AlbumGroupCard: () => AlbumGroupCard,
+    BadgeIcon: () => BadgeIcon,
+    BadgeLabel: () => BadgeLabel,
+    BadgeMilestone: () => BadgeMilestone,
+    BadgeProgress: () => BadgeProgress,
+    BadgeTag: () => BadgeTag,
+    BlurContainer: () => BlurContainer,
+    BtnFolder: () => BtnFolder,
+    ColorSelector: () => ColorSelector,
+    CreateCard: () => CreateCard,
+    DotsAccordion: () => DotsAccordion,
     DotsActionSheet: () => DotsActionSheet,
     DotsActionSheetListItem: () => DotsActionSheetListItem,
     DotsAlert: () => DotsAlert,
     DotsCalendar: () => DotsCalendar,
+    DotsCaptureButton: () => DotsCaptureButton,
     DotsCloseButton: () => DotsCloseButton,
+    DotsCountdown: () => DotsCountdown,
+    DotsDivider: () => DotsDivider,
+    DotsEmptyStateCard: () => DotsEmptyStateCard,
+    DotsFilterChip: () => DotsFilterChip,
+    DotsFloatingButton: () => DotsFloatingButton,
+    DotsHomeTopBar: () => DotsHomeTopBar,
     DotsIcon: () => DotsIcon,
     DotsIconButton: () => DotsIconButton,
+    DotsInputStepper: () => DotsInputStepper,
+    DotsItemInput: () => DotsItemInput,
+    DotsListItem: () => DotsListItem,
     DotsMainButton: () => DotsMainButton,
     DotsMainContainer: () => DotsMainContainer,
+    DotsMenu: () => DotsMenu,
+    DotsMenuSettingsItem: () => DotsMenuSettingsItem,
+    DotsMenuSettingsList: () => DotsMenuSettingsList,
+    DotsNavBar: () => DotsNavBar,
+    DotsPlanSelector: () => DotsPlanSelector,
+    DotsPlanningItem: () => DotsPlanningItem,
     DotsProfilePhoto: () => DotsProfilePhoto,
     DotsProgressBar: () => DotsProgressBar,
     DotsRadioButton: () => DotsRadioButton,
     DotsRichButton: () => DotsRichButton,
+    DotsSegmentedControl: () => DotsSegmentedControl,
+    DotsSelector: () => DotsSelector,
+    DotsSelectorRadioButton: () => DotsSelectorRadioButton,
+    DotsSelectorRadioButtonLabel: () => DotsSelectorRadioButtonLabel,
+    DotsSettingItemRadioBtn: () => DotsSettingItemRadioBtn,
+    DotsSlider: () => DotsSlider,
     DotsSpinner: () => DotsSpinner,
+    DotsSquirclePhoto: () => DotsSquirclePhoto,
+    DotsSystemButton: () => DotsSystemButton,
+    DotsTextArea: () => DotsTextArea,
     DotsTextField: () => DotsTextField,
     DotsTextFieldButton: () => DotsTextFieldButton,
     DotsTextFieldDate: () => DotsTextFieldDate,
+    DotsTextFieldPhone: () => DotsTextFieldPhone,
+    DotsToast: () => DotsToast,
     DotsToggle: () => DotsToggle,
+    DotsTooltip: () => DotsTooltip,
     DotsTopBar: () => DotsTopBar,
+    DotsUploadItem: () => DotsUploadItem,
+    DropdownMenu: () => DropdownMenu,
+    DropdownMenuItem: () => DropdownMenuItem,
     EventGroupCard: () => EventGroupCard,
+    FeatureItem: () => FeatureItem,
+    FolderCarrousel: () => FolderCarrousel,
+    ImageThumbnail: () => ImageThumbnail,
+    ImageWithIcon: () => ImageWithIcon,
+    ImageWithProgressAround: () => ImageWithProgressAround,
+    MemoryCard: () => MemoryCard,
+    MessagePreview: () => MessagePreview,
+    MilestoneCard: () => MilestoneCard,
+    MilestonesList: () => MilestonesList,
+    NotificationBanner: () => NotificationBanner,
+    NotificationBannerImage: () => NotificationBannerImage,
     PageControl: () => PageControl,
+    ProductCard: () => ProductCard,
+    RatingRow: () => RatingRow,
+    RecapCard: () => RecapCard,
+    UserInfo: () => UserInfo,
+    UserItem: () => UserItem,
+    UsersList: () => UsersList,
+    UsersListItem: () => UsersListItem,
     dotsIconNames: () => dotsIconNames
   });
   init_react_shim();
@@ -446,7 +508,7 @@ const hooks = () => window.React;
       }
       props.onClick(e);
     }
-    const iconEl = props.icon && !isLoading ? /* @__PURE__ */ React.createElement("span", { className: "ds-main-btn__icon", style: props.iconColor ? { color: props.iconColor } : void 0, "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: iconSize })) : null;
+    const iconEl2 = props.icon && !isLoading ? /* @__PURE__ */ React.createElement("span", { className: "ds-main-btn__icon", style: props.iconColor ? { color: props.iconColor } : void 0, "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: iconSize })) : null;
     const labelEl = /* @__PURE__ */ React.createElement("span", { className: "ds-main-btn__label", style: props.textStyle }, props.label);
     const detailsEl = props.details != null && (size === "mainAction" || size === "large") ? /* @__PURE__ */ React.createElement("span", { className: "ds-main-btn__details" }, props.details) : null;
     let children;
@@ -454,9 +516,9 @@ const hooks = () => window.React;
       const d = Math.max(SIZE_HEIGHT[size] - 25, 12);
       children = /* @__PURE__ */ React.createElement("span", { className: "ds-main-btn__spinner", style: { width: d, height: d } });
     } else if (iconPosition === "left") {
-      children = /* @__PURE__ */ React.createElement(React.Fragment, null, iconEl, labelEl, detailsEl);
+      children = /* @__PURE__ */ React.createElement(React.Fragment, null, iconEl2, labelEl, detailsEl);
     } else {
-      children = /* @__PURE__ */ React.createElement(React.Fragment, null, labelEl, detailsEl, iconEl);
+      children = /* @__PURE__ */ React.createElement(React.Fragment, null, labelEl, detailsEl, iconEl2);
     }
     return /* @__PURE__ */ React.createElement(
       "button",
@@ -555,8 +617,8 @@ const hooks = () => window.React;
     const circleStyle = {};
     if (props.backgroundColor) circleStyle.background = props.backgroundColor;
     if (props.color) circleStyle.color = props.color;
-    const icon = /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: iconSize, color: props.color });
-    const iconContent = props.tag != null ? /* @__PURE__ */ React.createElement("span", { className: "ds-icon-btn__tagwrap" }, icon, /* @__PURE__ */ React.createElement("span", { className: "ds-icon-btn__tag" }, props.tag)) : icon;
+    const icon2 = /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: iconSize, color: props.color });
+    const iconContent = props.tag != null ? /* @__PURE__ */ React.createElement("span", { className: "ds-icon-btn__tagwrap" }, icon2, /* @__PURE__ */ React.createElement("span", { className: "ds-icon-btn__tag" }, props.tag)) : icon2;
     const labelStyle = { color: props.color || labelColor(style, state) };
     if (direction === "column" && !noBg) labelStyle.width = sz.size;
     return /* @__PURE__ */ React.createElement("span", { className: `ds-icon-btn ds-icon-btn--${direction}`, style: { gap }, onClick: textTappable ? props.onClick : void 0 }, /* @__PURE__ */ React.createElement("button", { type: "button", className: circleCls, style: circleStyle, onClick: textTappable ? void 0 : props.onClick }, iconContent), hasLabel ? /* @__PURE__ */ React.createElement("span", { className: `ds-icon-btn__label${props.overflow ? " ds-icon-btn__label--ellipsis" : ""}`, style: labelStyle }, props.label) : null);
@@ -981,34 +1043,34 @@ const hooks = () => window.React;
   function DotsActionSheet(props) {
     let variant = props.variant ?? "standard";
     const showGrabber = props.showGrabber != null ? !!props.showGrabber : variant !== "search";
-    let body;
+    let body2;
     let closeTop = null;
     switch (variant) {
       case "list":
-        body = renderList(props);
+        body2 = renderList(props);
         break;
       case "input":
-        body = renderInput(props);
+        body2 = renderInput(props);
         break;
       case "radioButtons":
-        body = renderRadioButtons(props);
+        body2 = renderRadioButtons(props);
         closeTop = 12;
         break;
       case "settings":
-        body = renderSettings(props);
+        body2 = renderSettings(props);
         break;
       case "search":
-        body = renderSearch(props);
+        body2 = renderSearch(props);
         break;
       case "spotlight":
-        body = renderSpotlight(props);
+        body2 = renderSpotlight(props);
         closeTop = 12;
         break;
       default:
         variant = "standard";
-        body = renderStandard(props);
+        body2 = renderStandard(props);
     }
-    return /* @__PURE__ */ React.createElement("div", { className: `ds-action-sheet ds-action-sheet--${variant}${props.className ? ` ${props.className}` : ""}`, style: props.style }, showGrabber ? /* @__PURE__ */ React.createElement("div", { className: "ds-action-sheet__grabber" }) : null, body, props.showCloseButton ? /* @__PURE__ */ React.createElement(CloseButton, { onClose: props.onClose, top: closeTop }) : null);
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-action-sheet ds-action-sheet--${variant}${props.className ? ` ${props.className}` : ""}`, style: props.style }, showGrabber ? /* @__PURE__ */ React.createElement("div", { className: "ds-action-sheet__grabber" }) : null, body2, props.showCloseButton ? /* @__PURE__ */ React.createElement(CloseButton, { onClose: props.onClose, top: closeTop }) : null);
   }
   DotsActionSheet.ListItem = DotsActionSheetListItem;
 
@@ -1356,6 +1418,2397 @@ const hooks = () => window.React;
     )), /* @__PURE__ */ React.createElement("div", { style: { height: padRows * ITEM, flex: "none" } }));
   }
 
+  // src/components/DotsSelector/DotsSelector.tsx
+  init_react_shim();
+  var import_react9 = __toESM(require_react(), 1);
+  var SIZES3 = { small: 22, medium: 24 };
+  function DotsSelector(props) {
+    const sizeName = props.size && SIZES3[props.size] ? props.size : "medium";
+    const variant = props.variant === "num" ? "num" : "check";
+    const controlled = props.isSelected !== void 0 && props.isSelected !== null;
+    const [internal, setInternal] = (0, import_react9.useState)(!!props.defaultSelected);
+    const selected = controlled ? !!props.isSelected : internal;
+    function handleClick() {
+      const next = !selected;
+      if (!controlled) setInternal(next);
+      props.onChanged?.(next);
+    }
+    let content = null;
+    if (selected) {
+      content = variant === "check" ? /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-check", size: 14, color: "var(--label-always-white)" }) : String(props.number ?? 1);
+    }
+    return /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        type: "button",
+        role: "checkbox",
+        "aria-checked": selected,
+        className: `ds-selector ds-selector--${sizeName}${selected ? " is-on" : ""}`,
+        onClick: handleClick
+      },
+      content
+    );
+  }
+
+  // src/components/DotsSystemButton/DotsSystemButton.tsx
+  init_react_shim();
+  var VARIANTS4 = ["active", "disabled", "destructive"];
+  var ICON_SIZE = { medium: 20 };
+  function DotsSystemButton(props) {
+    const size = props.size && ICON_SIZE[props.size] ? props.size : "medium";
+    const variant = props.variant && VARIANTS4.includes(props.variant) ? props.variant : "active";
+    let className = `ds-system-btn ds-system-btn--size-${size} ds-system-btn--${variant}`;
+    if (props.expand) className += " ds-system-btn--expand";
+    if (props.className) className += ` ${props.className}`;
+    return /* @__PURE__ */ React.createElement("button", { type: "button", className, "aria-disabled": variant === "disabled" || void 0, onClick: props.onClick }, props.icon ? /* @__PURE__ */ React.createElement("span", { className: "ds-system-btn__icon", "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: ICON_SIZE[size] })) : null, /* @__PURE__ */ React.createElement("span", { className: "ds-system-btn__label" }, props.label));
+  }
+
+  // src/components/DotsFloatingButton/DotsFloatingButton.tsx
+  init_react_shim();
+  function DotsFloatingButton(props) {
+    const blur = props.blur !== false;
+    return /* @__PURE__ */ React.createElement("button", { type: "button", className: `ds-floating-btn${blur ? " ds-floating-btn--blur" : ""}`, onClick: props.onClick }, props.icon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: 20 }) : null, /* @__PURE__ */ React.createElement("span", { className: "ds-floating-btn__label" }, props.content));
+  }
+
+  // src/components/DotsCaptureButton/DotsCaptureButton.tsx
+  init_react_shim();
+  var import_react10 = __toESM(require_react(), 1);
+  var DIAMETER = 80;
+  var INNER = 68;
+  var INNER_RECORDING = 60;
+  var STROKE = 6;
+  var RADIUS = (DIAMETER - STROKE) / 2;
+  var CIRC = 2 * Math.PI * RADIUS;
+  function DotsCaptureButton(props) {
+    const type = props.type === "video" ? "video" : "photo";
+    const controlled = props.state !== void 0 && props.state !== null;
+    const [internalRecording, setInternalRecording] = (0, import_react10.useState)(false);
+    const recording = controlled ? props.state === "recording" : internalRecording;
+    const [progress, setProgress] = (0, import_react10.useState)(0);
+    const maxTime = props.maxTimeRecording && props.maxTimeRecording > 0 ? props.maxTimeRecording : 60;
+    const stopCbRef = (0, import_react10.useRef)(void 0);
+    stopCbRef.current = props.onStopRecording;
+    const animating = type === "video" && recording;
+    (0, import_react10.useEffect)(() => {
+      if (!animating) {
+        setProgress(0);
+        return void 0;
+      }
+      const start = Date.now();
+      const id = setInterval(() => {
+        const raw = Math.min((Date.now() - start) / (maxTime * 1e3), 1);
+        setProgress(raw);
+        if (raw >= 1) {
+          clearInterval(id);
+          setInternalRecording(false);
+          stopCbRef.current?.();
+        }
+      }, 50);
+      return () => {
+        clearInterval(id);
+      };
+    }, [animating, maxTime]);
+    function handleClick() {
+      if (type === "photo") {
+        props.onTakePicture?.();
+        return;
+      }
+      if (recording) {
+        if (!controlled) setInternalRecording(false);
+        props.onStopRecording?.();
+      } else {
+        if (!controlled) setInternalRecording(true);
+        props.onStartRecording?.();
+      }
+    }
+    let children;
+    if (type === "photo" || !recording) {
+      const inner = type === "photo" && recording ? INNER_RECORDING : INNER;
+      children = /* @__PURE__ */ React.createElement("span", { className: `ds-capture__inner ds-capture__inner--${type}`, style: { width: `${inner}px`, height: `${inner}px` } });
+    } else {
+      children = /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("svg", { className: "ds-capture__ring", viewBox: "0 0 80 80", "aria-hidden": true }, /* @__PURE__ */ React.createElement(
+        "circle",
+        {
+          cx: 40,
+          cy: 40,
+          r: RADIUS,
+          fill: "none",
+          stroke: "var(--label-always-white)",
+          strokeWidth: STROKE,
+          strokeLinecap: "round",
+          strokeDasharray: `${progress * CIRC} ${CIRC}`
+        }
+      )), /* @__PURE__ */ React.createElement("span", { className: "ds-capture__stop" }));
+    }
+    return /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        type: "button",
+        className: "ds-capture",
+        "aria-label": type === "photo" ? "Tomar foto" : recording ? "Detener grabaci\xF3n" : "Grabar v\xEDdeo",
+        onClick: handleClick
+      },
+      children
+    );
+  }
+
+  // src/components/DotsInputStepper/DotsInputStepper.tsx
+  init_react_shim();
+  var import_react11 = __toESM(require_react(), 1);
+  function DotsInputStepper(props) {
+    const min = props.minValue ?? 0;
+    const max = props.maxValue ?? 99;
+    const controlled = props.value !== void 0 && props.value !== null;
+    const [internal, setInternal] = (0, import_react11.useState)(props.defaultValue ?? min);
+    const value = controlled ? props.value : internal;
+    const canDecrement = value > min;
+    const canIncrement = value < max;
+    function step(delta, canStep, dartCallback) {
+      if (!canStep) return;
+      const next = value + delta;
+      if (!controlled) setInternal(next);
+      dartCallback?.();
+      props.onChanged?.(next);
+    }
+    function stepBtn(iconName2, enabled, onClick) {
+      return /* @__PURE__ */ React.createElement("button", { type: "button", className: `ds-stepper__btn${enabled ? "" : " is-disabled"}`, disabled: !enabled, onClick }, /* @__PURE__ */ React.createElement(DotsIcon, { name: iconName2, size: 14, color: "currentColor" }));
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: "ds-stepper" }, stepBtn("ic-rest", canDecrement, () => step(-1, canDecrement, props.onDecrement)), /* @__PURE__ */ React.createElement("span", { className: "ds-stepper__value" }, String(value)), stepBtn("ic-add", canIncrement, () => step(1, canIncrement, props.onIncrement)));
+  }
+
+  // src/components/BtnFolder/BtnFolder.tsx
+  init_react_shim();
+  var import_react12 = __toESM(require_react(), 1);
+  var LONG_PRESS_MS = 500;
+  function BtnFolder(props) {
+    const timer = (0, import_react12.useRef)(null);
+    const fired = (0, import_react12.useRef)(false);
+    function startPress() {
+      fired.current = false;
+      if (!props.onLongPress) return;
+      timer.current = setTimeout(() => {
+        fired.current = true;
+        props.onLongPress?.();
+      }, LONG_PRESS_MS);
+    }
+    function cancelPress() {
+      if (timer.current) {
+        clearTimeout(timer.current);
+        timer.current = null;
+      }
+    }
+    function handleClick() {
+      if (fired.current) {
+        fired.current = false;
+        return;
+      }
+      props.onClick?.();
+    }
+    const isSelected = !!props.isSelected;
+    const isNonExpandable = !!props.isNonExpandable;
+    const selColor = props.iconSelectedColor || "#3E9ACB";
+    let text = props.text != null ? String(props.text) : null;
+    if (text && text.length > 20) text = `${text.substring(0, 20)}\u2026`;
+    const pill = /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        type: "button",
+        className: "ds-btn-folder__pill" + (isSelected ? " ds-btn-folder__pill--selected" : "") + (isNonExpandable ? " ds-btn-folder__pill--nonexp" : ""),
+        onClick: handleClick,
+        onPointerDown: startPress,
+        onPointerUp: cancelPress,
+        onPointerLeave: cancelPress,
+        onContextMenu: (e) => {
+          if (props.onLongPress) e.preventDefault();
+        }
+      },
+      /* @__PURE__ */ React.createElement("span", { className: "ds-btn-folder__icon", style: isSelected && !isNonExpandable ? { color: selColor } : void 0 }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: 20 })),
+      !isNonExpandable && text ? /* @__PURE__ */ React.createElement("span", { className: "ds-btn-folder__text" }, text) : null
+    );
+    const edit = props.showEditIcon && props.isEditable ? /* @__PURE__ */ React.createElement("button", { type: "button", className: "ds-btn-folder__edit", onClick: props.onLongPress, "aria-label": "Editar carpeta" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-pencil", size: 10 })) : null;
+    return /* @__PURE__ */ React.createElement("span", { className: "ds-btn-folder" }, /* @__PURE__ */ React.createElement("span", { className: "ds-btn-folder__clip" }, pill), edit);
+  }
+
+  // src/components/FolderCarrousel/FolderCarrousel.tsx
+  init_react_shim();
+  function FolderCarrousel(props) {
+    const items = props.items || [];
+    const showEditIcon = !!props.showEditIcon;
+    const onSelect = props.onSelect;
+    const nodes = items.map((item, i) => {
+      const handleClick = item.onClick || (onSelect ? () => onSelect(i) : void 0);
+      return /* @__PURE__ */ React.createElement(
+        BtnFolder,
+        {
+          key: i,
+          icon: item.icon,
+          text: item.text,
+          onClick: handleClick,
+          onLongPress: item.onLongPress,
+          isSelected: !!item.isSelected,
+          iconSelectedColor: item.iconSelectedColor || "#3E9ACB",
+          isNonExpandable: !!item.isNonExpandable,
+          isEditable: !!item.isEditable,
+          showEditIcon
+        }
+      );
+    });
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-folder-carrousel${props.className ? ` ${props.className}` : ""}` }, nodes, props.children);
+  }
+
+  // src/components/DotsCountdown/DotsCountdown.tsx
+  init_react_shim();
+  var import_react13 = __toESM(require_react(), 1);
+  function pad2(v) {
+    const s = String(v == null ? 0 : v);
+    return s.length >= 2 ? s : `0${s}`;
+  }
+  function remainingOf(target) {
+    const diff = target - Date.now();
+    if (diff <= 0) return { finished: true, days: 0, hours: 0, minutes: 0, seconds: 0 };
+    const s = Math.floor(diff / 1e3);
+    return {
+      finished: false,
+      days: Math.floor(s / 86400),
+      hours: Math.floor(s / 3600) % 24,
+      minutes: Math.floor(s / 60) % 60,
+      seconds: s % 60
+    };
+  }
+  function icon(name, size) {
+    return /* @__PURE__ */ React.createElement(DotsIcon, { name, size, color: "var(--label-always-white)" });
+  }
+  function timeItem(key, value, label, dimLabel) {
+    return /* @__PURE__ */ React.createElement("span", { key, className: "ds-countdown__item" }, /* @__PURE__ */ React.createElement("span", { className: "ds-countdown__item-value" }, value), /* @__PURE__ */ React.createElement("span", { className: `ds-countdown__item-label${dimLabel ? " is-dim" : ""}` }, label));
+  }
+  function DotsCountdown(props) {
+    const variant = props.variant || "recap";
+    const target = props.targetDate == null ? null : new Date(props.targetDate).getTime();
+    const live = target != null && variant === "recap";
+    const [, setTick] = (0, import_react13.useState)(0);
+    (0, import_react13.useEffect)(() => {
+      if (!live || target == null) return void 0;
+      if (remainingOf(target).finished) return void 0;
+      const id = setInterval(() => {
+        setTick((n) => n + 1);
+        if (remainingOf(target).finished) clearInterval(id);
+      }, 1e3);
+      return () => {
+        clearInterval(id);
+      };
+    }, [target, live]);
+    const className = `ds-countdown ds-countdown--${variant}` + (variant === "recap" && props.isDotbook ? " ds-countdown--dotbook" : "") + (props.className ? ` ${props.className}` : "");
+    if (variant === "small") {
+      const text = `${props.years || ""} ${props.yearsLabel || ""} ${props.months || ""} ${props.monthsLabel || ""} ${props.conjunctionText || ""} ${props.days || ""} ${props.daysLabel || ""}`.replace(/\s+/g, " ").trim();
+      return /* @__PURE__ */ React.createElement("span", { className }, icon(props.icon || "ic-wedding-rings", 16), /* @__PURE__ */ React.createElement("span", { className: "ds-countdown__small-text" }, text));
+    }
+    if (variant === "big") {
+      return /* @__PURE__ */ React.createElement("span", { className }, /* @__PURE__ */ React.createElement("span", { className: "ds-countdown__title" }, props.title || ""), /* @__PURE__ */ React.createElement("span", { className: "ds-countdown__times ds-countdown__times--big" }, timeItem("y", props.years || "", props.yearsLabel || "", false), timeItem("m", props.months || "", props.monthsLabel || "", false), timeItem("d", props.days || "", props.daysLabel || "", false)));
+    }
+    let r;
+    if (target != null) {
+      r = remainingOf(target);
+    } else {
+      r = {
+        finished: !!props.finished,
+        days: props.days || 0,
+        hours: props.hours || 0,
+        minutes: props.minutes || 0,
+        seconds: props.seconds || 0
+      };
+    }
+    return /* @__PURE__ */ React.createElement("span", { className }, icon("ic-lock", 20), /* @__PURE__ */ React.createElement("span", { className: "ds-countdown__title" }, props.title || ""), r.finished ? /* @__PURE__ */ React.createElement("span", { className: "ds-countdown__desc" }, props.description || "") : /* @__PURE__ */ React.createElement("span", { className: "ds-countdown__times" }, timeItem("d", pad2(r.days), props.daysLabel || "", true), timeItem("h", pad2(r.hours), props.hoursLabel || "", true), timeItem("m", pad2(r.minutes), props.minutesLabel || "", true), timeItem("s", pad2(r.seconds), props.secondsLabel || "", true)));
+  }
+
+  // src/components/ImageThumbnail/ImageThumbnail.tsx
+  init_react_shim();
+  function ImageThumbnail(props) {
+    const variant = props.variant || "image";
+    const isIcon = variant === "icon";
+    const size = props.size ?? 40;
+    const iconSize = props.iconSize ?? 20;
+    return /* @__PURE__ */ React.createElement(
+      "span",
+      {
+        className: `ds-image-thumbnail${isIcon ? " ds-image-thumbnail--icon" : ""}${props.className ? ` ${props.className}` : ""}`,
+        style: { width: `${size}px`, height: `${size}px` }
+      },
+      !isIcon && props.src ? /* @__PURE__ */ React.createElement("img", { className: "ds-image-thumbnail__img", src: props.src, alt: props.alt || "", onError: props.onError }) : null,
+      props.coverImage ? /* @__PURE__ */ React.createElement("span", { className: "ds-image-thumbnail__cover" }) : null,
+      isIcon ? /* @__PURE__ */ React.createElement("span", { className: "ds-image-thumbnail__icon" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon || "ic-user", size: iconSize, color: props.iconColor })) : null
+    );
+  }
+
+  // src/components/ImageWithProgressAround/ImageWithProgressAround.tsx
+  init_react_shim();
+  var import_react14 = __toESM(require_react(), 1);
+  var RECAP_GRADIENT = ["#EF5FC1", "#C982F7", "#15ABF3", "#B295B6", "#F5784D", "#EF9C5F", "#F44E69", "#EF5FC1"];
+  var uid = 0;
+  function ImageWithProgressAround(props) {
+    const idRef = (0, import_react14.useRef)(null);
+    if (idRef.current == null) idRef.current = `ds-iwpa-grad-${++uid}`;
+    const gradId = idRef.current;
+    const width = props.width ?? 150;
+    const ratio = props.aspectRatio === "small" ? 3 / 4 : 9 / 16;
+    const height = Math.round(width / ratio);
+    const stroke = props.progressBarWidth ?? 6;
+    const pad3 = props.innerPadding ?? 8;
+    const br = props.borderRadius ?? 45;
+    const raw = props.progress || 0;
+    const progress = raw > 1 ? Math.min(1, raw / 100) : Math.max(0, Math.min(1, raw));
+    const colors = props.progressBarColors && props.progressBarColors.length ? props.progressBarColors : RECAP_GRADIENT;
+    const half = stroke / 2;
+    let rx = br + pad3 + half;
+    const rw = width - stroke;
+    const rh = height - stroke;
+    rx = Math.min(rx, rw / 2, rh / 2);
+    const perimeter = 2 * (rw + rh) - 8 * rx + 2 * Math.PI * rx;
+    const startShift = (rw / 2 - rx) / perimeter * 100;
+    const stops = colors.map((c, i) => /* @__PURE__ */ React.createElement("stop", { key: i, offset: colors.length === 1 ? 0 : i / (colors.length - 1), stopColor: c }));
+    return /* @__PURE__ */ React.createElement(
+      "span",
+      {
+        className: `ds-iwpa${props.className ? ` ${props.className}` : ""}`,
+        style: { width: `${width}px`, height: `${height}px` },
+        role: "progressbar",
+        "aria-valuemin": 0,
+        "aria-valuemax": 100,
+        "aria-valuenow": Math.round(progress * 100)
+      },
+      /* @__PURE__ */ React.createElement("span", { className: "ds-iwpa__inner", style: { inset: `${pad3 + stroke}px`, borderRadius: `${br}px` } }, props.src ? /* @__PURE__ */ React.createElement("img", { className: "ds-iwpa__img", src: props.src, alt: props.alt || "" }) : /* @__PURE__ */ React.createElement("span", { className: "ds-iwpa__placeholder" }), /* @__PURE__ */ React.createElement("span", { className: "ds-iwpa__overlay" }, /* @__PURE__ */ React.createElement("span", { className: "ds-iwpa__pct" }, `${Math.round(progress * 100)}%`))),
+      /* @__PURE__ */ React.createElement("svg", { className: "ds-iwpa__ring", viewBox: `0 0 ${width} ${height}`, width, height }, /* @__PURE__ */ React.createElement("defs", null, /* @__PURE__ */ React.createElement("linearGradient", { id: gradId, x1: "0", y1: "0", x2: "1", y2: "1" }, stops)), /* @__PURE__ */ React.createElement("rect", { className: "ds-iwpa__track", x: half, y: half, width: rw, height: rh, rx, fill: "none", strokeWidth: stroke }), progress > 0 ? /* @__PURE__ */ React.createElement(
+        "rect",
+        {
+          className: "ds-iwpa__progress",
+          x: half,
+          y: half,
+          width: rw,
+          height: rh,
+          rx,
+          fill: "none",
+          stroke: `url(#${gradId})`,
+          strokeWidth: stroke,
+          strokeLinecap: "round",
+          pathLength: 100,
+          strokeDasharray: `${progress * 100} 100`,
+          strokeDashoffset: -startShift
+        }
+      ) : null)
+    );
+  }
+
+  // src/components/DotsItemInput/DotsItemInput.tsx
+  init_react_shim();
+  var POSITIONS = { onlyOne: "only-one", first: "first", middle: "middle", last: "last" };
+  function DotsItemInput(props) {
+    const pos = props.position && POSITIONS[props.position] || "only-one";
+    const clickable = typeof props.onClick === "function";
+    function handleKeyDown(e) {
+      if ((e.key === "Enter" || e.key === " ") && clickable) {
+        e.preventDefault();
+        props.onClick?.();
+      }
+    }
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-item-input ds-item-input--${pos}${clickable ? " ds-item-input--clickable" : ""}`,
+        role: clickable ? "button" : void 0,
+        tabIndex: clickable ? 0 : void 0,
+        onClick: props.onClick,
+        onKeyDown: clickable ? handleKeyDown : void 0
+      },
+      /* @__PURE__ */ React.createElement("span", { className: "ds-item-input__icon", "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon || "ic-calendar", size: 20, color: "currentColor" })),
+      /* @__PURE__ */ React.createElement("span", { className: "ds-item-input__label" }, props.label || ""),
+      /* @__PURE__ */ React.createElement("span", { className: "ds-item-input__value" }, props.value || "")
+    );
+  }
+
+  // src/components/DotsSegmentedControl/DotsSegmentedControl.tsx
+  init_react_shim();
+  var import_react15 = __toESM(require_react(), 1);
+  function badgeTag(tag) {
+    return tag ? /* @__PURE__ */ React.createElement("span", { className: "ds-seg__tag" }, tag) : null;
+  }
+  function DotsSegmentedControl(props) {
+    const type = props.type || "text";
+    const controlled = props.selectedOption !== void 0 && props.selectedOption !== null;
+    const [internal, setInternal] = (0, import_react15.useState)(props.defaultSelectedOption || "left");
+    const selected = controlled ? props.selectedOption : internal;
+    function tap(option) {
+      if (!controlled) setInternal(option);
+      props.onTapOption?.(option);
+    }
+    if (type === "single") {
+      return /* @__PURE__ */ React.createElement("div", { className: "ds-seg ds-seg--single", style: props.backgroundColor ? { background: props.backgroundColor } : void 0 }, /* @__PURE__ */ React.createElement("span", { className: "ds-seg__opt is-selected", style: props.selectedColor ? { background: props.selectedColor } : void 0 }, props.buttonName), badgeTag(props.buttonTag));
+    }
+    if (type === "icon") {
+      const cell = (side, name) => {
+        const sel = selected === side;
+        return /* @__PURE__ */ React.createElement("button", { type: "button", className: `ds-seg-icon__cell${sel ? " is-selected" : ""}`, "aria-pressed": sel, onClick: () => tap(side) }, /* @__PURE__ */ React.createElement(DotsIcon, { name: name ?? "", size: 24, color: sel ? "var(--text-secondary)" : "var(--text-disabled)" }));
+      };
+      return /* @__PURE__ */ React.createElement("div", { className: "ds-seg-icon" }, /* @__PURE__ */ React.createElement("span", { className: `ds-seg-icon__pill${selected === "right" ? " is-right" : ""}` }), cell("left", props.leftOptionIcon), cell("right", props.rightOptionIcon));
+    }
+    const variant = props.variant || "main";
+    const opt = (side, label) => {
+      const sel = selected === side;
+      return /* @__PURE__ */ React.createElement(
+        "button",
+        {
+          type: "button",
+          className: `ds-seg__opt${sel ? " is-selected" : ""}`,
+          style: sel && props.selectedColor ? { background: props.selectedColor } : void 0,
+          "aria-pressed": sel,
+          onClick: () => tap(side)
+        },
+        label
+      );
+    };
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-seg${variant === "camera" ? " ds-seg--camera" : ""}`,
+        style: props.backgroundColor ? { background: props.backgroundColor } : void 0
+      },
+      opt("left", props.leftOptionName),
+      opt("right", props.rightOptionName),
+      badgeTag(props.rightOptionTag)
+    );
+  }
+
+  // src/components/DotsTextArea/DotsTextArea.tsx
+  init_react_shim();
+  var import_react16 = __toESM(require_react(), 1);
+  function DotsTextArea(props) {
+    const controlled = props.value !== void 0 && props.value !== null;
+    const [innerText, setText] = (0, import_react16.useState)(props.defaultValue != null ? String(props.defaultValue) : "");
+    const areaRef = (0, import_react16.useRef)(null);
+    const text = controlled ? String(props.value) : innerText;
+    const hasLabel = !!props.label;
+    const hasIcon = !!props.icon;
+    const isError = !!props.isError;
+    function handleChange(e) {
+      const v = e.target.value;
+      if (!controlled) setText(v);
+      props.onChanged?.(v);
+    }
+    function handleKeyDown(e) {
+      if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) props.onSubmitted?.(e.currentTarget.value);
+    }
+    function handleBoxClick() {
+      areaRef.current?.focus();
+    }
+    const boxStyle = { minHeight: `${props.minHeight ?? props.maxHeight ?? 50}px` };
+    if (props.maxHeight != null) boxStyle.maxHeight = `${props.maxHeight}px`;
+    const remaining = props.maxTextLength != null ? Math.min(Math.max(props.maxTextLength - text.length, 0), props.maxTextLength) : null;
+    const area = /* @__PURE__ */ React.createElement("div", { className: "ds-textarea__grow", "data-value": text }, /* @__PURE__ */ React.createElement(
+      "textarea",
+      {
+        ref: areaRef,
+        className: "ds-textarea__input",
+        value: text,
+        rows: 1,
+        placeholder: props.hintText,
+        maxLength: props.maxTextLength,
+        autoFocus: !!props.autoFocus,
+        autoCapitalize: props.textCapitalization || "none",
+        onChange: handleChange,
+        onKeyDown: handleKeyDown
+      }
+    ));
+    const leadingIcon = hasIcon ? /* @__PURE__ */ React.createElement("span", { className: "ds-textarea__icon", "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon ?? "", size: 20, color: "currentColor" })) : null;
+    const body2 = hasLabel ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "ds-textarea__label" }, leadingIcon, props.label), /* @__PURE__ */ React.createElement("div", { className: `ds-textarea__body${hasIcon ? " ds-textarea__body--indent" : ""}` }, area)) : /* @__PURE__ */ React.createElement("div", { className: "ds-textarea__row" }, leadingIcon, /* @__PURE__ */ React.createElement("div", { className: "ds-textarea__body" }, area));
+    return /* @__PURE__ */ React.createElement("div", { className: "ds-textarea" }, /* @__PURE__ */ React.createElement("div", { className: "ds-textarea__box", style: boxStyle, onClick: handleBoxClick }, body2, remaining != null ? /* @__PURE__ */ React.createElement("span", { className: "ds-textarea__counter" }, String(remaining)) : null), isError && props.errorText ? /* @__PURE__ */ React.createElement("div", { className: "ds-textarea__error-text" }, props.errorText) : null);
+  }
+
+  // src/components/DotsTextFieldPhone/DotsTextFieldPhone.tsx
+  init_react_shim();
+  function DotsTextFieldPhone(props) {
+    const enabled = props.enabled !== false;
+    const cc = props.countryCode || { dialCode: "", flagEmoji: "" };
+    function handleCountryClick(e) {
+      e.stopPropagation();
+      if (enabled) props.onCountryTap?.();
+    }
+    function handleCountryKeyDown(e) {
+      if ((e.key === "Enter" || e.key === " ") && enabled) {
+        e.preventDefault();
+        props.onCountryTap?.();
+      }
+    }
+    const leading = /* @__PURE__ */ React.createElement(
+      "span",
+      {
+        className: `ds-tf-phone__lead${enabled ? "" : " ds-tf-phone__lead--disabled"}`,
+        role: "button",
+        tabIndex: enabled ? 0 : void 0,
+        onClick: handleCountryClick,
+        onKeyDown: handleCountryKeyDown
+      },
+      /* @__PURE__ */ React.createElement("span", { className: "ds-tf-phone__flag" }, cc.flagEmoji),
+      /* @__PURE__ */ React.createElement("span", { className: "ds-tf-phone__dial" }, ` (${cc.dialCode})`),
+      /* @__PURE__ */ React.createElement("span", { className: "ds-tf-phone__chev", "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-chevron-down", size: 14, color: "currentColor" })),
+      /* @__PURE__ */ React.createElement("span", { className: "ds-tf-phone__divider" })
+    );
+    return /* @__PURE__ */ React.createElement(
+      DotsTextField,
+      {
+        leading,
+        value: props.value,
+        defaultValue: props.defaultValue,
+        hintText: props.hintText,
+        addHintTextColorError: props.addHintTextColorError,
+        onChanged: props.onChanged,
+        onSubmitted: props.onSubmitted,
+        onFocusLost: props.onFocusLost,
+        maxTextLength: props.maxTextLength,
+        isError: props.isError,
+        errorText: props.errorText,
+        enabled,
+        background: props.background,
+        showUnderline: props.showUnderline,
+        keyboardType: "phone",
+        autoFocus: props.autoFocus
+      }
+    );
+  }
+
+  // src/components/DotsDivider/DotsDivider.tsx
+  init_react_shim();
+  function DotsDivider(props) {
+    let style;
+    if (props.width != null) {
+      style = { width: typeof props.width === "number" ? `${props.width}px` : props.width };
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-divider${props.className ? ` ${props.className}` : ""}`, style, role: "separator", "aria-orientation": "horizontal" }, /* @__PURE__ */ React.createElement("div", { className: "ds-divider__line1" }), /* @__PURE__ */ React.createElement("div", { className: "ds-divider__line2" }));
+  }
+
+  // src/components/DotsAccordion/DotsAccordion.tsx
+  init_react_shim();
+  var import_react17 = __toESM(require_react(), 1);
+  function Divider() {
+    return /* @__PURE__ */ React.createElement("div", { className: "ds-accordion__divider" }, /* @__PURE__ */ React.createElement("div", { className: "ds-accordion__divider-l1" }), /* @__PURE__ */ React.createElement("div", { className: "ds-accordion__divider-l2" }));
+  }
+  function DotsAccordion(props) {
+    const sections = props.sections || [];
+    const singleOpen = props.singleOpen !== false;
+    const duration = props.animationDuration ?? 180;
+    const addHPad = props.addHorizontalPadding !== false;
+    const [state, setState] = (0, import_react17.useState)(null);
+    const expanded = state && state.length === sections.length ? state : sections.map((s) => !!s?.expanded);
+    function toggle(index) {
+      const next = expanded.map((v, i) => {
+        if (singleOpen) return i === index ? !v : false;
+        return i === index ? !v : v;
+      });
+      setState(next);
+      props.onToggle?.(index, next[index]);
+    }
+    const children = [];
+    for (let i = 0; i < sections.length; i++) {
+      const s = sections[i] || {};
+      if (i > 0) children.push(/* @__PURE__ */ React.createElement(Divider, { key: `div-${i}` }));
+      children.push(
+        /* @__PURE__ */ React.createElement(
+          "div",
+          {
+            key: `sec-${i}`,
+            className: `ds-accordion__section${expanded[i] ? " is-expanded" : ""}`,
+            style: { "--ds-accordion-duration": `${duration}ms` }
+          },
+          /* @__PURE__ */ React.createElement("div", { className: "ds-accordion__header", role: "button", "aria-expanded": !!expanded[i], onClick: () => toggle(i) }, s.leadingIcon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: s.leadingIcon, size: 20, color: "var(--text-tertiary)", className: "ds-accordion__leading" }) : null, /* @__PURE__ */ React.createElement("span", { className: "ds-accordion__title" }, s.title), /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-chevron-down", size: 16, color: "var(--text-tertiary)", className: "ds-accordion__chevron" })),
+          /* @__PURE__ */ React.createElement("div", { className: "ds-accordion__collapse" }, /* @__PURE__ */ React.createElement("div", { className: "ds-accordion__collapse-inner" }, /* @__PURE__ */ React.createElement("div", { className: "ds-accordion__content" }, s.content)))
+        )
+      );
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-accordion${addHPad ? " ds-accordion--hpad" : ""}` }, children);
+  }
+
+  // src/components/DotsSlider/DotsSlider.tsx
+  init_react_shim();
+  var import_react18 = __toESM(require_react(), 1);
+  function clamp(v, lo, hi) {
+    return v < lo ? lo : v > hi ? hi : v;
+  }
+  function DotsSlider(props) {
+    const max = props.max ?? 1;
+    const divisions = props.divisions ?? null;
+    const controlled = props.value !== void 0 && props.value !== null;
+    const [internal, setInternal] = (0, import_react18.useState)(props.defaultValue ?? 0);
+    const value = clamp(controlled ? props.value : internal, 0, max);
+    const interactive = typeof props.onChanged === "function" || !controlled;
+    const trackRef = (0, import_react18.useRef)(null);
+    const draggingRef = (0, import_react18.useRef)(false);
+    function valueFromPointer(e) {
+      const rect = trackRef.current?.getBoundingClientRect();
+      let ratio = rect && rect.width > 0 ? (e.clientX - rect.left) / rect.width : 0;
+      ratio = clamp(ratio, 0, 1);
+      if (divisions) ratio = Math.round(ratio * divisions) / divisions;
+      return ratio * max;
+    }
+    function commit(v) {
+      if (!controlled) setInternal(v);
+      props.onChanged?.(v);
+    }
+    function onPointerDown(e) {
+      if (!interactive) return;
+      draggingRef.current = true;
+      e.currentTarget.setPointerCapture?.(e.pointerId);
+      commit(valueFromPointer(e));
+    }
+    function onPointerMove(e) {
+      if (!draggingRef.current) return;
+      commit(valueFromPointer(e));
+    }
+    function onPointerUp() {
+      draggingRef.current = false;
+    }
+    const pct = max > 0 ? value / max * 100 : 0;
+    const ticks = [];
+    if (divisions) {
+      for (let i = 0; i <= divisions; i++) {
+        ticks.push(/* @__PURE__ */ React.createElement("span", { key: `t${i}`, className: "ds-slider__tick", style: { left: `${i / divisions * 100}%` } }));
+      }
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-slider${interactive ? "" : " is-static"}` }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.leftIcon || "ic-user", size: 20, color: "var(--label-secondary)", className: "ds-slider__icon" }), /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: "ds-slider__track",
+        ref: trackRef,
+        role: "slider",
+        "aria-valuemin": 0,
+        "aria-valuemax": max,
+        "aria-valuenow": value,
+        onPointerDown,
+        onPointerMove,
+        onPointerUp,
+        onPointerCancel: onPointerUp
+      },
+      /* @__PURE__ */ React.createElement("div", { className: "ds-slider__fill", style: { width: `${pct}%` } }),
+      ticks,
+      /* @__PURE__ */ React.createElement("div", { className: "ds-slider__thumb", style: { left: `${pct}%` } })
+    ), /* @__PURE__ */ React.createElement(DotsIcon, { name: props.rightIcon || "ic-group", size: 20, color: "var(--label-secondary)", className: "ds-slider__icon" }));
+  }
+
+  // src/components/ColorSelector/ColorSelector.tsx
+  init_react_shim();
+  var OPTION_COLORS = {
+    textQuarternary: "var(--text-quarternary)",
+    couple005: "#B66678",
+    couple007: "#E55451",
+    friends001: "#FAA25E",
+    friends002: "#EE8062",
+    friends005: "#F7954A",
+    friends008: "#F5866B",
+    friends010: "#F37C20",
+    class005: "#F4BD24",
+    class009: "#EFD58A",
+    wedding002: "#E2C567",
+    family001: "#77D98A",
+    family004: "#9BC283",
+    family006: "#8E9778",
+    child001: "#82C8E5",
+    child002: "#569AF8",
+    child006: "#3E9ACB",
+    birthday003: "#E483B3",
+    birthday007: "#F38FA9",
+    celebration002: "#6C7FCC",
+    hobby001: "#CAB5FF",
+    hobby002: "#9297EF",
+    hobby004: "#C998C5",
+    hobby005: "#B17DBD",
+    hobby009: "#B175B1",
+    work005: "#5579A9"
+  };
+  var DEFAULT_OPTIONS = [
+    "textQuarternary",
+    "couple007",
+    "friends002",
+    "friends010",
+    "friends005",
+    "class005",
+    "wedding002",
+    "family006",
+    "family004",
+    "child006",
+    "child002",
+    "celebration002",
+    "hobby009",
+    "hobby004",
+    "couple005"
+  ];
+  function resolve(c) {
+    return Object.prototype.hasOwnProperty.call(OPTION_COLORS, c) ? OPTION_COLORS[c] : c;
+  }
+  function ColorSelector(props) {
+    const variant = props.variant === "selector" ? "selector" : "options";
+    const size = props.size == null ? 32 : +props.size;
+    const spacing = props.spacing == null ? variant === "selector" ? 12 : 18 : +props.spacing;
+    const colors = Array.isArray(props.colors) && props.colors.length ? props.colors : variant === "options" ? DEFAULT_OPTIONS : [];
+    const items = colors.map((c, i) => {
+      const isSelected = props.selected === c;
+      const onClick = props.onColorSelected ? () => props.onColorSelected?.(c) : void 0;
+      if (variant === "selector") {
+        return /* @__PURE__ */ React.createElement(
+          "button",
+          {
+            key: i,
+            type: "button",
+            className: `ds-color-selector__swatch${isSelected ? " is-selected" : ""}`,
+            style: { width: `${size}px`, height: `${size}px` },
+            onClick,
+            "aria-pressed": isSelected,
+            "aria-label": String(c)
+          },
+          /* @__PURE__ */ React.createElement("span", { className: "ds-color-selector__dot", style: { backgroundColor: resolve(c) } })
+        );
+      }
+      return /* @__PURE__ */ React.createElement(
+        "button",
+        {
+          key: i,
+          type: "button",
+          className: `ds-color-selector__option${isSelected ? " is-selected" : ""}`,
+          style: { width: `${size}px`, height: `${size}px`, backgroundColor: resolve(c) },
+          onClick,
+          "aria-pressed": isSelected,
+          "aria-label": String(c)
+        },
+        isSelected ? /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-check-thick", size: size * 0.5, color: "var(--label-always-white)" }) : null
+      );
+    });
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-color-selector ds-color-selector--${variant}${props.className ? ` ${props.className}` : ""}`,
+        style: { gap: `${spacing}px` },
+        role: "radiogroup"
+      },
+      items
+    );
+  }
+  ColorSelector.OPTION_COLORS = OPTION_COLORS;
+  ColorSelector.DEFAULT_OPTIONS = DEFAULT_OPTIONS;
+
+  // src/components/BlurContainer/BlurContainer.tsx
+  init_react_shim();
+  var ALIGN = {
+    topLeft: [-1, -1],
+    topCenter: [0, -1],
+    topRight: [1, -1],
+    centerLeft: [-1, 0],
+    center: [0, 0],
+    centerRight: [1, 0],
+    bottomLeft: [-1, 1],
+    bottomCenter: [0, 1],
+    bottomRight: [1, 1]
+  };
+  function clamp01(v) {
+    v = +v;
+    if (!(v >= 0)) return 0;
+    return v > 1 ? 1 : v;
+  }
+  function GradientBlur(props) {
+    const sigma = props.sigma == null ? 8 : +props.sigma;
+    const values = Array.isArray(props.values) && props.values.length ? props.values : [0, 1];
+    const stops = Array.isArray(props.stops) && props.stops.length === values.length ? props.stops : values.map((_, i) => values.length === 1 ? 0 : i / (values.length - 1));
+    const s = props.start && ALIGN[props.start] || ALIGN.topCenter;
+    const e = props.end && ALIGN[props.end] || ALIGN.bottomCenter;
+    const dx = e[0] - s[0];
+    const dy = e[1] - s[1];
+    const angle = dx === 0 && dy === 0 ? 180 : Math.atan2(dx, -dy) * 180 / Math.PI;
+    const parts = values.map((v, i) => `rgba(0,0,0,${clamp01(v)}) ${clamp01(stops[i]) * 100}%`);
+    const grad = `linear-gradient(${angle.toFixed(2)}deg, ${parts.join(", ")})`;
+    const overlayStyle = {
+      backdropFilter: `blur(${sigma}px)`,
+      WebkitBackdropFilter: `blur(${sigma}px)`,
+      maskImage: grad,
+      WebkitMaskImage: grad
+    };
+    if (props.tintColor) overlayStyle.background = props.tintColor;
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-gradient-blur${props.className ? ` ${props.className}` : ""}` }, props.children, /* @__PURE__ */ React.createElement("div", { className: "ds-gradient-blur__overlay", "aria-hidden": true, style: overlayStyle }));
+  }
+  function BlurContainer(props) {
+    let sigma = +props.sigma;
+    if (!(sigma >= 0)) sigma = 0;
+    if (sigma > 5) sigma = 5;
+    const style = sigma > 0 ? { filter: `blur(${sigma}px)`, WebkitFilter: `blur(${sigma}px)` } : void 0;
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-blur-container${props.className ? ` ${props.className}` : ""}`, style }, props.children);
+  }
+  BlurContainer.GradientBlur = GradientBlur;
+
+  // src/components/FeatureItem/FeatureItem.tsx
+  init_react_shim();
+  function FeatureItem(props) {
+    const hasValue = props.value != null;
+    const leading = props.image != null ? (
+      // FeatureItem.image → SizedBox.square(24) with the custom widget
+      /* @__PURE__ */ React.createElement("span", { className: "ds-feature-item__image" }, props.image)
+    ) : (
+      // Default → DotsIcon(size 16, textQuarternary via CSS currentColor)
+      /* @__PURE__ */ React.createElement("span", { className: "ds-feature-item__icon", "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon ?? "", size: 16 }))
+    );
+    let className = "ds-feature-item";
+    if (hasValue) className += " ds-feature-item--with-value";
+    if (props.className) className += ` ${props.className}`;
+    return /* @__PURE__ */ React.createElement("div", { className }, leading, /* @__PURE__ */ React.createElement("span", { className: "ds-feature-item__feature" }, props.feature), hasValue ? /* @__PURE__ */ React.createElement("span", { className: "ds-feature-item__value" }, props.value) : null);
+  }
+
+  // src/components/RatingRow/RatingRow.tsx
+  init_react_shim();
+  var GRADIENTS = [
+    ["detractor", "#FAA25E", "#FA5B3D"],
+    ["neutral", "#FCD12A", "#F7954A"],
+    ["promoter", "#4FC976", "#01AF94"]
+  ];
+  function GradientDefs() {
+    return /* @__PURE__ */ React.createElement("svg", { width: 0, height: 0, style: { position: "absolute" }, "aria-hidden": true }, /* @__PURE__ */ React.createElement("defs", null, GRADIENTS.map((g) => /* @__PURE__ */ React.createElement("linearGradient", { key: g[0], id: `ds-rating-g-${g[0]}`, x1: "0", y1: "0", x2: "0", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: g[1] }), /* @__PURE__ */ React.createElement("stop", { offset: "1", stopColor: g[2] })))));
+  }
+  function Star(props) {
+    const variant = props.variant || "disabled";
+    const size = props.iconSize ?? 28;
+    return /* @__PURE__ */ React.createElement("span", { className: `ds-rating-star ds-rating-star--${variant}${props.onTap ? " is-tappable" : ""}`, onClick: props.onTap }, props.showText ? /* @__PURE__ */ React.createElement("span", { className: "ds-rating-star__label" }, props.label) : null, /* @__PURE__ */ React.createElement("span", { className: "ds-rating-star__icon" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-star", size })));
+  }
+  function buildVariants(starLabels, selectedIndex) {
+    const n = starLabels.length;
+    const out = [];
+    for (let i = 0; i < n; i++) {
+      if (selectedIndex == null) {
+        out.push("disabled");
+        continue;
+      }
+      if (n === 5) {
+        out.push(i <= selectedIndex ? "neutral" : "disabled");
+        continue;
+      }
+      if (selectedIndex <= 5) out.push(i <= selectedIndex ? "detractor" : "disabled");
+      else if (selectedIndex <= 7) out.push(i <= selectedIndex ? "neutral" : "disabled");
+      else out.push(i <= selectedIndex ? "promoter" : "disabled");
+    }
+    return out;
+  }
+  function RatingRow(props) {
+    const starLabels = props.starLabels || [];
+    const variants = buildVariants(starLabels, props.selectedIndex ?? null);
+    const makeStar = (index) => /* @__PURE__ */ React.createElement(
+      Star,
+      {
+        key: index,
+        label: starLabels[index],
+        variant: variants[index],
+        showText: props.showStarText !== false,
+        iconSize: props.iconSize,
+        onTap: typeof props.onStarTap === "function" ? () => props.onStarTap?.(index) : void 0
+      }
+    );
+    let body2;
+    if (props.compact) {
+      const firstCount = starLabels.length > 5 ? 6 : starLabels.length;
+      const first = [];
+      for (let i = 0; i < firstCount; i++) first.push(makeStar(i));
+      const rows = [
+        /* @__PURE__ */ React.createElement("div", { key: "r1", className: "ds-rating-row__stars ds-rating-row__stars--compact" }, first)
+      ];
+      if (starLabels.length > 5) {
+        const second = [];
+        for (let j = 6; j < starLabels.length; j++) second.push(makeStar(j));
+        rows.push(
+          /* @__PURE__ */ React.createElement("div", { key: "r2", className: "ds-rating-row__stars ds-rating-row__stars--compact" }, second)
+        );
+      }
+      body2 = rows;
+    } else {
+      const stars = [];
+      for (let i = 0; i < starLabels.length; i++) stars.push(makeStar(i));
+      body2 = /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "ds-rating-row__stars" }, stars), /* @__PURE__ */ React.createElement("div", { className: "ds-rating-row__ends" }, /* @__PURE__ */ React.createElement("span", null, props.leftText || ""), /* @__PURE__ */ React.createElement("span", null, props.rightText || "")));
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-rating-row${props.compact ? " ds-rating-row--compact" : ""}` }, /* @__PURE__ */ React.createElement(GradientDefs, null), body2);
+  }
+
+  // src/components/DotsEmptyStateCard/DotsEmptyStateCard.tsx
+  init_react_shim();
+  function DotsEmptyStateCard(props) {
+    const variant = props.variant === "image" ? "image" : "icon";
+    const extra = props.extraSpaceAfterImage ?? 0;
+    const gap = variant === "image" ? 4 + extra : 16;
+    let media = null;
+    if (variant === "image" && props.image) {
+      media = /* @__PURE__ */ React.createElement(
+        "img",
+        {
+          className: "ds-empty-card__image",
+          src: props.image,
+          alt: "",
+          style: props.imageWidth != null ? { width: `${props.imageWidth}px` } : void 0
+        }
+      );
+    } else if (variant === "icon" && props.icon) {
+      media = typeof props.icon === "string" ? /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: 48, color: "var(--text-quarternary)" }) : props.icon;
+    }
+    const descStyle = props.descriptionColor ? { color: props.descriptionColor } : void 0;
+    const desc = props.descriptionSpans != null ? (
+      // descriptionSpans replaces the text; description stays as the accessible label
+      /* @__PURE__ */ React.createElement("p", { className: "ds-empty-card__desc", style: descStyle, "aria-label": props.description }, props.descriptionSpans)
+    ) : /* @__PURE__ */ React.createElement("p", { className: "ds-empty-card__desc", style: descStyle }, props.description);
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-empty-card${props.className ? ` ${props.className}` : ""}` }, media ? /* @__PURE__ */ React.createElement("div", { className: "ds-empty-card__media", style: { marginBottom: `${gap}px` } }, media) : null, /* @__PURE__ */ React.createElement("p", { className: "ds-empty-card__title", style: props.titleColor ? { color: props.titleColor } : void 0 }, props.title), desc, props.button ? /* @__PURE__ */ React.createElement("div", { className: "ds-empty-card__button" }, props.button) : null);
+  }
+
+  // src/components/DotsFilterChip/DotsFilterChip.tsx
+  init_react_shim();
+  function DotsFilterChip(props) {
+    function handleKeyDown(e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        props.onClick?.();
+      }
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: "ds-filter-chip", role: "button", tabIndex: 0, onClick: props.onClick, onKeyDown: handleKeyDown }, /* @__PURE__ */ React.createElement("span", { className: "ds-filter-chip__label" }, props.label ?? ""), /* @__PURE__ */ React.createElement("span", { className: "ds-filter-chip__close" }, /* @__PURE__ */ React.createElement(DotsCloseButton, { size: "extraSmall", variant: "highContrast", addBlur: false, ariaLabel: "Remove filter" })));
+  }
+
+  // src/components/DotsToast/DotsToast.tsx
+  init_react_shim();
+  var VARIANTS5 = ["success", "error", "info", "progress", "connectionResumed", "connectionLost", "widget"];
+  function iconName(variant, isAction) {
+    switch (variant) {
+      case "success":
+        return "ic-check-circle";
+      case "error":
+        return isAction ? "ic-trash" : "ic-cross-circle";
+      case "info":
+        return "ic-alert-circle";
+      case "connectionResumed":
+        return "ic-connection-on";
+      case "connectionLost":
+        return "ic-connection-off";
+      default:
+        return "ic-slot";
+    }
+  }
+  function iconColor(variant) {
+    switch (variant) {
+      case "success":
+      case "connectionResumed":
+        return "var(--label-highlight)";
+      case "error":
+      case "connectionLost":
+        return "var(--label-destructive)";
+      default:
+        return "var(--text-tertiary)";
+    }
+  }
+  function iconEl(name, size, color, spin) {
+    return /* @__PURE__ */ React.createElement("span", { className: `ds-toast__icon${spin ? " ds-toast__icon--spin" : ""}`, "aria-hidden": "true" }, /* @__PURE__ */ React.createElement(DotsIcon, { name, size, color }));
+  }
+  function DotsToast(props) {
+    const variant = VARIANTS5.includes(props.variant) ? props.variant : "info";
+    const isAction = !!props.isAction;
+    const isProgress = variant === "progress";
+    const name = props.customIcon || iconName(variant, isAction);
+    const color = props.customIconColor || iconColor(variant);
+    let className = `ds-toast ${isAction ? "ds-toast--action" : "ds-toast--info"}`;
+    if (props.onClick) className += " ds-toast--clickable";
+    if (props.className) className += ` ${props.className}`;
+    const titleEl = /* @__PURE__ */ React.createElement("span", { className: "ds-toast__title" }, props.title);
+    let children;
+    if (isAction) {
+      const top = variant === "widget" ? props.customWidget ?? null : iconEl(name, isProgress ? 20 : 24, color, false);
+      children = /* @__PURE__ */ React.createElement(React.Fragment, null, top, titleEl);
+    } else {
+      const lead = isProgress ? iconEl(name, 24, void 0, true) : iconEl(name, 20, color, false);
+      const btn = props.btnTitle != null && isProgress ? /* @__PURE__ */ React.createElement(DotsMainButton, { label: props.btnTitle, variant: "ghost", size: "medium", adaptPaddingForText: true, expand: false, onClick: props.onClick }) : null;
+      children = /* @__PURE__ */ React.createElement(React.Fragment, null, lead, titleEl, btn);
+    }
+    return /* @__PURE__ */ React.createElement("div", { className, role: "status", onClick: props.onClick }, children);
+  }
+
+  // src/components/DotsMenu/DotsMenu.tsx
+  init_react_shim();
+  var import_react19 = __toESM(require_react(), 1);
+  function findStack(subItems, targetId) {
+    for (const it of subItems ?? []) {
+      if (it.id === targetId) return [it];
+      if (it.subItems && it.subItems.length) {
+        const stack = findStack(it.subItems, targetId);
+        if (stack.length) return [it, ...stack];
+      }
+    }
+    return [];
+  }
+  function MenuItem(p) {
+    const item = p.item;
+    let leftIcon = null;
+    if (item.selected) leftIcon = "ic-check";
+    else if (item.subItems && item.subItems.length && !p.isInitialItem) {
+      leftIcon = p.isExpanded ? "ic-chevron-down" : "ic-chevron-right";
+    }
+    const iconColor2 = item.isDelete ? "var(--label-destructive)" : item.selected ? "var(--label-highlight)" : null;
+    const textStyle = item.isDelete ? { color: "var(--label-destructive)" } : void 0;
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-menu__item${item.details != null ? " ds-menu__item--details" : ""}`,
+        role: "menuitem",
+        tabIndex: 0,
+        onClick: () => {
+          item.onClick?.();
+          p.onTapItem?.();
+        }
+      },
+      leftIcon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: leftIcon, size: 14, color: iconColor2 ?? "var(--text-primary)", className: "ds-menu__item-left" }) : null,
+      /* @__PURE__ */ React.createElement("span", { className: "ds-menu__item-body" }, /* @__PURE__ */ React.createElement("span", { className: "ds-menu__item-label", style: textStyle }, item.label), item.details != null ? /* @__PURE__ */ React.createElement("span", { className: "ds-menu__item-details", style: textStyle }, item.details) : null),
+      item.icon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: item.icon, size: 16, color: iconColor2 ?? "var(--label-primary)", className: "ds-menu__item-right" }) : null
+    );
+  }
+  function DotsMenu(props) {
+    const [state, setState] = (0, import_react19.useState)(() => {
+      const root = { ...props.mainItem, subItems: props.subitems ?? [] };
+      let stack = [];
+      let selected2 = root;
+      if (props.defaultSelectedItemId != null && props.defaultSelectedItemId !== root.id) {
+        const path = findStack(root.subItems, props.defaultSelectedItemId);
+        if (path.length) {
+          selected2 = path.pop();
+          stack = [root, ...path];
+        }
+      }
+      return { stack, selected: selected2 };
+    });
+    const selected = state.selected;
+    const isInitialItem = state.stack.length === 0;
+    const subs = selected.subItems ?? [];
+    const scrollable = subs.length > 7;
+    const children = [];
+    subs.forEach((item, i) => {
+      children.push(
+        /* @__PURE__ */ React.createElement(
+          MenuItem,
+          {
+            key: `i${i}`,
+            item,
+            isExpanded: false,
+            onTapItem: () => {
+              if (item.subItems && item.subItems.length) {
+                setState({ stack: [...state.stack, selected], selected: item });
+              }
+            }
+          }
+        )
+      );
+      const isLast = i === subs.length - 1;
+      if (item.addDivider && !isLast) children.push(/* @__PURE__ */ React.createElement("div", { key: `d${i}`, className: "ds-menu__divider ds-menu__divider--item" }));
+      else if (!isLast) children.push(/* @__PURE__ */ React.createElement("div", { key: `s${i}`, className: "ds-menu__spacer" }));
+    });
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-menu${props.className ? ` ${props.className}` : ""}`, role: "menu" }, /* @__PURE__ */ React.createElement(
+      MenuItem,
+      {
+        item: selected,
+        isExpanded: true,
+        isInitialItem,
+        onTapItem: () => {
+          if (state.stack.length) {
+            const stack = state.stack.slice();
+            setState({ selected: stack.pop(), stack });
+          }
+        }
+      }
+    ), /* @__PURE__ */ React.createElement("div", { className: "ds-menu__divider" }), /* @__PURE__ */ React.createElement("div", { className: `ds-menu__list${scrollable ? " ds-menu__list--scroll" : ""}` }, children));
+  }
+  function DotsMenuSettingsItem(p) {
+    const isToggle = p.variant === "toggle";
+    const labelStyle = {};
+    if (p.textColor) labelStyle.color = p.textColor;
+    if (p.textAlignment) labelStyle.textAlign = p.textAlignment;
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-menu-settings__item${isToggle ? " ds-menu-settings__item--toggle" : ""}`,
+        role: "button",
+        tabIndex: 0,
+        onClick: p.onClick ?? p.onToggleTap
+      },
+      p.startIcon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: p.startIcon, size: 20, color: "var(--text-tertiary)", className: "ds-menu-settings__start" }) : null,
+      /* @__PURE__ */ React.createElement("span", { className: "ds-menu-settings__label", style: labelStyle }, p.label),
+      isToggle ? (
+        // Dart: DotsToggle(isSelected: toggleValue, onChanged: onToggleTap); the tap does not reach the row
+        /* @__PURE__ */ React.createElement("span", { className: "ds-menu-settings__toggle", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ React.createElement(DotsToggle, { isSelected: !!p.toggleValue, onChanged: () => p.onToggleTap?.() }))
+      ) : p.endIcon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: p.endIcon, size: 16, color: "var(--text-tertiary)" }) : null
+    );
+  }
+  function DotsMenuSettingsList(props) {
+    const items = props.items ?? [];
+    const textPad = props.textPadding ?? 15;
+    const rows = [];
+    items.forEach((item, i) => {
+      rows.push(/* @__PURE__ */ React.createElement(DotsMenuSettingsItem, { key: `i${i}`, ...item }));
+      if (i < items.length - 1) rows.push(/* @__PURE__ */ React.createElement("div", { key: `d${i}`, className: "ds-menu-settings__divider" }));
+    });
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-menu-settings${props.className ? ` ${props.className}` : ""}` }, props.title ? /* @__PURE__ */ React.createElement("div", { className: "ds-menu-settings__title", style: { margin: `0 ${textPad}px 8px` } }, String(props.title).toUpperCase()) : null, items.length ? /* @__PURE__ */ React.createElement("div", { className: "ds-menu-settings__list" }, rows) : null, props.description ? /* @__PURE__ */ React.createElement("div", { className: "ds-menu-settings__desc", style: { margin: `8px ${textPad}px 0` } }, props.description) : null);
+  }
+  DotsMenu.SettingsList = DotsMenuSettingsList;
+  DotsMenu.SettingsItem = DotsMenuSettingsItem;
+
+  // src/components/DotsTooltip/DotsTooltip.tsx
+  init_react_shim();
+  var TAIL = {
+    topAlignLeadingEdge: { top: true, left: "9%", corner: "tl" },
+    topAlignLeading: { top: true, left: "22%", corner: null },
+    topAlignCenter: { top: true, left: "50%", corner: null },
+    topAlignTrailing: { top: true, left: "78%", corner: null },
+    topAlignTrailingEdge: { top: true, left: "91%", corner: "tr" },
+    bottomAlignLeadingEdge: { top: false, left: "9%", corner: "bl" },
+    bottomAlignLeading: { top: false, left: "22%", corner: null },
+    bottomAlignCenter: { top: false, left: "50%", corner: null },
+    bottomAlignTrailing: { top: false, left: "78%", corner: null },
+    bottomAlignTrailingEdge: { top: false, left: "91%", corner: "br" }
+  };
+  function DotsTooltip(props) {
+    const tail = TAIL[props.tailPosition] ?? TAIL.bottomAlignCenter;
+    const showCloseButton = props.showCloseButton !== false;
+    const maxWidth = props.maxWidth ?? 288;
+    const iconNode = props.iconNode ?? (props.icon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: 32, color: "var(--label-highlight)" }) : null);
+    let cls = `ds-tooltip${tail.corner ? ` ds-tooltip--corner-${tail.corner}` : ""}`;
+    if (props.className) cls += ` ${props.className}`;
+    const tailStyle = { left: tail.left };
+    if (tail.top) {
+      tailStyle.top = "-12px";
+      tailStyle.transform = "translateX(-50%) rotate(180deg)";
+    } else {
+      tailStyle.bottom = "-12px";
+      tailStyle.transform = "translateX(-50%)";
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: cls, style: { maxWidth: `${maxWidth}px` }, onClick: props.onClick }, iconNode, /* @__PURE__ */ React.createElement("p", { className: "ds-tooltip__text" }, props.text), showCloseButton ? /* @__PURE__ */ React.createElement(
+      "span",
+      {
+        className: "ds-tooltip__close",
+        onClick: (e) => {
+          e.stopPropagation();
+          props.onClose?.();
+        }
+      },
+      /* @__PURE__ */ React.createElement(DotsCloseButton, { size: "small", variant: "softContrast", addBlur: false })
+    ) : null, /* @__PURE__ */ React.createElement("svg", { className: "ds-tooltip__tail", style: tailStyle, viewBox: "0 0 21 13", "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("path", { d: "M0 0 L8.5 11 Q10.5 13.4 12.5 11 L21 0", strokeWidth: 2, strokeLinejoin: "round" })));
+  }
+
+  // src/components/DropdownMenu/DropdownMenu.tsx
+  init_react_shim();
+  var import_react20 = __toESM(require_react(), 1);
+  function DropdownMenuItem(props) {
+    const style = props.itemColor ? { color: props.itemColor } : void 0;
+    const cls = "ds-dropdown__item" + (props.destructive ? " ds-dropdown__item--destructive" : "") + (props.minSize ? " ds-dropdown__item--min" : "");
+    return /* @__PURE__ */ React.createElement("div", { className: cls, style, role: "menuitem", tabIndex: 0, onClick: props.onClick }, props.leading ? /* @__PURE__ */ React.createElement("span", { className: "ds-dropdown__item-leading" }, props.leading) : null, /* @__PURE__ */ React.createElement("span", { className: "ds-dropdown__item-text" }, props.text, props.subtitle ? /* @__PURE__ */ React.createElement("span", { className: "ds-dropdown__item-subtitle" }, ` ${props.subtitle}`) : null), props.icon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: 16, color: "currentColor", className: "ds-dropdown__item-icon" }) : null);
+  }
+  function renderMenu(items, width, maxHeight) {
+    const style = { width: `${width ?? 250}px` };
+    if (maxHeight != null) {
+      style.maxHeight = `${maxHeight}px`;
+      style.overflowY = "auto";
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: "ds-dropdown__menu", style, role: "menu" }, (items ?? []).map((it, i) => /* @__PURE__ */ React.createElement(DropdownMenuItem, { key: i, ...it })));
+  }
+  function DropdownMenu(props) {
+    const [inner, setInner] = (0, import_react20.useState)(!!props.defaultActive);
+    const controlled = props.isActive !== void 0 && props.isActive !== null;
+    const active = controlled ? !!props.isActive : inner;
+    if (!props.label) return renderMenu(props.items, props.width, props.maxHeight);
+    const size = props.size === "medium" ? "medium" : "small";
+    const onBackground = props.variant === "onBackground";
+    const btnCls = `ds-dropdown__btn ds-dropdown__btn--${size}` + (active ? " ds-dropdown__btn--active" : "") + (onBackground && !active ? " ds-dropdown__btn--on-bg" : "") + (props.minSize === false ? " ds-dropdown__btn--expand" : "");
+    function handleTap() {
+      if (!controlled) setInner(!active);
+      props.onToggle?.(!active);
+      props.onClick?.();
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-dropdown${props.className ? ` ${props.className}` : ""}` }, /* @__PURE__ */ React.createElement("button", { type: "button", className: btnCls, "aria-expanded": active, onClick: handleTap }, /* @__PURE__ */ React.createElement("span", { className: "ds-dropdown__btn-text" }, props.label, props.subtitle ? /* @__PURE__ */ React.createElement("span", { className: "ds-dropdown__btn-subtitle" }, ` ${props.subtitle}`) : null), /* @__PURE__ */ React.createElement(DotsIcon, { name: active ? "ic-chevron-up" : "ic-chevron-down", size: 14, color: "currentColor", className: "ds-dropdown__chevron" })), active ? /* @__PURE__ */ React.createElement("div", { className: "ds-dropdown__overlay" }, renderMenu(props.items, props.menuMaxWidth ?? 250, props.menuMaxHeight)) : null);
+  }
+  DropdownMenu.Item = DropdownMenuItem;
+
+  // src/components/DotsListItem/DotsListItem.tsx
+  init_react_shim();
+  function renderThumb(props) {
+    const variant = props.variant ?? "main";
+    const picType = props.picType ?? "album";
+    if (props.imageSrc && variant !== "icon" && picType === "album") {
+      return /* @__PURE__ */ React.createElement("span", { className: "ds-list-item__thumb ds-list-item__thumb--album", style: { backgroundImage: `url("${props.imageSrc}")` } });
+    }
+    if (props.imageSrc && variant !== "icon" && picType === "user") {
+      return /* @__PURE__ */ React.createElement("span", { className: "ds-list-item__thumb ds-list-item__thumb--user" }, /* @__PURE__ */ React.createElement("img", { src: props.imageSrc, alt: "", onError: props.onError }));
+    }
+    return /* @__PURE__ */ React.createElement("span", { className: "ds-list-item__thumb ds-list-item__thumb--icon" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.iconName ?? "ic-user", size: 20, color: "var(--text-primary)" }));
+  }
+  function renderTrailing(variant) {
+    if (variant === "selector" || variant === "radioButton") {
+      return /* @__PURE__ */ React.createElement(DotsRadioButton, { isSelected: variant === "radioButton", size: 22 });
+    }
+    if (variant === "check") {
+      return /* @__PURE__ */ React.createElement("span", { className: "ds-list-item__check" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-check", size: 14, color: "var(--label-always-white)" }));
+    }
+    return null;
+  }
+  function DotsListItem(props) {
+    const variant = props.variant ?? "main";
+    if (variant === "divider") {
+      return /* @__PURE__ */ React.createElement("div", { className: "ds-list-item ds-list-item--divider" }, /* @__PURE__ */ React.createElement("div", { className: "ds-list-item__divider-label" }, props.label ?? ""), /* @__PURE__ */ React.createElement("div", { className: "ds-list-item__hairline" }));
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-list-item${props.onClick ? " is-tappable" : ""}`, onClick: props.onClick, role: props.onClick ? "button" : void 0 }, renderThumb(props), props.label != null ? /* @__PURE__ */ React.createElement("span", { className: "ds-list-item__label" }, props.label) : null, renderTrailing(variant));
+  }
+
+  // src/components/DotsHomeTopBar/DotsHomeTopBar.tsx
+  init_react_shim();
+  var NORMAL_H = 50;
+  var BIG_H = 106;
+  function DotsHomeTopBar(props) {
+    const variant = props.variant ?? (props.title != null ? "title" : props.child != null ? "widget" : "onlyStatusBar");
+    const big = variant !== "onlyStatusBar";
+    const bgCls = props.showGradient ? " ds-home-top-bar__bg--gradient" : props.backgroundBlur ? " ds-home-top-bar__bg--blur" : "";
+    let center = null;
+    if (props.child != null) {
+      center = props.child;
+    } else if (variant === "title" && props.title != null) {
+      center = /* @__PURE__ */ React.createElement("button", { type: "button", className: "ds-home-top-bar__title", onClick: props.onTitleClick, style: props.onTitleClick ? void 0 : { cursor: "default" } }, props.title);
+    }
+    const main = big ? /* @__PURE__ */ React.createElement("div", { className: "ds-home-top-bar__main" }, /* @__PURE__ */ React.createElement("div", { className: "ds-home-top-bar__center" }, center), /* @__PURE__ */ React.createElement("div", { className: "ds-home-top-bar__row" }, props.imgProfile ? /* @__PURE__ */ React.createElement("span", { className: "ds-home-top-bar__profile" }, props.imgProfile) : null, /* @__PURE__ */ React.createElement("span", { className: "ds-home-top-bar__spacer" }), props.rightIcon ? /* @__PURE__ */ React.createElement("span", { className: "ds-home-top-bar__slot" }, props.rightIcon) : null, props.secondRightIcon ? /* @__PURE__ */ React.createElement("span", { className: "ds-home-top-bar__slot ds-home-top-bar__slot--second" }, props.secondRightIcon) : null)) : null;
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-home-top-bar${big ? "" : " ds-home-top-bar--normal"}${props.className ? ` ${props.className}` : ""}`,
+        style: { minHeight: `${big ? BIG_H : NORMAL_H}px` }
+      },
+      /* @__PURE__ */ React.createElement("span", { className: `ds-home-top-bar__bg${bgCls}`, "aria-hidden": "true" }),
+      /* @__PURE__ */ React.createElement("div", { className: "ds-home-top-bar__col" }, /* @__PURE__ */ React.createElement("div", { className: "ds-home-top-bar__content" }, /* @__PURE__ */ React.createElement("span", { className: "ds-home-top-bar__status", "aria-hidden": "true" }), main), props.children)
+    );
+  }
+
+  // src/components/DotsNavBar/DotsNavBar.tsx
+  init_react_shim();
+  var MAX_PENDING = 99;
+  var DEFAULT_ITEMS = [
+    { icon: "ic-add", label: "Crear" },
+    { icon: "ic-home", label: "Inicio" },
+    { icon: "ic-gallery", label: "Galer\xEDa" }
+  ];
+  function DotsNavBar(props) {
+    const items = props.items ?? DEFAULT_ITEMS;
+    const selectedIndex = props.selectedIndex ?? 0;
+    const onSelect = props.onSelect;
+    return /* @__PURE__ */ React.createElement("nav", { className: `ds-nav-bar${props.className ? ` ${props.className}` : ""}` }, /* @__PURE__ */ React.createElement("span", { className: "ds-nav-bar__pill", style: { left: `${5 + selectedIndex * 70}px` }, "aria-hidden": "true" }), items.map((item, i) => {
+      const selected = i === selectedIndex;
+      const badge = item.badge == null ? null : item.badge > MAX_PENDING ? String(MAX_PENDING) : String(item.badge);
+      return /* @__PURE__ */ React.createElement(
+        "button",
+        {
+          key: i,
+          type: "button",
+          className: `ds-nav-bar__item${selected ? " is-selected" : ""}`,
+          "aria-current": selected ? "page" : void 0,
+          onClick: onSelect ? () => onSelect(i) : void 0
+        },
+        /* @__PURE__ */ React.createElement("span", { className: "ds-nav-bar__icon-wrap" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: item.icon, size: 20, color: "currentColor" }), badge != null ? /* @__PURE__ */ React.createElement("span", { className: "ds-nav-bar__badge" }, badge) : null),
+        /* @__PURE__ */ React.createElement("span", { className: "ds-nav-bar__label" }, item.label)
+      );
+    }));
+  }
+
+  // src/components/DotsSquirclePhoto/DotsSquirclePhoto.tsx
+  init_react_shim();
+  var import_react21 = __toESM(require_react(), 1);
+  function gradVariant2(seed) {
+    const s = seed ?? "";
+    let n = 0;
+    for (let i = 0; i < s.length; i++) n = (n + s.charCodeAt(i)) % 997;
+    return "abcd"[n % 4];
+  }
+  function radiusPx(borderRadius, fallback) {
+    if (borderRadius == null) return `${fallback}px`;
+    return typeof borderRadius === "number" ? `${borderRadius}px` : borderRadius;
+  }
+  function DotsSquirclePhoto(props) {
+    const [hasError, setError] = (0, import_react21.useState)(false);
+    const size = props.size ?? 52;
+    const br = radiusPx(props.borderRadius, 16);
+    const hideBorder = props.hideBorder !== false;
+    const borderSize = props.borderSize ?? 1;
+    const showImg = !!props.src && !hasError;
+    return /* @__PURE__ */ React.createElement(
+      "span",
+      {
+        className: `ds-squircle-photo${props.className ? ` ${props.className}` : ""}`,
+        style: { width: size, height: size, borderRadius: br },
+        onClick: props.onClick
+      },
+      showImg ? /* @__PURE__ */ React.createElement(
+        "img",
+        {
+          className: "ds-squircle-photo__img",
+          src: props.src,
+          alt: props.alt ?? "",
+          onError: (e) => {
+            setError(true);
+            props.onError?.(e);
+          }
+        }
+      ) : /* @__PURE__ */ React.createElement("span", { className: `ds-squircle-photo__ph ds-squircle-photo__ph--${gradVariant2(props.src || props.alt)}` }),
+      !hideBorder ? /* @__PURE__ */ React.createElement(
+        "span",
+        {
+          className: "ds-squircle-photo__border",
+          style: { borderRadius: br, borderWidth: borderSize, borderColor: props.borderColor || void 0 }
+        }
+      ) : null,
+      props.uploadError ? /* @__PURE__ */ React.createElement("span", { className: "ds-squircle-photo__error" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.uploadErrorIcon || "ic-cloud-fail", size: 24, color: "var(--label-always-white)" })) : null
+    );
+  }
+  function DotsSquirclePhotoTag(props) {
+    const size = props.size ?? 100;
+    const tagCircleSize = props.tagCircleSize ?? 40;
+    const iconSize = props.iconSize ?? 24;
+    return /* @__PURE__ */ React.createElement(
+      "span",
+      {
+        className: `ds-squircle-photo-tag${props.className ? ` ${props.className}` : ""}`,
+        style: { width: size + 10, height: size + 10 },
+        onClick: props.onClick
+      },
+      /* @__PURE__ */ React.createElement(
+        DotsSquirclePhoto,
+        {
+          src: props.src,
+          alt: props.alt,
+          onError: props.onError,
+          size,
+          borderRadius: props.borderRadius ?? 24,
+          hideBorder: false,
+          borderSize: props.borderSize ?? 2,
+          borderColor: props.borderColor || "var(--label-always-white)"
+        }
+      ),
+      /* @__PURE__ */ React.createElement("span", { className: "ds-squircle-photo-tag__circle", style: { width: tagCircleSize, height: tagCircleSize } }, /* @__PURE__ */ React.createElement(
+        DotsIcon,
+        {
+          name: props.icon || "ic-calendar--check",
+          size: iconSize,
+          color: props.iconColor || "var(--label-always-white)"
+        }
+      ))
+    );
+  }
+  DotsSquirclePhoto.Tag = DotsSquirclePhotoTag;
+
+  // src/components/DotsUploadItem/DotsUploadItem.tsx
+  init_react_shim();
+  var VARIANTS6 = {
+    processing: { icon: "ic-spinner", color: "var(--text-secondary)" },
+    success: { icon: "ic-check-circle", color: "var(--label-highlight)" },
+    error: { icon: "ic-cross-circle", color: "var(--label-destructive)" }
+  };
+  function DotsUploadItem(props) {
+    const variant = VARIANTS6[props.variant] ? props.variant : "processing";
+    const v = VARIANTS6[variant];
+    const isProcessing = variant === "processing";
+    const isSuccess = variant === "success";
+    const isError = variant === "error";
+    const percentage = props.percentage == null ? null : Math.min(1, Math.max(0, props.percentage));
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-upload-item${props.className ? ` ${props.className}` : ""}` }, /* @__PURE__ */ React.createElement(DotsSquirclePhoto, { src: props.src, alt: props.alt, onError: props.onError, size: 64, borderRadius: 16, uploadError: isError }), /* @__PURE__ */ React.createElement("div", { className: `ds-upload-item__body${isProcessing ? " ds-upload-item__body--processing" : ""}` }, /* @__PURE__ */ React.createElement("div", { className: "ds-upload-item__date" }, props.textDate ?? ""), /* @__PURE__ */ React.createElement("span", { className: "ds-upload-item__process" }, /* @__PURE__ */ React.createElement("span", { className: `ds-upload-item__process-icon${isProcessing ? " ds-upload-item__process-icon--spin" : ""}` }, /* @__PURE__ */ React.createElement(DotsIcon, { name: v.icon, size: 14, color: v.color })), /* @__PURE__ */ React.createElement("span", { className: "ds-upload-item__process-text" }, props.processText ?? "")), isProcessing ? /* @__PURE__ */ React.createElement("span", { className: "ds-upload-item__progress" }, /* @__PURE__ */ React.createElement("span", { className: "ds-upload-item__progress-bar" }, /* @__PURE__ */ React.createElement(DotsProgressBar, { percentage: percentage ?? 1, parts: 1 })), /* @__PURE__ */ React.createElement("span", { className: "ds-upload-item__progress-pct" }, percentage != null ? `${Math.round(percentage * 100)}%` : "")) : null, isSuccess ? /* @__PURE__ */ React.createElement("div", { className: "ds-upload-item__elapsed" }, props.timeElapsed ?? "") : null), !isProcessing ? /* @__PURE__ */ React.createElement(DotsMainButton, { label: props.btnText ?? "", variant: isSuccess ? "secondary" : "main", size: "medium", expand: false, onClick: props.onBtnClick }) : null);
+  }
+
+  // src/components/AlbumGroupCard/AlbumGroupCard.tsx
+  init_react_shim();
+  function AlbumGroupCard(props) {
+    const variant = props.variant === "large" ? "large" : "small";
+    const isSmall = variant === "small";
+    const size = props.size ?? (isSmall ? 148 : 288);
+    const edge = props.edgeSize ?? (isSmall ? 60 : 110);
+    const isBlocked = !!props.isBlocked;
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-album-card ds-album-card--${variant}${props.className ? ` ${props.className}` : ""}`,
+        style: { width: size, height: size },
+        onClick: props.onClick,
+        role: props.onClick ? "button" : void 0
+      },
+      /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          className: `ds-album-card__img${props.imageSrc ? "" : " ds-album-card__img--ph"}`,
+          style: props.imageSrc ? { backgroundImage: `url("${props.imageSrc}")` } : void 0
+        }
+      ),
+      /* @__PURE__ */ React.createElement("div", { className: "ds-album-card__fade", style: { height: edge } }),
+      /* @__PURE__ */ React.createElement("div", { className: `ds-album-card__title ds-album-card__title--${variant}` }, props.title ?? ""),
+      !isBlocked && props.tagIcon ? /* @__PURE__ */ React.createElement("span", { className: `ds-album-card__tag ${isSmall ? "ds-album-card__tag--small" : "ds-album-card__tag--large"}` }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.tagIcon, size: 20, color: "currentColor" })) : null,
+      isBlocked ? /* @__PURE__ */ React.createElement("div", { className: "ds-album-card__lock" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-lock", size: 32, color: "currentColor" })) : null
+    );
+  }
+
+  // src/components/CreateCard/CreateCard.tsx
+  init_react_shim();
+  function CreateCard(props) {
+    const variant = props.variant === "button" ? "button" : "label";
+    const width = props.width ?? 164;
+    if (variant === "button") {
+      return /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          className: `ds-create-card ds-create-card--button${props.className ? ` ${props.className}` : ""}`,
+          style: { width },
+          onClick: props.onClick,
+          role: props.onClick ? "button" : void 0
+        },
+        /* @__PURE__ */ React.createElement("span", { className: "ds-create-card__circle" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-add", size: 16, color: "currentColor" })),
+        /* @__PURE__ */ React.createElement("span", { className: "ds-create-card__btn-label" }, props.title ?? "")
+      );
+    }
+    const style = { width };
+    if (props.primaryColor) {
+      style.background = `linear-gradient(90deg, ${props.primaryColor}, ${props.secondaryColor || props.primaryColor})`;
+    }
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-create-card ds-create-card--label${props.className ? ` ${props.className}` : ""}`,
+        style,
+        onClick: props.onClick,
+        role: props.onClick ? "button" : void 0
+      },
+      props.icon ? /* @__PURE__ */ React.createElement("span", { className: "ds-create-card__icon" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: 32, color: "currentColor" })) : null,
+      /* @__PURE__ */ React.createElement("span", { className: "ds-create-card__title" }, props.title ?? ""),
+      /* @__PURE__ */ React.createElement("span", { className: "ds-create-card__add" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-add", size: 14, color: "currentColor" }))
+    );
+  }
+
+  // src/components/MemoryCard/MemoryCard.tsx
+  init_react_shim();
+  function MemoryCard(props) {
+    const variant = props.variant === "recap" ? "recap" : "memory";
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-memory-card${props.className ? ` ${props.className}` : ""}`,
+        onClick: props.onClick,
+        role: props.onClick ? "button" : void 0
+      },
+      /* @__PURE__ */ React.createElement("div", { className: `ds-memory-card__border ds-memory-card__border--${variant}` }, /* @__PURE__ */ React.createElement("div", { className: "ds-memory-card__inner" }, /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          className: `ds-memory-card__img${props.imageSrc ? "" : " ds-memory-card__img--ph"}`,
+          style: props.imageSrc ? { backgroundImage: `url("${props.imageSrc}")` } : void 0
+        }
+      ))),
+      /* @__PURE__ */ React.createElement("div", { className: "ds-memory-card__name" }, props.groupName ?? "")
+    );
+  }
+
+  // src/components/ProductCard/ProductCard.tsx
+  init_react_shim();
+  function Dots({ count, active }) {
+    const items = [];
+    for (let i = 0; i < count; i++) {
+      items.push(/* @__PURE__ */ React.createElement("span", { key: i, className: `ds-product-card__dot${i === active ? " is-active" : ""}` }));
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__dots" }, items);
+  }
+  function ProductCard(props) {
+    const ratio = props.aspectRatio || 1;
+    const pageCount = props.pageCount || 0;
+    const onActionClick = props.onActionClick;
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-product-card${props.className ? ` ${props.className}` : ""}`,
+        style: { aspectRatio: String(ratio) },
+        onClick: props.onClick,
+        role: props.onClick ? "button" : void 0
+      },
+      /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          className: `ds-product-card__bg${props.imageSrc ? "" : " ds-product-card__bg--ph"}`,
+          style: props.imageSrc ? { backgroundImage: `url("${props.imageSrc}")` } : void 0
+        }
+      ),
+      /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__scrim" }),
+      props.badge ? /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__badge" }, props.badge) : null,
+      pageCount > 0 ? /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__pagecontrol" }, /* @__PURE__ */ React.createElement(Dots, { count: pageCount, active: props.activePage || 0 })) : null,
+      /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__bottom" }, /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__copy" }, /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__title" }, props.title ?? ""), props.subtitle ? /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__subtitle" }, props.subtitle) : null, props.caption ? /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__caption" }, /* @__PURE__ */ React.createElement("span", null, props.caption), props.captionPrevious ? /* @__PURE__ */ React.createElement("span", { className: "ds-product-card__caption-prev" }, props.captionPrevious) : null) : null), onActionClick ? /* @__PURE__ */ React.createElement(
+        "button",
+        {
+          type: "button",
+          className: "ds-product-card__action",
+          onClick: (e) => {
+            e.stopPropagation();
+            onActionClick();
+          }
+        },
+        /* @__PURE__ */ React.createElement(DotsIcon, { name: props.actionIcon || "ic-arrow-right", size: 20, color: "currentColor" })
+      ) : null)
+    );
+  }
+
+  // src/components/UserItem/UserItem.tsx
+  init_react_shim();
+  var import_react22 = __toESM(require_react(), 1);
+  function gradVariant3(seed) {
+    const s = seed ?? "";
+    let n = 0;
+    for (let i = 0; i < s.length; i++) n = (n + s.charCodeAt(i)) % 997;
+    return "abcd"[n % 4];
+  }
+  function initials(name) {
+    const parts = (name ?? "").trim().split(/\s+/).filter(Boolean);
+    if (!parts.length) return "";
+    let out = parts[0].charAt(0);
+    if (parts.length > 1) out += parts[1].charAt(0);
+    return out.toUpperCase();
+  }
+  function UserInfo(props) {
+    const [hasError, setError] = (0, import_react22.useState)(false);
+    const size = props.size === "large" ? "large" : "small";
+    const showImg = !!props.src && !hasError;
+    let avatar;
+    if (showImg) {
+      avatar = /* @__PURE__ */ React.createElement("span", { className: "ds-user-info__avatar" }, /* @__PURE__ */ React.createElement(
+        "img",
+        {
+          className: "ds-user-info__avatar-img",
+          src: props.src,
+          alt: props.name || "",
+          onError: (e) => {
+            setError(true);
+            props.onError?.(e);
+          }
+        }
+      ));
+    } else if (props.alias) {
+      avatar = /* @__PURE__ */ React.createElement("span", { className: "ds-user-info__avatar ds-user-info__avatar--alias" }, props.alias);
+    } else {
+      avatar = /* @__PURE__ */ React.createElement("span", { className: `ds-user-info__avatar ds-user-info__avatar--ph ds-user-info__avatar--ph-${gradVariant3(props.name)}` }, initials(props.name));
+    }
+    return /* @__PURE__ */ React.createElement("span", { className: `ds-user-info ds-user-info--${size}${props.className ? ` ${props.className}` : ""}` }, avatar, /* @__PURE__ */ React.createElement("span", { className: "ds-user-info__names" }, /* @__PURE__ */ React.createElement("span", { className: "ds-user-info__name" }, props.name || ""), props.details ? /* @__PURE__ */ React.createElement("span", { className: "ds-user-info__details" }, props.details) : null));
+  }
+  function UserItem(props) {
+    return /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        type: "button",
+        className: `ds-user-item${props.className ? ` ${props.className}` : ""}`,
+        onClick: props.onClick ? () => props.onClick?.(props.id ?? null) : void 0
+      },
+      /* @__PURE__ */ React.createElement(UserInfo, { name: props.name, details: props.details, src: props.src, alias: props.alias, onError: props.onError, size: "small" }),
+      /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-add-circle", size: 20, color: "var(--label-highlight)" })
+    );
+  }
+  UserItem.Info = UserInfo;
+
+  // src/components/UsersList/UsersList.tsx
+  init_react_shim();
+  var VARIANTS7 = {
+    main: true,
+    label: true,
+    textfield: true,
+    button: true,
+    pending: true,
+    join: true,
+    waiting: true,
+    basic: true,
+    existingAlias: true,
+    pendingMember: true
+  };
+  function mainButton(label, variant, onClick) {
+    return /* @__PURE__ */ React.createElement(DotsMainButton, { label: label || "", variant, size: "small", expand: false, onClick });
+  }
+  function UsersListItem(props) {
+    const variant = VARIANTS7[props.variant] ? props.variant : "main";
+    const tapValue = props.id ?? "";
+    function tap() {
+      props.onClick?.(tapValue);
+    }
+    let main;
+    if (variant === "textfield") {
+      main = /* @__PURE__ */ React.createElement(
+        "input",
+        {
+          className: "ds-users-item__textfield",
+          type: "text",
+          placeholder: props.label || "",
+          defaultValue: props.textValue || "",
+          maxLength: 50,
+          autoFocus: props.autofocusOnEmpty !== false && !(props.textValue || "").length,
+          onChange: props.textOnChange ? (e) => props.textOnChange?.(tapValue, e.target.value) : void 0
+        }
+      );
+    } else if (variant === "button") {
+      main = /* @__PURE__ */ React.createElement("span", { className: "ds-users-item__add" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon || "ic-add", size: 16, color: "var(--label-highlight)" }), /* @__PURE__ */ React.createElement("span", null, props.label || ""));
+    } else {
+      const size = variant === "waiting" || variant === "pendingMember" ? "large" : "small";
+      main = /* @__PURE__ */ React.createElement(UserInfo, { name: props.name ?? "", details: props.details, src: props.src, alias: props.alias, size });
+    }
+    let trailing = null;
+    if (variant === "main" || variant === "textfield") {
+      trailing = /* @__PURE__ */ React.createElement(DotsCloseButton, { size: "extraSmall", onClick: tap });
+    } else if (variant === "pending" || variant === "join") {
+      trailing = /* @__PURE__ */ React.createElement("span", { className: "ds-users-item__trail-icon" }, /* @__PURE__ */ React.createElement(
+        DotsIcon,
+        {
+          name: variant === "join" ? "ic-chevron-right" : "ic-clock-filled",
+          size: props.iconSize ?? (variant === "join" ? 14 : 16),
+          color: "var(--text-secondary)"
+        }
+      ));
+    } else if (variant === "label") {
+      trailing = /* @__PURE__ */ React.createElement("span", { className: "ds-users-item__role" }, props.label || "");
+    } else if (variant === "pendingMember") {
+      trailing = /* @__PURE__ */ React.createElement("span", { className: "ds-users-item__btns" }, mainButton(props.buttonLabel1, "main", () => props.onButton1Click?.(tapValue)), mainButton(props.buttonLabel2, "secondary", () => props.onButton2Click?.(tapValue)));
+    }
+    const clickableRow = variant !== "textfield" && variant !== "main" && variant !== "pendingMember";
+    const rowClickable = clickableRow && !!props.onClick;
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-users-item ds-users-item--${variant}${props.className ? ` ${props.className}` : ""}`,
+        onClick: rowClickable ? tap : void 0,
+        role: rowClickable ? "button" : void 0
+      },
+      main,
+      trailing
+    );
+  }
+  function UsersList(props) {
+    const members = props.members || [];
+    if (!members.length) return null;
+    const items = members.map((m, index) => {
+      const key = m.id ?? `m${index}`;
+      const base = { id: m.id, name: m.name, details: m.details, src: m.src, alias: m.alias };
+      if (index === 0) return /* @__PURE__ */ React.createElement(UsersListItem, { key, ...base, variant: "label", label: props.creatorLabel });
+      switch (m.memberType) {
+        case "creator":
+          return null;
+        // already handled above (Dart: Offstage)
+        case "admin":
+          return /* @__PURE__ */ React.createElement(UsersListItem, { key, ...base, variant: "label", label: props.adminLabel, onClick: props.memberOnClick });
+        case "friend":
+          return /* @__PURE__ */ React.createElement(UsersListItem, { key, ...base, variant: "main", onClick: props.memberOnClick });
+        case "member":
+          return props.canModifyMembers ? /* @__PURE__ */ React.createElement(UsersListItem, { key, ...base, variant: "join", onClick: props.memberOnClick, iconSize: 22 }) : /* @__PURE__ */ React.createElement(UsersListItem, { key, ...base, variant: "basic" });
+        case "existingAlias":
+          return /* @__PURE__ */ React.createElement(UsersListItem, { key, ...base, variant: "existingAlias" });
+        case "alias":
+          return /* @__PURE__ */ React.createElement(
+            UsersListItem,
+            {
+              key,
+              ...base,
+              variant: "textfield",
+              label: props.textfieldLabel || "",
+              textValue: m.name,
+              onClick: props.memberOnClick,
+              textOnChange: props.textOnChange,
+              autofocusOnEmpty: props.autofocusOnEmpty
+            }
+          );
+        default:
+          return /* @__PURE__ */ React.createElement(UsersListItem, { key, ...base, variant: "basic" });
+      }
+    });
+    if (props.addParticipantLabel && props.addParticipantOnClick) {
+      items.push(
+        /* @__PURE__ */ React.createElement(UsersListItem, { key: "__add-participant", variant: "button", label: props.addParticipantLabel, icon: "ic-add", onClick: props.addParticipantOnClick })
+      );
+    }
+    if (props.showAddFriendButton && props.addFriendLabel && props.addFriendOnClick) {
+      items.push(
+        /* @__PURE__ */ React.createElement(UsersListItem, { key: "__add-friend", variant: "button", label: props.addFriendLabel, icon: "ic-user", onClick: props.addFriendOnClick })
+      );
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-users-list${props.className ? ` ${props.className}` : ""}` }, items);
+  }
+  UsersList.Item = UsersListItem;
+
+  // src/components/ActivityPreview/ActivityPreview.tsx
+  init_react_shim();
+  var import_react23 = __toESM(require_react(), 1);
+  var VARIANTS8 = { reactions: true, views: true, favs: true };
+  var BADGE_COLORS = { reactions: "#FAA25E", views: "#9297EF", favs: "#F43C51" };
+  function formatCount(count) {
+    if (count >= 1e9) return (count / 1e9).toFixed(1) + "B";
+    if (count >= 1e6) return (count / 1e6).toFixed(1) + "M";
+    if (count >= 1e3) return (count / 1e3).toFixed(1) + "k";
+    return String(count);
+  }
+  function ActivityPreview(props) {
+    const [imgError, setImgError] = (0, import_react23.useState)(false);
+    const variant = props.variant && VARIANTS8[props.variant] ? props.variant : "reactions";
+    const isReactions = variant === "reactions";
+    const showImg = !!props.src && !imgError;
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: "ds-activity-preview" + (showImg ? "" : " ds-activity-preview--placeholder") + (props.onCardClick ? " ds-activity-preview--clickable" : "") + (props.className ? ` ${props.className}` : ""),
+        onClick: props.onCardClick,
+        role: props.onCardClick ? "button" : void 0
+      },
+      showImg ? /* @__PURE__ */ React.createElement(
+        "img",
+        {
+          className: "ds-activity-preview__img",
+          src: props.src,
+          alt: "",
+          onError: (e) => {
+            setImgError(true);
+            props.onError?.(e);
+          }
+        }
+      ) : null,
+      /* @__PURE__ */ React.createElement("div", { className: "ds-activity-preview__pill" }, isReactions && props.reactions?.length ? props.reactions.map((reaction, i) => (
+        // typo.number.numLabelDefault (Nunito 13/800) — reactions (emojis)
+        /* @__PURE__ */ React.createElement("span", { key: `r${i}`, className: "ds-activity-preview__reaction" }, reaction)
+      )) : null, !isReactions ? /* @__PURE__ */ React.createElement("span", { className: "ds-activity-preview__pill-icon" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: variant === "views" ? "ic-eye" : "ic-heart", size: 14, color: "var(--label-always-white)" })) : null, /* @__PURE__ */ React.createElement("span", { className: `ds-activity-preview__number${isReactions ? "" : " ds-activity-preview__number--after-icon"}` }, props.number || ""))
+    );
+  }
+  function ActivityOverviewItem(props) {
+    const variant = VARIANTS8[props.variant] ? props.variant : "reactions";
+    const width = props.width ?? 53;
+    const height = props.height ?? 68;
+    const borderRadius = props.borderRadius ?? 12;
+    const borderWidth = props.borderWidth ?? 1;
+    const maxUserImages = props.maxUserImages ?? 2;
+    const images = props.images || [];
+    const userImages = props.userImages || [];
+    const count = props.count ?? 0;
+    const reactionsCount = props.reactionsCount ?? 0;
+    function hideOnError(e) {
+      e.currentTarget.style.display = "none";
+      props.onError?.(e);
+    }
+    const cardStyle = {
+      width,
+      height,
+      borderRadius,
+      boxShadow: "0 6px 6px #00000026",
+      "--ds-ov-bw": `${borderWidth}px`
+    };
+    const backStyle = {
+      width,
+      height,
+      borderRadius,
+      boxShadow: "-6px 5px 10px #00000026",
+      "--ds-ov-bw": `${borderWidth}px`
+    };
+    const backSrc = images.length > 1 ? images[images.length - 1] : void 0;
+    const backCard = images.length > 1 ? /* @__PURE__ */ React.createElement("div", { className: "ds-activity-overview__card ds-activity-overview__card--back", style: backStyle }, backSrc ? /* @__PURE__ */ React.createElement("img", { className: "ds-activity-overview__photo", src: backSrc, alt: "", onError: hideOnError }) : null) : null;
+    const mainCard = /* @__PURE__ */ React.createElement("div", { className: "ds-activity-overview__card ds-activity-overview__card--main", style: cardStyle }, images[0] ? /* @__PURE__ */ React.createElement("img", { className: "ds-activity-overview__photo", src: images[0], alt: "", onError: hideOnError }) : null, /* @__PURE__ */ React.createElement("div", { className: "ds-activity-overview__gradient", style: { borderRadius } }));
+    const badge = /* @__PURE__ */ React.createElement("div", { className: "ds-activity-overview__badge" }, /* @__PURE__ */ React.createElement("div", { className: "ds-activity-overview__badge-inner", style: { background: BADGE_COLORS[variant] } }, props.icon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: 14, color: props.iconColor || "var(--label-always-white)" }) : null));
+    const shownUsers = userImages.slice(0, maxUserImages);
+    const avatars = reactionsCount > 0 && shownUsers.length > 0 ? /* @__PURE__ */ React.createElement("div", { className: "ds-activity-overview__avatars", style: { width: 17 + (shownUsers.length - 1) * 10 } }, shownUsers.map((src, i) => /* @__PURE__ */ React.createElement("div", { key: i, className: "ds-activity-overview__avatar", style: { left: i * 10, zIndex: shownUsers.length - i } }, /* @__PURE__ */ React.createElement("span", { className: "ds-activity-overview__avatar-fallback" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-user", size: 12, color: "var(--text-tertiary)" })), src ? /* @__PURE__ */ React.createElement(
+      "img",
+      {
+        className: "ds-activity-overview__avatar-img",
+        src,
+        alt: "",
+        onError: (e) => {
+          e.currentTarget.style.display = "none";
+        }
+      }
+    ) : null))) : null;
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-activity-overview${props.className ? ` ${props.className}` : ""}` }, /* @__PURE__ */ React.createElement("div", { className: "ds-activity-overview__stack", style: { width, height } }, backCard, mainCard, badge), /* @__PURE__ */ React.createElement("div", { className: "ds-activity-overview__info" }, /* @__PURE__ */ React.createElement("div", { className: "ds-activity-overview__count" }, formatCount(count)), /* @__PURE__ */ React.createElement("div", { className: "ds-activity-overview__title" }, props.title), reactionsCount > 0 ? /* @__PURE__ */ React.createElement("div", { className: "ds-activity-overview__reactions" }, /* @__PURE__ */ React.createElement("span", { className: "ds-activity-overview__reactions-count" }, `+${formatCount(reactionsCount)}`), avatars) : null));
+  }
+  ActivityPreview.OverviewItem = ActivityOverviewItem;
+
+  // src/components/ImageWithIcon/ImageWithIcon.tsx
+  init_react_shim();
+  var import_react24 = __toESM(require_react(), 1);
+  function ImageWithIcon(props) {
+    const [imgError, setImgError] = (0, import_react24.useState)(false);
+    const width = props.width ?? 53;
+    const height = props.height ?? 68;
+    const borderRadius = props.borderRadius ?? 12;
+    const borderWidth = props.borderWidth ?? 2;
+    const iconSize = props.iconSize ?? 18;
+    const circular = !!props.circularImage;
+    const showIcon = props.showIcon !== false;
+    const radius = circular ? width / 2 : borderRadius;
+    const iconBorderWidth = iconSize * 0.1;
+    const iconContainerSize = iconSize * 1.5;
+    const iconRadius = (iconContainerSize + iconBorderWidth) / 2;
+    const iconPosition = -(props.iconOffset ?? iconRadius) + iconBorderWidth;
+    const hasImage = props.src != null && props.src !== "";
+    const hasAliasText = !!props.aliasLabelImageText;
+    let body2 = null;
+    if (hasImage) {
+      const cardStyle = { width, height, borderRadius: radius, "--ds-iwi-bw": `${borderWidth}px` };
+      body2 = /* @__PURE__ */ React.createElement("div", { className: "ds-image-with-icon__card", style: cardStyle }, imgError ? /* @__PURE__ */ React.createElement("div", { className: "ds-image-with-icon__default" }) : /* @__PURE__ */ React.createElement(
+        "img",
+        {
+          className: "ds-image-with-icon__img",
+          src: props.src,
+          alt: "",
+          onError: (e) => {
+            setImgError(true);
+            props.onError?.(e);
+          }
+        }
+      ), /* @__PURE__ */ React.createElement("div", { className: "ds-image-with-icon__gradient" }));
+    } else if (hasAliasText) {
+      body2 = /* @__PURE__ */ React.createElement("div", { className: "ds-image-with-icon__alias", style: { width, height, borderRadius: circular ? "50%" : borderRadius } }, /* @__PURE__ */ React.createElement("span", { className: "ds-image-with-icon__alias-text", style: props.aliasLabelImageTextStyle }, props.aliasLabelImageText));
+    }
+    const badge = showIcon && props.icon ? /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: "ds-image-with-icon__badge",
+        style: { top: iconPosition, right: iconPosition, width: iconRadius * 2, height: iconRadius * 2 }
+      },
+      /* @__PURE__ */ React.createElement("div", { className: "ds-image-with-icon__badge-inner", style: { width: iconContainerSize, height: iconContainerSize, margin: iconBorderWidth } }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: iconSize, color: props.iconColor }))
+    ) : null;
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-image-with-icon${props.className ? ` ${props.className}` : ""}`, style: { width, height } }, body2, badge);
+  }
+
+  // src/components/MessagePreview/MessagePreview.tsx
+  init_react_shim();
+  var import_react25 = __toESM(require_react(), 1);
+  var ATTACHMENT_ICONS = {
+    image: "ic-pic",
+    video: "ic-video",
+    audio: "ic-mic",
+    file: "ic-pages"
+  };
+  function gradVariant4(seed) {
+    const s = seed ?? "";
+    let n = 0;
+    for (let i = 0; i < s.length; i++) n = (n + s.charCodeAt(i)) % 997;
+    return "abcd"[n % 4];
+  }
+  function MessagePreview(props) {
+    const [hasError, setError] = (0, import_react25.useState)(false);
+    const album = props.album || "";
+    const newMessages = props.newMessages || 0;
+    const typing = props.typingText != null && props.typingText !== "";
+    const showImg = !!props.src && !hasError;
+    const image = /* @__PURE__ */ React.createElement("span", { className: "ds-msg-preview__img" }, showImg ? /* @__PURE__ */ React.createElement(
+      "img",
+      {
+        className: "ds-msg-preview__img-el",
+        src: props.src,
+        alt: album,
+        onError: (e) => {
+          setError(true);
+          props.onError?.(e);
+        }
+      }
+    ) : /* @__PURE__ */ React.createElement("span", { className: `ds-msg-preview__img-ph ds-msg-preview__img-ph--${gradVariant4(album)}` }, album ? album.charAt(0).toUpperCase() : ""));
+    let content;
+    if (typing) {
+      content = [/* @__PURE__ */ React.createElement("span", { key: "t" }, props.typingText)];
+    } else {
+      content = [];
+      if (props.senderName) {
+        content.push(
+          /* @__PURE__ */ React.createElement("span", { key: "s", className: "ds-msg-preview__sender" }, `${props.senderName}: `)
+        );
+      }
+      const attachmentIcon = props.attachmentIcon || (props.attachmentType && props.attachmentType !== "text" ? ATTACHMENT_ICONS[props.attachmentType] : null);
+      if (attachmentIcon) {
+        content.push(
+          /* @__PURE__ */ React.createElement("span", { key: "a", className: "ds-msg-preview__attach" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: attachmentIcon, size: 13, color: "currentColor" })),
+          " "
+        );
+      }
+      content.push(props.message || "");
+    }
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-msg-preview${props.className ? ` ${props.className}` : ""}`,
+        onClick: props.onClick,
+        role: props.onClick ? "button" : void 0
+      },
+      /* @__PURE__ */ React.createElement("div", { className: "ds-msg-preview__inner" }, image, /* @__PURE__ */ React.createElement("div", { className: "ds-msg-preview__col" }, /* @__PURE__ */ React.createElement("div", { className: "ds-msg-preview__header" }, /* @__PURE__ */ React.createElement("span", { className: "ds-msg-preview__album" }, album), /* @__PURE__ */ React.createElement("span", { className: "ds-msg-preview__time" }, props.time || "")), /* @__PURE__ */ React.createElement("div", { className: "ds-msg-preview__content" }, /* @__PURE__ */ React.createElement("span", { className: "ds-msg-preview__text" }, content), newMessages > 0 ? /* @__PURE__ */ React.createElement("span", { className: "ds-msg-preview__badge" }, newMessages > 999 ? "+999" : String(newMessages)) : null)))
+    );
+  }
+
+  // src/components/NotificationBanner/NotificationBanner.tsx
+  init_react_shim();
+  function NotificationBanner(props) {
+    const showClose = props.showCloseButton !== false;
+    const hasAction = props.actionButtonText != null && props.actionButtonText !== "";
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-notif-banner${props.className ? ` ${props.className}` : ""}` }, /* @__PURE__ */ React.createElement("div", { className: "ds-notif-banner__title" }, props.title), props.body != null ? /* @__PURE__ */ React.createElement("div", { className: "ds-notif-banner__body" }, props.body) : null, hasAction ? (
+      // DotsMainButton(content, size: medium, variant: main, expand: false)
+      /* @__PURE__ */ React.createElement("div", { className: "ds-notif-banner__action" }, /* @__PURE__ */ React.createElement(DotsMainButton, { label: props.actionButtonText ?? "", size: "medium", variant: "main", expand: false, onClick: props.onActionClick }))
+    ) : null, showClose ? (
+      // DotsCloseButton(icon: cross, size: medium, variant: softContrast) — Positioned top 12 right 12
+      /* @__PURE__ */ React.createElement("div", { className: "ds-notif-banner__close" }, /* @__PURE__ */ React.createElement(DotsCloseButton, { icon: "ic-cross", size: "medium", variant: "softContrast", onClick: props.onClose }))
+    ) : null);
+  }
+
+  // src/components/NotificationBannerImage/NotificationBannerImage.tsx
+  init_react_shim();
+  var import_react26 = __toESM(require_react(), 1);
+  var BTN_SIZES = { mainAction: true, large: true, medium: true, small: true };
+  function NotificationBannerImage(props) {
+    const [imgError, setImgError] = (0, import_react26.useState)(false);
+    const imagePadding = props.imagePadding ?? 20;
+    const showClose = props.showCloseButton !== false;
+    const isBtnActive = props.isBtnActive !== false;
+    const btnSize = props.actionButtonSize && BTN_SIZES[props.actionButtonSize] ? props.actionButtonSize : "medium";
+    const clickable = typeof props.onActionClick === "function";
+    const sized = props.imageSize != null ? { width: props.imageSize, height: props.imageSize } : void 0;
+    let imageEl = null;
+    if (props.src && !imgError) {
+      imageEl = /* @__PURE__ */ React.createElement(
+        "img",
+        {
+          className: `ds-notif-banner-img__img${sized ? " ds-notif-banner-img__img--sized" : ""}`,
+          src: props.src,
+          alt: "",
+          style: sized,
+          onError: (e) => {
+            setImgError(true);
+            props.onError?.(e);
+          }
+        }
+      );
+    } else if (!props.src) {
+      imageEl = /* @__PURE__ */ React.createElement("div", { className: "ds-notif-banner-img__placeholder", style: sized });
+    }
+    const descEl = props.description ? /* @__PURE__ */ React.createElement("div", { className: "ds-notif-banner-img__desc" }, props.description, props.appendedDescription ? /* @__PURE__ */ React.createElement("span", { className: "ds-notif-banner-img__desc-appended" }, ` ${props.appendedDescription}`) : null) : null;
+    const actionEl = props.actionButtonText ? /* @__PURE__ */ React.createElement("div", { className: "ds-notif-banner-img__action", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ React.createElement(
+      DotsMainButton,
+      {
+        label: props.actionButtonText,
+        size: btnSize,
+        variant: isBtnActive ? "main" : "secondary",
+        expand: false,
+        onClick: props.onActionClick
+      }
+    )) : null;
+    const closeEl = showClose ? /* @__PURE__ */ React.createElement("div", { className: "ds-notif-banner-img__close", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ React.createElement(DotsCloseButton, { icon: "ic-cross", size: "medium", variant: "softContrast", onClick: props.onClose })) : null;
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-notif-banner-img${clickable ? " ds-notif-banner-img--clickable" : ""}${props.className ? ` ${props.className}` : ""}`,
+        onClick: clickable ? props.onActionClick : void 0
+      },
+      imageEl ? /* @__PURE__ */ React.createElement("div", { className: "ds-notif-banner-img__img-wrap", style: { paddingLeft: imagePadding, paddingRight: imagePadding } }, imageEl) : null,
+      /* @__PURE__ */ React.createElement("div", { className: "ds-notif-banner-img__content" }, /* @__PURE__ */ React.createElement("div", { className: "ds-notif-banner-img__title" }, props.title), descEl, actionEl),
+      closeEl
+    );
+  }
+
+  // src/components/BadgeIcon/BadgeIcon.tsx
+  init_react_shim();
+  var SIZES4 = {
+    large: { size: 44, iconSize: 24 },
+    medium: { size: 36, iconSize: 20 },
+    small: { size: 28, iconSize: 16 }
+  };
+  var STYLES = { white: true };
+  function single(name, sizeName, style, iconColor2, onClick, posStyle) {
+    const s = sizeName && SIZES4[sizeName] || SIZES4.large;
+    return /* @__PURE__ */ React.createElement(
+      "span",
+      {
+        className: `ds-badge-icon ds-badge-icon--${style && STYLES[style] ? style : "white"}`,
+        style: { width: `${s.size}px`, height: `${s.size}px`, ...posStyle },
+        onClick,
+        role: onClick ? "button" : void 0
+      },
+      /* @__PURE__ */ React.createElement(DotsIcon, { name: name ?? "", size: s.iconSize, color: iconColor2 || "currentColor" })
+    );
+  }
+  function BadgeIcon(props) {
+    if (props.icons) {
+      const icons = props.icons.slice(0, 3);
+      if (!icons.length) return null;
+      const colors = props.iconColors ?? [];
+      return /* @__PURE__ */ React.createElement("span", { className: "ds-badge-icon-group", onClick: props.onClick, role: props.onClick ? "button" : void 0 }, single(icons[0], "medium", props.style, colors[0], void 0, { left: 0, bottom: 0 }), icons.length >= 2 ? single(
+        icons[1],
+        "small",
+        props.style,
+        colors[1],
+        void 0,
+        icons.length === 3 ? { left: "4px", bottom: "42px" } : { left: "31px", bottom: "31px" }
+      ) : null, icons.length === 3 ? single(icons[2], "small", props.style, colors[2], void 0, { left: "35px", bottom: "26px" }) : null);
+    }
+    return single(props.icon, props.size, props.style, props.iconColor, props.onClick);
+  }
+
+  // src/components/BadgeLabel/BadgeLabel.tsx
+  init_react_shim();
+  var VARIANTS9 = {
+    main: "main",
+    secondary: "secondary",
+    green: "green",
+    white: "white",
+    greenMaterial: "green-material",
+    warning: "warning",
+    warningMaterial: "warning-material",
+    red: "red",
+    premiumPlus: "premium-plus",
+    premium: "premium"
+  };
+  var SIZES5 = { large: true, medium: true, small: true };
+  function BadgeLabel(props) {
+    const size = props.size && SIZES5[props.size] ? props.size : "medium";
+    const variant = props.variant && VARIANTS9[props.variant] || VARIANTS9.main;
+    return /* @__PURE__ */ React.createElement("span", { className: `ds-badge-label ds-badge-label--${size} ds-badge-label--${variant}` }, props.badgeIcon ? /* @__PURE__ */ React.createElement("span", { className: "ds-badge-label__icon", "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.badgeIcon, size: 16, color: "currentColor" })) : null, /* @__PURE__ */ React.createElement("span", { className: "ds-badge-label__text" }, props.content));
+  }
+
+  // src/components/BadgeMilestone/BadgeMilestone.tsx
+  init_react_shim();
+  var VARIANTS10 = { main: true, ghost: true };
+  function BadgeMilestone(props) {
+    const variant = props.variant && VARIANTS10[props.variant] ? props.variant : "main";
+    return /* @__PURE__ */ React.createElement("span", { className: `ds-badge-milestone ds-badge-milestone--${variant}` }, /* @__PURE__ */ React.createElement("span", { className: "ds-badge-milestone__text" }, props.content));
+  }
+
+  // src/components/BadgeProgress/BadgeProgress.tsx
+  init_react_shim();
+  function BadgeProgress(props) {
+    return /* @__PURE__ */ React.createElement("span", { className: "ds-badge-progress" }, /* @__PURE__ */ React.createElement("span", { className: "ds-badge-progress__icon", "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-check-circle", size: 20, color: "var(--label-highlight)" })), /* @__PURE__ */ React.createElement("span", { className: "ds-badge-progress__text" }, `${props.current}/${props.max}`));
+  }
+
+  // src/components/BadgeTag/BadgeTag.tsx
+  init_react_shim();
+  function body(tag, floating, offset) {
+    return /* @__PURE__ */ React.createElement(
+      "span",
+      {
+        className: `ds-badge-tag${floating ? " ds-badge-tag--floating" : ""}`,
+        style: floating ? {
+          // Dart: Positioned(right: size?.width ?? -5, top: size?.height ?? -5)
+          right: `${offset?.width ?? -5}px`,
+          top: `${offset?.height ?? -5}px`
+        } : void 0
+      },
+      tag ? tag : null
+    );
+  }
+  function BadgeTag(props) {
+    if (props.children == null) return body(props.tag, false);
+    return /* @__PURE__ */ React.createElement("span", { className: "ds-badge-tag-host" }, props.children, body(props.tag, true, props.size));
+  }
+
+  // src/components/DotsSelectorRadioButton/DotsSelectorRadioButton.tsx
+  init_react_shim();
+  function detailIcon(name, size) {
+    return /* @__PURE__ */ React.createElement(DotsIcon, { name, size, color: "var(--text-tertiary)" });
+  }
+  function DotsSelectorRadioButton(props) {
+    const selected = !!props.isSelected;
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-sel-card${selected ? " is-selected" : ""}`, role: "radio", "aria-checked": selected, tabIndex: 0, onClick: props.onClick }, /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__body ds-sel-card__body--gap10" }, /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__title" }, props.title), /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__detail" }, detailIcon(props.icon1 || "ic-clock-filled", props.icon1Size || 16), props.details1), /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__detail" }, detailIcon(props.icon2 || "ic-calendar", props.icon2Size || 16), props.details2)), /* @__PURE__ */ React.createElement(DotsRadioButton, { isSelected: selected, size: 24 }));
+  }
+  var BADGE_VARIANT = {
+    free: "main",
+    acquired: "green",
+    premium: "premium",
+    premiumPlus: "premiumPlus"
+  };
+  function DotsSelectorRadioButtonLabel(props) {
+    const selectable = props.isSelectable !== false;
+    const selected = !!props.isSelected && selectable;
+    const variant = BADGE_VARIANT[props.variant] ? props.variant : "free";
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-sel-card${selected ? " is-selected" : ""}`,
+        role: selectable ? "radio" : void 0,
+        "aria-checked": selectable ? selected : void 0,
+        tabIndex: selectable ? 0 : void 0,
+        onClick: selectable ? props.onClick : void 0
+      },
+      /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__body ds-sel-card__body--gap8" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(BadgeLabel, { content: props.tagText, variant: BADGE_VARIANT[variant] })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__title-serif" }, props.title), /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__detail1" }, props.details1)), /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__detail2" }, props.details2)),
+      selectable ? /* @__PURE__ */ React.createElement(DotsRadioButton, { isSelected: selected, size: 24 }) : null
+    );
+  }
+  function DotsSettingItemRadioBtn(props) {
+    const selected = !!props.isSelected;
+    return /* @__PURE__ */ React.createElement("div", { className: "ds-setting-radio", role: "radio", "aria-checked": selected, tabIndex: 0, onClick: props.onClick }, /* @__PURE__ */ React.createElement(DotsRadioButton, { isSelected: selected, size: 22 }), /* @__PURE__ */ React.createElement("span", { className: "ds-setting-radio__leading" }, props.leadingLabel), props.trailingLabel != null ? /* @__PURE__ */ React.createElement("span", { className: "ds-setting-radio__trailing" }, props.trailingLabel) : null);
+  }
+
+  // src/components/MilestoneCard/MilestoneCard.tsx
+  init_react_shim();
+  var BADGE_TYPES = {
+    video: {
+      icon: "ic-video",
+      color: "#4FAEF8"
+      /* child010 */
+    },
+    audio: {
+      icon: "ic-mic",
+      color: "#F43C51"
+      /* couple001 */
+    },
+    description: {
+      icon: "ic-pages",
+      color: "#F7954A"
+      /* friends005 */
+    }
+  };
+  function badgeGroup(types, onClick) {
+    const list = types.slice(0, 3).filter((t) => BADGE_TYPES[t]);
+    if (!list.length) return null;
+    const pos = [
+      { left: 0, bottom: 0, size: 36, iconSize: 20 },
+      list.length === 3 ? { left: 4, bottom: 42, size: 28, iconSize: 16 } : { left: 31, bottom: 31, size: 28, iconSize: 16 },
+      { left: 35, bottom: 26, size: 28, iconSize: 16 }
+    ];
+    return /* @__PURE__ */ React.createElement(
+      "span",
+      {
+        className: "ds-milestone-card__badges",
+        onClick: onClick ? (e) => {
+          e.stopPropagation();
+          onClick();
+        } : void 0
+      },
+      list.map((t, i) => {
+        const b = BADGE_TYPES[t];
+        const p = pos[i];
+        return /* @__PURE__ */ React.createElement(
+          "span",
+          {
+            key: t + i,
+            className: "ds-milestone-card__badge-icon",
+            style: { left: `${p.left}px`, bottom: `${p.bottom}px`, width: `${p.size}px`, height: `${p.size}px` }
+          },
+          /* @__PURE__ */ React.createElement(DotsIcon, { name: b.icon, size: p.iconSize, color: b.color })
+        );
+      })
+    );
+  }
+  function MilestoneCard(props) {
+    const width = props.width ?? 170;
+    const isBig = width > 150;
+    const hasTitle = props.title != null && props.title !== "";
+    const cls = `ds-milestone-card ds-milestone-card--${isBig ? "big" : "small"}` + (props.isSelected ? " is-selected" : "") + (props.className ? ` ${props.className}` : "");
+    return /* @__PURE__ */ React.createElement("span", { className: cls, style: { width: `${width}px` }, onClick: props.onClick }, props.src ? /* @__PURE__ */ React.createElement("img", { className: "ds-milestone-card__img", src: props.src, alt: props.title || "" }) : /* @__PURE__ */ React.createElement("span", { className: "ds-milestone-card__img ds-milestone-card__img--default" }), hasTitle ? /* @__PURE__ */ React.createElement("span", { className: "ds-milestone-card__top-blur", "aria-hidden": true }) : null, hasTitle ? /* @__PURE__ */ React.createElement("span", { className: "ds-milestone-card__title-box" }, /* @__PURE__ */ React.createElement("span", { className: `ds-milestone-card__title${props.limitTitle ? " is-limited" : ""}` }, props.title), props.date ? /* @__PURE__ */ React.createElement("span", { className: "ds-milestone-card__date" }, props.date) : null) : null, props.showBadge ? /* @__PURE__ */ React.createElement("span", { className: "ds-milestone-card__badge1", "aria-hidden": true }) : null, props.showEdit ? /* @__PURE__ */ React.createElement("span", { className: "ds-milestone-card__edit", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ React.createElement(DotsIconButton, { icon: "ic-pencil", backgroundColor: "var(--bg-btn-image)", onClick: props.onClickEdit })) : null, props.badgeTypes && props.badgeTypes.length ? badgeGroup(props.badgeTypes, props.onBadgesClick) : null);
+  }
+  MilestoneCard.badgeTypes = BADGE_TYPES;
+
+  // src/components/MilestonesList/MilestonesList.tsx
+  init_react_shim();
+  var import_react27 = __toESM(require_react(), 1);
+  var CARD_HEIGHT = 326;
+  var BADGE_HEIGHT = 17;
+  var TAIL_EXTENSION = 64;
+  var CARD_WIDTH = CARD_HEIGHT * 3 / 4;
+  var PATTERN_1 = [0, -23, 37, 16, -38];
+  var PATTERN_2 = [0, -38, 37, -39, 29, 37];
+  var BEND = 20;
+  function rng(seed) {
+    let a = seed >>> 0;
+    return function() {
+      a |= 0;
+      a = a + 1831565813 | 0;
+      let t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function isCard(item) {
+    return typeof item !== "string";
+  }
+  function verticalSpacing(curr, next, rand) {
+    const currH = isCard(curr) ? CARD_HEIGHT : BADGE_HEIGHT;
+    const nextH = isCard(next) ? CARD_HEIGHT : BADGE_HEIGHT;
+    const gap = isCard(curr) && isCard(next) ? 20 + Math.floor(rand() * 15) : 64;
+    return currH / 2 + gap + nextH / 2;
+  }
+  function layout(list, seed, centerX) {
+    const rand = rng(seed);
+    const topPadding = BADGE_HEIGHT / 2;
+    const bottomPadding = CARD_HEIGHT / 2 + TAIL_EXTENSION;
+    const count = list.length;
+    const xs = [];
+    let pattern = PATTERN_1;
+    while (xs.length < count) {
+      for (let k = 0; k < pattern.length && xs.length < count; k++) xs.push(pattern[k]);
+      pattern = rand() < 0.5 ? PATTERN_1 : PATTERN_2;
+    }
+    const points = [];
+    let y = topPadding;
+    let total = topPadding;
+    for (let i = 0; i < count; i++) {
+      points.push({ x: centerX + xs[i], y });
+      if (i < count - 1) {
+        const sp = verticalSpacing(list[i], list[i + 1], rand);
+        y += sp;
+        total += sp;
+      }
+    }
+    total += bottomPadding;
+    if (count > 0) points.push({ x: centerX + xs[count - 1], y: y + CARD_HEIGHT / 2 + TAIL_EXTENSION });
+    return { points, totalHeight: total };
+  }
+  function pathD(points) {
+    if (!points.length) return "";
+    let d = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 1; i < points.length; i++) {
+      const prev = points[i - 1];
+      const curr = points[i];
+      const dir = curr.x - prev.x >= 0 ? 1 : -1;
+      const cx = (prev.x + curr.x) / 2 + BEND * dir;
+      const cy = (prev.y + curr.y) / 2;
+      d += ` Q ${cx} ${cy} ${curr.x} ${curr.y}`;
+    }
+    return d;
+  }
+  function renderItem(item) {
+    if (typeof item === "string") return /* @__PURE__ */ React.createElement(BadgeMilestone, { content: item, variant: "ghost" });
+    if ((0, import_react27.isValidElement)(item)) return item;
+    return /* @__PURE__ */ React.createElement(MilestoneCard, { width: CARD_WIDTH, ...item });
+  }
+  function MilestonesList(props) {
+    const list = props.list ?? [];
+    const seed = props.seed ?? 1;
+    const ref = (0, import_react27.useRef)(null);
+    const [measured, setMeasured] = (0, import_react27.useState)(props.width || 0);
+    const width = props.width || measured || 375;
+    (0, import_react27.useLayoutEffect)(() => {
+      if (props.width) return;
+      function measure() {
+        if (ref.current) setMeasured(ref.current.clientWidth);
+      }
+      measure();
+      window.addEventListener("resize", measure);
+      return () => window.removeEventListener("resize", measure);
+    }, [props.width]);
+    const lay = (0, import_react27.useMemo)(() => layout(list, seed, width / 2), [list, seed, width]);
+    return /* @__PURE__ */ React.createElement("div", { ref, className: `ds-milestones-list${props.className ? ` ${props.className}` : ""}`, style: { height: `${lay.totalHeight}px` } }, /* @__PURE__ */ React.createElement("svg", { className: "ds-milestones-list__line", width: "100%", height: lay.totalHeight, viewBox: `0 0 ${width} ${lay.totalHeight}`, fill: "none", "aria-hidden": true }, /* @__PURE__ */ React.createElement("path", { d: pathD(lay.points), stroke: "var(--label-secondary)", strokeWidth: 2, strokeDasharray: "0.1 8", strokeLinecap: "round" })), list.map((item, i) => /* @__PURE__ */ React.createElement("span", { key: i, className: "ds-milestones-list__item", style: { left: `${lay.points[i].x}px`, top: `${lay.points[i].y}px` } }, renderItem(item))));
+  }
+
+  // src/components/RecapCard/RecapCard.tsx
+  init_react_shim();
+  var import_react28 = __toESM(require_react(), 1);
+  var VARIANTS11 = { active: true, blocked: true, generated: true, onlyTitle: true };
+  var LOCKED_VARIANTS = { countdown: true, locked: true, soon: true };
+  var stopWrap2 = (fn) => fn ? (e) => {
+    e?.stopPropagation();
+    fn();
+  } : void 0;
+  function pad22(n) {
+    return (n < 10 ? "0" : "") + n;
+  }
+  function imageLayer(props, blurred) {
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-recap-card__img${props.imageSrc ? "" : " ds-recap-card__img--ph"}${blurred ? " ds-recap-card__img--blur" : ""}`,
+        style: props.imageSrc ? { backgroundImage: `url("${props.imageSrc}")` } : void 0
+      }
+    );
+  }
+  function RecapCard(props) {
+    const locked = !!props.locked;
+    const lockedVariant = props.lockedVariant && LOCKED_VARIANTS[props.lockedVariant] ? props.lockedVariant : "countdown";
+    const variant = props.variant && VARIANTS11[props.variant] ? props.variant : "active";
+    const width = props.width ?? 220;
+    const target = locked && lockedVariant === "countdown" && props.countdownDate ? new Date(props.countdownDate).getTime() : 0;
+    const [, setTick] = (0, import_react28.useState)(0);
+    (0, import_react28.useEffect)(() => {
+      if (!target || target - Date.now() <= 0) return void 0;
+      const id = setInterval(() => {
+        if (target - Date.now() <= 0) clearInterval(id);
+        setTick((n) => n + 1);
+      }, 1e3);
+      return () => clearInterval(id);
+    }, [target]);
+    const remaining = target ? Math.max(0, target - Date.now()) : 0;
+    return locked ? renderLocked(props, lockedVariant, width, remaining) : renderUnlocked(props, variant, width);
+  }
+  function renderUnlocked(props, variant, width) {
+    const isBlocked = variant === "blocked";
+    const isGenerated = variant === "generated";
+    const isOnlyTitle = variant === "onlyTitle";
+    const title = isOnlyTitle ? null : props.title;
+    const badgeText = isOnlyTitle ? null : props.badgeText;
+    const buttonText = isOnlyTitle ? null : props.buttonText;
+    let control = null;
+    if (!isBlocked && badgeText) {
+      control = /* @__PURE__ */ React.createElement(BadgeLabel, { content: badgeText, variant: "premium", size: "large" });
+    } else if (isGenerated && !badgeText) {
+      control = /* @__PURE__ */ React.createElement("button", { type: "button", className: "ds-recap-card__icon-btn", onClick: stopWrap2(props.onInfoClick), "aria-label": "share" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-share", size: 24, color: "currentColor" }));
+    } else if (isBlocked) {
+      control = /* @__PURE__ */ React.createElement("button", { type: "button", className: "ds-recap-card__icon-btn ds-recap-card__icon-btn--half", onClick: stopWrap2(props.onInfoClick), "aria-label": "lock" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-lock", size: 24, color: "currentColor" }));
+    }
+    let bottom = null;
+    if (isGenerated) {
+      bottom = /* @__PURE__ */ React.createElement("div", { className: "ds-recap-card__created-by" }, props.albumName ? /* @__PURE__ */ React.createElement("span", null, props.albumName) : null, props.createdBy ? /* @__PURE__ */ React.createElement("span", null, props.createdBy) : null);
+    } else if (buttonText) {
+      bottom = /* @__PURE__ */ React.createElement(DotsMainButton, { label: buttonText, variant: "main", expand: false, shouldApplyBlur: true, onClick: stopWrap2(props.onClick) });
+    }
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: `ds-recap-card${props.className ? ` ${props.className}` : ""}`,
+        style: { width: `${width}px` },
+        onClick: props.onClick,
+        role: props.onClick ? "button" : void 0
+      },
+      imageLayer(props, isBlocked),
+      /* @__PURE__ */ React.createElement("div", { className: "ds-recap-card__overlay" }, props.textImageSrc ? /* @__PURE__ */ React.createElement("div", { className: "ds-recap-card__text-img", style: { backgroundImage: `url("${props.textImageSrc}")` } }) : null),
+      /* @__PURE__ */ React.createElement("div", { className: "ds-recap-card__inner" }, /* @__PURE__ */ React.createElement("div", { className: "ds-recap-card__title-row" }, title ? /* @__PURE__ */ React.createElement("span", { className: "ds-recap-card__ttl" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-clock--timer", size: 16, color: "currentColor" }), title) : /* @__PURE__ */ React.createElement("span", null), control), /* @__PURE__ */ React.createElement("div", { className: "ds-recap-card__bottom" }, bottom))
+    );
+  }
+  function renderLocked(props, lockedVariant, width, remaining) {
+    const showTimes = lockedVariant === "countdown" && remaining > 0;
+    let body2;
+    if (showTimes) {
+      const d = Math.floor(remaining / 864e5);
+      const hrs = Math.floor(remaining / 36e5) % 24;
+      const min = Math.floor(remaining / 6e4) % 60;
+      const sec = Math.floor(remaining / 1e3) % 60;
+      body2 = /* @__PURE__ */ React.createElement("div", { className: "ds-recap-card__times" }, timeItem2(pad22(d), props.daysLabel), timeItem2(pad22(hrs), props.hoursLabel), timeItem2(pad22(min), props.minutesLabel), timeItem2(pad22(sec), props.secondsLabel));
+    } else {
+      body2 = /* @__PURE__ */ React.createElement("div", { className: "ds-recap-card__cd-desc" }, props.description || "");
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-recap-card ds-recap-card--locked${props.className ? ` ${props.className}` : ""}`, style: { width: `${width}px` } }, imageLayer(props, !!props.blurImage), /* @__PURE__ */ React.createElement("div", { className: "ds-recap-card__inner" }, lockedVariant !== "soon" ? /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        type: "button",
+        className: "ds-recap-card__icon-btn ds-recap-card__icon-btn--medium ds-recap-card__info",
+        onClick: props.onInfoClick,
+        "aria-label": "info"
+      },
+      /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-info", size: 20, color: "currentColor" })
+    ) : null, /* @__PURE__ */ React.createElement("div", { className: "ds-recap-card__countdown" }, /* @__PURE__ */ React.createElement("span", { className: "ds-recap-card__cd-lock" }, /* @__PURE__ */ React.createElement(DotsIcon, { name: "ic-lock", size: 20, color: "currentColor" })), /* @__PURE__ */ React.createElement("div", { className: "ds-recap-card__cd-ttl" }, props.title || ""), body2), lockedVariant === "locked" && props.buttonText ? /* @__PURE__ */ React.createElement("div", { className: "ds-recap-card__bottom" }, /* @__PURE__ */ React.createElement(DotsMainButton, { label: props.buttonText, variant: "main", expand: false, icon: "ic-gallery", onClick: props.onButtonClick })) : null));
+  }
+  function timeItem2(value, label) {
+    return /* @__PURE__ */ React.createElement("span", { className: "ds-recap-card__t" }, /* @__PURE__ */ React.createElement("span", { className: "ds-recap-card__t-v" }, value), /* @__PURE__ */ React.createElement("span", { className: "ds-recap-card__t-l" }, label || ""));
+  }
+
+  // src/components/DotsPlanningItem/DotsPlanningItem.tsx
+  init_react_shim();
+  var import_react29 = __toESM(require_react(), 1);
+  function row(item, key) {
+    if (!item || !item.icon || item.text == null || !String(item.text).trim()) return null;
+    return /* @__PURE__ */ React.createElement("span", { className: "ds-planning-item__row", key }, /* @__PURE__ */ React.createElement("span", { className: "ds-planning-item__row-icon", "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: item.icon, size: 16, color: "var(--label-primary)" })), /* @__PURE__ */ React.createElement("span", { className: `ds-planning-item__row-text${item.underline ? " is-underline" : ""}` }, item.text));
+  }
+  function DotsPlanningItem(props) {
+    const [internal, setInternal] = (0, import_react29.useState)(!!props.defaultExpanded);
+    const controlled = props.expanded != null;
+    const expanded = controlled ? !!props.expanded : internal;
+    function toggle() {
+      props.onToggle?.(!expanded);
+      if (!controlled) setInternal(!expanded);
+    }
+    const chevron = expanded ? props.mainIconActive || "ic-chevron-up" : props.mainIcon || "ic-chevron-down";
+    const subItems = props.subItems ?? [];
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-planning-item${props.className ? ` ${props.className}` : ""}`, onClick: toggle }, /* @__PURE__ */ React.createElement("span", { className: "ds-planning-item__img", style: props.sectionImage ? { backgroundImage: `url(${props.sectionImage})` } : void 0 }), /* @__PURE__ */ React.createElement("span", { className: "ds-planning-item__col" }, /* @__PURE__ */ React.createElement("span", { className: "ds-planning-item__title-row" }, /* @__PURE__ */ React.createElement("span", { className: "ds-planning-item__title" }, props.mainText), /* @__PURE__ */ React.createElement("span", { className: "ds-planning-item__chevron", "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: chevron, size: 20, color: "var(--text-quarternary)" }))), props.mainItem ? row(props.mainItem, "main") : null, /* @__PURE__ */ React.createElement("span", { className: `ds-planning-item__sub${expanded ? " is-expanded" : ""}` }, /* @__PURE__ */ React.createElement("span", { className: "ds-planning-item__sub-inner" }, subItems.map((it, i) => row(it, i))))));
+  }
+
+  // src/components/DotsPlanSelector/DotsPlanSelector.tsx
+  init_react_shim();
+  var VARIANTS12 = { basic: "basic", premium: "premium", premiumPlus: "premium-plus" };
+  function DotsPlanSelector(props) {
+    const variant = props.variant && VARIANTS12[props.variant] || VARIANTS12.basic;
+    const enabled = props.enabled !== false;
+    const selected = !!props.selected;
+    let cls = "ds-plan-selector";
+    if (selected && enabled) cls += ` ds-plan-selector--selected ds-plan-selector--${variant}`;
+    if (!enabled) cls += " is-disabled";
+    if (props.className) cls += ` ${props.className}`;
+    return /* @__PURE__ */ React.createElement("button", { type: "button", className: cls, disabled: !enabled, onClick: enabled ? props.onClick : void 0 }, /* @__PURE__ */ React.createElement("span", { className: "ds-plan-selector__title" }, props.title), props.description ? /* @__PURE__ */ React.createElement("span", { className: "ds-plan-selector__desc" }, props.description) : null);
+  }
+
   // src/bundle.ts
   var NAMESPACE = "DotsDesignSystem_9e41da";
   var w = window;
@@ -1364,4698 +3817,6 @@ const hooks = () => window.React;
 
 
 /* ── legacy (tool/design_sync/_src) ── */
-// ActivityPreview — port de lib/src/components/notifications/activity_preview.dart
-// + ActivityPreview.OverviewItem — port de activity_overview_item.dart (Dart = fuente de verdad)
-__ds.ActivityPreview = (function () {
-  'use strict';
-
-  var VARIANTS = { reactions: 1, views: 1, favs: 1 }; // ActivityPreviewVariant
-
-  // Badge del OverviewItem por variante — friends001 / hobby002 / couple001
-  // (colores de categoría sin token en tokens.css; iguales en light y dark — dots_colors.dart)
-  var BADGE_COLORS = { reactions: '#FAA25E', views: '#9297EF', favs: '#F43C51' };
-
-  // ActivityOverviewItem.formatCount (k / M / B)
-  function formatCount(count) {
-    if (count >= 1000000000) return (count / 1000000000).toFixed(1) + 'B';
-    if (count >= 1000000) return (count / 1000000).toFixed(1) + 'M';
-    if (count >= 1000) return (count / 1000).toFixed(1) + 'k';
-    return String(count);
-  }
-
-  function icon(name, size, color) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, { name: name, size: size, color: color })
-      : h('span', { style: { width: size + 'px', height: size + 'px', display: 'inline-block' } });
-  }
-
-  /* ── ActivityPreview — tarjeta 3:4 con píldora blur ─────────────────────── */
-  function ActivityPreview(props) {
-    var useState = hooks().useState;
-    var errState = useState(false);
-    var imgError = errState[0], setImgError = errState[1];
-
-    var variant = VARIANTS[props.variant] ? props.variant : 'reactions';
-    var isReactions = variant === 'reactions';
-
-    var pillChildren = [];
-    if (isReactions && props.reactions && props.reactions.length) {
-      props.reactions.forEach(function (reaction, i) {
-        // typo.number.numLabelDefault (Nunito 13/800) — reacciones (emojis)
-        pillChildren.push(h('span', { key: 'r' + i, className: 'ds-activity-preview__reaction' }, reaction));
-      });
-    }
-    if (!isReactions) {
-      pillChildren.push(h('span', { key: 'i', className: 'ds-activity-preview__pill-icon' },
-        icon(variant === 'views' ? 'ic-eye' : 'ic-heart', 14, 'var(--label-always-white)')));
-    }
-    // typo.number.numBodyDefault (Nunito 14/800) labelAlwaysWhite
-    pillChildren.push(h('span', {
-      key: 'n',
-      className: 'ds-activity-preview__number' + (isReactions ? '' : ' ds-activity-preview__number--after-icon'),
-    }, props.number || ''));
-
-    return h('div',
-      {
-        className: 'ds-activity-preview' +
-          (props.src && !imgError ? '' : ' ds-activity-preview--placeholder') +
-          (props.onCardClick ? ' ds-activity-preview--clickable' : '') +
-          (props.className ? ' ' + props.className : ''),
-        onClick: props.onCardClick,
-        role: props.onCardClick ? 'button' : undefined,
-      },
-      props.src && !imgError
-        ? h('img', {
-            className: 'ds-activity-preview__img',
-            src: props.src,
-            alt: '',
-            onError: function (e) {
-              setImgError(true);
-              if (props.onError) props.onError(e);
-            },
-          })
-        : null,
-      h('div', { className: 'ds-activity-preview__pill' }, pillChildren)
-    );
-  }
-
-  /* ── ActivityPreview.OverviewItem — pila de fotos 53×68 + contadores ────── */
-  function OverviewItem(props) {
-    var variant = VARIANTS[props.variant] ? props.variant : 'reactions';
-    var width = props.width == null ? 53 : props.width;
-    var height = props.height == null ? 68 : props.height;
-    var borderRadius = props.borderRadius == null ? 12 : props.borderRadius;
-    var borderWidth = props.borderWidth == null ? 1 : props.borderWidth;
-    var maxUserImages = props.maxUserImages == null ? 2 : props.maxUserImages;
-    var images = props.images || [];
-    var userImages = props.userImages || [];
-    var count = props.count == null ? 0 : props.count;
-    var reactionsCount = props.reactionsCount == null ? 0 : props.reactionsCount;
-
-    function hideOnError(e) {
-      e.target.style.display = 'none'; // deja visible el placeholder degradado de la card
-      if (props.onError) props.onError(e);
-    }
-
-    // borde white30 inside → ::after con inset shadow (var --ds-ov-bw); sombras sin token (#00000026)
-    var cardStyle = {
-      width: width + 'px',
-      height: height + 'px',
-      borderRadius: borderRadius + 'px',
-      boxShadow: '0 6px 6px #00000026',
-      '--ds-ov-bw': borderWidth + 'px',
-    };
-    var backStyle = {
-      width: width + 'px',
-      height: height + 'px',
-      borderRadius: borderRadius + 'px',
-      boxShadow: '-6px 5px 10px #00000026',
-      '--ds-ov-bw': borderWidth + 'px',
-    };
-
-    // Foto trasera rotada -0.087 rad ≈ -5deg, anclada abajo-derecha (solo con >1 imagen)
-    var backCard = null;
-    if (images.length > 1) {
-      backCard = h('div', { className: 'ds-activity-overview__card ds-activity-overview__card--back', style: backStyle },
-        images[images.length - 1]
-          ? h('img', { className: 'ds-activity-overview__photo', src: images[images.length - 1], alt: '', onError: hideOnError })
-          : null
-      );
-    }
-
-    var mainCard = h('div', { className: 'ds-activity-overview__card ds-activity-overview__card--main', style: cardStyle },
-      images[0]
-        ? h('img', { className: 'ds-activity-overview__photo', src: images[0], alt: '', onError: hideOnError })
-        : null,
-      h('div', { className: 'ds-activity-overview__gradient', style: { borderRadius: borderRadius + 'px' } })
-    );
-
-    // Badge esquina: CircleAvatar r10 bgBase → círculo interior color de variante + icono 14
-    var badge = h('div', { className: 'ds-activity-overview__badge' },
-      h('div', { className: 'ds-activity-overview__badge-inner', style: { background: BADGE_COLORS[variant] } },
-        props.icon ? icon(props.icon, 14, props.iconColor || 'var(--label-always-white)') : null
-      )
-    );
-
-    // Avatares solapados 17px (offset 10px por avatar)
-    var avatars = null;
-    var shownUsers = userImages.slice(0, maxUserImages);
-    if (reactionsCount > 0 && shownUsers.length > 0) {
-      avatars = h('div', {
-        className: 'ds-activity-overview__avatars',
-        style: { width: (17 + (shownUsers.length - 1) * 10) + 'px' },
-      }, shownUsers.map(function (src, i) {
-        return h('div', {
-          key: i,
-          className: 'ds-activity-overview__avatar',
-          style: { left: (i * 10) + 'px', zIndex: shownUsers.length - i },
-        },
-          // fallback debajo; la foto lo tapa cuando carga (Dart: imageErrorBuilder → Icons.person)
-          h('span', { className: 'ds-activity-overview__avatar-fallback' }, icon('ic-user', 12, 'var(--text-tertiary)')),
-          src
-            ? h('img', {
-                className: 'ds-activity-overview__avatar-img',
-                src: src,
-                alt: '',
-                onError: function (e) { e.target.style.display = 'none'; }, // → fallback ic-user
-              })
-            : null
-        );
-      }));
-    }
-
-    return h('div',
-      { className: 'ds-activity-overview' + (props.className ? ' ' + props.className : '') },
-      h('div', { className: 'ds-activity-overview__stack', style: { width: width + 'px', height: height + 'px' } },
-        backCard, mainCard, badge),
-      h('div', { className: 'ds-activity-overview__info' },
-        h('div', { className: 'ds-activity-overview__count' }, formatCount(count)),
-        h('div', { className: 'ds-activity-overview__title' }, props.title),
-        reactionsCount > 0
-          ? h('div', { className: 'ds-activity-overview__reactions' },
-              h('span', { className: 'ds-activity-overview__reactions-count' }, '+' + formatCount(reactionsCount)),
-              avatars)
-          : null
-      )
-    );
-  }
-
-  ActivityPreview.OverviewItem = OverviewItem;
-  return ActivityPreview;
-})();
-
-
-// AlbumGroupCard — port de lib/src/components/cards/group_cards/album_group_card.dart (Dart = fuente de verdad)
-__ds.AlbumGroupCard = (function () {
-  'use strict';
-  var VARIANTS = { small: true, large: true }; // AlbumGroupCardVariant
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  function AlbumGroupCard(props) {
-    var variant = VARIANTS[props.variant] ? props.variant : 'small'; // Dart: default small
-    var isSmall = variant === 'small';
-    // Dart: AspectRatio 1:1 con constraints 135–160 (small) / 288–340 (large)
-    var size = props.size == null ? (isSmall ? 148 : 288) : props.size;
-    var edge = props.edgeSize == null ? (isSmall ? 60 : 110) : props.edgeSize;
-    var isBlocked = !!props.isBlocked;
-
-    var children = [
-      h('div', {
-        key: 'img',
-        className: 'ds-album-card__img' + (props.imageSrc ? '' : ' ds-album-card__img--ph'),
-        style: props.imageSrc ? { backgroundImage: 'url("' + props.imageSrc + '")' } : null,
-      }),
-      h('div', { key: 'fade', className: 'ds-album-card__fade', style: { height: edge + 'px' } }),
-      h('div', {
-        key: 'ttl',
-        className: 'ds-album-card__title ds-album-card__title--' + variant,
-      }, props.title || ''),
-    ];
-
-    if (!isBlocked && props.tagIcon) {
-      children.push(h('span', {
-        key: 'tag',
-        className: 'ds-album-card__tag ' + (isSmall ? 'ds-album-card__tag--small' : 'ds-album-card__tag--large'),
-      }, icon({ name: props.tagIcon, size: 20, color: 'currentColor' })));
-    }
-    if (isBlocked) {
-      children.push(h('div', { key: 'lock', className: 'ds-album-card__lock' },
-        icon({ name: 'ic-lock', size: 32, color: 'currentColor' })));
-    }
-
-    return h('div', {
-      className: 'ds-album-card ds-album-card--' + variant + (props.className ? ' ' + props.className : ''),
-      style: { width: size + 'px', height: size + 'px' },
-      onClick: props.onClick,
-      role: props.onClick ? 'button' : undefined,
-    }, children);
-  }
-
-  return AlbumGroupCard;
-})();
-
-
-// BadgeIcon — port de lib/src/components/badges/badge_icon/ (Dart = fuente de verdad).
-// Incluye modo grupo (prop `icons`) espejo de BadgeIconGroup (badge_icon_group.dart).
-__ds.BadgeIcon = (function () {
-  'use strict';
-
-  // BadgeIconSize (Dart): size del círculo / iconSize
-  var SIZES = {
-    large: { size: 44, iconSize: 24 },
-    medium: { size: 36, iconSize: 20 },
-    small: { size: 28, iconSize: 16 },
-  };
-  var STYLES = { white: true }; // BadgeIconStyle (solo white por ahora)
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  function single(name, sizeName, style, iconColor, onClick, posStyle) {
-    var s = SIZES[sizeName] || SIZES.large; // Dart: default large
-    return h(
-      'span',
-      {
-        className: 'ds-badge-icon ds-badge-icon--' + (STYLES[style] ? style : 'white'),
-        style: Object.assign({ width: s.size + 'px', height: s.size + 'px' }, posStyle || null),
-        onClick: onClick,
-        role: onClick ? 'button' : undefined,
-      },
-      icon({ name: name, size: s.iconSize, color: iconColor || 'currentColor' })
-    );
-  }
-
-  function BadgeIcon(props) {
-    // Modo grupo — BadgeIconGroup (Dart): 1-3 iconos apilados en un lienzo 63x70.
-    if (props.icons) {
-      var icons = props.icons.slice(0, 3);
-      if (!icons.length) return null; // Dart: SizedBox.shrink()
-      var colors = props.iconColors || [];
-      var kids = [
-        single(icons[0], 'medium', props.style, colors[0], null, { left: 0, bottom: 0 }),
-      ];
-      if (icons.length >= 2)
-        kids.push(single(icons[1], 'small', props.style, colors[1], null,
-          icons.length === 3 ? { left: '4px', bottom: '42px' } : { left: '31px', bottom: '31px' }));
-      if (icons.length === 3)
-        kids.push(single(icons[2], 'small', props.style, colors[2], null, { left: '35px', bottom: '26px' }));
-      return h(
-        'span',
-        { className: 'ds-badge-icon-group', onClick: props.onClick, role: props.onClick ? 'button' : undefined },
-        kids
-      );
-    }
-    return single(props.icon, props.size, props.style, props.iconColor, props.onClick);
-  }
-
-  return BadgeIcon;
-})();
-
-
-// BadgeLabel — port de lib/src/components/badges/badge_label/ (Dart = fuente de verdad)
-__ds.BadgeLabel = (function () {
-  'use strict';
-
-  // BadgeLabelVariant (Dart) → sufijo de clase
-  var VARIANTS = {
-    main: 'main',
-    secondary: 'secondary',
-    green: 'green',
-    white: 'white',
-    greenMaterial: 'green-material',
-    warning: 'warning',
-    warningMaterial: 'warning-material',
-    red: 'red',
-    premiumPlus: 'premium-plus',
-    premium: 'premium',
-  };
-  var SIZES = { large: true, medium: true, small: true }; // BadgeLabelSize
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  function BadgeLabel(props) {
-    var size = SIZES[props.size] ? props.size : 'medium';      // Dart: default medium
-    var variant = VARIANTS[props.variant] || VARIANTS.main;    // Dart: default main
-    return h(
-      'span',
-      { className: 'ds-badge-label ds-badge-label--' + size + ' ds-badge-label--' + variant },
-      props.badgeIcon
-        ? h('span', { className: 'ds-badge-label__icon', 'aria-hidden': true },
-            icon({ name: props.badgeIcon, size: 16, color: 'currentColor' }))
-        : null,
-      h('span', { className: 'ds-badge-label__text' }, props.content)
-    );
-  }
-
-  return BadgeLabel;
-})();
-
-
-// BadgeMilestone — port de lib/src/components/badges/badge_milestone/ (Dart = fuente de verdad)
-__ds.BadgeMilestone = (function () {
-  'use strict';
-
-  var VARIANTS = { main: true, ghost: true }; // BadgeMilestoneVariant
-
-  function BadgeMilestone(props) {
-    var variant = VARIANTS[props.variant] ? props.variant : 'main'; // Dart: default main
-    return h(
-      'span',
-      { className: 'ds-badge-milestone ds-badge-milestone--' + variant },
-      h('span', { className: 'ds-badge-milestone__text' }, props.content)
-    );
-  }
-
-  return BadgeMilestone;
-})();
-
-
-// BadgeProgress — port de lib/src/components/badges/badge_progress.dart (Dart = fuente de verdad)
-__ds.BadgeProgress = (function () {
-  'use strict';
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  function BadgeProgress(props) {
-    return h(
-      'span',
-      { className: 'ds-badge-progress' },
-      h('span', { className: 'ds-badge-progress__icon', 'aria-hidden': true },
-        icon({ name: 'ic-check-circle', size: 20, color: 'var(--label-highlight)' })),
-      h('span', { className: 'ds-badge-progress__text' }, props.current + '/' + props.max)
-    );
-  }
-
-  return BadgeProgress;
-})();
-
-
-// BadgeTag — port de lib/src/components/badges/badge_tag.dart (Dart = fuente de verdad).
-// Standalone oficial: DotsSegmentedControl (.ds-seg__tag) y DotsIconButton
-// (.ds-icon-btn__tag) pintan su propio tag inline — clases distintas, sin colisión.
-__ds.BadgeTag = (function () {
-  'use strict';
-
-  function body(tag, floating, offset) {
-    return h(
-      'span',
-      {
-        className: 'ds-badge-tag' + (floating ? ' ds-badge-tag--floating' : ''),
-        style: floating
-          ? {
-              // Dart: Positioned(right: size?.width ?? -5, top: size?.height ?? -5)
-              right: (offset && offset.width != null ? offset.width : -5) + 'px',
-              top: (offset && offset.height != null ? offset.height : -5) + 'px',
-            }
-          : undefined,
-      },
-      tag ? tag : null // Dart: tag.isEmpty → SizedBox.shrink() (píldora vacía 18x18)
-    );
-  }
-
-  function BadgeTag(props) {
-    if (props.children == null) return body(props.tag, false);
-    return h(
-      'span',
-      { className: 'ds-badge-tag-host' },
-      props.children,
-      body(props.tag, true, props.size)
-    );
-  }
-
-  return BadgeTag;
-})();
-
-
-// BlurContainer — port de lib/src/components/containers/blur_container.dart y
-// dots_linear_gradient_blur.dart (Dart = fuente de verdad).
-// Aproximación web: shader de blur → CSS filter; blur progresivo →
-// backdrop-filter + mask-image con gradiente (misma técnica que screens/home.html).
-__ds.BlurContainer = (function () {
-  'use strict';
-
-  // Flutter Alignment → coordenadas (x→, y↓)
-  var ALIGN = {
-    topLeft: [-1, -1], topCenter: [0, -1], topRight: [1, -1],
-    centerLeft: [-1, 0], center: [0, 0], centerRight: [1, 0],
-    bottomLeft: [-1, 1], bottomCenter: [0, 1], bottomRight: [1, 1],
-  };
-
-  function clamp01(v) {
-    v = +v;
-    if (!(v >= 0)) return 0;
-    return v > 1 ? 1 : v;
-  }
-
-  /** BlurContainer(sigma 0–5, child) — blurea TODO su contenido (BlurPainter). */
-  function BlurContainer(props) {
-    var sigma = +props.sigma;
-    if (!(sigma >= 0)) sigma = 0;
-    if (sigma > 5) sigma = 5; // assert Dart: 0.0–5.0
-    var style = sigma > 0
-      ? { filter: 'blur(' + sigma + 'px)', WebkitFilter: 'blur(' + sigma + 'px)' }
-      : null;
-    return h(
-      'div',
-      { className: 'ds-blur-container' + (props.className ? ' ' + props.className : ''), style: style },
-      props.children
-    );
-  }
-
-  /** DotsLinearGradientBlur — blur progresivo definido por values/stops/start/end + tint. */
-  function GradientBlur(props) {
-    var sigma = props.sigma == null ? 8 : +props.sigma; // Dart lo exige; 8 = uso típico del home
-    var values = Array.isArray(props.values) && props.values.length ? props.values : [0, 1];
-    var stops = Array.isArray(props.stops) && props.stops.length === values.length
-      ? props.stops
-      : values.map(function (_, i) { return values.length === 1 ? 0 : i / (values.length - 1); });
-    var s = ALIGN[props.start] || ALIGN.topCenter;
-    var e = ALIGN[props.end] || ALIGN.bottomCenter;
-    var dx = e[0] - s[0];
-    var dy = e[1] - s[1];
-    // Ángulo CSS: 0deg = arriba, horario. Vector start→end con y hacia abajo.
-    var angle = dx === 0 && dy === 0 ? 180 : Math.atan2(dx, -dy) * 180 / Math.PI;
-
-    // La máscara replica la textura del shader: alpha = fuerza de blur en cada punto
-    var parts = values.map(function (v, i) {
-      return 'rgba(0,0,0,' + clamp01(v) + ') ' + (clamp01(stops[i]) * 100) + '%';
-    });
-    var grad = 'linear-gradient(' + angle.toFixed(2) + 'deg, ' + parts.join(', ') + ')';
-
-    var overlayStyle = {
-      backdropFilter: 'blur(' + sigma + 'px)',
-      WebkitBackdropFilter: 'blur(' + sigma + 'px)',
-      maskImage: grad,
-      WebkitMaskImage: grad,
-    };
-    if (props.tintColor) overlayStyle.background = props.tintColor; // Dart: tintColor (default transparente)
-
-    return h(
-      'div',
-      { className: 'ds-gradient-blur' + (props.className ? ' ' + props.className : '') },
-      props.children,
-      h('div', { className: 'ds-gradient-blur__overlay', 'aria-hidden': true, style: overlayStyle })
-    );
-  }
-
-  BlurContainer.GradientBlur = GradientBlur;
-  return BlurContainer;
-})();
-
-
-// BtnFolder — port de lib/src/components/buttons/btn_folder/ (Dart = fuente de verdad)
-__ds.BtnFolder = (function () {
-  'use strict';
-  var LONG_PRESS_MS = 500;
-
-  function BtnFolder(props) {
-    var R = hooks();
-    var useRef = R.useRef;
-    var timer = useRef(null);
-    var fired = useRef(false);
-
-    function startPress() {
-      fired.current = false;
-      if (!props.onLongPress) return;
-      timer.current = setTimeout(function () {
-        fired.current = true;
-        props.onLongPress();
-      }, LONG_PRESS_MS);
-    }
-    function cancelPress() {
-      if (timer.current) { clearTimeout(timer.current); timer.current = null; }
-    }
-    function handleClick() {
-      if (fired.current) { fired.current = false; return; } // el long-press ya consumió el gesto
-      if (props.onClick) props.onClick();
-    }
-
-    var isSelected = !!props.isSelected;
-    var isNonExpandable = !!props.isNonExpandable;
-    // iconSelectedColor es requerido en Dart; #3E9ACB = azul de carpeta del home (child006, sin token)
-    var selColor = props.iconSelectedColor || '#3E9ACB';
-    var text = props.text != null ? String(props.text) : null;
-    if (text && text.length > 20) text = text.substring(0, 20) + '…';
-
-    var pill = h('button', {
-      type: 'button',
-      className: 'ds-btn-folder__pill' +
-        (isSelected ? ' ds-btn-folder__pill--selected' : '') +
-        (isNonExpandable ? ' ds-btn-folder__pill--nonexp' : ''),
-      onClick: handleClick,
-      onPointerDown: startPress,
-      onPointerUp: cancelPress,
-      onPointerLeave: cancelPress,
-      onContextMenu: function (e) { if (props.onLongPress) e.preventDefault(); },
-    },
-      h('span', {
-        className: 'ds-btn-folder__icon',
-        style: isSelected && !isNonExpandable ? { color: selColor } : undefined,
-      }, h(__ds.DotsIcon, { name: props.icon, size: 20 })),
-      !isNonExpandable && text ? h('span', { className: 'ds-btn-folder__text' }, text) : null
-    );
-
-    var edit = (props.showEditIcon && props.isEditable)
-      ? h('button', {
-          type: 'button',
-          className: 'ds-btn-folder__edit',
-          onClick: props.onLongPress,
-          'aria-label': 'Editar carpeta',
-        }, h(__ds.DotsIcon, { name: 'ic-pencil', size: 10 }))
-      : null;
-
-    return h('span', { className: 'ds-btn-folder' },
-      h('span', { className: 'ds-btn-folder__clip' }, pill),
-      edit
-    );
-  }
-  return BtnFolder;
-})();
-
-
-// ColorSelector — port de lib/src/components/color_options/ (color_options.dart +
-// color_selector.dart) unificados en una API (Dart = fuente de verdad).
-// variant 'options'  → DotsColorOptionsRow  (paleta DotsColorOption + check)
-// variant 'selector' → DotsColorSelectorRow (colores libres + anillo highlight)
-__ds.ColorSelector = (function () {
-  'use strict';
-
-  // DotsColorOption → hex (dots_colors.dart; idénticos en light y dark).
-  // No existen como tokens CSS — excepción documentada (solo textQuarternary es token).
-  var OPTION_COLORS = {
-    textQuarternary: 'var(--text-quarternary)',
-    couple005: '#B66678', couple007: '#E55451',
-    friends001: '#FAA25E', friends002: '#EE8062', friends005: '#F7954A',
-    friends008: '#F5866B', friends010: '#F37C20',
-    class005: '#F4BD24', class009: '#EFD58A',
-    wedding002: '#E2C567',
-    family001: '#77D98A', family004: '#9BC283', family006: '#8E9778',
-    child001: '#82C8E5', child002: '#569AF8', child006: '#3E9ACB',
-    birthday003: '#E483B3', birthday007: '#F38FA9',
-    celebration002: '#6C7FCC',
-    hobby001: '#CAB5FF', hobby002: '#9297EF', hobby004: '#C998C5',
-    hobby005: '#B17DBD', hobby009: '#B175B1',
-    work005: '#5579A9',
-  };
-
-  // DotsColorOptionsRow.colorOptions (orden Dart)
-  var DEFAULT_OPTIONS = [
-    'textQuarternary', 'couple007', 'friends002', 'friends010', 'friends005',
-    'class005', 'wedding002', 'family006', 'family004', 'child006', 'child002',
-    'celebration002', 'hobby009', 'hobby004', 'couple005',
-  ];
-
-  function resolve(c) {
-    return Object.prototype.hasOwnProperty.call(OPTION_COLORS, c) ? OPTION_COLORS[c] : c;
-  }
-
-  function ColorSelector(props) {
-    var variant = props.variant === 'selector' ? 'selector' : 'options';
-    var size = props.size == null ? 32 : +props.size;
-    // Defaults Dart: options spacing 18 · selector spacing 12
-    var spacing = props.spacing == null ? (variant === 'selector' ? 12 : 18) : +props.spacing;
-    var colors = Array.isArray(props.colors) && props.colors.length
-      ? props.colors
-      : (variant === 'options' ? DEFAULT_OPTIONS : []);
-
-    var items = colors.map(function (c, i) {
-      var isSelected = props.selected === c;
-      var onClick = props.onColorSelected
-        ? function () { props.onColorSelected(c); }
-        : undefined;
-
-      if (variant === 'selector') {
-        // DotsColorSelectorRow._colorItem: anillo labelHighlight 1.5 + dot con
-        // sombreado (colorSelectorShadow) + borde interior negro 25% si sel.
-        return h(
-          'button',
-          {
-            key: i,
-            type: 'button',
-            className: 'ds-color-selector__swatch' + (isSelected ? ' is-selected' : ''),
-            style: { width: size + 'px', height: size + 'px' },
-            onClick: onClick,
-            'aria-pressed': isSelected,
-            'aria-label': String(c),
-          },
-          // backgroundColor (no shorthand) — la textura colorSelectorShadow va en background-image (CSS)
-          h('span', { className: 'ds-color-selector__dot', style: { backgroundColor: resolve(c) } })
-        );
-      }
-
-      // DotsColorOptionsRow: círculo con borde negro 10% (1.5) / 25% (2) + check
-      return h(
-        'button',
-        {
-          key: i,
-          type: 'button',
-          className: 'ds-color-selector__option' + (isSelected ? ' is-selected' : ''),
-          style: { width: size + 'px', height: size + 'px', backgroundColor: resolve(c) },
-          onClick: onClick,
-          'aria-pressed': isSelected,
-          'aria-label': String(c),
-        },
-        isSelected
-          ? (__ds.DotsIcon
-              ? h(__ds.DotsIcon, { name: 'ic-check-thick', size: size * 0.5, color: 'var(--label-always-white)' })
-              : h('span', { style: { width: size * 0.5 + 'px', height: size * 0.5 + 'px', display: 'inline-block' } }))
-          : null
-      );
-    });
-
-    return h(
-      'div',
-      {
-        className: 'ds-color-selector ds-color-selector--' + variant +
-          (props.className ? ' ' + props.className : ''),
-        style: { gap: spacing + 'px' },
-        role: 'radiogroup',
-      },
-      items
-    );
-  }
-
-  ColorSelector.OPTION_COLORS = OPTION_COLORS;
-  ColorSelector.DEFAULT_OPTIONS = DEFAULT_OPTIONS;
-  return ColorSelector;
-})();
-
-
-// CreateCard — port de lib/src/components/cards/create_card/create_card.dart (Dart = fuente de verdad)
-__ds.CreateCard = (function () {
-  'use strict';
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  function CreateCard(props) {
-    var variant = props.variant === 'button' ? 'button' : 'label'; // CreateCardVariant, default label
-    var width = props.width == null ? 164 : props.width;           // Dart: width = 164, height fija 112
-
-    if (variant === 'button') {
-      // _PromptCardCreateContent → DotsIconButton large columna: círculo add + label
-      return h('div', {
-        className: 'ds-create-card ds-create-card--button' + (props.className ? ' ' + props.className : ''),
-        style: { width: width + 'px' },
-        onClick: props.onClick,
-        role: props.onClick ? 'button' : undefined,
-      },
-        h('span', { className: 'ds-create-card__circle' }, icon({ name: 'ic-add', size: 16, color: 'currentColor' })),
-        h('span', { className: 'ds-create-card__btn-label' }, props.title || '')
-      );
-    }
-
-    // variant label — degradado horizontal primaryColor→secondaryColor (Dart no pinta fondo sin
-    // primaryColor; aquí cae al degradado verde de marca del CSS para no dejar la tarjeta invisible)
-    var style = { width: width + 'px' };
-    if (props.primaryColor) {
-      style.background = 'linear-gradient(90deg, ' + props.primaryColor + ', ' + (props.secondaryColor || props.primaryColor) + ')';
-    }
-    return h('div', {
-      className: 'ds-create-card ds-create-card--label' + (props.className ? ' ' + props.className : ''),
-      style: style,
-      onClick: props.onClick,
-      role: props.onClick ? 'button' : undefined,
-    },
-      props.icon ? h('span', { className: 'ds-create-card__icon' }, icon({ name: props.icon, size: 32, color: 'currentColor' })) : null,
-      h('span', { className: 'ds-create-card__title' }, props.title || ''),
-      // DotsIconButton medium (Ø28) disabled — bgBtnImage al 40%, icono add blanco
-      h('span', { className: 'ds-create-card__add' }, icon({ name: 'ic-add', size: 14, color: 'currentColor' }))
-    );
-  }
-
-  return CreateCard;
-})();
-
-
-// DotsAccordion — port de lib/src/components/accordion/dots_accordion.dart (Dart = fuente de verdad)
-__ds.DotsAccordion = (function () {
-  'use strict';
-
-  function Divider() {
-    // DotsDivider — dos líneas de 1px (labelSecondary + bgStrong), opacity 0.6, radius 1000
-    return h(
-      'div',
-      { className: 'ds-accordion__divider' },
-      h('div', { className: 'ds-accordion__divider-l1' }),
-      h('div', { className: 'ds-accordion__divider-l2' }),
-    );
-  }
-
-  function DotsAccordion(props) {
-    const { useState } = hooks();
-    const Icon = __ds.DotsIcon;
-    const sections = props.sections || [];
-    const singleOpen = props.singleOpen !== false;
-    const duration = props.animationDuration == null ? 180 : props.animationDuration;
-    const addHPad = props.addHorizontalPadding !== false;
-
-    const [state, setState] = useState(null);
-    const expanded =
-      state && state.length === sections.length
-        ? state
-        : sections.map(function (s) { return !!(s && s.expanded); });
-
-    function toggle(index) {
-      const next = expanded.map(function (v, i) {
-        if (singleOpen) return i === index ? !v : false;
-        return i === index ? !v : v;
-      });
-      setState(next);
-      if (typeof props.onToggle === 'function') props.onToggle(index, next[index]);
-    }
-
-    const children = [];
-    for (let i = 0; i < sections.length; i++) {
-      const s = sections[i] || {};
-      if (i > 0) children.push(h(Divider, { key: 'div-' + i }));
-      children.push(
-        h(
-          'div',
-          {
-            key: 'sec-' + i,
-            className: 'ds-accordion__section' + (expanded[i] ? ' is-expanded' : ''),
-            style: { '--ds-accordion-duration': duration + 'ms' },
-          },
-          h(
-            'div',
-            {
-              className: 'ds-accordion__header',
-              role: 'button',
-              'aria-expanded': !!expanded[i],
-              onClick: function (idx) { return function () { toggle(idx); }; }(i),
-            },
-            s.leadingIcon && Icon
-              ? h(Icon, {
-                  name: s.leadingIcon,
-                  size: 20,
-                  color: 'var(--text-tertiary)',
-                  className: 'ds-accordion__leading',
-                })
-              : null,
-            h('span', { className: 'ds-accordion__title' }, s.title),
-            Icon
-              ? h(Icon, {
-                  name: 'ic-chevron-down',
-                  size: 16,
-                  color: 'var(--text-tertiary)',
-                  className: 'ds-accordion__chevron',
-                })
-              : h('span', { className: 'ds-accordion__chevron ds-accordion__chevron--fallback' }, '⌄'),
-          ),
-          // AnimatedSize → grid-template-rows 0fr→1fr con transition
-          h(
-            'div',
-            { className: 'ds-accordion__collapse' },
-            h(
-              'div',
-              { className: 'ds-accordion__collapse-inner' },
-              h('div', { className: 'ds-accordion__content' }, s.content),
-            ),
-          ),
-        ),
-      );
-    }
-
-    return h(
-      'div',
-      { className: 'ds-accordion' + (addHPad ? ' ds-accordion--hpad' : '') },
-      children,
-    );
-  }
-  return DotsAccordion;
-})();
-
-
-// DotsCaptureButton — port de lib/src/components/buttons/capture_button/ (Dart = fuente de verdad)
-__ds.DotsCaptureButton = (function () {
-  'use strict';
-
-  var DIAMETER = 80; // _kCaptureButtonDiameter
-  var INNER = 68; // _kCaptureButtonInnerDiameter
-  var INNER_RECORDING = 60; // _kCaptureButtonInnerDiameterRecording (photo + recording)
-  var STROKE = 6; // _kCaptureButtonRingStroke
-  var RADIUS = (DIAMETER - STROKE) / 2; // 37 — arco con inset stroke/2, como el CustomPainter
-  var CIRC = 2 * Math.PI * RADIUS;
-
-  function DotsCaptureButton(props) {
-    const { useState, useEffect, useRef } = hooks();
-    var type = props.type === 'video' ? 'video' : 'photo'; // DotsCaptureButtonType
-    var controlled = props.state !== undefined && props.state !== null; // DotsCaptureButtonState
-    const [internalRecording, setInternalRecording] = useState(false);
-    var recording = controlled ? props.state === 'recording' : internalRecording;
-    const [progress, setProgress] = useState(0);
-    var maxTime = props.maxTimeRecording > 0 ? props.maxTimeRecording : 60; // Dart: default 60
-    const stopCbRef = useRef(null);
-    stopCbRef.current = props.onStopRecording;
-    var animating = type === 'video' && recording;
-
-    // Timer de progreso (Timer.periodic 50 ms en Dart); al llegar a 1 → onStopRecording
-    useEffect(
-      function () {
-        if (!animating) {
-          setProgress(0);
-          return undefined;
-        }
-        var start = Date.now();
-        var id = setInterval(function () {
-          var raw = Math.min((Date.now() - start) / (maxTime * 1000), 1);
-          setProgress(raw);
-          if (raw >= 1) {
-            clearInterval(id);
-            setInternalRecording(false);
-            if (typeof stopCbRef.current === 'function') stopCbRef.current();
-          }
-        }, 50);
-        return function () {
-          clearInterval(id);
-        };
-      },
-      [animating, maxTime],
-    );
-
-    function handleClick() {
-      if (type === 'photo') {
-        if (typeof props.onTakePicture === 'function') props.onTakePicture();
-        return;
-      }
-      if (recording) {
-        if (!controlled) setInternalRecording(false);
-        if (typeof props.onStopRecording === 'function') props.onStopRecording();
-      } else {
-        if (!controlled) setInternalRecording(true);
-        if (typeof props.onStartRecording === 'function') props.onStartRecording();
-      }
-    }
-
-    var children;
-    if (type === 'photo' || !recording) {
-      // _ActiveButton — inner Ø68 (photo·recording: Ø60); photo blanco, video labelDestructive
-      var inner = type === 'photo' && recording ? INNER_RECORDING : INNER;
-      children = h('span', {
-        className: 'ds-capture__inner ds-capture__inner--' + type,
-        style: { width: inner + 'px', height: inner + 'px' },
-      });
-    } else {
-      // _RecordingButton — arco de progreso blanco (round cap) + stop 32 r8 destructive
-      children = [
-        h(
-          'svg',
-          { key: 'ring', className: 'ds-capture__ring', viewBox: '0 0 80 80', 'aria-hidden': true },
-          h('circle', {
-            cx: 40,
-            cy: 40,
-            r: RADIUS,
-            fill: 'none',
-            stroke: 'var(--label-always-white)',
-            strokeWidth: STROKE,
-            strokeLinecap: 'round',
-            strokeDasharray: progress * CIRC + ' ' + CIRC,
-          }),
-        ),
-        h('span', { key: 'stop', className: 'ds-capture__stop' }),
-      ];
-    }
-
-    return h(
-      'button',
-      {
-        type: 'button',
-        className: 'ds-capture',
-        'aria-label': type === 'photo' ? 'Tomar foto' : recording ? 'Detener grabación' : 'Grabar vídeo',
-        onClick: handleClick,
-      },
-      children,
-    );
-  }
-
-  return DotsCaptureButton;
-})();
-
-
-// DotsCountdown — port de lib/src/components/countdown/ (CountdownRecap + CountdownEventFinished; Dart = fuente de verdad)
-__ds.DotsCountdown = (function () {
-  'use strict';
-  function pad2(v) {
-    var s = String(v == null ? 0 : v);
-    return s.length >= 2 ? s : '0' + s;
-  }
-  function remainingOf(target) {
-    var diff = target - Date.now();
-    if (diff <= 0) return { finished: true, days: 0, hours: 0, minutes: 0, seconds: 0 };
-    var s = Math.floor(diff / 1000);
-    return {
-      finished: false,
-      days: Math.floor(s / 86400),
-      hours: Math.floor(s / 3600) % 24,
-      minutes: Math.floor(s / 60) % 60,
-      seconds: s % 60,
-    };
-  }
-  function icon(name, size) {
-    // Render-time con fallback: si DotsIcon no está en el bundle, no rompas.
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, { name: name, size: size, color: 'var(--label-always-white)' })
-      : null;
-  }
-  // _CountdownTimeItem / _CountdownEventFinishedBigItem — valor titleH4 + label labelSmallMedium
-  function timeItem(key, value, label, dimLabel) {
-    return h(
-      'span',
-      { key: key, className: 'ds-countdown__item' },
-      h('span', { className: 'ds-countdown__item-value' }, value),
-      h(
-        'span',
-        { className: 'ds-countdown__item-label' + (dimLabel ? ' is-dim' : '') },
-        label
-      )
-    );
-  }
-
-  function DotsCountdown(props) {
-    var hk = hooks();
-    var useState = hk.useState;
-    var useEffect = hk.useEffect;
-    var variant = props.variant || 'recap'; // 'recap' | 'small' | 'big' (small/big = enum Dart CountdownEventFinishedVariant)
-    var target =
-      props.targetDate == null ? null : new Date(props.targetDate).getTime();
-
-    // Tick de 1s (Timer.periodic de _CountdownRecapState) — solo con targetDate en variant recap.
-    var live = target != null && variant === 'recap';
-    var tick = useState(0);
-    useEffect(
-      function () {
-        if (!live) return undefined;
-        if (remainingOf(target).finished) return undefined;
-        var id = setInterval(function () {
-          tick[1](function (n) {
-            return n + 1;
-          });
-          // _timer?.cancel() del Dart al llegar a cero
-          if (remainingOf(target).finished) clearInterval(id);
-        }, 1000);
-        return function () {
-          clearInterval(id);
-        };
-      },
-      [target, live]
-    );
-
-    var className =
-      'ds-countdown ds-countdown--' +
-      variant +
-      (variant === 'recap' && props.isDotbook ? ' ds-countdown--dotbook' : '') +
-      (props.className ? ' ' + props.className : '');
-
-    if (variant === 'small') {
-      // _CountdownEventFinishedSmallBody — h36, icono 16 + texto labelDefaultBold
-      var text = (
-        (props.years || '') + ' ' + (props.yearsLabel || '') + ' ' +
-        (props.months || '') + ' ' + (props.monthsLabel || '') + ' ' +
-        (props.conjunctionText || '') + ' ' +
-        (props.days || '') + ' ' + (props.daysLabel || '')
-      ).replace(/\s+/g, ' ').trim();
-      return h(
-        'span',
-        { className: className },
-        icon(props.icon || 'ic-wedding-rings', 16),
-        h('span', { className: 'ds-countdown__small-text' }, text)
-      );
-    }
-
-    if (variant === 'big') {
-      // _CountdownEventFinishedBigBody — w169, título + fila años/meses/días
-      return h(
-        'span',
-        { className: className },
-        h('span', { className: 'ds-countdown__title' }, props.title || ''),
-        h(
-          'span',
-          { className: 'ds-countdown__times ds-countdown__times--big' },
-          timeItem('y', props.years || '', props.yearsLabel || '', false),
-          timeItem('m', props.months || '', props.monthsLabel || '', false),
-          timeItem('d', props.days || '', props.daysLabel || '', false)
-        )
-      );
-    }
-
-    // variant 'recap' — CountdownRecap: contador en curso o cuerpo terminado
-    var r;
-    if (target != null) {
-      r = remainingOf(target);
-    } else {
-      // Valores fijos para diseño estático
-      r = {
-        finished: !!props.finished,
-        days: props.days || 0,
-        hours: props.hours || 0,
-        minutes: props.minutes || 0,
-        seconds: props.seconds || 0,
-      };
-    }
-    return h(
-      'span',
-      { className: className },
-      icon('ic-lock', 20),
-      h('span', { className: 'ds-countdown__title' }, props.title || ''),
-      r.finished
-        ? h('span', { className: 'ds-countdown__desc' }, props.description || '')
-        : h(
-            'span',
-            { className: 'ds-countdown__times' },
-            timeItem('d', pad2(r.days), props.daysLabel || '', true),
-            timeItem('h', pad2(r.hours), props.hoursLabel || '', true),
-            timeItem('m', pad2(r.minutes), props.minutesLabel || '', true),
-            timeItem('s', pad2(r.seconds), props.secondsLabel || '', true)
-          )
-    );
-  }
-  return DotsCountdown;
-})();
-
-
-// DotsDivider — port de lib/src/components/divider/dots_divider.dart (Dart = fuente de verdad)
-__ds.DotsDivider = (function () {
-  'use strict';
-
-  function DotsDivider(props) {
-    var style = null;
-    if (props.width != null) {
-      style = { width: typeof props.width === 'number' ? props.width + 'px' : props.width };
-    }
-    return h(
-      'div',
-      {
-        className: 'ds-divider' + (props.className ? ' ' + props.className : ''),
-        style: style,
-        role: 'separator',
-        'aria-orientation': 'horizontal',
-      },
-      h('div', { className: 'ds-divider__line1' }),
-      h('div', { className: 'ds-divider__line2' })
-    );
-  }
-
-  return DotsDivider;
-})();
-
-
-// DotsEmptyStateCard — port de lib/src/components/empty_state/empty_state_card.dart (Dart = fuente de verdad).
-// El ancho Dart (82% del ancho de pantalla) se sustituye por width:100% — dimensiona el contenedor padre.
-__ds.DotsEmptyStateCard = (function () {
-  'use strict';
-
-  function DotsEmptyStateCard(props) {
-    var variant = props.variant === 'image' ? 'image' : 'icon';
-    var extra = props.extraSpaceAfterImage == null ? 0 : props.extraSpaceAfterImage;
-    // Gap media→título: imagen 4 (+extraSpaceAfterImage), icono 16
-    var gap = variant === 'image' ? 4 + extra : 16;
-
-    var media = null;
-    if (variant === 'image' && props.image) {
-      media = h('img', {
-        className: 'ds-empty-card__image',
-        src: props.image,
-        alt: '',
-        style: props.imageWidth != null ? { width: props.imageWidth + 'px' } : null,
-      });
-    } else if (variant === 'icon' && props.icon) {
-      // Dart recibe un widget DotsIcon; aquí: string (nombre de icono, 48px
-      // textQuarternary por defecto) o nodo React ya construido.
-      media = typeof props.icon === 'string'
-        ? (__ds.DotsIcon
-            ? h(__ds.DotsIcon, { name: props.icon, size: 48, color: 'var(--text-quarternary)' })
-            : null)
-        : props.icon;
-    }
-
-    var descProps = { className: 'ds-empty-card__desc' };
-    if (props.descriptionColor) descProps.style = { color: props.descriptionColor };
-    var desc;
-    if (props.descriptionSpans != null) {
-      // descriptionSpans sustituye al texto; description queda como etiqueta accesible
-      descProps['aria-label'] = props.description;
-      desc = h('p', descProps, props.descriptionSpans);
-    } else {
-      desc = h('p', descProps, props.description);
-    }
-
-    return h(
-      'div',
-      { className: 'ds-empty-card' + (props.className ? ' ' + props.className : '') },
-      media ? h('div', { className: 'ds-empty-card__media', style: { marginBottom: gap + 'px' } }, media) : null,
-      h(
-        'p',
-        {
-          className: 'ds-empty-card__title',
-          style: props.titleColor ? { color: props.titleColor } : null,
-        },
-        props.title
-      ),
-      desc,
-      props.button ? h('div', { className: 'ds-empty-card__button' }, props.button) : null
-    );
-  }
-
-  return DotsEmptyStateCard;
-})();
-
-
-// DotsFilterChip — port de lib/src/components/dots_filter_chip/dots_filter_chip.dart (Dart = fuente de verdad)
-__ds.DotsFilterChip = (function () {
-  'use strict';
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  function DotsFilterChip(props) {
-    // Dart: GestureDetector en todo el chip; el DotsCloseButton interno no tiene onTap propio.
-    return h(
-      'button',
-      { type: 'button', className: 'ds-filter-chip', onClick: props.onClick },
-      h('span', { className: 'ds-filter-chip__label' }, props.label || ''),
-      // DotsCloseButton extraSmall (16, icono 10) variant highContrast
-      h('span', { className: 'ds-filter-chip__close', 'aria-hidden': true },
-        icon({ name: 'ic-cross', size: 10, color: 'currentColor' }))
-    );
-  }
-
-  return DotsFilterChip;
-})();
-
-
-// DotsFloatingButton — port de lib/src/components/buttons/dots_floating_button/ (Dart = fuente de verdad)
-__ds.DotsFloatingButton = (function () {
-  'use strict';
-  function DotsFloatingButton(props) {
-    var blur = props.blur !== false;
-    return h('button', {
-      type: 'button',
-      className: 'ds-floating-btn' + (blur ? ' ds-floating-btn--blur' : ''),
-      onClick: props.onClick,
-    },
-      props.icon ? h(__ds.DotsIcon, { name: props.icon, size: 20 }) : null,
-      h('span', { className: 'ds-floating-btn__label' }, props.content)
-    );
-  }
-  return DotsFloatingButton;
-})();
-
-
-// DotsHomeTopBar — port de lib/src/components/navigation/home_top_bar.dart
-// + home_top_bar_main_section.dart (Dart = fuente de verdad)
-__ds.DotsHomeTopBar = (function () {
-  'use strict';
-  var NORMAL_H = 50; // kTopBarNormalHeight (lib/src/core/constants.dart)
-  var BIG_H = 106; // kTopBarBigHeight
-
-  function DotsHomeTopBar(props) {
-    // Espejo de los constructores Dart: onlyStatusBar / title / widget
-    var variant =
-      props.variant ||
-      (props.title != null ? 'title' : props.child != null ? 'widget' : 'onlyStatusBar');
-    var big = variant !== 'onlyStatusBar'; // _bigStatusBar
-
-    // Capa de fondo: showGradient > backgroundBlur > transparente
-    var bgCls = props.showGradient
-      ? ' ds-home-top-bar__bg--gradient'
-      : props.backgroundBlur
-        ? ' ds-home-top-bar__bg--blur'
-        : '';
-
-    // Centro — child ?? título (labelDefaultBold, textTertiary, tappable)
-    var center = null;
-    if (props.child != null) {
-      center = props.child;
-    } else if (variant === 'title' && props.title != null) {
-      center = h(
-        'button',
-        {
-          type: 'button',
-          className: 'ds-home-top-bar__title',
-          onClick: props.onTitleClick,
-          style: props.onTitleClick ? undefined : { cursor: 'default' },
-        },
-        props.title
-      );
-    }
-
-    // DotsHomeTopBarMainSection — centro + fila imgProfile / rightIcon / secondRightIcon
-    var main = big
-      ? h(
-          'div',
-          { className: 'ds-home-top-bar__main' },
-          h('div', { className: 'ds-home-top-bar__center' }, center),
-          h(
-            'div',
-            { className: 'ds-home-top-bar__row' },
-            props.imgProfile
-              ? h('span', { className: 'ds-home-top-bar__profile' }, props.imgProfile)
-              : null,
-            h('span', { className: 'ds-home-top-bar__spacer' }),
-            props.rightIcon
-              ? h('span', { className: 'ds-home-top-bar__slot' }, props.rightIcon)
-              : null,
-            props.secondRightIcon
-              ? h(
-                  'span',
-                  { className: 'ds-home-top-bar__slot ds-home-top-bar__slot--second' },
-                  props.secondRightIcon
-                )
-              : null
-          )
-        )
-      : null;
-
-    return h(
-      'div',
-      {
-        className:
-          'ds-home-top-bar' +
-          (big ? '' : ' ds-home-top-bar--normal') +
-          (props.className ? ' ' + props.className : ''),
-        style: { minHeight: (big ? BIG_H : NORMAL_H) + 'px' },
-      },
-      h('span', { className: 'ds-home-top-bar__bg' + bgCls, 'aria-hidden': true }),
-      h(
-        'div',
-        { className: 'ds-home-top-bar__col' },
-        h(
-          'div',
-          { className: 'ds-home-top-bar__content' },
-          h('span', { className: 'ds-home-top-bar__status', 'aria-hidden': true }),
-          main
-        ),
-        // Dart `children` — widgets extra bajo el contenido (React children)
-        props.children
-      )
-    );
-  }
-  return DotsHomeTopBar;
-})();
-
-
-// DotsInputStepper — port de lib/src/components/buttons/dots_input_stepper.dart (Dart = fuente de verdad)
-__ds.DotsInputStepper = (function () {
-  'use strict';
-
-  function DotsInputStepper(props) {
-    const { useState } = hooks();
-    var min = props.minValue == null ? 0 : props.minValue; // Dart: required (default web: 0)
-    var max = props.maxValue == null ? 99 : props.maxValue; // Dart: required (default web: 99)
-    var controlled = props.value !== undefined && props.value !== null;
-    const [internal, setInternal] = useState(props.defaultValue == null ? min : props.defaultValue);
-    var value = controlled ? props.value : internal;
-    var canDecrement = value > min;
-    var canIncrement = value < max;
-
-    function step(delta, canStep, dartCallback) {
-      if (!canStep) return;
-      var next = value + delta;
-      if (!controlled) setInternal(next);
-      if (typeof dartCallback === 'function') dartCallback();
-      if (typeof props.onChanged === 'function') props.onChanged(next);
-    }
-
-    // Dart: DotsIconButton small (28) sin fondo ni blur; enabled textTertiary,
-    // disabled resuelto por el tema del botón → textDisabled.
-    function stepBtn(iconName, enabled, onClick, fallbackGlyph) {
-      return h(
-        'button',
-        {
-          type: 'button',
-          className: 'ds-stepper__btn' + (enabled ? '' : ' is-disabled'),
-          disabled: !enabled,
-          onClick: onClick,
-        },
-        __ds.DotsIcon
-          ? h(__ds.DotsIcon, { name: iconName, size: 14, color: 'currentColor' })
-          : fallbackGlyph,
-      );
-    }
-
-    return h(
-      'div',
-      { className: 'ds-stepper' },
-      stepBtn('ic-rest', canDecrement, function () { step(-1, canDecrement, props.onDecrement); }, '−'),
-      h('span', { className: 'ds-stepper__value' }, String(value)),
-      stepBtn('ic-add', canIncrement, function () { step(1, canIncrement, props.onIncrement); }, '+'),
-    );
-  }
-
-  return DotsInputStepper;
-})();
-
-
-// DotsItemInput — port de lib/src/components/text_fields/dots_item_input.dart (Dart = fuente de verdad)
-__ds.DotsItemInput = (function () {
-  'use strict';
-
-  // DotsItemInputPosition → sufijo de clase (radio 16 por posición)
-  var POSITIONS = { onlyOne: 'only-one', first: 'first', middle: 'middle', last: 'last' };
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  function DotsItemInput(props) {
-    var pos = POSITIONS[props.position] || 'only-one'; // Dart: default → r16 completo
-    var clickable = typeof props.onClick === 'function';
-
-    function handleKeyDown(e) {
-      if ((e.key === 'Enter' || e.key === ' ') && clickable) {
-        e.preventDefault();
-        props.onClick();
-      }
-    }
-
-    return h(
-      'div',
-      {
-        className: 'ds-item-input ds-item-input--' + pos + (clickable ? ' ds-item-input--clickable' : ''),
-        role: clickable ? 'button' : undefined,
-        tabIndex: clickable ? 0 : undefined,
-        onClick: props.onClick, // Dart: onTap
-        onKeyDown: clickable ? handleKeyDown : undefined,
-      },
-      h('span', { className: 'ds-item-input__icon', 'aria-hidden': true },
-        icon({ name: props.icon || 'ic-calendar', size: 20, color: 'currentColor' })), // Dart: icon ?? calendar
-      h('span', { className: 'ds-item-input__label' }, props.label || ''),
-      h('span', { className: 'ds-item-input__value' }, props.value || '')
-    );
-  }
-
-  return DotsItemInput;
-})();
-
-
-// DotsListItem — port de lib/src/components/dots_list_items/dots_list_items.dart (Dart = fuente de verdad, widget DotsListsItem)
-__ds.DotsListItem = (function () {
-  'use strict';
-
-  function renderThumb(props) {
-    const Icon = __ds.DotsIcon;
-    const variant = props.variant || 'main';
-    const picType = props.picType || 'album';
-    if (props.imageSrc && variant !== 'icon' && picType === 'album') {
-      // DotsImageThumbnail variant image — 40×40, radius 12, cover
-      return h('span', {
-        className: 'ds-list-item__thumb ds-list-item__thumb--album',
-        style: { backgroundImage: 'url("' + props.imageSrc + '")' },
-      });
-    }
-    if (props.imageSrc && variant !== 'icon' && picType === 'user') {
-      // círculo 40, fondo bgBaseContrast, imagen recortada en óvalo
-      return h(
-        'span',
-        { className: 'ds-list-item__thumb ds-list-item__thumb--user' },
-        h('img', { src: props.imageSrc, alt: '', onError: props.onError }),
-      );
-    }
-    // DotsImageThumbnail variant icon — bg bgContainerSecondaryOnBackground, icono 20 textPrimary
-    return h(
-      'span',
-      { className: 'ds-list-item__thumb ds-list-item__thumb--icon' },
-      Icon
-        ? h(Icon, { name: props.iconName || 'ic-user', size: 20, color: 'var(--text-primary)' })
-        : null,
-    );
-  }
-
-  function renderTrailing(variant) {
-    const Radio = __ds.DotsRadioButton;
-    const Icon = __ds.DotsIcon;
-    if (variant === 'selector' || variant === 'radioButton') {
-      if (Radio) return h(Radio, { isSelected: variant === 'radioButton', size: 22 });
-      // fallback si DotsRadioButton no está en el bundle
-      return h('span', {
-        className: 'ds-list-item__radio-fallback' + (variant === 'radioButton' ? ' is-on' : ''),
-      });
-    }
-    if (variant === 'check') {
-      // DotsSelector.check(size: small(22), isSelected: true) — pill labelHighlight, check 14 blanco
-      return h(
-        'span',
-        { className: 'ds-list-item__check' },
-        Icon ? h(Icon, { name: 'ic-check', size: 14, color: 'var(--label-always-white)' }) : null,
-      );
-    }
-    return null;
-  }
-
-  function DotsListItem(props) {
-    const variant = props.variant || 'main';
-
-    if (variant === 'divider') {
-      return h(
-        'div',
-        { className: 'ds-list-item ds-list-item--divider' },
-        h('div', { className: 'ds-list-item__divider-label' }, props.label || ''),
-        h('div', { className: 'ds-list-item__hairline' }),
-      );
-    }
-
-    return h(
-      'div',
-      {
-        className: 'ds-list-item' + (props.onClick ? ' is-tappable' : ''),
-        onClick: props.onClick,
-        role: props.onClick ? 'button' : undefined,
-      },
-      renderThumb(props),
-      props.label != null ? h('span', { className: 'ds-list-item__label' }, props.label) : null,
-      renderTrailing(variant),
-    );
-  }
-  return DotsListItem;
-})();
-
-
-// DotsMenu — port de lib/src/components/menu/ (dots_menu.dart + dots_menu_item_model.dart
-// + settings_item.dart + settings_list.dart; Dart = fuente de verdad)
-__ds.DotsMenu = (function () {
-  'use strict';
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  // ── DotsMenu — menú contextual con navegación anidada por subItems ─────────
-  // Item model (DotsMenuItemModel): { id, label, details, icon, selected,
-  // isDelete, subItems, addDivider, onClick }
-  function findStack(subItems, targetId) {
-    for (var i = 0; i < (subItems || []).length; i++) {
-      var it = subItems[i];
-      if (it.id === targetId) return [it];
-      if (it.subItems && it.subItems.length) {
-        var stack = findStack(it.subItems, targetId);
-        if (stack.length) return [it].concat(stack);
-      }
-    }
-    return [];
-  }
-
-  function MenuItem(p) {
-    var item = p.item;
-    // Dart _MenuItem.leftIcon: selected → check; subItems && !initial → chevron down/right
-    var leftIcon = null;
-    if (item.selected) leftIcon = 'ic-check';
-    else if (item.subItems && item.subItems.length && !p.isInitialItem) {
-      leftIcon = p.isExpanded ? 'ic-chevron-down' : 'ic-chevron-right';
-    }
-    var iconColor = item.isDelete
-      ? 'var(--label-destructive)'
-      : item.selected
-        ? 'var(--label-highlight)'
-        : null;
-    var textStyle = item.isDelete ? { color: 'var(--label-destructive)' } : null;
-
-    return h(
-      'div',
-      {
-        className: 'ds-menu__item' + (item.details != null ? ' ds-menu__item--details' : ''),
-        role: 'menuitem',
-        tabIndex: 0,
-        onClick: function () {
-          if (item.onClick) item.onClick();
-          if (p.onTapItem) p.onTapItem();
-        },
-      },
-      leftIcon ? icon({ name: leftIcon, size: 14, color: iconColor || 'var(--text-primary)', className: 'ds-menu__item-left' }) : null,
-      h(
-        'span',
-        { className: 'ds-menu__item-body' },
-        h('span', { className: 'ds-menu__item-label', style: textStyle }, item.label),
-        item.details != null
-          ? h('span', { className: 'ds-menu__item-details', style: textStyle }, item.details)
-          : null
-      ),
-      item.icon
-        ? icon({ name: item.icon, size: 16, color: iconColor || 'var(--label-primary)', className: 'ds-menu__item-right' })
-        : null
-    );
-  }
-
-  function DotsMenu(props) {
-    var useState = hooks().useState;
-    var initial = useState(function () {
-      var root = Object.assign({}, props.mainItem, { subItems: props.subitems || [] });
-      var stack = [];
-      var selected = root;
-      if (props.defaultSelectedItemId != null && props.defaultSelectedItemId !== root.id) {
-        var path = findStack(root.subItems, props.defaultSelectedItemId);
-        if (path.length) {
-          selected = path.pop();
-          stack = [root].concat(path);
-        }
-      }
-      return { stack: stack, selected: selected };
-    });
-    var state = initial[0];
-    var setState = initial[1];
-    var selected = state.selected;
-    var isInitialItem = state.stack.length === 0;
-    var subs = selected.subItems || [];
-    var scrollable = subs.length > 7; // Dart: > 7 subitems → maxHeight 336 con scroll
-
-    var children = [];
-    for (var i = 0; i < subs.length; i++) {
-      (function (item) {
-        children.push(h(MenuItem, {
-          key: 'i' + i,
-          item: item,
-          isExpanded: false,
-          onTapItem: function () {
-            if (item.subItems && item.subItems.length) {
-              setState({ stack: state.stack.concat([selected]), selected: item });
-            }
-          },
-        }));
-      })(subs[i]);
-      var isLast = i === subs.length - 1;
-      if (subs[i].addDivider && !isLast) children.push(h('div', { key: 'd' + i, className: 'ds-menu__divider ds-menu__divider--item' }));
-      else if (!isLast) children.push(h('div', { key: 's' + i, className: 'ds-menu__spacer' }));
-    }
-
-    return h(
-      'div',
-      { className: 'ds-menu' + (props.className ? ' ' + props.className : ''), role: 'menu' },
-      h(MenuItem, {
-        item: selected,
-        isExpanded: true,
-        isInitialItem: isInitialItem,
-        onTapItem: function () {
-          if (state.stack.length) {
-            var stack = state.stack.slice();
-            setState({ selected: stack.pop(), stack: stack });
-          }
-        },
-      }),
-      h('div', { className: 'ds-menu__divider' }),
-      h('div', { className: 'ds-menu__list' + (scrollable ? ' ds-menu__list--scroll' : '') }, children)
-    );
-  }
-
-  // ── DotsMenu.SettingsList — settings_list.dart + settings_item.dart ────────
-  // Item: { variant: 'icon' | 'toggle', label, startIcon, endIcon, toggleValue,
-  // onToggleTap, onClick, textColor, textAlignment }
-  function SettingsItem(p) {
-    var isToggle = p.variant === 'toggle'; // SettingsItemVariant
-    var labelStyle = {};
-    if (p.textColor) labelStyle.color = p.textColor;
-    if (p.textAlignment) labelStyle.textAlign = p.textAlignment;
-    return h(
-      'div',
-      {
-        className: 'ds-menu-settings__item' + (isToggle ? ' ds-menu-settings__item--toggle' : ''),
-        role: 'button',
-        tabIndex: 0,
-        onClick: p.onClick || p.onToggleTap,
-      },
-      p.startIcon ? icon({ name: p.startIcon, size: 20, color: 'var(--text-tertiary)', className: 'ds-menu-settings__start' }) : null,
-      h('span', { className: 'ds-menu-settings__label', style: labelStyle }, p.label),
-      isToggle
-        ? h(
-            'span',
-            {
-              className: 'ds-menu-settings__toggle' + (p.toggleValue ? ' is-on' : ''),
-              role: 'switch',
-              'aria-checked': !!p.toggleValue,
-              onClick: function (e) {
-                e.stopPropagation();
-                if (p.onToggleTap) p.onToggleTap();
-              },
-            },
-            h('span', { className: 'ds-menu-settings__knob' })
-          )
-        : p.endIcon
-          ? icon({ name: p.endIcon, size: 16, color: 'var(--text-tertiary)' })
-          : null
-    );
-  }
-
-  function SettingsList(props) {
-    var items = props.items || [];
-    var textPad = props.textPadding == null ? 15 : props.textPadding; // Dart: 15
-    var rows = [];
-    for (var i = 0; i < items.length; i++) {
-      rows.push(h(SettingsItem, Object.assign({ key: 'i' + i }, items[i])));
-      if (i < items.length - 1) rows.push(h('div', { key: 'd' + i, className: 'ds-menu-settings__divider' }));
-    }
-    return h(
-      'div',
-      { className: 'ds-menu-settings' + (props.className ? ' ' + props.className : '') },
-      props.title
-        ? h('div', { className: 'ds-menu-settings__title', style: { margin: '0 ' + textPad + 'px 8px' } }, String(props.title).toUpperCase())
-        : null,
-      items.length ? h('div', { className: 'ds-menu-settings__list' }, rows) : null,
-      props.description
-        ? h('div', { className: 'ds-menu-settings__desc', style: { margin: '8px ' + textPad + 'px 0' } }, props.description)
-        : null
-    );
-  }
-
-  DotsMenu.SettingsList = SettingsList;
-  DotsMenu.SettingsItem = SettingsItem;
-  return DotsMenu;
-})();
-
-
-// DotsNavBar — port de lib/src/components/nav_bar/nav_bar.dart (Dart = fuente de verdad)
-__ds.DotsNavBar = (function () {
-  'use strict';
-  var MAX_PENDING = 99; // kMaxPendingNumber (lib/src/core/constants.dart)
-  var DEFAULT_ITEMS = [
-    { icon: 'ic-add', label: 'Crear' },
-    { icon: 'ic-home', label: 'Inicio' },
-    { icon: 'ic-gallery', label: 'Galería' },
-  ];
-  function DotsNavBar(props) {
-    var items = props.items || DEFAULT_ITEMS;
-    var selectedIndex = props.selectedIndex || 0;
-    var onSelect = props.onSelect;
-    var Icon = __ds.DotsIcon;
-    return h(
-      'nav',
-      { className: 'ds-nav-bar' + (props.className ? ' ' + props.className : '') },
-      // Píldora del ítem activo — AnimatedPositioned left = selectedIndex * 70 (+5 de padding)
-      h('span', {
-        className: 'ds-nav-bar__pill',
-        style: { left: 5 + selectedIndex * 70 + 'px' },
-        'aria-hidden': true,
-      }),
-      items.map(function (item, i) {
-        var selected = i === selectedIndex;
-        var badge =
-          item.badge == null
-            ? null
-            : item.badge > MAX_PENDING
-              ? String(MAX_PENDING)
-              : String(item.badge);
-        return h(
-          'button',
-          {
-            key: i,
-            type: 'button',
-            className: 'ds-nav-bar__item' + (selected ? ' is-selected' : ''),
-            'aria-current': selected ? 'page' : undefined,
-            onClick: onSelect
-              ? function () {
-                  onSelect(i);
-                }
-              : undefined,
-          },
-          h(
-            'span',
-            { className: 'ds-nav-bar__icon-wrap' },
-            Icon
-              ? h(Icon, { name: item.icon, size: 20, color: 'currentColor' })
-              : h('span', { className: 'ds-nav-bar__icon-fallback' }),
-            badge != null ? h('span', { className: 'ds-nav-bar__badge' }, badge) : null
-          ),
-          h('span', { className: 'ds-nav-bar__label' }, item.label)
-        );
-      })
-    );
-  }
-  return DotsNavBar;
-})();
-
-
-// DotsPlanningItem — port de lib/src/components/planning/ (dots_planning_item.dart +
-// dots_planning_info_item.dart + dots_planning_row_builder.dart) (Dart = fuente de verdad)
-__ds.DotsPlanningItem = (function () {
-  'use strict';
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', {
-          style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' },
-        });
-  }
-
-  // DotsPlanningItemRow (dots_planning_row_builder.dart): omite filas sin icono o sin texto
-  function row(item, key) {
-    if (!item || !item.icon || item.text == null || !String(item.text).trim()) return null;
-    return h(
-      'span',
-      { className: 'ds-planning-item__row', key: key },
-      h('span', { className: 'ds-planning-item__row-icon', 'aria-hidden': true },
-        icon({ name: item.icon, size: 16, color: 'var(--label-primary)' })),
-      h('span',
-        { className: 'ds-planning-item__row-text' + (item.underline ? ' is-underline' : '') },
-        item.text)
-    );
-  }
-
-  function DotsPlanningItem(props) {
-    var useState = hooks().useState;
-    var st = useState(!!props.defaultExpanded);
-    var controlled = props.expanded != null;
-    var expanded = controlled ? !!props.expanded : st[0];
-
-    function toggle() {
-      if (props.onToggle) props.onToggle(!expanded);
-      if (!controlled) st[1](!expanded);
-    }
-
-    // Dart: mainIcon/mainIconActive default chevronDown/chevronUp
-    var chevron = expanded
-      ? props.mainIconActive || 'ic-chevron-up'
-      : props.mainIcon || 'ic-chevron-down';
-
-    var subItems = props.subItems || [];
-
-    return h(
-      'div',
-      {
-        className: 'ds-planning-item' + (props.className ? ' ' + props.className : ''),
-        onClick: toggle,
-      },
-      // _PlanningImage: DotsSquircleImage 52 squircle16, default default_section_planning.webp
-      h('span', {
-        className: 'ds-planning-item__img',
-        style: props.sectionImage
-          ? { backgroundImage: 'url(' + props.sectionImage + ')' }
-          : undefined,
-      }),
-      h(
-        'span',
-        { className: 'ds-planning-item__col' },
-        // _PlanningTitle: bodyLargeMedium textPrimary + DotsIcon 20 textQuarternary
-        h(
-          'span',
-          { className: 'ds-planning-item__title-row' },
-          h('span', { className: 'ds-planning-item__title' }, props.mainText),
-          h('span', { className: 'ds-planning-item__chevron', 'aria-hidden': true },
-            icon({ name: chevron, size: 20, color: 'var(--text-quarternary)' }))
-        ),
-        props.mainItem ? row(props.mainItem, 'main') : null,
-        // _PlanningAnimatedSwitcher (200ms easeOut/easeIn, slide -0.1 + fade)
-        h(
-          'span',
-          { className: 'ds-planning-item__sub' + (expanded ? ' is-expanded' : '') },
-          h('span', { className: 'ds-planning-item__sub-inner' },
-            subItems.map(function (it, i) { return row(it, i); }))
-        )
-      )
-    );
-  }
-  return DotsPlanningItem;
-})();
-
-
-// DotsPlanSelector — port de lib/src/components/premium/dots_plan_selector.dart (Dart = fuente de verdad)
-__ds.DotsPlanSelector = (function () {
-  'use strict';
-
-  // DotsPlanSelectorVariant (Dart) → sufijo de clase
-  var VARIANTS = { basic: 'basic', premium: 'premium', premiumPlus: 'premium-plus' };
-
-  function DotsPlanSelector(props) {
-    var variant = VARIANTS[props.variant] || VARIANTS.basic;
-    var enabled = props.enabled !== false; // Dart: default true
-    var selected = !!props.selected;
-    var cls = 'ds-plan-selector';
-    // Fondo webp (bgBasic/bgPremium/bgPremiumPlus) solo si selected && enabled (Dart: Ink.image)
-    if (selected && enabled) cls += ' ds-plan-selector--selected ds-plan-selector--' + variant;
-    if (!enabled) cls += ' is-disabled';
-    if (props.className) cls += ' ' + props.className;
-    return h(
-      'button',
-      {
-        type: 'button',
-        className: cls,
-        disabled: !enabled,
-        onClick: enabled ? props.onClick : undefined,
-      },
-      h('span', { className: 'ds-plan-selector__title' }, props.title),
-      props.description
-        ? h('span', { className: 'ds-plan-selector__desc' }, props.description)
-        : null
-    );
-  }
-  return DotsPlanSelector;
-})();
-
-
-// DotsSegmentedControl — port de lib/src/components/segmented_control/ (Dart = fuente de verdad)
-// Cubre SegmentedControl (type 'text', variant main|camera), SegmentedControlIcon
-// (type 'icon') y SegmentedControlSingle (type 'single').
-__ds.DotsSegmentedControl = (function () {
-  'use strict';
-  function badgeTag(tag) {
-    // BadgeTag en (-2,-2) — rightOptionTag / buttonTag
-    return tag ? h('span', { className: 'ds-seg__tag' }, tag) : null;
-  }
-  function DotsSegmentedControl(props) {
-    const { useState } = hooks();
-    const type = props.type || 'text';
-    const controlled = props.selectedOption !== undefined && props.selectedOption !== null;
-    const [internal, setInternal] = useState(props.defaultSelectedOption || 'left');
-    const selected = controlled ? props.selectedOption : internal;
-    function tap(option) {
-      if (!controlled) setInternal(option);
-      if (typeof props.onTapOption === 'function') props.onTapOption(option);
-    }
-
-    if (type === 'single') {
-      // SegmentedControlSingle — una sola opción siempre seleccionada
-      return h(
-        'div',
-        {
-          className: 'ds-seg ds-seg--single',
-          style: props.backgroundColor ? { background: props.backgroundColor } : null,
-        },
-        h(
-          'span',
-          {
-            className: 'ds-seg__opt is-selected',
-            style: props.selectedColor ? { background: props.selectedColor } : null,
-          },
-          props.buttonName,
-        ),
-        badgeTag(props.buttonTag),
-      );
-    }
-
-    if (type === 'icon') {
-      // SegmentedControlIcon — 108×48, celdas 48×40, pill deslizante 200ms
-      const Icon = __ds.DotsIcon;
-      const cell = function (side, name) {
-        const sel = selected === side;
-        return h(
-          'button',
-          {
-            type: 'button',
-            className: 'ds-seg-icon__cell' + (sel ? ' is-selected' : ''),
-            'aria-pressed': sel,
-            onClick: function () { tap(side); },
-          },
-          Icon
-            ? h(Icon, {
-                name: name,
-                size: 24,
-                color: sel ? 'var(--text-secondary)' : 'var(--text-disabled)',
-              })
-            : name,
-        );
-      };
-      return h(
-        'div',
-        { className: 'ds-seg-icon' },
-        h('span', { className: 'ds-seg-icon__pill' + (selected === 'right' ? ' is-right' : '') }),
-        cell('left', props.leftOptionIcon),
-        cell('right', props.rightOptionIcon),
-      );
-    }
-
-    // type 'text' — SegmentedControl (variant main | camera)
-    const variant = props.variant || 'main';
-    const opt = function (side, label) {
-      const sel = selected === side;
-      return h(
-        'button',
-        {
-          type: 'button',
-          className: 'ds-seg__opt' + (sel ? ' is-selected' : ''),
-          style: sel && props.selectedColor ? { background: props.selectedColor } : null,
-          'aria-pressed': sel,
-          onClick: function () { tap(side); },
-        },
-        label,
-      );
-    };
-    return h(
-      'div',
-      {
-        className: 'ds-seg' + (variant === 'camera' ? ' ds-seg--camera' : ''),
-        style: props.backgroundColor ? { background: props.backgroundColor } : null,
-      },
-      opt('left', props.leftOptionName),
-      opt('right', props.rightOptionName),
-      badgeTag(props.rightOptionTag),
-    );
-  }
-  return DotsSegmentedControl;
-})();
-
-
-// DotsSelector — port de lib/src/components/buttons/dots_selector.dart (Dart = fuente de verdad)
-__ds.DotsSelector = (function () {
-  'use strict';
-
-  var SIZES = { small: 22, medium: 24 }; // DotsSelectorSize.height
-
-  function DotsSelector(props) {
-    const { useState } = hooks();
-    var sizeName = SIZES[props.size] ? props.size : 'medium'; // Dart: default medium
-    var variant = props.variant === 'num' ? 'num' : 'check'; // DotsSelectorVariant
-    var controlled = props.isSelected !== undefined && props.isSelected !== null;
-    const [internal, setInternal] = useState(!!props.defaultSelected);
-    var selected = controlled ? !!props.isSelected : internal;
-
-    function handleClick() {
-      var next = !selected;
-      if (!controlled) setInternal(next);
-      if (typeof props.onChanged === 'function') props.onChanged(next);
-    }
-
-    var content = null;
-    if (selected) {
-      content =
-        variant === 'check'
-          ? __ds.DotsIcon
-            ? h(__ds.DotsIcon, { name: 'ic-check', size: 14, color: 'var(--label-always-white)' })
-            : h('span', { className: 'ds-selector__dot' })
-          : String(props.number == null ? 1 : props.number); // Dart: number default 1
-    }
-
-    return h(
-      'button',
-      {
-        type: 'button',
-        role: 'checkbox',
-        'aria-checked': selected,
-        className: 'ds-selector ds-selector--' + sizeName + (selected ? ' is-on' : ''),
-        onClick: handleClick,
-      },
-      content,
-    );
-  }
-
-  return DotsSelector;
-})();
-
-
-// DotsSelectorRadioButton (+ DotsSelectorRadioButtonLabel, DotsSettingItemRadioBtn) — port de lib/src/components/selectors/ (Dart = fuente de verdad)
-__ds.DotsSelectorRadioButton = (function () {
-  'use strict';
-
-  function radio(isSelected, size) {
-    return __ds.DotsRadioButton
-      ? h(__ds.DotsRadioButton, { isSelected: isSelected, size: size })
-      : h('span', {
-          className: 'ds-sel-radio-fallback' + (isSelected ? ' is-on' : ''),
-          style: { width: size + 'px', height: size + 'px' },
-        });
-  }
-
-  function detailIcon(name, size) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, { name: name, size: size, color: 'var(--text-tertiary)' })
-      : null;
-  }
-
-  // DotsSelectorRadioButton — tarjeta con título + 2 filas icono/detalle + radio
-  function DotsSelectorRadioButton(props) {
-    var selected = !!props.isSelected;
-    return h(
-      'div',
-      {
-        className: 'ds-sel-card' + (selected ? ' is-selected' : ''),
-        role: 'radio',
-        'aria-checked': selected,
-        tabIndex: 0,
-        onClick: props.onClick,
-      },
-      h(
-        'div',
-        { className: 'ds-sel-card__body ds-sel-card__body--gap10' },
-        h('div', { className: 'ds-sel-card__title' }, props.title),
-        h(
-          'div',
-          { className: 'ds-sel-card__detail' },
-          detailIcon(props.icon1 || 'ic-clock-filled', props.icon1Size || 16), // Dart: DotsIconData.clockFilled, 16
-          props.details1,
-        ),
-        h(
-          'div',
-          { className: 'ds-sel-card__detail' },
-          detailIcon(props.icon2 || 'ic-calendar', props.icon2Size || 16), // Dart: DotsIconData.calendar, 16
-          props.details2,
-        ),
-      ),
-      radio(selected, 24),
-    );
-  }
-
-  // SelectorRadioButtonLabelVariant → BadgeLabelVariant (getBadgeLabelVariant en Dart)
-  var BADGE_VARIANT = { free: 'main', acquired: 'green', premium: 'premium', premiumPlus: 'premiumPlus' };
-
-  // DotsSelectorRadioButtonLabel — tarjeta con BadgeLabel + título serif + detalles
-  function DotsSelectorRadioButtonLabel(props) {
-    var selectable = props.isSelectable !== false;
-    var selected = !!props.isSelected && selectable;
-    var variant = BADGE_VARIANT[props.variant] ? props.variant : 'free';
-    var badge = __ds.BadgeLabel
-      ? h(__ds.BadgeLabel, { content: props.tagText, variant: BADGE_VARIANT[variant] })
-      : h('span', { className: 'ds-sel-card__badge-ph' }, props.tagText);
-    return h(
-      'div',
-      {
-        className: 'ds-sel-card' + (selected ? ' is-selected' : ''),
-        role: selectable ? 'radio' : undefined,
-        'aria-checked': selectable ? selected : undefined,
-        tabIndex: selectable ? 0 : undefined,
-        onClick: selectable ? props.onClick : undefined,
-      },
-      h(
-        'div',
-        { className: 'ds-sel-card__body ds-sel-card__body--gap8' },
-        h('div', null, badge),
-        h(
-          'div',
-          null,
-          h('div', { className: 'ds-sel-card__title-serif' }, props.title),
-          h('div', { className: 'ds-sel-card__detail1' }, props.details1),
-        ),
-        h('div', { className: 'ds-sel-card__detail2' }, props.details2),
-      ),
-      selectable ? radio(selected, 24) : null,
-    );
-  }
-
-  // DotsSettingItemRadioBtn — fila radio 22 + leading + trailing
-  function DotsSettingItemRadioBtn(props) {
-    var selected = !!props.isSelected;
-    return h(
-      'div',
-      {
-        className: 'ds-setting-radio',
-        role: 'radio',
-        'aria-checked': selected,
-        tabIndex: 0,
-        onClick: props.onClick,
-      },
-      radio(selected, 22),
-      h('span', { className: 'ds-setting-radio__leading' }, props.leadingLabel),
-      props.trailingLabel != null
-        ? h('span', { className: 'ds-setting-radio__trailing' }, props.trailingLabel)
-        : null,
-    );
-  }
-
-  __ds.DotsSelectorRadioButtonLabel = DotsSelectorRadioButtonLabel;
-  __ds.DotsSettingItemRadioBtn = DotsSettingItemRadioBtn;
-  return DotsSelectorRadioButton;
-})();
-
-
-// DotsSlider — port de lib/src/components/slider/dots_slider.dart (Dart = fuente de verdad)
-__ds.DotsSlider = (function () {
-  'use strict';
-
-  function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
-
-  function DotsSlider(props) {
-    const { useState, useRef } = hooks();
-    const Icon = __ds.DotsIcon;
-
-    const max = props.max == null ? 1.0 : props.max;
-    const divisions = props.divisions == null ? null : props.divisions;
-    const controlled = props.value !== undefined && props.value !== null;
-    const [internal, setInternal] = useState(
-      props.defaultValue == null ? 0 : props.defaultValue,
-    );
-    const value = clamp(controlled ? props.value : internal, 0, max);
-    // Como en Flutter: sin onChanged (y modo controlado) el slider no es interactivo
-    const interactive = typeof props.onChanged === 'function' || !controlled;
-
-    const trackRef = useRef(null);
-    const draggingRef = useRef(false);
-
-    function valueFromPointer(e) {
-      const rect = trackRef.current.getBoundingClientRect();
-      let ratio = rect.width > 0 ? (e.clientX - rect.left) / rect.width : 0;
-      ratio = clamp(ratio, 0, 1);
-      if (divisions) ratio = Math.round(ratio * divisions) / divisions;
-      return ratio * max;
-    }
-
-    function commit(v) {
-      if (!controlled) setInternal(v);
-      if (typeof props.onChanged === 'function') props.onChanged(v);
-    }
-
-    function onPointerDown(e) {
-      if (!interactive) return;
-      draggingRef.current = true;
-      if (e.currentTarget.setPointerCapture) e.currentTarget.setPointerCapture(e.pointerId);
-      commit(valueFromPointer(e));
-    }
-    function onPointerMove(e) {
-      if (!draggingRef.current) return;
-      commit(valueFromPointer(e));
-    }
-    function onPointerUp() { draggingRef.current = false; }
-
-    const pct = max > 0 ? (value / max) * 100 : 0;
-
-    const ticks = [];
-    if (divisions) {
-      for (let i = 0; i <= divisions; i++) {
-        ticks.push(
-          h('span', {
-            key: 't' + i,
-            className: 'ds-slider__tick',
-            style: { left: (i / divisions) * 100 + '%' },
-          }),
-        );
-      }
-    }
-
-    return h(
-      'div',
-      { className: 'ds-slider' + (interactive ? '' : ' is-static') },
-      Icon
-        ? h(Icon, { name: props.leftIcon || 'ic-user', size: 20, color: 'var(--label-secondary)', className: 'ds-slider__icon' })
-        : null,
-      h(
-        'div',
-        {
-          className: 'ds-slider__track',
-          ref: trackRef,
-          role: 'slider',
-          'aria-valuemin': 0,
-          'aria-valuemax': max,
-          'aria-valuenow': value,
-          onPointerDown: onPointerDown,
-          onPointerMove: onPointerMove,
-          onPointerUp: onPointerUp,
-          onPointerCancel: onPointerUp,
-        },
-        h('div', { className: 'ds-slider__fill', style: { width: pct + '%' } }),
-        ticks,
-        h('div', { className: 'ds-slider__thumb', style: { left: pct + '%' } }),
-      ),
-      Icon
-        ? h(Icon, { name: props.rightIcon || 'ic-group', size: 20, color: 'var(--label-secondary)', className: 'ds-slider__icon' })
-        : null,
-    );
-  }
-  return DotsSlider;
-})();
-
-
-// DotsSquirclePhoto — port de lib/src/components/photos_components/dots_squircle_photo.dart
-// (Dart: DotsSquircleImage) + dots_squircle_photo_tag.dart (Dart: DotsSquircleImageTag)
-// expuesto como DotsSquirclePhoto.Tag. Dart = fuente de verdad.
-__ds.DotsSquirclePhoto = (function () {
-  'use strict';
-
-  function gradVariant(seed) {
-    var s = String(seed == null ? '' : seed);
-    var n = 0;
-    for (var i = 0; i < s.length; i++) n = (n + s.charCodeAt(i)) % 997;
-    return 'abcd'[n % 4];
-  }
-
-  function radiusPx(borderRadius, fallback) {
-    if (borderRadius == null) return fallback + 'px';
-    return typeof borderRadius === 'number' ? borderRadius + 'px' : borderRadius;
-  }
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', {
-          style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' },
-        });
-  }
-
-  function DotsSquirclePhoto(props) {
-    var useState = hooks().useState;
-    var errState = useState(false);
-    var hasError = errState[0];
-    var setError = errState[1];
-
-    var size = props.size == null ? 52 : props.size;              // Dart default 52
-    var br = radiusPx(props.borderRadius, 16);                    // DotsBorderRadius.r16
-    var hideBorder = props.hideBorder !== false;                  // Dart default true
-    var borderSize = props.borderSize == null ? 1 : props.borderSize;
-    var showImg = !!props.src && !hasError;
-
-    return h(
-      'span',
-      {
-        className: 'ds-squircle-photo' + (props.className ? ' ' + props.className : ''),
-        style: { width: size + 'px', height: size + 'px', borderRadius: br },
-        onClick: props.onClick,
-      },
-      showImg
-        ? h('img', {
-            className: 'ds-squircle-photo__img',
-            src: props.src,
-            alt: props.alt || '',
-            onError: function (e) {
-              setError(true);
-              if (props.onError) props.onError(e);
-            },
-          })
-        : h('span', {
-            className:
-              'ds-squircle-photo__ph ds-squircle-photo__ph--' + gradVariant(props.src || props.alt),
-          }),
-      // hideBorder: false → borde bgBtnImage (la opacidad 0.6 del Dart ya viene en el token)
-      !hideBorder
-        ? h('span', {
-            className: 'ds-squircle-photo__border',
-            style: {
-              borderRadius: br,
-              borderWidth: borderSize + 'px',
-              borderColor: props.borderColor || undefined,
-            },
-          })
-        : null,
-      // uploadError → overlay negro 20% + icono cloudFail 24 labelAlwaysWhite
-      props.uploadError
-        ? h(
-            'span',
-            { className: 'ds-squircle-photo__error' },
-            icon({
-              name: props.uploadErrorIcon || 'ic-cloud-fail',
-              size: 24,
-              color: 'var(--label-always-white)',
-            })
-          )
-        : null
-    );
-  }
-
-  // DotsSquircleImageTag — lienzo (size+10)², imagen con borde + círculo tag 40 abajo-derecha
-  function Tag(props) {
-    var size = props.size == null ? 100 : props.size;              // Dart default 100
-    var tagCircleSize = props.tagCircleSize == null ? 40 : props.tagCircleSize;
-    var iconSize = props.iconSize == null ? 24 : props.iconSize;
-
-    return h(
-      'span',
-      {
-        className: 'ds-squircle-photo-tag' + (props.className ? ' ' + props.className : ''),
-        style: { width: size + 10 + 'px', height: size + 10 + 'px' },
-        onClick: props.onClick,
-      },
-      h(DotsSquirclePhoto, {
-        src: props.src,
-        alt: props.alt,
-        onError: props.onError,
-        size: size,
-        borderRadius: props.borderRadius == null ? 24 : props.borderRadius, // r24
-        hideBorder: false,
-        borderSize: props.borderSize == null ? 2 : props.borderSize,
-        borderColor: props.borderColor || 'var(--label-always-white)',
-      }),
-      h(
-        'span',
-        {
-          className: 'ds-squircle-photo-tag__circle',
-          style: { width: tagCircleSize + 'px', height: tagCircleSize + 'px' },
-        },
-        icon({
-          name: props.icon || 'ic-calendar--check',               // DotsIconData.calendarCheck
-          size: iconSize,
-          color: props.iconColor || 'var(--label-always-white)',
-        })
-      )
-    );
-  }
-
-  DotsSquirclePhoto.Tag = Tag;
-  return DotsSquirclePhoto;
-})();
-
-
-// DotsSystemButton — port de lib/src/components/buttons/dots_system_button/ (Dart = fuente de verdad)
-__ds.DotsSystemButton = (function () {
-  'use strict';
-
-  var VARIANTS = ['active', 'disabled', 'destructive'];
-  var ICON_SIZE = { medium: 20 }; // DotsSystemButtonSize.medium.iconSize
-
-  function DotsSystemButton(props) {
-    var size = ICON_SIZE[props.size] ? props.size : 'medium';         // DotsSystemButtonSize.medium (único)
-    var variant = VARIANTS.indexOf(props.variant) >= 0 ? props.variant : 'active'; // DotsSystemButtonVariant.active
-
-    var className = 'ds-system-btn ds-system-btn--size-' + size + ' ds-system-btn--' + variant;
-    if (props.expand) className += ' ds-system-btn--expand';
-    if (props.className) className += ' ' + props.className;
-
-    var iconEl = null;
-    if (props.icon) {
-      iconEl = h(
-        'span',
-        { className: 'ds-system-btn__icon', 'aria-hidden': true },
-        __ds.DotsIcon
-          ? h(__ds.DotsIcon, { name: props.icon, size: ICON_SIZE[size] })
-          : h('span', { style: { width: ICON_SIZE[size] + 'px', height: ICON_SIZE[size] + 'px', display: 'inline-block' } })
-      );
-    }
-
-    // OJO: la variante 'disabled' es SOLO visual en Dart (InkWell sigue recibiendo onTap)
-    return h(
-      'button',
-      {
-        type: 'button',
-        className: className,
-        'aria-disabled': variant === 'disabled' || undefined,
-        onClick: props.onClick,
-      },
-      iconEl,
-      h('span', { className: 'ds-system-btn__label' }, props.label)
-    );
-  }
-
-  return DotsSystemButton;
-})();
-
-
-// DotsTextArea — port de lib/src/components/text_fields/dots_textarea.dart (Dart = fuente de verdad)
-__ds.DotsTextArea = (function () {
-  'use strict';
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  function DotsTextArea(props) {
-    var R = hooks();
-    var controlled = props.value !== undefined && props.value !== null;
-    var innerState = R.useState(props.defaultValue != null ? String(props.defaultValue) : '');
-    var areaRef = R.useRef(null);
-
-    var text = controlled ? String(props.value) : innerState[0];
-    var setText = innerState[1];
-
-    var hasLabel = !!props.label;
-    var hasIcon = !!props.icon;
-    var isError = !!props.isError;
-
-    function handleChange(e) {
-      var v = e.target.value;
-      if (!controlled) setText(v);
-      if (props.onChanged) props.onChanged(v);
-    }
-    function handleKeyDown(e) {
-      // Dart: keyboardType multiline — Enter inserta salto; submit web = Ctrl/Cmd+Enter
-      if (e.key === 'Enter' && (e.metaKey || e.ctrlKey) && props.onSubmitted) props.onSubmitted(e.target.value);
-    }
-    function handleBoxClick() {
-      // Dart: GestureDetector → focusNode.requestFocus()
-      if (areaRef.current) areaRef.current.focus();
-    }
-
-    // Dart: minHeight = minHeight ?? maxHeight ?? 50; maxHeight → scroll interno
-    var boxStyle = {
-      minHeight: (props.minHeight != null ? props.minHeight : (props.maxHeight != null ? props.maxHeight : 50)) + 'px',
-    };
-    if (props.maxHeight != null) boxStyle.maxHeight = props.maxHeight + 'px';
-
-    // Dart: remaining = (maxTextLength - text.length).clamp(0, maxTextLength)
-    var remaining = null;
-    if (props.maxTextLength != null) {
-      remaining = Math.min(Math.max(props.maxTextLength - text.length, 0), props.maxTextLength);
-    }
-
-    var area = h(
-      'div',
-      { className: 'ds-textarea__grow', 'data-value': text },
-      h('textarea', {
-        ref: areaRef,
-        className: 'ds-textarea__input',
-        value: text,
-        rows: 1,
-        placeholder: props.hintText,
-        maxLength: props.maxTextLength,
-        autoFocus: !!props.autoFocus,
-        autoCapitalize: props.textCapitalization || 'none', // Dart: TextCapitalization.none
-        onChange: handleChange,
-        onKeyDown: handleKeyDown,
-      })
-    );
-
-    var leadingIcon = hasIcon
-      ? h('span', { className: 'ds-textarea__icon', 'aria-hidden': true },
-          icon({ name: props.icon, size: 20, color: 'currentColor' }))
-      : null;
-
-    var body;
-    if (hasLabel) {
-      body = [
-        h('div', { key: 'l', className: 'ds-textarea__label' }, leadingIcon, props.label),
-        h('div', { key: 'b', className: 'ds-textarea__body' + (hasIcon ? ' ds-textarea__body--indent' : '') }, area),
-      ];
-    } else {
-      body = h('div', { className: 'ds-textarea__row' },
-        leadingIcon,
-        h('div', { className: 'ds-textarea__body' }, area)
-      );
-    }
-
-    return h(
-      'div',
-      { className: 'ds-textarea' },
-      h('div', { className: 'ds-textarea__box', style: boxStyle, onClick: handleBoxClick },
-        body,
-        remaining != null ? h('span', { className: 'ds-textarea__counter' }, String(remaining)) : null
-      ),
-      isError && props.errorText ? h('div', { className: 'ds-textarea__error-text' }, props.errorText) : null
-    );
-  }
-
-  return DotsTextArea;
-})();
-
-
-// DotsTextFieldPhone — port de lib/src/components/text_fields/dots_textfield_phone.dart (Dart = fuente de verdad)
-__ds.DotsTextFieldPhone = (function () {
-  'use strict';
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  function DotsTextFieldPhone(props) {
-    var enabled = props.enabled !== false; // Dart: enabled = true
-    var cc = props.countryCode || { dialCode: '', flagEmoji: '' };
-
-    function handleCountryClick(e) {
-      e.stopPropagation(); // no robar el click al box (que enfoca el input)
-      if (enabled && props.onCountryTap) props.onCountryTap();
-    }
-
-    // Dart: leading = flag + ' (dialCode)' + chevron-down 14 + divisor 0.5 labelSecondary·0.3
-    var leading = h(
-      'span',
-      {
-        className: 'ds-tf-phone__lead' + (enabled ? '' : ' ds-tf-phone__lead--disabled'),
-        role: 'button',
-        tabIndex: enabled ? 0 : undefined,
-        onClick: handleCountryClick,
-        onKeyDown: function (e) {
-          if ((e.key === 'Enter' || e.key === ' ') && enabled && props.onCountryTap) {
-            e.preventDefault();
-            props.onCountryTap();
-          }
-        },
-      },
-      h('span', { className: 'ds-tf-phone__flag' }, cc.flagEmoji),
-      h('span', { className: 'ds-tf-phone__dial' }, ' (' + cc.dialCode + ')'),
-      h('span', { className: 'ds-tf-phone__chev', 'aria-hidden': true },
-        icon({ name: 'ic-chevron-down', size: 14, color: 'currentColor' })),
-      h('span', { className: 'ds-tf-phone__divider' })
-    );
-
-    var TF = __ds.DotsTextField;
-    if (!TF) {
-      // Fallback si DotsTextField no está en el bundle
-      return h('div', { className: 'ds-tf-phone__fallback' }, leading, props.hintText || '');
-    }
-
-    // Dart: delega en DotsTextField con keyboardType phone + digitsOnly
-    return h(TF, {
-      leading: leading,
-      value: props.value,
-      defaultValue: props.defaultValue,
-      hintText: props.hintText,
-      addHintTextColorError: props.addHintTextColorError,
-      onChanged: props.onChanged,
-      onSubmitted: props.onSubmitted,
-      onFocusLost: props.onFocusLost,
-      maxTextLength: props.maxTextLength,
-      isError: props.isError,
-      errorText: props.errorText,
-      enabled: enabled,
-      background: props.background,
-      showUnderline: props.showUnderline,
-      keyboardType: 'phone', // TextInputType.phone → type=tel/inputMode tel
-      autoFocus: props.autoFocus,
-    });
-  }
-
-  return DotsTextFieldPhone;
-})();
-
-
-// DotsToast — port de lib/src/components/toast/ (Dart = fuente de verdad).
-// Unifica DotsToast + DotsToastInfo (isAction: false) + DotsToastAction (isAction: true):
-// los wrappers Dart solo fijan isAction, aquí es una prop.
-__ds.DotsToast = (function () {
-  'use strict';
-
-  // DotsToastVariant
-  var VARIANTS = ['success', 'error', 'info', 'progress', 'connectionResumed', 'connectionLost', 'widget'];
-
-  // DotsToast.iconData(variant, isAction) — nombres reales de assets/icons
-  function iconName(variant, isAction) {
-    switch (variant) {
-      case 'success': return 'ic-check-circle';
-      case 'error': return isAction ? 'ic-trash' : 'ic-cross-circle';
-      case 'info': return 'ic-alert-circle';
-      case 'connectionResumed': return 'ic-connection-on';
-      case 'connectionLost': return 'ic-connection-off';
-      default: return 'ic-slot'; // progress | widget → DotsIconData.progressSpinner ('ic-slot.svg')
-    }
-  }
-
-  // DotsToast.iconColor(theme)
-  function iconColor(variant) {
-    switch (variant) {
-      case 'success':
-      case 'connectionResumed': return 'var(--label-highlight)';
-      case 'error':
-      case 'connectionLost': return 'var(--label-destructive)';
-      default: return 'var(--text-tertiary)'; // info | progress | widget
-    }
-  }
-
-  function iconEl(name, size, color, spin) {
-    return h(
-      'span',
-      { className: 'ds-toast__icon' + (spin ? ' ds-toast__icon--spin' : ''), 'aria-hidden': true },
-      __ds.DotsIcon
-        ? h(__ds.DotsIcon, { name: name, size: size, color: color })
-        : h('span', { style: { width: size + 'px', height: size + 'px', display: 'inline-block' } })
-    );
-  }
-
-  function DotsToast(props) {
-    var variant = VARIANTS.indexOf(props.variant) >= 0 ? props.variant : 'info';
-    var isAction = !!props.isAction;
-    var isProgress = variant === 'progress';
-    var name = props.customIcon || iconName(variant, isAction);
-    var color = props.customIconColor || iconColor(variant);
-
-    var className = 'ds-toast ' + (isAction ? 'ds-toast--action' : 'ds-toast--info');
-    if (props.onClick) className += ' ds-toast--clickable';
-    if (props.className) className += ' ' + props.className;
-
-    var titleEl = h('span', { className: 'ds-toast__title' }, props.title);
-
-    var children;
-    if (isAction) {
-      // Columna 160: icono (o customWidget si variant widget) + título. Icono: progress 20, resto 24.
-      var top = variant === 'widget'
-        ? (props.customWidget || null)
-        : iconEl(name, isProgress ? 20 : 24, color, false);
-      children = [top, titleEl];
-    } else {
-      // Fila 358: icono + título + botón ghost (solo progress). En progress el icono rota
-      // y va SIN tint (colores propios de ic-slot), como _RotatingIcon en Dart.
-      var lead = isProgress ? iconEl(name, 24, undefined, true) : iconEl(name, 20, color, false);
-      var btn = null;
-      if (props.btnTitle != null && isProgress) {
-        btn = __ds.DotsMainButton
-          ? h(__ds.DotsMainButton, {
-              label: props.btnTitle,
-              variant: 'ghost',
-              size: 'medium',
-              adaptPaddingForText: true,
-              expand: false,
-              onClick: props.onClick,
-            })
-          : h('button', { type: 'button', className: 'ds-toast__btn-fallback', onClick: props.onClick }, props.btnTitle);
-      }
-      children = [lead, titleEl, btn];
-    }
-
-    return h('div', { className: className, role: 'status', onClick: props.onClick }, children);
-  }
-
-  return DotsToast;
-})();
-
-
-// DotsTooltip — port de lib/src/components/tooltip/dots_tooltip.dart (Dart = fuente de verdad)
-__ds.DotsTooltip = (function () {
-  'use strict';
-
-  // DotsToolTipTailPosition → alignment.x (-0.82 … 0.82) → left % (Alignment -1..1 → 0..100%)
-  var TAIL = {
-    topAlignLeadingEdge: { top: true, left: '9%', corner: 'tl' },
-    topAlignLeading: { top: true, left: '22%', corner: null },
-    topAlignCenter: { top: true, left: '50%', corner: null },
-    topAlignTrailing: { top: true, left: '78%', corner: null },
-    topAlignTrailingEdge: { top: true, left: '91%', corner: 'tr' },
-    bottomAlignLeadingEdge: { top: false, left: '9%', corner: 'bl' },
-    bottomAlignLeading: { top: false, left: '22%', corner: null },
-    bottomAlignCenter: { top: false, left: '50%', corner: null },
-    bottomAlignTrailing: { top: false, left: '78%', corner: null },
-    bottomAlignTrailingEdge: { top: false, left: '91%', corner: 'br' },
-  };
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  function closeButton(onClick) {
-    // Dart: DotsCloseButton small softContrast addBlur=false
-    return __ds.DotsCloseButton
-      ? h(__ds.DotsCloseButton, { size: 'small', variant: 'softContrast', addBlur: false, onClick: onClick })
-      : h('button', { type: 'button', className: 'ds-tooltip__close-fallback', 'aria-label': 'Cerrar', onClick: onClick }, '×');
-  }
-
-  function DotsTooltip(props) {
-    var tail = TAIL[props.tailPosition] || TAIL.bottomAlignCenter;
-    var showCloseButton = props.showCloseButton !== false; // Dart: default true
-    var maxWidth = props.maxWidth == null ? 288 : props.maxWidth; // Dart: default 288
-
-    var iconNode = props.iconNode ||
-      (props.icon ? icon({ name: props.icon, size: 32, color: 'var(--label-highlight)' }) : null);
-
-    var cls = 'ds-tooltip' + (tail.corner ? ' ds-tooltip--corner-' + tail.corner : '');
-    if (props.className) cls += ' ' + props.className;
-
-    // Cola — TrianglePainter 21×13 (fill bgBaseContrast + stroke 2 bgContainerSecondary)
-    var tailStyle = { left: tail.left };
-    if (tail.top) {
-      tailStyle.top = '-12px';
-      tailStyle.transform = 'translateX(-50%) rotate(180deg)';
-    } else {
-      tailStyle.bottom = '-12px';
-      tailStyle.transform = 'translateX(-50%)';
-    }
-
-    return h(
-      'div',
-      { className: cls, style: { maxWidth: maxWidth + 'px' }, onClick: props.onClick },
-      iconNode,
-      h('p', { className: 'ds-tooltip__text' }, props.text),
-      showCloseButton
-        ? h('span', {
-            className: 'ds-tooltip__close',
-            onClick: function (e) {
-              e.stopPropagation();
-              if (props.onClose) props.onClose();
-            },
-          }, closeButton(null))
-        : null,
-      h(
-        'svg',
-        { className: 'ds-tooltip__tail', style: tailStyle, viewBox: '0 0 21 13', 'aria-hidden': true },
-        h('path', { d: 'M0 0 L8.5 11 Q10.5 13.4 12.5 11 L21 0', strokeWidth: 2, strokeLinejoin: 'round' })
-      )
-    );
-  }
-
-  return DotsTooltip;
-})();
-
-
-// DotsUploadItem — port de lib/src/components/upload_items/dots_upload_item.dart
-// (+ upload_item_variant.dart → prop `variant`). Dart = fuente de verdad.
-__ds.DotsUploadItem = (function () {
-  'use strict';
-
-  // UploadItemVariant → icono + color (mismo switch del Dart)
-  var VARIANTS = {
-    processing: { icon: 'ic-spinner', color: 'var(--text-secondary)' },
-    success: { icon: 'ic-check-circle', color: 'var(--label-highlight)' },
-    error: { icon: 'ic-cross-circle', color: 'var(--label-destructive)' },
-  };
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', {
-          style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' },
-        });
-  }
-
-  function DotsUploadItem(props) {
-    var variant = VARIANTS[props.variant] ? props.variant : 'processing';
-    var v = VARIANTS[variant];
-    var isProcessing = variant === 'processing';
-    var isSuccess = variant === 'success';
-    var isError = variant === 'error';
-    var percentage = props.percentage == null ? null : Math.min(1, Math.max(0, props.percentage));
-
-    // Imagen — DotsSquircleImage(size: 64, squircle16, uploadError: variant.isError)
-    var photo = __ds.DotsSquirclePhoto
-      ? h(__ds.DotsSquirclePhoto, {
-          src: props.src,
-          alt: props.alt,
-          onError: props.onError,
-          size: 64,
-          borderRadius: 16,
-          uploadError: isError,
-        })
-      : h('span', { className: 'ds-upload-item__photo-fallback' });
-
-    // Fila de estado — icono 14 (girando si processing) + processText
-    var processRow = h(
-      'span',
-      { className: 'ds-upload-item__process' },
-      h(
-        'span',
-        {
-          className:
-            'ds-upload-item__process-icon' +
-            (isProcessing ? ' ds-upload-item__process-icon--spin' : ''),
-        },
-        icon({ name: v.icon, size: 14, color: v.color })
-      ),
-      h('span', { className: 'ds-upload-item__process-text' }, props.processText || '')
-    );
-
-    // Progreso — DotsProgressBar(percentage, parts: 1) + '64%'
-    var progressRow = null;
-    if (isProcessing) {
-      progressRow = h(
-        'span',
-        { className: 'ds-upload-item__progress' },
-        h(
-          'span',
-          { className: 'ds-upload-item__progress-bar' },
-          __ds.DotsProgressBar
-            ? h(__ds.DotsProgressBar, { percentage: percentage == null ? 1 : percentage, parts: 1 })
-            : h('span', { className: 'ds-upload-item__progress-fallback' })
-        ),
-        h(
-          'span',
-          { className: 'ds-upload-item__progress-pct' },
-          percentage != null ? Math.round(percentage * 100) + '%' : ''
-        )
-      );
-    }
-
-    // Botón derecho — success: secondary · error: main (DotsMainButton medium)
-    var button = null;
-    if (!isProcessing) {
-      button = __ds.DotsMainButton
-        ? h(__ds.DotsMainButton, {
-            label: props.btnText || '',
-            variant: isSuccess ? 'secondary' : 'main',
-            size: 'medium',
-            expand: false,
-            onClick: props.onBtnClick,
-          })
-        : h(
-            'button',
-            {
-              type: 'button',
-              className:
-                'ds-upload-item__btn-fallback ds-upload-item__btn-fallback--' +
-                (isSuccess ? 'secondary' : 'main'),
-              onClick: props.onBtnClick,
-            },
-            props.btnText || ''
-          );
-    }
-
-    return h(
-      'div',
-      { className: 'ds-upload-item' + (props.className ? ' ' + props.className : '') },
-      photo,
-      h(
-        'div',
-        {
-          className:
-            'ds-upload-item__body' + (isProcessing ? ' ds-upload-item__body--processing' : ''),
-        },
-        h('div', { className: 'ds-upload-item__date' }, props.textDate || ''),
-        processRow,
-        progressRow,
-        isSuccess
-          ? h('div', { className: 'ds-upload-item__elapsed' }, props.timeElapsed || '')
-          : null
-      ),
-      button
-    );
-  }
-
-  return DotsUploadItem;
-})();
-
-
-// DropdownMenu — port de lib/src/components/dropdowns/ (dropdown_menu + dropdown_list +
-// dropdown_item → una sola API; Dart = fuente de verdad)
-__ds.DropdownMenu = (function () {
-  'use strict';
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  // DropdownItem (dropdown_item.dart) — fila del menú: texto + subtitle inline,
-  // leading opcional, icono trailing 16, pressed → bgContainerSecondary
-  function DropdownMenuItem(props) {
-    var style = props.itemColor ? { color: props.itemColor } : null;
-    var cls = 'ds-dropdown__item' +
-      (props.destructive ? ' ds-dropdown__item--destructive' : '') +
-      (props.minSize ? ' ds-dropdown__item--min' : '');
-    return h(
-      'div',
-      { className: cls, style: style, role: 'menuitem', tabIndex: 0, onClick: props.onClick },
-      props.leading ? h('span', { className: 'ds-dropdown__item-leading' }, props.leading) : null,
-      h(
-        'span',
-        { className: 'ds-dropdown__item-text' },
-        props.text,
-        props.subtitle ? h('span', { className: 'ds-dropdown__item-subtitle' }, ' ' + props.subtitle) : null
-      ),
-      props.icon ? icon({ name: props.icon, size: 16, color: 'currentColor', className: 'ds-dropdown__item-icon' }) : null
-    );
-  }
-
-  function renderMenu(props) {
-    var items = props.items || [];
-    var style = { width: (props.width == null ? 250 : props.width) + 'px' };
-    if (props.maxHeight != null) {
-      style.maxHeight = props.maxHeight + 'px';
-      style.overflowY = 'auto';
-    }
-    return h(
-      'div',
-      { className: 'ds-dropdown__menu', style: style, role: 'menu' },
-      items.map(function (it, i) { return h(DropdownMenuItem, Object.assign({ key: i }, it)); })
-    );
-  }
-
-  // DropdownList (dropdown_list.dart) + DropdownMenu (dropdown_menu.dart).
-  // Sin `label` renderiza solo el panel del menú; con `label`, botón + menú desplegado
-  // debajo cuando está activo (isActive controlado, o toggle interno).
-  function DropdownMenu(props) {
-    var useState = hooks().useState;
-    var inner = useState(!!props.defaultActive);
-    var controlled = props.isActive !== undefined && props.isActive !== null;
-    var active = controlled ? !!props.isActive : inner[0];
-
-    if (!props.label) return renderMenu(props);
-
-    var size = props.size === 'medium' ? 'medium' : 'small'; // DropdownListSize.small default
-    var onBackground = props.variant === 'onBackground';     // DropdownListVariant.onBackgroundVariant
-
-    var btnCls = 'ds-dropdown__btn ds-dropdown__btn--' + size +
-      (active ? ' ds-dropdown__btn--active' : '') +
-      (onBackground && !active ? ' ds-dropdown__btn--on-bg' : '') +
-      (props.minSize === false ? ' ds-dropdown__btn--expand' : '');
-
-    function handleTap() {
-      if (!controlled) inner[1](!active);
-      if (props.onToggle) props.onToggle(!active);
-      if (props.onClick) props.onClick();
-    }
-
-    return h(
-      'div',
-      { className: 'ds-dropdown' + (props.className ? ' ' + props.className : '') },
-      h(
-        'button',
-        { type: 'button', className: btnCls, 'aria-expanded': active, onClick: handleTap },
-        h(
-          'span',
-          { className: 'ds-dropdown__btn-text' },
-          props.label,
-          props.subtitle ? h('span', { className: 'ds-dropdown__btn-subtitle' }, ' ' + props.subtitle) : null
-        ),
-        icon({
-          name: active ? 'ic-chevron-up' : 'ic-chevron-down',
-          size: 14,
-          color: 'currentColor',
-          className: 'ds-dropdown__chevron',
-        })
-      ),
-      active
-        ? h('div', { className: 'ds-dropdown__overlay' }, renderMenu({
-            items: props.items,
-            width: props.menuMaxWidth == null ? 250 : props.menuMaxWidth,
-            maxHeight: props.menuMaxHeight,
-          }))
-        : null
-    );
-  }
-
-  DropdownMenu.Item = DropdownMenuItem;
-  return DropdownMenu;
-})();
-
-
-// FeatureItem — port de lib/src/components/feature_item/feature_item.dart (Dart = fuente de verdad)
-__ds.FeatureItem = (function () {
-  'use strict';
-
-  function FeatureItem(props) {
-    var hasValue = props.value != null;
-
-    var leading;
-    if (props.image != null) {
-      // FeatureItem.image → SizedBox.square(24) con el widget custom
-      leading = h('span', { className: 'ds-feature-item__image' }, props.image);
-    } else {
-      // Default → DotsIcon(size 16, textQuarternary vía CSS currentColor)
-      leading = h(
-        'span',
-        { className: 'ds-feature-item__icon', 'aria-hidden': true },
-        __ds.DotsIcon
-          ? h(__ds.DotsIcon, { name: props.icon, size: 16 })
-          : h('span', { style: { width: '16px', height: '16px', display: 'inline-block' } })
-      );
-    }
-
-    var className = 'ds-feature-item';
-    if (hasValue) className += ' ds-feature-item--with-value';
-    if (props.className) className += ' ' + props.className;
-
-    return h(
-      'div',
-      { className: className },
-      leading,
-      h('span', { className: 'ds-feature-item__feature' }, props.feature),
-      hasValue ? h('span', { className: 'ds-feature-item__value' }, props.value) : null
-    );
-  }
-
-  return FeatureItem;
-})();
-
-
-// FolderCarrousel — port de lib/src/components/carrousels/folder_carrousel.dart (Dart = fuente de verdad)
-__ds.FolderCarrousel = (function () {
-  'use strict';
-  function FolderCarrousel(props) {
-    var items = props.items || [];
-    var showEditIcon = !!props.showEditIcon;
-    var onSelect = props.onSelect;
-    var Btn = __ds.BtnFolder;
-
-    var nodes = items.map(function (item, i) {
-      var handleClick =
-        item.onClick ||
-        (onSelect
-          ? function () {
-              onSelect(i);
-            }
-          : undefined);
-      if (Btn) {
-        return h(Btn, {
-          key: i,
-          icon: item.icon,
-          text: item.text,
-          onClick: handleClick,
-          onLongPress: item.onLongPress, // BtnFolderData.onPressed
-          isSelected: !!item.isSelected,
-          // iconSelectedColor requerido en Dart; #3E9ACB = azul carpeta del home (child006, sin token)
-          iconSelectedColor: item.iconSelectedColor || '#3E9ACB',
-          isNonExpandable: !!item.isNonExpandable,
-          isEditable: !!item.isEditable,
-          showEditIcon: showEditIcon,
-        });
-      }
-      // Fallback si BtnFolder no está en el bundle
-      return h(
-        'button',
-        {
-          key: i,
-          type: 'button',
-          className:
-            'ds-folder-carrousel__fallback' + (item.isSelected ? ' is-selected' : ''),
-          onClick: handleClick,
-        },
-        __ds.DotsIcon ? h(__ds.DotsIcon, { name: item.icon, size: 20 }) : null,
-        item.text != null ? h('span', null, item.text) : null
-      );
-    });
-
-    return h(
-      'div',
-      { className: 'ds-folder-carrousel' + (props.className ? ' ' + props.className : '') },
-      nodes,
-      // customWidgets (DefaultFolderWidget) — nodos extra al final de la fila
-      props.children
-    );
-  }
-  return FolderCarrousel;
-})();
-
-
-// ImageThumbnail — port de lib/src/components/image_thumbnail/image_thumbnail.dart (DotsImageThumbnail; Dart = fuente de verdad)
-__ds.ImageThumbnail = (function () {
-  'use strict';
-  function ImageThumbnail(props) {
-    var variant = props.variant || 'image'; // enum Dart DotsImageThumbnailVariant
-    var isIcon = variant === 'icon';
-    var size = props.size == null ? 40 : props.size;
-    var iconSize = props.iconSize == null ? 20 : props.iconSize;
-    return h(
-      'span',
-      {
-        className:
-          'ds-image-thumbnail' +
-          (isIcon ? ' ds-image-thumbnail--icon' : '') +
-          (props.className ? ' ' + props.className : ''),
-        style: { width: size + 'px', height: size + 'px' },
-      },
-      !isIcon && props.src
-        ? h('img', {
-            className: 'ds-image-thumbnail__img',
-            src: props.src,
-            alt: props.alt || '',
-            onError: props.onError,
-          })
-        : null,
-      props.coverImage
-        ? h('span', { className: 'ds-image-thumbnail__cover' })
-        : null,
-      isIcon
-        ? h(
-            'span',
-            { className: 'ds-image-thumbnail__icon' },
-            __ds.DotsIcon
-              ? h(__ds.DotsIcon, {
-                  name: props.icon || 'ic-user',
-                  size: iconSize,
-                  color: props.iconColor,
-                })
-              : null
-          )
-        : null
-    );
-  }
-  return ImageThumbnail;
-})();
-
-
-// ImageWithIcon — port de lib/src/components/notifications/image_with_icon.dart (Dart = fuente de verdad)
-__ds.ImageWithIcon = (function () {
-  'use strict';
-
-  function ImageWithIcon(props) {
-    var useState = hooks().useState;
-    var errState = useState(false);
-    var imgError = errState[0], setImgError = errState[1];
-
-    var width = props.width == null ? 53 : props.width;
-    var height = props.height == null ? 68 : props.height;
-    var borderRadius = props.borderRadius == null ? 12 : props.borderRadius;
-    var borderWidth = props.borderWidth == null ? 2 : props.borderWidth;
-    var iconSize = props.iconSize == null ? 18 : props.iconSize;
-    var circular = !!props.circularImage;
-    var showIcon = props.showIcon !== false;
-
-    var radius = circular ? width / 2 : borderRadius; // circularImage → width/2
-
-    // Geometría del badge (idéntica al Dart)
-    var iconBorderWidth = iconSize * 0.1;
-    var iconContainerSize = iconSize * 1.5;
-    var iconRadius = (iconContainerSize + iconBorderWidth) / 2;
-    var iconPosition = -(props.iconOffset != null ? props.iconOffset : iconRadius) + iconBorderWidth;
-
-    var hasImage = props.src != null && props.src !== '';
-    var hasAliasText = !!props.aliasLabelImageText;
-
-    var body = null;
-    if (hasImage) {
-      // Card + Image(fit: cover); loading/errorBuilder → defaultImage (default_user_item.webp)
-      body = h('div', {
-        className: 'ds-image-with-icon__card',
-        style: { width: width + 'px', height: height + 'px', borderRadius: radius + 'px', '--ds-iwi-bw': borderWidth + 'px' },
-      },
-        imgError
-          ? h('div', { className: 'ds-image-with-icon__default' })
-          : h('img', {
-              className: 'ds-image-with-icon__img',
-              src: props.src,
-              alt: '',
-              onError: function (e) {
-                setImgError(true); // Dart: errorBuilder → defaultImage
-                if (props.onError) props.onError(e);
-              },
-            }),
-        h('div', { className: 'ds-image-with-icon__gradient' })
-      );
-    } else if (hasAliasText) {
-      // Contenedor bgSecondaryBtn con inicial — Nunito 600 40 textTertiary
-      body = h('div', {
-        className: 'ds-image-with-icon__alias',
-        style: {
-          width: width + 'px',
-          height: height + 'px',
-          borderRadius: circular ? '50%' : borderRadius + 'px',
-        },
-      }, h('span', {
-        className: 'ds-image-with-icon__alias-text',
-        style: props.aliasLabelImageTextStyle || null,
-      }, props.aliasLabelImageText));
-    }
-
-    var badge = null;
-    if (showIcon && props.icon) {
-      badge = h('div', {
-        className: 'ds-image-with-icon__badge',
-        style: {
-          top: iconPosition + 'px',
-          right: iconPosition + 'px',
-          width: (iconRadius * 2) + 'px',
-          height: (iconRadius * 2) + 'px',
-        },
-      }, h('div', {
-        className: 'ds-image-with-icon__badge-inner',
-        style: {
-          width: iconContainerSize + 'px',
-          height: iconContainerSize + 'px',
-          margin: iconBorderWidth + 'px',
-        },
-      },
-        __ds.DotsIcon
-          ? h(__ds.DotsIcon, { name: props.icon, size: iconSize, color: props.iconColor })
-          : h('span', { style: { width: iconSize + 'px', height: iconSize + 'px', display: 'inline-block' } })
-      ));
-    }
-
-    return h('div', {
-      className: 'ds-image-with-icon' + (props.className ? ' ' + props.className : ''),
-      style: { width: width + 'px', height: height + 'px' },
-    }, body, badge);
-  }
-
-  return ImageWithIcon;
-})();
-
-
-// ImageWithProgressAround — port de lib/src/components/progress_bar/image_with_progress_around.dart (Dart = fuente de verdad)
-__ds.ImageWithProgressAround = (function () {
-  'use strict';
-  // DotsColors.recapGradientColors (SweepGradient del painter → aprox. linearGradient SVG)
-  var RECAP_GRADIENT = [
-    '#EF5FC1', '#C982F7', '#15ABF3', '#B295B6',
-    '#F5784D', '#EF9C5F', '#F44E69', '#EF5FC1',
-  ];
-  var uid = 0;
-
-  function ImageWithProgressAround(props) {
-    var hk = hooks();
-    var idRef = hk.useRef(null);
-    if (idRef.current == null) idRef.current = 'ds-iwpa-grad-' + ++uid;
-    var gradId = idRef.current;
-
-    var width = props.width == null ? 150 : props.width;
-    // kStandardAspectRatio 9/16 · kSmallAspectRatio 3/4 (isSmallScreen)
-    var ratio = props.aspectRatio === 'small' ? 3 / 4 : 9 / 16;
-    var height = Math.round(width / ratio);
-    var stroke = props.progressBarWidth == null ? 6 : props.progressBarWidth;
-    var pad = props.innerPadding == null ? 8 : props.innerPadding;
-    var br = props.borderRadius == null ? 45 : props.borderRadius;
-    // Normalización Dart: > 1 se trata como porcentaje
-    var raw = props.progress || 0;
-    var progress = raw > 1 ? Math.min(1, raw / 100) : Math.max(0, Math.min(1, raw));
-    var colors =
-      props.progressBarColors && props.progressBarColors.length
-        ? props.progressBarColors
-        : RECAP_GRADIENT;
-
-    var half = stroke / 2;
-    // radius del painter: borderRadius + padding + strokeWidth/2
-    var rx = br + pad + half;
-    var rw = width - stroke;
-    var rh = height - stroke;
-    rx = Math.min(rx, rw / 2, rh / 2);
-    // El path del <rect> empieza en (x+rx, y); el painter Dart empieza en el centro
-    // superior yendo en sentido horario → dashoffset negativo para desplazar el inicio.
-    var perimeter = 2 * (rw + rh) - 8 * rx + 2 * Math.PI * rx;
-    var startShift = ((rw / 2 - rx) / perimeter) * 100;
-
-    var stops = [];
-    for (var i = 0; i < colors.length; i++) {
-      stops.push(
-        h('stop', {
-          key: i,
-          offset: colors.length === 1 ? 0 : i / (colors.length - 1),
-          stopColor: colors[i],
-        })
-      );
-    }
-
-    return h(
-      'span',
-      {
-        className:
-          'ds-iwpa' + (props.className ? ' ' + props.className : ''),
-        style: { width: width + 'px', height: height + 'px' },
-        role: 'progressbar',
-        'aria-valuemin': 0,
-        'aria-valuemax': 100,
-        'aria-valuenow': Math.round(progress * 100),
-      },
-      h(
-        'span',
-        {
-          className: 'ds-iwpa__inner',
-          style: {
-            inset: pad + stroke + 'px',
-            borderRadius: br + 'px',
-          },
-        },
-        props.src
-          ? h('img', { className: 'ds-iwpa__img', src: props.src, alt: props.alt || '' })
-          : h('span', { className: 'ds-iwpa__placeholder' }),
-        // Overlay negro 20% + % centrado (titleH3, labelAlwaysWhite)
-        h(
-          'span',
-          { className: 'ds-iwpa__overlay' },
-          h('span', { className: 'ds-iwpa__pct' }, Math.round(progress * 100) + '%')
-        )
-      ),
-      h(
-        'svg',
-        {
-          className: 'ds-iwpa__ring',
-          viewBox: '0 0 ' + width + ' ' + height,
-          width: width,
-          height: height,
-        },
-        h(
-          'defs',
-          null,
-          h(
-            'linearGradient',
-            { id: gradId, x1: '0', y1: '0', x2: '1', y2: '1' },
-            stops
-          )
-        ),
-        // Track — bgSecondaryBtn
-        h('rect', {
-          className: 'ds-iwpa__track',
-          x: half,
-          y: half,
-          width: rw,
-          height: rh,
-          rx: rx,
-          fill: 'none',
-          strokeWidth: stroke,
-        }),
-        // Progreso — arranca en el centro superior, sentido horario
-        progress > 0
-          ? h('rect', {
-              className: 'ds-iwpa__progress',
-              x: half,
-              y: half,
-              width: rw,
-              height: rh,
-              rx: rx,
-              fill: 'none',
-              stroke: 'url(#' + gradId + ')',
-              strokeWidth: stroke,
-              strokeLinecap: 'round',
-              pathLength: 100,
-              strokeDasharray: progress * 100 + ' 100',
-              strokeDashoffset: -startShift,
-            })
-          : null
-      )
-    );
-  }
-  return ImageWithProgressAround;
-})();
-
-
-// MemoryCard — port de lib/src/components/cards/memory_card/memory_card.dart (Dart = fuente de verdad)
-__ds.MemoryCard = (function () {
-  'use strict';
-
-  function MemoryCard(props) {
-    var variant = props.variant === 'recap' ? 'recap' : 'memory'; // MemoryCardVariant
-    return h('div', {
-      className: 'ds-memory-card' + (props.className ? ' ' + props.className : ''),
-      onClick: props.onClick,
-      role: props.onClick ? 'button' : undefined,
-    },
-      // _MemoryCardBorder 67.53×87.39 r18 w1.45 (memory: lineal verde · recap: sweep)
-      h('div', { className: 'ds-memory-card__border ds-memory-card__border--' + variant },
-        h('div', { className: 'ds-memory-card__inner' },
-          // _Card 60.39×80 r15 — imagen o placeholder degradado
-          h('div', {
-            className: 'ds-memory-card__img' + (props.imageSrc ? '' : ' ds-memory-card__img--ph'),
-            style: props.imageSrc ? { backgroundImage: 'url("' + props.imageSrc + '")' } : null,
-          }))),
-      h('div', { className: 'ds-memory-card__name' }, props.groupName || '')
-    );
-  }
-
-  return MemoryCard;
-})();
-
-
-// MessagePreview — port de lib/src/components/chat/message_preview.dart
-// (+ chat/enum/message_type_enum.dart → prop `attachmentType`). Dart = fuente de verdad.
-__ds.MessagePreview = (function () {
-  'use strict';
-
-  // MessageType (isAttachment = != text) → icono del adjunto en la preview
-  var ATTACHMENT_ICONS = {
-    image: 'ic-pic',
-    video: 'ic-video',
-    audio: 'ic-mic',
-    file: 'ic-pages',
-  };
-
-  function gradVariant(seed) {
-    var s = String(seed == null ? '' : seed);
-    var n = 0;
-    for (var i = 0; i < s.length; i++) n = (n + s.charCodeAt(i)) % 997;
-    return 'abcd'[n % 4];
-  }
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', {
-          style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' },
-        });
-  }
-
-  function MessagePreview(props) {
-    var useState = hooks().useState;
-    var errState = useState(false);
-    var hasError = errState[0];
-    var setError = errState[1];
-
-    var album = props.album || '';
-    var newMessages = props.newMessages || 0;
-    var typing = props.typingText != null && props.typingText !== '';
-    var showImg = !!props.src && !hasError;
-
-    // _ImageAlbum — 56×56 squircle16; placeholder degradado con inicial del álbum
-    var image = h(
-      'span',
-      { className: 'ds-msg-preview__img' },
-      showImg
-        ? h('img', {
-            className: 'ds-msg-preview__img-el',
-            src: props.src,
-            alt: album,
-            onError: function (e) {
-              setError(true);
-              if (props.onError) props.onError(e);
-            },
-          })
-        : h(
-            'span',
-            { className: 'ds-msg-preview__img-ph ds-msg-preview__img-ph--' + gradVariant(album) },
-            album ? album.charAt(0).toUpperCase() : ''
-          )
-    );
-
-    // _ChatContent — typingText anula sender + attachment + message (Dart)
-    var content;
-    if (typing) {
-      content = [h('span', { key: 't' }, props.typingText)];
-    } else {
-      content = [];
-      if (props.senderName) {
-        content.push(
-          h('span', { key: 's', className: 'ds-msg-preview__sender' }, props.senderName + ': ')
-        );
-      }
-      var attachmentIcon =
-        props.attachmentIcon ||
-        (props.attachmentType && props.attachmentType !== 'text'
-          ? ATTACHMENT_ICONS[props.attachmentType]
-          : null);
-      if (attachmentIcon) {
-        content.push(
-          h(
-            'span',
-            { key: 'a', className: 'ds-msg-preview__attach' },
-            icon({ name: attachmentIcon, size: 13, color: 'currentColor' })
-          ),
-          ' '
-        );
-      }
-      content.push(props.message || '');
-    }
-
-    return h(
-      'div',
-      {
-        className: 'ds-msg-preview' + (props.className ? ' ' + props.className : ''),
-        onClick: props.onClick,
-        role: props.onClick ? 'button' : undefined,
-      },
-      h(
-        'div',
-        { className: 'ds-msg-preview__inner' },
-        image,
-        h(
-          'div',
-          { className: 'ds-msg-preview__col' },
-          // _ChatHeaderInfo — album bodyLargeBold + time bodyDefaultRegular
-          h(
-            'div',
-            { className: 'ds-msg-preview__header' },
-            h('span', { className: 'ds-msg-preview__album' }, album),
-            h('span', { className: 'ds-msg-preview__time' }, props.time || '')
-          ),
-          h(
-            'div',
-            { className: 'ds-msg-preview__content' },
-            h.apply(null, ['span', { className: 'ds-msg-preview__text' }].concat(content)),
-            // BadgeTag — píldora labelDestructive, cap '+999'
-            newMessages > 0
-              ? h(
-                  'span',
-                  { className: 'ds-msg-preview__badge' },
-                  newMessages > 999 ? '+999' : String(newMessages)
-                )
-              : null
-          )
-        )
-      )
-    );
-  }
-
-  return MessagePreview;
-})();
-
-
-// MilestoneCard — port de lib/src/components/milestones/milestone_card.dart
-// (+ milestone_badge_type.dart / milestone_badge_info.dart) (Dart = fuente de verdad)
-__ds.MilestoneCard = (function () {
-  'use strict';
-
-  // MilestoneBadgeType (Dart): icon + color. Colores child010/couple001/friends005
-  // no existen como token CSS (mismo hex en light y dark en Dart) — excepción documentada.
-  var BADGE_TYPES = {
-    video: { icon: 'ic-video', color: '#4FAEF8' /* child010 */ },
-    audio: { icon: 'ic-mic', color: '#F43C51' /* couple001 */ },
-    description: { icon: 'ic-pages', color: '#F7954A' /* friends005 */ },
-  };
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', {
-          style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' },
-        });
-  }
-
-  // BadgeIconGroup (badges/badge_icon_group.dart): 63×70, [0] medium(36/20) left0 bottom0,
-  // [1] small(28/16) left 4|31 bottom 42|31 según n, [2] small left35 bottom26
-  function badgeGroup(types, onClick) {
-    var list = types.slice(0, 3).filter(function (t) { return BADGE_TYPES[t]; });
-    if (!list.length) return null;
-    var pos = [
-      { left: 0, bottom: 0, size: 36, iconSize: 20 },
-      list.length === 3
-        ? { left: 4, bottom: 42, size: 28, iconSize: 16 }
-        : { left: 31, bottom: 31, size: 28, iconSize: 16 },
-      { left: 35, bottom: 26, size: 28, iconSize: 16 },
-    ];
-    return h(
-      'span',
-      {
-        className: 'ds-milestone-card__badges',
-        onClick: onClick
-          ? function (e) { e.stopPropagation(); onClick(); }
-          : undefined,
-      },
-      list.map(function (t, i) {
-        var b = BADGE_TYPES[t];
-        var p = pos[i];
-        return h(
-          'span',
-          {
-            key: t + i,
-            className: 'ds-milestone-card__badge-icon',
-            style: { left: p.left + 'px', bottom: p.bottom + 'px', width: p.size + 'px', height: p.size + 'px' },
-          },
-          icon({ name: b.icon, size: p.iconSize, color: b.color })
-        );
-      })
-    );
-  }
-
-  function MilestoneCard(props) {
-    var width = props.width == null ? 170 : props.width;
-    var isBig = width > 150; // Dart: squircle32 / squircle24
-    var hasTitle = props.title != null && props.title !== '';
-
-    var cls =
-      'ds-milestone-card ds-milestone-card--' + (isBig ? 'big' : 'small') +
-      (props.isSelected ? ' is-selected' : '') +
-      (props.className ? ' ' + props.className : '');
-
-    // _BtnEdit: DotsIconButton pencil (size default large), bgBtnImage
-    var editBtn = null;
-    if (props.showEdit) {
-      var onEdit = props.onClickEdit
-        ? function (e) { if (e && e.stopPropagation) e.stopPropagation(); props.onClickEdit(); }
-        : undefined;
-      editBtn = h(
-        'span',
-        { className: 'ds-milestone-card__edit' },
-        __ds.DotsIconButton
-          ? h(__ds.DotsIconButton, {
-              icon: 'ic-pencil',
-              backgroundColor: 'var(--bg-btn-image)',
-              onClick: onEdit,
-            })
-          : h('button',
-              { type: 'button', className: 'ds-milestone-card__edit-fallback', onClick: onEdit },
-              icon({ name: 'ic-pencil', size: 24, color: 'var(--text-primary)' }))
-      );
-    }
-
-    return h(
-      'span',
-      { className: cls, style: { width: width + 'px' }, onClick: props.onClick },
-      props.src
-        ? h('img', { className: 'ds-milestone-card__img', src: props.src, alt: props.title || '' })
-        : h('span', { className: 'ds-milestone-card__img ds-milestone-card__img--default' }),
-      // _CardWithBlur: DotsLinearGradientBlur sigma 15, tint black 35%, fundido hasta 108px
-      hasTitle ? h('span', { className: 'ds-milestone-card__top-blur', 'aria-hidden': true }) : null,
-      hasTitle
-        ? h(
-            'span',
-            { className: 'ds-milestone-card__title-box' },
-            h('span',
-              { className: 'ds-milestone-card__title' + (props.limitTitle ? ' is-limited' : '') },
-              props.title),
-            props.date
-              ? h('span', { className: 'ds-milestone-card__date' }, props.date)
-              : null
-          )
-        : null,
-      // _CardBadge: badge-milestone-1.svg (data URI en el CSS), top 5 right 5
-      props.showBadge ? h('span', { className: 'ds-milestone-card__badge1', 'aria-hidden': true }) : null,
-      editBtn,
-      props.badgeTypes && props.badgeTypes.length
-        ? badgeGroup(props.badgeTypes, props.onBadgesClick)
-        : null
-    );
-  }
-  MilestoneCard.badgeTypes = BADGE_TYPES;
-  return MilestoneCard;
-})();
-
-
-// MilestonesList — port de lib/src/components/milestones/milestones_list.dart (Dart = fuente de verdad)
-__ds.MilestonesList = (function () {
-  'use strict';
-
-  // Constantes Dart
-  var CARD_HEIGHT = 326;
-  var BADGE_HEIGHT = 17;
-  var TAIL_EXTENSION = 64;
-  var CARD_WIDTH = (CARD_HEIGHT * 3) / 4; // MilestoneCard aspect 3:4 → 244.5
-  var PATTERN_1 = [0, -23, 37, 16, -38];
-  var PATTERN_2 = [0, -38, 37, -39, 29, 37];
-  var BEND = 20;
-
-  // PRNG determinista (mulberry32) — espejo funcional de Random(seed) de Dart
-  // (misma semilla ⇒ mismo layout entre renders; secuencia ≠ bit a bit que Dart)
-  function rng(seed) {
-    var a = seed >>> 0;
-    return function () {
-      a |= 0; a = (a + 0x6d2b79f5) | 0;
-      var t = Math.imul(a ^ (a >>> 15), 1 | a);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-  }
-
-  function isCard(item) {
-    return typeof item !== 'string';
-  }
-
-  // gap = 20–34 aleatorio entre cards, 64 entre badge y card (o viceversa)
-  function verticalSpacing(curr, next, rand) {
-    var currH = isCard(curr) ? CARD_HEIGHT : BADGE_HEIGHT;
-    var nextH = isCard(next) ? CARD_HEIGHT : BADGE_HEIGHT;
-    var gap = isCard(curr) && isCard(next) ? 20 + Math.floor(rand() * 15) : 64;
-    return currH / 2 + gap + nextH / 2;
-  }
-
-  function layout(list, seed, centerX) {
-    var rand = rng(seed);
-    var topPadding = BADGE_HEIGHT / 2;
-    var bottomPadding = CARD_HEIGHT / 2 + TAIL_EXTENSION;
-    var count = list.length;
-
-    // Patrones x: empieza con pattern1, luego alterna aleatoriamente
-    var xs = [];
-    var pattern = PATTERN_1;
-    while (xs.length < count) {
-      for (var k = 0; k < pattern.length && xs.length < count; k++) xs.push(pattern[k]);
-      pattern = rand() < 0.5 ? PATTERN_1 : PATTERN_2;
-    }
-
-    var points = [];
-    var y = topPadding;
-    var total = topPadding;
-    for (var i = 0; i < count; i++) {
-      points.push({ x: centerX + xs[i], y: y });
-      if (i < count - 1) {
-        var sp = verticalSpacing(list[i], list[i + 1], rand);
-        y += sp;
-        total += sp;
-      }
-    }
-    total += bottomPadding;
-    // Cola: prolonga la línea como si hubiera una última card fantasma
-    if (count > 0) points.push({ x: centerX + xs[count - 1], y: y + CARD_HEIGHT / 2 + TAIL_EXTENSION });
-    return { points: points, totalHeight: total };
-  }
-
-  // _BezierTimelinePainter: cuadráticas con control en el punto medio ± bend 20
-  function pathD(points) {
-    if (!points.length) return '';
-    var d = 'M ' + points[0].x + ' ' + points[0].y;
-    for (var i = 1; i < points.length; i++) {
-      var prev = points[i - 1];
-      var curr = points[i];
-      var dir = curr.x - prev.x >= 0 ? 1 : -1;
-      var cx = (prev.x + curr.x) / 2 + BEND * dir;
-      var cy = (prev.y + curr.y) / 2;
-      d += ' Q ' + cx + ' ' + cy + ' ' + curr.x + ' ' + curr.y;
-    }
-    return d;
-  }
-
-  function renderItem(item) {
-    var R = hooks();
-    if (typeof item === 'string') {
-      // Dart: BadgeMilestone(content, variant: ghost)
-      return __ds.BadgeMilestone
-        ? h(__ds.BadgeMilestone, { content: item, variant: 'ghost' })
-        : h('span', { className: 'ds-milestones-list__badge' }, item);
-    }
-    if (R.isValidElement && R.isValidElement(item)) return item; // elemento ya construido
-    // Objeto de props de MilestoneCard
-    var cardProps = Object.assign({ width: CARD_WIDTH }, item);
-    return __ds.MilestoneCard
-      ? h(__ds.MilestoneCard, cardProps)
-      : h('span', {
-          className: 'ds-milestones-list__card-fallback',
-          style: { width: cardProps.width + 'px' },
-        });
-  }
-
-  function MilestonesList(props) {
-    var R = hooks();
-    var list = props.list || [];
-    var seed = props.seed == null ? 1 : props.seed;
-    var ref = R.useRef(null);
-    var widthState = R.useState(props.width || 0);
-    var width = props.width || widthState[0] || 375;
-
-    R.useLayoutEffect(function () {
-      if (props.width) return;
-      function measure() {
-        if (ref.current) widthState[1](ref.current.clientWidth);
-      }
-      measure();
-      window.addEventListener('resize', measure);
-      return function () { window.removeEventListener('resize', measure); };
-    }, [props.width]);
-
-    var lay = R.useMemo(
-      function () { return layout(list, seed, width / 2); },
-      [list, seed, width]
-    );
-
-    var items = [];
-    for (var i = 0; i < list.length; i++) {
-      items.push(
-        h(
-          'span',
-          {
-            key: i,
-            className: 'ds-milestones-list__item',
-            style: { left: lay.points[i].x + 'px', top: lay.points[i].y + 'px' },
-          },
-          renderItem(list[i])
-        )
-      );
-    }
-
-    return h(
-      'div',
-      {
-        ref: ref,
-        className: 'ds-milestones-list' + (props.className ? ' ' + props.className : ''),
-        style: { height: lay.totalHeight + 'px' },
-      },
-      h(
-        'svg',
-        {
-          className: 'ds-milestones-list__line',
-          width: '100%',
-          height: lay.totalHeight,
-          viewBox: '0 0 ' + width + ' ' + lay.totalHeight,
-          fill: 'none',
-          'aria-hidden': true,
-        },
-        // Punteado: círculos r1 cada 8px (lineWidth 2, lineDotsSpacing 8, labelSecondary)
-        h('path', {
-          d: pathD(lay.points),
-          stroke: 'var(--label-secondary)',
-          strokeWidth: 2,
-          strokeDasharray: '0.1 8',
-          strokeLinecap: 'round',
-        })
-      ),
-      items
-    );
-  }
-  return MilestonesList;
-})();
-
-
-// NotificationBanner — port de lib/src/components/notifications/notification_banner.dart (Dart = fuente de verdad)
-__ds.NotificationBanner = (function () {
-  'use strict';
-
-  function NotificationBanner(props) {
-    var showClose = props.showCloseButton !== false;
-
-    // DotsMainButton(content, size: medium, variant: main, expand: false)
-    var actionEl = null;
-    if (props.actionButtonText != null && props.actionButtonText !== '') {
-      actionEl = h('div', { className: 'ds-notif-banner__action' },
-        __ds.DotsMainButton
-          ? h(__ds.DotsMainButton, {
-              label: props.actionButtonText,
-              size: 'medium',
-              variant: 'main',
-              expand: false,
-              onClick: props.onActionClick,
-            })
-          : h('button', {
-              type: 'button',
-              className: 'ds-notif-banner__action-fallback',
-              onClick: props.onActionClick,
-            }, props.actionButtonText)
-      );
-    }
-
-    // DotsCloseButton(icon: cross, size: medium, variant: softContrast) — Positioned top 12 right 12
-    var closeEl = null;
-    if (showClose) {
-      closeEl = h('div', { className: 'ds-notif-banner__close' },
-        __ds.DotsCloseButton
-          ? h(__ds.DotsCloseButton, {
-              icon: 'ic-cross',
-              size: 'medium',
-              variant: 'softContrast',
-              onClick: props.onClose,
-            })
-          : h('button', {
-              type: 'button',
-              className: 'ds-notif-banner__close-fallback',
-              onClick: props.onClose,
-              'aria-label': 'Cerrar',
-            }, '×')
-      );
-    }
-
-    return h('div',
-      { className: 'ds-notif-banner' + (props.className ? ' ' + props.className : '') },
-      h('div', { className: 'ds-notif-banner__title' }, props.title),
-      props.body != null
-        ? h('div', { className: 'ds-notif-banner__body' }, props.body)
-        : null,
-      actionEl,
-      closeEl
-    );
-  }
-
-  return NotificationBanner;
-})();
-
-
-// NotificationBannerImage — port de lib/src/components/notifications/notification_banner_image.dart (Dart = fuente de verdad)
-__ds.NotificationBannerImage = (function () {
-  'use strict';
-
-  var BTN_SIZES = { mainAction: 1, large: 1, medium: 1, small: 1 };
-
-  function NotificationBannerImage(props) {
-    var useState = hooks().useState;
-    var errState = useState(false);
-    var imgError = errState[0], setImgError = errState[1];
-
-    var imagePadding = props.imagePadding == null ? 20 : props.imagePadding;
-    var showClose = props.showCloseButton !== false;
-    var isBtnActive = props.isBtnActive !== false;
-    var btnSize = BTN_SIZES[props.actionButtonSize] ? props.actionButtonSize : 'medium';
-    var clickable = typeof props.onActionClick === 'function';
-
-    // Image(fit: cover) — imageSize opcional (cuadrada); errorBuilder → SizedBox.shrink
-    var imageEl = null;
-    if (props.src && !imgError) {
-      var imgStyle = props.imageSize != null
-        ? { width: props.imageSize + 'px', height: props.imageSize + 'px' }
-        : null;
-      imageEl = h('img', {
-        className: 'ds-notif-banner-img__img' + (props.imageSize != null ? ' ds-notif-banner-img__img--sized' : ''),
-        src: props.src,
-        alt: '',
-        style: imgStyle,
-        onError: function (e) {
-          setImgError(true); // Dart: errorBuilder → SizedBox.shrink()
-          if (props.onError) props.onError(e);
-        },
-      });
-    } else if (!props.src) {
-      // Sin src (en Dart imageProvider es required): placeholder degradado como screens/home.html
-      var phStyle = props.imageSize != null
-        ? { width: props.imageSize + 'px', height: props.imageSize + 'px' }
-        : null;
-      imageEl = h('div', { className: 'ds-notif-banner-img__placeholder', style: phStyle });
-    }
-
-    // RichText: description (textTertiary) + ' appendedDescription' (labelHighlight)
-    var descEl = null;
-    if (props.description) {
-      descEl = h('div', { className: 'ds-notif-banner-img__desc' },
-        props.description,
-        props.appendedDescription
-          ? h('span', { className: 'ds-notif-banner-img__desc-appended' }, ' ' + props.appendedDescription)
-          : null
-      );
-    }
-
-    var actionEl = null;
-    if (props.actionButtonText) {
-      // stopPropagation: en Dart el GestureDetector interno del botón gana al del banner (un solo tap)
-      actionEl = h('div', {
-        className: 'ds-notif-banner-img__action',
-        onClick: function (e) { e.stopPropagation(); },
-      },
-        __ds.DotsMainButton
-          ? h(__ds.DotsMainButton, {
-              label: props.actionButtonText,
-              size: btnSize,
-              variant: isBtnActive ? 'main' : 'secondary',
-              expand: false,
-              onClick: props.onActionClick,
-            })
-          : h('button', {
-              type: 'button',
-              className: 'ds-notif-banner-img__action-fallback',
-              onClick: props.onActionClick,
-            }, props.actionButtonText)
-      );
-    }
-
-    var closeEl = null;
-    if (showClose) {
-      closeEl = h('div', {
-        className: 'ds-notif-banner-img__close',
-        onClick: function (e) { e.stopPropagation(); }, // que cerrar no dispare onActionClick del banner
-      },
-        __ds.DotsCloseButton
-          ? h(__ds.DotsCloseButton, {
-              icon: 'ic-cross',
-              size: 'medium',
-              variant: 'softContrast',
-              onClick: props.onClose,
-            })
-          : h('button', {
-              type: 'button',
-              className: 'ds-notif-banner-img__close-fallback',
-              'aria-label': 'Cerrar',
-              onClick: function (e) {
-                e.stopPropagation();
-                if (props.onClose) props.onClose();
-              },
-            }, '×')
-      );
-    }
-
-    // Dart: si onActionTap != null, todo el banner es GestureDetector(onTap: onActionTap)
-    return h('div',
-      {
-        className: 'ds-notif-banner-img' +
-          (clickable ? ' ds-notif-banner-img--clickable' : '') +
-          (props.className ? ' ' + props.className : ''),
-        onClick: clickable ? props.onActionClick : undefined,
-      },
-      imageEl
-        ? h('div', {
-            className: 'ds-notif-banner-img__img-wrap',
-            style: { paddingLeft: imagePadding + 'px', paddingRight: imagePadding + 'px' },
-          }, imageEl)
-        : null,
-      h('div', { className: 'ds-notif-banner-img__content' },
-        h('div', { className: 'ds-notif-banner-img__title' }, props.title),
-        descEl,
-        actionEl
-      ),
-      closeEl
-    );
-  }
-
-  return NotificationBannerImage;
-})();
-
-
-// ProductCard — port de lib/src/components/cards/product_card/product_card.dart (Dart = fuente de verdad)
-__ds.ProductCard = (function () {
-  'use strict';
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  function dots(count, active) {
-    var items = [];
-    for (var i = 0; i < count; i++) {
-      items.push(h('span', {
-        key: 'd' + i,
-        className: 'ds-product-card__dot' + (i === active ? ' is-active' : ''),
-      }));
-    }
-    return h('div', { className: 'ds-product-card__dots' }, items);
-  }
-
-  function ProductCard(props) {
-    // Dart: AspectRatio(aspectRatio) sobre el ancho disponible; por defecto cuadrada.
-    var ratio = props.aspectRatio || 1;
-    var pageCount = props.pageCount || 0;
-    var children = [];
-
-    children.push(h('div', {
-      key: 'bg',
-      className: 'ds-product-card__bg' + (props.imageSrc ? '' : ' ds-product-card__bg--ph'),
-      style: props.imageSrc ? { backgroundImage: 'url("' + props.imageSrc + '")' } : null,
-    }));
-    children.push(h('div', { key: 'scrim', className: 'ds-product-card__scrim' }));
-
-    if (props.badge) {
-      children.push(h('div', { key: 'badge', className: 'ds-product-card__badge' }, props.badge));
-    }
-    if (pageCount > 0) {
-      children.push(h('div', { key: 'pc', className: 'ds-product-card__pagecontrol' },
-        dots(pageCount, props.activePage || 0)));
-    }
-
-    var copy = [h('div', { key: 't', className: 'ds-product-card__title' }, props.title || '')];
-    if (props.subtitle) {
-      copy.push(h('div', { key: 's', className: 'ds-product-card__subtitle' }, props.subtitle));
-    }
-    if (props.caption) {
-      var line = [h('span', { key: 'c' }, props.caption)];
-      if (props.captionPrevious) {
-        line.push(h('span', { key: 'cp', className: 'ds-product-card__caption-prev' }, props.captionPrevious));
-      }
-      copy.push(h('div', { key: 'cap', className: 'ds-product-card__caption' }, line));
-    }
-
-    var row = [h('div', { key: 'copy', className: 'ds-product-card__copy' }, copy)];
-    if (props.onActionClick) {
-      row.push(h('button', {
-        key: 'act',
-        className: 'ds-product-card__action',
-        onClick: function (e) { e.stopPropagation(); props.onActionClick(); },
-      }, icon({ name: props.actionIcon || 'ic-arrow-right', size: 20, color: 'currentColor' })));
-    }
-    children.push(h('div', { key: 'bottom', className: 'ds-product-card__bottom' }, row));
-
-    return h('div', {
-      className: 'ds-product-card' + (props.className ? ' ' + props.className : ''),
-      style: { aspectRatio: String(ratio) },
-      onClick: props.onClick,
-      role: props.onClick ? 'button' : undefined,
-    }, children);
-  }
-
-  return ProductCard;
-})();
-
-
-// RatingRow — port de lib/src/components/rating/rating_row.dart + rating_star.dart (Dart = fuente de verdad, widget DotsRatingStarRow / DotsRatingStar)
-__ds.RatingRow = (function () {
-  'use strict';
-
-  // Gradientes verticales reales de rating_star.dart (colores accent sin token CSS):
-  // detractor friends001→friends003, neutral class008→friends005, promoter family008→team007
-  var GRADIENTS = [
-    ['detractor', '#FAA25E', '#FA5B3D'],
-    ['neutral', '#FCD12A', '#F7954A'],
-    ['promoter', '#4FC976', '#01AF94'],
-  ];
-
-  function GradientDefs() {
-    return h(
-      'svg',
-      { width: 0, height: 0, style: { position: 'absolute' }, 'aria-hidden': true },
-      h(
-        'defs',
-        null,
-        GRADIENTS.map(function (g) {
-          return h(
-            'linearGradient',
-            { key: g[0], id: 'ds-rating-g-' + g[0], x1: '0', y1: '0', x2: '0', y2: '1' },
-            h('stop', { offset: '0', stopColor: g[1] }),
-            h('stop', { offset: '1', stopColor: g[2] }),
-          );
-        }),
-      ),
-    );
-  }
-
-  function Star(props) {
-    const Icon = __ds.DotsIcon;
-    const variant = props.variant || 'disabled';
-    const size = props.iconSize == null ? 28 : props.iconSize;
-    return h(
-      'span',
-      {
-        className:
-          'ds-rating-star ds-rating-star--' + variant + (props.onTap ? ' is-tappable' : ''),
-        onClick: props.onTap,
-      },
-      props.showText ? h('span', { className: 'ds-rating-star__label' }, props.label) : null,
-      h(
-        'span',
-        { className: 'ds-rating-star__icon' },
-        Icon
-          ? h(Icon, { name: 'ic-star', size: size })
-          : h('span', { className: 'ds-rating-star__icon-fallback', style: { fontSize: size + 'px' } }, '★'),
-      ),
-    );
-  }
-
-  // Port de _buildVariants (rating_row.dart)
-  function buildVariants(starLabels, selectedIndex) {
-    const n = starLabels.length;
-    const out = [];
-    for (let i = 0; i < n; i++) {
-      if (selectedIndex == null) { out.push('disabled'); continue; }
-      if (n === 5) { out.push(i <= selectedIndex ? 'neutral' : 'disabled'); continue; }
-      if (selectedIndex <= 5) out.push(i <= selectedIndex ? 'detractor' : 'disabled');
-      else if (selectedIndex <= 7) out.push(i <= selectedIndex ? 'neutral' : 'disabled');
-      else out.push(i <= selectedIndex ? 'promoter' : 'disabled');
-    }
-    return out;
-  }
-
-  function makeStar(props, variants, index) {
-    return h(Star, {
-      key: index,
-      label: props.starLabels[index],
-      variant: variants[index],
-      showText: props.showStarText !== false,
-      iconSize: props.iconSize,
-      onTap:
-        typeof props.onStarTap === 'function'
-          ? function () { props.onStarTap(index); }
-          : undefined,
-    });
-  }
-
-  function RatingRow(props) {
-    const starLabels = props.starLabels || [];
-    const variants = buildVariants(starLabels, props.selectedIndex == null ? null : props.selectedIndex);
-
-    let body;
-    if (props.compact) {
-      // _CompactLayout — primera fila de 6 (si >5) y segunda de 4, centradas, gap 5
-      const firstCount = starLabels.length > 5 ? 6 : starLabels.length;
-      const first = [];
-      for (let i = 0; i < firstCount; i++) first.push(makeStar(props, variants, i));
-      const rows = [h('div', { key: 'r1', className: 'ds-rating-row__stars ds-rating-row__stars--compact' }, first)];
-      if (starLabels.length > 5) {
-        const second = [];
-        for (let j = 6; j < starLabels.length; j++) second.push(makeStar(props, variants, j));
-        rows.push(h('div', { key: 'r2', className: 'ds-rating-row__stars ds-rating-row__stars--compact' }, second));
-      }
-      body = rows;
-    } else {
-      // _DefaultLayout — spaceBetween + textos abajo (labelSmallMedium textQuarternary)
-      const stars = [];
-      for (let i = 0; i < starLabels.length; i++) stars.push(makeStar(props, variants, i));
-      body = [
-        h('div', { key: 'stars', className: 'ds-rating-row__stars' }, stars),
-        h(
-          'div',
-          { key: 'ends', className: 'ds-rating-row__ends' },
-          h('span', null, props.leftText || ''),
-          h('span', null, props.rightText || ''),
-        ),
-      ];
-    }
-
-    return h(
-      'div',
-      { className: 'ds-rating-row' + (props.compact ? ' ds-rating-row--compact' : '') },
-      h(GradientDefs, null),
-      body,
-    );
-  }
-  return RatingRow;
-})();
-
-
-// RecapCard — port de lib/src/components/cards/recap/ (recap_card.dart + recap_card_locked.dart
-// unificados vía prop `locked`; CountdownRecap de countdown_recap.dart embebido). Dart = fuente de verdad.
-__ds.RecapCard = (function () {
-  'use strict';
-  var VARIANTS = { active: true, blocked: true, generated: true, onlyTitle: true }; // RecapCardVariant
-  var LOCKED_VARIANTS = { countdown: true, locked: true, soon: true };             // RecapCardLockedVariant
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', { style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' } });
-  }
-
-  function stopWrap(fn) {
-    if (!fn) return undefined;
-    return function (e) { if (e && e.stopPropagation) e.stopPropagation(); fn(e); };
-  }
-
-  function pad2(n) { return (n < 10 ? '0' : '') + n; }
-
-  function mainButton(p, fbClass) {
-    return __ds.DotsMainButton
-      ? h(__ds.DotsMainButton, p)
-      : h('button', { type: 'button', className: fbClass, onClick: p.onClick },
-          p.icon ? icon({ name: p.icon, size: 16, color: 'currentColor' }) : null, p.label);
-  }
-
-  function imageLayer(props, blurred) {
-    return h('div', {
-      className: 'ds-recap-card__img' + (props.imageSrc ? '' : ' ds-recap-card__img--ph') + (blurred ? ' ds-recap-card__img--blur' : ''),
-      style: props.imageSrc ? { backgroundImage: 'url("' + props.imageSrc + '")' } : null,
-    });
-  }
-
-  function RecapCard(props) {
-    var R = hooks();
-    var useState = R.useState, useEffect = R.useEffect;
-    var locked = !!props.locked;
-    var lockedVariant = LOCKED_VARIANTS[props.lockedVariant] ? props.lockedVariant : 'countdown';
-    var variant = VARIANTS[props.variant] ? props.variant : 'active'; // Dart: factories; default web active
-    var width = props.width == null ? 220 : props.width;
-
-    // CountdownRecap — tick de 1s mientras quede tiempo (Dart: Timer.periodic)
-    var target = (locked && lockedVariant === 'countdown' && props.countdownDate)
-      ? new Date(props.countdownDate).getTime()
-      : 0;
-    var tick = useState(0);
-    useEffect(function () {
-      if (!target || target - Date.now() <= 0) return undefined;
-      var id = setInterval(function () {
-        if (target - Date.now() <= 0) clearInterval(id);
-        tick[1](function (n) { return n + 1; });
-      }, 1000);
-      return function () { clearInterval(id); };
-    }, [target]);
-    var remaining = target ? Math.max(0, target - Date.now()) : 0;
-
-    return locked
-      ? renderLocked(props, lockedVariant, width, remaining)
-      : renderUnlocked(props, variant, width);
-  }
-
-  // ---- RecapCard (recap_card.dart): 4:5, squircle52, overlay negro 30% + borde 2 borderButton ----
-  function renderUnlocked(props, variant, width) {
-    var isBlocked = variant === 'blocked';
-    var isGenerated = variant === 'generated';
-    var isOnlyTitle = variant === 'onlyTitle'; // Dart: active sin título/badge/botón
-
-    var title = isOnlyTitle ? null : props.title;
-    var badgeText = isOnlyTitle ? null : props.badgeText;
-    var buttonText = isOnlyTitle ? null : props.buttonText;
-
-    // Lado derecho de la fila superior (badge premium / share / lock)
-    var control = null;
-    if (!isBlocked && badgeText) {
-      control = __ds.BadgeLabel
-        ? h(__ds.BadgeLabel, { content: badgeText, variant: 'premium', size: 'large' })
-        : h('span', { className: 'ds-recap-card__badge-fb' }, badgeText);
-    } else if (isGenerated && !badgeText) {
-      // DotsIconButton floating large Ø44 · icono share 24 · textPrimary
-      control = h('button', {
-        type: 'button', className: 'ds-recap-card__icon-btn', onClick: stopWrap(props.onInfoClick),
-        'aria-label': 'share',
-      }, icon({ name: 'ic-share', size: 24, color: 'currentColor' }));
-    } else if (isBlocked) {
-      // DotsIconButton floating large Ø44 · lock · bgBtnImage al 50%
-      control = h('button', {
-        type: 'button', className: 'ds-recap-card__icon-btn ds-recap-card__icon-btn--half', onClick: stopWrap(props.onInfoClick),
-        'aria-label': 'lock',
-      }, icon({ name: 'ic-lock', size: 24, color: 'currentColor' }));
-    }
-
-    // Zona inferior: createdBy (generated) o DotsMainButton main con blur
-    var bottom = null;
-    if (isGenerated) {
-      bottom = h('div', { className: 'ds-recap-card__created-by' },
-        props.albumName ? h('span', null, props.albumName) : null,
-        props.createdBy ? h('span', null, props.createdBy) : null);
-    } else if (buttonText) {
-      bottom = mainButton({
-        label: buttonText, variant: 'main', expand: false, shouldApplyBlur: true,
-        onClick: stopWrap(props.onClick),
-      }, 'ds-recap-card__cta-fb');
-    }
-
-    return h('div', {
-      className: 'ds-recap-card' + (props.className ? ' ' + props.className : ''),
-      style: { width: width + 'px' },
-      onClick: props.onClick,
-      role: props.onClick ? 'button' : undefined,
-    },
-      imageLayer(props, isBlocked), // blocked → ImageFilter.blur(15)
-      h('div', { className: 'ds-recap-card__overlay' },
-        props.textImageSrc ? h('div', {
-          className: 'ds-recap-card__text-img',
-          style: { backgroundImage: 'url("' + props.textImageSrc + '")' },
-        }) : null),
-      h('div', { className: 'ds-recap-card__inner' },
-        h('div', { className: 'ds-recap-card__title-row' },
-          title
-            ? h('span', { className: 'ds-recap-card__ttl' },
-                icon({ name: 'ic-clock--timer', size: 16, color: 'currentColor' }), title)
-            : h('span', null),
-          control),
-        h('div', { className: 'ds-recap-card__bottom' }, bottom))
-    );
-  }
-
-  // ---- RecapCardLocked (recap_card_locked.dart): 7:8, squircle52, pad 20, CountdownRecap ----
-  function renderLocked(props, lockedVariant, width, remaining) {
-    var showTimes = lockedVariant === 'countdown' && remaining > 0;
-    var body;
-    if (showTimes) {
-      var d = Math.floor(remaining / 86400000);
-      var hrs = Math.floor(remaining / 3600000) % 24;
-      var min = Math.floor(remaining / 60000) % 60;
-      var sec = Math.floor(remaining / 1000) % 60;
-      body = h('div', { className: 'ds-recap-card__times' },
-        timeItem(pad2(d), props.daysLabel),
-        timeItem(pad2(hrs), props.hoursLabel),
-        timeItem(pad2(min), props.minutesLabel),
-        timeItem(pad2(sec), props.secondsLabel));
-    } else {
-      // Dart: countdown terminado (o variantes locked/soon) → descripción
-      body = h('div', { className: 'ds-recap-card__cd-desc' }, props.description || '');
-    }
-
-    return h('div', {
-      className: 'ds-recap-card ds-recap-card--locked' + (props.className ? ' ' + props.className : ''),
-      style: { width: width + 'px' },
-    },
-      imageLayer(props, !!props.blurImage), // blurImageProvider → ImageFilter.blur(15)
-      h('div', { className: 'ds-recap-card__inner' },
-        lockedVariant !== 'soon'
-          ? h('button', {
-              type: 'button',
-              className: 'ds-recap-card__icon-btn ds-recap-card__icon-btn--medium ds-recap-card__info',
-              onClick: props.onInfoClick,
-              'aria-label': 'info',
-            }, icon({ name: 'ic-info', size: 20, color: 'currentColor' }))
-          : null,
-        // CountdownRecap — w192 r24 borde blanco 30% + blur20
-        h('div', { className: 'ds-recap-card__countdown' },
-          h('span', { className: 'ds-recap-card__cd-lock' }, icon({ name: 'ic-lock', size: 20, color: 'currentColor' })),
-          h('div', { className: 'ds-recap-card__cd-ttl' }, props.title || ''),
-          body),
-        lockedVariant === 'locked' && props.buttonText
-          ? h('div', { className: 'ds-recap-card__bottom' },
-              mainButton({
-                label: props.buttonText, variant: 'main', expand: false, icon: 'ic-gallery',
-                onClick: props.onButtonClick,
-              }, 'ds-recap-card__cta-fb'))
-          : null)
-    );
-  }
-
-  function timeItem(value, label) {
-    return h('span', { className: 'ds-recap-card__t' },
-      h('span', { className: 'ds-recap-card__t-v' }, value),
-      h('span', { className: 'ds-recap-card__t-l' }, label || ''));
-  }
-
-  return RecapCard;
-})();
-
-
-// UserItem — port de lib/src/components/user_items/user_item.dart
-// (+ user_info.dart → UserItem.Info, user_info_data.dart → props planos name/details/src/alias).
-// Dart = fuente de verdad.
-__ds.UserItem = (function () {
-  'use strict';
-
-  function gradVariant(seed) {
-    var s = String(seed == null ? '' : seed);
-    var n = 0;
-    for (var i = 0; i < s.length; i++) n = (n + s.charCodeAt(i)) % 997;
-    return 'abcd'[n % 4];
-  }
-
-  function initials(name) {
-    var parts = String(name || '').trim().split(/\s+/).filter(Boolean);
-    if (!parts.length) return '';
-    var out = parts[0].charAt(0);
-    if (parts.length > 1) out += parts[1].charAt(0);
-    return out.toUpperCase();
-  }
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', {
-          style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' },
-        });
-  }
-
-  // UserInfo — avatar 26 (small) / 40 (large) + nombre (+ details)
-  function Info(props) {
-    var useState = hooks().useState;
-    var errState = useState(false);
-    var hasError = errState[0];
-    var setError = errState[1];
-
-    var size = props.size === 'large' ? 'large' : 'small'; // UserInfoSize (default small)
-    var showImg = !!props.src && !hasError;
-
-    var avatar;
-    if (showImg) {
-      avatar = h(
-        'span',
-        { className: 'ds-user-info__avatar' },
-        h('img', {
-          className: 'ds-user-info__avatar-img',
-          src: props.src,
-          alt: props.name || '',
-          onError: function (e) {
-            setError(true);
-            if (props.onError) props.onError(e);
-          },
-        })
-      );
-    } else if (props.alias) {
-      // aliasLabelImageText — círculo bgContainerSecondaryOnBackground + textTertiary
-      avatar = h(
-        'span',
-        { className: 'ds-user-info__avatar ds-user-info__avatar--alias' },
-        props.alias
-      );
-    } else {
-      // Sin src ni alias — placeholder degradado con iniciales
-      avatar = h(
-        'span',
-        {
-          className:
-            'ds-user-info__avatar ds-user-info__avatar--ph ds-user-info__avatar--ph-' +
-            gradVariant(props.name),
-        },
-        initials(props.name)
-      );
-    }
-
-    return h(
-      'span',
-      {
-        className:
-          'ds-user-info ds-user-info--' + size + (props.className ? ' ' + props.className : ''),
-      },
-      avatar,
-      h(
-        'span',
-        { className: 'ds-user-info__names' },
-        h('span', { className: 'ds-user-info__name' }, props.name || ''),
-        props.details ? h('span', { className: 'ds-user-info__details' }, props.details) : null
-      )
-    );
-  }
-
-  // UserItem — 170×45, squircle24, bgStrong, sombra flotante, addCircle 20 labelHighlight
-  function UserItem(props) {
-    return h(
-      'button',
-      {
-        type: 'button',
-        className: 'ds-user-item' + (props.className ? ' ' + props.className : ''),
-        onClick: props.onClick
-          ? function () {
-              props.onClick(props.id == null ? null : props.id);
-            }
-          : undefined,
-      },
-      h(Info, {
-        name: props.name,
-        details: props.details,
-        src: props.src,
-        alias: props.alias,
-        onError: props.onError,
-        size: 'small',
-      }),
-      icon({ name: 'ic-add-circle', size: 20, color: 'var(--label-highlight)' })
-    );
-  }
-
-  UserItem.Info = Info;
-  return UserItem;
-})();
-
-
-// UsersList — port de lib/src/components/users_list/users_list.dart
-// (+ users_item_list.dart → UsersList.Item con `variant` = UserItemListVariant).
-// Dart = fuente de verdad.
-__ds.UsersList = (function () {
-  'use strict';
-
-  var VARIANTS = {
-    main: 1, label: 1, textfield: 1, button: 1, pending: 1,
-    join: 1, waiting: 1, basic: 1, existingAlias: 1, pendingMember: 1,
-  };
-
-  function icon(p) {
-    return __ds.DotsIcon
-      ? h(__ds.DotsIcon, p)
-      : h('span', {
-          style: { display: 'inline-block', width: p.size + 'px', height: p.size + 'px' },
-        });
-  }
-
-  function userInfo(props, size) {
-    var Info = __ds.UserItem && __ds.UserItem.Info;
-    return Info
-      ? h(Info, {
-          name: props.name,
-          details: props.details,
-          src: props.src,
-          alias: props.alias,
-          size: size,
-        })
-      : h('span', { className: 'ds-users-item__info-fallback' }, props.name || '');
-  }
-
-  function closeButton(onClick) {
-    return __ds.DotsCloseButton
-      ? h(__ds.DotsCloseButton, { size: 'extraSmall', onClick: onClick })
-      : h('button', { type: 'button', className: 'ds-users-item__close-fallback', onClick: onClick }, '×');
-  }
-
-  function mainButton(label, variant, onClick) {
-    return __ds.DotsMainButton
-      ? h(__ds.DotsMainButton, {
-          label: label || '',
-          variant: variant,
-          size: 'small',
-          expand: false,
-          onClick: onClick,
-        })
-      : h('button', { type: 'button', onClick: onClick }, label || '');
-  }
-
-  // UsersItemList — una fila (leading + trailing por variante)
-  function Item(props) {
-    var variant = VARIANTS[props.variant] ? props.variant : 'main';
-    var tapValue = props.id == null ? '' : props.id;
-    function tap() {
-      if (props.onClick) props.onClick(tapValue);
-    }
-
-    // _MainWidget
-    var main;
-    if (variant === 'textfield') {
-      main = h('input', {
-        className: 'ds-users-item__textfield',
-        type: 'text',
-        placeholder: props.label || '',
-        defaultValue: props.textValue || '',
-        maxLength: 50, // LengthLimitingTextInputFormatter(50)
-        autoFocus: props.autofocusOnEmpty !== false && !(props.textValue || '').length,
-        onChange: props.textOnChange
-          ? function (e) {
-              props.textOnChange(tapValue, e.target.value);
-            }
-          : undefined,
-      });
-    } else if (variant === 'button') {
-      main = h(
-        'span',
-        { className: 'ds-users-item__add' },
-        icon({ name: props.icon || 'ic-add', size: 16, color: 'var(--label-highlight)' }),
-        h('span', null, props.label || '')
-      );
-    } else {
-      // waiting / pendingMember → UserInfoSize.large, resto small
-      main = userInfo(props, variant === 'waiting' || variant === 'pendingMember' ? 'large' : 'small');
-    }
-
-    // _TrailingWidget
-    var trailing = null;
-    if (variant === 'main' || variant === 'textfield') {
-      trailing = closeButton(tap);
-    } else if (variant === 'pending' || variant === 'join') {
-      trailing = h(
-        'span',
-        { className: 'ds-users-item__trail-icon' },
-        icon({
-          name: variant === 'join' ? 'ic-chevron-right' : 'ic-clock-filled',
-          size: props.iconSize == null ? (variant === 'join' ? 14 : 16) : props.iconSize,
-          color: 'var(--text-secondary)',
-        })
-      );
-    } else if (variant === 'label') {
-      trailing = h('span', { className: 'ds-users-item__role' }, props.label || '');
-    } else if (variant === 'pendingMember') {
-      trailing = h(
-        'span',
-        { className: 'ds-users-item__btns' },
-        mainButton(props.buttonLabel1, 'main', function () {
-          if (props.onButton1Click) props.onButton1Click(tapValue);
-        }),
-        mainButton(props.buttonLabel2, 'secondary', function () {
-          if (props.onButton2Click) props.onButton2Click(tapValue);
-        })
-      );
-    }
-
-    var clickableRow = variant !== 'textfield' && variant !== 'main' && variant !== 'pendingMember';
-    return h(
-      'div',
-      {
-        className:
-          'ds-users-item ds-users-item--' + variant +
-          (props.className ? ' ' + props.className : ''),
-        onClick: clickableRow && props.onClick ? tap : undefined,
-        role: clickableRow && props.onClick ? 'button' : undefined,
-      },
-      main,
-      trailing
-    );
-  }
-
-  // UsersList — contenedor r26 bgContainerSecondaryOnBackground con divisores
-  function UsersList(props) {
-    var members = props.members || [];
-    if (!members.length) return null;
-
-    var items = members.map(function (m, index) {
-      var base = {
-        key: m.id == null ? 'm' + index : m.id,
-        id: m.id,
-        name: m.name,
-        details: m.details,
-        src: m.src,
-        alias: m.alias,
-      };
-
-      // Creator — siempre el índice 0 (Dart)
-      if (index === 0) {
-        return h(Item, Object.assign(base, { variant: 'label', label: props.creatorLabel }));
-      }
-
-      switch (m.memberType) {
-        case 'creator':
-          return null; // ya tratado arriba (Dart: Offstage)
-        case 'admin':
-          return h(
-            Item,
-            Object.assign(base, {
-              variant: 'label',
-              label: props.adminLabel,
-              onClick: props.memberOnClick,
-            })
-          );
-        case 'friend':
-          return h(Item, Object.assign(base, { variant: 'main', onClick: props.memberOnClick }));
-        case 'member':
-          return props.canModifyMembers
-            ? h(
-                Item,
-                Object.assign(base, { variant: 'join', onClick: props.memberOnClick, iconSize: 22 })
-              )
-            : h(Item, Object.assign(base, { variant: 'basic' }));
-        case 'existingAlias':
-          return h(Item, Object.assign(base, { variant: 'existingAlias' }));
-        case 'alias':
-          return h(
-            Item,
-            Object.assign(base, {
-              variant: 'textfield',
-              label: props.textfieldLabel || '',
-              textValue: m.name,
-              onClick: props.memberOnClick,
-              textOnChange: props.textOnChange,
-              autofocusOnEmpty: props.autofocusOnEmpty,
-            })
-          );
-        default:
-          return h(Item, Object.assign(base, { variant: 'basic' }));
-      }
-    });
-
-    // Botones de añadir al final (Dart)
-    if (props.addParticipantLabel && props.addParticipantOnClick) {
-      items.push(
-        h(Item, {
-          key: '__add-participant',
-          variant: 'button',
-          label: props.addParticipantLabel,
-          icon: 'ic-add',
-          onClick: props.addParticipantOnClick,
-        })
-      );
-    }
-    if (props.showAddFriendButton && props.addFriendLabel && props.addFriendOnClick) {
-      items.push(
-        h(Item, {
-          key: '__add-friend',
-          variant: 'button',
-          label: props.addFriendLabel,
-          icon: 'ic-user',
-          onClick: props.addFriendOnClick,
-        })
-      );
-    }
-
-    return h(
-      'div',
-      { className: 'ds-users-list' + (props.className ? ' ' + props.className : '') },
-      items
-    );
-  }
-
-  UsersList.Item = Item;
-  return UsersList;
-})();
 
 
 })();
