@@ -106,7 +106,8 @@ export interface UsersListItemProps {
   autofocusOnEmpty?: boolean;
   /** (pending/join) Trailing icon size */
   iconSize?: number;
-  /** Row tap (a native button named by `name`, or `label` for the button rows) / close button; receives the id */
+  /** Row tap (a native button named by `name`, or `label` for the button rows); on main/textfield the close
+   *  button fires it too — Dart wires both to the same onTap. Receives the id */
   onClick?: (id: string) => void;
   /** (pendingMember) Button 1 (main) label */
   buttonLabel1?: string;
@@ -183,14 +184,16 @@ export function UsersListItem(props: UsersListItemProps) {
     );
   }
 
-  // The rows that hold native controls (close button / button pair) are never tappable as a whole
-  const clickableRow = variant !== 'textfield' && variant !== 'main' && variant !== 'pendingMember';
+  // Dart wraps every row but `textfield` in a translucent GestureDetector (main included: the row and its
+  // close button both call onTap). `pendingMember` is left out as well: its factory takes no onTap, so
+  // only its button pair ever fires.
+  const clickableRow = variant !== 'textfield' && variant !== 'pendingMember';
   const rowClickable = clickableRow && !!props.onClick;
   return (
     <div className={`ds-users-item ds-users-item--${variant}${props.className ? ` ${props.className}` : ''}`}>
       {/* Row tap: a transparent native button that covers the row, rendered as the first child and a
           sibling of the row content — not as a role=button row, which would make any nested control
-          presentational. */}
+          presentational. Nested controls (main's close button) are raised above it in CSS. */}
       {rowClickable ? <button type="button" className="ds-users-list__hit" aria-label={props.name || props.label} onClick={tap} /> : null}
       {main}
       {trailing}
