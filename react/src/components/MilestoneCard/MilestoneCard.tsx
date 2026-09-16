@@ -33,6 +33,8 @@ export interface MilestoneCardProps {
   badgeTypes?: MilestoneBadgeType[];
   /** Dart `onBadgesTap` */
   onBadgesClick?: () => void;
+  /** Accessible name of the badge group (icon-only control); applied only with `onBadgesClick` */
+  badgesLabel?: string;
   className?: string;
 }
 
@@ -46,7 +48,7 @@ const BADGE_TYPES: Record<MilestoneBadgeType, { icon: string; color: string }> =
 
 // BadgeIconGroup (badges/badge_icon_group.dart): 63×70, [0] medium(36/20) left0 bottom0,
 // [1] small(28/16) left 4|31 bottom 42|31 depending on n, [2] small left35 bottom26
-function badgeGroup(types: MilestoneBadgeType[], onClick?: () => void) {
+function badgeGroup(types: MilestoneBadgeType[], onClick?: () => void, label?: string) {
   const list = types.slice(0, 3).filter((t) => BADGE_TYPES[t]);
   if (!list.length) return null;
   const pos = [
@@ -61,6 +63,7 @@ function badgeGroup(types: MilestoneBadgeType[], onClick?: () => void) {
       className="ds-milestone-card__badges"
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
+      aria-label={onClick ? label : undefined}
       onClick={
         onClick
           ? (e: MouseEvent) => {
@@ -132,7 +135,7 @@ export function MilestoneCard(props: MilestoneCardProps) {
           <DotsIconButton icon="ic-pencil" backgroundColor="var(--bg-btn-image)" onClick={props.onClickEdit} />
         </span>
       ) : null}
-      {props.badgeTypes && props.badgeTypes.length ? badgeGroup(props.badgeTypes, props.onBadgesClick) : null}
+      {props.badgeTypes && props.badgeTypes.length ? badgeGroup(props.badgeTypes, props.onBadgesClick, props.badgesLabel) : null}
     </span>
   );
 }
