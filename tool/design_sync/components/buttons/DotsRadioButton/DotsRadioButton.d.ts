@@ -11,5 +11,9 @@ export interface DotsRadioButtonProps {
     size?: number;
     /** Disabled (web extension; the Dart widget does not expose it) */
     disabled?: boolean;
+    /** Accessible name: the radio has no text of its own, so the parent names the option */
+    ariaLabel?: string;
+    /** Id of the element that names the option (alternative to `ariaLabel`) */
+    ariaLabelledBy?: string;
 }
 export declare function DotsRadioButton(props: DotsRadioButtonProps): import("react").JSX.Element;

@@ -107,6 +107,24 @@ for (const n of names) {
       `Object.assign(window, { ${n}: window.${NAMESPACE}.${n} });\n`,
   );
 }
+// ── .d.ts of ported components (from tsc) ───────────────────────────────────
+const typesDir = join(BUILD_DIR, 'types');
+execSync(`npx tsc -p tsconfig.json --noEmit false --emitDeclarationOnly --declaration --outDir ${typesDir}`, {
+  cwd: PKG_DIR,
+  stdio: 'inherit',
+});
+for (const n of ported) {
+  const gen = join(typesDir, 'components', n, `${n}.d.ts`);
+  if (!existsSync(gen)) continue;
+  const txt = readFileSync(gen, 'utf8');
+  if (/from '\.{1,2}\//.test(txt)) {
+    console.warn(`! ${n}.d.ts keeps the hand-written card copy (generated one has relative imports)`);
+    continue;
+  }
+  writeFileSync(join(COMP_ROOT, groupOf[n], n, `${n}.d.ts`), `import * as React from 'react';\n\n${txt}`);
+}
+
+// ── source hashes (after the .d.ts are emitted, so they hash the current declarations) ──
 const sourceHashes = {};
 for (const n of names) {
   const base = `components/${groupOf[n]}/${n}/${n}`;
@@ -149,23 +167,6 @@ writeFileSync(
 @import "./_ds_bundle.css";
 `,
 );
-
-// ── .d.ts of ported components (from tsc) ───────────────────────────────────
-const typesDir = join(BUILD_DIR, 'types');
-execSync(`npx tsc -p tsconfig.json --noEmit false --emitDeclarationOnly --declaration --outDir ${typesDir}`, {
-  cwd: PKG_DIR,
-  stdio: 'inherit',
-});
-for (const n of ported) {
-  const gen = join(typesDir, 'components', n, `${n}.d.ts`);
-  if (!existsSync(gen)) continue;
-  const txt = readFileSync(gen, 'utf8');
-  if (/from '\.{1,2}\//.test(txt)) {
-    console.warn(`! ${n}.d.ts keeps the hand-written card copy (generated one has relative imports)`);
-    continue;
-  }
-  writeFileSync(join(COMP_ROOT, groupOf[n], n, `${n}.d.ts`), `import * as React from 'react';\n\n${txt}`);
-}
 
 // ── sentinel ────────────────────────────────────────────────────────────────
 writeFileSync(join(DS, '_ds_needs_recompile'), '{"by":"design-sync-cli"}\n');
