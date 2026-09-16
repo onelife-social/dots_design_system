@@ -66,6 +66,7 @@ export function DotsTextFieldPhone(props: DotsTextFieldPhoneProps) {
     <span
       className={`ds-tf-phone__lead${enabled ? '' : ' ds-tf-phone__lead--disabled'}`}
       role="button"
+      aria-disabled={enabled ? undefined : true}
       tabIndex={enabled ? 0 : undefined}
       onClick={handleCountryClick}
       onKeyDown={handleCountryKeyDown}
