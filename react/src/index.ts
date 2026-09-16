@@ -74,3 +74,5 @@ export { DotsListItem } from './components/DotsListItem/DotsListItem';
 export type { DotsListItemProps, DotsListItemVariant, DotsListItemPicType } from './components/DotsListItem/DotsListItem';
 export { DotsHomeTopBar } from './components/DotsHomeTopBar/DotsHomeTopBar';
 export type { DotsHomeTopBarProps, DotsHomeTopBarVariant } from './components/DotsHomeTopBar/DotsHomeTopBar';
+export { DotsNavBar } from './components/DotsNavBar/DotsNavBar';
+export type { DotsNavBarProps, DotsNavBarItem } from './components/DotsNavBar/DotsNavBar';
