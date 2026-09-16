@@ -56,3 +56,5 @@ export { DotsEmptyStateCard } from './components/DotsEmptyStateCard/DotsEmptySta
 export type { DotsEmptyStateCardProps, DotsEmptyStateCardVariant } from './components/DotsEmptyStateCard/DotsEmptyStateCard';
 export { DotsFilterChip } from './components/DotsFilterChip/DotsFilterChip';
 export type { DotsFilterChipProps } from './components/DotsFilterChip/DotsFilterChip';
+export { DotsToast } from './components/DotsToast/DotsToast';
+export type { DotsToastProps, DotsToastVariant } from './components/DotsToast/DotsToast';
