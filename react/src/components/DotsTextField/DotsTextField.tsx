@@ -23,6 +23,11 @@ export interface DotsTextFieldProps {
   onFocusLost?: (text: string) => void;
   /** Max length. Dart: maxTextLength */
   maxTextLength?: number;
+  /**
+   * Input filter applied to every change and to the displayed value (typed or pasted text) —
+   * web counterpart of Dart `inputFormatters`, e.g. digits only for the phone field.
+   */
+  inputFilter?: (text: string) => string;
   /** Error state. Dart: isError (default false) */
   isError?: boolean;
   /** Error text under the field (only with background). Dart: errorText */
@@ -57,7 +62,9 @@ export function DotsTextField(props: DotsTextFieldProps) {
   const [focused, setFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const text = controlled ? String(props.value) : innerText;
+  const filter = props.inputFilter;
+  const rawText = controlled ? String(props.value) : innerText;
+  const text = filter ? filter(rawText) : rawText;
   const enabled = props.enabled !== false; // Dart: enabled = true
   const background = props.background !== false; // Dart: background = true
   const showUnderline = !!props.showUnderline; // Dart: showUnderline = false
@@ -68,7 +75,7 @@ export function DotsTextField(props: DotsTextFieldProps) {
   const kb = (props.keyboardType && KEYBOARD[props.keyboardType]) || { type: 'text', inputMode: undefined };
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const v = e.target.value;
+    const v = filter ? filter(e.target.value) : e.target.value;
     if (!controlled) setText(v);
     props.onChanged?.(v);
   }

@@ -46,6 +46,9 @@ export interface DotsTextFieldPhoneProps {
   autoFocus?: boolean;
 }
 
+// Dart: FilteringTextInputFormatter.digitsOnly — letters typed or pasted never reach value/onChanged
+const digitsOnly = (text: string) => text.replace(/\D+/g, '');
+
 export function DotsTextFieldPhone(props: DotsTextFieldPhoneProps) {
   const enabled = props.enabled !== false; // Dart: enabled = true
   const cc = props.countryCode || { dialCode: '', flagEmoji: '' };
@@ -98,6 +101,7 @@ export function DotsTextFieldPhone(props: DotsTextFieldPhoneProps) {
       background={props.background}
       showUnderline={props.showUnderline}
       keyboardType="phone" // TextInputType.phone → type=tel/inputMode tel
+      inputFilter={digitsOnly} // Dart: FilteringTextInputFormatter.digitsOnly
       autoFocus={props.autoFocus}
     />
   );
