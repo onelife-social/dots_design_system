@@ -20,13 +20,13 @@
 }
 .ds-capture__inner--photo { background: var(--label-always-white); }
 .ds-capture__inner--video { background: var(--label-destructive); }
-/* arco de progreso — empieza arriba (startAngle -π/2 en Dart) */
+/* progress arc — starts at the top (startAngle -π/2 in Dart) */
 .ds-capture__ring {
   position: absolute;
   inset: 0;
   transform: rotate(-90deg);
 }
-/* icono stop — 32 × 32, r8 (_RecordingButton) */
+/* stop icon — 32 × 32, r8 (_RecordingButton) */
 .ds-capture__stop {
   width: 32px;
   height: 32px;

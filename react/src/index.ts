@@ -58,3 +58,5 @@ export { DotsSystemButton } from './components/DotsSystemButton/DotsSystemButton
 export type { DotsSystemButtonProps, DotsSystemButtonSize, DotsSystemButtonVariant } from './components/DotsSystemButton/DotsSystemButton';
 export { DotsFloatingButton } from './components/DotsFloatingButton/DotsFloatingButton';
 export type { DotsFloatingButtonProps } from './components/DotsFloatingButton/DotsFloatingButton';
+export { DotsCaptureButton } from './components/DotsCaptureButton/DotsCaptureButton';
+export type { DotsCaptureButtonProps, DotsCaptureButtonType, DotsCaptureButtonState } from './components/DotsCaptureButton/DotsCaptureButton';
