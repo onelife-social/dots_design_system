@@ -1,4 +1,4 @@
-/* DotsInputStepper — 116 × 41, píldora r1000 (dots_input_stepper.dart) */
+/* DotsInputStepper — 116 × 41, pill r1000 (dots_input_stepper.dart) */
 .ds-stepper {
   box-sizing: border-box;
   width: 116px;
@@ -24,14 +24,13 @@
   align-items: center;
   justify-content: center;
   color: var(--text-tertiary);
-  font: 500 14px/1 var(--font-main); /* solo visible en el glifo fallback */
 }
 .ds-stepper__btn.is-disabled {
   color: var(--text-disabled);
   cursor: default;
   pointer-events: none;
 }
-/* valor — bodyLargeMedium 16/500, textPrimary */
+/* value — bodyLargeMedium 16/500, textPrimary */
 .ds-stepper__value {
   font: 500 16px/1.31 var(--font-main);
   letter-spacing: -0.05px;

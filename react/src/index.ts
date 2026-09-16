@@ -60,3 +60,5 @@ export { DotsFloatingButton } from './components/DotsFloatingButton/DotsFloating
 export type { DotsFloatingButtonProps } from './components/DotsFloatingButton/DotsFloatingButton';
 export { DotsCaptureButton } from './components/DotsCaptureButton/DotsCaptureButton';
 export type { DotsCaptureButtonProps, DotsCaptureButtonType, DotsCaptureButtonState } from './components/DotsCaptureButton/DotsCaptureButton';
+export { DotsInputStepper } from './components/DotsInputStepper/DotsInputStepper';
+export type { DotsInputStepperProps } from './components/DotsInputStepper/DotsInputStepper';
