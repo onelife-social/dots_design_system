@@ -3,6 +3,7 @@
 import { useState, type CSSProperties, type MouseEvent, type ReactNode } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsToggle } from '../DotsToggle/DotsToggle';
+import { pressable } from '../../internal/pressable';
 
 /** Dart DotsMenuItemModel */
 export interface DotsMenuItemModel {
@@ -105,12 +106,10 @@ function MenuItem(p: MenuItemProps) {
   return (
     <div
       className={`ds-menu__item${item.details != null ? ' ds-menu__item--details' : ''}`}
-      role="menuitem"
-      tabIndex={0}
-      onClick={() => {
+      {...pressable(() => {
         item.onClick?.();
         p.onTapItem?.();
-      }}
+      }, 'menuitem')}
     >
       {leftIcon ? <DotsIcon name={leftIcon} size={14} color={iconColor ?? 'var(--text-primary)'} className="ds-menu__item-left" /> : null}
       <span className="ds-menu__item-body">
@@ -196,13 +195,12 @@ export function DotsMenuSettingsItem(p: DotsMenuSettingsItemProps) {
   const labelStyle: CSSProperties = {};
   if (p.textColor) labelStyle.color = p.textColor;
   if (p.textAlignment) labelStyle.textAlign = p.textAlignment;
+  // One focusable control per row: variant 'icon' → the row itself (pressable when it has a
+  // handler); variant 'toggle' → the embedded DotsToggle is the control and the row only forwards
+  // its click (not focusable, no role) so the toggle is not nested inside a second button.
+  const rowProps = isToggle ? { onClick: p.onClick ?? p.onToggleTap } : pressable(p.onClick);
   return (
-    <div
-      className={`ds-menu-settings__item${isToggle ? ' ds-menu-settings__item--toggle' : ''}`}
-      role="button"
-      tabIndex={0}
-      onClick={p.onClick ?? p.onToggleTap}
-    >
+    <div className={`ds-menu-settings__item${isToggle ? ' ds-menu-settings__item--toggle' : ''}`} {...rowProps}>
       {p.startIcon ? <DotsIcon name={p.startIcon} size={20} color="var(--text-tertiary)" className="ds-menu-settings__start" /> : null}
       <span className="ds-menu-settings__label" style={labelStyle}>
         {p.label}
