@@ -66,3 +66,5 @@ export type {
   DotsMenuSettingsItemProps,
   DotsMenuSettingsItemVariant,
 } from './components/DotsMenu/DotsMenu';
+export { DotsTooltip } from './components/DotsTooltip/DotsTooltip';
+export type { DotsTooltipProps, DotsToolTipTailPosition } from './components/DotsTooltip/DotsTooltip';
