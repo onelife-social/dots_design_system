@@ -76,28 +76,3 @@
   top: 12px;
   right: 12px;
 }
-
-/* Fallbacks si DotsMainButton/DotsCloseButton no están en el bundle */
-.ds-notif-banner-img__action-fallback {
-  height: 36px;
-  padding: 0 16px;
-  border: none;
-  border-radius: 36px;
-  cursor: pointer;
-  background: var(--label-highlight);
-  color: var(--label-always-white);
-  font: 600 13px/1.31 var(--font-main);
-  letter-spacing: -0.01px;
-}
-.ds-notif-banner-img__close-fallback {
-  width: 30px;
-  height: 30px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 0;
-  background: var(--bg-btn-disabled);
-  color: var(--label-primary);
-  font-size: 16px;
-  line-height: 1;
-}

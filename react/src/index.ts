@@ -70,3 +70,5 @@ export { MessagePreview } from './components/MessagePreview/MessagePreview';
 export type { MessagePreviewProps, MessagePreviewAttachmentType } from './components/MessagePreview/MessagePreview';
 export { NotificationBanner } from './components/NotificationBanner/NotificationBanner';
 export type { NotificationBannerProps } from './components/NotificationBanner/NotificationBanner';
+export { NotificationBannerImage } from './components/NotificationBannerImage/NotificationBannerImage';
+export type { NotificationBannerImageProps } from './components/NotificationBannerImage/NotificationBannerImage';
