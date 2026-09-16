@@ -777,6 +777,30 @@
   transition: width 0.3s ease;
 }
 
+/* ── DotsRadioButton ── */
+/* DotsRadioButton — size 24, border 2, ic-selector 15 (dots_radio_button.dart) */
+.ds-radio {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  flex: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  border: 2px solid var(--label-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-radio.is-on {
+  border-color: var(--label-highlight);
+}
+.ds-radio.is-disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+
 /* ── DotsRichButton ── */
 /* DotsRichButton — bgContainerSecondary + blur50; large 358×75 r100 · medium 358×60 r32 · small 248×60 r32 */
 .ds-rich-btn {
@@ -2578,35 +2602,6 @@
 .ds-plan-selector__desc {
   font: 400 11px/1.27 var(--font-main); /* labelSmallRegular */
   letter-spacing: 0.01px;
-}
-
-/* ── DotsRadioButton ── */
-/* DotsRadioButton — size 24, borde 2, icono ic-selector 15 (dots_radio_button.dart) */
-.ds-radio {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  flex: none;
-  border-radius: 50%;
-  background: transparent;
-  cursor: pointer;
-  border: 2px solid var(--label-secondary);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.ds-radio.is-on { border-color: var(--label-highlight); }
-/* fallback si DotsIcon aún no está en el bundle */
-.ds-radio__dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--label-highlight);
-}
-.ds-radio.is-disabled {
-  opacity: 0.4;
-  cursor: default;
-  pointer-events: none;
 }
 
 /* ── DotsSegmentedControl ── */
