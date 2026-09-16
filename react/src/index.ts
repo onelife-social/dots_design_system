@@ -62,3 +62,5 @@ export type {
   UsersListMember,
   UsersListMemberType,
 } from './components/UsersList/UsersList';
+export { ActivityPreview, ActivityOverviewItem } from './components/ActivityPreview/ActivityPreview';
+export type { ActivityPreviewProps, ActivityOverviewItemProps, ActivityPreviewVariant } from './components/ActivityPreview/ActivityPreview';
