@@ -54,3 +54,5 @@ export { DotsTextFieldButton } from './components/DotsTextFieldButton/DotsTextFi
 export type { DotsTextFieldButtonProps } from './components/DotsTextFieldButton/DotsTextFieldButton';
 export { DotsSquirclePhoto } from './components/DotsSquirclePhoto/DotsSquirclePhoto';
 export type { DotsSquirclePhotoProps, DotsSquirclePhotoTagProps } from './components/DotsSquirclePhoto/DotsSquirclePhoto';
+export { DotsUploadItem } from './components/DotsUploadItem/DotsUploadItem';
+export type { DotsUploadItemProps, DotsUploadItemVariant } from './components/DotsUploadItem/DotsUploadItem';

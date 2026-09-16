@@ -5,19 +5,9 @@
   padding: 8px 0;
   font-family: var(--font-main);
 }
-.ds-upload-item > .ds-squircle-photo,
-.ds-upload-item__photo-fallback {
+.ds-upload-item > .ds-squircle-photo {
   flex: none;
   margin-right: 12px;
-}
-.ds-upload-item__photo-fallback {
-  display: inline-block;
-  width: 64px;
-  height: 64px;
-  border-radius: 16px;
-  box-shadow: var(--shadow-default);
-  /* Placeholder degradado — arte sin token */
-  background: linear-gradient(160deg, #e8c3a0, #c88ea7 55%, #7e6ba8);
 }
 .ds-upload-item__body {
   flex: 1;
@@ -78,12 +68,6 @@
   min-width: 0;
   display: flex;
 }
-.ds-upload-item__progress-fallback {
-  flex: 1;
-  height: 5px;
-  border-radius: 100px;
-  background: var(--label-secondary);
-}
 .ds-upload-item__progress-pct {
   flex: none;
   margin-left: 8px;
@@ -105,30 +89,7 @@
   text-overflow: ellipsis;
 }
 /* botón derecho — gap 12 respecto al cuerpo */
-.ds-upload-item > .ds-main-btn,
-.ds-upload-item__btn-fallback {
+.ds-upload-item > .ds-main-btn {
   flex: none;
   margin-left: 12px;
-}
-/* Fallback si DotsMainButton no está en el bundle (medium: h36, píldora, 13/600) */
-.ds-upload-item__btn-fallback {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 36px;
-  padding: 0 16px;
-  border: none;
-  border-radius: 36px;
-  cursor: pointer;
-  font: 600 13px var(--font-main);
-  white-space: nowrap;
-}
-.ds-upload-item__btn-fallback--main {
-  background: var(--label-highlight);
-  color: var(--label-always-white);
-}
-.ds-upload-item__btn-fallback--secondary {
-  background: var(--bg-secondary-btn);
-  color: var(--text-secondary);
-  backdrop-filter: blur(var(--blur-50));
 }
