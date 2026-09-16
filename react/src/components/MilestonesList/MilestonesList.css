@@ -1,0 +1,19 @@
+/* MilestonesList — milestones/milestones_list.dart · timeline bezier punteada + items centrados */
+.ds-milestones-list {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+.ds-milestones-list__line {
+  position: absolute;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+}
+/* FractionalTranslation(-0.5, -0.5): cada item centrado en su punto */
+.ds-milestones-list__item {
+  position: absolute;
+  display: block;
+  transform: translate(-50%, -50%);
+}

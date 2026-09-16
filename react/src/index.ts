@@ -66,3 +66,5 @@ export { DotsSelectorRadioButton, DotsSelectorRadioButtonLabel, DotsSettingItemR
 export type { DotsSelectorRadioButtonProps, DotsSelectorRadioButtonLabelProps, DotsSettingItemRadioBtnProps, SelectorRadioButtonLabelVariant } from './components/DotsSelectorRadioButton/DotsSelectorRadioButton';
 export { MilestoneCard } from './components/MilestoneCard/MilestoneCard';
 export type { MilestoneCardProps, MilestoneBadgeType } from './components/MilestoneCard/MilestoneCard';
+export { MilestonesList } from './components/MilestonesList/MilestonesList';
+export type { MilestonesListProps, MilestonesListItem } from './components/MilestonesList/MilestonesList';
