@@ -54,7 +54,9 @@ export interface MessagePreviewProps {
 }
 
 export function MessagePreview(props: MessagePreviewProps) {
-  const [hasError, setError] = useState(false);
+  // Keep the failed URL (not a boolean) so a new `src` is attempted after a broken one
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  const hasError = !!props.src && failedSrc === props.src;
 
   const album = props.album || '';
   const newMessages = props.newMessages || 0;
@@ -70,7 +72,7 @@ export function MessagePreview(props: MessagePreviewProps) {
           src={props.src}
           alt={album}
           onError={(e) => {
-            setError(true);
+            setFailedSrc(props.src ?? null);
             props.onError?.(e);
           }}
         />
