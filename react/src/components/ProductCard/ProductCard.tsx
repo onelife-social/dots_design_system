@@ -1,6 +1,7 @@
 // ProductCard — port of lib/src/components/cards/product_card/product_card.dart (Dart = source of truth).
-import type { MouseEvent, ReactNode } from 'react';
+import type { KeyboardEvent, MouseEvent, ReactNode } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
+import { pressable } from '../../internal/pressable';
 
 export interface ProductCardProps {
   /** Main line, always visible */
@@ -49,8 +50,7 @@ export function ProductCard(props: ProductCardProps) {
     <div
       className={`ds-product-card${props.className ? ` ${props.className}` : ''}`}
       style={{ aspectRatio: String(ratio) }}
-      onClick={props.onClick}
-      role={props.onClick ? 'button' : undefined}
+      {...pressable(props.onClick)}
     >
       <div
         className={`ds-product-card__bg${props.imageSrc ? '' : ' ds-product-card__bg--ph'}`}
@@ -75,6 +75,7 @@ export function ProductCard(props: ProductCardProps) {
           ) : null}
         </div>
         {onActionClick ? (
+          // Native button: its own click/keys must not bubble into the card's pressable handlers
           <button
             type="button"
             className="ds-product-card__action"
@@ -82,6 +83,7 @@ export function ProductCard(props: ProductCardProps) {
               e.stopPropagation();
               onActionClick();
             }}
+            onKeyDown={(e: KeyboardEvent<HTMLButtonElement>) => e.stopPropagation()}
           >
             <DotsIcon name={props.actionIcon || 'ic-arrow-right'} size={20} color="currentColor" />
           </button>
