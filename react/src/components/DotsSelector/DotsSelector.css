@@ -1,4 +1,4 @@
-/* DotsSelector — small 22 / medium 24, pensado para superponerse a una foto (dots_selector.dart) */
+/* DotsSelector — small 22 / medium 24, meant to overlay a photo (dots_selector.dart) */
 .ds-selector {
   box-sizing: border-box;
   margin: 0;
@@ -9,26 +9,19 @@
   justify-content: center;
   cursor: pointer;
   background: transparent;
-  /* off: círculo con borde 2 labelAlwaysWhite al 70% — dotsWithOpacity(0.7), sin token */
+  /* off: circle with 2px border labelAlwaysWhite at 70% — dotsWithOpacity(0.7), no token */
   border: 2px solid #FFFFFFB3;
-  /* seleccionado con número: bodyDefaultMedium con fontSize 14 */
+  /* selected with number: bodyDefaultMedium with fontSize 14 */
   font: 500 14px/1.29 var(--font-main);
   letter-spacing: -0.02px;
   color: var(--label-always-white);
 }
 .ds-selector--small { height: 22px; width: 22px; min-width: 22px; border-radius: 22px; }
 .ds-selector--medium { height: 24px; width: 24px; min-width: 24px; border-radius: 24px; }
-/* on: píldora labelHighlight, minWidth = height, padding horizontal 5, radio = height */
+/* on: labelHighlight pill, minWidth = height, horizontal padding 5, radius = height */
 .ds-selector.is-on {
   width: auto;
   border: none;
   padding: 0 5px;
   background: var(--label-highlight);
-}
-/* fallback si DotsIcon no está en el bundle */
-.ds-selector__dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--label-always-white);
 }
