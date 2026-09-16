@@ -1,6 +1,7 @@
 // RatingRow — port of lib/src/components/rating/rating_row.dart + rating_star.dart (Dart = source of truth, widgets DotsRatingStarRow / DotsRatingStar).
 import type { ReactNode } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
+import { pressable } from '../../internal/pressable';
 
 /** Dart enum RatingIconVariant */
 export type RatingStarVariant = 'disabled' | 'detractor' | 'neutral' | 'promoter';
@@ -16,6 +17,11 @@ export interface RatingRowProps {
   selectedIndex?: number | null;
   /** Called when a star is tapped */
   onStarTap?: (index: number) => void;
+  /**
+   * Accessible name of each tappable star, localizable (e.g. "3 de 10").
+   * Default "{index + 1}/{total}". Only used when `onStarTap` is provided
+   */
+  starLabel?: (index: number, total: number) => string;
   /** Compact layout: centered rows of 6+4 (with 10 stars) */
   compact?: boolean;
   /** Show the label above each star (default true) */
@@ -53,13 +59,20 @@ interface StarProps {
   showText: boolean;
   iconSize?: number;
   onTap?: () => void;
+  /** Accessible name when tappable */
+  ariaLabel?: string;
 }
 
+// Tappable star = button (tab stop, Enter/Space) with an accessible name; static star stays a span
 function Star(props: StarProps) {
   const variant = props.variant || 'disabled';
   const size = props.iconSize ?? 28;
   return (
-    <span className={`ds-rating-star ds-rating-star--${variant}${props.onTap ? ' is-tappable' : ''}`} onClick={props.onTap}>
+    <span
+      className={`ds-rating-star ds-rating-star--${variant}${props.onTap ? ' is-tappable' : ''}`}
+      {...pressable(props.onTap)}
+      aria-label={props.onTap ? props.ariaLabel : undefined}
+    >
       {props.showText ? <span className="ds-rating-star__label">{props.label}</span> : null}
       <span className="ds-rating-star__icon">
         <DotsIcon name="ic-star" size={size} />
@@ -91,6 +104,8 @@ function buildVariants(starLabels: string[], selectedIndex: number | null): Rati
 export function RatingRow(props: RatingRowProps) {
   const starLabels = props.starLabels || [];
   const variants = buildVariants(starLabels, props.selectedIndex ?? null);
+  const tappable = typeof props.onStarTap === 'function';
+  const starLabel = props.starLabel ?? ((index: number, total: number) => `${index + 1}/${total}`);
 
   const makeStar = (index: number) => (
     <Star
@@ -99,7 +114,8 @@ export function RatingRow(props: RatingRowProps) {
       variant={variants[index]}
       showText={props.showStarText !== false}
       iconSize={props.iconSize}
-      onTap={typeof props.onStarTap === 'function' ? () => props.onStarTap?.(index) : undefined}
+      onTap={tappable ? () => props.onStarTap?.(index) : undefined}
+      ariaLabel={tappable ? starLabel(index, starLabels.length) : undefined}
     />
   );
 
