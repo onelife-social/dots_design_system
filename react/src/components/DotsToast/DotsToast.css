@@ -21,7 +21,7 @@
 /* onClick: transparent native button covering the toast (sibling of the content, which stays a
    static live region). Only visible as a focus ring on keyboard focus. */
 .ds-toast__hit {
-  position: absolute;
+  position: absolute; z-index: 1;
   inset: 0;
   width: 100%;
   height: 100%;
@@ -36,7 +36,7 @@
 }
 .ds-toast__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
 /* Ghost button (progress, isAction false) above the hit target so it receives its own clicks */
-.ds-toast__btn { position: relative; z-index: 1; }
+.ds-toast__btn { position: relative; z-index: 2; }
 
 /* isAction: false — DotsToastInfo, 358 row with gap 12 */
 .ds-toast--info {

@@ -1,6 +1,7 @@
 /* DotsTooltip — tooltip/dots_tooltip.dart. bgBaseContrast + border 1 bgContainerSecondary
    + defaultShadow; tail TrianglePainter 21×13; corner 14 on the tail side. */
 .ds-tooltip {
+  isolation: isolate; /* keeps the __hit and control z-indices inside the component */
   position: relative;
   display: flex;
   align-items: center;
@@ -35,7 +36,7 @@
 /* onClick on the body: transparent native button covering the tooltip (sibling of the close button,
    which sits above it). Only visible as a focus ring on keyboard focus. */
 .ds-tooltip__hit {
-  position: absolute;
+  position: absolute; z-index: 1;
   inset: 0;
   width: 100%;
   height: 100%;
@@ -51,7 +52,7 @@
 .ds-tooltip__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
 
 /* Above the hit target so the close button receives its own clicks */
-.ds-tooltip__close { position: absolute; top: 16px; right: 16px; z-index: 1; display: inline-flex; }
+.ds-tooltip__close { position: absolute; top: 16px; right: 16px; z-index: 2; display: inline-flex; }
 
 /* Tail — 21×13, fill bgBaseContrast, stroke 2 bgContainerSecondary */
 .ds-tooltip__tail { position: absolute; width: 21px; height: 13px; }
