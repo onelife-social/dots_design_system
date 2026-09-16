@@ -78,19 +78,6 @@
   bottom: 16px;
   right: 16px;
 }
-.ds-milestone-card__edit-fallback {
-  width: 44px;
-  height: 44px;
-  border: 0;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-btn-image);
-  backdrop-filter: blur(var(--blur-50));
-  -webkit-backdrop-filter: blur(var(--blur-50));
-  cursor: pointer;
-}
 /* _MilestoneBadges — BadgeIconGroup 63×70, bottom 16 left 16 */
 .ds-milestone-card__badges {
   position: absolute;

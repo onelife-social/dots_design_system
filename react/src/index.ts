@@ -64,3 +64,5 @@ export { BadgeTag } from './components/BadgeTag/BadgeTag';
 export type { BadgeTagProps } from './components/BadgeTag/BadgeTag';
 export { DotsSelectorRadioButton, DotsSelectorRadioButtonLabel, DotsSettingItemRadioBtn } from './components/DotsSelectorRadioButton/DotsSelectorRadioButton';
 export type { DotsSelectorRadioButtonProps, DotsSelectorRadioButtonLabelProps, DotsSettingItemRadioBtnProps, SelectorRadioButtonLabelVariant } from './components/DotsSelectorRadioButton/DotsSelectorRadioButton';
+export { MilestoneCard } from './components/MilestoneCard/MilestoneCard';
+export type { MilestoneCardProps, MilestoneBadgeType } from './components/MilestoneCard/MilestoneCard';
