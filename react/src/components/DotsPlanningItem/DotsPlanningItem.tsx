@@ -66,7 +66,7 @@ export function DotsPlanningItem(props: DotsPlanningItemProps) {
   return (
     <div className={`ds-planning-item${props.className ? ` ${props.className}` : ''}`} aria-expanded={expanded} {...pressable(toggle)}>
       {/* _PlanningImage: DotsSquircleImage 52 squircle16, default default_section_planning.webp */}
-      <span className="ds-planning-item__img" style={props.sectionImage ? { backgroundImage: `url(${props.sectionImage})` } : undefined} />
+      <span className="ds-planning-item__img" style={props.sectionImage ? { backgroundImage: `url("${props.sectionImage}")` } : undefined} />
       <span className="ds-planning-item__col">
         {/* _PlanningTitle: bodyLargeMedium textPrimary + DotsIcon 20 textQuarternary */}
         <span className="ds-planning-item__title-row">
