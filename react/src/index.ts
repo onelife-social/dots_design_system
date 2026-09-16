@@ -52,3 +52,5 @@ export { DotsCloseButton } from './components/DotsCloseButton/DotsCloseButton';
 export type { DotsCloseButtonProps, DotsCloseButtonSize, DotsCloseButtonVariant } from './components/DotsCloseButton/DotsCloseButton';
 export { DotsTextFieldButton } from './components/DotsTextFieldButton/DotsTextFieldButton';
 export type { DotsTextFieldButtonProps } from './components/DotsTextFieldButton/DotsTextFieldButton';
+export { DotsSquirclePhoto } from './components/DotsSquirclePhoto/DotsSquirclePhoto';
+export type { DotsSquirclePhotoProps, DotsSquirclePhotoTagProps } from './components/DotsSquirclePhoto/DotsSquirclePhoto';
