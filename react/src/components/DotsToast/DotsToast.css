@@ -4,6 +4,7 @@
 .ds-toast {
   /* borderAlert has no token in tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart) */
   --ds-border-alert: #FFFFFF4D;
+  position: relative;
   box-sizing: border-box;
   border-radius: var(--squircle-24);
   padding: 16px;
@@ -16,6 +17,26 @@
 }
 [data-theme="dark"] .ds-toast { --ds-border-alert: #6E6E6E4D; }
 .ds-toast--clickable { cursor: pointer; }
+
+/* onClick: transparent native button covering the toast (sibling of the content, which stays a
+   static live region). Only visible as a focus ring on keyboard focus. */
+.ds-toast__hit {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.ds-toast__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
+/* Ghost button (progress, isAction false) above the hit target so it receives its own clicks */
+.ds-toast__btn { position: relative; z-index: 1; }
 
 /* isAction: false — DotsToastInfo, 358 row with gap 12 */
 .ds-toast--info {
