@@ -81,7 +81,9 @@ export interface ActivityOverviewItemProps {
 
 /* ── ActivityPreview — 3:4 card with blur pill ─────────────────────────── */
 export function ActivityPreview(props: ActivityPreviewProps) {
-  const [imgError, setImgError] = useState(false);
+  // Keep the failed URL (not a boolean) so a new `src` is attempted after a broken one
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  const imgError = !!props.src && failedSrc === props.src;
   const variant: ActivityPreviewVariant = props.variant && VARIANTS[props.variant] ? props.variant : 'reactions';
   const isReactions = variant === 'reactions';
   const showImg = !!props.src && !imgError;
@@ -102,7 +104,7 @@ export function ActivityPreview(props: ActivityPreviewProps) {
           src={props.src}
           alt=""
           onError={(e) => {
-            setImgError(true);
+            setFailedSrc(props.src ?? null);
             props.onError?.(e);
           }}
         />
