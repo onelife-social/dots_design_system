@@ -21,6 +21,8 @@ export interface BtnFolderProps {
   showEditIcon?: boolean;
   /** The folder is editable */
   isEditable?: boolean;
+  /** Accessible name for icon-only folders (isNonExpandable / no text), e.g. 'Nueva carpeta' */
+  ariaLabel?: string;
 }
 
 const LONG_PRESS_MS = 500;
@@ -68,6 +70,7 @@ export function BtnFolder(props: BtnFolderProps) {
         (isSelected ? ' ds-btn-folder__pill--selected' : '') +
         (isNonExpandable ? ' ds-btn-folder__pill--nonexp' : '')
       }
+      aria-label={props.ariaLabel}
       onClick={handleClick}
       onPointerDown={startPress}
       onPointerUp={cancelPress}
