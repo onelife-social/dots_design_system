@@ -58,8 +58,3 @@
 .ds-rating-star--detractor .ds-rating-star__icon svg path { fill: url(#ds-rating-g-detractor); }
 .ds-rating-star--neutral .ds-rating-star__icon svg path { fill: url(#ds-rating-g-neutral); }
 .ds-rating-star--promoter .ds-rating-star__icon svg path { fill: url(#ds-rating-g-promoter); }
-/* fallback sin DotsIcon en el bundle */
-.ds-rating-star__icon-fallback { line-height: 1; }
-.ds-rating-star--detractor .ds-rating-star__icon-fallback { color: #FA5B3D; } /* friends003 — sin token */
-.ds-rating-star--neutral .ds-rating-star__icon-fallback { color: #F7954A; }   /* friends005 — sin token */
-.ds-rating-star--promoter .ds-rating-star__icon-fallback { color: #01AF94; }  /* team007 — sin token */

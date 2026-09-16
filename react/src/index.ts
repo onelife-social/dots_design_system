@@ -72,3 +72,5 @@ export { BlurContainer } from './components/BlurContainer/BlurContainer';
 export type { BlurContainerProps, GradientBlurProps, BlurAlignment } from './components/BlurContainer/BlurContainer';
 export { FeatureItem } from './components/FeatureItem/FeatureItem';
 export type { FeatureItemProps } from './components/FeatureItem/FeatureItem';
+export { RatingRow } from './components/RatingRow/RatingRow';
+export type { RatingRowProps, RatingStarVariant } from './components/RatingRow/RatingRow';
