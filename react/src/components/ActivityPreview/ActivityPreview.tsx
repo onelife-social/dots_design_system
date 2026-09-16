@@ -2,6 +2,7 @@
 // + ActivityPreview.OverviewItem — port of activity_overview_item.dart (Dart = source of truth)
 import { useState, type CSSProperties, type SyntheticEvent } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
+import { pressable } from '../../internal/pressable';
 
 /** Dart enum ActivityPreviewVariant */
 export type ActivityPreviewVariant = 'reactions' | 'views' | 'favs';
@@ -93,8 +94,7 @@ export function ActivityPreview(props: ActivityPreviewProps) {
         (props.onCardClick ? ' ds-activity-preview--clickable' : '') +
         (props.className ? ` ${props.className}` : '')
       }
-      onClick={props.onCardClick}
-      role={props.onCardClick ? 'button' : undefined}
+      {...pressable(props.onCardClick)}
     >
       {showImg ? (
         <img
