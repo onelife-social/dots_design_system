@@ -73,7 +73,9 @@ function radiusPx(borderRadius: number | string | undefined, fallback: number) {
 }
 
 export function DotsSquirclePhoto(props: DotsSquirclePhotoProps) {
-  const [hasError, setError] = useState(false);
+  // Keep the failed URL (not a boolean) so a new `src` is attempted after a broken one
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  const hasError = !!props.src && failedSrc === props.src;
 
   const size = props.size ?? 52; // Dart default 52
   const br = radiusPx(props.borderRadius, 16); // DotsBorderRadius.r16
@@ -93,7 +95,7 @@ export function DotsSquirclePhoto(props: DotsSquirclePhotoProps) {
           src={props.src}
           alt={props.alt ?? ''}
           onError={(e) => {
-            setError(true);
+            setFailedSrc(props.src ?? null);
             props.onError?.(e);
           }}
         />
