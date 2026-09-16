@@ -62,3 +62,5 @@ export { DotsTextFieldPhone } from './components/DotsTextFieldPhone/DotsTextFiel
 export type { DotsTextFieldPhoneProps, PhoneCountryCode } from './components/DotsTextFieldPhone/DotsTextFieldPhone';
 export { DotsDivider } from './components/DotsDivider/DotsDivider';
 export type { DotsDividerProps } from './components/DotsDivider/DotsDivider';
+export { DotsAccordion } from './components/DotsAccordion/DotsAccordion';
+export type { DotsAccordionProps, DotsAccordionSection } from './components/DotsAccordion/DotsAccordion';

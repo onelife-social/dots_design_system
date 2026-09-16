@@ -36,7 +36,6 @@
   transition: transform var(--ds-accordion-duration, 180ms) ease-in-out;
 }
 .ds-accordion__section.is-expanded .ds-accordion__chevron { transform: rotate(180deg); }
-.ds-accordion__chevron--fallback { color: var(--text-tertiary); font-size: 16px; line-height: 1; }
 
 /* ── despliegue — AnimatedSize ≈ grid-template-rows 0fr→1fr ── */
 .ds-accordion__collapse {
