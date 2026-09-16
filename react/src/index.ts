@@ -62,3 +62,5 @@ export { CreateCard } from './components/CreateCard/CreateCard';
 export type { CreateCardProps, CreateCardVariant } from './components/CreateCard/CreateCard';
 export { MemoryCard } from './components/MemoryCard/MemoryCard';
 export type { MemoryCardProps, MemoryCardVariant } from './components/MemoryCard/MemoryCard';
+export { ProductCard } from './components/ProductCard/ProductCard';
+export type { ProductCardProps } from './components/ProductCard/ProductCard';
