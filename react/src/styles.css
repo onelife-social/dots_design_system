@@ -12,6 +12,7 @@
 @import "./components/DotsTextField/DotsTextField.css";
 @import "./components/DotsTextFieldDate/DotsTextFieldDate.css";
 @import "./components/EventGroupCard/EventGroupCard.css";
+@import "./components/DotsRadioButton/DotsRadioButton.css";
 @import "./components/DotsToggle/DotsToggle.css";
 @import "./components/DotsRichButton/DotsRichButton.css";
 @import "./components/DotsActionSheet/DotsActionSheet.css";
