@@ -1,8 +1,7 @@
 // DotsTooltip — port of lib/src/components/tooltip/dots_tooltip.dart (Dart = source of truth).
-import type { CSSProperties, MouseEvent, ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { DotsCloseButton } from '../DotsCloseButton/DotsCloseButton';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
-import { pressable } from '../../internal/pressable';
 
 /** Dart enum DotsToolTipTailPosition */
 export type DotsToolTipTailPosition =
@@ -71,22 +70,20 @@ export function DotsTooltip(props: DotsTooltipProps) {
     tailStyle.transform = 'translateX(-50%)';
   }
 
-  // Dart onTap on the body → complete button semantics (role, tab stop, Enter/Space); static otherwise.
-  // The close button below stops propagation so closing never fires onClick.
+  // Dart onTap on the body → a transparent native button overlaid on the body, as a sibling of the
+  // close button, never its ancestor (descendants of an ARIA button are presentational). The close
+  // button sits above it with z-index, so closing never fires onClick and its keys never bubble here.
+  const hitEl = props.onClick ? <button type="button" className="ds-tooltip__hit" aria-label={props.text} onClick={props.onClick} /> : null;
+
   return (
-    <div className={cls} style={{ maxWidth: `${maxWidth}px` }} {...pressable(props.onClick)}>
+    <div className={cls} style={{ maxWidth: `${maxWidth}px` }}>
+      {hitEl}
       {iconNode}
       <p className="ds-tooltip__text">{props.text}</p>
       {showCloseButton ? (
-        <span
-          className="ds-tooltip__close"
-          onClick={(e: MouseEvent<HTMLSpanElement>) => {
-            e.stopPropagation();
-            props.onClose?.();
-          }}
-        >
+        <span className="ds-tooltip__close">
           {/* Dart: DotsCloseButton small softContrast addBlur=false */}
-          <DotsCloseButton size="small" variant="softContrast" addBlur={false} />
+          <DotsCloseButton size="small" variant="softContrast" addBlur={false} onClick={props.onClose} />
         </span>
       ) : null}
       <svg className="ds-tooltip__tail" style={tailStyle} viewBox="0 0 21 13" aria-hidden="true">
