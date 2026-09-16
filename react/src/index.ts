@@ -68,3 +68,5 @@ export type {
 } from './components/DotsMenu/DotsMenu';
 export { DotsTooltip } from './components/DotsTooltip/DotsTooltip';
 export type { DotsTooltipProps, DotsToolTipTailPosition } from './components/DotsTooltip/DotsTooltip';
+export { DropdownMenu, DropdownMenuItem } from './components/DropdownMenu/DropdownMenu';
+export type { DropdownMenuProps, DropdownMenuItemProps, DropdownMenuSize, DropdownMenuVariant } from './components/DropdownMenu/DropdownMenu';
