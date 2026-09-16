@@ -13,6 +13,11 @@ export interface RatingRowProps {
     selectedIndex?: number | null;
     /** Called when a star is tapped */
     onStarTap?: (index: number) => void;
+    /**
+     * Accessible name of each tappable star, localizable (e.g. "3 de 10").
+     * Default "{index + 1}/{total}". Only used when `onStarTap` is provided
+     */
+    starLabel?: (index: number, total: number) => string;
     /** Compact layout: centered rows of 6+4 (with 10 stars) */
     compact?: boolean;
     /** Show the label above each star (default true) */

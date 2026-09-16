@@ -27,6 +27,8 @@ export interface MilestoneCardProps {
     badgeTypes?: MilestoneBadgeType[];
     /** Dart `onBadgesTap` */
     onBadgesClick?: () => void;
+    /** Accessible name of the badge group (icon-only control); applied only with `onBadgesClick` */
+    badgesLabel?: string;
     className?: string;
 }
 export declare function MilestoneCard(props: MilestoneCardProps): import("react").JSX.Element;

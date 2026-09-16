@@ -15,6 +15,8 @@ export interface BadgeIconProps {
     iconColor?: string;
     /** Dart `onTap` */
     onClick?: () => void;
+    /** Accessible name of the clickable badge (the control is icon-only); applied only with `onClick` */
+    ariaLabel?: string;
     /**
      * Group mode (Dart BadgeIconGroup): 1-3 icon names stacked on a 63×70 canvas.
      * icons[0] medium bottom-left; icons[1]/icons[2] small. Ignores `icon`/`size`.
