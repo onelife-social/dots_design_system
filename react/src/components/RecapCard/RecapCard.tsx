@@ -1,10 +1,9 @@
 // RecapCard — port of lib/src/components/cards/recap/ (recap_card.dart + recap_card_locked.dart
 // unified via the `locked` prop; CountdownRecap from countdown_recap.dart embedded). Dart = source of truth.
-import { useEffect, useState, type MouseEvent, type SyntheticEvent } from 'react';
+import { useEffect, useState } from 'react';
 import { BadgeLabel } from '../BadgeLabel/BadgeLabel';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsMainButton } from '../DotsMainButton/DotsMainButton';
-import { pressable } from '../../internal/pressable';
 
 /** Dart enum RecapCardVariant (onlyTitle = active without title/badge/button) */
 export type RecapCardVariant = 'active' | 'blocked' | 'generated' | 'onlyTitle';
@@ -47,6 +46,11 @@ export interface RecapCardProps {
   blurImage?: boolean;
   /** Tap on the card / main button without locked (Dart onTap) */
   onClick?: () => void;
+  /**
+   * Accessible name of the card action (`onClick`, without locked). Defaults to `title`; set it
+   * when the card has no title to read (onlyTitle variant, or no `title`)
+   */
+  ariaLabel?: string;
   /** Tap on the info/share/lock button (Dart onInfoTap) */
   onInfoClick?: () => void;
   /** Tap on the bottom button with locked (Dart onButtonTap) */
@@ -56,13 +60,6 @@ export interface RecapCardProps {
 
 const VARIANTS: Record<RecapCardVariant, true> = { active: true, blocked: true, generated: true, onlyTitle: true };
 const LOCKED_VARIANTS: Record<RecapCardLockedVariant, true> = { countdown: true, locked: true, soon: true };
-
-// Keeps inner taps from also firing the card's onClick
-const stopWrap = (fn?: () => void) => (fn ? (e?: MouseEvent) => { e?.stopPropagation(); fn(); } : undefined);
-// Keys on inner native buttons (Enter/Space) must not reach the pressable card either
-function stopKeys(e: SyntheticEvent) {
-  e.stopPropagation();
-}
 
 function pad2(n: number) {
   return (n < 10 ? '0' : '') + n;
@@ -116,20 +113,14 @@ function renderUnlocked(props: RecapCardProps, variant: RecapCardVariant, width:
   } else if (isGenerated && !badgeText) {
     // DotsIconButton floating large Ø44 · share icon 24 · textPrimary
     control = (
-      <button type="button" className="ds-recap-card__icon-btn" onClick={stopWrap(props.onInfoClick)} onKeyDown={stopKeys} aria-label="share">
+      <button type="button" className="ds-recap-card__icon-btn" onClick={props.onInfoClick} aria-label="share">
         <DotsIcon name="ic-share" size={24} color="currentColor" />
       </button>
     );
   } else if (isBlocked) {
     // DotsIconButton floating large Ø44 · lock · bgBtnImage at 50%
     control = (
-      <button
-        type="button"
-        className="ds-recap-card__icon-btn ds-recap-card__icon-btn--half"
-        onClick={stopWrap(props.onInfoClick)}
-        onKeyDown={stopKeys}
-        aria-label="lock"
-      >
+      <button type="button" className="ds-recap-card__icon-btn ds-recap-card__icon-btn--half" onClick={props.onInfoClick} aria-label="lock">
         <DotsIcon name="ic-lock" size={24} color="currentColor" />
       </button>
     );
@@ -145,15 +136,17 @@ function renderUnlocked(props: RecapCardProps, variant: RecapCardVariant, width:
       </div>
     );
   } else if (buttonText) {
-    bottom = <DotsMainButton label={buttonText} variant="main" expand={false} shouldApplyBlur onClick={stopWrap(props.onClick)} />;
+    bottom = <DotsMainButton label={buttonText} variant="main" expand={false} shouldApplyBlur onClick={props.onClick} />;
   }
 
   return (
-    <div
-      className={`ds-recap-card${props.className ? ` ${props.className}` : ''}`}
-      style={{ width: `${width}px` }}
-      {...pressable(props.onClick)}
-    >
+    <div className={`ds-recap-card${props.className ? ` ${props.className}` : ''}`} style={{ width: `${width}px` }}>
+      {/* Card action (Dart onTap): a transparent native button that covers the card, rendered as a
+          sibling of the share/lock and main buttons — not as a role=button ancestor, which would make
+          them presentational. Those buttons sit above it (z-index) and get their own clicks. */}
+      {props.onClick ? (
+        <button type="button" className="ds-recap-card__hit" aria-label={props.ariaLabel ?? props.title} onClick={props.onClick} />
+      ) : null}
       {imageLayer(props, isBlocked) /* blocked → ImageFilter.blur(15) */}
       <div className="ds-recap-card__overlay">
         {props.textImageSrc ? <div className="ds-recap-card__text-img" style={{ backgroundImage: `url("${props.textImageSrc}")` }} /> : null}
@@ -170,9 +163,7 @@ function renderUnlocked(props: RecapCardProps, variant: RecapCardVariant, width:
           )}
           {control}
         </div>
-        <div className="ds-recap-card__bottom" onKeyDown={stopKeys}>
-          {bottom}
-        </div>
+        <div className="ds-recap-card__bottom">{bottom}</div>
       </div>
     </div>
   );
