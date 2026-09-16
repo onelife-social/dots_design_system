@@ -2,6 +2,7 @@
 import type { CSSProperties, MouseEvent, ReactNode } from 'react';
 import { DotsCloseButton } from '../DotsCloseButton/DotsCloseButton';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
+import { pressable } from '../../internal/pressable';
 
 /** Dart enum DotsToolTipTailPosition */
 export type DotsToolTipTailPosition =
@@ -70,8 +71,10 @@ export function DotsTooltip(props: DotsTooltipProps) {
     tailStyle.transform = 'translateX(-50%)';
   }
 
+  // Dart onTap on the body → complete button semantics (role, tab stop, Enter/Space); static otherwise.
+  // The close button below stops propagation so closing never fires onClick.
   return (
-    <div className={cls} style={{ maxWidth: `${maxWidth}px` }} onClick={props.onClick}>
+    <div className={cls} style={{ maxWidth: `${maxWidth}px` }} {...pressable(props.onClick)}>
       {iconNode}
       <p className="ds-tooltip__text">{props.text}</p>
       {showCloseButton ? (

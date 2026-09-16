@@ -4,6 +4,7 @@
 import type { ReactNode } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsMainButton } from '../DotsMainButton/DotsMainButton';
+import { pressable } from '../../internal/pressable';
 
 /** Dart enum DotsToastVariant */
 export type DotsToastVariant = 'success' | 'error' | 'info' | 'progress' | 'connectionResumed' | 'connectionLost' | 'widget';
@@ -99,7 +100,18 @@ export function DotsToast(props: DotsToastProps) {
     const lead = isProgress ? iconEl(name, 24, undefined, true) : iconEl(name, 20, color, false);
     const btn =
       props.btnTitle != null && isProgress ? (
-        <DotsMainButton label={props.btnTitle} variant="ghost" size="medium" adaptPaddingForText expand={false} onClick={props.onClick} />
+        <DotsMainButton
+          label={props.btnTitle}
+          variant="ghost"
+          size="medium"
+          adaptPaddingForText
+          expand={false}
+          onClick={(e) => {
+            // The toast itself also handles onClick: stop the bubble so it is dispatched exactly once
+            e?.stopPropagation();
+            props.onClick?.();
+          }}
+        />
       ) : null;
     children = (
       <>
@@ -110,8 +122,12 @@ export function DotsToast(props: DotsToastProps) {
     );
   }
 
+  // Static toast: role="status" (polite live region). Tappable toast (Dart onTap): a complete button
+  // (role, tab stop, Enter/Space) that keeps being announced through aria-live.
+  const semantics = props.onClick ? { ...pressable(props.onClick), 'aria-live': 'polite' as const } : { role: 'status' };
+
   return (
-    <div className={className} role="status" onClick={props.onClick}>
+    <div className={className} {...semantics}>
       {children}
     </div>
   );

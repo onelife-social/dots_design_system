@@ -2,6 +2,7 @@
 // (+ chat/enum/message_type_enum.dart → `attachmentType` prop). Dart = source of truth.
 import { useState, type ReactNode, type SyntheticEvent } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
+import { pressable } from '../../internal/pressable';
 
 /** Dart enum MessageType ('text' paints no attachment icon) */
 export type MessagePreviewAttachmentType = 'text' | 'image' | 'video' | 'audio' | 'file';
@@ -107,12 +108,9 @@ export function MessagePreview(props: MessagePreviewProps) {
     content.push(props.message || '');
   }
 
+  // Dart onTap → complete button semantics (role, tab stop, Enter/Space); static row otherwise
   return (
-    <div
-      className={`ds-msg-preview${props.className ? ` ${props.className}` : ''}`}
-      onClick={props.onClick}
-      role={props.onClick ? 'button' : undefined}
-    >
+    <div className={`ds-msg-preview${props.className ? ` ${props.className}` : ''}`} {...pressable(props.onClick)}>
       <div className="ds-msg-preview__inner">
         {image}
         <div className="ds-msg-preview__col">
