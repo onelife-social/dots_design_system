@@ -16,7 +16,8 @@ export interface DotsSystemButtonProps {
   size?: DotsSystemButtonSize;
   /**
    * Variant — Dart enum DotsSystemButtonVariant (default 'active').
-   * Note: 'disabled' is only visual, the button still emits onClick (as in Dart).
+   * 'disabled' is visual-only, as in Dart (InkWell.onTap is wired regardless of the variant): the
+   * button stays enabled, exposes no `disabled`/`aria-disabled`, and still emits onClick.
    */
   variant?: DotsSystemButtonVariant;
   /** Tap callback — Dart `onTap`. Receives the native click event (a `() => void` is also accepted) */
@@ -39,9 +40,9 @@ export function DotsSystemButton(props: DotsSystemButtonProps) {
   if (props.expand) className += ' ds-system-btn--expand';
   if (props.className) className += ` ${props.className}`;
 
-  // Note: the 'disabled' variant is ONLY visual in Dart (InkWell still receives onTap)
+  // The 'disabled' variant is ONLY visual in Dart (InkWell still receives onTap): no disabled/aria-disabled
   return (
-    <button type="button" className={className} aria-disabled={variant === 'disabled' || undefined} onClick={props.onClick}>
+    <button type="button" className={className} onClick={props.onClick}>
       {props.icon ? (
         <span className="ds-system-btn__icon" aria-hidden>
           <DotsIcon name={props.icon} size={ICON_SIZE[size]} />

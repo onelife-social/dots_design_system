@@ -5,11 +5,11 @@
 .ds-album-card__img { position: absolute; inset: 0; background-size: cover; background-position: center; }
 /* Placeholder de foto cuando no llega imageSrc (degradado, sin token — como las tarjetas planas) */
 .ds-album-card__img--ph { background-image: linear-gradient(140deg, #96B4CE, #E0C3A4, #A08FB0); }
-/* SoftEdgeBlur bottomEdge σ12 (blurSigma) + degradado negro 0→20% (aprox: backdrop-blur con máscara) */
+/* SoftEdgeBlur bottomEdge (σ = --ds-agc-blur, blurSigma; Dart default 12) + degradado negro 0→20% (aprox: backdrop-blur con máscara) */
 .ds-album-card__fade {
   position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none;
   background: linear-gradient(180deg, #00000000, #00000033);
-  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(var(--ds-agc-blur, 12px)); -webkit-backdrop-filter: blur(var(--ds-agc-blur, 12px));
   mask-image: linear-gradient(180deg, transparent, #000 60%);
   -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%);
 }

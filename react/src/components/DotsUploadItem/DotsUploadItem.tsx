@@ -23,7 +23,7 @@ export interface DotsUploadItemProps {
   processText?: string;
   /** (success) Elapsed time under the status. */
   timeElapsed?: string;
-  /** (success/error) Text of the right button (DotsMainButton medium). */
+  /** (success/error) Text of the right button (DotsMainButton medium). Without it no button is rendered. */
   btnText?: string;
   /** (success/error) Callback of the right button (Dart btnOnTap). */
   onBtnClick?: () => void;
@@ -72,9 +72,10 @@ export function DotsUploadItem(props: DotsUploadItemProps) {
         ) : null}
         {isSuccess ? <div className="ds-upload-item__elapsed">{props.timeElapsed ?? ''}</div> : null}
       </div>
-      {/* Right button — success: secondary · error: main (DotsMainButton medium) */}
-      {!isProcessing ? (
-        <DotsMainButton label={props.btnText ?? ''} variant={isSuccess ? 'secondary' : 'main'} size="medium" expand={false} onClick={props.onBtnClick} />
+      {/* Right button — success: secondary · error: main (DotsMainButton medium).
+          Only with btnText: Dart paints `btnText ?? ''`, but an empty button is focusable and unnamed. */}
+      {!isProcessing && props.btnText ? (
+        <DotsMainButton label={props.btnText} variant={isSuccess ? 'secondary' : 'main'} size="medium" expand={false} onClick={props.onBtnClick} />
       ) : null}
     </div>
   );

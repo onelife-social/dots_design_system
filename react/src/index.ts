@@ -118,7 +118,7 @@ export { DotsHomeTopBar } from './components/DotsHomeTopBar/DotsHomeTopBar';
 export type { DotsHomeTopBarProps, DotsHomeTopBarVariant } from './components/DotsHomeTopBar/DotsHomeTopBar';
 export { DotsNavBar } from './components/DotsNavBar/DotsNavBar';
 export type { DotsNavBarProps, DotsNavBarItem } from './components/DotsNavBar/DotsNavBar';
-export { DotsSquirclePhoto } from './components/DotsSquirclePhoto/DotsSquirclePhoto';
+export { DotsSquirclePhoto, DotsSquirclePhotoTag } from './components/DotsSquirclePhoto/DotsSquirclePhoto';
 export type { DotsSquirclePhotoProps, DotsSquirclePhotoTagProps } from './components/DotsSquirclePhoto/DotsSquirclePhoto';
 export { DotsUploadItem } from './components/DotsUploadItem/DotsUploadItem';
 export type { DotsUploadItemProps, DotsUploadItemVariant } from './components/DotsUploadItem/DotsUploadItem';
