@@ -1,6 +1,6 @@
 // DotsMenu — port of lib/src/components/menu/ (dots_menu.dart + dots_menu_item_model.dart
 // + settings_item.dart + settings_list.dart; Dart = source of truth).
-import { useLayoutEffect, useRef, useState, type CSSProperties, type MouseEvent, type ReactNode } from 'react';
+import { useId, useLayoutEffect, useRef, useState, type CSSProperties, type MouseEvent, type ReactNode } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsToggle } from '../DotsToggle/DotsToggle';
 import { pressable } from '../../internal/pressable';
@@ -213,16 +213,17 @@ export function DotsMenuSettingsItem(p: DotsMenuSettingsItemProps) {
   // handler); variant 'toggle' → the embedded DotsToggle is the control and the row only forwards
   // its click (not focusable, no role) so the toggle is not nested inside a second button.
   const rowProps = isToggle ? { onClick: p.onClick ?? p.onToggleTap } : pressable(p.onClick);
+  const labelId = useId(); // names the embedded switch (it has no text of its own)
   return (
     <div className={`ds-menu-settings__item${isToggle ? ' ds-menu-settings__item--toggle' : ''}`} {...rowProps}>
       {p.startIcon ? <DotsIcon name={p.startIcon} size={20} color="var(--text-tertiary)" className="ds-menu-settings__start" /> : null}
-      <span className="ds-menu-settings__label" style={labelStyle}>
+      <span className="ds-menu-settings__label" style={labelStyle} id={labelId}>
         {p.label}
       </span>
       {isToggle ? (
         // Dart: DotsToggle(isSelected: toggleValue, onChanged: onToggleTap); the tap does not reach the row
         <span className="ds-menu-settings__toggle" onClick={(e: MouseEvent<HTMLSpanElement>) => e.stopPropagation()}>
-          <DotsToggle isSelected={!!p.toggleValue} onChanged={() => p.onToggleTap?.()} />
+          <DotsToggle isSelected={!!p.toggleValue} onChanged={() => p.onToggleTap?.()} ariaLabelledBy={labelId} />
         </span>
       ) : p.endIcon ? (
         <DotsIcon name={p.endIcon} size={16} color="var(--text-tertiary)" />
