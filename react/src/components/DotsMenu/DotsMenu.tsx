@@ -1,9 +1,10 @@
 // DotsMenu — port of lib/src/components/menu/ (dots_menu.dart + dots_menu_item_model.dart
 // + settings_item.dart + settings_list.dart; Dart = source of truth).
-import { useState, type CSSProperties, type MouseEvent, type ReactNode } from 'react';
+import { useLayoutEffect, useRef, useState, type CSSProperties, type MouseEvent, type ReactNode } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsToggle } from '../DotsToggle/DotsToggle';
 import { pressable } from '../../internal/pressable';
+import { useMenuKeyboard, type MenuItemKeyboardProps } from '../../internal/useMenuKeyboard';
 
 /** Dart DotsMenuItemModel */
 export interface DotsMenuItemModel {
@@ -89,7 +90,10 @@ interface MenuItemProps {
   item: DotsMenuItemModel;
   isExpanded: boolean;
   isInitialItem?: boolean;
-  onTapItem?: () => void;
+  /** Click / Enter / Space action. Omitted → static row: no role, outside the keyboard navigation. */
+  onTap?: () => void;
+  /** Roving focus of the enclosing `menu` (useMenuKeyboard) */
+  nav: MenuItemKeyboardProps<HTMLDivElement>;
 }
 
 function MenuItem(p: MenuItemProps) {
@@ -102,15 +106,10 @@ function MenuItem(p: MenuItemProps) {
   }
   const iconColor = item.isDelete ? 'var(--label-destructive)' : item.selected ? 'var(--label-highlight)' : null;
   const textStyle: CSSProperties | undefined = item.isDelete ? { color: 'var(--label-destructive)' } : undefined;
+  const rowProps = p.onTap ? { role: 'menuitem' as const, onClick: p.onTap, ...p.nav } : {};
 
   return (
-    <div
-      className={`ds-menu__item${item.details != null ? ' ds-menu__item--details' : ''}`}
-      {...pressable(() => {
-        item.onClick?.();
-        p.onTapItem?.();
-      }, 'menuitem')}
-    >
+    <div className={`ds-menu__item${item.details != null ? ' ds-menu__item--details' : ''}`} {...rowProps}>
       {leftIcon ? <DotsIcon name={leftIcon} size={14} color={iconColor ?? 'var(--text-primary)'} className="ds-menu__item-left" /> : null}
       <span className="ds-menu__item-body">
         <span className="ds-menu__item-label" style={textStyle}>
@@ -151,38 +150,53 @@ export function DotsMenu(props: DotsMenuProps) {
   const subs = selected.subItems ?? [];
   const scrollable = subs.length > 7; // Dart: > 7 subitems → maxHeight 336 with scroll
 
+  // Keyboard model (WAI-ARIA menu): the header row is item 0 and the sub items follow, all under
+  // one roving tab stop. The header is only a menu item when tapping it does something (goes
+  // back a level, or the item has an onClick); at the root without onClick it is a static title.
+  const headerTaps = !isInitialItem || !!selected.onClick;
+  // Row to focus once a level change has rendered (entering: first sub item; back: the row the
+  // level was entered from) — applied in the layout effect below.
+  const pendingFocus = useRef<number | null>(null);
+
+  function tapHeader() {
+    selected.onClick?.();
+    if (!state.stack.length) return;
+    const stack = state.stack.slice();
+    const parent = stack.pop() as DotsMenuItemModel;
+    pendingFocus.current = 1 + (parent.subItems ?? []).indexOf(selected);
+    setState({ selected: parent, stack });
+  }
+  function tapSub(item: DotsMenuItemModel) {
+    item.onClick?.();
+    if (!item.subItems || !item.subItems.length) return;
+    pendingFocus.current = 1;
+    setState({ stack: [...state.stack, selected], selected: item });
+  }
+
+  const kb = useMenuKeyboard<HTMLDivElement>({
+    count: 1 + subs.length,
+    isDisabled: (i) => i === 0 && !headerTaps,
+    onActivate: (i) => (i === 0 ? tapHeader() : tapSub(subs[i - 1])),
+  });
+  const { focusItem } = kb;
+  useLayoutEffect(() => {
+    if (pendingFocus.current == null) return;
+    const index = pendingFocus.current;
+    pendingFocus.current = null;
+    focusItem(index);
+  });
+
   const children: ReactNode[] = [];
   subs.forEach((item, i) => {
-    children.push(
-      <MenuItem
-        key={`i${i}`}
-        item={item}
-        isExpanded={false}
-        onTapItem={() => {
-          if (item.subItems && item.subItems.length) {
-            setState({ stack: [...state.stack, selected], selected: item });
-          }
-        }}
-      />,
-    );
+    children.push(<MenuItem key={`i${i}`} item={item} isExpanded={false} onTap={() => tapSub(item)} nav={kb.itemProps(1 + i)} />);
     const isLast = i === subs.length - 1;
     if (item.addDivider && !isLast) children.push(<div key={`d${i}`} className="ds-menu__divider ds-menu__divider--item" />);
     else if (!isLast) children.push(<div key={`s${i}`} className="ds-menu__spacer" />);
   });
 
   return (
-    <div className={`ds-menu${props.className ? ` ${props.className}` : ''}`} role="menu">
-      <MenuItem
-        item={selected}
-        isExpanded
-        isInitialItem={isInitialItem}
-        onTapItem={() => {
-          if (state.stack.length) {
-            const stack = state.stack.slice();
-            setState({ selected: stack.pop() as DotsMenuItemModel, stack });
-          }
-        }}
-      />
+    <div className={`ds-menu${props.className ? ` ${props.className}` : ''}`} role="menu" aria-orientation="vertical">
+      <MenuItem item={selected} isExpanded isInitialItem={isInitialItem} onTap={headerTaps ? tapHeader : undefined} nav={kb.itemProps(0)} />
       <div className="ds-menu__divider" />
       <div className={`ds-menu__list${scrollable ? ' ds-menu__list--scroll' : ''}`}>{children}</div>
     </div>
