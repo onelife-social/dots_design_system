@@ -1,4 +1,5 @@
 // MemoryCard — port of lib/src/components/cards/memory_card/memory_card.dart (Dart = source of truth).
+import { pressable } from '../../internal/pressable';
 
 /** Dart enum MemoryCardVariant */
 export type MemoryCardVariant = 'memory' | 'recap';
@@ -20,8 +21,7 @@ export function MemoryCard(props: MemoryCardProps) {
   return (
     <div
       className={`ds-memory-card${props.className ? ` ${props.className}` : ''}`}
-      onClick={props.onClick}
-      role={props.onClick ? 'button' : undefined}
+      {...pressable(props.onClick)}
     >
       {/* _MemoryCardBorder 67.53×87.39 r18 w1.45 (memory: linear green · recap: sweep) */}
       <div className={`ds-memory-card__border ds-memory-card__border--${variant}`}>
