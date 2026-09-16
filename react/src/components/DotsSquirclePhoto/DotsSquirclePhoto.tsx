@@ -1,6 +1,6 @@
 // DotsSquirclePhoto — port of lib/src/components/photos_components/dots_squircle_photo.dart
-// (Dart: DotsSquircleImage) + dots_squircle_photo_tag.dart (Dart: DotsSquircleImageTag), exposed as
-// DotsSquirclePhoto.Tag. Dart = source of truth.
+// (Dart: DotsSquircleImage) + dots_squircle_photo_tag.dart (Dart: DotsSquircleImageTag), exported as
+// DotsSquirclePhotoTag (also reachable as DotsSquirclePhoto.Tag). Dart = source of truth.
 import { useState, type SyntheticEvent } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { pressable } from '../../internal/pressable';
@@ -119,8 +119,8 @@ export function DotsSquirclePhoto(props: DotsSquirclePhotoProps) {
   );
 }
 
-// DotsSquircleImageTag — (size+10)² canvas, bordered image + 40px tag circle bottom-right
-function DotsSquirclePhotoTag(props: DotsSquirclePhotoTagProps) {
+/** Mirror of the Dart DotsSquircleImageTag — (size+10)² canvas, bordered image + 40px tag circle bottom-right */
+export function DotsSquirclePhotoTag(props: DotsSquirclePhotoTagProps) {
   const size = props.size ?? 100; // Dart default 100
   const tagCircleSize = props.tagCircleSize ?? 40;
   const iconSize = props.iconSize ?? 24;
@@ -152,5 +152,5 @@ function DotsSquirclePhotoTag(props: DotsSquirclePhotoTagProps) {
   );
 }
 
-/** Mirror of the Dart DotsSquircleImageTag */
+/** Composed alias of DotsSquirclePhotoTag */
 DotsSquirclePhoto.Tag = DotsSquirclePhotoTag;
