@@ -64,3 +64,14 @@
 @import "./components/MessagePreview/MessagePreview.css";
 @import "./components/NotificationBanner/NotificationBanner.css";
 @import "./components/NotificationBannerImage/NotificationBannerImage.css";
+@import "./components/BadgeIcon/BadgeIcon.css";
+@import "./components/BadgeLabel/BadgeLabel.css";
+@import "./components/BadgeMilestone/BadgeMilestone.css";
+@import "./components/BadgeProgress/BadgeProgress.css";
+@import "./components/BadgeTag/BadgeTag.css";
+@import "./components/DotsSelectorRadioButton/DotsSelectorRadioButton.css";
+@import "./components/MilestoneCard/MilestoneCard.css";
+@import "./components/MilestonesList/MilestonesList.css";
+@import "./components/RecapCard/RecapCard.css";
+@import "./components/DotsPlanningItem/DotsPlanningItem.css";
+@import "./components/DotsPlanSelector/DotsPlanSelector.css";

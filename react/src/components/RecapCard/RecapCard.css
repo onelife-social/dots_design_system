@@ -35,14 +35,6 @@
 /* _CreatedByText — bodyDefaultMedium blanco, una línea cada texto */
 .ds-recap-card__created-by { width: 100%; text-align: center; color: var(--label-always-white); font: 500 14px/1.29 var(--font-main); }
 .ds-recap-card__created-by span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-/* Fallbacks si BadgeLabel / DotsMainButton no están en el bundle */
-.ds-recap-card__badge-fb { padding: 4px 10px; border-radius: 20px; color: var(--label-always-white); font: 600 11px/1.29 var(--font-main); background: var(--gradient-bg-premium); }
-.ds-recap-card__cta-fb {
-  height: 44px; padding: 0 20px; border: none; border-radius: 44px; cursor: pointer; white-space: nowrap;
-  display: inline-flex; align-items: center; gap: 4px;
-  font: 500 14px/1.29 var(--font-main); color: var(--label-always-white); background: var(--label-highlight);
-  backdrop-filter: blur(var(--blur-50)); -webkit-backdrop-filter: blur(var(--blur-50));
-}
 /* CountdownRecap — w192 r24, bgContainerSecondaryOnBackground + borde blanco 30% + blur20 */
 .ds-recap-card__countdown {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
