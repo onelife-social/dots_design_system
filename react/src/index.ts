@@ -70,3 +70,5 @@ export { MilestonesList } from './components/MilestonesList/MilestonesList';
 export type { MilestonesListProps, MilestonesListItem } from './components/MilestonesList/MilestonesList';
 export { RecapCard } from './components/RecapCard/RecapCard';
 export type { RecapCardProps, RecapCardVariant, RecapCardLockedVariant } from './components/RecapCard/RecapCard';
+export { DotsPlanningItem } from './components/DotsPlanningItem/DotsPlanningItem';
+export type { DotsPlanningItemProps, DotsPlanningInfoItem } from './components/DotsPlanningItem/DotsPlanningItem';
