@@ -1,9 +1,10 @@
 // RecapCard — port of lib/src/components/cards/recap/ (recap_card.dart + recap_card_locked.dart
 // unified via the `locked` prop; CountdownRecap from countdown_recap.dart embedded). Dart = source of truth.
-import { useEffect, useState, type MouseEvent } from 'react';
+import { useEffect, useState, type MouseEvent, type SyntheticEvent } from 'react';
 import { BadgeLabel } from '../BadgeLabel/BadgeLabel';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsMainButton } from '../DotsMainButton/DotsMainButton';
+import { pressable } from '../../internal/pressable';
 
 /** Dart enum RecapCardVariant (onlyTitle = active without title/badge/button) */
 export type RecapCardVariant = 'active' | 'blocked' | 'generated' | 'onlyTitle';
@@ -58,6 +59,10 @@ const LOCKED_VARIANTS: Record<RecapCardLockedVariant, true> = { countdown: true,
 
 // Keeps inner taps from also firing the card's onClick
 const stopWrap = (fn?: () => void) => (fn ? (e?: MouseEvent) => { e?.stopPropagation(); fn(); } : undefined);
+// Keys on inner native buttons (Enter/Space) must not reach the pressable card either
+function stopKeys(e: SyntheticEvent) {
+  e.stopPropagation();
+}
 
 function pad2(n: number) {
   return (n < 10 ? '0' : '') + n;
@@ -111,14 +116,20 @@ function renderUnlocked(props: RecapCardProps, variant: RecapCardVariant, width:
   } else if (isGenerated && !badgeText) {
     // DotsIconButton floating large Ø44 · share icon 24 · textPrimary
     control = (
-      <button type="button" className="ds-recap-card__icon-btn" onClick={stopWrap(props.onInfoClick)} aria-label="share">
+      <button type="button" className="ds-recap-card__icon-btn" onClick={stopWrap(props.onInfoClick)} onKeyDown={stopKeys} aria-label="share">
         <DotsIcon name="ic-share" size={24} color="currentColor" />
       </button>
     );
   } else if (isBlocked) {
     // DotsIconButton floating large Ø44 · lock · bgBtnImage at 50%
     control = (
-      <button type="button" className="ds-recap-card__icon-btn ds-recap-card__icon-btn--half" onClick={stopWrap(props.onInfoClick)} aria-label="lock">
+      <button
+        type="button"
+        className="ds-recap-card__icon-btn ds-recap-card__icon-btn--half"
+        onClick={stopWrap(props.onInfoClick)}
+        onKeyDown={stopKeys}
+        aria-label="lock"
+      >
         <DotsIcon name="ic-lock" size={24} color="currentColor" />
       </button>
     );
@@ -141,8 +152,7 @@ function renderUnlocked(props: RecapCardProps, variant: RecapCardVariant, width:
     <div
       className={`ds-recap-card${props.className ? ` ${props.className}` : ''}`}
       style={{ width: `${width}px` }}
-      onClick={props.onClick}
-      role={props.onClick ? 'button' : undefined}
+      {...pressable(props.onClick)}
     >
       {imageLayer(props, isBlocked) /* blocked → ImageFilter.blur(15) */}
       <div className="ds-recap-card__overlay">
@@ -160,7 +170,9 @@ function renderUnlocked(props: RecapCardProps, variant: RecapCardVariant, width:
           )}
           {control}
         </div>
-        <div className="ds-recap-card__bottom">{bottom}</div>
+        <div className="ds-recap-card__bottom" onKeyDown={stopKeys}>
+          {bottom}
+        </div>
       </div>
     </div>
   );

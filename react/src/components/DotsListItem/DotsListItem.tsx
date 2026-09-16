@@ -49,9 +49,20 @@ function renderThumb(props: DotsListItemProps) {
   );
 }
 
+// Radio-like variants: the row is the (only) control, so the DotsRadioButton is just the visual
+// indicator — out of the accessibility tree, the tab order and pointer hit-testing (same approach as
+// DotsSelectorRadioButton). `display: contents` keeps the flex layout untouched.
+function isRadioLike(variant: DotsListItemVariant) {
+  return variant === 'selector' || variant === 'radioButton';
+}
+
 function renderTrailing(variant: DotsListItemVariant) {
-  if (variant === 'selector' || variant === 'radioButton') {
-    return <DotsRadioButton isSelected={variant === 'radioButton'} size={22} />;
+  if (isRadioLike(variant)) {
+    return (
+      <span aria-hidden inert style={{ display: 'contents', pointerEvents: 'none' }}>
+        <DotsRadioButton isSelected={variant === 'radioButton'} size={22} />
+      </span>
+    );
   }
   if (variant === 'check') {
     // DotsSelector.check(size: small(22), isSelected: true) — labelHighlight pill, 14 white check
@@ -76,8 +87,14 @@ export function DotsListItem(props: DotsListItemProps) {
     );
   }
 
+  const radioLike = isRadioLike(variant);
   return (
-    <div className={`ds-list-item${props.onClick ? ' is-tappable' : ''}`} {...pressable(props.onClick)}>
+    <div
+      className={`ds-list-item${props.onClick ? ' is-tappable' : ''}`}
+      role={radioLike ? 'radio' : undefined}
+      aria-checked={radioLike ? variant === 'radioButton' : undefined}
+      {...pressable(props.onClick, radioLike ? 'radio' : 'button')}
+    >
       {renderThumb(props)}
       {props.label != null ? <span className="ds-list-item__label">{props.label}</span> : null}
       {renderTrailing(variant)}
