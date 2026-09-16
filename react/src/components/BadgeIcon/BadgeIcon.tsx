@@ -20,6 +20,8 @@ export interface BadgeIconProps {
   iconColor?: string;
   /** Dart `onTap` */
   onClick?: () => void;
+  /** Accessible name of the clickable badge (the control is icon-only); applied only with `onClick` */
+  ariaLabel?: string;
   /**
    * Group mode (Dart BadgeIconGroup): 1-3 icon names stacked on a 63×70 canvas.
    * icons[0] medium bottom-left; icons[1]/icons[2] small. Ignores `icon`/`size`.
@@ -44,6 +46,7 @@ function single(
   iconColor: string | null | undefined,
   onClick?: () => void,
   posStyle?: CSSProperties,
+  ariaLabel?: string,
 ) {
   const s = (sizeName && SIZES[sizeName]) || SIZES.large; // Dart: default large
   return (
@@ -51,6 +54,7 @@ function single(
       className={`ds-badge-icon ds-badge-icon--${style && STYLES[style] ? style : 'white'}`}
       style={{ width: `${s.size}px`, height: `${s.size}px`, ...posStyle }}
       {...pressable(onClick)}
+      aria-label={onClick ? ariaLabel : undefined}
     >
       <DotsIcon name={name ?? ''} size={s.iconSize} color={iconColor || 'currentColor'} />
     </span>
@@ -64,7 +68,7 @@ export function BadgeIcon(props: BadgeIconProps) {
     if (!icons.length) return null; // Dart: SizedBox.shrink()
     const colors = props.iconColors ?? [];
     return (
-      <span className="ds-badge-icon-group" {...pressable(props.onClick)}>
+      <span className="ds-badge-icon-group" {...pressable(props.onClick)} aria-label={props.onClick ? props.ariaLabel : undefined}>
         {single(icons[0], 'medium', props.style, colors[0], undefined, { left: 0, bottom: 0 })}
         {icons.length >= 2
           ? single(
@@ -80,5 +84,5 @@ export function BadgeIcon(props: BadgeIconProps) {
       </span>
     );
   }
-  return single(props.icon, props.size, props.style, props.iconColor, props.onClick);
+  return single(props.icon, props.size, props.style, props.iconColor, props.onClick, undefined, props.ariaLabel);
 }
