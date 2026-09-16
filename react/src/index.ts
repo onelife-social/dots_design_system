@@ -56,3 +56,5 @@ export { DotsSquirclePhoto } from './components/DotsSquirclePhoto/DotsSquirclePh
 export type { DotsSquirclePhotoProps, DotsSquirclePhotoTagProps } from './components/DotsSquirclePhoto/DotsSquirclePhoto';
 export { DotsUploadItem } from './components/DotsUploadItem/DotsUploadItem';
 export type { DotsUploadItemProps, DotsUploadItemVariant } from './components/DotsUploadItem/DotsUploadItem';
+export { AlbumGroupCard } from './components/AlbumGroupCard/AlbumGroupCard';
+export type { AlbumGroupCardProps, AlbumGroupCardVariant } from './components/AlbumGroupCard/AlbumGroupCard';
