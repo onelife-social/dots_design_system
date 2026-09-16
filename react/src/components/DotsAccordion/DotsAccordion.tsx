@@ -43,17 +43,20 @@ export function DotsAccordion(props: DotsAccordionProps) {
   const duration = props.animationDuration ?? 180;
   const addHPad = props.addHorizontalPadding !== false;
 
-  // Local expansion state belongs to one `sections` list: a new list resets it to the sections'
-  // own `expanded` values, as the Dart widget does in didUpdateWidget.
-  const [state, setState] = useState<{ sections: DotsAccordionSection[]; values: boolean[] } | null>(null);
-  const expanded = state && state.sections === props.sections ? state.values : sections.map((s) => !!s?.expanded);
+  // Local expansion state belongs to one set of sections. The Dart widget resets it in
+  // didUpdateWidget when the list instance changes; in React an inline `sections={[...]}` is a new
+  // instance on every parent render, so the reset keys on the sections' content (title + initial
+  // expanded) instead: replacing the sections resets, re-rendering the same ones keeps the state.
+  const signature = sections.map((s) => `${s?.title ?? ''}\u0000${s?.expanded ? 1 : 0}`).join('\u0001');
+  const [state, setState] = useState<{ signature: string; values: boolean[] } | null>(null);
+  const expanded = state && state.signature === signature ? state.values : sections.map((s) => !!s?.expanded);
 
   function toggle(index: number) {
     const next = expanded.map((v, i) => {
       if (singleOpen) return i === index ? !v : false;
       return i === index ? !v : v;
     });
-    setState({ sections: props.sections, values: next });
+    setState({ signature, values: next });
     props.onToggle?.(index, next[index]);
   }
 
