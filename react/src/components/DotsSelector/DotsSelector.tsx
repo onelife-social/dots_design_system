@@ -18,6 +18,8 @@ export interface DotsSelectorProps {
   onChanged?: (isSelected: boolean) => void;
   /** (variant num only) Number shown when selected — Dart `number` (default 1) */
   number?: number;
+  /** Accessible name of the checkbox: it has no text of its own (web extension, localizable) */
+  ariaLabel?: string;
 }
 
 // DotsSelectorSize.height
@@ -51,6 +53,7 @@ export function DotsSelector(props: DotsSelectorProps) {
       type="button"
       role="checkbox"
       aria-checked={selected}
+      aria-label={props.ariaLabel}
       className={`ds-selector ds-selector--${sizeName}${selected ? ' is-on' : ''}`}
       onClick={handleClick}
     >
