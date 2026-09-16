@@ -6,6 +6,9 @@ import type { KeyboardEvent } from 'react';
 /** onKeyDown that activates `handler` on Enter or Space (and prevents the page scroll of Space). */
 export function activateOnKey(handler: () => void) {
   return (e: KeyboardEvent<HTMLElement>) => {
+    // Keys pressed on a nested control (a real button inside the pressable) are that control's,
+    // not ours: they would otherwise run the parent action before the child's own click.
+    if (e.target !== e.currentTarget) return;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       handler();
