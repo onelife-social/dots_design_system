@@ -58,3 +58,11 @@ export { DotsFilterChip } from './components/DotsFilterChip/DotsFilterChip';
 export type { DotsFilterChipProps } from './components/DotsFilterChip/DotsFilterChip';
 export { DotsToast } from './components/DotsToast/DotsToast';
 export type { DotsToastProps, DotsToastVariant } from './components/DotsToast/DotsToast';
+export { DotsMenu, DotsMenuSettingsList, DotsMenuSettingsItem } from './components/DotsMenu/DotsMenu';
+export type {
+  DotsMenuProps,
+  DotsMenuItemModel,
+  DotsMenuSettingsListProps,
+  DotsMenuSettingsItemProps,
+  DotsMenuSettingsItemVariant,
+} from './components/DotsMenu/DotsMenu';
