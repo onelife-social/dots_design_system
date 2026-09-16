@@ -36,7 +36,10 @@ export interface DotsSegmentedControlProps {
   selectedOption?: DotsSegmentedControlOption;
   /** Initial option (uncontrolled) */
   defaultSelectedOption?: DotsSegmentedControlOption;
-  /** Called with the tapped option — Dart `onTapOption` */
+  /**
+   * Called with the tapped option — Dart `onTapOption`. Types `text` and `icon` only: the `single`
+   * type is purely visual (Dart `SegmentedControlSingle` has no tap handler) and never fires it.
+   */
   onTapOption?: (option: DotsSegmentedControlOption) => void;
   /** type 'text'/'single': CSS color of the selected segment — Dart `selectedColor` */
   selectedColor?: string;
