@@ -130,3 +130,23 @@ export { MemoryCard } from './components/MemoryCard/MemoryCard';
 export type { MemoryCardProps, MemoryCardVariant } from './components/MemoryCard/MemoryCard';
 export { ProductCard } from './components/ProductCard/ProductCard';
 export type { ProductCardProps } from './components/ProductCard/ProductCard';
+export { UserItem, UserInfo } from './components/UserItem/UserItem';
+export type { UserItemProps, UserInfoProps, UserInfoSize } from './components/UserItem/UserItem';
+export { UsersList, UsersListItem } from './components/UsersList/UsersList';
+export type {
+  UsersListProps,
+  UsersListItemProps,
+  UsersListItemVariant,
+  UsersListMember,
+  UsersListMemberType,
+} from './components/UsersList/UsersList';
+export { ActivityPreview, ActivityOverviewItem } from './components/ActivityPreview/ActivityPreview';
+export type { ActivityPreviewProps, ActivityOverviewItemProps, ActivityPreviewVariant } from './components/ActivityPreview/ActivityPreview';
+export { ImageWithIcon } from './components/ImageWithIcon/ImageWithIcon';
+export type { ImageWithIconProps } from './components/ImageWithIcon/ImageWithIcon';
+export { MessagePreview } from './components/MessagePreview/MessagePreview';
+export type { MessagePreviewProps, MessagePreviewAttachmentType } from './components/MessagePreview/MessagePreview';
+export { NotificationBanner } from './components/NotificationBanner/NotificationBanner';
+export type { NotificationBannerProps } from './components/NotificationBanner/NotificationBanner';
+export { NotificationBannerImage } from './components/NotificationBannerImage/NotificationBannerImage';
+export type { NotificationBannerImageProps } from './components/NotificationBannerImage/NotificationBannerImage';

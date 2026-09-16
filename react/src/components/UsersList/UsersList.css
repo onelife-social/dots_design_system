@@ -23,14 +23,6 @@
 .ds-users-item[role='button'] {
   cursor: pointer;
 }
-.ds-users-item__info-fallback {
-  flex: 1;
-  min-width: 0;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.02px;
-  color: var(--text-primary);
-}
 
 /* textfield — h30, bodyDefaultMedium, hint textQuarternary, caret labelHighlight */
 .ds-users-item__textfield {
@@ -86,21 +78,4 @@
   display: flex;
   align-items: center;
   gap: 4px;
-}
-/* Fallback si DotsCloseButton no está en el bundle */
-.ds-users-item__close-fallback {
-  flex: none;
-  width: 16px;
-  height: 16px;
-  border: none;
-  border-radius: 50%;
-  padding: 0;
-  cursor: pointer;
-  background: var(--bg-btn-disabled);
-  color: var(--label-primary);
-  font-size: 11px;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
