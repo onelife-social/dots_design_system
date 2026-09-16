@@ -15,6 +15,24 @@
 }
 .ds-notif-banner-img--clickable { cursor: pointer; }
 
+/* Banner-level onActionClick: transparent native button covering the banner (sibling of the inner
+   controls, which sit above it with z-index). Only visible as a focus ring on keyboard focus. */
+.ds-notif-banner-img__hit {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.ds-notif-banner-img__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
+
 .ds-notif-banner-img__img-wrap {
   box-sizing: border-box;
   width: 100%;
@@ -68,11 +86,13 @@
 }
 .ds-notif-banner-img__desc-appended { color: var(--label-highlight); }
 
-.ds-notif-banner-img__action { display: flex; justify-content: center; }
+/* Above the hit target so the button receives its own clicks */
+.ds-notif-banner-img__action { position: relative; z-index: 1; display: flex; justify-content: center; }
 
-/* Positioned(top: 12, right: 12) */
+/* Positioned(top: 12, right: 12) — above the hit target */
 .ds-notif-banner-img__close {
   position: absolute;
   top: 12px;
   right: 12px;
+  z-index: 1;
 }

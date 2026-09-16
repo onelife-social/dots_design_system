@@ -4,7 +4,6 @@
 import type { ReactNode } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsMainButton } from '../DotsMainButton/DotsMainButton';
-import { pressable } from '../../internal/pressable';
 
 /** Dart enum DotsToastVariant */
 export type DotsToastVariant = 'success' | 'error' | 'info' | 'progress' | 'connectionResumed' | 'connectionLost' | 'widget';
@@ -98,20 +97,10 @@ export function DotsToast(props: DotsToastProps) {
     // 358 row: icon + title + ghost button (progress only). In progress the icon rotates
     // and is NOT tinted (ic-slot keeps its own colors), like _RotatingIcon in Dart.
     const lead = isProgress ? iconEl(name, 24, undefined, true) : iconEl(name, 20, color, false);
+    // The ghost button sits above the toast hit target (z-index in CSS) and fires the same onClick
     const btn =
       props.btnTitle != null && isProgress ? (
-        <DotsMainButton
-          label={props.btnTitle}
-          variant="ghost"
-          size="medium"
-          adaptPaddingForText
-          expand={false}
-          onClick={(e) => {
-            // The toast itself also handles onClick: stop the bubble so it is dispatched exactly once
-            e?.stopPropagation();
-            props.onClick?.();
-          }}
-        />
+        <DotsMainButton className="ds-toast__btn" label={props.btnTitle} variant="ghost" size="medium" adaptPaddingForText expand={false} onClick={props.onClick} />
       ) : null;
     children = (
       <>
@@ -122,12 +111,14 @@ export function DotsToast(props: DotsToastProps) {
     );
   }
 
-  // Static toast: role="status" (polite live region). Tappable toast (Dart onTap): a complete button
-  // (role, tab stop, Enter/Space) that keeps being announced through aria-live.
-  const semantics = props.onClick ? { ...pressable(props.onClick), 'aria-live': 'polite' as const } : { role: 'status' };
+  // The root is always a static live region (role="status"). Tappable toast (Dart onTap): a
+  // transparent native button overlaid on it as a sibling of the content, never its ancestor
+  // (descendants of an ARIA button are presentational; the ghost button would lose its semantics).
+  const hitEl = props.onClick ? <button type="button" className="ds-toast__hit" aria-label={props.title} onClick={props.onClick} /> : null;
 
   return (
-    <div className={className} {...semantics}>
+    <div className={className} role="status">
+      {hitEl}
       {children}
     </div>
   );

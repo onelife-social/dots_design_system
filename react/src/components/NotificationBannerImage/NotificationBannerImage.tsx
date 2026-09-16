@@ -2,7 +2,6 @@
 import { useState, type SyntheticEvent } from 'react';
 import { DotsCloseButton } from '../DotsCloseButton/DotsCloseButton';
 import { DotsMainButton, type DotsMainButtonSize } from '../DotsMainButton/DotsMainButton';
-import { pressable } from '../../internal/pressable';
 
 const BTN_SIZES: Record<DotsMainButtonSize, true> = { mainAction: true, large: true, medium: true, small: true };
 
@@ -82,9 +81,10 @@ export function NotificationBannerImage(props: NotificationBannerImageProps) {
     </div>
   ) : null;
 
-  // stopPropagation: in Dart the button's inner GestureDetector wins over the banner's (a single tap)
+  // Sits above the banner hit target (z-index in CSS): in Dart the button's inner GestureDetector
+  // wins over the banner's (a single tap)
   const actionEl = props.actionButtonText ? (
-    <div className="ds-notif-banner-img__action" onClick={(e) => e.stopPropagation()}>
+    <div className="ds-notif-banner-img__action">
       <DotsMainButton
         label={props.actionButtonText}
         size={btnSize}
@@ -95,21 +95,22 @@ export function NotificationBannerImage(props: NotificationBannerImageProps) {
     </div>
   ) : null;
 
-  // stopPropagation so that closing does not fire the banner's onActionClick
+  // Also above the hit target, so closing never fires the banner's onActionClick
   const closeEl = showClose ? (
-    <div className="ds-notif-banner-img__close" onClick={(e) => e.stopPropagation()}>
+    <div className="ds-notif-banner-img__close">
       <DotsCloseButton icon="ic-cross" size="medium" variant="softContrast" onClick={props.onClose} />
     </div>
   ) : null;
 
-  // Dart: with onActionTap != null the whole banner is GestureDetector(onTap: onActionTap) →
-  // complete button semantics (role, tab stop, Enter/Space). The action and close controls above
-  // stop propagation so they never trigger the banner's own handler.
+  // Dart: with onActionTap != null the whole banner is GestureDetector(onTap: onActionTap). On the
+  // web that is a native button overlaid on the banner (a sibling of the inner controls, never their
+  // ancestor: descendants of an ARIA button are presentational and would lose their semantics).
+  // The action and close controls sit above it, so they receive their own clicks.
+  const hitEl = clickable ? <button type="button" className="ds-notif-banner-img__hit" aria-label={props.title} onClick={props.onActionClick} /> : null;
+
   return (
-    <div
-      className={`ds-notif-banner-img${clickable ? ' ds-notif-banner-img--clickable' : ''}${props.className ? ` ${props.className}` : ''}`}
-      {...pressable(clickable ? props.onActionClick : undefined)}
-    >
+    <div className={`ds-notif-banner-img${clickable ? ' ds-notif-banner-img--clickable' : ''}${props.className ? ` ${props.className}` : ''}`}>
+      {hitEl}
       {imageEl ? (
         <div className="ds-notif-banner-img__img-wrap" style={{ paddingLeft: imagePadding, paddingRight: imagePadding }}>
           {imageEl}
