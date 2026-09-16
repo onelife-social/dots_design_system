@@ -28,6 +28,8 @@ export interface ProductCardProps {
   onClick?: () => void;
   /** Dart onActionTap. Without it the button is not painted */
   onActionClick?: () => void;
+  /** Accessible name of the icon-only action button (localizable; default 'Open') */
+  actionLabel?: string;
   className?: string;
 }
 
@@ -79,6 +81,7 @@ export function ProductCard(props: ProductCardProps) {
           <button
             type="button"
             className="ds-product-card__action"
+            aria-label={props.actionLabel ?? 'Open'}
             onClick={(e: MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               onActionClick();
