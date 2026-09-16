@@ -17,6 +17,10 @@ export interface DotsInputStepperProps {
   onDecrement?: () => void;
   /** Called with the new value after each press (web extension) */
   onChanged?: (value: number) => void;
+  /** Accessible name of the − button (default 'Decrement'; localize from the app) */
+  decrementLabel?: string;
+  /** Accessible name of the + button (default 'Increment'; localize from the app) */
+  incrementLabel?: string;
 }
 
 export function DotsInputStepper(props: DotsInputStepperProps) {
@@ -38,9 +42,9 @@ export function DotsInputStepper(props: DotsInputStepperProps) {
 
   // Dart: DotsIconButton small (28) without background nor blur; enabled textTertiary,
   // disabled resolved by the button theme → textDisabled.
-  function stepBtn(iconName: string, enabled: boolean, onClick: () => void) {
+  function stepBtn(iconName: string, label: string, enabled: boolean, onClick: () => void) {
     return (
-      <button type="button" className={`ds-stepper__btn${enabled ? '' : ' is-disabled'}`} disabled={!enabled} onClick={onClick}>
+      <button type="button" className={`ds-stepper__btn${enabled ? '' : ' is-disabled'}`} disabled={!enabled} onClick={onClick} aria-label={label}>
         <DotsIcon name={iconName} size={14} color="currentColor" />
       </button>
     );
@@ -48,9 +52,9 @@ export function DotsInputStepper(props: DotsInputStepperProps) {
 
   return (
     <div className="ds-stepper">
-      {stepBtn('ic-rest', canDecrement, () => step(-1, canDecrement, props.onDecrement))}
+      {stepBtn('ic-rest', props.decrementLabel ?? 'Decrement', canDecrement, () => step(-1, canDecrement, props.onDecrement))}
       <span className="ds-stepper__value">{String(value)}</span>
-      {stepBtn('ic-add', canIncrement, () => step(1, canIncrement, props.onIncrement))}
+      {stepBtn('ic-add', props.incrementLabel ?? 'Increment', canIncrement, () => step(1, canIncrement, props.onIncrement))}
     </div>
   );
 }
