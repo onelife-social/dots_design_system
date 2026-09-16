@@ -15,5 +15,9 @@ export interface DotsSliderProps {
     leftIcon?: string;
     /** Right icon (asset ic-…) — Dart `rightIcon` (default 'ic-group') */
     rightIcon?: string;
+    /** Accessible name of the slider (web extension, localizable) */
+    ariaLabel?: string;
+    /** Id of the element that names the slider (alternative to `ariaLabel`) */
+    ariaLabelledBy?: string;
 }
 export declare function DotsSlider(props: DotsSliderProps): import("react").JSX.Element;

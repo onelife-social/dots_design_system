@@ -15,5 +15,7 @@ export interface DotsSelectorProps {
     onChanged?: (isSelected: boolean) => void;
     /** (variant num only) Number shown when selected — Dart `number` (default 1) */
     number?: number;
+    /** Accessible name of the checkbox: it has no text of its own (web extension, localizable) */
+    ariaLabel?: string;
 }
 export declare function DotsSelector(props: DotsSelectorProps): import("react").JSX.Element;

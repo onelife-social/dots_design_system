@@ -26,6 +26,8 @@ export interface ProductCardProps {
     onClick?: () => void;
     /** Dart onActionTap. Without it the button is not painted */
     onActionClick?: () => void;
+    /** Accessible name of the icon-only action button (localizable; default 'Open') */
+    actionLabel?: string;
     className?: string;
 }
 export declare function ProductCard(props: ProductCardProps): import("react").JSX.Element;
