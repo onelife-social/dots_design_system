@@ -56,3 +56,5 @@ export { BadgeIcon } from './components/BadgeIcon/BadgeIcon';
 export type { BadgeIconProps, BadgeIconSize, BadgeIconStyle } from './components/BadgeIcon/BadgeIcon';
 export { BadgeLabel } from './components/BadgeLabel/BadgeLabel';
 export type { BadgeLabelProps, BadgeLabelSize, BadgeLabelVariant } from './components/BadgeLabel/BadgeLabel';
+export { BadgeMilestone } from './components/BadgeMilestone/BadgeMilestone';
+export type { BadgeMilestoneProps, BadgeMilestoneVariant } from './components/BadgeMilestone/BadgeMilestone';
