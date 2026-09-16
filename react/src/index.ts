@@ -56,3 +56,5 @@ export { DotsSelector } from './components/DotsSelector/DotsSelector';
 export type { DotsSelectorProps, DotsSelectorSize, DotsSelectorVariant } from './components/DotsSelector/DotsSelector';
 export { DotsSystemButton } from './components/DotsSystemButton/DotsSystemButton';
 export type { DotsSystemButtonProps, DotsSystemButtonSize, DotsSystemButtonVariant } from './components/DotsSystemButton/DotsSystemButton';
+export { DotsFloatingButton } from './components/DotsFloatingButton/DotsFloatingButton';
+export type { DotsFloatingButtonProps } from './components/DotsFloatingButton/DotsFloatingButton';

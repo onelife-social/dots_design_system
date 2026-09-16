@@ -1,4 +1,4 @@
-/* DotsFloatingButton — h36, r22, pad 0 20, labelDefaultBold 13/600, sombra 0 4 15 (dots_floating_button.dart) */
+/* DotsFloatingButton — h36, r22, pad 0 20, labelDefaultBold 13/600, shadow 0 4 15 (dots_floating_button.dart) */
 .ds-floating-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 4px;
   border: none; cursor: pointer; height: 36px; padding: 0 20px; border-radius: 22px;
@@ -8,7 +8,7 @@
   box-shadow: var(--shadow-floating-btn);
 }
 .ds-floating-btn__label { overflow: hidden; text-overflow: ellipsis; }
-/* blur: BackdropFilter(10) + capa labelAlwaysWhite al 50% (#FFFFFF80, sin token) bajo bgSecondaryBtn */
+/* blur: BackdropFilter(10) + labelAlwaysWhite layer at 50% (#FFFFFF80, no token) under bgSecondaryBtn */
 .ds-floating-btn--blur {
   -webkit-backdrop-filter: blur(var(--blur-10)); backdrop-filter: blur(var(--blur-10));
   background-color: transparent;
