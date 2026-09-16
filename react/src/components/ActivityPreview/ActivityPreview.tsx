@@ -145,8 +145,15 @@ export function ActivityOverviewItem(props: ActivityOverviewItemProps) {
   const count = props.count ?? 0;
   const reactionsCount = props.reactionsCount ?? 0;
 
-  function hideOnError(e: SyntheticEvent<HTMLImageElement>) {
-    e.currentTarget.style.display = 'none'; // keeps the card's gradient placeholder visible
+  // Failed URLs live in state (not a DOM `display` mutation, which would stick when React
+  // reuses the <img> for a new URL). A failed photo is not rendered: the card keeps its gradient
+  // placeholder and an avatar shows its ic-user fallback.
+  const [failed, setFailed] = useState<ReadonlySet<string>>(() => new Set());
+  function markFailed(src: string) {
+    setFailed((prev) => (prev.has(src) ? prev : new Set(prev).add(src)));
+  }
+  function photo(src: string, e: SyntheticEvent<HTMLImageElement>) {
+    markFailed(src);
     props.onError?.(e);
   }
 
@@ -171,13 +178,17 @@ export function ActivityOverviewItem(props: ActivityOverviewItemProps) {
   const backCard =
     images.length > 1 ? (
       <div className="ds-activity-overview__card ds-activity-overview__card--back" style={backStyle}>
-        {backSrc ? <img className="ds-activity-overview__photo" src={backSrc} alt="" onError={hideOnError} /> : null}
+        {backSrc && !failed.has(backSrc) ? (
+          <img className="ds-activity-overview__photo" src={backSrc} alt="" onError={(e) => photo(backSrc, e)} />
+        ) : null}
       </div>
     ) : null;
 
   const mainCard = (
     <div className="ds-activity-overview__card ds-activity-overview__card--main" style={cardStyle}>
-      {images[0] ? <img className="ds-activity-overview__photo" src={images[0]} alt="" onError={hideOnError} /> : null}
+      {images[0] && !failed.has(images[0]) ? (
+        <img className="ds-activity-overview__photo" src={images[0]} alt="" onError={(e) => photo(images[0], e)} />
+      ) : null}
       <div className="ds-activity-overview__gradient" style={{ borderRadius }} />
     </div>
   );
@@ -202,15 +213,8 @@ export function ActivityOverviewItem(props: ActivityOverviewItemProps) {
             <span className="ds-activity-overview__avatar-fallback">
               <DotsIcon name="ic-user" size={12} color="var(--text-tertiary)" />
             </span>
-            {src ? (
-              <img
-                className="ds-activity-overview__avatar-img"
-                src={src}
-                alt=""
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none'; // → ic-user fallback
-                }}
-              />
+            {src && !failed.has(src) ? (
+              <img className="ds-activity-overview__avatar-img" src={src} alt="" onError={() => markFailed(src)} />
             ) : null}
           </div>
         ))}
