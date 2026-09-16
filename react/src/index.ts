@@ -68,3 +68,5 @@ export { FolderCarrousel } from './components/FolderCarrousel/FolderCarrousel';
 export type { FolderCarrouselProps, FolderCarrouselItem } from './components/FolderCarrousel/FolderCarrousel';
 export { DotsCountdown } from './components/DotsCountdown/DotsCountdown';
 export type { DotsCountdownProps, DotsCountdownVariant } from './components/DotsCountdown/DotsCountdown';
+export { ImageThumbnail } from './components/ImageThumbnail/ImageThumbnail';
+export type { ImageThumbnailProps, ImageThumbnailVariant } from './components/ImageThumbnail/ImageThumbnail';
