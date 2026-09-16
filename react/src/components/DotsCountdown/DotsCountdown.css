@@ -1,5 +1,5 @@
 /* DotsCountdown — countdown/countdown_recap.dart + countdown_event_finished.dart
-   r24 · blur20 · toastShadow · bgContainerSecondaryOnBackground · texto labelAlwaysWhite */
+   r24 · blur20 · toastShadow · bgContainerSecondaryOnBackground · text labelAlwaysWhite */
 .ds-countdown {
   box-sizing: border-box;
   display: inline-flex;
@@ -15,7 +15,7 @@
   font-family: var(--font-main);
 }
 
-/* CountdownRecap — w192, padding 12/16/16, borde blanco 30% (sin token — Colors.white .3 en Dart) */
+/* CountdownRecap — w192, padding 12/16/16, white 30% border (no token — Colors.white .3 in Dart) */
 .ds-countdown--recap {
   width: 192px;
   padding: 12px 16px 16px;
@@ -35,7 +35,7 @@
   line-height: 1.31;
 }
 
-/* labelDefaultRegular 13/400 al 70% */
+/* labelDefaultRegular 13/400 at 70% */
 .ds-countdown__desc {
   display: block;
   margin-top: 6px;
@@ -62,7 +62,7 @@
   font-weight: 700;
   line-height: 1.26;
 }
-/* labelSmallMedium 11/600 — al 70% solo en recap (is-dim) */
+/* labelSmallMedium 11/600 — at 70% only in recap (is-dim) */
 .ds-countdown__item-label {
   font-size: 11px;
   font-weight: 600;
@@ -72,7 +72,7 @@
   opacity: 0.7;
 }
 
-/* CountdownEventFinished small — h36, padding 0 12, fila icono 16 + texto labelDefaultBold */
+/* CountdownEventFinished small — h36, padding 0 12, icon 16 + text labelDefaultBold row */
 .ds-countdown--small {
   flex-direction: row;
   align-items: center;
@@ -87,7 +87,7 @@
   white-space: nowrap;
 }
 
-/* CountdownEventFinished big — w169, padding 10/5, título + fila gap 10 */
+/* CountdownEventFinished big — w169, padding 10/5, title + row gap 10 */
 .ds-countdown--big {
   width: 169px;
   padding: 10px 5px;

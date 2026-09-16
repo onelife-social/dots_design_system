@@ -66,3 +66,5 @@ export { BtnFolder } from './components/BtnFolder/BtnFolder';
 export type { BtnFolderProps } from './components/BtnFolder/BtnFolder';
 export { FolderCarrousel } from './components/FolderCarrousel/FolderCarrousel';
 export type { FolderCarrouselProps, FolderCarrouselItem } from './components/FolderCarrousel/FolderCarrousel';
+export { DotsCountdown } from './components/DotsCountdown/DotsCountdown';
+export type { DotsCountdownProps, DotsCountdownVariant } from './components/DotsCountdown/DotsCountdown';
