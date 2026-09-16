@@ -43,15 +43,17 @@ export function DotsAccordion(props: DotsAccordionProps) {
   const duration = props.animationDuration ?? 180;
   const addHPad = props.addHorizontalPadding !== false;
 
-  const [state, setState] = useState<boolean[] | null>(null);
-  const expanded = state && state.length === sections.length ? state : sections.map((s) => !!s?.expanded);
+  // Local expansion state belongs to one `sections` list: a new list resets it to the sections'
+  // own `expanded` values, as the Dart widget does in didUpdateWidget.
+  const [state, setState] = useState<{ sections: DotsAccordionSection[]; values: boolean[] } | null>(null);
+  const expanded = state && state.sections === props.sections ? state.values : sections.map((s) => !!s?.expanded);
 
   function toggle(index: number) {
     const next = expanded.map((v, i) => {
       if (singleOpen) return i === index ? !v : false;
       return i === index ? !v : v;
     });
-    setState(next);
+    setState({ sections: props.sections, values: next });
     props.onToggle?.(index, next[index]);
   }
 
