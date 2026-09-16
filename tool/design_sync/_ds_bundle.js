@@ -2525,7 +2525,76 @@ const hooks = () => window.React;
 
   // src/components/DotsMenu/DotsMenu.tsx
   init_react_shim();
+  var import_react21 = __toESM(require_react(), 1);
+
+  // src/internal/useMenuKeyboard.ts
+  init_react_shim();
   var import_react20 = __toESM(require_react(), 1);
+  function useMenuKeyboard(options) {
+    const { count, isDisabled, onActivate, onEscape } = options;
+    const items = (0, import_react20.useRef)([]);
+    const [active, setActive] = (0, import_react20.useState)(0);
+    const enabled = (i) => i >= 0 && i < count && !isDisabled?.(i);
+    const seek = (from, dir) => {
+      for (let n = 0, i = from; n < count; n++, i = (i + dir + count) % count) if (enabled(i)) return i;
+      return -1;
+    };
+    const activeIndex = enabled(active) ? active : seek(0, 1);
+    function focusItem(index) {
+      const target = enabled(index) ? index : seek(0, 1);
+      if (target < 0) return;
+      setActive(target);
+      items.current[target]?.focus();
+    }
+    function itemProps(index) {
+      return {
+        ref: (el) => {
+          items.current[index] = el;
+        },
+        tabIndex: index === activeIndex ? 0 : -1,
+        // A pointer click focuses the row too: the tab stop follows it.
+        onFocus: (e) => {
+          if (e.target === e.currentTarget && enabled(index)) setActive(index);
+        },
+        onKeyDown: (e) => {
+          if (e.target !== e.currentTarget) return;
+          let next;
+          switch (e.key) {
+            case "ArrowDown":
+              next = seek((index + 1) % count, 1);
+              break;
+            case "ArrowUp":
+              next = seek((index - 1 + count) % count, -1);
+              break;
+            case "Home":
+              next = seek(0, 1);
+              break;
+            case "End":
+              next = seek(count - 1, -1);
+              break;
+            case "Enter":
+            case " ":
+              e.preventDefault();
+              if (enabled(index)) onActivate(index);
+              return;
+            case "Escape":
+              if (!onEscape) return;
+              e.preventDefault();
+              e.stopPropagation();
+              onEscape();
+              return;
+            default:
+              return;
+          }
+          e.preventDefault();
+          if (next >= 0) focusItem(next);
+        }
+      };
+    }
+    return { activeIndex, itemProps, focusItem };
+  }
+
+  // src/components/DotsMenu/DotsMenu.tsx
   function findStack(subItems, targetId) {
     for (const it of subItems ?? []) {
       if (it.id === targetId) return [it];
@@ -2545,22 +2614,11 @@ const hooks = () => window.React;
     }
     const iconColor2 = item.isDelete ? "var(--label-destructive)" : item.selected ? "var(--label-highlight)" : null;
     const textStyle = item.isDelete ? { color: "var(--label-destructive)" } : void 0;
-    return /* @__PURE__ */ React.createElement(
-      "div",
-      {
-        className: `ds-menu__item${item.details != null ? " ds-menu__item--details" : ""}`,
-        ...pressable(() => {
-          item.onClick?.();
-          p.onTapItem?.();
-        }, "menuitem")
-      },
-      leftIcon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: leftIcon, size: 14, color: iconColor2 ?? "var(--text-primary)", className: "ds-menu__item-left" }) : null,
-      /* @__PURE__ */ React.createElement("span", { className: "ds-menu__item-body" }, /* @__PURE__ */ React.createElement("span", { className: "ds-menu__item-label", style: textStyle }, item.label), item.details != null ? /* @__PURE__ */ React.createElement("span", { className: "ds-menu__item-details", style: textStyle }, item.details) : null),
-      item.icon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: item.icon, size: 16, color: iconColor2 ?? "var(--label-primary)", className: "ds-menu__item-right" }) : null
-    );
+    const rowProps = p.onTap ? { role: "menuitem", onClick: p.onTap, ...p.nav } : {};
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-menu__item${item.details != null ? " ds-menu__item--details" : ""}`, ...rowProps }, leftIcon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: leftIcon, size: 14, color: iconColor2 ?? "var(--text-primary)", className: "ds-menu__item-left" }) : null, /* @__PURE__ */ React.createElement("span", { className: "ds-menu__item-body" }, /* @__PURE__ */ React.createElement("span", { className: "ds-menu__item-label", style: textStyle }, item.label), item.details != null ? /* @__PURE__ */ React.createElement("span", { className: "ds-menu__item-details", style: textStyle }, item.details) : null), item.icon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: item.icon, size: 16, color: iconColor2 ?? "var(--label-primary)", className: "ds-menu__item-right" }) : null);
   }
   function DotsMenu(props) {
-    const [state, setState] = (0, import_react20.useState)(() => {
+    const [state, setState] = (0, import_react21.useState)(() => {
       const root = { ...props.mainItem, subItems: props.subitems ?? [] };
       let stack = [];
       let selected2 = root;
@@ -2577,41 +2635,42 @@ const hooks = () => window.React;
     const isInitialItem = state.stack.length === 0;
     const subs = selected.subItems ?? [];
     const scrollable = subs.length > 7;
+    const headerTaps = !isInitialItem || !!selected.onClick;
+    const pendingFocus = (0, import_react21.useRef)(null);
+    function tapHeader() {
+      selected.onClick?.();
+      if (!state.stack.length) return;
+      const stack = state.stack.slice();
+      const parent = stack.pop();
+      pendingFocus.current = 1 + (parent.subItems ?? []).indexOf(selected);
+      setState({ selected: parent, stack });
+    }
+    function tapSub(item) {
+      item.onClick?.();
+      if (!item.subItems || !item.subItems.length) return;
+      pendingFocus.current = 1;
+      setState({ stack: [...state.stack, selected], selected: item });
+    }
+    const kb = useMenuKeyboard({
+      count: 1 + subs.length,
+      isDisabled: (i) => i === 0 && !headerTaps,
+      onActivate: (i) => i === 0 ? tapHeader() : tapSub(subs[i - 1])
+    });
+    const { focusItem } = kb;
+    (0, import_react21.useLayoutEffect)(() => {
+      if (pendingFocus.current == null) return;
+      const index = pendingFocus.current;
+      pendingFocus.current = null;
+      focusItem(index);
+    });
     const children = [];
     subs.forEach((item, i) => {
-      children.push(
-        /* @__PURE__ */ React.createElement(
-          MenuItem,
-          {
-            key: `i${i}`,
-            item,
-            isExpanded: false,
-            onTapItem: () => {
-              if (item.subItems && item.subItems.length) {
-                setState({ stack: [...state.stack, selected], selected: item });
-              }
-            }
-          }
-        )
-      );
+      children.push(/* @__PURE__ */ React.createElement(MenuItem, { key: `i${i}`, item, isExpanded: false, onTap: () => tapSub(item), nav: kb.itemProps(1 + i) }));
       const isLast = i === subs.length - 1;
       if (item.addDivider && !isLast) children.push(/* @__PURE__ */ React.createElement("div", { key: `d${i}`, className: "ds-menu__divider ds-menu__divider--item" }));
       else if (!isLast) children.push(/* @__PURE__ */ React.createElement("div", { key: `s${i}`, className: "ds-menu__spacer" }));
     });
-    return /* @__PURE__ */ React.createElement("div", { className: `ds-menu${props.className ? ` ${props.className}` : ""}`, role: "menu" }, /* @__PURE__ */ React.createElement(
-      MenuItem,
-      {
-        item: selected,
-        isExpanded: true,
-        isInitialItem,
-        onTapItem: () => {
-          if (state.stack.length) {
-            const stack = state.stack.slice();
-            setState({ selected: stack.pop(), stack });
-          }
-        }
-      }
-    ), /* @__PURE__ */ React.createElement("div", { className: "ds-menu__divider" }), /* @__PURE__ */ React.createElement("div", { className: `ds-menu__list${scrollable ? " ds-menu__list--scroll" : ""}` }, children));
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-menu${props.className ? ` ${props.className}` : ""}`, role: "menu", "aria-orientation": "vertical" }, /* @__PURE__ */ React.createElement(MenuItem, { item: selected, isExpanded: true, isInitialItem, onTap: headerTaps ? tapHeader : void 0, nav: kb.itemProps(0) }), /* @__PURE__ */ React.createElement("div", { className: "ds-menu__divider" }), /* @__PURE__ */ React.createElement("div", { className: `ds-menu__list${scrollable ? " ds-menu__list--scroll" : ""}` }, children));
   }
   function DotsMenuSettingsItem(p) {
     const isToggle = p.variant === "toggle";
@@ -2672,55 +2731,66 @@ const hooks = () => window.React;
 
   // src/components/DropdownMenu/DropdownMenu.tsx
   init_react_shim();
-  var import_react21 = __toESM(require_react(), 1);
-  function DropdownMenuItem(props) {
+  var import_react22 = __toESM(require_react(), 1);
+  function Row(props) {
     const style = props.itemColor ? { color: props.itemColor } : void 0;
     const cls = "ds-dropdown__item" + (props.destructive ? " ds-dropdown__item--destructive" : "") + (props.minSize ? " ds-dropdown__item--min" : "");
-    return /* @__PURE__ */ React.createElement(
-      "div",
-      {
-        className: cls,
-        style,
-        role: "menuitem",
-        tabIndex: 0,
-        onClick: props.onClick,
-        onKeyDown: props.onClick ? activateOnKey(props.onClick) : void 0
-      },
-      props.leading ? /* @__PURE__ */ React.createElement("span", { className: "ds-dropdown__item-leading" }, props.leading) : null,
-      /* @__PURE__ */ React.createElement("span", { className: "ds-dropdown__item-text" }, props.text, props.subtitle ? /* @__PURE__ */ React.createElement("span", { className: "ds-dropdown__item-subtitle" }, ` ${props.subtitle}`) : null),
-      props.icon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: 16, color: "currentColor", className: "ds-dropdown__item-icon" }) : null
-    );
+    const keys = props.nav ?? { tabIndex: 0, onKeyDown: props.onClick ? activateOnKey(props.onClick) : void 0 };
+    return /* @__PURE__ */ React.createElement("div", { className: cls, style, role: "menuitem", onClick: props.onClick, ...keys }, props.leading ? /* @__PURE__ */ React.createElement("span", { className: "ds-dropdown__item-leading" }, props.leading) : null, /* @__PURE__ */ React.createElement("span", { className: "ds-dropdown__item-text" }, props.text, props.subtitle ? /* @__PURE__ */ React.createElement("span", { className: "ds-dropdown__item-subtitle" }, ` ${props.subtitle}`) : null), props.icon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: props.icon, size: 16, color: "currentColor", className: "ds-dropdown__item-icon" }) : null);
   }
-  function renderMenu(items, width, maxHeight) {
-    const style = { width: `${width ?? 250}px` };
-    if (maxHeight != null) {
-      style.maxHeight = `${maxHeight}px`;
+  function DropdownMenuItem(props) {
+    return /* @__PURE__ */ React.createElement(Row, { ...props });
+  }
+  function MenuPanel(p) {
+    const items = p.items ?? [];
+    const panelRef = (0, import_react22.useRef)(null);
+    const kb = useMenuKeyboard({
+      count: items.length,
+      onActivate: (i) => items[i]?.onClick?.(),
+      onEscape: p.onEscape
+    });
+    const { focusItem } = kb;
+    const { autoFocus, onFocusLost } = p;
+    (0, import_react22.useEffect)(() => {
+      if (autoFocus) focusItem(0);
+    }, []);
+    (0, import_react22.useLayoutEffect)(() => {
+      return () => {
+        const panel = panelRef.current;
+        if (panel && panel.contains(document.activeElement)) onFocusLost?.();
+      };
+    }, []);
+    const style = { width: `${p.width ?? 250}px` };
+    if (p.maxHeight != null) {
+      style.maxHeight = `${p.maxHeight}px`;
       style.overflowY = "auto";
     }
-    return /* @__PURE__ */ React.createElement("div", { className: "ds-dropdown__menu", style, role: "menu" }, (items ?? []).map((it, i) => /* @__PURE__ */ React.createElement(DropdownMenuItem, { key: i, ...it })));
+    return /* @__PURE__ */ React.createElement("div", { ref: panelRef, className: "ds-dropdown__menu", style, role: "menu", "aria-orientation": "vertical" }, items.map((it, i) => /* @__PURE__ */ React.createElement(Row, { key: i, ...it, nav: kb.itemProps(i) })));
   }
   function DropdownMenu(props) {
-    const [inner, setInner] = (0, import_react21.useState)(!!props.defaultActive);
+    const [inner, setInner] = (0, import_react22.useState)(!!props.defaultActive);
     const controlled = props.isActive !== void 0 && props.isActive !== null;
     const active = controlled ? !!props.isActive : inner;
     const dropped = !!props.label && active;
-    const rootRef = (0, import_react21.useRef)(null);
-    const btnRef = (0, import_react21.useRef)(null);
-    const [triggerWidth, setTriggerWidth] = (0, import_react21.useState)(void 0);
+    const rootRef = (0, import_react22.useRef)(null);
+    const btnRef = (0, import_react22.useRef)(null);
+    const [triggerWidth, setTriggerWidth] = (0, import_react22.useState)(void 0);
     const { onToggle } = props;
-    (0, import_react21.useEffect)(() => {
+    const dismiss = (0, import_react22.useCallback)(() => {
+      if (!controlled) setInner(false);
+      onToggle?.(false);
+    }, [controlled, onToggle]);
+    (0, import_react22.useEffect)(() => {
       if (!dropped) return;
-      const dismiss = () => {
-        if (!controlled) setInner(false);
-        onToggle?.(false);
+      const inside = (target) => {
+        const root = rootRef.current;
+        return !!root && target instanceof Node && root.contains(target);
       };
       const onPointerDown = (e) => {
-        const root = rootRef.current;
-        if (root && e.target instanceof Node && root.contains(e.target)) return;
-        dismiss();
+        if (!inside(e.target)) dismiss();
       };
       const onKeyDown = (e) => {
-        if (e.key === "Escape") dismiss();
+        if (e.key === "Escape" && !inside(e.target)) dismiss();
       };
       document.addEventListener("pointerdown", onPointerDown);
       document.addEventListener("keydown", onKeyDown);
@@ -2728,8 +2798,12 @@ const hooks = () => window.React;
         document.removeEventListener("pointerdown", onPointerDown);
         document.removeEventListener("keydown", onKeyDown);
       };
-    }, [dropped, controlled, onToggle]);
-    (0, import_react21.useLayoutEffect)(() => {
+    }, [dropped, dismiss]);
+    const openAtMount = (0, import_react22.useRef)(dropped);
+    (0, import_react22.useEffect)(() => {
+      if (!dropped) openAtMount.current = false;
+    }, [dropped]);
+    (0, import_react22.useLayoutEffect)(() => {
       const el = btnRef.current;
       if (!dropped || !el) return;
       const measure = () => setTriggerWidth(el.getBoundingClientRect().width);
@@ -2739,7 +2813,7 @@ const hooks = () => window.React;
       observer.observe(el);
       return () => observer.disconnect();
     }, [dropped]);
-    if (!props.label) return renderMenu(props.items, props.width, props.maxHeight);
+    if (!props.label) return /* @__PURE__ */ React.createElement(MenuPanel, { items: props.items, width: props.width, maxHeight: props.maxHeight });
     const size = props.size === "medium" ? "medium" : "small";
     const onBackground = props.variant === "onBackground";
     const btnCls = `ds-dropdown__btn ds-dropdown__btn--${size}` + (active ? " ds-dropdown__btn--active" : "") + (onBackground && !active ? " ds-dropdown__btn--on-bg" : "") + (props.minSize === false ? " ds-dropdown__btn--expand" : "");
@@ -2749,7 +2823,40 @@ const hooks = () => window.React;
       props.onToggle?.(!active);
       props.onClick?.();
     }
-    return /* @__PURE__ */ React.createElement("div", { ref: rootRef, className: `ds-dropdown${props.className ? ` ${props.className}` : ""}` }, /* @__PURE__ */ React.createElement("button", { ref: btnRef, type: "button", className: btnCls, "aria-expanded": active, onClick: handleTap }, /* @__PURE__ */ React.createElement("span", { className: "ds-dropdown__btn-text" }, props.label, props.subtitle ? /* @__PURE__ */ React.createElement("span", { className: "ds-dropdown__btn-subtitle" }, ` ${props.subtitle}`) : null), /* @__PURE__ */ React.createElement(DotsIcon, { name: active ? "ic-chevron-up" : "ic-chevron-down", size: 14, color: "currentColor", className: "ds-dropdown__chevron" })), active ? /* @__PURE__ */ React.createElement("div", { className: "ds-dropdown__overlay" }, renderMenu(props.items, menuWidth, props.menuMaxHeight)) : null);
+    const focusTrigger = () => btnRef.current?.focus();
+    function escapeToTrigger() {
+      dismiss();
+      focusTrigger();
+    }
+    function onTriggerKeyDown(e) {
+      if (e.key !== "Escape" || !active) return;
+      e.preventDefault();
+      dismiss();
+    }
+    return /* @__PURE__ */ React.createElement("div", { ref: rootRef, className: `ds-dropdown${props.className ? ` ${props.className}` : ""}` }, /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        ref: btnRef,
+        type: "button",
+        className: btnCls,
+        "aria-haspopup": "menu",
+        "aria-expanded": active,
+        onClick: handleTap,
+        onKeyDown: onTriggerKeyDown
+      },
+      /* @__PURE__ */ React.createElement("span", { className: "ds-dropdown__btn-text" }, props.label, props.subtitle ? /* @__PURE__ */ React.createElement("span", { className: "ds-dropdown__btn-subtitle" }, ` ${props.subtitle}`) : null),
+      /* @__PURE__ */ React.createElement(DotsIcon, { name: active ? "ic-chevron-up" : "ic-chevron-down", size: 14, color: "currentColor", className: "ds-dropdown__chevron" })
+    ), active ? /* @__PURE__ */ React.createElement("div", { className: "ds-dropdown__overlay" }, /* @__PURE__ */ React.createElement(
+      MenuPanel,
+      {
+        items: props.items,
+        width: menuWidth,
+        maxHeight: props.menuMaxHeight,
+        autoFocus: !openAtMount.current,
+        onEscape: escapeToTrigger,
+        onFocusLost: focusTrigger
+      }
+    )) : null);
   }
   DropdownMenu.Item = DropdownMenuItem;
 
@@ -2856,7 +2963,7 @@ const hooks = () => window.React;
 
   // src/components/DotsSquirclePhoto/DotsSquirclePhoto.tsx
   init_react_shim();
-  var import_react22 = __toESM(require_react(), 1);
+  var import_react23 = __toESM(require_react(), 1);
   function gradVariant2(seed) {
     const s = seed ?? "";
     let n = 0;
@@ -2868,7 +2975,7 @@ const hooks = () => window.React;
     return typeof borderRadius === "number" ? `${borderRadius}px` : borderRadius;
   }
   function DotsSquirclePhoto(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react22.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react23.useState)(null);
     const hasError = !!props.src && failedSrc === props.src;
     const size = props.size ?? 52;
     const br = radiusPx(props.borderRadius, 16);
@@ -3066,7 +3173,7 @@ const hooks = () => window.React;
 
   // src/components/UserItem/UserItem.tsx
   init_react_shim();
-  var import_react23 = __toESM(require_react(), 1);
+  var import_react24 = __toESM(require_react(), 1);
   function gradVariant3(seed) {
     const s = seed ?? "";
     let n = 0;
@@ -3081,7 +3188,7 @@ const hooks = () => window.React;
     return out.toUpperCase();
   }
   function UserInfo(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react23.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react24.useState)(null);
     const hasError = !!props.src && failedSrc === props.src;
     const size = props.size === "large" ? "large" : "small";
     const showImg = !!props.src && !hasError;
@@ -3237,7 +3344,7 @@ const hooks = () => window.React;
 
   // src/components/ActivityPreview/ActivityPreview.tsx
   init_react_shim();
-  var import_react24 = __toESM(require_react(), 1);
+  var import_react25 = __toESM(require_react(), 1);
   var VARIANTS8 = { reactions: true, views: true, favs: true };
   var BADGE_COLORS = { reactions: "#FAA25E", views: "#9297EF", favs: "#F43C51" };
   function formatCount(count) {
@@ -3247,7 +3354,7 @@ const hooks = () => window.React;
     return String(count);
   }
   function ActivityPreview(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react24.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react25.useState)(null);
     const imgError = !!props.src && failedSrc === props.src;
     const variant = props.variant && VARIANTS8[props.variant] ? props.variant : "reactions";
     const isReactions = variant === "reactions";
@@ -3287,7 +3394,7 @@ const hooks = () => window.React;
     const userImages = props.userImages || [];
     const count = props.count ?? 0;
     const reactionsCount = props.reactionsCount ?? 0;
-    const [failed, setFailed] = (0, import_react24.useState)(() => /* @__PURE__ */ new Set());
+    const [failed, setFailed] = (0, import_react25.useState)(() => /* @__PURE__ */ new Set());
     function markFailed(src) {
       setFailed((prev) => prev.has(src) ? prev : new Set(prev).add(src));
     }
@@ -3321,9 +3428,9 @@ const hooks = () => window.React;
 
   // src/components/ImageWithIcon/ImageWithIcon.tsx
   init_react_shim();
-  var import_react25 = __toESM(require_react(), 1);
+  var import_react26 = __toESM(require_react(), 1);
   function ImageWithIcon(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react25.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react26.useState)(null);
     const imgError = !!props.src && failedSrc === props.src;
     const width = props.width ?? 53;
     const height = props.height ?? 68;
@@ -3370,7 +3477,7 @@ const hooks = () => window.React;
 
   // src/components/MessagePreview/MessagePreview.tsx
   init_react_shim();
-  var import_react26 = __toESM(require_react(), 1);
+  var import_react27 = __toESM(require_react(), 1);
   var ATTACHMENT_ICONS = {
     image: "ic-pic",
     video: "ic-video",
@@ -3384,7 +3491,7 @@ const hooks = () => window.React;
     return "abcd"[n % 4];
   }
   function MessagePreview(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react26.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react27.useState)(null);
     const hasError = !!props.src && failedSrc === props.src;
     const album = props.album || "";
     const newMessages = props.newMessages || 0;
@@ -3440,10 +3547,10 @@ const hooks = () => window.React;
 
   // src/components/NotificationBannerImage/NotificationBannerImage.tsx
   init_react_shim();
-  var import_react27 = __toESM(require_react(), 1);
+  var import_react28 = __toESM(require_react(), 1);
   var BTN_SIZES = { mainAction: true, large: true, medium: true, small: true };
   function NotificationBannerImage(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react27.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react28.useState)(null);
     const imgError = !!props.src && failedSrc === props.src;
     const imagePadding = props.imagePadding ?? 20;
     const showClose = props.showCloseButton !== false;
@@ -3681,7 +3788,7 @@ const hooks = () => window.React;
 
   // src/components/MilestonesList/MilestonesList.tsx
   init_react_shim();
-  var import_react28 = __toESM(require_react(), 1);
+  var import_react29 = __toESM(require_react(), 1);
   var CARD_HEIGHT = 326;
   var BADGE_HEIGHT = 17;
   var TAIL_EXTENSION = 64;
@@ -3701,11 +3808,16 @@ const hooks = () => window.React;
   }
   function isCard(item) {
     if (typeof item === "string") return false;
-    if ((0, import_react28.isValidElement)(item)) return item.type !== BadgeMilestone;
+    if ((0, import_react29.isValidElement)(item)) return item.type !== BadgeMilestone;
     return true;
   }
   function itemHeight(item) {
     return isCard(item) ? CARD_HEIGHT : BADGE_HEIGHT;
+  }
+  function isSelectedCard(item) {
+    if (typeof item === "string") return false;
+    if ((0, import_react29.isValidElement)(item)) return item.type === MilestoneCard && Boolean(item.props.isSelected);
+    return Boolean(item.isSelected);
   }
   function verticalSpacing(curr, next, rand) {
     const gap = isCard(curr) && isCard(next) ? 20 + Math.floor(rand() * 15) : 64;
@@ -3752,16 +3864,17 @@ const hooks = () => window.React;
   }
   function renderItem(item) {
     if (typeof item === "string") return /* @__PURE__ */ React.createElement(BadgeMilestone, { content: item, variant: "ghost" });
-    if ((0, import_react28.isValidElement)(item)) return item;
+    if ((0, import_react29.isValidElement)(item)) return item;
     return /* @__PURE__ */ React.createElement(MilestoneCard, { ...item, width: CARD_WIDTH });
   }
   function MilestonesList(props) {
     const list = props.list ?? [];
     const seed = props.seed ?? 1;
-    const ref = (0, import_react28.useRef)(null);
-    const [measured, setMeasured] = (0, import_react28.useState)(props.width || 0);
+    const ref = (0, import_react29.useRef)(null);
+    const itemRefs = (0, import_react29.useRef)([]);
+    const [measured, setMeasured] = (0, import_react29.useState)(props.width || 0);
     const width = props.width || measured || 375;
-    (0, import_react28.useLayoutEffect)(() => {
+    (0, import_react29.useLayoutEffect)(() => {
       if (props.width) return;
       const el = ref.current;
       if (!el) return;
@@ -3772,13 +3885,30 @@ const hooks = () => window.React;
       observer.observe(el);
       return () => observer.disconnect();
     }, [props.width]);
-    const lay = (0, import_react28.useMemo)(() => layout(list, seed, width / 2), [list, seed, width]);
-    return /* @__PURE__ */ React.createElement("div", { ref, className: `ds-milestones-list${props.className ? ` ${props.className}` : ""}`, style: { height: `${lay.totalHeight}px` } }, /* @__PURE__ */ React.createElement("svg", { className: "ds-milestones-list__line", width: "100%", height: lay.totalHeight, viewBox: `0 0 ${width} ${lay.totalHeight}`, fill: "none", "aria-hidden": true }, /* @__PURE__ */ React.createElement("path", { d: pathD(lay.points), stroke: "var(--label-secondary)", strokeWidth: 2, strokeDasharray: "0.1 8", strokeLinecap: "round" })), list.map((item, i) => /* @__PURE__ */ React.createElement("span", { key: i, className: "ds-milestones-list__item", style: { left: `${lay.points[i].x}px`, top: `${lay.points[i].y}px` } }, renderItem(item))));
+    const lay = (0, import_react29.useMemo)(() => layout(list, seed, width / 2), [list, seed, width]);
+    const selectedIndex = list.findIndex(isSelectedCard);
+    (0, import_react29.useEffect)(() => {
+      if (selectedIndex < 0) return;
+      const el = itemRefs.current[selectedIndex];
+      if (el && typeof el.scrollIntoView === "function") el.scrollIntoView({ block: "center", behavior: "smooth" });
+    }, [list, selectedIndex]);
+    return /* @__PURE__ */ React.createElement("div", { ref, className: `ds-milestones-list${props.className ? ` ${props.className}` : ""}`, style: { height: `${lay.totalHeight}px` } }, /* @__PURE__ */ React.createElement("svg", { className: "ds-milestones-list__line", width: "100%", height: lay.totalHeight, viewBox: `0 0 ${width} ${lay.totalHeight}`, fill: "none", "aria-hidden": true }, /* @__PURE__ */ React.createElement("path", { d: pathD(lay.points), stroke: "var(--label-secondary)", strokeWidth: 2, strokeDasharray: "0.1 8", strokeLinecap: "round" })), list.map((item, i) => /* @__PURE__ */ React.createElement(
+      "span",
+      {
+        key: i,
+        ref: (el) => {
+          itemRefs.current[i] = el;
+        },
+        className: "ds-milestones-list__item",
+        style: { left: `${lay.points[i].x}px`, top: `${lay.points[i].y}px` }
+      },
+      renderItem(item)
+    )));
   }
 
   // src/components/RecapCard/RecapCard.tsx
   init_react_shim();
-  var import_react29 = __toESM(require_react(), 1);
+  var import_react30 = __toESM(require_react(), 1);
   var VARIANTS11 = { active: true, blocked: true, generated: true, onlyTitle: true };
   var LOCKED_VARIANTS = { countdown: true, locked: true, soon: true };
   function pad22(n) {
@@ -3799,8 +3929,8 @@ const hooks = () => window.React;
     const variant = props.variant && VARIANTS11[props.variant] ? props.variant : "active";
     const width = props.width ?? 220;
     const target = locked && lockedVariant === "countdown" && props.countdownDate ? new Date(props.countdownDate).getTime() : 0;
-    const [, setTick] = (0, import_react29.useState)(0);
-    (0, import_react29.useEffect)(() => {
+    const [, setTick] = (0, import_react30.useState)(0);
+    (0, import_react30.useEffect)(() => {
       if (!target || target - Date.now() <= 0) return void 0;
       const id = setInterval(() => {
         if (target - Date.now() <= 0) clearInterval(id);
@@ -3863,13 +3993,13 @@ const hooks = () => window.React;
 
   // src/components/DotsPlanningItem/DotsPlanningItem.tsx
   init_react_shim();
-  var import_react30 = __toESM(require_react(), 1);
+  var import_react31 = __toESM(require_react(), 1);
   function row(item, key) {
     if (!item || !item.icon || item.text == null || !String(item.text).trim()) return null;
     return /* @__PURE__ */ React.createElement("span", { className: "ds-planning-item__row", key }, /* @__PURE__ */ React.createElement("span", { className: "ds-planning-item__row-icon", "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: item.icon, size: 16, color: "var(--label-primary)" })), /* @__PURE__ */ React.createElement("span", { className: `ds-planning-item__row-text${item.underline ? " is-underline" : ""}` }, item.text));
   }
   function DotsPlanningItem(props) {
-    const [internal, setInternal] = (0, import_react30.useState)(!!props.defaultExpanded);
+    const [internal, setInternal] = (0, import_react31.useState)(!!props.defaultExpanded);
     const controlled = props.expanded != null;
     const expanded = controlled ? !!props.expanded : internal;
     function toggle() {
