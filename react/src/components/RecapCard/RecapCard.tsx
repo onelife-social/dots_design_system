@@ -81,7 +81,8 @@ export function RecapCard(props: RecapCardProps) {
   const width = props.width ?? 220;
 
   // CountdownRecap — 1s tick while there is time left (Dart: Timer.periodic)
-  const target = locked && lockedVariant === 'countdown' && props.countdownDate ? new Date(props.countdownDate).getTime() : 0;
+  const parsed = locked && lockedVariant === 'countdown' && props.countdownDate ? new Date(props.countdownDate).getTime() : 0;
+  const target = Number.isFinite(parsed) ? parsed : 0; // an invalid date is no countdown, never NaN (as DotsCountdown)
   const [, setTick] = useState(0);
   useEffect(() => {
     if (!target || target - Date.now() <= 0) return undefined;

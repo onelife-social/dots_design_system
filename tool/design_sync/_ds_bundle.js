@@ -3935,7 +3935,8 @@ const hooks = () => window.React;
     const lockedVariant = props.lockedVariant && LOCKED_VARIANTS[props.lockedVariant] ? props.lockedVariant : "countdown";
     const variant = props.variant && VARIANTS11[props.variant] ? props.variant : "active";
     const width = props.width ?? 220;
-    const target = locked && lockedVariant === "countdown" && props.countdownDate ? new Date(props.countdownDate).getTime() : 0;
+    const parsed = locked && lockedVariant === "countdown" && props.countdownDate ? new Date(props.countdownDate).getTime() : 0;
+    const target = Number.isFinite(parsed) ? parsed : 0;
     const [, setTick] = (0, import_react30.useState)(0);
     (0, import_react30.useEffect)(() => {
       if (!target || target - Date.now() <= 0) return void 0;
