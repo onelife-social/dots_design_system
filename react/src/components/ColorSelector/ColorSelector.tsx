@@ -2,6 +2,7 @@
 // color_selector.dart) unified in one API (Dart = source of truth).
 // variant 'options'  → DotsColorOptionsRow  (DotsColorOption palette + check)
 // variant 'selector' → DotsColorSelectorRow (free colors + highlight ring)
+import { useRef, type KeyboardEvent } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 
 /** Dart enum DotsColorOption (the hex values live in dots_colors.dart) */
@@ -116,9 +117,35 @@ export function ColorSelector(props: ColorSelectorProps) {
   const spacing = props.spacing == null ? (variant === 'selector' ? 12 : 18) : +props.spacing;
   const colors: string[] = Array.isArray(props.colors) && props.colors.length ? props.colors : variant === 'options' ? DEFAULT_OPTIONS : [];
 
+  // Radio group semantics (WAI-ARIA): roving tabIndex (0 on the selected option, else the first),
+  // Enter/Space select via the native button click, arrows move + select the previous/next option.
+  const buttons = useRef<Array<HTMLButtonElement | null>>([]);
+  const selectedIndex = props.selected == null ? -1 : colors.indexOf(props.selected);
+  const focusIndex = selectedIndex >= 0 ? selectedIndex : 0;
+  function onKeyDown(e: KeyboardEvent<HTMLButtonElement>, i: number) {
+    let next: number;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % colors.length;
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + colors.length) % colors.length;
+    else return;
+    e.preventDefault();
+    buttons.current[next]?.focus();
+    props.onColorSelected?.(colors[next]);
+  }
+
   const items = colors.map((c, i) => {
     const isSelected = props.selected === c;
     const onClick = props.onColorSelected ? () => props.onColorSelected?.(c) : undefined;
+    const radio = {
+      role: 'radio' as const,
+      'aria-checked': isSelected,
+      'aria-label': String(c),
+      tabIndex: i === focusIndex ? 0 : -1,
+      ref: (el: HTMLButtonElement | null) => {
+        buttons.current[i] = el;
+      },
+      onClick,
+      onKeyDown: (e: KeyboardEvent<HTMLButtonElement>) => onKeyDown(e, i),
+    };
 
     if (variant === 'selector') {
       // DotsColorSelectorRow._colorItem: labelHighlight ring 1.5 + shaded dot
@@ -129,9 +156,7 @@ export function ColorSelector(props: ColorSelectorProps) {
           type="button"
           className={`ds-color-selector__swatch${isSelected ? ' is-selected' : ''}`}
           style={{ width: `${size}px`, height: `${size}px` }}
-          onClick={onClick}
-          aria-pressed={isSelected}
-          aria-label={String(c)}
+          {...radio}
         >
           {/* backgroundColor (not the shorthand) — the colorSelectorShadow texture is the background-image (CSS) */}
           <span className="ds-color-selector__dot" style={{ backgroundColor: resolve(c) }} />
@@ -146,9 +171,7 @@ export function ColorSelector(props: ColorSelectorProps) {
         type="button"
         className={`ds-color-selector__option${isSelected ? ' is-selected' : ''}`}
         style={{ width: `${size}px`, height: `${size}px`, backgroundColor: resolve(c) }}
-        onClick={onClick}
-        aria-pressed={isSelected}
-        aria-label={String(c)}
+        {...radio}
       >
         {isSelected ? <DotsIcon name="ic-check-thick" size={size * 0.5} color="var(--label-always-white)" /> : null}
       </button>
