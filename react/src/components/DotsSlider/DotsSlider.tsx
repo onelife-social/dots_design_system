@@ -17,6 +17,10 @@ export interface DotsSliderProps {
   leftIcon?: string;
   /** Right icon (asset ic-…) — Dart `rightIcon` (default 'ic-group') */
   rightIcon?: string;
+  /** Accessible name of the slider (web extension, localizable) */
+  ariaLabel?: string;
+  /** Id of the element that names the slider (alternative to `ariaLabel`) */
+  ariaLabelledBy?: string;
 }
 
 function clamp(v: number, lo: number, hi: number) {
@@ -108,6 +112,8 @@ export function DotsSlider(props: DotsSliderProps) {
         className="ds-slider__track"
         ref={trackRef}
         role="slider"
+        aria-label={props.ariaLabel}
+        aria-labelledby={props.ariaLabelledBy}
         aria-valuemin={0}
         aria-valuemax={max}
         aria-valuenow={value}
