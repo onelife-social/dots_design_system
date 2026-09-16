@@ -1,9 +1,8 @@
 // MilestoneCard — port of lib/src/components/milestones/milestone_card.dart
 // (+ milestone_badge_type.dart / milestone_badge_info.dart) (Dart = source of truth).
-import type { KeyboardEvent, MouseEvent } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsIconButton } from '../DotsIconButton/DotsIconButton';
-import { activateOnKey, pressable } from '../../internal/pressable';
+import { activateOnKey } from '../../internal/pressable';
 
 /** Mirror of the Dart enum MilestoneBadgeType */
 export type MilestoneBadgeType = 'video' | 'description' | 'audio';
@@ -21,6 +20,8 @@ export interface MilestoneCardProps {
   date?: string;
   /** Dart `onTap` (tap on the photo/card) */
   onClick?: () => void;
+  /** Accessible name of the card action (`onClick`). Defaults to `title`; set it when the card has no title */
+  ariaLabel?: string;
   /** Show the badge-milestone-1.svg badge top-right — Dart `showBadge` (default false) */
   showBadge?: boolean;
   /** Show the edit button (DotsIconButton pencil) — Dart `showEdit` (default false) */
@@ -56,30 +57,16 @@ function badgeGroup(types: MilestoneBadgeType[], onClick?: () => void, label?: s
     list.length === 3 ? { left: 4, bottom: 42, size: 28, iconSize: 16 } : { left: 31, bottom: 31, size: 28, iconSize: 16 },
     { left: 35, bottom: 26, size: 28, iconSize: 16 },
   ];
-  // Own control nested in the card: click/keys stop here so the card's onClick does not fire too
-  const activate = onClick ? activateOnKey(onClick) : undefined;
+  // Own control (role=button) nested in the card; it sits above the card's hit overlay (z-index),
+  // so its clicks and keys are its own and never reach the card action.
   return (
     <span
       className="ds-milestone-card__badges"
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
       aria-label={onClick ? label : undefined}
-      onClick={
-        onClick
-          ? (e: MouseEvent) => {
-              e.stopPropagation();
-              onClick();
-            }
-          : undefined
-      }
-      onKeyDown={
-        activate
-          ? (e: KeyboardEvent<HTMLElement>) => {
-              e.stopPropagation();
-              activate(e);
-            }
-          : undefined
-      }
+      onClick={onClick}
+      onKeyDown={onClick ? activateOnKey(onClick) : undefined}
     >
       {list.map((t, i) => {
         const b = BADGE_TYPES[t];
@@ -109,7 +96,13 @@ export function MilestoneCard(props: MilestoneCardProps) {
     (props.className ? ` ${props.className}` : '');
 
   return (
-    <span className={cls} style={{ width: `${width}px` }} {...pressable(props.onClick)}>
+    <span className={cls} style={{ width: `${width}px` }}>
+      {/* Card action (Dart onTap): a transparent native button that covers the card, rendered as a
+          sibling of the edit button and the badge group — not as a role=button ancestor, which would
+          make them presentational. Both sit above it (z-index) and get their own clicks. */}
+      {props.onClick ? (
+        <button type="button" className="ds-milestone-card__hit" aria-label={props.ariaLabel ?? props.title} onClick={props.onClick} />
+      ) : null}
       {props.src ? (
         <img className="ds-milestone-card__img" src={props.src} alt={props.title || ''} />
       ) : (
@@ -125,13 +118,9 @@ export function MilestoneCard(props: MilestoneCardProps) {
       ) : null}
       {/* _CardBadge: badge-milestone-1.svg (data URI in the CSS), top 5 right 5 */}
       {props.showBadge ? <span className="ds-milestone-card__badge1" aria-hidden /> : null}
-      {/* _BtnEdit: DotsIconButton pencil (size default large), bgBtnImage; the wrapper keeps the tap off the card */}
+      {/* _BtnEdit: DotsIconButton pencil (size default large), bgBtnImage; the wrapper sits above the card's hit */}
       {props.showEdit ? (
-        <span
-          className="ds-milestone-card__edit"
-          onClick={(e: MouseEvent<HTMLSpanElement>) => e.stopPropagation()}
-          onKeyDown={(e: KeyboardEvent<HTMLSpanElement>) => e.stopPropagation()}
-        >
+        <span className="ds-milestone-card__edit">
           <DotsIconButton icon="ic-pencil" backgroundColor="var(--bg-btn-image)" onClick={props.onClickEdit} />
         </span>
       ) : null}
