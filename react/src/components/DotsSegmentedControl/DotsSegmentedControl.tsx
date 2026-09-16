@@ -24,6 +24,10 @@ export interface DotsSegmentedControlProps {
   leftOptionIcon?: string;
   /** type 'icon': DotsIcon name ('ic-…') — Dart `rightOptionIcon` */
   rightOptionIcon?: string;
+  /** type 'icon': accessible name (aria-label) of the left icon button — web extension, localizable */
+  leftOptionLabel?: string;
+  /** type 'icon': accessible name (aria-label) of the right icon button — web extension, localizable */
+  rightOptionLabel?: string;
   /** type 'single': button label — Dart `buttonName` */
   buttonName?: string;
   /** type 'single': badge — Dart `buttonTag` */
@@ -69,10 +73,16 @@ export function DotsSegmentedControl(props: DotsSegmentedControlProps) {
 
   if (type === 'icon') {
     // SegmentedControlIcon — 108×48, cells 48×40, sliding pill 200ms
-    const cell = (side: DotsSegmentedControlOption, name?: string) => {
+    const cell = (side: DotsSegmentedControlOption, name?: string, label?: string) => {
       const sel = selected === side;
       return (
-        <button type="button" className={`ds-seg-icon__cell${sel ? ' is-selected' : ''}`} aria-pressed={sel} onClick={() => tap(side)}>
+        <button
+          type="button"
+          className={`ds-seg-icon__cell${sel ? ' is-selected' : ''}`}
+          aria-pressed={sel}
+          aria-label={label || undefined}
+          onClick={() => tap(side)}
+        >
           <DotsIcon name={name ?? ''} size={24} color={sel ? 'var(--text-secondary)' : 'var(--text-disabled)'} />
         </button>
       );
@@ -80,8 +90,8 @@ export function DotsSegmentedControl(props: DotsSegmentedControlProps) {
     return (
       <div className="ds-seg-icon">
         <span className={`ds-seg-icon__pill${selected === 'right' ? ' is-right' : ''}`} />
-        {cell('left', props.leftOptionIcon)}
-        {cell('right', props.rightOptionIcon)}
+        {cell('left', props.leftOptionIcon, props.leftOptionLabel)}
+        {cell('right', props.rightOptionIcon, props.rightOptionLabel)}
       </div>
     );
   }

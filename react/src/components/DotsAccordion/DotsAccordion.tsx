@@ -70,8 +70,11 @@ export function DotsAccordion(props: DotsAccordionProps) {
           <span className="ds-accordion__title">{s.title}</span>
           <DotsIcon name="ic-chevron-down" size={16} color="var(--text-tertiary)" className="ds-accordion__chevron" />
         </div>
-        {/* AnimatedSize → grid-template-rows 0fr→1fr with transition */}
-        <div className="ds-accordion__collapse">
+        {/* AnimatedSize → grid-template-rows 0fr→1fr with transition. CSS only shrinks the panel, so
+            when collapsed it is also removed from the accessibility tree and made inert (no focusable
+            descendants reachable); `inert` does not affect layout, the transition keeps working. Set
+            only while collapsed so React 18 never renders inert="false". */}
+        <div className="ds-accordion__collapse" aria-hidden={!expanded[i] || undefined} {...(expanded[i] ? {} : { inert: true })}>
           <div className="ds-accordion__collapse-inner">
             <div className="ds-accordion__content">{s.content}</div>
           </div>

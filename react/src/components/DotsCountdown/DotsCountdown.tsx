@@ -90,7 +90,10 @@ function timeItem(key: string, value: string | number, label: string, dimLabel: 
 
 export function DotsCountdown(props: DotsCountdownProps) {
   const variant: DotsCountdownVariant = props.variant || 'recap';
-  const target = props.targetDate == null ? null : new Date(props.targetDate).getTime();
+  // An unparsable targetDate gives NaN: normalize it to null so it behaves like "no target"
+  // (no interval, fixed/zero values) instead of ticking forever and rendering NaN.
+  const parsed = props.targetDate == null ? NaN : new Date(props.targetDate).getTime();
+  const target = Number.isFinite(parsed) ? parsed : null;
 
   // 1s tick (Timer.periodic of _CountdownRecapState) — only with targetDate in variant recap.
   const live = target != null && variant === 'recap';
