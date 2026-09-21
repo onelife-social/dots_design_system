@@ -1,23 +1,21 @@
 import * as React from 'react';
-import type { MilestoneCardProps } from '../MilestoneCard/MilestoneCard';
 
+import { type ReactElement } from 'react';
+import { type MilestoneCardProps } from '../../memories/MilestoneCard/MilestoneCard';
 /**
- * MilestonesList — port web de MilestonesList (Flutter). Timeline vertical de
- * hitos: línea bezier punteada que serpentea por patrones x pseudoaleatorios y
- * une badges de edad (strings) con MilestoneCards, todos centrados en su punto.
+ * string ⇒ BadgeMilestone ghost · object ⇒ MilestoneCard props · or an already built element.
+ * A built element is laid out as a badge (17px) when its type is `BadgeMilestone` and as a card
+ * (326px) otherwise. The list's fixed card width (244.5px, aspect 3:4) is authoritative: a
+ * `MilestoneCardProps.width` is ignored so every card stays aligned on the path.
  */
-
-/** string ⇒ BadgeMilestone ghost · objeto ⇒ props de MilestoneCard · o un elemento ya construido */
-export type MilestonesListItem = string | MilestoneCardProps | React.ReactElement;
-
+export type MilestonesListItem = string | MilestoneCardProps | ReactElement;
 export interface MilestonesListProps {
-  /** Items en orden vertical — Dart `list` (List<String | MilestoneCard>) */
-  list: MilestonesListItem[];
-  /** Semilla del trazado (gaps 20–34 entre cards y alternancia de patrones x) — Dart `seed`. Default: 1 */
-  seed?: number;
-  /** Ancho fijo en px; si se omite se mide el contenedor (centerX = ancho/2) */
-  width?: number;
-  className?: string;
+    /** Items in vertical order — Dart `list` (List<String | MilestoneCard>) */
+    list: MilestonesListItem[];
+    /** Seed of the path (20–34 gaps between cards and x-pattern alternation) — Dart `seed` (default 1) */
+    seed?: number;
+    /** Fixed width in px; when omitted the container is measured and observed (ResizeObserver; centerX = width/2) */
+    width?: number;
+    className?: string;
 }
-
-export declare const MilestonesList: React.ComponentType<MilestonesListProps>;
+export declare function MilestonesList(props: MilestonesListProps): import("react").JSX.Element;

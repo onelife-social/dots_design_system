@@ -1,25 +1,22 @@
 import * as React from 'react';
 
-/**
- * CreateCard — port web de CreateCard (Flutter). Tarjeta 164×112 r24 para crear recuerdos:
- * variante label (sugerencia con degradado, icono y botón +) o button (crear, centrada).
- */
+/** Dart enum CreateCardVariant */
+export type CreateCardVariant = 'label' | 'button';
 export interface CreateCardProps {
-  /** Título de la tarjeta */
-  title: string;
-  /** Icono DotsIcon 32 (variante label), p.ej. 'ic-pic' */
-  icon?: string;
-  /** Color inicial del degradado horizontal (variante label). Sin él cae al degradado verde de marca */
-  primaryColor?: string;
-  /** Color final del degradado; default = primaryColor */
-  secondaryColor?: string;
-  /** Ancho en px (Dart width; la altura es fija 112) */
-  width?: number;
-  /** Variante — enum Dart CreateCardVariant */
-  variant?: 'label' | 'button';
-  /** Tap en la tarjeta (Dart onTap) */
-  onClick?: () => void;
-  className?: string;
+    /** Card title */
+    title: string;
+    /** DotsIcon 32 (label variant), e.g. 'ic-pic' */
+    icon?: string;
+    /** Start color of the horizontal gradient (label variant). Without it falls back to the brand green gradient */
+    primaryColor?: string;
+    /** End color of the gradient; default = primaryColor */
+    secondaryColor?: string;
+    /** Width in px (Dart width; the height is fixed at 112). Default 164 */
+    width?: number;
+    /** Variant — Dart enum CreateCardVariant (default 'label') */
+    variant?: CreateCardVariant;
+    /** Tap on the card (Dart onTap) */
+    onClick?: () => void;
+    className?: string;
 }
-
-export declare const CreateCard: React.ComponentType<CreateCardProps>;
+export declare function CreateCard(props: CreateCardProps): import("react").JSX.Element;

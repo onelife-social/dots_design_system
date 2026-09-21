@@ -221,11 +221,11 @@
 .ds-album-card__img { position: absolute; inset: 0; background-size: cover; background-position: center; }
 /* Placeholder de foto cuando no llega imageSrc (degradado, sin token — como las tarjetas planas) */
 .ds-album-card__img--ph { background-image: linear-gradient(140deg, #96B4CE, #E0C3A4, #A08FB0); }
-/* SoftEdgeBlur bottomEdge σ12 (blurSigma) + degradado negro 0→20% (aprox: backdrop-blur con máscara) */
+/* SoftEdgeBlur bottomEdge (σ = --ds-agc-blur, blurSigma; Dart default 12) + degradado negro 0→20% (aprox: backdrop-blur con máscara) */
 .ds-album-card__fade {
   position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none;
   background: linear-gradient(180deg, #00000000, #00000033);
-  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(var(--ds-agc-blur, 12px)); -webkit-backdrop-filter: blur(var(--ds-agc-blur, 12px));
   mask-image: linear-gradient(180deg, transparent, #000 60%);
   -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%);
 }
@@ -368,9 +368,9 @@
 }
 
 /* ── BtnFolder ── */
-/* BtnFolder — píldora h44 r1000, icono 20, texto bodyDefaultMedium 14/500 (btn_folder.dart) */
+/* BtnFolder — pill h44 r1000, icon 20, text bodyDefaultMedium 14/500 (btn_folder.dart) */
 .ds-btn-folder { position: relative; display: inline-block; }
-/* Dart: ClipRRect(21) + Padding(4) alrededor de la píldora */
+/* Dart: ClipRRect(21) + Padding(4) around the pill */
 .ds-btn-folder__clip { display: block; padding: 4px; border-radius: 21px; overflow: hidden; }
 .ds-btn-folder__pill {
   display: inline-flex; align-items: center;
@@ -379,18 +379,18 @@
   background: var(--bg-container-secondary-on-bg); color: var(--text-quarternary);
   font: 500 14px/1.29 var(--font-main);
 }
-/* isSelected — bgStrong + sombra shadowFolder #00000014 (sin token), blur 4 offset (1,4) */
+/* isSelected — bgStrong + shadowFolder #00000014 shadow (no token), blur 4 offset (1,4) */
 .ds-btn-folder__pill--selected {
   background: var(--bg-strong); color: var(--text-primary);
   box-shadow: 1px 4px 4px #00000014;
 }
 .ds-btn-folder__icon { display: inline-flex; flex: none; margin: 0 6px 0 16px; }
 .ds-btn-folder__text { margin-right: 16px; overflow: hidden; text-overflow: ellipsis; }
-/* isNonExpandable — 44×44, icono centrado (siempre textQuarternary) */
+/* isNonExpandable — 44×44, centered icon (always textQuarternary) */
 .ds-btn-folder__pill--nonexp { width: 44px; justify-content: center; }
 .ds-btn-folder__pill--nonexp .ds-btn-folder__icon { margin: 0; }
 .ds-btn-folder__pill--nonexp.ds-btn-folder__pill--selected { color: var(--text-quarternary); }
-/* Edit icon — 18×18, bgChip #30303099 (sin token), pencil 10 labelAlwaysWhite */
+/* Edit icon — 18×18, bgChip #30303099 (no token), pencil 10 labelAlwaysWhite */
 .ds-btn-folder__edit {
   position: absolute; top: 0; right: 0; width: 18px; height: 18px;
   border: none; padding: 0; cursor: pointer; border-radius: 100px;
@@ -526,7 +526,6 @@
   transition: transform var(--ds-accordion-duration, 180ms) ease-in-out;
 }
 .ds-accordion__section.is-expanded .ds-accordion__chevron { transform: rotate(180deg); }
-.ds-accordion__chevron--fallback { color: var(--text-tertiary); font-size: 16px; line-height: 1; }
 
 /* ── despliegue — AnimatedSize ≈ grid-template-rows 0fr→1fr ── */
 .ds-accordion__collapse {
@@ -819,11 +818,10 @@
 .ds-action-sheet__spot-footer { margin: 28px 0 15px; }
 
 /* ── DotsAlert ── */
-/* DotsAlert — alerts/dots_alert.dart. Tarjeta 320, bgContainerSecondary, radio 32,
-   borde 1.4 borderAlert, padding 16. bgAlert (DotsStyleColorDodge, blur 50)
-   aproximado: bg translúcido + backdrop-filter. */
+/* DotsAlert — alerts/dots_alert.dart. 320px card, bgContainerSecondary, radius 32, border 1.4 borderAlert,
+   padding 16. bgAlert (DotsStyleColorDodge, blur 50) approximated: translucent bg + backdrop-filter. */
 .ds-alert {
-  /* borderAlert no existe como token en tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart) */
+  /* borderAlert is not a token in tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart) */
   --ds-border-alert: #FFFFFF4D;
   box-sizing: border-box;
   width: 320px; max-width: 100%;
@@ -840,28 +838,30 @@
   -webkit-backdrop-filter: blur(var(--blur-50));
 }
 
-/* Scrim opcional (Positioned.fill Colors.black 50% + Center) */
+/* Scrim (Positioned.fill Colors.black 50% + Center) */
 .ds-alert__scrim {
   position: fixed; inset: 0; z-index: 1000;
-  background: #00000080; /* Colors.black.dotsWithOpacity(0.5) — sin token */
+  background: #00000080; /* Colors.black.dotsWithOpacity(0.5) — no token */
   display: flex; align-items: center; justify-content: center;
+  padding: 16px; box-sizing: border-box;
 }
 
-/* Cabecera: [spacer 30 (DotsCloseButtonSize.medium)] + icono centrado + [close] */
+/* Header: [spacer 30 (DotsCloseButtonSize.medium)] + centered icon + [close] */
 .ds-alert__header { display: flex; align-items: flex-start; width: 100%; }
 .ds-alert__header-spacer { width: 30px; flex: none; }
 .ds-alert__icon-center { flex: 1; display: flex; justify-content: center; min-width: 0; }
 .ds-alert__icon-pad { padding: 8px; }
-/* Chip 48×48 r24.5, bg labelHighlight 20% (== --bg-highlight), icono labelHighlight */
+/* Chip 48×48 r24.5, bg labelHighlight 20% (== --bg-highlight), icon labelHighlight */
 .ds-alert__icon-chip {
   width: 48px; height: 48px; box-sizing: border-box;
   border-radius: 24.5px; padding: 12px;
   background: var(--bg-highlight);
   color: var(--label-highlight);
+  display: flex; align-items: center; justify-content: center;
 }
 .ds-alert__icon-img { width: 48px; height: 48px; object-fit: cover; display: block; }
 
-/* Cuerpo: padding 16 (input: 16 vertical; selector: solo 16 arriba) */
+/* Body: padding 16 (input: 16 vertical; selector: only 16 top) */
 .ds-alert__body { width: 100%; box-sizing: border-box; padding: 16px; text-align: center; }
 .ds-alert--input .ds-alert__body { padding: 16px 0; }
 .ds-alert--selector .ds-alert__body { padding: 16px 0 0; }
@@ -871,7 +871,7 @@
   font: 700 16px/1.31 var(--font-main); letter-spacing: -0.05px;
   color: var(--text-primary); margin: 0;
 }
-/* Gap 8 título→descripción solo si hay ambos */
+/* Gap 8 title→description only when both exist */
 .ds-alert__title + * { margin-top: 8px; }
 /* typo.main.bodyDefaultRegular (Inter 14/400, h1.29, ls -0.02) */
 .ds-alert__msg {
@@ -879,22 +879,10 @@
   color: var(--text-primary); margin: 0;
 }
 
-/* Variante input — DotsTextFieldButton: 44 alto, r1000, bgContainerSecondaryOnBackground */
-.ds-alert__input {
-  display: flex; align-items: center; gap: 8px;
-  width: 100%; box-sizing: border-box;
-  height: 44px; border-radius: 9999px;
-  background: var(--bg-container-secondary-on-bg);
-  padding: 0 16px;
-}
-.ds-alert__input-el {
-  flex: 1; min-width: 0; border: 0; background: transparent; outline: none;
-  font: 400 14px/1.29 var(--font-main); letter-spacing: -0.02px;
-  color: var(--text-primary); padding: 0;
-}
-.ds-alert__input-el::placeholder { color: var(--text-tertiary); }
+/* input variant — Row(DotsTextFieldButton) */
+.ds-alert__input { width: 100%; }
 
-/* Variante selector — DotsMainContainer r24 padding 12, items gap 8 */
+/* selector variant — DotsMainContainer r24 padding 12, rows gap 8 */
 .ds-alert__selector { width: 100%; }
 .ds-alert__selector-msg { padding: 0 16px; }
 .ds-alert__list {
@@ -903,7 +891,7 @@
   border-radius: var(--squircle-24); padding: 12px;
   display: flex; flex-direction: column; gap: 8px;
 }
-/* DotsListsItem aproximado: thumb 40×40 + gap 12 + label bodyDefaultMedium */
+/* DotsListsItem.main approximation: 40×40 r12 thumb + gap 12 + bodyDefaultMedium label */
 .ds-alert__list-item {
   display: flex; align-items: center; gap: 12px;
   border: 0; background: none; padding: 0; margin: 0; cursor: pointer;
@@ -911,7 +899,7 @@
 }
 .ds-alert__list-thumb {
   width: 40px; height: 40px; flex: none; border-radius: var(--squircle-12);
-  object-fit: cover; background: var(--bg-container-secondary); display: block;
+  object-fit: cover; background: var(--bg-base-contrast); display: block;
 }
 .ds-alert__list-label {
   flex: 1; min-width: 0;
@@ -920,7 +908,7 @@
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 
-/* Acciones: gap 8 sobre el cuerpo (selector: 16) */
+/* Actions: gap 8 over the body (selector: 16) */
 .ds-alert__actions { width: 100%; margin-top: 8px; }
 .ds-alert--selector .ds-alert__actions { margin-top: 16px; }
 .ds-alert__actions--row { display: flex; gap: 12px; }
@@ -928,57 +916,91 @@
 .ds-alert__actions--col { display: flex; flex-direction: column; align-items: stretch; }
 .ds-alert__actions--gap8 { gap: 8px; }
 
-/* Fallbacks si DotsMainButton / DotsCloseButton no están en el bundle */
-.ds-alert__btn-fallback {
-  height: 44px; border: 0; border-radius: 44px; padding: 0 20px; cursor: pointer;
-  background: var(--label-highlight); color: var(--label-always-white);
-  font: 500 14px/1.29 var(--font-main);
+/* ── DotsCalendar ── */
+/* DotsCalendar — inline month calendar (styles mirror CupertinoCalendarPickerUtils in onelife_app:
+   mainTitle for days, primary for today/selected, onSurface @0.2 for disabled) */
+.ds-calendar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+  color: var(--text-primary);
+  user-select: none;
+  -webkit-user-select: none;
 }
-.ds-alert__close-fallback {
-  width: 30px; height: 30px; flex: none; border: 0; border-radius: 50%; cursor: pointer;
-  background: var(--bg-secondary-btn); color: var(--text-secondary); font-size: 16px; line-height: 1;
+.ds-calendar button {
+  font-family: inherit;
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* ── DotsBottomEdgeBlur ── */
-/* DotsBottomEdgeBlur — desenfoque progresivo en el borde inferior.
-   El Dart pinta una copia borrosa del hijo y la funde con una máscara vertical
-   (dejó atrás BackdropFilter por el shimmer de Impeller al hacer scroll). En web
-   no existe ese problema y `backdrop-filter` da el mismo resultado sin duplicar
-   el DOM — por eso el port no necesita el `blurChild` del Dart. */
-.ds-bottom-edge-blur {
+/* header: "Month year ⌄" (titleH6 16/600) + prev/next */
+.ds-calendar__header { display: flex; align-items: center; height: 44px; }
+.ds-calendar__month-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 44px; padding: 0 8px; margin-left: -8px;
+  border-radius: 12px;
+}
+.ds-calendar__month-label { font-size: 16px; font-weight: 600; line-height: 1.25; letter-spacing: -0.02px; }
+.ds-calendar__chevron { display: inline-flex; color: var(--label-highlight); transition: transform 0.2s ease; }
+.ds-calendar__chevron--open { transform: rotate(180deg); }
+.ds-calendar__spacer { flex: 1; }
+.ds-calendar__nav { display: flex; align-items: center; gap: 12px; }
+
+/* grid */
+.ds-calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); align-items: center; margin-top: 8px; }
+.ds-calendar__weekday {
+  height: 24px; display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.01px; text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.ds-calendar__day { height: 44px; display: flex; align-items: center; justify-content: center; }
+.ds-calendar__num {
+  box-sizing: border-box;
+  width: 36px; height: 36px; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 500; line-height: 1; letter-spacing: -0.02px;
+  color: var(--text-primary);
+}
+.ds-calendar__day--muted .ds-calendar__num { color: var(--text-tertiary); }
+.ds-calendar__day--outside .ds-calendar__num { color: var(--text-disabled); }
+.ds-calendar__day--today .ds-calendar__num { border: 1.5px solid var(--label-highlight); color: var(--label-highlight); }
+.ds-calendar__day--selected .ds-calendar__num { background: var(--label-highlight); border: 0; color: var(--bg-base); font-weight: 600; }
+.ds-calendar__day--disabled { cursor: default; }
+.ds-calendar__day--disabled .ds-calendar__num { color: var(--text-disabled); }
+
+/* month / year picker: two snap columns under a highlight band */
+.ds-calendar__picker {
   position: relative;
+  display: flex; gap: 12px;
+  height: 220px; /* 5 rows × 44 */
+  margin-top: 8px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
 }
-
-/* Banda de alto `edgeSize` pegada abajo. La máscara replica el smoothstep del
-   Dart (_fadeOpacities 0 / .11 / .35 / .65 / .89 / 1 repartidos por la banda):
-   arriba no hay desenfoque y abajo está al máximo. */
-.ds-bottom-edge-blur__band {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;          /* Dart: IgnorePointer */
-  backdrop-filter: blur(var(--ds-beb-sigma, 12px));
-  -webkit-backdrop-filter: blur(var(--ds-beb-sigma, 12px));
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgb(0 0 0 / 0) 0%,
-    rgb(0 0 0 / 0.11) 20%,
-    rgb(0 0 0 / 0.35) 40%,
-    rgb(0 0 0 / 0.65) 60%,
-    rgb(0 0 0 / 0.89) 80%,
-    rgb(0 0 0 / 1) 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    rgb(0 0 0 / 0) 0%,
-    rgb(0 0 0 / 0.11) 20%,
-    rgb(0 0 0 / 0.35) 40%,
-    rgb(0 0 0 / 0.65) 60%,
-    rgb(0 0 0 / 0.89) 80%,
-    rgb(0 0 0 / 1) 100%
-  );
+.ds-calendar__band {
+  position: absolute; left: 0; right: 0; top: 88px; height: 44px;
+  border-radius: 12px; background: var(--bg-container-secondary-on-bg);
 }
+.ds-calendar__col {
+  position: relative; flex: 1; min-width: 0;
+  display: flex; flex-direction: column;
+  overflow-y: auto; scroll-snap-type: y mandatory; overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.ds-calendar__col::-webkit-scrollbar { display: none; }
+.ds-calendar__item {
+  flex: none; height: 44px; scroll-snap-align: center;
+  font-size: 18px; font-weight: 400; line-height: 44px; text-align: center;
+  color: var(--text-tertiary);
+}
+.ds-calendar__item--selected { color: var(--text-primary); font-weight: 600; }
 
 /* ── DotsCaptureButton ── */
 /* DotsCaptureButton — Ø80, inner Ø68 (photo·recording Ø60), ring 6 (capture_button/) */
@@ -1003,13 +1025,13 @@
 }
 .ds-capture__inner--photo { background: var(--label-always-white); }
 .ds-capture__inner--video { background: var(--label-destructive); }
-/* arco de progreso — empieza arriba (startAngle -π/2 en Dart) */
+/* progress arc — starts at the top (startAngle -π/2 in Dart) */
 .ds-capture__ring {
   position: absolute;
   inset: 0;
   transform: rotate(-90deg);
 }
-/* icono stop — 32 × 32, r8 (_RecordingButton) */
+/* stop icon — 32 × 32, r8 (_RecordingButton) */
 .ds-capture__stop {
   width: 32px;
   height: 32px;
@@ -1039,7 +1061,7 @@
 
 /* ── DotsCountdown ── */
 /* DotsCountdown — countdown/countdown_recap.dart + countdown_event_finished.dart
-   r24 · blur20 · toastShadow · bgContainerSecondaryOnBackground · texto labelAlwaysWhite */
+   r24 · blur20 · toastShadow · bgContainerSecondaryOnBackground · text labelAlwaysWhite */
 .ds-countdown {
   box-sizing: border-box;
   display: inline-flex;
@@ -1055,7 +1077,7 @@
   font-family: var(--font-main);
 }
 
-/* CountdownRecap — w192, padding 12/16/16, borde blanco 30% (sin token — Colors.white .3 en Dart) */
+/* CountdownRecap — w192, padding 12/16/16, white 30% border (no token — Colors.white .3 in Dart) */
 .ds-countdown--recap {
   width: 192px;
   padding: 12px 16px 16px;
@@ -1075,7 +1097,7 @@
   line-height: 1.31;
 }
 
-/* labelDefaultRegular 13/400 al 70% */
+/* labelDefaultRegular 13/400 at 70% */
 .ds-countdown__desc {
   display: block;
   margin-top: 6px;
@@ -1102,7 +1124,7 @@
   font-weight: 700;
   line-height: 1.26;
 }
-/* labelSmallMedium 11/600 — al 70% solo en recap (is-dim) */
+/* labelSmallMedium 11/600 — at 70% only in recap (is-dim) */
 .ds-countdown__item-label {
   font-size: 11px;
   font-weight: 600;
@@ -1112,7 +1134,7 @@
   opacity: 0.7;
 }
 
-/* CountdownEventFinished small — h36, padding 0 12, fila icono 16 + texto labelDefaultBold */
+/* CountdownEventFinished small — h36, padding 0 12, icon 16 + text labelDefaultBold row */
 .ds-countdown--small {
   flex-direction: row;
   align-items: center;
@@ -1127,7 +1149,7 @@
   white-space: nowrap;
 }
 
-/* CountdownEventFinished big — w169, padding 10/5, título + fila gap 10 */
+/* CountdownEventFinished big — w169, padding 10/5, title + row gap 10 */
 .ds-countdown--big {
   width: 169px;
   padding: 10px 5px;
@@ -1154,12 +1176,12 @@
 .ds-divider__line2 { height: 1px; background: var(--bg-strong); }
 
 /* ── DotsEmptyStateCard ── */
-/* DotsEmptyStateCard — empty_state/empty_state_card.dart. Columna centrada,
-   padding horizontal 20 (getByRatio(20,12) → phone). Título title02H5
-   (P22 Mackinac 20/500), descripción bodyDefaultRegular textQuarternary. */
+/* DotsEmptyStateCard — empty_state/empty_state_card.dart. Centered column,
+   horizontal padding 20 (getByRatio(20,12) → phone). Title title02H5
+   (P22 Mackinac 20/500), description bodyDefaultRegular textQuarternary. */
 .ds-empty-card {
   box-sizing: border-box;
-  width: 100%; /* Dart: 82% del ancho de pantalla — en web dimensiona el padre */
+  width: 100%; /* Dart: 82% of the screen width — on web the parent sizes it */
   padding: 0 20px;
   display: flex; flex-direction: column; align-items: center;
   text-align: center;
@@ -1177,14 +1199,14 @@
 .ds-empty-card__desc {
   font: 400 14px/1.29 var(--font-main); letter-spacing: -0.02px;
   color: var(--text-quarternary);
-  margin: 8px 0 0; /* gap 8 título→descripción */
+  margin: 8px 0 0; /* gap 8 title→description */
 }
-/* Gap 16 descripción→botón (getByRatio(16,10) → phone) */
+/* Gap 16 description→button (getByRatio(16,10) → phone) */
 .ds-empty-card__button { margin-top: 16px; }
 
 /* ── DotsFilterChip ── */
-/* DotsFilterChip — dots_filter_chip.dart. Radio r22, bg bgContainerSecondary,
-   padding 6 (izq 12), label labelDefaultBold textSecondary, gap 8 al close. */
+/* DotsFilterChip — dots_filter_chip.dart. Radius r22, bg bgContainerSecondary,
+   padding 6 (left 12), label labelDefaultBold textSecondary, gap 8 to the close button. */
 .ds-filter-chip {
   display: inline-flex; align-items: center;
   box-sizing: border-box; border: 0; margin: 0;
@@ -1193,6 +1215,7 @@
   padding: 6px 6px 6px 12px;
   font-family: var(--font-main);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 /* typo.main.labelDefaultBold (Inter 13/600, h1.31, ls -0.01) textSecondary */
 .ds-filter-chip__label {
@@ -1200,16 +1223,14 @@
   color: var(--text-secondary);
   white-space: nowrap;
 }
-/* DotsCloseButton extraSmall highContrast: 16px, bg bgSecondaryBtn, fg textTertiary */
+/* Slot of the DotsCloseButton extraSmall highContrast (16px, bgSecondaryBtn / textTertiary) */
 .ds-filter-chip__close {
-  display: inline-flex; align-items: center; justify-content: center; flex: none;
-  width: 16px; height: 16px; margin-left: 8px; border-radius: 50%;
-  background: var(--bg-secondary-btn);
-  color: var(--text-tertiary);
+  display: inline-flex; flex: none;
+  margin-left: 8px;
 }
 
 /* ── DotsFloatingButton ── */
-/* DotsFloatingButton — h36, r22, pad 0 20, labelDefaultBold 13/600, sombra 0 4 15 (dots_floating_button.dart) */
+/* DotsFloatingButton — h36, r22, pad 0 20, labelDefaultBold 13/600, shadow 0 4 15 (dots_floating_button.dart) */
 .ds-floating-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 4px;
   border: none; cursor: pointer; height: 36px; padding: 0 20px; border-radius: 22px;
@@ -1219,112 +1240,12 @@
   box-shadow: var(--shadow-floating-btn);
 }
 .ds-floating-btn__label { overflow: hidden; text-overflow: ellipsis; }
-/* blur: BackdropFilter(10) + capa labelAlwaysWhite al 50% (#FFFFFF80, sin token) bajo bgSecondaryBtn */
+/* blur: BackdropFilter(10) + labelAlwaysWhite layer at 50% (#FFFFFF80, no token) under bgSecondaryBtn */
 .ds-floating-btn--blur {
   -webkit-backdrop-filter: blur(var(--blur-10)); backdrop-filter: blur(var(--blur-10));
   background-color: transparent;
   background-image: linear-gradient(var(--bg-secondary-btn), var(--bg-secondary-btn)),
     linear-gradient(#FFFFFF80, #FFFFFF80);
-}
-
-/* ── DotsGameCard ── */
-/* DotsGameCard — card de juego comprado.
-   Dart: ancho kAlbumLargeCardSize (340), squircle52, alto según contenido. */
-.ds-game-card {
-  box-sizing: border-box;
-  width: 340px;
-  padding: 20px;                    /* _padding */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;                        /* _blockGap */
-  background: var(--bg-strong);
-  border-radius: var(--squircle-52);
-  overflow: hidden;                 /* clipBehavior: Clip.antiAlias */
-  font-family: var(--font-main);
-  /* defaultShadow de Figma — NO es theme.styles.defaultShadow (0 6 blur20 #0000001A):
-     el diseño manda 0 5 blur10 #00000014 y el Dart sigue al diseño. Sin token. */
-  box-shadow: 0 5px 10px #00000014;
-}
-
-/* Caja fija del artwork: 138×100, la imagen se ajusta sin recortar (BoxFit.contain) */
-.ds-game-card__art { flex: none; width: 138px; height: 100px; }
-.ds-game-card__img { display: block; width: 100%; height: 100%; object-fit: contain; }
-/* Placeholder cuando no llega imageSrc (degradado, sin token — como en las demás cards) */
-.ds-game-card__img--ph {
-  border-radius: var(--squircle-16);
-  background: linear-gradient(140deg, #96b4ce, #e0c3a4, #a08fb0);
-}
-
-.ds-game-card__content {
-  align-self: stretch;
-  padding: 0 16px;                  /* _contentPadding */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;                        /* _contentGap */
-}
-
-/* typo.secondary.title02H4 */
-.ds-game-card__title {
-  font-family: var(--font-secondary);
-  font-size: 23px;
-  font-weight: 500;
-  line-height: 1.26;
-  letter-spacing: -0.02px;
-  color: var(--text-primary);
-  text-align: center;
-}
-
-/* typo.main.bodyDefaultRegular */
-.ds-game-card__desc {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.29;
-  letter-spacing: -0.02px;
-  color: var(--text-tertiary);
-  text-align: center;
-}
-
-/* Variante processing: fila de alto fijo 44 (_actionHeight), gap 8 (_actionGap) */
-.ds-game-card__processing {
-  height: 44px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.ds-game-card__progress { display: inline-flex; align-items: center; }
-/* typo.main.bodyDefaultMedium */
-.ds-game-card__progress-text {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.29;
-  letter-spacing: -0.02px;
-  color: var(--text-primary);
-}
-
-/* Anillo por defecto (placeholder de diseño; en la app el host pasa el suyo,
-   como el CircularProgressIndicator strokeWidth 2 de la story) */
-.ds-game-card__spinner {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 2px solid var(--label-secondary);
-  border-top-color: var(--label-highlight);
-  animation: ds-game-card-spin 0.9s linear infinite;
-}
-@keyframes ds-game-card-spin { to { transform: rotate(360deg); } }
-
-/* Fallbacks si el bundle se compilara sin BadgeLabel / DotsMainButton */
-.ds-game-card__badge-fb {
-  display: inline-flex; align-items: center; height: 22px; padding: 0 10px;
-  border-radius: 22px; background: var(--bg-container-secondary);
-  font-size: 11px; font-weight: 600; color: var(--text-secondary);
-}
-.ds-game-card__action-fb {
-  height: 44px; padding: 0 24px; border: 0; border-radius: 44px;
-  background: var(--label-highlight); color: var(--label-always-white);
-  font-family: var(--font-main); font-size: 14px; font-weight: 500; cursor: pointer;
 }
 
 /* ── DotsHomeTopBar ── */
@@ -1339,13 +1260,13 @@
   position: absolute;
   inset: 0;
 }
-/* backgroundBlur — BackdropFilter blur 50 + bgContainerPrimary (token con alpha) */
+/* backgroundBlur — BackdropFilter blur 50 + bgContainerPrimary (token with alpha) */
 .ds-home-top-bar__bg--blur {
   background: var(--bg-container-primary);
-  backdrop-filter: blur(50px);
-  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(var(--blur-50));
+  -webkit-backdrop-filter: blur(var(--blur-50));
 }
-/* showGradient — ShaderMask bgContainerPrimary→transparente sobre blur 18 */
+/* showGradient — ShaderMask bgContainerPrimary→transparent over blur 18 (no --blur-18 token; Dart sigma 18) */
 .ds-home-top-bar__bg--gradient {
   background: var(--bg-container-primary);
   backdrop-filter: blur(18px);
@@ -1358,7 +1279,7 @@
   display: flex;
   flex-direction: column;
 }
-/* TopBarContent — alto fijo preferredSize */
+/* TopBarContent — fixed preferredSize height */
 .ds-home-top-bar__content {
   height: 106px;
   display: flex;
@@ -1384,7 +1305,7 @@
   align-items: center;
   justify-content: center;
 }
-/* título — labelDefaultBold 13/600, lh 1.31, textTertiary (GestureDetector) */
+/* title — labelDefaultBold 13/600, lh 1.31, textTertiary (GestureDetector) */
 .ds-home-top-bar__title {
   border: 0;
   padding: 0;
@@ -1402,7 +1323,7 @@
   display: flex;
   align-items: center;
 }
-/* imgProfile — ml 16 (DotsProfilePhoto 32 en el home) */
+/* imgProfile — ml 16 (DotsProfilePhoto 32 in the home) */
 .ds-home-top-bar__profile {
   margin-left: 16px;
   display: inline-flex;
@@ -1415,7 +1336,7 @@
   display: inline-flex;
   z-index: 1;
 }
-/* SizedBox(16) tras secondRightIcon */
+/* SizedBox(16) after secondRightIcon */
 .ds-home-top-bar__slot--second {
   margin-right: 16px;
 }
@@ -1511,7 +1432,7 @@
 .ds-icon-btn__label--ellipsis { display: block; white-space: nowrap; text-overflow: ellipsis; }
 
 /* ── DotsInputStepper ── */
-/* DotsInputStepper — 116 × 41, píldora r1000 (dots_input_stepper.dart) */
+/* DotsInputStepper — 116 × 41, pill r1000 (dots_input_stepper.dart) */
 .ds-stepper {
   box-sizing: border-box;
   width: 116px;
@@ -1537,14 +1458,13 @@
   align-items: center;
   justify-content: center;
   color: var(--text-tertiary);
-  font: 500 14px/1 var(--font-main); /* solo visible en el glifo fallback */
 }
 .ds-stepper__btn.is-disabled {
   color: var(--text-disabled);
   cursor: default;
   pointer-events: none;
 }
-/* valor — bodyLargeMedium 16/500, textPrimary */
+/* value — bodyLargeMedium 16/500, textPrimary */
 .ds-stepper__value {
   font: 500 16px/1.31 var(--font-main);
   letter-spacing: -0.05px;
@@ -1593,7 +1513,7 @@
 }
 
 /* ── DotsListItem ── */
-/* DotsListItem — port de lib/src/components/dots_list_items/dots_list_items.dart */
+/* DotsListItem — port of lib/src/components/dots_list_items/dots_list_items.dart */
 
 .ds-list-item {
   display: flex;
@@ -1621,7 +1541,7 @@
   background-position: center;
   background-color: var(--bg-container-secondary-on-bg);
 }
-/* picType.user — círculo, fondo bgBaseContrast */
+/* picType.user — circle, bgBaseContrast background */
 .ds-list-item__thumb--user {
   border-radius: 50%;
   background: var(--bg-base-contrast);
@@ -1642,7 +1562,7 @@
 .ds-list-item__label {
   flex: 1;
   min-width: 0;
-  margin: 0 8px 0 12px; /* SizedBox(12) antes + SizedBox(8) después */
+  margin: 0 8px 0 12px; /* SizedBox(12) before + SizedBox(8) after */
   font-size: 14px;
   font-weight: 500;
   line-height: 1.29;
@@ -1653,7 +1573,7 @@
   text-overflow: ellipsis;
 }
 
-/* ── trailing check — DotsSelector.check small (altura 22, pill labelHighlight) ── */
+/* ── trailing check — DotsSelector.check small (height 22, labelHighlight pill) ── */
 .ds-list-item__check {
   min-width: 22px;
   height: 22px;
@@ -1667,28 +1587,7 @@
   justify-content: center;
 }
 
-/* fallback si DotsRadioButton no está en el bundle — círculo 22, borde 2 */
-.ds-list-item__radio-fallback {
-  width: 22px;
-  height: 22px;
-  box-sizing: border-box;
-  border-radius: 50%;
-  border: 2px solid var(--label-secondary);
-  flex: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.ds-list-item__radio-fallback.is-on { border-color: var(--label-highlight); }
-.ds-list-item__radio-fallback.is-on::after {
-  content: '';
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--label-highlight);
-}
-
-/* ── variant divider — labelSmallMedium textSecondary + línea labelSecondary(50%) ── */
+/* ── variant divider — labelSmallMedium textSecondary + labelSecondary(50%) line ── */
 .ds-list-item--divider {
   display: block;
 }
@@ -1701,7 +1600,7 @@
   margin-bottom: 10px; /* SizedBox(height: 10) */
 }
 .ds-list-item__hairline {
-  height: 1px; /* Divider thickness 0.2 ≈ hairline 1px con 50% de labelSecondary */
+  height: 1px; /* Divider thickness 0.2 ≈ 1px hairline with labelSecondary at 50% */
   background: var(--label-secondary);
   opacity: 0.5;
 }
@@ -1879,7 +1778,7 @@
   border-radius: var(--squircle-12);
   cursor: pointer;
 }
-.ds-menu__item--details { padding-bottom: 10px; } /* Dart: +2 bottom si hay details */
+.ds-menu__item--details { padding-bottom: 10px; } /* Dart: +2 bottom when there are details */
 .ds-menu__item:active { background: var(--bg-container-secondary); }
 .ds-menu__item-left, .ds-menu__item-right { flex: none; }
 .ds-menu__item-body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
@@ -1892,40 +1791,28 @@
 .ds-menu__divider { height: 0.5px; background: var(--label-secondary); margin: 2px 8px 6px; }
 .ds-menu__divider--item { margin: 2px 8px 6px; }
 .ds-menu__spacer { height: 8px; }
-/* > 7 subitems → maxHeight 336 con scroll (Dart _MenuContainerScrollable) */
+/* > 7 subitems → maxHeight 336 with scroll (Dart _MenuContainerScrollable) */
 .ds-menu__list--scroll { max-height: 336px; overflow-y: auto; }
 
 /* ===== DotsMenu.SettingsList ===== */
 .ds-menu-settings { font-family: var(--font-main); }
-/* título — labelDefaultMedium uppercase, textTertiary */
+/* title — labelDefaultMedium uppercase, textTertiary */
 .ds-menu-settings__title { font-size: 13px; font-weight: 500; letter-spacing: -0.01px; line-height: 1.31; text-transform: uppercase; color: var(--text-tertiary); }
 .ds-menu-settings__list { border-radius: var(--squircle-24); background: var(--bg-container-secondary-on-bg); overflow: hidden; }
-.ds-menu-settings__item { display: flex; align-items: center; gap: 8px; padding: 12px 16px; cursor: pointer; }
+.ds-menu-settings__item { display: flex; align-items: center; gap: 8px; padding: 12px 16px; cursor: pointer; position: relative; isolation: isolate; }
+/* Row action of a toggle row: transparent overlay button, sibling of the switch (which sits above it) */
+.ds-menu-settings__hit { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; background: transparent; border-radius: inherit; cursor: pointer; appearance: none; -webkit-appearance: none; }
+.ds-menu-settings__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
 .ds-menu-settings__item--toggle { padding: 4px 16px; }
 .ds-menu-settings__start { flex: none; }
 /* label — bodyDefaultMedium 14/500 */
 .ds-menu-settings__label { flex: 1; min-width: 0; font-size: 14px; font-weight: 500; letter-spacing: -0.02px; line-height: 1.29; color: var(--text-primary); }
 /* divider — 0.5 labelSecondary, indent 44 / endIndent 16 */
 .ds-menu-settings__divider { height: 0.5px; background: var(--label-secondary); margin: 0 16px 0 44px; }
-/* descripción — labelDefaultRegular textTertiary */
+/* description — labelDefaultRegular textTertiary */
 .ds-menu-settings__desc { font-size: 13px; font-weight: 400; letter-spacing: -0.01px; line-height: 1.31; color: var(--text-tertiary); }
-
-/* DotsToggle embebido — 44.42×27, knob 23.5 blanco; on labelHighlight,
-   off fillSecondary (sin token: #78788029 / dark #78788052) */
-.ds-menu-settings__toggle {
-  width: 44.42px; height: 27px; border-radius: 13.5px; padding: 1.74px;
-  box-sizing: border-box; display: flex; flex: none; cursor: pointer;
-  background: #78788029;
-}
-[data-theme="dark"] .ds-menu-settings__toggle { background: #78788052; }
-.ds-menu-settings__toggle.is-on,
-[data-theme="dark"] .ds-menu-settings__toggle.is-on { background: var(--label-highlight); }
-.ds-menu-settings__knob {
-  width: 23.5px; height: 23.5px; border-radius: 50%;
-  background: #FFFFFF; /* knob siempre blanco (Dart) */
-  box-shadow: 0 2.61px 6.97px #00000026, 0 2.61px 0.87px #0000000F;
-}
-.ds-menu-settings__toggle.is-on .ds-menu-settings__knob { margin-left: auto; }
+/* Slot of the embedded DotsToggle (44.42×27) */
+.ds-menu-settings__toggle { display: inline-flex; flex: none; position: relative; z-index: 2; }
 
 /* ── DotsNavBar ── */
 /* DotsNavBar — nav_bar/nav_bar.dart · r36 · blur 10 · padding 5 · item 70×55 */
@@ -1934,16 +1821,16 @@
   display: inline-flex;
   box-sizing: border-box;
   padding: 5px;
-  border-radius: 36px; /* DotsBorderRadius.r36 — sin token --squircle-36 */
+  border-radius: 36px; /* DotsBorderRadius.r36 — no --squircle-36 token */
   border: 0.7px solid var(--border-button);
-  /* bgContainerSecondary.dotsWithOpacity(0.7) — el token ya lleva alpha ≈ 0.7 */
+  /* bgContainerSecondary.dotsWithOpacity(0.7) — the token already carries alpha ≈ 0.7 */
   background: var(--bg-container-secondary);
   backdrop-filter: blur(var(--blur-10));
   -webkit-backdrop-filter: blur(var(--blur-10));
   font-family: var(--font-main);
 }
 
-/* Píldora del ítem seleccionado — 70×55, r32, bgFloatingActive, 200ms ease */
+/* Selected item pill — 70×55, r32, bgFloatingActive, 200ms ease */
 .ds-nav-bar__pill {
   position: absolute;
   top: 5px;
@@ -1951,14 +1838,11 @@
   width: 70px;
   height: 55px;
   border-radius: var(--squircle-32);
-  background: #00000026; /* bgFloatingActive light — sin token en tokens.css */
+  background: var(--bg-floating-active);
   transition: left 0.2s ease;
 }
-[data-theme="dark"] .ds-nav-bar__pill {
-  background: #C8C8C81A; /* bgFloatingActive dark — sin token en tokens.css */
-}
 
-/* Item — 70×55, icono 20 + label, color textSecondary → labelHighlight */
+/* Item — 70×55, icon 20 + label, color textSecondary → labelHighlight */
 .ds-nav-bar__item {
   position: relative;
   z-index: 1;
@@ -1996,13 +1880,6 @@
   display: inline-flex;
   width: 20px;
   height: 20px;
-}
-.ds-nav-bar__icon-fallback {
-  width: 20px;
-  height: 20px;
-  border-radius: 6px;
-  background: currentColor;
-  opacity: 0.35;
 }
 
 /* BadgeTag pendingNumber — min 18×18, r22, labelDestructive, labelSmallMedium 11/600 */
@@ -2204,7 +2081,7 @@
 }
 
 /* ── DotsRadioButton ── */
-/* DotsRadioButton — size 24, borde 2, icono ic-selector 15 (dots_radio_button.dart) */
+/* DotsRadioButton — size 24, border 2, ic-selector 15 (dots_radio_button.dart) */
 .ds-radio {
   box-sizing: border-box;
   padding: 0;
@@ -2218,13 +2095,8 @@
   align-items: center;
   justify-content: center;
 }
-.ds-radio.is-on { border-color: var(--label-highlight); }
-/* fallback si DotsIcon aún no está en el bundle */
-.ds-radio__dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--label-highlight);
+.ds-radio.is-on {
+  border-color: var(--label-highlight);
 }
 .ds-radio.is-disabled {
   opacity: 0.4;
@@ -2392,7 +2264,7 @@
 .ds-seg-icon__cell.is-selected { color: var(--text-secondary); }
 
 /* ── DotsSelector ── */
-/* DotsSelector — small 22 / medium 24, pensado para superponerse a una foto (dots_selector.dart) */
+/* DotsSelector — small 22 / medium 24, meant to overlay a photo (dots_selector.dart) */
 .ds-selector {
   box-sizing: border-box;
   margin: 0;
@@ -2403,28 +2275,21 @@
   justify-content: center;
   cursor: pointer;
   background: transparent;
-  /* off: círculo con borde 2 labelAlwaysWhite al 70% — dotsWithOpacity(0.7), sin token */
+  /* off: circle with 2px border labelAlwaysWhite at 70% — dotsWithOpacity(0.7), no token */
   border: 2px solid #FFFFFFB3;
-  /* seleccionado con número: bodyDefaultMedium con fontSize 14 */
+  /* selected with number: bodyDefaultMedium with fontSize 14 */
   font: 500 14px/1.29 var(--font-main);
   letter-spacing: -0.02px;
   color: var(--label-always-white);
 }
 .ds-selector--small { height: 22px; width: 22px; min-width: 22px; border-radius: 22px; }
 .ds-selector--medium { height: 24px; width: 24px; min-width: 24px; border-radius: 24px; }
-/* on: píldora labelHighlight, minWidth = height, padding horizontal 5, radio = height */
+/* on: labelHighlight pill, minWidth = height, horizontal padding 5, radius = height */
 .ds-selector.is-on {
   width: auto;
   border: none;
   padding: 0 5px;
   background: var(--label-highlight);
-}
-/* fallback si DotsIcon no está en el bundle */
-.ds-selector__dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--label-always-white);
 }
 
 /* ── DotsSelectorRadioButton ── */
@@ -2471,17 +2336,6 @@
 .ds-sel-card__title-serif { font: 500 18px/1.28 var(--font-secondary); letter-spacing: -0.08px; color: var(--text-primary); }
 .ds-sel-card__detail1 { font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px; color: var(--text-tertiary); }
 .ds-sel-card__detail2 { font: 400 13px/1.31 var(--font-main); letter-spacing: -0.01px; color: var(--text-tertiary); }
-/* fallback si BadgeLabel no está en el bundle */
-.ds-sel-card__badge-ph {
-  display: inline-flex;
-  align-items: center;
-  height: 22px;
-  padding: 0 8px;
-  border-radius: 22px;
-  background: var(--label-highlight);
-  color: var(--label-always-white);
-  font: 600 11px/1 var(--font-main);
-}
 
 /* DotsSettingItemRadioBtn — padding 16/12, radio 22, gaps 12 */
 .ds-setting-radio {
@@ -2496,15 +2350,6 @@
 }
 .ds-setting-radio__leading { flex: 1; min-width: 0; font: 700 14px/1.29 var(--font-main); letter-spacing: -0.02px; color: var(--text-primary); }
 .ds-setting-radio__trailing { font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px; color: var(--text-tertiary); }
-
-/* fallback si DotsRadioButton no está en el bundle */
-.ds-sel-radio-fallback {
-  box-sizing: border-box;
-  flex: none;
-  border-radius: 50%;
-  border: 2px solid var(--label-secondary);
-}
-.ds-sel-radio-fallback.is-on { border-color: var(--label-highlight); }
 
 /* ── DotsSlider ── */
 /* DotsSlider — port de lib/src/components/slider/dots_slider.dart */
@@ -2671,10 +2516,10 @@
 }
 
 /* ── DotsSystemButton ── */
-/* DotsSystemButton — port de lib/src/components/buttons/dots_system_button/ (Dart = fuente de verdad) */
+/* DotsSystemButton — port of lib/src/components/buttons/dots_system_button/ (Dart = source of truth) */
 
-/* size medium: height 44, padding 24 horizontal, radius r16, gap 6,
-   texto typo.main.bodyDefaultMedium (14/500, lh 1.29, ls -0.02) */
+/* size medium: height 44, horizontal padding 24, radius r16, gap 6,
+   text typo.main.bodyDefaultMedium (14/500, lh 1.29, ls -0.02) */
 .ds-system-btn {
   display: inline-flex;
   align-items: center;
@@ -2695,13 +2540,13 @@
   letter-spacing: -0.02px;
   background: var(--bg-container-secondary-on-bg);
   color: var(--text-primary);
-  /* theme.styles.blur50 (blurStyle de la variante) */
+  /* theme.styles.blur50 (blurStyle of the variant) */
   -webkit-backdrop-filter: blur(var(--blur-50));
   backdrop-filter: blur(var(--blur-50));
 }
 .ds-system-btn--expand { display: flex; width: 100%; }
 
-/* Variantes — DotsSystemButtonVariant (mismo fondo bgContainerSecondaryOnBackground) */
+/* Variants — DotsSystemButtonVariant (same bgContainerSecondaryOnBackground background) */
 .ds-system-btn--disabled { color: var(--text-disabled); }
 .ds-system-btn--destructive { color: var(--label-destructive); }
 
@@ -2875,12 +2720,6 @@
 
 /* clear = DotsCloseButton extraSmall (16, icono 10) inverted */
 .ds-tf-btn__clear { display: inline-flex; flex: none; margin-left: 6px; }
-.ds-tf-btn__clear-fallback {
-  display: flex; align-items: center; justify-content: center;
-  width: 16px; height: 16px; padding: 0; border: 0; border-radius: 50%;
-  background: var(--text-quarternary); color: var(--bg-container-primary);
-  cursor: pointer;
-}
 
 /* endButton: divisor 0.5 textDisabled (margins 8/12/16) + bodyDefaultMedium labelHighlight */
 .ds-tf-btn__end-divider {
@@ -2983,21 +2822,21 @@
   margin-right: 12px;
 }
 
-.ds-tf-phone__fallback { font: 500 14px/1.29 var(--font-main); color: var(--text-quarternary); }
-
 /* ── DotsToast ── */
-/* DotsToast — toast/dots_toast.dart. Contenedor: bgContainerPrimary, borde 1.4
+/* DotsToast — toast/dots_toast.dart. Container: bgContainerPrimary, border 1.4
    borderAlert, squircle24, padding 16, toastShadow (blur 20 #00000033, BlurStyle.outer).
-   bgToast (DotsStyleColorDodge, blur 50) aproximado: bg translúcido + backdrop-filter. */
+   bgToast (DotsStyleColorDodge, blur 50) approximated: translucent bg + backdrop-filter. */
 .ds-toast {
-  /* borderAlert no existe como token en tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart) */
+  isolation: isolate; /* keeps the __hit and control z-indices inside the component */
+  /* borderAlert has no token in tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart) */
   --ds-border-alert: #FFFFFF4D;
+  position: relative;
   box-sizing: border-box;
   border-radius: var(--squircle-24);
   padding: 16px;
   border: 1.4px solid var(--ds-border-alert);
   background: var(--bg-container-primary);
-  box-shadow: 0 0 20px #00000033; /* toastShadow — sin token en tokens.css (dots_styles.dart) */
+  box-shadow: 0 0 20px #00000033; /* toastShadow — no token in tokens.css (dots_styles.dart) */
   backdrop-filter: blur(var(--blur-50));
   -webkit-backdrop-filter: blur(var(--blur-50));
   font-family: var(--font-main);
@@ -3005,12 +2844,36 @@
 [data-theme="dark"] .ds-toast { --ds-border-alert: #6E6E6E4D; }
 .ds-toast--clickable { cursor: pointer; }
 
-/* isAction: false — DotsToastInfo, fila de 358 con gap 12 */
+/* onClick: transparent native button covering the toast (sibling of the content, which stays a
+   static live region). Only visible as a focus ring on keyboard focus. */
+.ds-toast__hit {
+  position: absolute; z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.ds-toast__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
+/* Ghost button (progress, isAction false) above the hit target so it receives its own clicks */
+.ds-toast__btn { position: relative; z-index: 2; }
+/* consumer slot: the wrapper generates no box (display: contents, so the column layout is
+   untouched); it is its children that get lifted above the __hit overlay — keep the `> *` rule. */
+.ds-toast__custom { display: contents; }
+.ds-toast__custom > * { position: relative; z-index: 2; }
+
+/* isAction: false — DotsToastInfo, 358 row with gap 12 */
 .ds-toast--info {
   width: 358px; max-width: 100%;
   display: flex; align-items: center; gap: 12px;
 }
-/* isAction: true — DotsToastAction, columna de 160 con gap 4 */
+/* isAction: true — DotsToastAction, 160 column with gap 4 */
 .ds-toast--action {
   width: 160px;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -3025,17 +2888,9 @@
 .ds-toast--info .ds-toast__title { flex: 1; text-align: start; min-width: 0; }
 
 .ds-toast__icon { flex: none; display: inline-flex; }
-/* _RotatingIcon: vuelta completa cada 1s (variant progress, isAction false) */
+/* _RotatingIcon: full turn every 1s (variant progress, isAction false) */
 .ds-toast__icon--spin { animation: ds-toast-rot 1s linear infinite; }
 @keyframes ds-toast-rot { to { transform: rotate(360deg); } }
-
-/* Fallback si DotsMainButton no está en el bundle (ghost medium aproximado) */
-.ds-toast__btn-fallback {
-  border: 0; background: transparent; cursor: pointer; flex: none;
-  height: 36px; padding: 0 8px; border-radius: 36px;
-  font: 600 13px/1.31 var(--font-main); letter-spacing: -0.01px;
-  color: var(--label-highlight);
-}
 
 /* ── DotsToggle ── */
 /* DotsToggle — 44.42×27, knob 23.52, knobPadding 1.74 (dots_toggle.dart) */
@@ -3077,9 +2932,10 @@
 }
 
 /* ── DotsTooltip ── */
-/* DotsTooltip — tooltip/dots_tooltip.dart. bgBaseContrast + borde 1 bgContainerSecondary
-   + defaultShadow; cola TrianglePainter 21×13; esquina 14 en el lado de la cola. */
+/* DotsTooltip — tooltip/dots_tooltip.dart. bgBaseContrast + border 1 bgContainerSecondary
+   + defaultShadow; tail TrianglePainter 21×13; corner 14 on the tail side. */
 .ds-tooltip {
+  isolation: isolate; /* keeps the __hit and control z-indices inside the component */
   position: relative;
   display: flex;
   align-items: center;
@@ -3095,7 +2951,7 @@
   box-shadow: var(--shadow-default);
   font-family: var(--font-main);
 }
-/* Esquina 14 en el lado de la cola (tailPosition *Edge) */
+/* Corner 14 on the tail side (tailPosition *Edge) */
 .ds-tooltip--corner-tl { border-top-left-radius: 14px; }
 .ds-tooltip--corner-tr { border-top-right-radius: 14px; }
 .ds-tooltip--corner-bl { border-bottom-left-radius: 14px; }
@@ -3111,19 +2967,35 @@
   color: var(--text-primary);
 }
 
-.ds-tooltip__close { position: absolute; top: 16px; right: 16px; }
-.ds-tooltip__close-fallback {
-  width: 24px; height: 24px; border-radius: 50%; border: none; cursor: pointer;
-  background: var(--bg-btn-disabled); color: var(--label-primary);
-  display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1;
+/* onClick on the body: transparent native button covering the tooltip (sibling of the close button,
+   which sits above it). Only visible as a focus ring on keyboard focus. */
+.ds-tooltip__hit {
+  position: absolute; z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
 }
+.ds-tooltip__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
 
-/* Cola — 21×13, fill bgBaseContrast, stroke 2 bgContainerSecondary */
+/* Above the hit target so the close button receives its own clicks */
+.ds-tooltip__close { position: absolute; top: 16px; right: 16px; z-index: 2; display: inline-flex; }
+
+/* Tail — 21×13, fill bgBaseContrast, stroke 2 bgContainerSecondary */
 .ds-tooltip__tail { position: absolute; width: 21px; height: 13px; }
 .ds-tooltip__tail path { fill: var(--bg-base-contrast); stroke: var(--bg-container-secondary); }
+/* consumer icon slot: above the __hit overlay so interactive content inside stays clickable */
+.ds-tooltip__icon { position: relative; z-index: 2; display: inline-flex; }
 
 /* ── DotsTopBar ── */
-/* DotsTopBar — navigation/top_bar.dart · normal 50 / big 106 (50 status + contenido) */
+/* DotsTopBar — navigation/top_bar.dart · normal 50 (kTopBarNormalHeight) / big 106 (50 status + 56 content) */
 .ds-top-bar {
   position: relative;
   display: flex;
@@ -3133,19 +3005,13 @@
   background: var(--bg-container-primary);
   font-family: var(--font-main);
 }
-/* showBottomBorder — Colors.black @0.2 (sin token) */
-.ds-top-bar--bordered {
-  box-shadow: 0 1px 0 #00000033;
-}
-.ds-top-bar__status {
-  height: 50px;
-  flex: none;
-}
-.ds-top-bar__content {
-  flex: 1;
-  position: relative;
-  min-height: 0;
-}
+.ds-top-bar--normal { height: 50px; }
+/* Dart reserves a fixed 50px for the status bar; on device the strip grows with the safe area (web extension) */
+.ds-top-bar--big { height: calc(56px + max(50px, env(safe-area-inset-top, 0px))); }
+/* showBottomBorder — Colors.black @0.2 (no token) */
+.ds-top-bar--bordered { box-shadow: 0 1px 0 #00000033; }
+.ds-top-bar__status { height: max(50px, env(safe-area-inset-top, 0px)); flex: none; }
+.ds-top-bar__content { flex: 1; position: relative; min-height: 0; }
 .ds-top-bar__center {
   position: absolute;
   inset: 0;
@@ -3158,31 +3024,30 @@
   flex-direction: column;
   align-items: center;
   min-width: 0;
+  /* keep clear of the 36px buttons + 16px margins on both sides */
+  max-width: calc(100% - 128px);
 }
 /* titleH6 — 18/600, lh 1.28, textPrimary */
 .ds-top-bar__title {
   display: flex;
   align-items: center;
   gap: 6px;
+  max-width: 100%;
   font-size: 18px;
   font-weight: 600;
   line-height: 1.28;
+  letter-spacing: -0.03px;
   color: var(--text-primary);
   white-space: nowrap;
-}
-/* imageTitle — DotsProfilePhoto 20×20 */
-.ds-top-bar__img-title {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 /* subtitle — labelSmallRegular 11/400, lh 1.27, textSecondary */
 .ds-top-bar__subtitle {
   font-size: 11px;
   font-weight: 400;
   line-height: 1.27;
+  letter-spacing: 0.01px;
   color: var(--text-secondary);
 }
 .ds-top-bar__row {
@@ -3191,52 +3056,10 @@
   display: flex;
   align-items: center;
 }
-.ds-top-bar__slot {
-  display: inline-flex;
-  z-index: 1;
-}
-.ds-top-bar__slot--left {
-  margin-left: 16px;
-}
-.ds-top-bar__spacer {
-  flex: 1;
-}
-.ds-top-bar__slot--right {
-  margin-right: 16px;
-}
-
-/* Fallbacks (solo si DotsIconButton / DotsMainButton no están en el bundle) */
-.ds-top-bar__back-fallback {
-  width: 36px;
-  height: 36px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  padding: 0;
-  border-radius: 50%;
-  background: none;
-  color: var(--text-primary);
-  cursor: pointer;
-}
-.ds-top-bar__back-fallback.is-solid {
-  background: var(--bg-secondary-btn);
-}
-.ds-top-bar__cta-fallback {
-  height: 28px;
-  padding: 0 12px;
-  border: 0;
-  border-radius: 28px;
-  background: var(--label-highlight);
-  color: var(--label-always-white);
-  font: 600 11px/1 var(--font-main);
-  cursor: pointer;
-}
-.ds-top-bar__cta-fallback:disabled {
-  background: var(--bg-btn-disabled);
-  color: var(--text-disabled);
-  cursor: default;
-}
+.ds-top-bar__slot { display: inline-flex; z-index: 1; }
+.ds-top-bar__slot--left { margin-left: 16px; }
+.ds-top-bar__spacer { flex: 1; }
+.ds-top-bar__slot--right { margin-right: 16px; }
 
 /* ── DotsUploadItem ── */
 /* DotsUploadItem — upload_items/dots_upload_item.dart · fila pad-y 8 · foto 64 squircle16 */
@@ -3246,19 +3069,9 @@
   padding: 8px 0;
   font-family: var(--font-main);
 }
-.ds-upload-item > .ds-squircle-photo,
-.ds-upload-item__photo-fallback {
+.ds-upload-item > .ds-squircle-photo {
   flex: none;
   margin-right: 12px;
-}
-.ds-upload-item__photo-fallback {
-  display: inline-block;
-  width: 64px;
-  height: 64px;
-  border-radius: 16px;
-  box-shadow: var(--shadow-default);
-  /* Placeholder degradado — arte sin token */
-  background: linear-gradient(160deg, #e8c3a0, #c88ea7 55%, #7e6ba8);
 }
 .ds-upload-item__body {
   flex: 1;
@@ -3308,6 +3121,24 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* processTextMaxLines — Dart: 1 (default) one line with ellipsis; n > 1 clamps to n lines; null lets
+   the text wrap freely. Past one line the row top-aligns and the icon drops 2px onto the first line. */
+.ds-upload-item__process--multiline { align-items: flex-start; }
+.ds-upload-item__process--multiline .ds-upload-item__process-icon { padding-top: 2px; }
+.ds-upload-item__process-text--clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  overflow: hidden;
+  /* the prop exists for messages with a file name: a long token must break instead of overflowing */
+  overflow-wrap: anywhere;
+}
+.ds-upload-item__process-text--wrap {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
+}
 /* progreso — DotsProgressBar(parts: 1) + % textQuarternary */
 .ds-upload-item__progress {
   display: flex;
@@ -3318,12 +3149,6 @@
   flex: 1;
   min-width: 0;
   display: flex;
-}
-.ds-upload-item__progress-fallback {
-  flex: 1;
-  height: 5px;
-  border-radius: 100px;
-  background: var(--label-secondary);
 }
 .ds-upload-item__progress-pct {
   flex: none;
@@ -3346,58 +3171,9 @@
   text-overflow: ellipsis;
 }
 /* botón derecho — gap 12 respecto al cuerpo */
-.ds-upload-item > .ds-main-btn,
-.ds-upload-item__btn-fallback {
+.ds-upload-item > .ds-main-btn {
   flex: none;
   margin-left: 12px;
-}
-/* Fallback si DotsMainButton no está en el bundle (medium: h36, píldora, 13/600) */
-.ds-upload-item__btn-fallback {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 36px;
-  padding: 0 16px;
-  border: none;
-  border-radius: 36px;
-  cursor: pointer;
-  font: 600 13px var(--font-main);
-  white-space: nowrap;
-}
-.ds-upload-item__btn-fallback--main {
-  background: var(--label-highlight);
-  color: var(--label-always-white);
-}
-.ds-upload-item__btn-fallback--secondary {
-  background: var(--bg-secondary-btn);
-  color: var(--text-secondary);
-  backdrop-filter: blur(var(--blur-50));
-}
-
-/* processTextMaxLines — Dart: 1 (por defecto) una línea con ellipsis; n>1 recorta
-   a n líneas; null deja el wrap libre. Con multilínea la fila se alinea arriba y
-   el icono baja 2px para caer en la primera línea. */
-.ds-upload-item__process--multiline {
-  align-items: flex-start;
-}
-.ds-upload-item__process--multiline .ds-upload-item__process-icon {
-  padding-top: 2px;
-}
-.ds-upload-item__process-text--clamp {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  white-space: normal;
-  overflow: hidden;
-  /* La prop existe justamente para mensajes con nombre de archivo: un token
-     largo sin espacios debe partirse en vez de desbordar (Flutter parte por
-     carácter cuando la palabra no cabe). */
-  overflow-wrap: anywhere;
-}
-.ds-upload-item__process-text--wrap {
-  white-space: normal;
-  overflow: visible;
-  text-overflow: clip;
-  overflow-wrap: anywhere;
 }
 
 /* ── DropdownMenu ── */
@@ -3425,14 +3201,13 @@
 .ds-dropdown__btn-subtitle { color: var(--text-tertiary); }
 .ds-dropdown__chevron { margin-left: 4px; flex: none; }
 .ds-dropdown__btn--medium .ds-dropdown__chevron { margin-left: 8px; }
-/* isActive — bgFloatingActive (sin token en tokens.css: #00000026 / dark #C8C8C81A) */
-.ds-dropdown__btn--active { background: #00000026; }
-[data-theme="dark"] .ds-dropdown__btn--active { background: #C8C8C81A; }
-/* onBackgroundVariant — bgChip (sin token: #30303099) + labelAlwaysWhite */
+/* isActive — bgFloatingActive */
+.ds-dropdown__btn--active { background: var(--bg-floating-active); }
+/* onBackgroundVariant — bgChip (no token in tokens.css: #30303099, dots_colors.dart) + labelAlwaysWhite */
 .ds-dropdown__btn--on-bg { background: #30303099; color: var(--label-always-white); }
 .ds-dropdown__btn--on-bg .ds-dropdown__btn-subtitle { color: var(--label-always-white); }
 
-/* DropdownMenu — w250 por defecto, r24, bgBaseContrast, padding 8 */
+/* DropdownMenu — w250 by default, r24, bgBaseContrast, padding 8 */
 .ds-dropdown__menu {
   border-radius: var(--squircle-24);
   padding: 8px;
@@ -3442,7 +3217,7 @@
 }
 .ds-dropdown__overlay { position: absolute; top: calc(100% + 8px); left: 0; z-index: 30; box-shadow: var(--shadow-default); border-radius: var(--squircle-24); }
 
-/* DropdownItem — padding 8, r12, margen vertical 4, bodyDefaultMedium 14/500;
+/* DropdownItem — padding 8, r12, vertical margin 4, bodyDefaultMedium 14/500;
    pressed → bgContainerSecondary */
 .ds-dropdown__item {
   display: flex;
@@ -3475,13 +3250,18 @@
 .ds-event-card__img { position: absolute; inset: 0; background-size: cover; background-position: center; }
 /* Placeholder de foto cuando no llega imageSrc (degradado, sin token — como las tarjetas planas) */
 .ds-event-card__img--ph { background-image: linear-gradient(150deg, #7E9BB8, #D8B294, #77958E); }
-/* SoftEdgeBlur bottomEdge σ12 + degradado negro 0→20% (aprox: backdrop-blur con máscara) */
+/* SoftEdgeBlur bottomEdge σ12: a blurred copy of the same image, masked to the bottom edge. It is
+   painted over the sharp image (no backdrop-filter: WebKit samples the page outside the card and
+   leaves a light halo on the rounded corners) */
+.ds-event-card__blur {
+  position: absolute; inset: 0; pointer-events: none;
+  background-size: cover; background-position: center;
+  filter: blur(12px);
+}
+/* degradado negro 0→20% sobre el borde inferior */
 .ds-event-card__fade {
   position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none;
   background: linear-gradient(180deg, #00000000, #00000033);
-  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-  mask-image: linear-gradient(180deg, transparent, #000 60%);
-  -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%);
 }
 /* Degradado superior 94px — Color(0x803c3c3c), sin token */
 .ds-event-card__top-grad { position: absolute; top: 0; left: 0; right: 0; height: 94px; pointer-events: none; background: linear-gradient(180deg, #3C3C3C80, transparent); }
@@ -3574,7 +3354,7 @@
 }
 
 /* ── FolderCarrousel ── */
-/* FolderCarrousel — carrousels/folder_carrousel.dart · scroll horizontal, pad 0 16 */
+/* FolderCarrousel — carrousels/folder_carrousel.dart · horizontal scroll, pad 0 16 */
 .ds-folder-carrousel {
   display: flex;
   align-items: flex-start;
@@ -3583,36 +3363,14 @@
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* el SingleChildScrollView no muestra barra */
+  scrollbar-width: none; /* the SingleChildScrollView shows no bar */
 }
 .ds-folder-carrousel::-webkit-scrollbar {
   display: none;
 }
-/* Row sin gap: el espaciado (4px por lado) lo pone el propio BtnFolder */
+/* Row without gap: the spacing (4px per side) comes from BtnFolder itself */
 .ds-folder-carrousel > * {
   flex: none;
-}
-
-/* Fallback (solo si BtnFolder no está en el bundle) — píldora h44 r1000 */
-.ds-folder-carrousel__fallback {
-  height: 44px;
-  margin: 4px;
-  padding: 0 16px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border: 0;
-  border-radius: 1000px;
-  white-space: nowrap;
-  cursor: pointer;
-  background: var(--bg-container-secondary-on-bg);
-  color: var(--text-quarternary);
-  font: 500 14px/1.29 var(--font-main);
-}
-.ds-folder-carrousel__fallback.is-selected {
-  background: var(--bg-strong);
-  color: var(--text-primary);
-  box-shadow: 1px 4px 4px #00000014; /* shadowFolder — sin token */
 }
 
 /* ── ImageThumbnail ── */
@@ -3627,7 +3385,7 @@
   overflow: hidden;
   flex: none;
 }
-/* variant icon — bgContainerSecondaryOnBackground; icono hereda text-secondary */
+/* variant icon — bgContainerSecondaryOnBackground; the icon inherits text-secondary */
 .ds-image-thumbnail--icon {
   background: var(--bg-container-secondary-on-bg);
   color: var(--text-secondary);
@@ -3639,12 +3397,12 @@
   height: 100%;
   object-fit: cover;
 }
-/* El icono centrado queda por encima del cover */
+/* The centered icon stays above the cover */
 .ds-image-thumbnail__icon {
   position: relative;
   display: inline-flex;
 }
-/* coverImage — Colors.black al 30% (sin token en Dart) */
+/* coverImage — Colors.black at 30% (no token in Dart) */
 .ds-image-thumbnail__cover {
   position: absolute;
   inset: 0;
@@ -3735,7 +3493,7 @@
 
 /* ── ImageWithProgressAround ── */
 /* ImageWithProgressAround — progress_bar/image_with_progress_around.dart
-   9:16 (o 3:4) · stroke 6 · innerPadding 8 · r45 · gradiente recap · % titleH3 */
+   9:16 (or 3:4) · stroke 6 · innerPadding 8 · r45 · recap gradient · % titleH3 */
 .ds-iwpa {
   position: relative;
   display: inline-block;
@@ -3753,14 +3511,14 @@
   object-fit: cover;
   transition: opacity 0.8s ease-in-out; /* AnimatedSwitcher fade 800ms */
 }
-/* Sin imageProvider el Dart no pinta nada; placeholder de diseño para que el
-   overlay tenga fondo (gradiente foto sin token — excepción documentada). */
+/* Without imageProvider the Dart paints nothing; design placeholder so the
+   overlay has a background (photo gradient without token — documented exception). */
 .ds-iwpa__placeholder {
   position: absolute;
   inset: 0;
   background: linear-gradient(160deg, #8fa8c8, #d9b8a5 55%, #8e7f9e);
 }
-/* Colors.black al 20% (sin token en Dart) */
+/* Colors.black at 20% (no token in Dart) */
 .ds-iwpa__overlay {
   position: absolute;
   inset: 0;
@@ -3785,7 +3543,7 @@
 .ds-iwpa__track {
   stroke: var(--bg-secondary-btn);
 }
-/* Animación Dart: 800ms easeInOut sobre el progreso */
+/* Dart animation: 800ms easeInOut on the progress */
 .ds-iwpa__progress {
   transition: stroke-dasharray 0.8s ease-in-out;
 }
@@ -3951,6 +3709,7 @@
 /* MilestoneCard — milestones/milestone_card.dart · aspect 3:4 · big(r32)/small(r24) · borde 3 blanco */
 .ds-milestone-card {
   position: relative;
+  isolation: isolate; /* keeps the __hit / __edit / __badges z-indices inside the card */
   display: block;
   aspect-ratio: 3 / 4;
   overflow: hidden;
@@ -3962,6 +3721,28 @@
 }
 .ds-milestone-card--big { border-radius: var(--squircle-32); }   /* isBig = width > 150 */
 .ds-milestone-card--small { border-radius: var(--squircle-24); }
+/* Card action (onClick): transparent native button covering the card — first child, sibling of the
+   edit button and the badge group. z-index 1 clears the absolute layers (img, blur, title); the two
+   controls sit at 2. */
+.ds-milestone-card__hit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.ds-milestone-card__hit:focus-visible {
+  outline: 2px solid var(--label-highlight);
+  outline-offset: -2px;
+}
 .ds-milestone-card__img {
   position: absolute;
   inset: 0;
@@ -4027,25 +3808,14 @@
   position: absolute;
   bottom: 16px;
   right: 16px;
-}
-.ds-milestone-card__edit-fallback {
-  width: 44px;
-  height: 44px;
-  border: 0;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-btn-image);
-  backdrop-filter: blur(var(--blur-50));
-  -webkit-backdrop-filter: blur(var(--blur-50));
-  cursor: pointer;
+  z-index: 2; /* above __hit: gets its own clicks */
 }
 /* _MilestoneBadges — BadgeIconGroup 63×70, bottom 16 left 16 */
 .ds-milestone-card__badges {
   position: absolute;
   bottom: 16px;
   left: 16px;
+  z-index: 2; /* above __hit: own role=button control */
   width: 63px;
   height: 70px;
   display: block;
@@ -4080,29 +3850,6 @@
   position: absolute;
   display: block;
   transform: translate(-50%, -50%);
-}
-/* Fallback de BadgeMilestone(ghost): r22, blur 25, bgBase, labelDefaultRegular textTertiary */
-.ds-milestones-list__badge {
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 22px;
-  background: var(--bg-base);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  font: 400 13px/1.31 var(--font-main);
-  letter-spacing: -0.01px;
-  color: var(--text-tertiary);
-  white-space: nowrap;
-}
-/* Fallback si __ds.MilestoneCard no está en el bundle */
-.ds-milestones-list__card-fallback {
-  display: block;
-  aspect-ratio: 3 / 4;
-  border-radius: var(--squircle-32);
-  border: 3px solid var(--label-always-white);
-  box-sizing: border-box;
-  box-shadow: var(--shadow-floating-btn);
-  background: linear-gradient(150deg, #C9D6C3, #E4D6BE 45%, #A9B7C0); /* placeholder, no token */
 }
 
 /* ── NotificationBanner ── */
@@ -4151,35 +3898,11 @@
   right: 12px;
 }
 
-/* Fallbacks si DotsMainButton/DotsCloseButton no están en el bundle */
-.ds-notif-banner__action-fallback {
-  height: 36px;
-  padding: 0 16px;
-  border: none;
-  border-radius: 36px;
-  cursor: pointer;
-  background: var(--label-highlight);
-  color: var(--label-always-white);
-  font: 600 13px/1.31 var(--font-main);
-  letter-spacing: -0.01px;
-}
-.ds-notif-banner__close-fallback {
-  width: 30px;
-  height: 30px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 0;
-  background: var(--bg-btn-disabled);
-  color: var(--label-primary);
-  font-size: 16px;
-  line-height: 1;
-}
-
 /* ── NotificationBannerImage ── */
 /* NotificationBannerImage — port de lib/src/components/notifications/notification_banner_image.dart (Dart = fuente de verdad) */
 
 .ds-notif-banner-img {
+  isolation: isolate; /* keeps the __hit and control z-indices inside the component */
   position: relative;
   box-sizing: border-box;
   background: var(--bg-container-secondary-on-bg); /* bgContainerSecondaryOnBackground */
@@ -4193,6 +3916,24 @@
   font-family: var(--font-main);
 }
 .ds-notif-banner-img--clickable { cursor: pointer; }
+
+/* Banner-level onActionClick: transparent native button covering the banner (sibling of the inner
+   controls, which sit above it with z-index). Only visible as a focus ring on keyboard focus. */
+.ds-notif-banner-img__hit {
+  position: absolute; z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.ds-notif-banner-img__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
 
 .ds-notif-banner-img__img-wrap {
   box-sizing: border-box;
@@ -4247,38 +3988,15 @@
 }
 .ds-notif-banner-img__desc-appended { color: var(--label-highlight); }
 
-.ds-notif-banner-img__action { display: flex; justify-content: center; }
+/* Above the hit target so the button receives its own clicks */
+.ds-notif-banner-img__action { position: relative; z-index: 2; display: flex; justify-content: center; }
 
-/* Positioned(top: 12, right: 12) */
+/* Positioned(top: 12, right: 12) — above the hit target */
 .ds-notif-banner-img__close {
   position: absolute;
   top: 12px;
   right: 12px;
-}
-
-/* Fallbacks si DotsMainButton/DotsCloseButton no están en el bundle */
-.ds-notif-banner-img__action-fallback {
-  height: 36px;
-  padding: 0 16px;
-  border: none;
-  border-radius: 36px;
-  cursor: pointer;
-  background: var(--label-highlight);
-  color: var(--label-always-white);
-  font: 600 13px/1.31 var(--font-main);
-  letter-spacing: -0.01px;
-}
-.ds-notif-banner-img__close-fallback {
-  width: 30px;
-  height: 30px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 0;
-  background: var(--bg-btn-disabled);
-  color: var(--label-primary);
-  font-size: 16px;
-  line-height: 1;
+  z-index: 2;
 }
 
 /* ── PageControl ── */
@@ -4311,6 +4029,7 @@
 /* ProductCard — media card con la copy sobre el fondo (Dart: 358×358, squircle32) */
 .ds-product-card {
   position: relative;
+  isolation: isolate; /* keeps the __hit / __action z-indices inside the card */
   overflow: hidden;
   cursor: pointer;
   box-sizing: border-box;
@@ -4319,6 +4038,14 @@
   /* defaultShadow del tema: 0 6 / blur 20 / #0000001A */
   box-shadow: 0 6px 20px #0000001a;
 }
+/* Card action (onClick): transparent native button covering the card — first child, sibling of the
+   action button. z-index 1 clears the absolute layers (bg, scrim, bottom); the action sits at 2. */
+.ds-product-card__hit {
+  position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; margin: 0; padding: 0;
+  border: 0; background: transparent; border-radius: inherit; cursor: pointer;
+  appearance: none; -webkit-appearance: none;
+}
+.ds-product-card__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
 .ds-product-card__bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
 /* Placeholder cuando no llega imageSrc (degradado, sin token — como AlbumGroupCard) */
 .ds-product-card__bg--ph { background-image: linear-gradient(140deg, #96b4ce, #e0c3a4, #a08fb0); }
@@ -4334,7 +4061,7 @@
     rgb(39 39 39 / var(--scrim-end-alpha))
   );
 }
-.ds-product-card__badge { position: absolute; top: 20px; right: 20px; }
+.ds-product-card__badge { position: absolute; top: 20px; right: 20px; z-index: 2; } /* above __hit: badge content stays clickable */
 /* PageControl: 20 por encima del título (bottom 20 + copy 62 + gap 20, ver Dart) */
 .ds-product-card__pagecontrol {
   position: absolute; left: 0; right: 0; bottom: 102px;
@@ -4367,10 +4094,14 @@
 .ds-product-card__action {
   flex: none; width: 36px; height: 36px; border-radius: 50%;
   display: inline-flex; align-items: center; justify-content: center;
-  border: 1px solid var(--border-alert); background: var(--bg-btn-image); color: var(--text-primary);
+  /* borderAlert has no token in tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart), as DotsIconButton/DotsToast */
+  --ds-border-alert: #FFFFFF4D;
+  border: 1px solid var(--ds-border-alert); background: var(--bg-btn-image); color: var(--text-primary);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   padding: 0; cursor: pointer;
+  position: relative; z-index: 2; /* above __hit: gets its own clicks */
 }
+[data-theme="dark"] .ds-product-card__action { --ds-border-alert: #6E6E6E4D; }
 
 /* ── RatingRow ── */
 /* RatingRow — port de lib/src/components/rating/rating_row.dart + rating_star.dart */
@@ -4433,19 +4164,23 @@
 .ds-rating-star--detractor .ds-rating-star__icon svg path { fill: url(#ds-rating-g-detractor); }
 .ds-rating-star--neutral .ds-rating-star__icon svg path { fill: url(#ds-rating-g-neutral); }
 .ds-rating-star--promoter .ds-rating-star__icon svg path { fill: url(#ds-rating-g-promoter); }
-/* fallback sin DotsIcon en el bundle */
-.ds-rating-star__icon-fallback { line-height: 1; }
-.ds-rating-star--detractor .ds-rating-star__icon-fallback { color: #FA5B3D; } /* friends003 — sin token */
-.ds-rating-star--neutral .ds-rating-star__icon-fallback { color: #F7954A; }   /* friends005 — sin token */
-.ds-rating-star--promoter .ds-rating-star__icon-fallback { color: #01AF94; }  /* team007 — sin token */
 
 /* ── RecapCard ── */
 /* RecapCard — 4:5 squircle52 con overlay (recap_card.dart) · locked: 7:8 pad 20 (recap_card_locked.dart) */
 .ds-recap-card {
-  position: relative; overflow: hidden; flex: none; box-sizing: border-box; cursor: pointer;
+  position: relative; isolation: isolate; overflow: hidden; flex: none; box-sizing: border-box; cursor: pointer;
   aspect-ratio: 4 / 5; border-radius: var(--squircle-52); box-shadow: var(--shadow-default);
 }
 .ds-recap-card--locked { aspect-ratio: 7 / 8; box-shadow: none; cursor: default; }
+/* Card action (onClick, without locked): transparent native button covering the card — first child,
+   sibling of the icon/main buttons. z-index 1 clears the absolute layers (img, overlay, inner); the
+   buttons sit at 2. The card isolates these indices (isolation: isolate above). */
+.ds-recap-card__hit {
+  position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; margin: 0; padding: 0;
+  border: 0; background: transparent; border-radius: inherit; cursor: pointer;
+  appearance: none; -webkit-appearance: none;
+}
+.ds-recap-card__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
 .ds-recap-card__img { position: absolute; inset: 0; background-size: cover; background-position: center; }
 /* Placeholder de foto cuando no llega imageSrc (degradado, sin token — como las tarjetas planas) */
 .ds-recap-card__img--ph { background-image: linear-gradient(160deg, #8FA8C8, #D9B8A5, #8E7F9E); }
@@ -4464,6 +4199,7 @@
 /* DotsIconButton floating — Ø44 icono 24 (large) / Ø36 icono 20 (medium), bgBtnImage + blur10 */
 .ds-recap-card__icon-btn {
   width: 44px; height: 44px; border: none; padding: 0; cursor: pointer; border-radius: 50%; flex: none;
+  position: relative; z-index: 2; /* above __hit (the locked __info overrides position, keeps z) */
   display: inline-flex; align-items: center; justify-content: center;
   background: var(--bg-btn-image); color: var(--text-primary);
   backdrop-filter: blur(var(--blur-10)); -webkit-backdrop-filter: blur(var(--blur-10));
@@ -4474,17 +4210,11 @@
 [data-theme="dark"] .ds-recap-card__icon-btn--half { background: #74747480; }
 .ds-recap-card__info { position: absolute; top: 0; right: 0; }
 .ds-recap-card__bottom { position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: center; }
+/* Only the main button goes above __hit; the strip (and the created-by text) stays under it */
+.ds-recap-card__bottom .ds-main-btn { position: relative; z-index: 2; }
 /* _CreatedByText — bodyDefaultMedium blanco, una línea cada texto */
 .ds-recap-card__created-by { width: 100%; text-align: center; color: var(--label-always-white); font: 500 14px/1.29 var(--font-main); }
 .ds-recap-card__created-by span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-/* Fallbacks si BadgeLabel / DotsMainButton no están en el bundle */
-.ds-recap-card__badge-fb { padding: 4px 10px; border-radius: 20px; color: var(--label-always-white); font: 600 11px/1.29 var(--font-main); background: var(--gradient-bg-premium); }
-.ds-recap-card__cta-fb {
-  height: 44px; padding: 0 20px; border: none; border-radius: 44px; cursor: pointer; white-space: nowrap;
-  display: inline-flex; align-items: center; gap: 4px;
-  font: 500 14px/1.29 var(--font-main); color: var(--label-always-white); background: var(--label-highlight);
-  backdrop-filter: blur(var(--blur-50)); -webkit-backdrop-filter: blur(var(--blur-50));
-}
 /* CountdownRecap — w192 r24, bgContainerSecondaryOnBackground + borde blanco 30% + blur20 */
 .ds-recap-card__countdown {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -4637,22 +4367,40 @@
 
 /* Fila — pad-y 3, gap 8 */
 .ds-users-item {
+  position: relative; /* anchors __hit */
+  isolation: isolate; /* keeps the __hit z-index inside the row */
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 3px 0;
   min-width: 0;
 }
-.ds-users-item[role='button'] {
+/* Row tap (onClick): transparent native button covering the row — first child, sibling of the row
+   content (a role=button row would make any nested control presentational). textfield and
+   pendingMember rows never get it; main keeps it under its close button (raised below). */
+.ds-users-list__hit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: inherit;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
 }
-.ds-users-item__info-fallback {
-  flex: 1;
-  min-width: 0;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.02px;
-  color: var(--text-primary);
+.ds-users-list__hit:focus-visible {
+  outline: 2px solid var(--label-highlight);
+  outline-offset: -2px;
+}
+/* main: the close button stacks above the row hit so both stay independently clickable */
+.ds-users-item--main > .ds-close-btn {
+  position: relative;
+  z-index: 2;
 }
 
 /* textfield — h30, bodyDefaultMedium, hint textQuarternary, caret labelHighlight */
@@ -4710,21 +4458,145 @@
   align-items: center;
   gap: 4px;
 }
-/* Fallback si DotsCloseButton no está en el bundle */
-.ds-users-item__close-fallback {
-  flex: none;
-  width: 16px;
-  height: 16px;
-  border: none;
-  border-radius: 50%;
-  padding: 0;
-  cursor: pointer;
-  background: var(--bg-btn-disabled);
-  color: var(--label-primary);
-  font-size: 11px;
-  line-height: 1;
+
+/* ── DotsBottomEdgeBlur ── */
+/* DotsBottomEdgeBlur — desenfoque progresivo en el borde inferior.
+   El Dart pinta una copia borrosa del hijo y la funde con una máscara vertical
+   (dejó atrás BackdropFilter por el shimmer de Impeller al hacer scroll). En web
+   no existe ese problema y `backdrop-filter` da el mismo resultado sin duplicar
+   el DOM — por eso el port no necesita el `blurChild` del Dart. */
+.ds-bottom-edge-blur {
+  position: relative;
+}
+
+/* Banda de alto `edgeSize` pegada abajo. La máscara replica el smoothstep del
+   Dart (_fadeOpacities 0 / .11 / .35 / .65 / .89 / 1 repartidos por la banda):
+   arriba no hay desenfoque y abajo está al máximo. */
+.ds-bottom-edge-blur__band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;          /* Dart: IgnorePointer */
+  backdrop-filter: blur(var(--ds-beb-sigma, 12px));
+  -webkit-backdrop-filter: blur(var(--ds-beb-sigma, 12px));
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0) 0%,
+    rgb(0 0 0 / 0.11) 20%,
+    rgb(0 0 0 / 0.35) 40%,
+    rgb(0 0 0 / 0.65) 60%,
+    rgb(0 0 0 / 0.89) 80%,
+    rgb(0 0 0 / 1) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0) 0%,
+    rgb(0 0 0 / 0.11) 20%,
+    rgb(0 0 0 / 0.35) 40%,
+    rgb(0 0 0 / 0.65) 60%,
+    rgb(0 0 0 / 0.89) 80%,
+    rgb(0 0 0 / 1) 100%
+  );
+}
+
+/* ── DotsGameCard ── */
+/* DotsGameCard — card de juego comprado.
+   Dart: ancho kAlbumLargeCardSize (340), squircle52, alto según contenido. */
+.ds-game-card {
+  box-sizing: border-box;
+  width: 340px;
+  padding: 20px;                    /* _padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;                        /* _blockGap */
+  background: var(--bg-strong);
+  border-radius: var(--squircle-52);
+  overflow: hidden;                 /* clipBehavior: Clip.antiAlias */
+  font-family: var(--font-main);
+  /* defaultShadow de Figma — NO es theme.styles.defaultShadow (0 6 blur20 #0000001A):
+     el diseño manda 0 5 blur10 #00000014 y el Dart sigue al diseño. Sin token. */
+  box-shadow: 0 5px 10px #00000014;
+}
+
+/* Caja fija del artwork: 138×100, la imagen se ajusta sin recortar (BoxFit.contain) */
+.ds-game-card__art { flex: none; width: 138px; height: 100px; }
+.ds-game-card__img { display: block; width: 100%; height: 100%; object-fit: contain; }
+/* Placeholder cuando no llega imageSrc (degradado, sin token — como en las demás cards) */
+.ds-game-card__img--ph {
+  border-radius: var(--squircle-16);
+  background: linear-gradient(140deg, #96b4ce, #e0c3a4, #a08fb0);
+}
+
+.ds-game-card__content {
+  align-self: stretch;
+  padding: 0 16px;                  /* _contentPadding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;                        /* _contentGap */
+}
+
+/* typo.secondary.title02H4 */
+.ds-game-card__title {
+  font-family: var(--font-secondary);
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.26;
+  letter-spacing: -0.02px;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+/* typo.main.bodyDefaultRegular */
+.ds-game-card__desc {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.29;
+  letter-spacing: -0.02px;
+  color: var(--text-tertiary);
+  text-align: center;
+}
+
+/* Variante processing: fila de alto fijo 44 (_actionHeight), gap 8 (_actionGap) */
+.ds-game-card__processing {
+  height: 44px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
+}
+.ds-game-card__progress { display: inline-flex; align-items: center; }
+/* typo.main.bodyDefaultMedium */
+.ds-game-card__progress-text {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+  letter-spacing: -0.02px;
+  color: var(--text-primary);
+}
+
+/* Anillo por defecto (placeholder de diseño; en la app el host pasa el suyo,
+   como el CircularProgressIndicator strokeWidth 2 de la story) */
+.ds-game-card__spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--label-secondary);
+  border-top-color: var(--label-highlight);
+  animation: ds-game-card-spin 0.9s linear infinite;
+}
+@keyframes ds-game-card-spin { to { transform: rotate(360deg); } }
+
+/* Fallbacks si el bundle se compilara sin BadgeLabel / DotsMainButton */
+.ds-game-card__badge-fb {
+  display: inline-flex; align-items: center; height: 22px; padding: 0 10px;
+  border-radius: 22px; background: var(--bg-container-secondary);
+  font-size: 11px; font-weight: 600; color: var(--text-secondary);
+}
+.ds-game-card__action-fb {
+  height: 44px; padding: 0 24px; border: 0; border-radius: 44px;
+  background: var(--label-highlight); color: var(--label-always-white);
+  font-family: var(--font-main); font-size: 14px; font-weight: 500; cursor: pointer;
 }
 

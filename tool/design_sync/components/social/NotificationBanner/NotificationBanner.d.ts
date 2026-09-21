@@ -1,24 +1,23 @@
 import * as React from 'react';
 
 /**
- * NotificationBanner — port web de NotificationBanner (Flutter). Banner informativo
- * centrado (r24, bgContainerSecondaryOnBackground) con título, cuerpo opcional,
- * botón de acción opcional (DotsMainButton main·medium) y botón de cierre.
+ * NotificationBanner — web port of NotificationBanner (Flutter). Centered informative banner
+ * (r24, bgContainerSecondaryOnBackground) with title, optional body, optional action button
+ * (DotsMainButton main·medium) and close button.
  */
 export interface NotificationBannerProps {
-  /** Título — typo.main.bodyLargeBold, textPrimary */
-  title: string;
-  /** Cuerpo bajo el título — bodyDefaultRegular, textSecondary */
-  body?: string;
-  /** Texto del botón de acción; sin él no hay botón */
-  actionButtonText?: string;
-  /** onActionTap de Dart */
-  onActionClick?: () => void;
-  /** onClose de Dart (DotsCloseButton softContrast·medium, top 12 right 12) */
-  onClose?: () => void;
-  /** Mostrar botón de cierre (por defecto true) */
-  showCloseButton?: boolean;
-  className?: string;
+    /** Title — typo.main.bodyLargeBold, textPrimary */
+    title: string;
+    /** Body under the title — bodyDefaultRegular, textSecondary */
+    body?: string;
+    /** Action button text; without it there is no button */
+    actionButtonText?: string;
+    /** Dart onActionTap */
+    onActionClick?: () => void;
+    /** Dart onClose (DotsCloseButton softContrast·medium, top 12 right 12) */
+    onClose?: () => void;
+    /** Show the close button (default true) */
+    showCloseButton?: boolean;
+    className?: string;
 }
-
-export declare const NotificationBanner: React.ComponentType<NotificationBannerProps>;
+export declare function NotificationBanner(props: NotificationBannerProps): import("react").JSX.Element;

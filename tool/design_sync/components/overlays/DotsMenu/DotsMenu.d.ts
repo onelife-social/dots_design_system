@@ -1,75 +1,72 @@
 import * as React from 'react';
 
-/**
- * DotsMenu — port web de menu/ (Flutter: DotsMenu + DotsMenuItemModel +
- * SettingsList/SettingsItem). Menú contextual de 250px con navegación anidada por
- * subItems; `DotsMenu.SettingsList` es la lista de ajustes con filas icon/toggle.
- */
+/** Dart DotsMenuItemModel */
 export interface DotsMenuItemModel {
-  /** Identificador único. Dart: id */
-  id: string | number;
-  /** Texto principal (bodyDefaultMedium). Dart: label */
-  label: string;
-  /** Segunda línea en textTertiary. Dart: details */
-  details?: string;
-  /** Nombre real del icono Dots trailing (16px, labelPrimary). Dart: icon */
-  icon?: string;
-  /** Muestra check 14px labelHighlight a la izquierda. Dart: selected */
-  selected?: boolean;
-  /** Tiñe label e iconos de labelDestructive. Dart: isDelete */
-  isDelete?: boolean;
-  /** Subitems — al tocar se navega a este nivel. Dart: subItems */
-  subItems?: DotsMenuItemModel[];
-  /** Divider de 0.5px tras el item. Dart: addDivider */
-  addDivider?: boolean;
-  /** Dart: onTap */
-  onClick?: () => void;
+    /** Unique id — Dart `id` */
+    id: string | number;
+    /** Main text (bodyDefaultMedium) — Dart `label` */
+    label: string;
+    /** Second line in textTertiary — Dart `details` */
+    details?: string;
+    /** Trailing DotsIcon name (16px, labelPrimary) — Dart `icon` */
+    icon?: string;
+    /** Shows a 14px labelHighlight check on the left — Dart `selected` */
+    selected?: boolean;
+    /** Tints label and icons with labelDestructive — Dart `isDelete` */
+    isDelete?: boolean;
+    /** Sub items — tapping navigates into this level — Dart `subItems` */
+    subItems?: DotsMenuItemModel[];
+    /** 0.5px divider after the item — Dart `addDivider` */
+    addDivider?: boolean;
+    /** Dart `onTap` */
+    onClick?: () => void;
 }
-
 export interface DotsMenuProps {
-  /** Item cabecera del menú. Dart: mainItem */
-  mainItem: DotsMenuItemModel;
-  /** Subitems del primer nivel. Dart: subitems */
-  subitems: DotsMenuItemModel[];
-  /** Abre el menú directamente en el nivel que contiene este id. Dart: defaultSelectedItemId */
-  defaultSelectedItemId?: string | number;
-  className?: string;
+    /** Header item of the menu — Dart `mainItem` */
+    mainItem: DotsMenuItemModel;
+    /** First-level sub items — Dart `subitems` */
+    subitems: DotsMenuItemModel[];
+    /** Opens the menu directly at the level containing this id — Dart `defaultSelectedItemId` */
+    defaultSelectedItemId?: string | number;
+    className?: string;
 }
-
+/** Dart enum SettingsItemVariant */
+export type DotsMenuSettingsItemVariant = 'icon' | 'toggle';
 export interface DotsMenuSettingsItemProps {
-  /** Fila con icono trailing o con toggle — enum Dart SettingsItemVariant. */
-  variant: 'icon' | 'toggle';
-  /** Texto (bodyDefaultMedium). Dart: label */
-  label: string;
-  /** Icono inicial 20px textTertiary. Dart: startIcon */
-  startIcon?: string;
-  /** Icono final 16px textTertiary (solo variant 'icon'). Dart: endIcon */
-  endIcon?: string;
-  /** Estado del toggle (solo variant 'toggle'). Dart: toggleValue */
-  toggleValue?: boolean;
-  /** Tap en el toggle. Dart: onToggleTap */
-  onToggleTap?: () => void;
-  /** Tap en la fila. Dart: onTap */
-  onClick?: () => void;
-  /** Color CSS del label. Dart: textColor */
-  textColor?: string;
-  /** Alineación del label. Dart: textAlignment (default 'left') */
-  textAlignment?: 'left' | 'center' | 'right';
+    /** Row with trailing icon or with toggle — Dart enum SettingsItemVariant */
+    variant: DotsMenuSettingsItemVariant;
+    /** Text (bodyDefaultMedium) — Dart `label` */
+    label: string;
+    /** Leading icon 20px textTertiary — Dart `startIcon` */
+    startIcon?: string;
+    /** Trailing icon 16px textTertiary (variant 'icon' only) — Dart `endIcon` */
+    endIcon?: string;
+    /** Toggle state (variant 'toggle' only) — Dart `toggleValue` */
+    toggleValue?: boolean;
+    /** Tap on the toggle — Dart `onToggleTap` */
+    onToggleTap?: () => void;
+    /** Tap on the row — Dart `onTap` */
+    onClick?: () => void;
+    /** CSS color of the label — Dart `textColor` */
+    textColor?: string;
+    /** Label alignment — Dart `textAlignment` (default 'left') */
+    textAlignment?: 'left' | 'center' | 'right';
 }
-
 export interface DotsMenuSettingsListProps {
-  /** Título en mayúsculas sobre la lista. Dart: title */
-  title?: string;
-  /** Descripción bajo la lista. Dart: description */
-  description?: string;
-  /** Filas de ajustes. Dart: items */
-  items: DotsMenuSettingsItemProps[];
-  /** Padding horizontal de título/descripción. Dart: textPadding (default 15) */
-  textPadding?: number;
-  className?: string;
+    /** Uppercased title above the list — Dart `title` */
+    title?: string;
+    /** Description below the list — Dart `description` */
+    description?: string;
+    /** Settings rows — Dart `items` */
+    items: DotsMenuSettingsItemProps[];
+    /** Horizontal padding of title/description — Dart `textPadding` (default 15) */
+    textPadding?: number;
+    className?: string;
 }
-
-export declare const DotsMenu: React.ComponentType<DotsMenuProps> & {
-  SettingsList: React.ComponentType<DotsMenuSettingsListProps>;
-  SettingsItem: React.ComponentType<DotsMenuSettingsItemProps>;
-};
+export declare function DotsMenu(props: DotsMenuProps): import("react").JSX.Element;
+export declare namespace DotsMenu {
+    var SettingsList: typeof DotsMenuSettingsList;
+    var SettingsItem: typeof DotsMenuSettingsItem;
+}
+export declare function DotsMenuSettingsItem(p: DotsMenuSettingsItemProps): import("react").JSX.Element;
+export declare function DotsMenuSettingsList(props: DotsMenuSettingsListProps): import("react").JSX.Element;

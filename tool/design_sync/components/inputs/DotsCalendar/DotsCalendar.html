@@ -1,0 +1,35 @@
+<!-- @dsCard group="inputs" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../_ds_bundle.css">
+  <style>
+    body{margin:0;padding:24px;background:var(--bg-base)}
+    .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+    .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
+    .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
+    .phone{max-width:358px}
+  </style>
+</head><body>
+  <div class="ds-grid" id="g"></div>
+  <script src="../../../_vendor/react.js"></script>
+  <script src="../../../_vendor/react-dom.js"></script>
+  <script src="../../../_ds_bundle.js"></script>
+  <script>
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsCalendar;
+    function Controlled(props) {
+      var s = React.useState(props.value || ''); var value = s[0], setValue = s[1];
+      return h(C, Object.assign({}, props, { value: value, onChange: setValue }));
+    }
+    function phone(el) { return h('div', { className: 'phone' }, el); }
+    var variants = [
+      ['selected · today ring · past muted (default)', phone(h(Controlled, { value: '2026-09-26', today: '2026-09-09', locale: 'es' }))],
+      ['nothing selected · en · week starts Sunday', phone(h(Controlled, { today: '2026-09-09', locale: 'en', firstDayOfWeek: 0 }))],
+      ['pastDays disabled · maxDate', phone(h(Controlled, { value: '2026-10-04', today: '2026-09-09', locale: 'es', pastDays: 'disabled', maxDate: '2026-10-20' }))],
+      ['month/year picker open (initialPicking)', phone(h(Controlled, { value: '2026-09-26', today: '2026-09-09', locale: 'es', initialPicking: true }))],
+      ['dark', h('div', { 'data-theme': 'dark', style: { background: 'var(--bg-base)', padding: 12, borderRadius: 8 } }, phone(h(Controlled, { value: '2026-09-26', today: '2026-09-09', locale: 'es' })))],
+    ];
+    var root = ReactDOM.createRoot(document.getElementById('g'));
+    root.render(variants.map(function (v, i) { return h('div', { className: 'ds-cell', key: i }, h('h4', null, v[0]), v[1]); }));
+  </script>
+</body></html>

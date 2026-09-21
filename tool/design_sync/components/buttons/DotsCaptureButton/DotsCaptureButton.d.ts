@@ -1,26 +1,30 @@
 import * as React from 'react';
 
-/**
- * DotsCaptureButton — port web de DotsCaptureButton (Flutter). Botón de captura
- * de cámara Ø80: photo = disco blanco, video = disco rojo; grabando muestra un
- * arco de progreso blanco y el icono de stop.
- */
+/** Dart enum DotsCaptureButtonType */
+export type DotsCaptureButtonType = 'photo' | 'video';
+/** Dart enum DotsCaptureButtonState */
+export type DotsCaptureButtonState = 'active' | 'recording';
 export interface DotsCaptureButtonProps {
-  /** Tipo de captura — enum Dart DotsCaptureButtonType */
-  type: 'photo' | 'video';
-  /**
-   * Estado — enum Dart DotsCaptureButtonState. Si se pasa, el componente es
-   * controlado; si se omite, gestiona la grabación internamente al hacer click.
-   */
-  state?: 'active' | 'recording';
-  /** Segundos máximos de grabación (progreso del arco; solo video) — Dart `maxTimeRecording` */
-  maxTimeRecording?: number;
-  /** Disparo de foto (solo photo) — Dart `onTakePicture` */
-  onTakePicture?: () => void;
-  /** Comienzo de grabación (solo video) — Dart `onStartRecording` */
-  onStartRecording?: () => void;
-  /** Fin de grabación (click o tiempo máximo) — Dart `onStopRecording` */
-  onStopRecording?: () => void;
+    /** Accessible name when `type` is 'photo' (default 'Tomar foto'; localize from the app) */
+    photoLabel?: string;
+    /** Accessible name while recording (default 'Detener grabación'; localize from the app) */
+    stopLabel?: string;
+    /** Accessible name to start recording (default 'Grabar vídeo'; localize from the app) */
+    recordLabel?: string;
+    /** Capture type — Dart enum DotsCaptureButtonType (default 'photo') */
+    type: DotsCaptureButtonType;
+    /**
+     * State — Dart enum DotsCaptureButtonState. When given the component is
+     * controlled; when omitted it manages the recording state itself on click.
+     */
+    state?: DotsCaptureButtonState;
+    /** Max recording seconds (ring progress; video only) — Dart `maxTimeRecording` (default 60) */
+    maxTimeRecording?: number;
+    /** Photo shot (photo only) — Dart `onTakePicture` */
+    onTakePicture?: () => void;
+    /** Recording start (video only) — Dart `onStartRecording` */
+    onStartRecording?: () => void;
+    /** Recording end (click or max time) — Dart `onStopRecording` */
+    onStopRecording?: () => void;
 }
-
-export declare const DotsCaptureButton: React.ComponentType<DotsCaptureButtonProps>;
+export declare function DotsCaptureButton(props: DotsCaptureButtonProps): import("react").JSX.Element;

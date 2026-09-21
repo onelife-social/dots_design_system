@@ -1,2 +1,2 @@
-// Re-export of dots_design_system@0.0.1 DotsMainButton. Implementation is in the root _ds_bundle.js (window.DotsDesignSystem_9e41da).
+// Re-export of @dots/design-system@0.1.0 DotsMainButton. Implementation is in the root _ds_bundle.js (window.DotsDesignSystem_9e41da).
 Object.assign(window, { DotsMainButton: window.DotsDesignSystem_9e41da.DotsMainButton });

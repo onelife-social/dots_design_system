@@ -1,41 +1,40 @@
 import * as React from 'react';
 
+import { type CSSProperties, type SyntheticEvent } from 'react';
 /**
- * ImageWithIcon — port web de ImageWithIcon (Flutter). Miniatura 53×68 (o
- * circular) con gradiente superior, borde blanco interior y badge circular
- * con icono en la esquina superior derecha. Sin imagen puede mostrar una
- * inicial (aliasLabelImageText).
+ * ImageWithIcon — web port of ImageWithIcon (Flutter). 53×68 (or circular) thumbnail with a
+ * top gradient, inner white border and a circular icon badge at the top-right corner.
+ * Without image it can show an initial (aliasLabelImageText).
  */
 export interface ImageWithIconProps {
-  /** URL de la imagen (image de Dart). Si falla la carga → defaultImage (default_user_item) */
-  src?: string;
-  /** Nombre del icono DotsIcon del badge (icon: Widget en Dart) */
-  icon?: string;
-  /** Color CSS del icono (por defecto el del tema/currentColor) */
-  iconColor?: string;
-  /** Tamaño del icono (por defecto 18; badge = iconSize × 1.5) */
-  iconSize?: number;
-  /** Offset custom del badge; por defecto sobresale la mitad */
-  iconOffset?: number;
-  /** Ancho (por defecto 53) */
-  width?: number;
-  /** Alto (por defecto 68) */
-  height?: number;
-  /** Radio (por defecto 12; con circularImage → width/2) */
-  borderRadius?: number;
-  /** Grosor del borde blanco interior (por defecto 2) */
-  borderWidth?: number;
-  /** Imagen/alias circular en vez de rectángulo redondeado */
-  circularImage?: boolean;
-  /** Mostrar el badge (por defecto true) */
-  showIcon?: boolean;
-  /** Inicial mostrada cuando no hay src — Nunito 600 40, textTertiary */
-  aliasLabelImageText?: string;
-  /** Estilo CSS inline para el texto alias (aliasLabelImageTextStyle de Dart) */
-  aliasLabelImageTextStyle?: React.CSSProperties;
-  /** Error de carga de la imagen */
-  onError?: (event: unknown) => void;
-  className?: string;
+    /** Image URL (Dart `image`). On load error → defaultImage (default_user_item) */
+    src?: string;
+    /** DotsIcon name of the badge (Dart `icon: Widget`) */
+    icon?: string;
+    /** CSS color of the icon (default theme/currentColor) */
+    iconColor?: string;
+    /** Icon size (default 18; badge = iconSize × 1.5) */
+    iconSize?: number;
+    /** Custom badge offset; by default it overhangs by half */
+    iconOffset?: number;
+    /** Width (default 53) */
+    width?: number;
+    /** Height (default 68) */
+    height?: number;
+    /** Radius (default 12; with circularImage → width/2) */
+    borderRadius?: number;
+    /** Inner white border width (default 2) */
+    borderWidth?: number;
+    /** Circular image/alias instead of a rounded rectangle */
+    circularImage?: boolean;
+    /** Show the badge (default true) */
+    showIcon?: boolean;
+    /** Initial shown when there is no src — Nunito 600 40, textTertiary */
+    aliasLabelImageText?: string;
+    /** Inline CSS style for the alias text (Dart aliasLabelImageTextStyle) */
+    aliasLabelImageTextStyle?: CSSProperties;
+    /** Image load error */
+    onError?: (event: SyntheticEvent<HTMLImageElement>) => void;
+    className?: string;
 }
-
-export declare const ImageWithIcon: React.ComponentType<ImageWithIconProps>;
+export declare function ImageWithIcon(props: ImageWithIconProps): import("react").JSX.Element;

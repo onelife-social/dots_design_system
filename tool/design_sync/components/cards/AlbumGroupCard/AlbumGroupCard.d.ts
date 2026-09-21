@@ -1,29 +1,30 @@
 import * as React from 'react';
 
-/**
- * AlbumGroupCard — port web de AlbumGroupCard (Flutter). Tarjeta cuadrada de álbum
- * con foto de fondo, difuminado inferior y título centrado abajo.
- */
+/** Dart enum AlbumGroupCardVariant */
+export type AlbumGroupCardVariant = 'small' | 'large';
 export interface AlbumGroupCardProps {
-  /** URL de la foto de fondo (Dart imageProvider). Sin ella se pinta un placeholder degradado */
-  imageSrc?: string;
-  /** Título centrado abajo (requerido en Dart) */
-  title: string;
-  /** Variante — enum Dart AlbumGroupCardVariant */
-  variant?: 'small' | 'large';
-  /** Icono del CardTag superior izquierdo (Dart tagIconData), p.ej. 'ic-prime-1' */
-  tagIcon?: string;
-  /** Grupo bloqueado: candado centrado y sin tag */
-  isBlocked?: boolean;
-  /** Altura del difuminado inferior (Dart edgeSize; default 60 small / 110 large) */
-  edgeSize?: number;
-  /** Sigma del blur (Dart blurSigma) — aproximado en CSS, sin efecto directo */
-  blurSigma?: number;
-  /** Lado en px (la tarjeta es 1:1; Dart la acota a 135–160 small / 288–340 large). Default 148 / 288 */
-  size?: number;
-  /** Tap en la tarjeta (Dart onTap) */
-  onClick?: () => void;
-  className?: string;
+    /** Background photo URL (Dart imageProvider). Without it a gradient placeholder is painted */
+    imageSrc?: string;
+    /** Title centered at the bottom (required in Dart) */
+    title: string;
+    /** Variant — Dart enum AlbumGroupCardVariant (default 'small') */
+    variant?: AlbumGroupCardVariant;
+    /** Icon of the top-left CardTag (Dart tagIconData), e.g. 'ic-prime-1' */
+    tagIcon?: string;
+    /** Blocked group: centered lock and no tag */
+    isBlocked?: boolean;
+    /** Height of the bottom fade (Dart edgeSize; default 60 small / 110 large) */
+    edgeSize?: number;
+    /**
+     * Gaussian sigma of the bottom-edge blur — Dart `blurSigma` (SoftEdgeBlur `sigma: blurSigma ?? 12`).
+     * Flutter's ImageFilter.blur sigma and CSS `blur()` are both the standard deviation of the Gaussian,
+     * so the value is applied 1:1 as px (`--ds-agc-blur` on the fade) with no conversion. Default 12.
+     */
+    blurSigma?: number;
+    /** Side in px (the card is 1:1; Dart clamps 135–160 small / 288–340 large). Default 148 / 288 */
+    size?: number;
+    /** Tap on the card (Dart onTap) */
+    onClick?: () => void;
+    className?: string;
 }
-
-export declare const AlbumGroupCard: React.ComponentType<AlbumGroupCardProps>;
+export declare function AlbumGroupCard(props: AlbumGroupCardProps): import("react").JSX.Element;

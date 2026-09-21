@@ -1,25 +1,23 @@
 import * as React from 'react';
 
-/**
- * DotsSlider — port web de DotsSlider (Flutter). Slider horizontal con iconos a
- * ambos lados, track de 9px, thumb blanco de 28px y divisiones opcionales con
- * snap; drag con pointer events, controlado o no controlado.
- */
 export interface DotsSliderProps {
-  /** Valor actual (modo controlado) — Dart `value` */
-  value?: number;
-  /** Valor inicial (modo no controlado, extensión web) */
-  defaultValue?: number;
-  /** Número de divisiones discretas; null/undefined → continuo — Dart `divisions` */
-  divisions?: number | null;
-  /** Valor máximo — Dart `max` */
-  max?: number;
-  /** Se invoca con el nuevo valor al arrastrar/pulsar — Dart `onChanged` */
-  onChanged?: (value: number) => void;
-  /** Icono izquierdo (asset ic-…) — Dart `leftIcon` */
-  leftIcon?: string;
-  /** Icono derecho (asset ic-…) — Dart `rightIcon` */
-  rightIcon?: string;
+    /** Current value (controlled) — Dart `value` */
+    value?: number;
+    /** Initial value (uncontrolled, web extension) */
+    defaultValue?: number;
+    /** Number of discrete divisions; null/undefined → continuous — Dart `divisions` */
+    divisions?: number | null;
+    /** Max value — Dart `max` (default 1.0) */
+    max?: number;
+    /** Called with the new value on drag/tap — Dart `onChanged` */
+    onChanged?: (value: number) => void;
+    /** Left icon (asset ic-…) — Dart `leftIcon` (default 'ic-user') */
+    leftIcon?: string;
+    /** Right icon (asset ic-…) — Dart `rightIcon` (default 'ic-group') */
+    rightIcon?: string;
+    /** Accessible name of the slider (web extension, localizable) */
+    ariaLabel?: string;
+    /** Id of the element that names the slider (alternative to `ariaLabel`) */
+    ariaLabelledBy?: string;
 }
-
-export declare const DotsSlider: React.ComponentType<DotsSliderProps>;
+export declare function DotsSlider(props: DotsSliderProps): import("react").JSX.Element;

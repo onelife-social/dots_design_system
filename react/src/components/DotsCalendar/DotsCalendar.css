@@ -1,0 +1,84 @@
+/* DotsCalendar — inline month calendar (styles mirror CupertinoCalendarPickerUtils in onelife_app:
+   mainTitle for days, primary for today/selected, onSurface @0.2 for disabled) */
+.ds-calendar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+  color: var(--text-primary);
+  user-select: none;
+  -webkit-user-select: none;
+}
+.ds-calendar button {
+  font-family: inherit;
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* header: "Month year ⌄" (titleH6 16/600) + prev/next */
+.ds-calendar__header { display: flex; align-items: center; height: 44px; }
+.ds-calendar__month-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 44px; padding: 0 8px; margin-left: -8px;
+  border-radius: 12px;
+}
+.ds-calendar__month-label { font-size: 16px; font-weight: 600; line-height: 1.25; letter-spacing: -0.02px; }
+.ds-calendar__chevron { display: inline-flex; color: var(--label-highlight); transition: transform 0.2s ease; }
+.ds-calendar__chevron--open { transform: rotate(180deg); }
+.ds-calendar__spacer { flex: 1; }
+.ds-calendar__nav { display: flex; align-items: center; gap: 12px; }
+
+/* grid */
+.ds-calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); align-items: center; margin-top: 8px; }
+.ds-calendar__weekday {
+  height: 24px; display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.01px; text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.ds-calendar__day { height: 44px; display: flex; align-items: center; justify-content: center; }
+.ds-calendar__num {
+  box-sizing: border-box;
+  width: 36px; height: 36px; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 500; line-height: 1; letter-spacing: -0.02px;
+  color: var(--text-primary);
+}
+.ds-calendar__day--muted .ds-calendar__num { color: var(--text-tertiary); }
+.ds-calendar__day--outside .ds-calendar__num { color: var(--text-disabled); }
+.ds-calendar__day--today .ds-calendar__num { border: 1.5px solid var(--label-highlight); color: var(--label-highlight); }
+.ds-calendar__day--selected .ds-calendar__num { background: var(--label-highlight); border: 0; color: var(--bg-base); font-weight: 600; }
+.ds-calendar__day--disabled { cursor: default; }
+.ds-calendar__day--disabled .ds-calendar__num { color: var(--text-disabled); }
+
+/* month / year picker: two snap columns under a highlight band */
+.ds-calendar__picker {
+  position: relative;
+  display: flex; gap: 12px;
+  height: 220px; /* 5 rows × 44 */
+  margin-top: 8px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+}
+.ds-calendar__band {
+  position: absolute; left: 0; right: 0; top: 88px; height: 44px;
+  border-radius: 12px; background: var(--bg-container-secondary-on-bg);
+}
+.ds-calendar__col {
+  position: relative; flex: 1; min-width: 0;
+  display: flex; flex-direction: column;
+  overflow-y: auto; scroll-snap-type: y mandatory; overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.ds-calendar__col::-webkit-scrollbar { display: none; }
+.ds-calendar__item {
+  flex: none; height: 44px; scroll-snap-align: center;
+  font-size: 18px; font-weight: 400; line-height: 44px; text-align: center;
+  color: var(--text-tertiary);
+}
+.ds-calendar__item--selected { color: var(--text-primary); font-weight: 600; }

@@ -1,2 +1,2 @@
-// Re-export of dots_design_system@0.0.1 RecapCard. Implementation is in the root _ds_bundle.js (window.DotsDesignSystem_9e41da).
+// Re-export of @dots/design-system@0.1.0 RecapCard. Implementation is in the root _ds_bundle.js (window.DotsDesignSystem_9e41da).
 Object.assign(window, { RecapCard: window.DotsDesignSystem_9e41da.RecapCard });

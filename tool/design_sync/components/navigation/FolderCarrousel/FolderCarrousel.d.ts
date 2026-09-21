@@ -1,41 +1,36 @@
 import * as React from 'react';
 
-/**
- * Item de FolderCarrousel — espejo de BtnFolderData (Dart).
- */
+import type { ReactNode } from 'react';
+/** FolderCarrousel item — mirror of BtnFolderData (Dart). */
 export interface FolderCarrouselItem {
-  /** Nombre real del icono del DS (p.ej. 'ic-family') — Dart `icon` */
-  icon: string;
-  /** Texto de la carpeta (BtnFolder lo trunca a 20 caracteres) */
-  text?: string;
-  /** onTap del item — Dart `onTap`. Si falta, se usa el `onSelect(i)` del carrusel */
-  onClick?: () => void;
-  /** Long-press del item — Dart `onPressed` */
-  onLongPress?: () => void;
-  /** Carpeta seleccionada (bgStrong + sombra + icono en iconSelectedColor) */
-  isSelected?: boolean;
-  /** Color CSS del icono al seleccionar — requerido en Dart; default '#3E9ACB' (home) */
-  iconSelectedColor?: string;
-  /** Solo icono 44×44 (p.ej. botón '+') — prop de BtnFolder */
-  isNonExpandable?: boolean;
-  /** La carpeta es editable (muestra badge lápiz si showEditIcon) */
-  isEditable?: boolean;
+    /** Real DS icon name (e.g. 'ic-family') — Dart `icon` */
+    icon: string;
+    /** Folder text (BtnFolder truncates it to 20 characters) */
+    text?: string;
+    /** Item tap — Dart `onTap`. When missing, the carrousel's `onSelect(i)` is used */
+    onClick?: () => void;
+    /** Item long-press — Dart `onPressed` */
+    onLongPress?: () => void;
+    /** Selected folder (bgStrong + shadow + icon in iconSelectedColor) */
+    isSelected?: boolean;
+    /** CSS color of the icon when selected — required in Dart; default '#3E9ACB' (home) */
+    iconSelectedColor?: string;
+    /** Icon only 44×44 (e.g. the '+' button) — BtnFolder prop */
+    isNonExpandable?: boolean;
+    /** The folder is editable (shows the pencil badge when showEditIcon) */
+    isEditable?: boolean;
+    /** Accessible name for icon-only items (isNonExpandable / no text), e.g. the '+' one — BtnFolder `ariaLabel` */
+    ariaLabel?: string;
 }
-
-/**
- * FolderCarrousel — port web de FolderCarrousel (Flutter). Fila horizontal
- * scrolleable de BtnFolder (pad lateral 16, sin barra de scroll).
- */
 export interface FolderCarrouselProps {
-  /** Carpetas a renderizar como BtnFolder — Dart `buttonsData` */
-  items: FolderCarrouselItem[];
-  /** Muestra el badge de edición en los items editables — Dart `showEditIcon` (default false) */
-  showEditIcon?: boolean;
-  /** Conveniencia: click en el item i (cuando el item no trae su propio onClick) */
-  onSelect?: (index: number) => void;
-  /** Nodos extra al final de la fila — Dart `customWidgets` (DefaultFolderWidget) */
-  children?: React.ReactNode;
-  className?: string;
+    /** Folders rendered as BtnFolder — Dart `buttonsData` */
+    items: FolderCarrouselItem[];
+    /** Shows the edit badge on editable items — Dart `showEditIcon` (default false) */
+    showEditIcon?: boolean;
+    /** Convenience: click on item i (when the item has no onClick of its own) */
+    onSelect?: (index: number) => void;
+    /** Extra nodes at the end of the row — Dart `customWidgets` (DefaultFolderWidget) */
+    children?: ReactNode;
+    className?: string;
 }
-
-export declare const FolderCarrousel: React.ComponentType<FolderCarrouselProps>;
+export declare function FolderCarrousel(props: FolderCarrouselProps): import("react").JSX.Element;

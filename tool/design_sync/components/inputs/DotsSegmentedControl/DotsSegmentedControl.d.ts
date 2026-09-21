@@ -1,42 +1,44 @@
 import * as React from 'react';
 
-/** Opción activa — enum Dart SegmentedControlOption */
+/** Active option — Dart enum SegmentedControlOption */
 export type DotsSegmentedControlOption = 'left' | 'right';
-
-/**
- * DotsSegmentedControl — port web de SegmentedControl / SegmentedControlIcon /
- * SegmentedControlSingle (Flutter). Pill segmentada de 2 opciones (texto o icono)
- * o de opción única.
- */
+export type DotsSegmentedControlType = 'text' | 'icon' | 'single';
+export type DotsSegmentedControlVariant = 'main' | 'camera';
 export interface DotsSegmentedControlProps {
-  /** Widget Dart equivalente: 'text' → SegmentedControl, 'icon' → SegmentedControlIcon, 'single' → SegmentedControlSingle */
-  type?: 'text' | 'icon' | 'single';
-  /** Solo type 'text' — enum Dart SegmentedControlVariant */
-  variant?: 'main' | 'camera';
-  /** type 'text': etiqueta izquierda — Dart `leftOptionName` */
-  leftOptionName?: string;
-  /** type 'text': etiqueta derecha — Dart `rightOptionName` */
-  rightOptionName?: string;
-  /** type 'text': badge sobre la opción derecha — Dart `rightOptionTag` */
-  rightOptionTag?: string;
-  /** type 'icon': nombre de icono DotsIcon ('ic-…') — Dart `leftOptionIcon` */
-  leftOptionIcon?: string;
-  /** type 'icon': nombre de icono DotsIcon ('ic-…') — Dart `rightOptionIcon` */
-  rightOptionIcon?: string;
-  /** type 'single': etiqueta del botón — Dart `buttonName` */
-  buttonName?: string;
-  /** type 'single': badge — Dart `buttonTag` */
-  buttonTag?: string;
-  /** Opción activa (modo controlado) — Dart `selectedOption` */
-  selectedOption?: DotsSegmentedControlOption;
-  /** Opción inicial (modo no controlado) */
-  defaultSelectedOption?: DotsSegmentedControlOption;
-  /** Callback con la opción pulsada — Dart `onTapOption` */
-  onTapOption?: (option: DotsSegmentedControlOption) => void;
-  /** type 'text'/'single': color CSS del segmento seleccionado — Dart `selectedColor` */
-  selectedColor?: string;
-  /** type 'text'/'single': color CSS de fondo — Dart `backgroundColor` */
-  backgroundColor?: string;
+    /** Dart widget: 'text' → SegmentedControl, 'icon' → SegmentedControlIcon, 'single' → SegmentedControlSingle */
+    type?: DotsSegmentedControlType;
+    /** Only type 'text' — Dart enum SegmentedControlVariant */
+    variant?: DotsSegmentedControlVariant;
+    /** type 'text': left label — Dart `leftOptionName` */
+    leftOptionName?: string;
+    /** type 'text': right label — Dart `rightOptionName` */
+    rightOptionName?: string;
+    /** type 'text': badge over the right option — Dart `rightOptionTag` */
+    rightOptionTag?: string;
+    /** type 'icon': DotsIcon name ('ic-…') — Dart `leftOptionIcon` */
+    leftOptionIcon?: string;
+    /** type 'icon': DotsIcon name ('ic-…') — Dart `rightOptionIcon` */
+    rightOptionIcon?: string;
+    /** type 'icon': accessible name (aria-label) of the left icon button — web extension, localizable */
+    leftOptionLabel?: string;
+    /** type 'icon': accessible name (aria-label) of the right icon button — web extension, localizable */
+    rightOptionLabel?: string;
+    /** type 'single': button label — Dart `buttonName` */
+    buttonName?: string;
+    /** type 'single': badge — Dart `buttonTag` */
+    buttonTag?: string;
+    /** Active option (controlled) — Dart `selectedOption` */
+    selectedOption?: DotsSegmentedControlOption;
+    /** Initial option (uncontrolled) */
+    defaultSelectedOption?: DotsSegmentedControlOption;
+    /**
+     * Called with the tapped option — Dart `onTapOption`. Types `text` and `icon` only: the `single`
+     * type is purely visual (Dart `SegmentedControlSingle` has no tap handler) and never fires it.
+     */
+    onTapOption?: (option: DotsSegmentedControlOption) => void;
+    /** type 'text'/'single': CSS color of the selected segment — Dart `selectedColor` */
+    selectedColor?: string;
+    /** type 'text'/'single': CSS background color — Dart `backgroundColor` */
+    backgroundColor?: string;
 }
-
-export declare const DotsSegmentedControl: React.ComponentType<DotsSegmentedControlProps>;
+export declare function DotsSegmentedControl(props: DotsSegmentedControlProps): import("react").JSX.Element;

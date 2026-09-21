@@ -1,23 +1,21 @@
 import * as React from 'react';
 
-/**
- * DotsSelector — port web de DotsSelector (Flutter). Selector circular para
- * superponer a fotos: off = círculo blanco 70%, on = píldora labelHighlight
- * con check (`ic-check`) o número.
- */
+export type DotsSelectorSize = 'small' | 'medium';
+export type DotsSelectorVariant = 'check' | 'num';
 export interface DotsSelectorProps {
-  /** Variante visual — enum Dart DotsSelectorVariant */
-  variant?: 'check' | 'num';
-  /** Tamaño — enum Dart DotsSelectorSize (small 22 / medium 24) */
-  size?: 'small' | 'medium';
-  /** Estado seleccionado (modo controlado) — Dart `isSelected` */
-  isSelected?: boolean;
-  /** Estado inicial (modo no controlado; click alterna) */
-  defaultSelected?: boolean;
-  /** Se invoca con el nuevo estado al pulsar (extensión web) */
-  onChanged?: (isSelected: boolean) => void;
-  /** (Solo variant num) Número mostrado cuando está seleccionado — Dart `number` */
-  number?: number;
+    /** Visual variant — Dart enum DotsSelectorVariant (default 'check') */
+    variant?: DotsSelectorVariant;
+    /** Size — Dart enum DotsSelectorSize (height small 22 / medium 24; default medium) */
+    size?: DotsSelectorSize;
+    /** Selected state (controlled) — Dart `isSelected` */
+    isSelected?: boolean;
+    /** Initial state (uncontrolled; click toggles) */
+    defaultSelected?: boolean;
+    /** Called with the new state on tap (web extension; the Dart widget is only visual) */
+    onChanged?: (isSelected: boolean) => void;
+    /** (variant num only) Number shown when selected — Dart `number` (default 1) */
+    number?: number;
+    /** Accessible name of the checkbox: it has no text of its own (web extension, localizable) */
+    ariaLabel?: string;
 }
-
-export declare const DotsSelector: React.ComponentType<DotsSelectorProps>;
+export declare function DotsSelector(props: DotsSelectorProps): import("react").JSX.Element;

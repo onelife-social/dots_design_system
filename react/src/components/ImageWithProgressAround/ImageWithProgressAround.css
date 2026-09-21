@@ -1,0 +1,55 @@
+/* ImageWithProgressAround — progress_bar/image_with_progress_around.dart
+   9:16 (or 3:4) · stroke 6 · innerPadding 8 · r45 · recap gradient · % titleH3 */
+.ds-iwpa {
+  position: relative;
+  display: inline-block;
+}
+.ds-iwpa__inner {
+  position: absolute;
+  overflow: hidden;
+  display: block;
+}
+.ds-iwpa__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.8s ease-in-out; /* AnimatedSwitcher fade 800ms */
+}
+/* Without imageProvider the Dart paints nothing; design placeholder so the
+   overlay has a background (photo gradient without token — documented exception). */
+.ds-iwpa__placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #8fa8c8, #d9b8a5 55%, #8e7f9e);
+}
+/* Colors.black at 20% (no token in Dart) */
+.ds-iwpa__overlay {
+  position: absolute;
+  inset: 0;
+  background: #00000033;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* titleH3 26/700 · labelAlwaysWhite */
+.ds-iwpa__pct {
+  font-family: var(--font-main);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.23;
+  color: var(--label-always-white);
+}
+.ds-iwpa__ring {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+.ds-iwpa__track {
+  stroke: var(--bg-secondary-btn);
+}
+/* Dart animation: 800ms easeInOut on the progress */
+.ds-iwpa__progress {
+  transition: stroke-dasharray 0.8s ease-in-out;
+}

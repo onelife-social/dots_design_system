@@ -1,22 +1,21 @@
 import * as React from 'react';
 
-/**
- * DotsCloseButton — port web de DotsCloseButton (Flutter). Botón circular de
- * cierre (cruz por defecto) con 4 variantes de contraste y 4 tamaños.
- */
+export type DotsCloseButtonSize = 'large' | 'medium' | 'small' | 'extraSmall';
+export type DotsCloseButtonVariant = 'softContrast' | 'highContrast' | 'onBackground' | 'inverted';
 export interface DotsCloseButtonProps {
-  /** Nombre del icono DotsIcon — por defecto 'ic-cross' (DotsIconData.cross) */
-  icon?: string;
-  /** Enum Dart DotsCloseButtonSize (diámetro 44/30/24/16, icono 20/16/16/10) */
-  size?: 'large' | 'medium' | 'small' | 'extraSmall';
-  /** Enum Dart DotsCloseButtonVariant */
-  variant?: 'softContrast' | 'highContrast' | 'onBackground' | 'inverted';
-  /** onTap de Dart */
-  onClick?: () => void;
-  /** Color CSS que fuerza el color del icono */
-  color?: string;
-  /** Backdrop blur de fondo (por defecto true) */
-  addBlur?: boolean;
+    /** DotsIcon name — Dart `iconData` (default 'ic-cross') */
+    icon?: string;
+    /** Dart enum DotsCloseButtonSize (diameter 44/30/24/16, icon 20/16/16/10) */
+    size?: DotsCloseButtonSize;
+    /** Dart enum DotsCloseButtonVariant (default softContrast) */
+    variant?: DotsCloseButtonVariant;
+    /** Dart `onTap` */
+    onClick?: () => void;
+    /** CSS color forcing the icon color */
+    color?: string;
+    /** Backdrop blur behind the circle (default true) — Dart `addBlur` */
+    addBlur?: boolean;
+    /** Accessible name (default 'Close') */
+    ariaLabel?: string;
 }
-
-export declare const DotsCloseButton: React.ComponentType<DotsCloseButtonProps>;
+export declare function DotsCloseButton(props: DotsCloseButtonProps): import("react").JSX.Element;

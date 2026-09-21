@@ -1,172 +1,138 @@
 import * as React from 'react';
 
-/**
- * DotsActionSheet — port web de action_sheet/ (Flutter). Hoja modal inferior con
- * variantes standard | list | input | radioButtons | settings | search | spotlight.
- * Se renderiza como hoja estática montable (position relative, sin scrim): colócala
- * donde quieras y dale ancho con el contenedor.
- */
-export type DotsActionSheetVariant =
-  | 'standard'
-  | 'list'
-  | 'input'
-  | 'radioButtons'
-  | 'settings'
-  | 'search'
-  | 'spotlight';
-
+import type { CSSProperties, ReactNode } from 'react';
+export type DotsActionSheetVariant = 'standard' | 'list' | 'input' | 'radioButtons' | 'settings' | 'search' | 'spotlight';
 export interface DotsActionSheetListItemProps {
-  /** Nombre real del icono Dots (20px sobre caja 40×40 r12). Dart: DotsListItem.icon */
-  icon?: string;
-  /** Nodo alternativo para la caja del icono (p.ej. imagen). */
-  iconNode?: React.ReactNode;
-  /** Texto (bodyLargeBold). Dart: text */
-  label: string;
-  /** Candado 14px tras el texto. Dart: showLockIcon */
-  showLockIcon?: boolean;
-  /** Dart: onTap */
-  onClick?: () => void;
+    /** Real Dots icon name (20px on a 40×40 r12 box). Dart: DotsListItem.icon */
+    icon?: string;
+    /** Alternative node for the icon box (e.g. an image). */
+    iconNode?: ReactNode;
+    /** Text (bodyLargeBold). Dart: text */
+    label: string;
+    /** 14px lock after the text. Dart: showLockIcon */
+    showLockIcon?: boolean;
+    /** Dart: onTap */
+    onClick?: () => void;
 }
-
 export interface DotsActionSheetSelectedItem {
-  /** Dart: SelectedItem.id */
-  id: string | number;
-  /** Dart: SelectedItem.name */
-  name: string;
+    id: string | number;
+    name: string;
 }
-
 export interface DotsActionSheetRadioOption {
-  id?: string | number;
-  /** Título de la card (bodyDefaultBold). Dart: RadioCardIcons */
-  title: string;
-  /** Icono 16px junto al título. */
-  titleIcon?: string;
-  /** Líneas de detalle (13px textTertiary), con icono 16px opcional. */
-  details?: Array<{ icon?: string; label: string }>;
-  /** Control derecho: radio (default) o toggle. */
-  control?: 'radio' | 'toggle';
-  selected?: boolean;
+    id?: string | number;
+    /** Card title (bodyDefaultBold). Dart: RadioCardIcons */
+    title: string;
+    /** 16px icon next to the title. */
+    titleIcon?: string;
+    /** Detail lines (13px textTertiary), optional 16px icon. */
+    details?: Array<{
+        icon?: string;
+        label: string;
+    }>;
+    /** Right control: radio (default) or toggle. */
+    control?: 'radio' | 'toggle';
+    selected?: boolean;
 }
-
 export interface DotsActionSheetSystemButton {
-  /** Nombre real del icono Dots (20px). */
-  icon?: string;
-  label: string;
-  /** Texto/icono en labelDestructive. Dart: DotsSystemButton destructive */
-  destructive?: boolean;
-  disabled?: boolean;
-  onTap?: () => void;
+    icon?: string;
+    label: string;
+    /** Text/icon in labelDestructive. Dart: DotsSystemButton destructive */
+    destructive?: boolean;
+    disabled?: boolean;
+    onTap?: () => void;
 }
-
 export interface DotsActionSheetProps {
-  /** Variante. Mapa a Dart: standard→DotsActionSheetStandard, list→DotsActionSheetList,
-   * input→DotsActionSheetInput, radioButtons→DotsActionSheetRadioButtons,
-   * settings→DotsActionSheetSettings, search→DotsActionSheetSearch,
-   * spotlight→DotsActionSheetSpotlight. Default 'standard'. */
-  variant?: DotsActionSheetVariant;
-  /** Grabber 36×4. Default: true en todas menos 'search'. */
-  showGrabber?: boolean;
-  /** DotsCloseButton medium softContrast arriba a la derecha. Default false. */
-  showCloseButton?: boolean;
-  /** Tap en el botón de cierre. Dart: onClose / onCloseButtonTap */
-  onClose?: () => void;
-
-  /** Título. standard/radioButtons: title02H5 (20 serif); resto: title02H6 (18 serif);
-   * settings: titleH5 (20/700 Inter). */
-  title?: string;
-  /** Texto secundario bajo el título (por variante: description/subtitle Dart). */
-  description?: string;
-  /** Contenido libre: standard → cuerpo central; list/search → sustituye a `items`. */
-  children?: React.ReactNode;
-
-  /** Botón principal (DotsMainButton main mainAction; search: large/h44). */
-  primaryLabel?: string;
-  onPrimaryTap?: () => void;
-  /** Dart: enabled / isMainButtonAvailable / enableMainButton. Default true. */
-  primaryEnabled?: boolean;
-  /** Botón secundario (DotsMainButton secondary). Dart: secondaryButton */
-  secondaryLabel?: string;
-  onSecondaryTap?: () => void;
-  /** Nodos personalizados que sustituyen a primaryLabel/secondaryLabel. */
-  primaryButton?: React.ReactNode;
-  secondaryButton?: React.ReactNode;
-  /** Dart: DotsActionSheetButtonPositioning (default 'row'). */
-  buttonPositioning?: 'row' | 'column';
-
-  // ── standard ──
-  /** Nodo superior (icono/imagen). Dart: topWidget */
-  topContent?: React.ReactNode;
-  /** Nodo inferior a ancho completo. Dart: bottomWidget */
-  bottomContent?: React.ReactNode;
-  /** 0..1 → barra de progreso. Dart: stepProgress */
-  stepProgress?: number;
-  /** Espaciados 20 (true) o 16 (false). Dart: bigAspectRatio (default true) */
-  bigAspectRatio?: boolean;
-
-  // ── list ──
-  /** Dart: ActionSheetListVariant ('main' default | 'ghost'). */
-  listVariant?: 'main' | 'ghost';
-  /** Flecha atrás a la izquierda del título. Dart: onBackButtonTap */
-  showBackButton?: boolean;
-  onBack?: () => void;
-  /** Botón pequeño arriba a la derecha. Dart: labelButtonText/onLabelButtonTap */
-  labelButtonText?: string;
-  onLabelButtonTap?: () => void;
-  labelButtonEnabled?: boolean;
-  /** Campo de búsqueda (DotsTextField píldora). Dart: hintInputText */
-  searchHint?: string;
-  searchValue?: string;
-  /** Dart: onInputChanged / onChanged */
-  onSearchChanged?: (text: string) => void;
-  /** Icono del campo. Dart: inputIcon (default 'ic-search') */
-  searchIcon?: string;
-  /** Chips de seleccionados. Dart: selectedItemNames */
-  selectedItems?: DotsActionSheetSelectedItem[];
-  /** Dart: onBtnChipTap */
-  onChipTap?: (id: string | number) => void;
-  /** Dart: listTitle */
-  listTitle?: string;
-  /** Filas DotsActionSheet.ListItem. Dart: listItems. También en 'search'. */
-  items?: DotsActionSheetListItemProps[];
-  /** Icono del footer ghost. Dart: mainButtonIcon (default 'ic-add') */
-  mainButtonIcon?: string;
-
-  // ── input ──
-  /** Dart: ActionSheetInputVariant (cubiertas: 'main' default, 'colors'). */
-  inputVariant?: 'main' | 'colors';
-  /** Icono XL 52px sobre el campo. Dart: iconData */
-  icon?: string;
-  iconNode?: React.ReactNode;
-  /** Color CSS del icono XL. */
-  iconColor?: string;
-  /** Dart: inputHintText */
-  inputHint?: string;
-  inputValue?: string;
-  onInputChanged?: (text: string) => void;
-  maxTextLength?: number;
-  /** Círculos de color (variant colors). Dart: DotsColorOptionsRow */
-  colors?: string[];
-  selectedColorIndex?: number;
-  onColorSelect?: (index: number) => void;
-
-  // ── radioButtons ──
-  /** Cards RadioCardIcons. Dart: items */
-  options?: DotsActionSheetRadioOption[];
-  onSelect?: (id: string | number) => void;
-
-  // ── settings / spotlight ──
-  /** URL de imagen: settings → avatar circular 100px; spotlight → imagen r24. */
-  image?: string;
-  /** spotlight: etiqueta 13px textTertiary bajo el título. Dart: label */
-  label?: string;
-  /** settings: filas DotsSystemButton. Dart: buttons */
-  buttons?: DotsActionSheetSystemButton[];
-
-  className?: string;
-  style?: React.CSSProperties;
+    /** Variant. Default 'standard'. */
+    variant?: DotsActionSheetVariant;
+    /** 36×4 grabber. Default: true on every variant but 'search'. */
+    showGrabber?: boolean;
+    /** DotsCloseButton medium softContrast top-right. Default false. */
+    showCloseButton?: boolean;
+    /** Tap on the close button. Dart: onClose / onCloseButtonTap */
+    onClose?: () => void;
+    /** Title. standard/radioButtons: title02H5 (20 serif); others: title02H6 (18 serif); settings: titleH5 (20/700 Inter). */
+    title?: string;
+    /** Secondary text under the title (per variant: description/subtitle in Dart). */
+    description?: string;
+    /** Free content: standard → central body; list/search → replaces `items`. */
+    children?: ReactNode;
+    /** Primary button (DotsMainButton main mainAction; search: large/h44). */
+    primaryLabel?: string;
+    onPrimaryTap?: () => void;
+    /** Dart: enabled / isMainButtonAvailable / enableMainButton. Default true. */
+    primaryEnabled?: boolean;
+    /** Secondary button (DotsMainButton secondary). Dart: secondaryButton */
+    secondaryLabel?: string;
+    onSecondaryTap?: () => void;
+    /** Custom nodes replacing primaryLabel/secondaryLabel. */
+    primaryButton?: ReactNode;
+    secondaryButton?: ReactNode;
+    /** Dart: DotsActionSheetButtonPositioning (default 'row'). */
+    buttonPositioning?: 'row' | 'column';
+    /** Top node (icon/image). Dart: topWidget */
+    topContent?: ReactNode;
+    /** Full-width bottom node. Dart: bottomWidget */
+    bottomContent?: ReactNode;
+    /** 0..1 → progress bar. Dart: stepProgress */
+    stepProgress?: number;
+    /** Spacing 20 (true) or 16 (false). Dart: bigAspectRatio (default true) */
+    bigAspectRatio?: boolean;
+    /** Dart: ActionSheetListVariant ('main' default | 'ghost'). */
+    listVariant?: 'main' | 'ghost';
+    /** Back arrow left of the title. Dart: onBackButtonTap */
+    showBackButton?: boolean;
+    onBack?: () => void;
+    /** Small button top-right. Dart: labelButtonText/onLabelButtonTap */
+    labelButtonText?: string;
+    onLabelButtonTap?: () => void;
+    labelButtonEnabled?: boolean;
+    /** Search field (DotsTextField pill). Dart: hintInputText */
+    searchHint?: string;
+    searchValue?: string;
+    /** Dart: onInputChanged / onChanged */
+    onSearchChanged?: (text: string) => void;
+    /** Field icon. Dart: inputIcon (default 'ic-search') */
+    searchIcon?: string;
+    /** Selected chips. Dart: selectedItemNames */
+    selectedItems?: DotsActionSheetSelectedItem[];
+    /** Dart: onBtnChipTap */
+    onChipTap?: (id: string | number) => void;
+    /** Dart: listTitle */
+    listTitle?: string;
+    /** DotsActionSheet.ListItem rows. Dart: listItems. Also in 'search'. */
+    items?: DotsActionSheetListItemProps[];
+    /** Ghost footer icon. Dart: mainButtonIcon (default 'ic-add') */
+    mainButtonIcon?: string;
+    /** Dart: ActionSheetInputVariant (covered: 'main' default, 'colors'). */
+    inputVariant?: 'main' | 'colors';
+    /** XL 52px icon above the field. Dart: iconData */
+    icon?: string;
+    iconNode?: ReactNode;
+    /** CSS color of the XL icon. */
+    iconColor?: string;
+    /** Dart: inputHintText */
+    inputHint?: string;
+    inputValue?: string;
+    onInputChanged?: (text: string) => void;
+    maxTextLength?: number;
+    /** Color circles (variant colors). Dart: DotsColorOptionsRow */
+    colors?: string[];
+    selectedColorIndex?: number;
+    onColorSelect?: (index: number) => void;
+    /** RadioCardIcons cards. Dart: items */
+    options?: DotsActionSheetRadioOption[];
+    onSelect?: (id: string | number) => void;
+    /** Image URL: settings → 100px circular avatar; spotlight → r24 image. */
+    image?: string;
+    /** spotlight: 13px textTertiary label under the title. Dart: label */
+    label?: string;
+    /** settings: DotsSystemButton rows. Dart: buttons */
+    buttons?: DotsActionSheetSystemButton[];
+    className?: string;
+    style?: CSSProperties;
 }
-
-export declare const DotsActionSheet: React.ComponentType<DotsActionSheetProps> & {
-  /** DotsListItem (dots_list_item.dart) — fila icono 40×40 + bodyLargeBold. */
-  ListItem: React.ComponentType<DotsActionSheetListItemProps>;
-};
+export declare function DotsActionSheetListItem(p: DotsActionSheetListItemProps): import("react").JSX.Element;
+export declare function DotsActionSheet(props: DotsActionSheetProps): import("react").JSX.Element;
+export declare namespace DotsActionSheet {
+    var ListItem: typeof DotsActionSheetListItem;
+}

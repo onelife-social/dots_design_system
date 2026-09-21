@@ -1,28 +1,28 @@
 import * as React from 'react';
 
-/**
- * BadgeIcon — port web de BadgeIcon (Flutter). Círculo blanco con icono centrado
- * y sombra suave, en 3 tamaños. Con `icons` renderiza el grupo apilado
- * (BadgeIconGroup, lienzo 63×70, 1-3 iconos).
- */
+/** Dart enum BadgeIconSize (circle 44/36/28 · icon 24/20/16) */
+export type BadgeIconSize = 'large' | 'medium' | 'small';
+/** Dart enum BadgeIconStyle (only white for now) */
+export type BadgeIconStyle = 'white';
 export interface BadgeIconProps {
-  /** Nombre real del icono Dots (p.ej. 'ic-heart'). Dart: icon (DotsIconData). Requerido en modo single. */
-  icon?: string;
-  /** Tamaño — enum Dart BadgeIconSize (large 44/24 · medium 36/20 · small 28/16) */
-  size?: 'large' | 'medium' | 'small';
-  /** Estilo visual — enum Dart BadgeIconStyle (solo 'white') */
-  style?: 'white';
-  /** Color CSS opcional para el icono. Dart: iconColor */
-  iconColor?: string;
-  /** Dart: onTap */
-  onClick?: () => void;
-  /**
-   * Modo grupo (Dart BadgeIconGroup): 1-3 nombres de icono apilados en 63×70.
-   * icons[0] medium abajo-izda; icons[1]/icons[2] small. Ignora `icon`/`size`.
-   */
-  icons?: string[];
-  /** Modo grupo: color por icono (null = default del estilo). Dart: iconColors */
-  iconColors?: Array<string | null>;
+    /** Real Dots icon name (e.g. 'ic-heart') — Dart `icon` (DotsIconData). Required in single mode */
+    icon?: string;
+    /** Size — Dart enum BadgeIconSize (large 44/24 · medium 36/20 · small 28/16) */
+    size?: BadgeIconSize;
+    /** Visual style — Dart enum BadgeIconStyle (only 'white') */
+    style?: BadgeIconStyle;
+    /** Optional CSS color for the icon — Dart `iconColor` */
+    iconColor?: string;
+    /** Dart `onTap` */
+    onClick?: () => void;
+    /** Accessible name of the clickable badge (the control is icon-only); applied only with `onClick` */
+    ariaLabel?: string;
+    /**
+     * Group mode (Dart BadgeIconGroup): 1-3 icon names stacked on a 63×70 canvas.
+     * icons[0] medium bottom-left; icons[1]/icons[2] small. Ignores `icon`/`size`.
+     */
+    icons?: string[];
+    /** Group mode: color per icon (null = style default) — Dart `iconColors` */
+    iconColors?: Array<string | null | undefined>;
 }
-
-export declare const BadgeIcon: React.ComponentType<BadgeIconProps>;
+export declare function BadgeIcon(props: BadgeIconProps): import("react").JSX.Element | null;

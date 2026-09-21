@@ -1,3 +1,7 @@
+> **Legacy format.** New components are written in TSX in `react/src/components/`
+> (see `react/README.md`); this format only remains for the ones not yet ported.
+> The bundle is built by `react/scripts/build-bundle.mjs` (`npm run build` in `react/`).
+
 # Convenciones para portar componentes Dots a React (bundle Claude Design)
 
 Staging: cada componente produce archivos en DOS sitios:
