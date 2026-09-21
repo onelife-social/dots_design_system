@@ -90,6 +90,8 @@ export { ColorSelector } from './components/ColorSelector/ColorSelector';
 export type { ColorSelectorProps, ColorSelectorVariant, DotsColorOption } from './components/ColorSelector/ColorSelector';
 export { BlurContainer, GradientBlur } from './components/BlurContainer/BlurContainer';
 export type { BlurContainerProps, GradientBlurProps, BlurAlignment } from './components/BlurContainer/BlurContainer';
+export { DotsBottomEdgeBlur } from './components/DotsBottomEdgeBlur/DotsBottomEdgeBlur';
+export type { DotsBottomEdgeBlurProps } from './components/DotsBottomEdgeBlur/DotsBottomEdgeBlur';
 export { FeatureItem } from './components/FeatureItem/FeatureItem';
 export type { FeatureItemProps } from './components/FeatureItem/FeatureItem';
 export { RatingRow } from './components/RatingRow/RatingRow';

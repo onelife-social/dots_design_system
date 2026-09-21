@@ -40,6 +40,7 @@
 @import "./components/DotsSlider/DotsSlider.css";
 @import "./components/ColorSelector/ColorSelector.css";
 @import "./components/BlurContainer/BlurContainer.css";
+@import "./components/DotsBottomEdgeBlur/DotsBottomEdgeBlur.css";
 @import "./components/FeatureItem/FeatureItem.css";
 @import "./components/RatingRow/RatingRow.css";
 @import "./components/DotsEmptyStateCard/DotsEmptyStateCard.css";
