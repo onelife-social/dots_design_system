@@ -160,7 +160,10 @@ export function MilestonesList(props: MilestonesListProps) {
     if (selectedIndex < 0) return;
     const el = itemRefs.current[selectedIndex];
     if (el && typeof el.scrollIntoView === 'function') el.scrollIntoView({ block: 'center', behavior: 'smooth' });
-  }, [list, selectedIndex]);
+    // Keyed on the selection only: `list` is usually an inline array (new reference every parent
+    // render) and re-firing would yank a user who scrolled away back to the selected card.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedIndex]);
 
   return (
     <div ref={ref} className={`ds-milestones-list${props.className ? ` ${props.className}` : ''}`} style={{ height: `${lay.totalHeight}px` }}>
