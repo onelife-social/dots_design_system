@@ -1,18 +1,23 @@
 import * as React from 'react';
 
-/**
- * DotsBottomEdgeBlur — desenfoque progresivo en el borde inferior del contenido:
- * una banda de alto `edgeSize` que va de nítido (arriba) a desenfocado (abajo),
- * para que el contenido se funda con el pie en vez de cortarse en seco.
- */
+import type { ReactNode } from 'react';
 export interface DotsBottomEdgeBlurProps {
-  /** Contenido sobre el que se pinta la banda (Dart: `child`) */
-  children?: React.ReactNode;
-  /** Alto de la banda desenfocada. Con 0 el componente no pinta nada encima */
-  edgeSize: number;
-  /** Fuerza del desenfoque en la parte baja de la banda. Con 0, passthrough */
-  sigma?: number;
-  className?: string;
+    /** Content the blur band is painted over — Dart `child` */
+    children?: ReactNode;
+    /** Height in px of the blurred bottom band — Dart `edgeSize`. With 0 nothing is painted over the content */
+    edgeSize: number;
+    /**
+     * Blur strength at the very bottom of the band — Dart `sigma` (default 12). Flutter's ImageFilter.blur
+     * sigma and CSS `blur()` are both the Gaussian standard deviation, so it is applied 1:1 as px. With 0,
+     * passthrough.
+     */
+    sigma?: number;
+    className?: string;
 }
-
-export declare const DotsBottomEdgeBlur: React.ComponentType<DotsBottomEdgeBlurProps>;
+/**
+ * The Dart paints a blurred copy of the child (ImageFiltered + ShaderMask) because Flutter's
+ * BackdropFilter samples in screen space and shimmers on Impeller while scrolling. On the web
+ * `backdrop-filter` has no such problem, so the port is a masked band over the content: same result
+ * without duplicating the DOM — which is why the Dart `blurChild` slot has no web counterpart.
+ */
+export declare function DotsBottomEdgeBlur(props: DotsBottomEdgeBlurProps): import("react").JSX.Element;

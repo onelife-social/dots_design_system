@@ -77,7 +77,7 @@ tras un `git pull` que toque `tool/design_sync/`, re-sincroniza.
 ## Mantener las dos mitades en sync
 
 Cada componente vive en dos mitades: la **Flutter** (`lib/src/components/`, la que
-usa la app) y el **port web** (`_src/<Name>/` + `components/<grupo>/<Name>/`, el que
+usa la app) y el **port web** (`react/src/components/<Name>/` + `components/<grupo>/<Name>/`, el que
 consume claude.ai/design). Si una PR añade solo la primera, el design system se
 desincroniza en silencio: los diseños dejan de poder montar ese componente y lo
 reconstruyen a mano.
@@ -94,7 +94,7 @@ Cuando el check salta hay cuatro salidas, según el caso:
 
 | Situación | Qué hacer |
 |---|---|
-| Es un componente con UI montable | Escribe el port (ver `_src/CONVENTIONS.md`) y `node tool/design_sync/_src/build.mjs` |
+| Es un componente con UI montable | Escribe el port en TSX (ver `react/README.md`) y `cd react && npm run build` |
 | Es un helper interno sin identidad visual | Añádelo a `ignore` en `.port-exceptions.json` |
 | Ya está portado dentro de otro componente | Mapéalo en `aliases` de ese mismo archivo |
 | Se porta en otra PR | Label `design-sync:skip` (y abre issue para no perderlo) |

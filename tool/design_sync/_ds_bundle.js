@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"DotsDesignSystem_9e41da","components":[{"name":"DotsIcon","sourcePath":"components/icons/DotsIcon/DotsIcon.jsx"},{"name":"ActivityPreview","sourcePath":"components/social/ActivityPreview/ActivityPreview.jsx"},{"name":"AlbumGroupCard","sourcePath":"components/cards/AlbumGroupCard/AlbumGroupCard.jsx"},{"name":"BadgeIcon","sourcePath":"components/feedback/BadgeIcon/BadgeIcon.jsx"},{"name":"BadgeLabel","sourcePath":"components/feedback/BadgeLabel/BadgeLabel.jsx"},{"name":"BadgeMilestone","sourcePath":"components/feedback/BadgeMilestone/BadgeMilestone.jsx"},{"name":"BadgeProgress","sourcePath":"components/feedback/BadgeProgress/BadgeProgress.jsx"},{"name":"BadgeTag","sourcePath":"components/feedback/BadgeTag/BadgeTag.jsx"},{"name":"BlurContainer","sourcePath":"components/content/BlurContainer/BlurContainer.jsx"},{"name":"BtnFolder","sourcePath":"components/buttons/BtnFolder/BtnFolder.jsx"},{"name":"ColorSelector","sourcePath":"components/content/ColorSelector/ColorSelector.jsx"},{"name":"CreateCard","sourcePath":"components/cards/CreateCard/CreateCard.jsx"},{"name":"DotsAccordion","sourcePath":"components/content/DotsAccordion/DotsAccordion.jsx"},{"name":"DotsActionSheet","sourcePath":"components/overlays/DotsActionSheet/DotsActionSheet.jsx"},{"name":"DotsAlert","sourcePath":"components/feedback/DotsAlert/DotsAlert.jsx"},{"name":"DotsCalendar","sourcePath":"components/inputs/DotsCalendar/DotsCalendar.jsx"},{"name":"DotsCaptureButton","sourcePath":"components/buttons/DotsCaptureButton/DotsCaptureButton.jsx"},{"name":"DotsCloseButton","sourcePath":"components/buttons/DotsCloseButton/DotsCloseButton.jsx"},{"name":"DotsCountdown","sourcePath":"components/indicators/DotsCountdown/DotsCountdown.jsx"},{"name":"DotsDivider","sourcePath":"components/content/DotsDivider/DotsDivider.jsx"},{"name":"DotsEmptyStateCard","sourcePath":"components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx"},{"name":"DotsFilterChip","sourcePath":"components/feedback/DotsFilterChip/DotsFilterChip.jsx"},{"name":"DotsFloatingButton","sourcePath":"components/buttons/DotsFloatingButton/DotsFloatingButton.jsx"},{"name":"DotsHomeTopBar","sourcePath":"components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx"},{"name":"DotsIconButton","sourcePath":"components/buttons/DotsIconButton/DotsIconButton.jsx"},{"name":"DotsInputStepper","sourcePath":"components/buttons/DotsInputStepper/DotsInputStepper.jsx"},{"name":"DotsItemInput","sourcePath":"components/inputs/DotsItemInput/DotsItemInput.jsx"},{"name":"DotsListItem","sourcePath":"components/content/DotsListItem/DotsListItem.jsx"},{"name":"DotsMainButton","sourcePath":"components/buttons/DotsMainButton/DotsMainButton.jsx"},{"name":"DotsMainContainer","sourcePath":"components/content/DotsMainContainer/DotsMainContainer.jsx"},{"name":"DotsMenu","sourcePath":"components/overlays/DotsMenu/DotsMenu.jsx"},{"name":"DotsNavBar","sourcePath":"components/navigation/DotsNavBar/DotsNavBar.jsx"},{"name":"DotsPlanningItem","sourcePath":"components/planning/DotsPlanningItem/DotsPlanningItem.jsx"},{"name":"DotsPlanSelector","sourcePath":"components/premium/DotsPlanSelector/DotsPlanSelector.jsx"},{"name":"DotsProfilePhoto","sourcePath":"components/media/DotsProfilePhoto/DotsProfilePhoto.jsx"},{"name":"DotsProgressBar","sourcePath":"components/indicators/DotsProgressBar/DotsProgressBar.jsx"},{"name":"DotsRadioButton","sourcePath":"components/buttons/DotsRadioButton/DotsRadioButton.jsx"},{"name":"DotsRichButton","sourcePath":"components/buttons/DotsRichButton/DotsRichButton.jsx"},{"name":"DotsSegmentedControl","sourcePath":"components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx"},{"name":"DotsSelector","sourcePath":"components/buttons/DotsSelector/DotsSelector.jsx"},{"name":"DotsSelectorRadioButton","sourcePath":"components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx"},{"name":"DotsSlider","sourcePath":"components/content/DotsSlider/DotsSlider.jsx"},{"name":"DotsSpinner","sourcePath":"components/indicators/DotsSpinner/DotsSpinner.jsx"},{"name":"DotsSquirclePhoto","sourcePath":"components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx"},{"name":"DotsSystemButton","sourcePath":"components/buttons/DotsSystemButton/DotsSystemButton.jsx"},{"name":"DotsTextArea","sourcePath":"components/inputs/DotsTextArea/DotsTextArea.jsx"},{"name":"DotsTextField","sourcePath":"components/inputs/DotsTextField/DotsTextField.jsx"},{"name":"DotsTextFieldButton","sourcePath":"components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx"},{"name":"DotsTextFieldDate","sourcePath":"components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx"},{"name":"DotsTextFieldPhone","sourcePath":"components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx"},{"name":"DotsToast","sourcePath":"components/feedback/DotsToast/DotsToast.jsx"},{"name":"DotsToggle","sourcePath":"components/buttons/DotsToggle/DotsToggle.jsx"},{"name":"DotsTooltip","sourcePath":"components/overlays/DotsTooltip/DotsTooltip.jsx"},{"name":"DotsTopBar","sourcePath":"components/navigation/DotsTopBar/DotsTopBar.jsx"},{"name":"DotsUploadItem","sourcePath":"components/media/DotsUploadItem/DotsUploadItem.jsx"},{"name":"DropdownMenu","sourcePath":"components/overlays/DropdownMenu/DropdownMenu.jsx"},{"name":"EventGroupCard","sourcePath":"components/cards/EventGroupCard/EventGroupCard.jsx"},{"name":"FeatureItem","sourcePath":"components/content/FeatureItem/FeatureItem.jsx"},{"name":"FolderCarrousel","sourcePath":"components/navigation/FolderCarrousel/FolderCarrousel.jsx"},{"name":"ImageThumbnail","sourcePath":"components/indicators/ImageThumbnail/ImageThumbnail.jsx"},{"name":"ImageWithIcon","sourcePath":"components/social/ImageWithIcon/ImageWithIcon.jsx"},{"name":"ImageWithProgressAround","sourcePath":"components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx"},{"name":"MemoryCard","sourcePath":"components/cards/MemoryCard/MemoryCard.jsx"},{"name":"MessagePreview","sourcePath":"components/social/MessagePreview/MessagePreview.jsx"},{"name":"MilestoneCard","sourcePath":"components/memories/MilestoneCard/MilestoneCard.jsx"},{"name":"MilestonesList","sourcePath":"components/memories/MilestonesList/MilestonesList.jsx"},{"name":"NotificationBanner","sourcePath":"components/social/NotificationBanner/NotificationBanner.jsx"},{"name":"NotificationBannerImage","sourcePath":"components/social/NotificationBannerImage/NotificationBannerImage.jsx"},{"name":"PageControl","sourcePath":"components/dotbook/PageControl/PageControl.jsx"},{"name":"ProductCard","sourcePath":"components/cards/ProductCard/ProductCard.jsx"},{"name":"RatingRow","sourcePath":"components/content/RatingRow/RatingRow.jsx"},{"name":"RecapCard","sourcePath":"components/cards/RecapCard/RecapCard.jsx"},{"name":"UserItem","sourcePath":"components/social/UserItem/UserItem.jsx"},{"name":"UsersList","sourcePath":"components/social/UsersList/UsersList.jsx"},{"name":"DotsBottomEdgeBlur","sourcePath":"components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.jsx"},{"name":"DotsGameCard","sourcePath":"components/cards/DotsGameCard/DotsGameCard.jsx"}],"sourceHashes":{"components/icons/DotsIcon/DotsIcon.jsx":"335df31c211a","components/icons/DotsIcon/DotsIcon.d.ts":"87b2028cfb22","components/icons/DotsIcon/DotsIcon.prompt.md":"fe2f27eb49fe","components/social/ActivityPreview/ActivityPreview.jsx":"b4b80f9e800f","components/social/ActivityPreview/ActivityPreview.d.ts":"9fa1929faede","components/social/ActivityPreview/ActivityPreview.prompt.md":"239a5fa193fe","components/cards/AlbumGroupCard/AlbumGroupCard.jsx":"19e3745d2c01","components/cards/AlbumGroupCard/AlbumGroupCard.d.ts":"69048571d7fa","components/cards/AlbumGroupCard/AlbumGroupCard.prompt.md":"6dd66b80e55e","components/feedback/BadgeIcon/BadgeIcon.jsx":"a75a6074ba60","components/feedback/BadgeIcon/BadgeIcon.d.ts":"34167d2a5ac9","components/feedback/BadgeIcon/BadgeIcon.prompt.md":"929b4a0e194c","components/feedback/BadgeLabel/BadgeLabel.jsx":"f330d80f7db6","components/feedback/BadgeLabel/BadgeLabel.d.ts":"2b2e6a1c6d4d","components/feedback/BadgeLabel/BadgeLabel.prompt.md":"ed1b903fbe5a","components/feedback/BadgeMilestone/BadgeMilestone.jsx":"4c02ad66c2be","components/feedback/BadgeMilestone/BadgeMilestone.d.ts":"68d56286ee8c","components/feedback/BadgeMilestone/BadgeMilestone.prompt.md":"48a757bc2910","components/feedback/BadgeProgress/BadgeProgress.jsx":"71554919d446","components/feedback/BadgeProgress/BadgeProgress.d.ts":"1a294876e6b4","components/feedback/BadgeProgress/BadgeProgress.prompt.md":"b147f3bbf27b","components/feedback/BadgeTag/BadgeTag.jsx":"07499192e79b","components/feedback/BadgeTag/BadgeTag.d.ts":"7df3c446a845","components/feedback/BadgeTag/BadgeTag.prompt.md":"0dc17ea4fe03","components/content/BlurContainer/BlurContainer.jsx":"4f3158bee2a7","components/content/BlurContainer/BlurContainer.d.ts":"eddb381c2032","components/content/BlurContainer/BlurContainer.prompt.md":"47fb1619efac","components/buttons/BtnFolder/BtnFolder.jsx":"5818c75ea3ef","components/buttons/BtnFolder/BtnFolder.d.ts":"6f8120b6186c","components/buttons/BtnFolder/BtnFolder.prompt.md":"409f1a511b12","components/content/ColorSelector/ColorSelector.jsx":"08ac3ae6676f","components/content/ColorSelector/ColorSelector.d.ts":"b7cd2cb1ca99","components/content/ColorSelector/ColorSelector.prompt.md":"b98eac18525b","components/cards/CreateCard/CreateCard.jsx":"9f5acf670673","components/cards/CreateCard/CreateCard.d.ts":"91d4448378d1","components/cards/CreateCard/CreateCard.prompt.md":"845e444d73f8","components/content/DotsAccordion/DotsAccordion.jsx":"84ac87f036d4","components/content/DotsAccordion/DotsAccordion.d.ts":"b321840ed28d","components/content/DotsAccordion/DotsAccordion.prompt.md":"1657898cd0de","components/overlays/DotsActionSheet/DotsActionSheet.jsx":"6aea0de1baad","components/overlays/DotsActionSheet/DotsActionSheet.d.ts":"c04efccc1150","components/overlays/DotsActionSheet/DotsActionSheet.prompt.md":"6c6162a444ea","components/feedback/DotsAlert/DotsAlert.jsx":"31e443a1a6c9","components/feedback/DotsAlert/DotsAlert.d.ts":"ae6723947810","components/feedback/DotsAlert/DotsAlert.prompt.md":"e6eb80571d37","components/inputs/DotsCalendar/DotsCalendar.jsx":"a4bb0de5b1bf","components/inputs/DotsCalendar/DotsCalendar.d.ts":"4d7457cdfa80","components/inputs/DotsCalendar/DotsCalendar.prompt.md":"bc6385a3b1b1","components/buttons/DotsCaptureButton/DotsCaptureButton.jsx":"b327fc4eacd1","components/buttons/DotsCaptureButton/DotsCaptureButton.d.ts":"ebf0842b1cca","components/buttons/DotsCaptureButton/DotsCaptureButton.prompt.md":"04b427a10e12","components/buttons/DotsCloseButton/DotsCloseButton.jsx":"f989f50ce37d","components/buttons/DotsCloseButton/DotsCloseButton.d.ts":"63e7ca18df69","components/buttons/DotsCloseButton/DotsCloseButton.prompt.md":"2202cc87900c","components/indicators/DotsCountdown/DotsCountdown.jsx":"e6a30324d478","components/indicators/DotsCountdown/DotsCountdown.d.ts":"95ae10f7bd3d","components/indicators/DotsCountdown/DotsCountdown.prompt.md":"698be70ac531","components/content/DotsDivider/DotsDivider.jsx":"614a3fa428a4","components/content/DotsDivider/DotsDivider.d.ts":"396c1505b9b8","components/content/DotsDivider/DotsDivider.prompt.md":"608e2d568e01","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx":"7be6c63ad360","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.d.ts":"b63e53cbdac6","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.prompt.md":"204299d95767","components/feedback/DotsFilterChip/DotsFilterChip.jsx":"f70922a222e4","components/feedback/DotsFilterChip/DotsFilterChip.d.ts":"d86eb7bc7f14","components/feedback/DotsFilterChip/DotsFilterChip.prompt.md":"4e2d4316b2c5","components/buttons/DotsFloatingButton/DotsFloatingButton.jsx":"07ef21cbcf69","components/buttons/DotsFloatingButton/DotsFloatingButton.d.ts":"3c11508674c1","components/buttons/DotsFloatingButton/DotsFloatingButton.prompt.md":"9385b6723151","components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx":"3740529a645f","components/navigation/DotsHomeTopBar/DotsHomeTopBar.d.ts":"dd599e57fa1b","components/navigation/DotsHomeTopBar/DotsHomeTopBar.prompt.md":"36a11970a144","components/buttons/DotsIconButton/DotsIconButton.jsx":"ffcab2eedea4","components/buttons/DotsIconButton/DotsIconButton.d.ts":"54238dbe6046","components/buttons/DotsIconButton/DotsIconButton.prompt.md":"c4bb14d7759c","components/buttons/DotsInputStepper/DotsInputStepper.jsx":"fe711e75f2b8","components/buttons/DotsInputStepper/DotsInputStepper.d.ts":"fd74d5e5b429","components/buttons/DotsInputStepper/DotsInputStepper.prompt.md":"6d3798eb4e5e","components/inputs/DotsItemInput/DotsItemInput.jsx":"fdda4bc0b529","components/inputs/DotsItemInput/DotsItemInput.d.ts":"5b6dbb4a7f30","components/inputs/DotsItemInput/DotsItemInput.prompt.md":"f643916e19cd","components/content/DotsListItem/DotsListItem.jsx":"6157f22e738a","components/content/DotsListItem/DotsListItem.d.ts":"e8d018898a64","components/content/DotsListItem/DotsListItem.prompt.md":"40bdc5fff354","components/buttons/DotsMainButton/DotsMainButton.jsx":"ae2cd12f68a1","components/buttons/DotsMainButton/DotsMainButton.d.ts":"cddb89971081","components/buttons/DotsMainButton/DotsMainButton.prompt.md":"a221cf629ffc","components/content/DotsMainContainer/DotsMainContainer.jsx":"4ddd06a6ad9e","components/content/DotsMainContainer/DotsMainContainer.d.ts":"dd9fc89aff3e","components/content/DotsMainContainer/DotsMainContainer.prompt.md":"9598eb0321bd","components/overlays/DotsMenu/DotsMenu.jsx":"250fcc9b1d35","components/overlays/DotsMenu/DotsMenu.d.ts":"35db23e7d5f8","components/overlays/DotsMenu/DotsMenu.prompt.md":"4f8bd72c1108","components/navigation/DotsNavBar/DotsNavBar.jsx":"16123dd053b7","components/navigation/DotsNavBar/DotsNavBar.d.ts":"5ba4d1599ac0","components/navigation/DotsNavBar/DotsNavBar.prompt.md":"d212413051ce","components/planning/DotsPlanningItem/DotsPlanningItem.jsx":"c17bedb8d20b","components/planning/DotsPlanningItem/DotsPlanningItem.d.ts":"b30aea250c2b","components/planning/DotsPlanningItem/DotsPlanningItem.prompt.md":"a8e792ac3dac","components/premium/DotsPlanSelector/DotsPlanSelector.jsx":"9e8354546c8e","components/premium/DotsPlanSelector/DotsPlanSelector.d.ts":"bf2a3e153369","components/premium/DotsPlanSelector/DotsPlanSelector.prompt.md":"31125956fd1c","components/media/DotsProfilePhoto/DotsProfilePhoto.jsx":"92e613449ad2","components/media/DotsProfilePhoto/DotsProfilePhoto.d.ts":"d95296f257ad","components/media/DotsProfilePhoto/DotsProfilePhoto.prompt.md":"636c54ee6feb","components/indicators/DotsProgressBar/DotsProgressBar.jsx":"d6f31abf3d70","components/indicators/DotsProgressBar/DotsProgressBar.d.ts":"aeaed55683ca","components/indicators/DotsProgressBar/DotsProgressBar.prompt.md":"2dad7693c604","components/buttons/DotsRadioButton/DotsRadioButton.jsx":"7a4e9fc06d16","components/buttons/DotsRadioButton/DotsRadioButton.d.ts":"4bc28714a5d9","components/buttons/DotsRadioButton/DotsRadioButton.prompt.md":"d6e35d04a2c5","components/buttons/DotsRichButton/DotsRichButton.jsx":"f445085fc5ca","components/buttons/DotsRichButton/DotsRichButton.d.ts":"c58744c3cec5","components/buttons/DotsRichButton/DotsRichButton.prompt.md":"94e43f6c7d5f","components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx":"63c3134be5e4","components/inputs/DotsSegmentedControl/DotsSegmentedControl.d.ts":"620366a0a8a7","components/inputs/DotsSegmentedControl/DotsSegmentedControl.prompt.md":"780587c9cea5","components/buttons/DotsSelector/DotsSelector.jsx":"32a1fa2354c2","components/buttons/DotsSelector/DotsSelector.d.ts":"c979c19e538a","components/buttons/DotsSelector/DotsSelector.prompt.md":"3ca0254c3375","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx":"ca91ce72bf06","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.d.ts":"b4cc4df2c9e9","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.prompt.md":"0f43fa3291a0","components/content/DotsSlider/DotsSlider.jsx":"11ddb3b9d671","components/content/DotsSlider/DotsSlider.d.ts":"203e3463794d","components/content/DotsSlider/DotsSlider.prompt.md":"b91814ec96a9","components/indicators/DotsSpinner/DotsSpinner.jsx":"a12be39b5926","components/indicators/DotsSpinner/DotsSpinner.d.ts":"92a18d75b986","components/indicators/DotsSpinner/DotsSpinner.prompt.md":"eea0999cfa40","components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx":"be4633716883","components/media/DotsSquirclePhoto/DotsSquirclePhoto.d.ts":"8aaf2b593f98","components/media/DotsSquirclePhoto/DotsSquirclePhoto.prompt.md":"7bf60628c1fe","components/buttons/DotsSystemButton/DotsSystemButton.jsx":"61ef368899c8","components/buttons/DotsSystemButton/DotsSystemButton.d.ts":"359705826306","components/buttons/DotsSystemButton/DotsSystemButton.prompt.md":"09363a30bf00","components/inputs/DotsTextArea/DotsTextArea.jsx":"f5e66264f111","components/inputs/DotsTextArea/DotsTextArea.d.ts":"1dc2847b22ea","components/inputs/DotsTextArea/DotsTextArea.prompt.md":"63170a772fb6","components/inputs/DotsTextField/DotsTextField.jsx":"f072f4f3eb62","components/inputs/DotsTextField/DotsTextField.d.ts":"e1cfbec7861c","components/inputs/DotsTextField/DotsTextField.prompt.md":"42536ffb516a","components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx":"163b6c3eb5a2","components/inputs/DotsTextFieldButton/DotsTextFieldButton.d.ts":"967bca8a42d0","components/inputs/DotsTextFieldButton/DotsTextFieldButton.prompt.md":"cd2a18ca1749","components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx":"bd28881afb3c","components/inputs/DotsTextFieldDate/DotsTextFieldDate.d.ts":"8d7f859c0a67","components/inputs/DotsTextFieldDate/DotsTextFieldDate.prompt.md":"2944cdc9159d","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx":"ee02df22e4b1","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.d.ts":"19f04ea85841","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.prompt.md":"32c5dd3fc02b","components/feedback/DotsToast/DotsToast.jsx":"9875719b818a","components/feedback/DotsToast/DotsToast.d.ts":"8df7532627c4","components/feedback/DotsToast/DotsToast.prompt.md":"e7dade8e5042","components/buttons/DotsToggle/DotsToggle.jsx":"d580e9128f26","components/buttons/DotsToggle/DotsToggle.d.ts":"3c940f80ab0d","components/buttons/DotsToggle/DotsToggle.prompt.md":"c8b4344a32ac","components/overlays/DotsTooltip/DotsTooltip.jsx":"690646cedff8","components/overlays/DotsTooltip/DotsTooltip.d.ts":"caf4c5e9e69e","components/overlays/DotsTooltip/DotsTooltip.prompt.md":"8e2e72fa4034","components/navigation/DotsTopBar/DotsTopBar.jsx":"bab2b068b924","components/navigation/DotsTopBar/DotsTopBar.d.ts":"182b7686120b","components/navigation/DotsTopBar/DotsTopBar.prompt.md":"6f2c5073c6e6","components/media/DotsUploadItem/DotsUploadItem.jsx":"b5b296dabbb0","components/media/DotsUploadItem/DotsUploadItem.d.ts":"3cfa2319a13c","components/media/DotsUploadItem/DotsUploadItem.prompt.md":"ef18d7f6f037","components/overlays/DropdownMenu/DropdownMenu.jsx":"e990079ce8af","components/overlays/DropdownMenu/DropdownMenu.d.ts":"6845aa0f863c","components/overlays/DropdownMenu/DropdownMenu.prompt.md":"b8ca4e74f03e","components/cards/EventGroupCard/EventGroupCard.jsx":"a156456590e1","components/cards/EventGroupCard/EventGroupCard.d.ts":"cf79b8f6b27b","components/cards/EventGroupCard/EventGroupCard.prompt.md":"456df0915b54","components/content/FeatureItem/FeatureItem.jsx":"bb22c6b112e0","components/content/FeatureItem/FeatureItem.d.ts":"fb28da894a55","components/content/FeatureItem/FeatureItem.prompt.md":"8eed7e79d9a6","components/navigation/FolderCarrousel/FolderCarrousel.jsx":"fe669a8466ea","components/navigation/FolderCarrousel/FolderCarrousel.d.ts":"70b0dfc57c63","components/navigation/FolderCarrousel/FolderCarrousel.prompt.md":"ed1bca9712aa","components/indicators/ImageThumbnail/ImageThumbnail.jsx":"eba358df1cbe","components/indicators/ImageThumbnail/ImageThumbnail.d.ts":"bec7b569e561","components/indicators/ImageThumbnail/ImageThumbnail.prompt.md":"f1d009a529a1","components/social/ImageWithIcon/ImageWithIcon.jsx":"c6c587c966d1","components/social/ImageWithIcon/ImageWithIcon.d.ts":"9c75d2ab8229","components/social/ImageWithIcon/ImageWithIcon.prompt.md":"0c2c7229692c","components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx":"806a6150545b","components/indicators/ImageWithProgressAround/ImageWithProgressAround.d.ts":"f57071d0494b","components/indicators/ImageWithProgressAround/ImageWithProgressAround.prompt.md":"dcf89fcfbb8a","components/cards/MemoryCard/MemoryCard.jsx":"3a0db91b5a78","components/cards/MemoryCard/MemoryCard.d.ts":"01aacc288262","components/cards/MemoryCard/MemoryCard.prompt.md":"429e9792f2cc","components/social/MessagePreview/MessagePreview.jsx":"215094a5eccd","components/social/MessagePreview/MessagePreview.d.ts":"b36b48649a80","components/social/MessagePreview/MessagePreview.prompt.md":"8429677865ce","components/memories/MilestoneCard/MilestoneCard.jsx":"f41829c3c1f0","components/memories/MilestoneCard/MilestoneCard.d.ts":"047c3783fa10","components/memories/MilestoneCard/MilestoneCard.prompt.md":"ed078065e85c","components/memories/MilestonesList/MilestonesList.jsx":"48f44b1ed490","components/memories/MilestonesList/MilestonesList.d.ts":"1e1ff1451913","components/memories/MilestonesList/MilestonesList.prompt.md":"739f1eedb6e7","components/social/NotificationBanner/NotificationBanner.jsx":"3047bcebf969","components/social/NotificationBanner/NotificationBanner.d.ts":"8312db4e4385","components/social/NotificationBanner/NotificationBanner.prompt.md":"57060dbd2686","components/social/NotificationBannerImage/NotificationBannerImage.jsx":"9d5214f16bde","components/social/NotificationBannerImage/NotificationBannerImage.d.ts":"4a3f335923fb","components/social/NotificationBannerImage/NotificationBannerImage.prompt.md":"01904774056d","components/dotbook/PageControl/PageControl.jsx":"7d3c2f0a4143","components/dotbook/PageControl/PageControl.d.ts":"58a5a9e129ae","components/dotbook/PageControl/PageControl.prompt.md":"2dcd422b32cb","components/cards/ProductCard/ProductCard.jsx":"60765da3d430","components/cards/ProductCard/ProductCard.d.ts":"4638ffe7e7f2","components/cards/ProductCard/ProductCard.prompt.md":"bddfb1317e70","components/content/RatingRow/RatingRow.jsx":"c648699f7d52","components/content/RatingRow/RatingRow.d.ts":"74d3ad5f5d2f","components/content/RatingRow/RatingRow.prompt.md":"d36b1b43f630","components/cards/RecapCard/RecapCard.jsx":"5b5a0051efa7","components/cards/RecapCard/RecapCard.d.ts":"83dd50f0a073","components/cards/RecapCard/RecapCard.prompt.md":"8fff796309ab","components/social/UserItem/UserItem.jsx":"8ca2155b51f1","components/social/UserItem/UserItem.d.ts":"2539d766d947","components/social/UserItem/UserItem.prompt.md":"ec0b0a01c16b","components/social/UsersList/UsersList.jsx":"263f90a7d807","components/social/UsersList/UsersList.d.ts":"c9e13db1a39b","components/social/UsersList/UsersList.prompt.md":"e19600d69967","components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.jsx":"89fb9f29d384","components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.d.ts":"03ddc35a02d3","components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.prompt.md":"7e953c84aba2","components/cards/DotsGameCard/DotsGameCard.jsx":"232da8813908","components/cards/DotsGameCard/DotsGameCard.d.ts":"c4634c006f64","components/cards/DotsGameCard/DotsGameCard.prompt.md":"a55d8da4325b"},"inlinedExternals":[],"unexposedExports":[],"builtBy":"dots-design-system-react"} */
+/* @ds-bundle: {"format":4,"namespace":"DotsDesignSystem_9e41da","components":[{"name":"DotsIcon","sourcePath":"components/icons/DotsIcon/DotsIcon.jsx"},{"name":"ActivityPreview","sourcePath":"components/social/ActivityPreview/ActivityPreview.jsx"},{"name":"AlbumGroupCard","sourcePath":"components/cards/AlbumGroupCard/AlbumGroupCard.jsx"},{"name":"BadgeIcon","sourcePath":"components/feedback/BadgeIcon/BadgeIcon.jsx"},{"name":"BadgeLabel","sourcePath":"components/feedback/BadgeLabel/BadgeLabel.jsx"},{"name":"BadgeMilestone","sourcePath":"components/feedback/BadgeMilestone/BadgeMilestone.jsx"},{"name":"BadgeProgress","sourcePath":"components/feedback/BadgeProgress/BadgeProgress.jsx"},{"name":"BadgeTag","sourcePath":"components/feedback/BadgeTag/BadgeTag.jsx"},{"name":"BlurContainer","sourcePath":"components/content/BlurContainer/BlurContainer.jsx"},{"name":"BtnFolder","sourcePath":"components/buttons/BtnFolder/BtnFolder.jsx"},{"name":"ColorSelector","sourcePath":"components/content/ColorSelector/ColorSelector.jsx"},{"name":"CreateCard","sourcePath":"components/cards/CreateCard/CreateCard.jsx"},{"name":"DotsAccordion","sourcePath":"components/content/DotsAccordion/DotsAccordion.jsx"},{"name":"DotsActionSheet","sourcePath":"components/overlays/DotsActionSheet/DotsActionSheet.jsx"},{"name":"DotsAlert","sourcePath":"components/feedback/DotsAlert/DotsAlert.jsx"},{"name":"DotsBottomEdgeBlur","sourcePath":"components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.jsx"},{"name":"DotsCalendar","sourcePath":"components/inputs/DotsCalendar/DotsCalendar.jsx"},{"name":"DotsCaptureButton","sourcePath":"components/buttons/DotsCaptureButton/DotsCaptureButton.jsx"},{"name":"DotsCloseButton","sourcePath":"components/buttons/DotsCloseButton/DotsCloseButton.jsx"},{"name":"DotsCountdown","sourcePath":"components/indicators/DotsCountdown/DotsCountdown.jsx"},{"name":"DotsDivider","sourcePath":"components/content/DotsDivider/DotsDivider.jsx"},{"name":"DotsEmptyStateCard","sourcePath":"components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx"},{"name":"DotsFilterChip","sourcePath":"components/feedback/DotsFilterChip/DotsFilterChip.jsx"},{"name":"DotsFloatingButton","sourcePath":"components/buttons/DotsFloatingButton/DotsFloatingButton.jsx"},{"name":"DotsGameCard","sourcePath":"components/cards/DotsGameCard/DotsGameCard.jsx"},{"name":"DotsHomeTopBar","sourcePath":"components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx"},{"name":"DotsIconButton","sourcePath":"components/buttons/DotsIconButton/DotsIconButton.jsx"},{"name":"DotsInputStepper","sourcePath":"components/buttons/DotsInputStepper/DotsInputStepper.jsx"},{"name":"DotsItemInput","sourcePath":"components/inputs/DotsItemInput/DotsItemInput.jsx"},{"name":"DotsListItem","sourcePath":"components/content/DotsListItem/DotsListItem.jsx"},{"name":"DotsMainButton","sourcePath":"components/buttons/DotsMainButton/DotsMainButton.jsx"},{"name":"DotsMainContainer","sourcePath":"components/content/DotsMainContainer/DotsMainContainer.jsx"},{"name":"DotsMenu","sourcePath":"components/overlays/DotsMenu/DotsMenu.jsx"},{"name":"DotsNavBar","sourcePath":"components/navigation/DotsNavBar/DotsNavBar.jsx"},{"name":"DotsPlanningItem","sourcePath":"components/planning/DotsPlanningItem/DotsPlanningItem.jsx"},{"name":"DotsPlanSelector","sourcePath":"components/premium/DotsPlanSelector/DotsPlanSelector.jsx"},{"name":"DotsProfilePhoto","sourcePath":"components/media/DotsProfilePhoto/DotsProfilePhoto.jsx"},{"name":"DotsProgressBar","sourcePath":"components/indicators/DotsProgressBar/DotsProgressBar.jsx"},{"name":"DotsRadioButton","sourcePath":"components/buttons/DotsRadioButton/DotsRadioButton.jsx"},{"name":"DotsRichButton","sourcePath":"components/buttons/DotsRichButton/DotsRichButton.jsx"},{"name":"DotsSegmentedControl","sourcePath":"components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx"},{"name":"DotsSelector","sourcePath":"components/buttons/DotsSelector/DotsSelector.jsx"},{"name":"DotsSelectorRadioButton","sourcePath":"components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx"},{"name":"DotsSlider","sourcePath":"components/content/DotsSlider/DotsSlider.jsx"},{"name":"DotsSpinner","sourcePath":"components/indicators/DotsSpinner/DotsSpinner.jsx"},{"name":"DotsSquirclePhoto","sourcePath":"components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx"},{"name":"DotsSystemButton","sourcePath":"components/buttons/DotsSystemButton/DotsSystemButton.jsx"},{"name":"DotsTextArea","sourcePath":"components/inputs/DotsTextArea/DotsTextArea.jsx"},{"name":"DotsTextField","sourcePath":"components/inputs/DotsTextField/DotsTextField.jsx"},{"name":"DotsTextFieldButton","sourcePath":"components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx"},{"name":"DotsTextFieldDate","sourcePath":"components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx"},{"name":"DotsTextFieldPhone","sourcePath":"components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx"},{"name":"DotsToast","sourcePath":"components/feedback/DotsToast/DotsToast.jsx"},{"name":"DotsToggle","sourcePath":"components/buttons/DotsToggle/DotsToggle.jsx"},{"name":"DotsTooltip","sourcePath":"components/overlays/DotsTooltip/DotsTooltip.jsx"},{"name":"DotsTopBar","sourcePath":"components/navigation/DotsTopBar/DotsTopBar.jsx"},{"name":"DotsUploadItem","sourcePath":"components/media/DotsUploadItem/DotsUploadItem.jsx"},{"name":"DropdownMenu","sourcePath":"components/overlays/DropdownMenu/DropdownMenu.jsx"},{"name":"EventGroupCard","sourcePath":"components/cards/EventGroupCard/EventGroupCard.jsx"},{"name":"FeatureItem","sourcePath":"components/content/FeatureItem/FeatureItem.jsx"},{"name":"FolderCarrousel","sourcePath":"components/navigation/FolderCarrousel/FolderCarrousel.jsx"},{"name":"ImageThumbnail","sourcePath":"components/indicators/ImageThumbnail/ImageThumbnail.jsx"},{"name":"ImageWithIcon","sourcePath":"components/social/ImageWithIcon/ImageWithIcon.jsx"},{"name":"ImageWithProgressAround","sourcePath":"components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx"},{"name":"MemoryCard","sourcePath":"components/cards/MemoryCard/MemoryCard.jsx"},{"name":"MessagePreview","sourcePath":"components/social/MessagePreview/MessagePreview.jsx"},{"name":"MilestoneCard","sourcePath":"components/memories/MilestoneCard/MilestoneCard.jsx"},{"name":"MilestonesList","sourcePath":"components/memories/MilestonesList/MilestonesList.jsx"},{"name":"NotificationBanner","sourcePath":"components/social/NotificationBanner/NotificationBanner.jsx"},{"name":"NotificationBannerImage","sourcePath":"components/social/NotificationBannerImage/NotificationBannerImage.jsx"},{"name":"PageControl","sourcePath":"components/dotbook/PageControl/PageControl.jsx"},{"name":"ProductCard","sourcePath":"components/cards/ProductCard/ProductCard.jsx"},{"name":"RatingRow","sourcePath":"components/content/RatingRow/RatingRow.jsx"},{"name":"RecapCard","sourcePath":"components/cards/RecapCard/RecapCard.jsx"},{"name":"UserItem","sourcePath":"components/social/UserItem/UserItem.jsx"},{"name":"UsersList","sourcePath":"components/social/UsersList/UsersList.jsx"}],"sourceHashes":{"components/icons/DotsIcon/DotsIcon.jsx":"335df31c211a","components/icons/DotsIcon/DotsIcon.d.ts":"87b2028cfb22","components/icons/DotsIcon/DotsIcon.prompt.md":"fe2f27eb49fe","components/social/ActivityPreview/ActivityPreview.jsx":"b4b80f9e800f","components/social/ActivityPreview/ActivityPreview.d.ts":"9fa1929faede","components/social/ActivityPreview/ActivityPreview.prompt.md":"239a5fa193fe","components/cards/AlbumGroupCard/AlbumGroupCard.jsx":"19e3745d2c01","components/cards/AlbumGroupCard/AlbumGroupCard.d.ts":"69048571d7fa","components/cards/AlbumGroupCard/AlbumGroupCard.prompt.md":"6dd66b80e55e","components/feedback/BadgeIcon/BadgeIcon.jsx":"a75a6074ba60","components/feedback/BadgeIcon/BadgeIcon.d.ts":"34167d2a5ac9","components/feedback/BadgeIcon/BadgeIcon.prompt.md":"929b4a0e194c","components/feedback/BadgeLabel/BadgeLabel.jsx":"f330d80f7db6","components/feedback/BadgeLabel/BadgeLabel.d.ts":"2b2e6a1c6d4d","components/feedback/BadgeLabel/BadgeLabel.prompt.md":"ed1b903fbe5a","components/feedback/BadgeMilestone/BadgeMilestone.jsx":"4c02ad66c2be","components/feedback/BadgeMilestone/BadgeMilestone.d.ts":"68d56286ee8c","components/feedback/BadgeMilestone/BadgeMilestone.prompt.md":"48a757bc2910","components/feedback/BadgeProgress/BadgeProgress.jsx":"71554919d446","components/feedback/BadgeProgress/BadgeProgress.d.ts":"1a294876e6b4","components/feedback/BadgeProgress/BadgeProgress.prompt.md":"b147f3bbf27b","components/feedback/BadgeTag/BadgeTag.jsx":"07499192e79b","components/feedback/BadgeTag/BadgeTag.d.ts":"7df3c446a845","components/feedback/BadgeTag/BadgeTag.prompt.md":"0dc17ea4fe03","components/content/BlurContainer/BlurContainer.jsx":"4f3158bee2a7","components/content/BlurContainer/BlurContainer.d.ts":"eddb381c2032","components/content/BlurContainer/BlurContainer.prompt.md":"47fb1619efac","components/buttons/BtnFolder/BtnFolder.jsx":"5818c75ea3ef","components/buttons/BtnFolder/BtnFolder.d.ts":"6f8120b6186c","components/buttons/BtnFolder/BtnFolder.prompt.md":"409f1a511b12","components/content/ColorSelector/ColorSelector.jsx":"08ac3ae6676f","components/content/ColorSelector/ColorSelector.d.ts":"b7cd2cb1ca99","components/content/ColorSelector/ColorSelector.prompt.md":"b98eac18525b","components/cards/CreateCard/CreateCard.jsx":"9f5acf670673","components/cards/CreateCard/CreateCard.d.ts":"91d4448378d1","components/cards/CreateCard/CreateCard.prompt.md":"845e444d73f8","components/content/DotsAccordion/DotsAccordion.jsx":"84ac87f036d4","components/content/DotsAccordion/DotsAccordion.d.ts":"b321840ed28d","components/content/DotsAccordion/DotsAccordion.prompt.md":"1657898cd0de","components/overlays/DotsActionSheet/DotsActionSheet.jsx":"6aea0de1baad","components/overlays/DotsActionSheet/DotsActionSheet.d.ts":"c04efccc1150","components/overlays/DotsActionSheet/DotsActionSheet.prompt.md":"6c6162a444ea","components/feedback/DotsAlert/DotsAlert.jsx":"31e443a1a6c9","components/feedback/DotsAlert/DotsAlert.d.ts":"ae6723947810","components/feedback/DotsAlert/DotsAlert.prompt.md":"e6eb80571d37","components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.jsx":"89fb9f29d384","components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.d.ts":"d26f9a8437b4","components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.prompt.md":"7e953c84aba2","components/inputs/DotsCalendar/DotsCalendar.jsx":"a4bb0de5b1bf","components/inputs/DotsCalendar/DotsCalendar.d.ts":"4d7457cdfa80","components/inputs/DotsCalendar/DotsCalendar.prompt.md":"bc6385a3b1b1","components/buttons/DotsCaptureButton/DotsCaptureButton.jsx":"b327fc4eacd1","components/buttons/DotsCaptureButton/DotsCaptureButton.d.ts":"ebf0842b1cca","components/buttons/DotsCaptureButton/DotsCaptureButton.prompt.md":"04b427a10e12","components/buttons/DotsCloseButton/DotsCloseButton.jsx":"f989f50ce37d","components/buttons/DotsCloseButton/DotsCloseButton.d.ts":"63e7ca18df69","components/buttons/DotsCloseButton/DotsCloseButton.prompt.md":"2202cc87900c","components/indicators/DotsCountdown/DotsCountdown.jsx":"e6a30324d478","components/indicators/DotsCountdown/DotsCountdown.d.ts":"95ae10f7bd3d","components/indicators/DotsCountdown/DotsCountdown.prompt.md":"698be70ac531","components/content/DotsDivider/DotsDivider.jsx":"614a3fa428a4","components/content/DotsDivider/DotsDivider.d.ts":"396c1505b9b8","components/content/DotsDivider/DotsDivider.prompt.md":"608e2d568e01","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx":"7be6c63ad360","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.d.ts":"b63e53cbdac6","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.prompt.md":"204299d95767","components/feedback/DotsFilterChip/DotsFilterChip.jsx":"f70922a222e4","components/feedback/DotsFilterChip/DotsFilterChip.d.ts":"d86eb7bc7f14","components/feedback/DotsFilterChip/DotsFilterChip.prompt.md":"4e2d4316b2c5","components/buttons/DotsFloatingButton/DotsFloatingButton.jsx":"07ef21cbcf69","components/buttons/DotsFloatingButton/DotsFloatingButton.d.ts":"3c11508674c1","components/buttons/DotsFloatingButton/DotsFloatingButton.prompt.md":"9385b6723151","components/cards/DotsGameCard/DotsGameCard.jsx":"232da8813908","components/cards/DotsGameCard/DotsGameCard.d.ts":"b48415be8661","components/cards/DotsGameCard/DotsGameCard.prompt.md":"a55d8da4325b","components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx":"3740529a645f","components/navigation/DotsHomeTopBar/DotsHomeTopBar.d.ts":"dd599e57fa1b","components/navigation/DotsHomeTopBar/DotsHomeTopBar.prompt.md":"36a11970a144","components/buttons/DotsIconButton/DotsIconButton.jsx":"ffcab2eedea4","components/buttons/DotsIconButton/DotsIconButton.d.ts":"54238dbe6046","components/buttons/DotsIconButton/DotsIconButton.prompt.md":"c4bb14d7759c","components/buttons/DotsInputStepper/DotsInputStepper.jsx":"fe711e75f2b8","components/buttons/DotsInputStepper/DotsInputStepper.d.ts":"fd74d5e5b429","components/buttons/DotsInputStepper/DotsInputStepper.prompt.md":"6d3798eb4e5e","components/inputs/DotsItemInput/DotsItemInput.jsx":"fdda4bc0b529","components/inputs/DotsItemInput/DotsItemInput.d.ts":"5b6dbb4a7f30","components/inputs/DotsItemInput/DotsItemInput.prompt.md":"f643916e19cd","components/content/DotsListItem/DotsListItem.jsx":"6157f22e738a","components/content/DotsListItem/DotsListItem.d.ts":"e8d018898a64","components/content/DotsListItem/DotsListItem.prompt.md":"40bdc5fff354","components/buttons/DotsMainButton/DotsMainButton.jsx":"ae2cd12f68a1","components/buttons/DotsMainButton/DotsMainButton.d.ts":"cddb89971081","components/buttons/DotsMainButton/DotsMainButton.prompt.md":"a221cf629ffc","components/content/DotsMainContainer/DotsMainContainer.jsx":"4ddd06a6ad9e","components/content/DotsMainContainer/DotsMainContainer.d.ts":"dd9fc89aff3e","components/content/DotsMainContainer/DotsMainContainer.prompt.md":"9598eb0321bd","components/overlays/DotsMenu/DotsMenu.jsx":"250fcc9b1d35","components/overlays/DotsMenu/DotsMenu.d.ts":"35db23e7d5f8","components/overlays/DotsMenu/DotsMenu.prompt.md":"4f8bd72c1108","components/navigation/DotsNavBar/DotsNavBar.jsx":"16123dd053b7","components/navigation/DotsNavBar/DotsNavBar.d.ts":"5ba4d1599ac0","components/navigation/DotsNavBar/DotsNavBar.prompt.md":"d212413051ce","components/planning/DotsPlanningItem/DotsPlanningItem.jsx":"c17bedb8d20b","components/planning/DotsPlanningItem/DotsPlanningItem.d.ts":"b30aea250c2b","components/planning/DotsPlanningItem/DotsPlanningItem.prompt.md":"a8e792ac3dac","components/premium/DotsPlanSelector/DotsPlanSelector.jsx":"9e8354546c8e","components/premium/DotsPlanSelector/DotsPlanSelector.d.ts":"bf2a3e153369","components/premium/DotsPlanSelector/DotsPlanSelector.prompt.md":"31125956fd1c","components/media/DotsProfilePhoto/DotsProfilePhoto.jsx":"92e613449ad2","components/media/DotsProfilePhoto/DotsProfilePhoto.d.ts":"d95296f257ad","components/media/DotsProfilePhoto/DotsProfilePhoto.prompt.md":"636c54ee6feb","components/indicators/DotsProgressBar/DotsProgressBar.jsx":"d6f31abf3d70","components/indicators/DotsProgressBar/DotsProgressBar.d.ts":"aeaed55683ca","components/indicators/DotsProgressBar/DotsProgressBar.prompt.md":"2dad7693c604","components/buttons/DotsRadioButton/DotsRadioButton.jsx":"7a4e9fc06d16","components/buttons/DotsRadioButton/DotsRadioButton.d.ts":"4bc28714a5d9","components/buttons/DotsRadioButton/DotsRadioButton.prompt.md":"d6e35d04a2c5","components/buttons/DotsRichButton/DotsRichButton.jsx":"f445085fc5ca","components/buttons/DotsRichButton/DotsRichButton.d.ts":"c58744c3cec5","components/buttons/DotsRichButton/DotsRichButton.prompt.md":"94e43f6c7d5f","components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx":"63c3134be5e4","components/inputs/DotsSegmentedControl/DotsSegmentedControl.d.ts":"620366a0a8a7","components/inputs/DotsSegmentedControl/DotsSegmentedControl.prompt.md":"780587c9cea5","components/buttons/DotsSelector/DotsSelector.jsx":"32a1fa2354c2","components/buttons/DotsSelector/DotsSelector.d.ts":"c979c19e538a","components/buttons/DotsSelector/DotsSelector.prompt.md":"3ca0254c3375","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx":"ca91ce72bf06","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.d.ts":"b4cc4df2c9e9","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.prompt.md":"0f43fa3291a0","components/content/DotsSlider/DotsSlider.jsx":"11ddb3b9d671","components/content/DotsSlider/DotsSlider.d.ts":"203e3463794d","components/content/DotsSlider/DotsSlider.prompt.md":"b91814ec96a9","components/indicators/DotsSpinner/DotsSpinner.jsx":"a12be39b5926","components/indicators/DotsSpinner/DotsSpinner.d.ts":"92a18d75b986","components/indicators/DotsSpinner/DotsSpinner.prompt.md":"eea0999cfa40","components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx":"be4633716883","components/media/DotsSquirclePhoto/DotsSquirclePhoto.d.ts":"8aaf2b593f98","components/media/DotsSquirclePhoto/DotsSquirclePhoto.prompt.md":"7bf60628c1fe","components/buttons/DotsSystemButton/DotsSystemButton.jsx":"61ef368899c8","components/buttons/DotsSystemButton/DotsSystemButton.d.ts":"359705826306","components/buttons/DotsSystemButton/DotsSystemButton.prompt.md":"09363a30bf00","components/inputs/DotsTextArea/DotsTextArea.jsx":"f5e66264f111","components/inputs/DotsTextArea/DotsTextArea.d.ts":"1dc2847b22ea","components/inputs/DotsTextArea/DotsTextArea.prompt.md":"63170a772fb6","components/inputs/DotsTextField/DotsTextField.jsx":"f072f4f3eb62","components/inputs/DotsTextField/DotsTextField.d.ts":"e1cfbec7861c","components/inputs/DotsTextField/DotsTextField.prompt.md":"42536ffb516a","components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx":"163b6c3eb5a2","components/inputs/DotsTextFieldButton/DotsTextFieldButton.d.ts":"967bca8a42d0","components/inputs/DotsTextFieldButton/DotsTextFieldButton.prompt.md":"cd2a18ca1749","components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx":"bd28881afb3c","components/inputs/DotsTextFieldDate/DotsTextFieldDate.d.ts":"8d7f859c0a67","components/inputs/DotsTextFieldDate/DotsTextFieldDate.prompt.md":"2944cdc9159d","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx":"ee02df22e4b1","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.d.ts":"19f04ea85841","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.prompt.md":"32c5dd3fc02b","components/feedback/DotsToast/DotsToast.jsx":"9875719b818a","components/feedback/DotsToast/DotsToast.d.ts":"8df7532627c4","components/feedback/DotsToast/DotsToast.prompt.md":"e7dade8e5042","components/buttons/DotsToggle/DotsToggle.jsx":"d580e9128f26","components/buttons/DotsToggle/DotsToggle.d.ts":"3c940f80ab0d","components/buttons/DotsToggle/DotsToggle.prompt.md":"c8b4344a32ac","components/overlays/DotsTooltip/DotsTooltip.jsx":"690646cedff8","components/overlays/DotsTooltip/DotsTooltip.d.ts":"caf4c5e9e69e","components/overlays/DotsTooltip/DotsTooltip.prompt.md":"8e2e72fa4034","components/navigation/DotsTopBar/DotsTopBar.jsx":"bab2b068b924","components/navigation/DotsTopBar/DotsTopBar.d.ts":"182b7686120b","components/navigation/DotsTopBar/DotsTopBar.prompt.md":"6f2c5073c6e6","components/media/DotsUploadItem/DotsUploadItem.jsx":"b5b296dabbb0","components/media/DotsUploadItem/DotsUploadItem.d.ts":"3cfa2319a13c","components/media/DotsUploadItem/DotsUploadItem.prompt.md":"ef18d7f6f037","components/overlays/DropdownMenu/DropdownMenu.jsx":"e990079ce8af","components/overlays/DropdownMenu/DropdownMenu.d.ts":"6845aa0f863c","components/overlays/DropdownMenu/DropdownMenu.prompt.md":"b8ca4e74f03e","components/cards/EventGroupCard/EventGroupCard.jsx":"a156456590e1","components/cards/EventGroupCard/EventGroupCard.d.ts":"cf79b8f6b27b","components/cards/EventGroupCard/EventGroupCard.prompt.md":"456df0915b54","components/content/FeatureItem/FeatureItem.jsx":"bb22c6b112e0","components/content/FeatureItem/FeatureItem.d.ts":"fb28da894a55","components/content/FeatureItem/FeatureItem.prompt.md":"8eed7e79d9a6","components/navigation/FolderCarrousel/FolderCarrousel.jsx":"fe669a8466ea","components/navigation/FolderCarrousel/FolderCarrousel.d.ts":"70b0dfc57c63","components/navigation/FolderCarrousel/FolderCarrousel.prompt.md":"ed1bca9712aa","components/indicators/ImageThumbnail/ImageThumbnail.jsx":"eba358df1cbe","components/indicators/ImageThumbnail/ImageThumbnail.d.ts":"bec7b569e561","components/indicators/ImageThumbnail/ImageThumbnail.prompt.md":"f1d009a529a1","components/social/ImageWithIcon/ImageWithIcon.jsx":"c6c587c966d1","components/social/ImageWithIcon/ImageWithIcon.d.ts":"9c75d2ab8229","components/social/ImageWithIcon/ImageWithIcon.prompt.md":"0c2c7229692c","components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx":"806a6150545b","components/indicators/ImageWithProgressAround/ImageWithProgressAround.d.ts":"f57071d0494b","components/indicators/ImageWithProgressAround/ImageWithProgressAround.prompt.md":"dcf89fcfbb8a","components/cards/MemoryCard/MemoryCard.jsx":"3a0db91b5a78","components/cards/MemoryCard/MemoryCard.d.ts":"01aacc288262","components/cards/MemoryCard/MemoryCard.prompt.md":"429e9792f2cc","components/social/MessagePreview/MessagePreview.jsx":"215094a5eccd","components/social/MessagePreview/MessagePreview.d.ts":"b36b48649a80","components/social/MessagePreview/MessagePreview.prompt.md":"8429677865ce","components/memories/MilestoneCard/MilestoneCard.jsx":"f41829c3c1f0","components/memories/MilestoneCard/MilestoneCard.d.ts":"047c3783fa10","components/memories/MilestoneCard/MilestoneCard.prompt.md":"ed078065e85c","components/memories/MilestonesList/MilestonesList.jsx":"48f44b1ed490","components/memories/MilestonesList/MilestonesList.d.ts":"1e1ff1451913","components/memories/MilestonesList/MilestonesList.prompt.md":"739f1eedb6e7","components/social/NotificationBanner/NotificationBanner.jsx":"3047bcebf969","components/social/NotificationBanner/NotificationBanner.d.ts":"8312db4e4385","components/social/NotificationBanner/NotificationBanner.prompt.md":"57060dbd2686","components/social/NotificationBannerImage/NotificationBannerImage.jsx":"9d5214f16bde","components/social/NotificationBannerImage/NotificationBannerImage.d.ts":"4a3f335923fb","components/social/NotificationBannerImage/NotificationBannerImage.prompt.md":"01904774056d","components/dotbook/PageControl/PageControl.jsx":"7d3c2f0a4143","components/dotbook/PageControl/PageControl.d.ts":"58a5a9e129ae","components/dotbook/PageControl/PageControl.prompt.md":"2dcd422b32cb","components/cards/ProductCard/ProductCard.jsx":"60765da3d430","components/cards/ProductCard/ProductCard.d.ts":"4638ffe7e7f2","components/cards/ProductCard/ProductCard.prompt.md":"bddfb1317e70","components/content/RatingRow/RatingRow.jsx":"c648699f7d52","components/content/RatingRow/RatingRow.d.ts":"74d3ad5f5d2f","components/content/RatingRow/RatingRow.prompt.md":"d36b1b43f630","components/cards/RecapCard/RecapCard.jsx":"5b5a0051efa7","components/cards/RecapCard/RecapCard.d.ts":"83dd50f0a073","components/cards/RecapCard/RecapCard.prompt.md":"8fff796309ab","components/social/UserItem/UserItem.jsx":"8ca2155b51f1","components/social/UserItem/UserItem.d.ts":"2539d766d947","components/social/UserItem/UserItem.prompt.md":"ec0b0a01c16b","components/social/UsersList/UsersList.jsx":"263f90a7d807","components/social/UsersList/UsersList.d.ts":"c9e13db1a39b","components/social/UsersList/UsersList.prompt.md":"e19600d69967"},"inlinedExternals":[],"unexposedExports":[],"builtBy":"dots-design-system-react"} */
 (() => {
 
 const __ds_ns = (window.DotsDesignSystem_9e41da = window.DotsDesignSystem_9e41da || {});
@@ -80,6 +80,7 @@ const hooks = () => window.React;
     DotsActionSheet: () => DotsActionSheet,
     DotsActionSheetListItem: () => DotsActionSheetListItem,
     DotsAlert: () => DotsAlert,
+    DotsBottomEdgeBlur: () => DotsBottomEdgeBlur,
     DotsCalendar: () => DotsCalendar,
     DotsCaptureButton: () => DotsCaptureButton,
     DotsCloseButton: () => DotsCloseButton,
@@ -88,6 +89,7 @@ const hooks = () => window.React;
     DotsEmptyStateCard: () => DotsEmptyStateCard,
     DotsFilterChip: () => DotsFilterChip,
     DotsFloatingButton: () => DotsFloatingButton,
+    DotsGameCard: () => DotsGameCard,
     DotsHomeTopBar: () => DotsHomeTopBar,
     DotsIcon: () => DotsIcon,
     DotsIconButton: () => DotsIconButton,
@@ -2351,6 +2353,23 @@ const hooks = () => window.React;
   }
   BlurContainer.GradientBlur = GradientBlur;
 
+  // src/components/DotsBottomEdgeBlur/DotsBottomEdgeBlur.tsx
+  init_react_shim();
+  function DotsBottomEdgeBlur(props) {
+    const sigma = props.sigma ?? 12;
+    if (!(props.edgeSize > 0) || !(sigma > 0)) {
+      return props.className ? /* @__PURE__ */ React.createElement("div", { className: props.className }, props.children) : /* @__PURE__ */ React.createElement(React.Fragment, null, props.children);
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-bottom-edge-blur${props.className ? ` ${props.className}` : ""}` }, props.children, /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: "ds-bottom-edge-blur__band",
+        "aria-hidden": true,
+        style: { height: props.edgeSize, "--ds-beb-sigma": `${sigma}px` }
+      }
+    ));
+  }
+
   // src/components/FeatureItem/FeatureItem.tsx
   init_react_shim();
   function FeatureItem(props) {
@@ -3197,9 +3216,70 @@ const hooks = () => window.React;
     ), /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__scrim" }), props.badge ? /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__badge" }, props.badge) : null, pageCount > 0 ? /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__pagecontrol" }, /* @__PURE__ */ React.createElement(Dots, { count: pageCount, active: props.activePage || 0 })) : null, /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__bottom" }, /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__copy" }, /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__title" }, props.title ?? ""), props.subtitle ? /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__subtitle" }, props.subtitle) : null, props.caption ? /* @__PURE__ */ React.createElement("div", { className: "ds-product-card__caption" }, /* @__PURE__ */ React.createElement("span", null, props.caption), props.captionPrevious ? /* @__PURE__ */ React.createElement("span", { className: "ds-product-card__caption-prev" }, props.captionPrevious) : null) : null), onActionClick ? /* @__PURE__ */ React.createElement("button", { type: "button", className: "ds-product-card__action", "aria-label": props.actionLabel ?? "Open", onClick: onActionClick }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.actionIcon || "ic-arrow-right", size: 20, color: "currentColor" })) : null));
   }
 
-  // src/components/UserItem/UserItem.tsx
+  // src/components/DotsGameCard/DotsGameCard.tsx
   init_react_shim();
   var import_react25 = __toESM(require_react(), 1);
+
+  // src/components/BadgeLabel/BadgeLabel.tsx
+  init_react_shim();
+  var VARIANTS7 = {
+    main: "main",
+    secondary: "secondary",
+    green: "green",
+    white: "white",
+    greenMaterial: "green-material",
+    warning: "warning",
+    warningMaterial: "warning-material",
+    red: "red",
+    premiumPlus: "premium-plus",
+    premium: "premium"
+  };
+  var SIZES4 = { large: true, medium: true, small: true };
+  function BadgeLabel(props) {
+    const size = props.size && SIZES4[props.size] ? props.size : "medium";
+    const variant = props.variant && VARIANTS7[props.variant] || VARIANTS7.main;
+    return /* @__PURE__ */ React.createElement("span", { className: `ds-badge-label ds-badge-label--${size} ds-badge-label--${variant}` }, props.badgeIcon ? /* @__PURE__ */ React.createElement("span", { className: "ds-badge-label__icon", "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.badgeIcon, size: 16, color: "currentColor" })) : null, /* @__PURE__ */ React.createElement("span", { className: "ds-badge-label__text" }, props.content));
+  }
+
+  // src/components/DotsGameCard/DotsGameCard.tsx
+  var BADGE_VARIANT = {
+    processing: "secondary",
+    error: "warningMaterial",
+    active: "greenMaterial"
+  };
+  function DotsGameCard(props) {
+    const status = props.status && BADGE_VARIANT[props.status] ? props.status : "active";
+    const [failedSrc, setFailedSrc] = (0, import_react25.useState)(null);
+    const imgError = !!props.imageSrc && failedSrc === props.imageSrc;
+    let art;
+    if (props.image) {
+      art = props.image;
+    } else if (props.imageSrc && !imgError) {
+      art = /* @__PURE__ */ React.createElement(
+        "img",
+        {
+          className: "ds-game-card__img",
+          src: props.imageSrc,
+          alt: props.imageAlt ?? "",
+          onError: () => setFailedSrc(props.imageSrc ?? null)
+        }
+      );
+    } else {
+      art = /* @__PURE__ */ React.createElement("div", { className: "ds-game-card__img ds-game-card__img--ph" });
+    }
+    let action;
+    if (status !== "processing") {
+      action = /* @__PURE__ */ React.createElement(DotsMainButton, { label: props.actionText, size: "large", expand: false, onClick: props.onActionClick });
+    } else {
+      const indicator = props.progressIndicator === void 0 ? /* @__PURE__ */ React.createElement("span", { className: "ds-game-card__spinner", "aria-hidden": true }) : props.progressIndicator;
+      action = /* @__PURE__ */ React.createElement("div", { className: "ds-game-card__processing" }, indicator ? /* @__PURE__ */ React.createElement("span", { className: "ds-game-card__progress" }, indicator) : null, /* @__PURE__ */ React.createElement("span", { className: "ds-game-card__progress-text" }, props.actionText));
+    }
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-game-card${props.className ? ` ${props.className}` : ""}` }, /* @__PURE__ */ React.createElement("div", { className: "ds-game-card__art" }, art), /* @__PURE__ */ React.createElement("div", { className: "ds-game-card__content" }, /* @__PURE__ */ React.createElement("div", { className: "ds-game-card__badge" }, /* @__PURE__ */ React.createElement(BadgeLabel, { content: props.badgeText, size: "medium", variant: BADGE_VARIANT[status] })), /* @__PURE__ */ React.createElement("div", { className: "ds-game-card__title" }, props.title ?? ""), /* @__PURE__ */ React.createElement("div", { className: "ds-game-card__desc" }, props.description ?? "")), /* @__PURE__ */ React.createElement("div", { className: "ds-game-card__action" }, action));
+  }
+
+  // src/components/UserItem/UserItem.tsx
+  init_react_shim();
+  var import_react26 = __toESM(require_react(), 1);
   function gradVariant3(seed) {
     const s = seed ?? "";
     let n = 0;
@@ -3214,7 +3294,7 @@ const hooks = () => window.React;
     return out.toUpperCase();
   }
   function UserInfo(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react25.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react26.useState)(null);
     const hasError = !!props.src && failedSrc === props.src;
     const size = props.size === "large" ? "large" : "small";
     const showImg = !!props.src && !hasError;
@@ -3255,7 +3335,7 @@ const hooks = () => window.React;
 
   // src/components/UsersList/UsersList.tsx
   init_react_shim();
-  var VARIANTS7 = {
+  var VARIANTS8 = {
     main: true,
     label: true,
     textfield: true,
@@ -3271,7 +3351,7 @@ const hooks = () => window.React;
     return /* @__PURE__ */ React.createElement(DotsMainButton, { label: label || "", variant, size: "small", expand: false, onClick });
   }
   function UsersListItem(props) {
-    const variant = VARIANTS7[props.variant] ? props.variant : "main";
+    const variant = VARIANTS8[props.variant] ? props.variant : "main";
     const tapValue = props.id ?? "";
     function tap() {
       props.onClick?.(tapValue);
@@ -3370,8 +3450,8 @@ const hooks = () => window.React;
 
   // src/components/ActivityPreview/ActivityPreview.tsx
   init_react_shim();
-  var import_react26 = __toESM(require_react(), 1);
-  var VARIANTS8 = { reactions: true, views: true, favs: true };
+  var import_react27 = __toESM(require_react(), 1);
+  var VARIANTS9 = { reactions: true, views: true, favs: true };
   var BADGE_COLORS = { reactions: "#FAA25E", views: "#9297EF", favs: "#F43C51" };
   function formatCount(count) {
     if (count >= 1e9) return (count / 1e9).toFixed(1) + "B";
@@ -3380,9 +3460,9 @@ const hooks = () => window.React;
     return String(count);
   }
   function ActivityPreview(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react26.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react27.useState)(null);
     const imgError = !!props.src && failedSrc === props.src;
-    const variant = props.variant && VARIANTS8[props.variant] ? props.variant : "reactions";
+    const variant = props.variant && VARIANTS9[props.variant] ? props.variant : "reactions";
     const isReactions = variant === "reactions";
     const showImg = !!props.src && !imgError;
     return /* @__PURE__ */ React.createElement(
@@ -3410,7 +3490,7 @@ const hooks = () => window.React;
     );
   }
   function ActivityOverviewItem(props) {
-    const variant = VARIANTS8[props.variant] ? props.variant : "reactions";
+    const variant = VARIANTS9[props.variant] ? props.variant : "reactions";
     const width = props.width ?? 53;
     const height = props.height ?? 68;
     const borderRadius = props.borderRadius ?? 12;
@@ -3420,7 +3500,7 @@ const hooks = () => window.React;
     const userImages = props.userImages || [];
     const count = props.count ?? 0;
     const reactionsCount = props.reactionsCount ?? 0;
-    const [failed, setFailed] = (0, import_react26.useState)(() => /* @__PURE__ */ new Set());
+    const [failed, setFailed] = (0, import_react27.useState)(() => /* @__PURE__ */ new Set());
     function markFailed(src) {
       setFailed((prev) => prev.has(src) ? prev : new Set(prev).add(src));
     }
@@ -3454,9 +3534,9 @@ const hooks = () => window.React;
 
   // src/components/ImageWithIcon/ImageWithIcon.tsx
   init_react_shim();
-  var import_react27 = __toESM(require_react(), 1);
+  var import_react28 = __toESM(require_react(), 1);
   function ImageWithIcon(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react27.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react28.useState)(null);
     const imgError = !!props.src && failedSrc === props.src;
     const width = props.width ?? 53;
     const height = props.height ?? 68;
@@ -3503,7 +3583,7 @@ const hooks = () => window.React;
 
   // src/components/MessagePreview/MessagePreview.tsx
   init_react_shim();
-  var import_react28 = __toESM(require_react(), 1);
+  var import_react29 = __toESM(require_react(), 1);
   var ATTACHMENT_ICONS = {
     image: "ic-pic",
     video: "ic-video",
@@ -3517,7 +3597,7 @@ const hooks = () => window.React;
     return "abcd"[n % 4];
   }
   function MessagePreview(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react28.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react29.useState)(null);
     const hasError = !!props.src && failedSrc === props.src;
     const album = props.album || "";
     const newMessages = props.newMessages || 0;
@@ -3573,10 +3653,10 @@ const hooks = () => window.React;
 
   // src/components/NotificationBannerImage/NotificationBannerImage.tsx
   init_react_shim();
-  var import_react29 = __toESM(require_react(), 1);
+  var import_react30 = __toESM(require_react(), 1);
   var BTN_SIZES = { mainAction: true, large: true, medium: true, small: true };
   function NotificationBannerImage(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react29.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react30.useState)(null);
     const imgError = !!props.src && failedSrc === props.src;
     const imagePadding = props.imagePadding ?? 20;
     const showClose = props.showCloseButton !== false;
@@ -3620,14 +3700,14 @@ const hooks = () => window.React;
 
   // src/components/BadgeIcon/BadgeIcon.tsx
   init_react_shim();
-  var SIZES4 = {
+  var SIZES5 = {
     large: { size: 44, iconSize: 24 },
     medium: { size: 36, iconSize: 20 },
     small: { size: 28, iconSize: 16 }
   };
   var STYLES = { white: true };
   function single(name, sizeName, style, iconColor2, onClick, posStyle, ariaLabel) {
-    const s = sizeName && SIZES4[sizeName] || SIZES4.large;
+    const s = sizeName && SIZES5[sizeName] || SIZES5.large;
     return /* @__PURE__ */ React.createElement(
       "span",
       {
@@ -3654,27 +3734,6 @@ const hooks = () => window.React;
       ) : null, icons.length === 3 ? single(icons[2], "small", props.style, colors[2], void 0, { left: "35px", bottom: "26px" }) : null);
     }
     return single(props.icon, props.size, props.style, props.iconColor, props.onClick, void 0, props.ariaLabel);
-  }
-
-  // src/components/BadgeLabel/BadgeLabel.tsx
-  init_react_shim();
-  var VARIANTS9 = {
-    main: "main",
-    secondary: "secondary",
-    green: "green",
-    white: "white",
-    greenMaterial: "green-material",
-    warning: "warning",
-    warningMaterial: "warning-material",
-    red: "red",
-    premiumPlus: "premium-plus",
-    premium: "premium"
-  };
-  var SIZES5 = { large: true, medium: true, small: true };
-  function BadgeLabel(props) {
-    const size = props.size && SIZES5[props.size] ? props.size : "medium";
-    const variant = props.variant && VARIANTS9[props.variant] || VARIANTS9.main;
-    return /* @__PURE__ */ React.createElement("span", { className: `ds-badge-label ds-badge-label--${size} ds-badge-label--${variant}` }, props.badgeIcon ? /* @__PURE__ */ React.createElement("span", { className: "ds-badge-label__icon", "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: props.badgeIcon, size: 16, color: "currentColor" })) : null, /* @__PURE__ */ React.createElement("span", { className: "ds-badge-label__text" }, props.content));
   }
 
   // src/components/BadgeMilestone/BadgeMilestone.tsx
@@ -3724,7 +3783,7 @@ const hooks = () => window.React;
     const selected = !!props.isSelected;
     return /* @__PURE__ */ React.createElement("div", { className: `ds-sel-card${selected ? " is-selected" : ""}`, role: "radio", "aria-checked": selected, ...pressable(props.onClick, "radio") }, /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__body ds-sel-card__body--gap10" }, /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__title" }, props.title), /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__detail" }, detailIcon(props.icon1 || "ic-clock-filled", props.icon1Size || 16), props.details1), /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__detail" }, detailIcon(props.icon2 || "ic-calendar", props.icon2Size || 16), props.details2)), visualRadio(selected, 24));
   }
-  var BADGE_VARIANT = {
+  var BADGE_VARIANT2 = {
     free: "main",
     acquired: "green",
     premium: "premium",
@@ -3733,7 +3792,7 @@ const hooks = () => window.React;
   function DotsSelectorRadioButtonLabel(props) {
     const selectable = props.isSelectable !== false;
     const selected = !!props.isSelected && selectable;
-    const variant = BADGE_VARIANT[props.variant] ? props.variant : "free";
+    const variant = BADGE_VARIANT2[props.variant] ? props.variant : "free";
     return /* @__PURE__ */ React.createElement(
       "div",
       {
@@ -3742,7 +3801,7 @@ const hooks = () => window.React;
         "aria-checked": selectable ? selected : void 0,
         ...selectable ? pressable(props.onClick, "radio") : {}
       },
-      /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__body ds-sel-card__body--gap8" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(BadgeLabel, { content: props.tagText, variant: BADGE_VARIANT[variant] })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__title-serif" }, props.title), /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__detail1" }, props.details1)), /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__detail2" }, props.details2)),
+      /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__body ds-sel-card__body--gap8" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(BadgeLabel, { content: props.tagText, variant: BADGE_VARIANT2[variant] })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__title-serif" }, props.title), /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__detail1" }, props.details1)), /* @__PURE__ */ React.createElement("div", { className: "ds-sel-card__detail2" }, props.details2)),
       selectable ? visualRadio(selected, 24) : null
     );
   }
@@ -3814,7 +3873,7 @@ const hooks = () => window.React;
 
   // src/components/MilestonesList/MilestonesList.tsx
   init_react_shim();
-  var import_react30 = __toESM(require_react(), 1);
+  var import_react31 = __toESM(require_react(), 1);
   var CARD_HEIGHT = 326;
   var BADGE_HEIGHT = 17;
   var TAIL_EXTENSION = 64;
@@ -3834,7 +3893,7 @@ const hooks = () => window.React;
   }
   function isCard(item) {
     if (typeof item === "string") return false;
-    if ((0, import_react30.isValidElement)(item)) return item.type !== BadgeMilestone;
+    if ((0, import_react31.isValidElement)(item)) return item.type !== BadgeMilestone;
     return true;
   }
   function itemHeight(item) {
@@ -3842,7 +3901,7 @@ const hooks = () => window.React;
   }
   function isSelectedCard(item) {
     if (typeof item === "string") return false;
-    if ((0, import_react30.isValidElement)(item)) return item.type === MilestoneCard && Boolean(item.props.isSelected);
+    if ((0, import_react31.isValidElement)(item)) return item.type === MilestoneCard && Boolean(item.props.isSelected);
     return Boolean(item.isSelected);
   }
   function verticalSpacing(curr, next, rand) {
@@ -3890,17 +3949,17 @@ const hooks = () => window.React;
   }
   function renderItem(item) {
     if (typeof item === "string") return /* @__PURE__ */ React.createElement(BadgeMilestone, { content: item, variant: "ghost" });
-    if ((0, import_react30.isValidElement)(item)) return item;
+    if ((0, import_react31.isValidElement)(item)) return item;
     return /* @__PURE__ */ React.createElement(MilestoneCard, { ...item, width: CARD_WIDTH });
   }
   function MilestonesList(props) {
     const list = props.list ?? [];
     const seed = props.seed ?? 1;
-    const ref = (0, import_react30.useRef)(null);
-    const itemRefs = (0, import_react30.useRef)([]);
-    const [measured, setMeasured] = (0, import_react30.useState)(props.width || 0);
+    const ref = (0, import_react31.useRef)(null);
+    const itemRefs = (0, import_react31.useRef)([]);
+    const [measured, setMeasured] = (0, import_react31.useState)(props.width || 0);
     const width = props.width || measured || 375;
-    (0, import_react30.useLayoutEffect)(() => {
+    (0, import_react31.useLayoutEffect)(() => {
       if (props.width) return;
       const el = ref.current;
       if (!el) return;
@@ -3911,9 +3970,9 @@ const hooks = () => window.React;
       observer.observe(el);
       return () => observer.disconnect();
     }, [props.width]);
-    const lay = (0, import_react30.useMemo)(() => layout(list, seed, width / 2), [list, seed, width]);
+    const lay = (0, import_react31.useMemo)(() => layout(list, seed, width / 2), [list, seed, width]);
     const selectedIndex = list.findIndex(isSelectedCard);
-    (0, import_react30.useEffect)(() => {
+    (0, import_react31.useEffect)(() => {
       if (selectedIndex < 0) return;
       const el = itemRefs.current[selectedIndex];
       if (el && typeof el.scrollIntoView === "function") el.scrollIntoView({ block: "center", behavior: "smooth" });
@@ -3934,7 +3993,7 @@ const hooks = () => window.React;
 
   // src/components/RecapCard/RecapCard.tsx
   init_react_shim();
-  var import_react31 = __toESM(require_react(), 1);
+  var import_react32 = __toESM(require_react(), 1);
   var VARIANTS11 = { active: true, blocked: true, generated: true, onlyTitle: true };
   var LOCKED_VARIANTS = { countdown: true, locked: true, soon: true };
   function pad22(n) {
@@ -3956,8 +4015,8 @@ const hooks = () => window.React;
     const width = props.width ?? 220;
     const parsed = locked && lockedVariant === "countdown" && props.countdownDate ? new Date(props.countdownDate).getTime() : 0;
     const target = Number.isFinite(parsed) ? parsed : 0;
-    const [, setTick] = (0, import_react31.useState)(0);
-    (0, import_react31.useEffect)(() => {
+    const [, setTick] = (0, import_react32.useState)(0);
+    (0, import_react32.useEffect)(() => {
       if (!target || target - Date.now() <= 0) return void 0;
       const id = setInterval(() => {
         if (target - Date.now() <= 0) clearInterval(id);
@@ -4020,13 +4079,13 @@ const hooks = () => window.React;
 
   // src/components/DotsPlanningItem/DotsPlanningItem.tsx
   init_react_shim();
-  var import_react32 = __toESM(require_react(), 1);
+  var import_react33 = __toESM(require_react(), 1);
   function row(item, key) {
     if (!item || !item.icon || item.text == null || !String(item.text).trim()) return null;
     return /* @__PURE__ */ React.createElement("span", { className: "ds-planning-item__row", key }, /* @__PURE__ */ React.createElement("span", { className: "ds-planning-item__row-icon", "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: item.icon, size: 16, color: "var(--label-primary)" })), /* @__PURE__ */ React.createElement("span", { className: `ds-planning-item__row-text${item.underline ? " is-underline" : ""}` }, item.text));
   }
   function DotsPlanningItem(props) {
-    const [internal, setInternal] = (0, import_react32.useState)(!!props.defaultExpanded);
+    const [internal, setInternal] = (0, import_react33.useState)(!!props.defaultExpanded);
     const controlled = props.expanded != null;
     const expanded = controlled ? !!props.expanded : internal;
     function toggle() {
@@ -4060,122 +4119,6 @@ const hooks = () => window.React;
 
 
 /* ── legacy (tool/design_sync/_src) ── */
-// DotsBottomEdgeBlur — port de lib/src/components/containers/dots_bottom_edge_blur.dart
-// (Dart = fuente de verdad)
-__ds.DotsBottomEdgeBlur = (function () {
-  'use strict';
-
-  function DotsBottomEdgeBlur(props) {
-    var edgeSize = props.edgeSize;
-    var sigma = props.sigma === undefined ? 12 : props.sigma;
-
-    // Dart: `if (edgeSize <= 0 || sigma <= 0) return child;` — devolvemos el hijo
-    // sin envolver, para no alterar su layout (margin collapsing, flex/grid…).
-    // Si llega className sí hace falta un contenedor donde aplicarlo, pero SIN la
-    // clase del componente: `ds-bottom-edge-blur` solo existe para que la banda
-    // absoluta tenga contenedor, y su `position: relative` crearía un containing
-    // block para descendientes absolutos que aquí no pinta nada.
-    if (!(edgeSize > 0) || !(sigma > 0)) {
-      return props.className
-        ? h('div', { className: props.className }, props.children)
-        : props.children;
-    }
-
-    // Hijos como argumentos posicionales (no como array): así React no los trata
-    // como lista y no exige `key` en el children que llegue de fuera.
-    return h(
-      'div',
-      { className: 'ds-bottom-edge-blur' + (props.className ? ' ' + props.className : '') },
-      props.children,
-      h('div', {
-        className: 'ds-bottom-edge-blur__band',
-        style: { height: edgeSize + 'px', '--ds-beb-sigma': sigma + 'px' },
-      })
-    );
-  }
-
-  return DotsBottomEdgeBlur;
-})();
-
-
-// DotsGameCard — port de lib/src/components/cards/game_card/game_card.dart (Dart = fuente de verdad)
-__ds.DotsGameCard = (function () {
-  'use strict';
-
-  // Dart _badgeVariant: un BadgeLabel distinto por estado.
-  var BADGE_VARIANT = {
-    processing: 'secondary',
-    error: 'warningMaterial',
-    active: 'greenMaterial',
-  };
-
-  function badge(text, variant) {
-    if (__ds.BadgeLabel) {
-      return h(__ds.BadgeLabel, { content: text, size: 'medium', variant: variant });
-    }
-    return h('span', { className: 'ds-game-card__badge-fb' }, text);
-  }
-
-  // El paquete Dart no trae spinner indeterminado y deja el indicador al host
-  // (DotsSpinner es determinado y pinta en blanco, invisible sobre bgStrong).
-  // Este anillo es solo el placeholder de diseño cuando no llega progressIndicator.
-  function defaultIndicator() {
-    return h('span', { className: 'ds-game-card__spinner' });
-  }
-
-  function action(props, status) {
-    if (status !== 'processing') {
-      return __ds.DotsMainButton
-        ? h(__ds.DotsMainButton, {
-            label: props.actionText,
-            size: 'large',
-            expand: false,
-            onClick: props.onActionClick,
-          })
-        : h('button', {
-            type: 'button',
-            className: 'ds-game-card__action-fb',
-            onClick: props.onActionClick,
-          }, props.actionText);
-    }
-    // Dart: en processing la card informa y NO se pulsa — onActionTap se ignora.
-    var indicator = props.progressIndicator === undefined
-      ? defaultIndicator()
-      : props.progressIndicator;
-    var row = [];
-    if (indicator) row.push(h('span', { key: 'pi', className: 'ds-game-card__progress' }, indicator));
-    row.push(h('span', { key: 'tx', className: 'ds-game-card__progress-text' }, props.actionText));
-    return h('div', { className: 'ds-game-card__processing' }, row);
-  }
-
-  function DotsGameCard(props) {
-    var status = props.status || 'active';
-
-    // Comprobación truthy (como los slots `badge`/`icon` de otros ports): cubre
-    // undefined, null y `false`, de modo que tanto `image={cond ? <X/> : null}`
-    // como `image={cond && <X/>}` caigan a imageSrc en vez de vaciar el artwork.
-    var art = props.image
-      ? props.image
-      : (props.imageSrc
-          ? h('img', { className: 'ds-game-card__img', src: props.imageSrc, alt: props.imageAlt || '' })
-          : h('div', { className: 'ds-game-card__img ds-game-card__img--ph' }));
-
-    return h('div', {
-      className: 'ds-game-card' + (props.className ? ' ' + props.className : ''),
-    }, [
-      h('div', { key: 'art', className: 'ds-game-card__art' }, art),
-      h('div', { key: 'content', className: 'ds-game-card__content' }, [
-        h('div', { key: 'badge', className: 'ds-game-card__badge' },
-          badge(props.badgeText, BADGE_VARIANT[status] || BADGE_VARIANT.active)),
-        h('div', { key: 'title', className: 'ds-game-card__title' }, props.title || ''),
-        h('div', { key: 'desc', className: 'ds-game-card__desc' }, props.description || ''),
-      ]),
-      h('div', { key: 'action', className: 'ds-game-card__action' }, action(props, status)),
-    ]);
-  }
-
-  return DotsGameCard;
-})();
 
 
 })();

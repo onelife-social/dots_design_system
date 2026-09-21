@@ -1,0 +1,86 @@
+/* DotsGameCard — card of a purchased game (game_card.dart).
+   Dart: width kAlbumLargeCardSize (340), squircle52, height follows the content. */
+.ds-game-card {
+  box-sizing: border-box;
+  width: 340px;
+  padding: 20px; /* _padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px; /* _blockGap */
+  background: var(--bg-strong);
+  border-radius: var(--squircle-52);
+  overflow: hidden; /* clipBehavior: Clip.antiAlias */
+  font-family: var(--font-main);
+  /* Figma's defaultShadow — NOT theme.styles.defaultShadow (0 6 blur20 #0000001A): the design ships
+     0 5 blur10 #00000014 and the Dart follows the design until they converge. No token. */
+  box-shadow: 0 5px 10px #00000014;
+}
+
+/* Fixed artwork box: _imageWidth × _imageHeight (138×100), the image fits without cropping (BoxFit.contain) */
+.ds-game-card__art { flex: none; width: 138px; height: 100px; }
+.ds-game-card__img { display: block; width: 100%; height: 100%; object-fit: contain; }
+/* Placeholder when there is no imageSrc, or it failed to load (gradient, no token — as in the other cards) */
+.ds-game-card__img--ph {
+  border-radius: var(--squircle-16);
+  background: linear-gradient(140deg, #96b4ce, #e0c3a4, #a08fb0);
+}
+
+.ds-game-card__content {
+  align-self: stretch;
+  padding: 0 16px; /* _contentPadding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* _contentGap */
+}
+
+/* typo.secondary.title02H4 (Mackinac 23/500, lh 1.26, ls -0.02) textPrimary */
+.ds-game-card__title {
+  font-family: var(--font-secondary);
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.26;
+  letter-spacing: -0.02px;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+/* typo.main.bodyDefaultRegular (14/400, lh 1.29, ls -0.02) textTertiary */
+.ds-game-card__desc {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.29;
+  letter-spacing: -0.02px;
+  color: var(--text-tertiary);
+  text-align: center;
+}
+
+/* processing variant: fixed-height row _actionHeight (44) with _actionGap (8) */
+.ds-game-card__processing {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ds-game-card__progress { display: inline-flex; align-items: center; }
+/* typo.main.bodyDefaultMedium (14/500, lh 1.29, ls -0.02) textPrimary */
+.ds-game-card__progress-text {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+  letter-spacing: -0.02px;
+  color: var(--text-primary);
+}
+
+/* Default ring (design placeholder; in the app the host passes its own indicator, like the
+   CircularProgressIndicator strokeWidth 2 of the Dart story) */
+.ds-game-card__spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--label-secondary);
+  border-top-color: var(--label-highlight);
+  animation: ds-game-card-spin 0.9s linear infinite;
+}
+@keyframes ds-game-card-spin { to { transform: rotate(360deg); } }

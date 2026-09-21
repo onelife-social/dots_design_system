@@ -40,6 +40,7 @@
 @import "./components/DotsSlider/DotsSlider.css";
 @import "./components/ColorSelector/ColorSelector.css";
 @import "./components/BlurContainer/BlurContainer.css";
+@import "./components/DotsBottomEdgeBlur/DotsBottomEdgeBlur.css";
 @import "./components/FeatureItem/FeatureItem.css";
 @import "./components/RatingRow/RatingRow.css";
 @import "./components/DotsEmptyStateCard/DotsEmptyStateCard.css";
@@ -57,6 +58,7 @@
 @import "./components/CreateCard/CreateCard.css";
 @import "./components/MemoryCard/MemoryCard.css";
 @import "./components/ProductCard/ProductCard.css";
+@import "./components/DotsGameCard/DotsGameCard.css";
 @import "./components/UserItem/UserItem.css";
 @import "./components/UsersList/UsersList.css";
 @import "./components/ActivityPreview/ActivityPreview.css";
