@@ -1,26 +1,21 @@
 import * as React from 'react';
 
-/**
- * DotsProgressBar — port web de DotsProgressBar (Flutter). Barra de progreso
- * convencional dividida en partes (segmentos redondeados de 5px de alto).
- */
 export interface DotsProgressBarProps {
-  /** Progreso 0..1 — Dart `percentage` */
-  percentage: number;
-  /** Número de segmentos (> 0) — Dart `parts`. Default: 3 */
-  parts?: number;
-  /** Ancho total (px si es number, o cualquier CSS) — Dart `width`. Default: '100%' */
-  width?: number | string;
-  /** Separación entre segmentos en px — Dart `spaceBetween`. Default: 5 */
-  spaceBetween?: number;
-  /** Color de la barra — Dart `barColor`. Default: labelHighlight */
-  barColor?: string;
-  /** Color de fondo de los segmentos — Dart `bgColor`. Default: labelSecondary */
-  bgColor?: string;
-  className?: string;
+    /** Progress 0..1 — Dart `percentage` */
+    percentage: number;
+    /** Number of segments (> 0) — Dart `parts` (default 3) */
+    parts?: number;
+    /** Total width, px when a number — Dart `width` (default '100%') */
+    width?: number | string;
+    /** Gap between segments in px — Dart `spaceBetween` (default 5) */
+    spaceBetween?: number;
+    /** CSS color of the bar — Dart `barColor` (default labelHighlight) */
+    barColor?: string;
+    /** CSS color of the segment background — Dart `bgColor` (default labelSecondary) */
+    bgColor?: string;
+    className?: string;
 }
-
-export declare const DotsProgressBar: React.ComponentType<DotsProgressBarProps> & {
-  /** Espejo del factory Dart `DotsProgressBar.byStep(stepNumber, totalSteps)` */
-  byStep(stepNumber: number, totalSteps: number): React.ReactElement;
-};
+export declare function DotsProgressBar(props: DotsProgressBarProps): import("react").JSX.Element;
+export declare namespace DotsProgressBar {
+    var byStep: (stepNumber: number, totalSteps: number) => import("react").JSX.Element;
+}

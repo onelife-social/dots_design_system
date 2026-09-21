@@ -1,29 +1,21 @@
 import * as React from 'react';
 
-/**
- * Item de DotsNavBar — espejo de DotsNavBarItem (Dart).
- */
+/** Dart DotsNavBarItem */
 export interface DotsNavBarItem {
-  /** Nombre real del icono del DS (assets/icons) — Dart `iconData`. Ej: 'ic-home' */
-  icon: string;
-  /** Etiqueta bajo el icono */
-  label: string;
-  /** Badge numérico sobre el icono — Dart `pendingNumber` (se muestra máx. 99) */
-  badge?: number;
+    /** Real DS icon name (assets/icons) — Dart `iconData`. E.g. 'ic-home' */
+    icon: string;
+    /** Label below the icon */
+    label: string;
+    /** Numeric badge over the icon — Dart `pendingNumber` (shown up to 99) */
+    badge?: number;
 }
-
-/**
- * DotsNavBar — port web de DotsNavBar (Flutter). Barra de navegación flotante
- * de 3 items con blur, píldora animada bajo el ítem activo y badge opcional.
- */
 export interface DotsNavBarProps {
-  /** Los 3 items. Default: Crear (ic-add) / Inicio (ic-home) / Galería (ic-gallery) */
-  items?: DotsNavBarItem[];
-  /** Índice del ítem activo (0..2). Default: 0 */
-  selectedIndex?: number;
-  /** Callback al pulsar un ítem — Dart `DotsNavBarItem.onTap` */
-  onSelect?: (index: number) => void;
-  className?: string;
+    /** The 3 items. Default: Crear (ic-add) / Inicio (ic-home) / Galería (ic-gallery) */
+    items?: DotsNavBarItem[];
+    /** Active item index (0..2). Default: 0 */
+    selectedIndex?: number;
+    /** Tap on an item — Dart `DotsNavBarItem.onTap` */
+    onSelect?: (index: number) => void;
+    className?: string;
 }
-
-export declare const DotsNavBar: React.ComponentType<DotsNavBarProps>;
+export declare function DotsNavBar(props: DotsNavBarProps): import("react").JSX.Element;

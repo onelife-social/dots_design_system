@@ -1,29 +1,23 @@
 import * as React from 'react';
 
-/**
- * DotsRichButton — port web de DotsRichButton (Flutter). Botón ancho con blur:
- * leading (icono o imagen), contenido central (título + detalles) y trailing
- * (texto o chevron `ic-chevron-right`).
- */
 export interface DotsRichButtonProps {
-  /** Tamaño — enum Dart DotsRichButtonSize (large 358×75 r100 · medium 358×60 r32 · small 248×60 r32) */
-  size: 'large' | 'medium' | 'small';
-  /** Tamaño del texto central — enum Dart DotsRichButtonTextSize */
-  textSize: 'large' | 'medium';
-  /** Nombre de icono DotsIcon leading (ej. `'ic-pics'`) — Dart `icon` */
-  icon?: string;
-  /** Color CSS del icono leading — Dart `iconColor` (default textSecondary) */
-  iconColor?: string;
-  /** URL de imagen leading 32×32 (prioridad sobre `icon`) — Dart `image` */
-  image?: string;
-  /** Texto principal — Dart `content` */
-  content: string;
-  /** Texto secundario bajo el principal — Dart `details` */
-  details?: string;
-  /** Texto trailing; si falta se muestra un chevron. Además activa el punto rojo — Dart `trailingText` */
-  trailingText?: string;
-  /** Pulsación — Dart `onTap` */
-  onClick?: () => void;
+    /** Size — Dart enum DotsRichButtonSize (large 358×75 r100 · medium 358×60 r32 · small 248×60 r32) */
+    size?: 'large' | 'medium' | 'small';
+    /** Center text size — Dart enum DotsRichButtonTextSize */
+    textSize?: 'large' | 'medium';
+    /** Leading DotsIcon name (e.g. 'ic-pics') — Dart `icon` */
+    icon?: string;
+    /** CSS color of the leading icon — Dart `iconColor` (default textSecondary) */
+    iconColor?: string;
+    /** Leading 32×32 image URL (takes precedence over `icon`) — Dart `image` */
+    image?: string;
+    /** Main text — Dart `content` */
+    content: string;
+    /** Secondary text under the main one — Dart `details` */
+    details?: string;
+    /** Trailing text; without it a chevron is shown. Also enables the red dot — Dart `trailingText` */
+    trailingText?: string;
+    /** Tap — Dart `onTap` */
+    onClick?: () => void;
 }
-
-export declare const DotsRichButton: React.ComponentType<DotsRichButtonProps>;
+export declare function DotsRichButton(props: DotsRichButtonProps): import("react").JSX.Element;

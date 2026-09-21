@@ -1,25 +1,24 @@
 import * as React from 'react';
 
-/**
- * DotsListItem — port web de DotsListsItem (Flutter). Fila de lista con miniatura
- * (imagen 40×40, avatar circular o icono), label con ellipsis y trailing opcional
- * (radio, check) o variante divider con título de sección.
- */
+import type { SyntheticEvent } from 'react';
+/** Dart enum DotsListsItemVariant */
+export type DotsListItemVariant = 'main' | 'selector' | 'icon' | 'check' | 'radioButton' | 'divider';
+/** Dart enum DotsListsItemPicType */
+export type DotsListItemPicType = 'album' | 'user';
 export interface DotsListItemProps {
-  /** Variante — enum Dart DotsListsItemVariant */
-  variant?: 'main' | 'selector' | 'icon' | 'check' | 'radioButton' | 'divider';
-  /** Texto de la fila (o de la sección en variant divider) */
-  label?: string;
-  /** URL/data URI de la imagen — Dart `image` (ImageProvider) */
-  imageSrc?: string;
-  /** Forma de la miniatura con imagen — enum Dart DotsListsItemPicType */
-  picType?: 'album' | 'user';
-  /** Nombre del icono (asset ic-…) si variant es icon o no hay imagen — Dart `iconData` */
-  iconName?: string;
-  /** Callback al pulsar la fila — Dart `onTap` */
-  onClick?: () => void;
-  /** Callback si la imagen de picType user falla al cargar — Dart `onError` */
-  onError?: (event: unknown) => void;
+    /** Variant — Dart enum DotsListsItemVariant (default 'main') */
+    variant?: DotsListItemVariant;
+    /** Row text (or section title in variant divider) */
+    label?: string;
+    /** Image URL/data URI — Dart `image` (ImageProvider) */
+    imageSrc?: string;
+    /** Thumbnail shape when there is an image — Dart enum DotsListsItemPicType (default 'album') */
+    picType?: DotsListItemPicType;
+    /** Icon name (asset ic-…) for variant icon or when there is no image — Dart `iconData` (default 'ic-user') */
+    iconName?: string;
+    /** Tap on the whole row — Dart `onTap` */
+    onClick?: () => void;
+    /** Image load error of picType user — Dart `onError` */
+    onError?: (event: SyntheticEvent<HTMLImageElement>) => void;
 }
-
-export declare const DotsListItem: React.ComponentType<DotsListItemProps>;
+export declare function DotsListItem(props: DotsListItemProps): import("react").JSX.Element;

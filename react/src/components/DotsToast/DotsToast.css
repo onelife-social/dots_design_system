@@ -1,0 +1,68 @@
+/* DotsToast — toast/dots_toast.dart. Container: bgContainerPrimary, border 1.4
+   borderAlert, squircle24, padding 16, toastShadow (blur 20 #00000033, BlurStyle.outer).
+   bgToast (DotsStyleColorDodge, blur 50) approximated: translucent bg + backdrop-filter. */
+.ds-toast {
+  isolation: isolate; /* keeps the __hit and control z-indices inside the component */
+  /* borderAlert has no token in tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart) */
+  --ds-border-alert: #FFFFFF4D;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: var(--squircle-24);
+  padding: 16px;
+  border: 1.4px solid var(--ds-border-alert);
+  background: var(--bg-container-primary);
+  box-shadow: 0 0 20px #00000033; /* toastShadow — no token in tokens.css (dots_styles.dart) */
+  backdrop-filter: blur(var(--blur-50));
+  -webkit-backdrop-filter: blur(var(--blur-50));
+  font-family: var(--font-main);
+}
+[data-theme="dark"] .ds-toast { --ds-border-alert: #6E6E6E4D; }
+.ds-toast--clickable { cursor: pointer; }
+
+/* onClick: transparent native button covering the toast (sibling of the content, which stays a
+   static live region). Only visible as a focus ring on keyboard focus. */
+.ds-toast__hit {
+  position: absolute; z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.ds-toast__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
+/* Ghost button (progress, isAction false) above the hit target so it receives its own clicks */
+.ds-toast__btn { position: relative; z-index: 2; }
+/* consumer slot: the wrapper generates no box (display: contents, so the column layout is
+   untouched); it is its children that get lifted above the __hit overlay — keep the `> *` rule. */
+.ds-toast__custom { display: contents; }
+.ds-toast__custom > * { position: relative; z-index: 2; }
+
+/* isAction: false — DotsToastInfo, 358 row with gap 12 */
+.ds-toast--info {
+  width: 358px; max-width: 100%;
+  display: flex; align-items: center; gap: 12px;
+}
+/* isAction: true — DotsToastAction, 160 column with gap 4 */
+.ds-toast--action {
+  width: 160px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; text-align: center;
+}
+
+/* typo.main.bodyDefaultMedium (Inter 14/500, h1.29, ls -0.02) textPrimary */
+.ds-toast__title {
+  font: 500 14px/1.29 var(--font-main); letter-spacing: -0.02px;
+  color: var(--text-primary);
+}
+.ds-toast--info .ds-toast__title { flex: 1; text-align: start; min-width: 0; }
+
+.ds-toast__icon { flex: none; display: inline-flex; }
+/* _RotatingIcon: full turn every 1s (variant progress, isAction false) */
+.ds-toast__icon--spin { animation: ds-toast-rot 1s linear infinite; }
+@keyframes ds-toast-rot { to { transform: rotate(360deg); } }

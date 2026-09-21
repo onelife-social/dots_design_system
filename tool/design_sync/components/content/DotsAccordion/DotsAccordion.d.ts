@@ -1,32 +1,26 @@
 import * as React from 'react';
 
-/**
- * DotsAccordion — port web de DotsAccordion (Flutter). Lista de secciones
- * plegables con cabecera (icono opcional + título + chevron animado), divisor
- * entre secciones y despliegue animado del contenido.
- */
+import { type ReactNode } from 'react';
 export interface DotsAccordionSection {
-  /** Título de la cabecera — bodyLargeMedium textPrimary */
-  title: string;
-  /** Contenido desplegado — Dart `content` (Widget) */
-  content?: React.ReactNode;
-  /** Nombre del icono (asset ic-…) a la izquierda del título — Dart `leadingIcon` */
-  leadingIcon?: string;
-  /** Abierta inicialmente */
-  expanded?: boolean;
+    /** Header title — bodyLargeMedium textPrimary */
+    title: string;
+    /** Expanded content — Dart `content` (Widget) */
+    content?: ReactNode;
+    /** Icon name (asset ic-…) left of the title — Dart `leadingIcon` */
+    leadingIcon?: string;
+    /** Initially open */
+    expanded?: boolean;
 }
-
 export interface DotsAccordionProps {
-  /** Secciones del acordeón */
-  sections: DotsAccordionSection[];
-  /** Solo una sección abierta a la vez */
-  singleOpen?: boolean;
-  /** Duración de la animación de despliegue en ms — Dart `animationDuration` */
-  animationDuration?: number;
-  /** Padding horizontal de 16px en cabeceras y contenido */
-  addHorizontalPadding?: boolean;
-  /** Extensión web: notifica el toggle de una sección */
-  onToggle?: (index: number, expanded: boolean) => void;
+    /** Accordion sections */
+    sections: DotsAccordionSection[];
+    /** Only one section open at a time (default true) */
+    singleOpen?: boolean;
+    /** Expand animation duration in ms — Dart `animationDuration` (default 180) */
+    animationDuration?: number;
+    /** 16px horizontal padding on headers and content (default true) */
+    addHorizontalPadding?: boolean;
+    /** Web extension: notifies the toggle of a section */
+    onToggle?: (index: number, expanded: boolean) => void;
 }
-
-export declare const DotsAccordion: React.ComponentType<DotsAccordionProps>;
+export declare function DotsAccordion(props: DotsAccordionProps): import("react").JSX.Element;

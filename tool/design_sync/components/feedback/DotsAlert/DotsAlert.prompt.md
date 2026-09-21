@@ -49,5 +49,5 @@ const { DotsAlert } = window.DotsDesignSystem_9e41da;
 - The Dart named factories (`DotsAlert.noButtons`, `.oneButton`, …, `.input`, `.selector`) map 1:1 to the `variant` prop.
 - `iconData` → `icon` (icon name string); `iconImage` (ImageProvider) → `iconImage` (URL); `mainButtonOnTap` → `onMainButtonClick`; `secondaryButtonOnTap` → `onSecondaryButtonClick`; `selectorItemList` (`List<DotsListItemModel>`) → `selectorItems` (`onTap` → `onClick`).
 - Deviation: in Dart the widget always paints a full-screen Stack with a 50% black scrim; the web port renders the bare card and offers the scrim via `showScrim` for composability.
-- Buttons are real `DotsMainButton`s (large, adaptPaddingForText); the X is a real `DotsCloseButton`; the input approximates `DotsTextFieldButton`, the selector rows approximate `DotsListsItem` (not ported yet).
+- Buttons are real `DotsMainButton`s (large, adaptPaddingForText); the X is a real `DotsCloseButton`; the input is a real `DotsTextFieldButton`; the selector rows approximate `DotsListsItem.main` (not ported yet).
 - Card: bgContainerSecondary, radius 32, border 1.4 borderAlert, padding 16; `bgAlert` color-dodge approximated with backdrop blur 50.

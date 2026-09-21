@@ -1,0 +1,113 @@
+/* DotsUploadItem — upload_items/dots_upload_item.dart · fila pad-y 8 · foto 64 squircle16 */
+.ds-upload-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  font-family: var(--font-main);
+}
+.ds-upload-item > .ds-squircle-photo {
+  flex: none;
+  margin-right: 12px;
+}
+.ds-upload-item__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ds-upload-item__body--processing {
+  padding-right: 10px;
+}
+/* textDate — bodyDefaultMedium 14/500, textPrimary */
+.ds-upload-item__date {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+  letter-spacing: -0.02px;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+/* processText — labelDefaultRegular 13/400, textSecondary · icono 14 + gap 3 */
+.ds-upload-item__process {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.ds-upload-item__process-icon {
+  flex: none;
+  display: flex;
+  margin-right: 3px;
+}
+@keyframes ds-upload-item-spin {
+  to { transform: rotate(360deg); }
+}
+.ds-upload-item__process-icon--spin {
+  animation: ds-upload-item-spin 1s linear infinite;
+}
+.ds-upload-item__process-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.31;
+  letter-spacing: -0.01px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* processTextMaxLines — Dart: 1 (default) one line with ellipsis; n > 1 clamps to n lines; null lets
+   the text wrap freely. Past one line the row top-aligns and the icon drops 2px onto the first line. */
+.ds-upload-item__process--multiline { align-items: flex-start; }
+.ds-upload-item__process--multiline .ds-upload-item__process-icon { padding-top: 2px; }
+.ds-upload-item__process-text--clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  overflow: hidden;
+  /* the prop exists for messages with a file name: a long token must break instead of overflowing */
+  overflow-wrap: anywhere;
+}
+.ds-upload-item__process-text--wrap {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
+}
+/* progreso — DotsProgressBar(parts: 1) + % textQuarternary */
+.ds-upload-item__progress {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+.ds-upload-item__progress-bar {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+}
+.ds-upload-item__progress-pct {
+  flex: none;
+  margin-left: 8px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.01px;
+  color: var(--text-quarternary);
+}
+/* timeElapsed — labelDefaultRegular, textQuarternary */
+.ds-upload-item__elapsed {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.31;
+  letter-spacing: -0.01px;
+  color: var(--text-quarternary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* botón derecho — gap 12 respecto al cuerpo */
+.ds-upload-item > .ds-main-btn {
+  flex: none;
+  margin-left: 12px;
+}

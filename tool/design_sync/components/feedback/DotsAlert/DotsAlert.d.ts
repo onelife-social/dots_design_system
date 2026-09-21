@@ -1,63 +1,51 @@
 import * as React from 'react';
 
-/**
- * DotsAlert — port web de DotsAlert (Flutter). Diálogo modal de 320px con icono
- * destacado, título/mensaje y acciones según variante (botones, input o selector).
- */
+/** Dart enum DotsAlertVariant */
+export type DotsAlertVariant = 'noButtons' | 'oneButton' | 'twoHorizontalButtons' | 'twoHorizontalButtonsDestructive' | 'twoVerticalButtons' | 'twoVerticalButtonsNoActive' | 'twoVerticalButtonsDestructive' | 'input' | 'selector';
+/** Dart DotsListItemModel (selector variant) */
 export interface DotsAlertSelectorItem {
-  /** Texto del ítem. Dart: DotsListItemModel.label */
-  label: string;
-  /** URL de la miniatura 40×40 (placeholder si se omite). Dart: DotsListItemModel.image */
-  image?: string;
-  /** Tap en el ítem. Dart: DotsListItemModel.onTap */
-  onClick?: () => void;
+    /** Dart `label` */
+    label: string;
+    /** 40×40 thumbnail URL (placeholder when omitted) — Dart `image` */
+    image?: string;
+    /** Dart `onTap` */
+    onClick?: () => void;
 }
-
 export interface DotsAlertProps {
-  /** Variante — enum Dart DotsAlertVariant (las factories DotsAlert.oneButton… se expresan aquí) */
-  variant?:
-    | 'noButtons'
-    | 'oneButton'
-    | 'twoHorizontalButtons'
-    | 'twoHorizontalButtonsDestructive'
-    | 'twoVerticalButtons'
-    | 'twoVerticalButtonsNoActive'
-    | 'twoVerticalButtonsDestructive'
-    | 'input'
-    | 'selector';
-  /** Nombre de icono DotsIcon del chip destacado. Dart: iconData */
-  icon: string;
-  /** URL de imagen 48×48 que sustituye al chip (fallback al chip si falla). Dart: iconImage */
-  iconImage?: string;
-  /** Título, bodyLargeBold (16/700). Dart: title */
-  title?: string;
-  /** Mensaje, bodyDefaultRegular (14/400). Dart: message */
-  message?: string;
-  /** Cierre (botón X y tap fuera con showScrim). Dart: onClose */
-  onClose?: () => void;
-  /** Con showScrim: tap fuera ejecuta onClose. Dart: enableCloseOnTapOutside */
-  enableCloseOnTapOutside?: boolean;
-  /** (input) Cambios del campo de texto. Dart: onInputChanged */
-  onInputChanged?: (value: string) => void;
-  /** (input) Placeholder del campo. Dart: inputHint */
-  inputHint?: string;
-  /** (selector) Ítems de la lista. Dart: selectorItemList */
-  selectorItems?: DotsAlertSelectorItem[];
-  /** Texto del botón principal. Dart: mainButtonText */
-  mainButtonText?: string;
-  /** Tap del botón principal. Dart: mainButtonOnTap */
-  onMainButtonClick?: () => void;
-  /** Texto del botón secundario. Dart: secondaryButtonText */
-  secondaryButtonText?: string;
-  /** Tap del botón secundario. Dart: secondaryButtonOnTap */
-  onSecondaryButtonClick?: () => void;
-  /** Muestra la X (DotsCloseButton medium softContrast). Dart: showCloseButton */
-  showCloseButton?: boolean;
-  /** Blur 50 tras la tarjeta (por defecto true). Dart: showBlurBackground */
-  showBlurBackground?: boolean;
-  /** Envuelve la tarjeta en un scrim fixed negro 50% centrado (en Dart siempre existe; aquí opt-in) */
-  showScrim?: boolean;
-  className?: string;
+    /** Dart enum DotsAlertVariant (default 'noButtons') */
+    variant?: DotsAlertVariant;
+    /** DotsIcon name of the 48px highlight chip — Dart `iconData` */
+    icon: string;
+    /** 48×48 image URL replacing the chip (falls back to the chip on error) — Dart `iconImage` */
+    iconImage?: string;
+    /** bodyLargeBold — Dart `title` */
+    title?: string;
+    /** bodyDefaultRegular; not shown by the input variant — Dart `message` */
+    message?: string;
+    /** Close (X button, and tap outside with `showScrim`) — Dart `onClose` */
+    onClose?: () => void;
+    /** With `showScrim`, tap outside runs onClose (default true) — Dart `enableCloseOnTapOutside` */
+    enableCloseOnTapOutside?: boolean;
+    /** (input) Text change — Dart `onInputChanged` */
+    onInputChanged?: (value: string) => void;
+    /** (input) Placeholder — Dart `inputHint` */
+    inputHint?: string;
+    /** (selector) Rows — Dart `selectorItemList` */
+    selectorItems?: DotsAlertSelectorItem[];
+    /** Dart `mainButtonText` */
+    mainButtonText?: string;
+    /** Dart `mainButtonOnTap` */
+    onMainButtonClick?: () => void;
+    /** Dart `secondaryButtonText` */
+    secondaryButtonText?: string;
+    /** Dart `secondaryButtonOnTap` */
+    onSecondaryButtonClick?: () => void;
+    /** Top-right DotsCloseButton (medium, softContrast) — Dart `showCloseButton` (default false) */
+    showCloseButton?: boolean;
+    /** Backdrop blur 50 behind the card — Dart `showBlurBackground` (default true) */
+    showBlurBackground?: boolean;
+    /** Fixed 50% black scrim with the card centered (always present in Dart; opt-in here) */
+    showScrim?: boolean;
+    className?: string;
 }
-
-export declare const DotsAlert: React.ComponentType<DotsAlertProps>;
+export declare function DotsAlert(props: DotsAlertProps): import("react").JSX.Element;
