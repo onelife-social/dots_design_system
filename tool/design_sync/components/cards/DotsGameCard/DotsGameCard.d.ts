@@ -1,29 +1,33 @@
 import * as React from 'react';
 
-/**
- * DotsGameCard — card de un juego comprado, una por acceso (Figma 11574:5112).
- * Comparte ancho (340) y esquina (squircle52) con AlbumGroupCard large para que
- * ambas lean como la misma familia en el feed; el alto lo marca el contenido.
- */
+import type { ReactNode } from 'react';
+/** Dart enum DotsGameCardStatus — provisioning state of the game the card represents */
+export type DotsGameCardStatus = 'processing' | 'error' | 'active';
 export interface DotsGameCardProps {
-  /** Estado de aprovisionamiento — enum Dart DotsGameCardStatus */
-  status: 'processing' | 'error' | 'active';
-  /** Artwork del juego; se dibuja en una caja de 138×100 sin recortar (BoxFit.contain) */
-  imageSrc?: string;
-  /** Alternativa a imageSrc: nodo propio — espejo del slot `image` (Widget) de Dart */
-  image?: React.ReactNode;
-  imageAlt?: string;
-  /** Copy del badge: PREPARANDO / NO DISPONIBLE / ACTIVO. La variante la elige `status` */
-  badgeText: string;
-  title: string;
-  description: string;
-  /** Texto del botón, o la etiqueta de progreso cuando `status` es 'processing' */
-  actionText: string;
-  /** Dart `onActionTap`. Se IGNORA con status 'processing': esa variante informa, no se pulsa */
-  onActionClick?: () => void;
-  /** Indicador para 'processing'. Sin él se pinta un anillo de 16px como placeholder de diseño */
-  progressIndicator?: React.ReactNode;
-  className?: string;
+    /** Which of the three variants to render — Dart enum DotsGameCardStatus. Picks the badge variant and the action block */
+    status: DotsGameCardStatus;
+    /** Game artwork URL, drawn inside a 138×100 box without cropping (BoxFit.contain). Without it, or if it fails to load, a gradient placeholder is painted */
+    imageSrc?: string;
+    /** Own node instead of `imageSrc` — mirror of the Dart `image` slot (Widget). Takes precedence when truthy */
+    image?: ReactNode;
+    /** Alt text of the `imageSrc` image (default '': decorative, the title names the game) */
+    imageAlt?: string;
+    /** Badge copy — `PREPARANDO` / `NO DISPONIBLE` / `ACTIVO`. The variant is chosen by `status` — Dart `badgeText` */
+    badgeText: string;
+    /** Mackinac 23/500, centered — Dart `title` */
+    title: string;
+    /** Inter 14/400 textTertiary, centered — Dart `description` */
+    description: string;
+    /** Button copy, or the progress label while `status` is 'processing' — Dart `actionText` */
+    actionText: string;
+    /** Dart `onActionTap`. IGNORED while `status` is 'processing': that variant reports progress and takes no tap */
+    onActionClick?: () => void;
+    /**
+     * Leading indicator of the 'processing' row — Dart `progressIndicator`. The package ships no
+     * indeterminate spinner (DotsSpinner is determinate), so the host passes its own. Omitted → a 16px
+     * ring is painted as design placeholder; `null` → no indicator at all.
+     */
+    progressIndicator?: ReactNode;
+    className?: string;
 }
-
-export declare const DotsGameCard: React.ComponentType<DotsGameCardProps>;
+export declare function DotsGameCard(props: DotsGameCardProps): import("react").JSX.Element;

@@ -916,6 +916,45 @@
 .ds-alert__actions--col { display: flex; flex-direction: column; align-items: stretch; }
 .ds-alert__actions--gap8 { gap: 8px; }
 
+/* ── DotsBottomEdgeBlur ── */
+/* DotsBottomEdgeBlur — progressive blur on the bottom edge (dots_bottom_edge_blur.dart).
+   The Dart paints a blurred copy of the child faded in with a vertical mask; on the web a
+   `backdrop-filter` band with the same mask gives the same result without duplicating the DOM. */
+.ds-bottom-edge-blur {
+  position: relative;
+}
+
+/* Band of height `edgeSize` pinned to the bottom. The mask replicates the Dart smoothstep
+   (_fadeOpacities 0 / .11 / .35 / .65 / .89 / 1 evenly spread over the band): no blur at the top of
+   the band, full sigma at the bottom. */
+.ds-bottom-edge-blur__band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none; /* Dart: IgnorePointer */
+  backdrop-filter: blur(var(--ds-beb-sigma, 12px));
+  -webkit-backdrop-filter: blur(var(--ds-beb-sigma, 12px));
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0) 0%,
+    rgb(0 0 0 / 0.11) 20%,
+    rgb(0 0 0 / 0.35) 40%,
+    rgb(0 0 0 / 0.65) 60%,
+    rgb(0 0 0 / 0.89) 80%,
+    rgb(0 0 0 / 1) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0) 0%,
+    rgb(0 0 0 / 0.11) 20%,
+    rgb(0 0 0 / 0.35) 40%,
+    rgb(0 0 0 / 0.65) 60%,
+    rgb(0 0 0 / 0.89) 80%,
+    rgb(0 0 0 / 1) 100%
+  );
+}
+
 /* ── DotsCalendar ── */
 /* DotsCalendar — inline month calendar (styles mirror CupertinoCalendarPickerUtils in onelife_app:
    mainTitle for days, primary for today/selected, onSurface @0.2 for disabled) */
@@ -1247,6 +1286,94 @@
   background-image: linear-gradient(var(--bg-secondary-btn), var(--bg-secondary-btn)),
     linear-gradient(#FFFFFF80, #FFFFFF80);
 }
+
+/* ── DotsGameCard ── */
+/* DotsGameCard — card of a purchased game (game_card.dart).
+   Dart: width kAlbumLargeCardSize (340), squircle52, height follows the content. */
+.ds-game-card {
+  box-sizing: border-box;
+  width: 340px;
+  padding: 20px; /* _padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px; /* _blockGap */
+  background: var(--bg-strong);
+  border-radius: var(--squircle-52);
+  overflow: hidden; /* clipBehavior: Clip.antiAlias */
+  font-family: var(--font-main);
+  /* Figma's defaultShadow — NOT theme.styles.defaultShadow (0 6 blur20 #0000001A): the design ships
+     0 5 blur10 #00000014 and the Dart follows the design until they converge. No token. */
+  box-shadow: 0 5px 10px #00000014;
+}
+
+/* Fixed artwork box: _imageWidth × _imageHeight (138×100), the image fits without cropping (BoxFit.contain) */
+.ds-game-card__art { flex: none; width: 138px; height: 100px; }
+.ds-game-card__img { display: block; width: 100%; height: 100%; object-fit: contain; }
+/* Placeholder when there is no imageSrc, or it failed to load (gradient, no token — as in the other cards) */
+.ds-game-card__img--ph {
+  border-radius: var(--squircle-16);
+  background: linear-gradient(140deg, #96b4ce, #e0c3a4, #a08fb0);
+}
+
+.ds-game-card__content {
+  align-self: stretch;
+  padding: 0 16px; /* _contentPadding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* _contentGap */
+}
+
+/* typo.secondary.title02H4 (Mackinac 23/500, lh 1.26, ls -0.02) textPrimary */
+.ds-game-card__title {
+  font-family: var(--font-secondary);
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.26;
+  letter-spacing: -0.02px;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+/* typo.main.bodyDefaultRegular (14/400, lh 1.29, ls -0.02) textTertiary */
+.ds-game-card__desc {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.29;
+  letter-spacing: -0.02px;
+  color: var(--text-tertiary);
+  text-align: center;
+}
+
+/* processing variant: fixed-height row _actionHeight (44) with _actionGap (8) */
+.ds-game-card__processing {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ds-game-card__progress { display: inline-flex; align-items: center; }
+/* typo.main.bodyDefaultMedium (14/500, lh 1.29, ls -0.02) textPrimary */
+.ds-game-card__progress-text {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+  letter-spacing: -0.02px;
+  color: var(--text-primary);
+}
+
+/* Default ring (design placeholder; in the app the host passes its own indicator, like the
+   CircularProgressIndicator strokeWidth 2 of the Dart story) */
+.ds-game-card__spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--label-secondary);
+  border-top-color: var(--label-highlight);
+  animation: ds-game-card-spin 0.9s linear infinite;
+}
+@keyframes ds-game-card-spin { to { transform: rotate(360deg); } }
 
 /* ── DotsHomeTopBar ── */
 /* DotsHomeTopBar — navigation/home_top_bar.dart · big 106 (50 status + main 56) / normal 50 */
@@ -4457,146 +4584,5 @@
   display: flex;
   align-items: center;
   gap: 4px;
-}
-
-/* ── DotsBottomEdgeBlur ── */
-/* DotsBottomEdgeBlur — desenfoque progresivo en el borde inferior.
-   El Dart pinta una copia borrosa del hijo y la funde con una máscara vertical
-   (dejó atrás BackdropFilter por el shimmer de Impeller al hacer scroll). En web
-   no existe ese problema y `backdrop-filter` da el mismo resultado sin duplicar
-   el DOM — por eso el port no necesita el `blurChild` del Dart. */
-.ds-bottom-edge-blur {
-  position: relative;
-}
-
-/* Banda de alto `edgeSize` pegada abajo. La máscara replica el smoothstep del
-   Dart (_fadeOpacities 0 / .11 / .35 / .65 / .89 / 1 repartidos por la banda):
-   arriba no hay desenfoque y abajo está al máximo. */
-.ds-bottom-edge-blur__band {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;          /* Dart: IgnorePointer */
-  backdrop-filter: blur(var(--ds-beb-sigma, 12px));
-  -webkit-backdrop-filter: blur(var(--ds-beb-sigma, 12px));
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgb(0 0 0 / 0) 0%,
-    rgb(0 0 0 / 0.11) 20%,
-    rgb(0 0 0 / 0.35) 40%,
-    rgb(0 0 0 / 0.65) 60%,
-    rgb(0 0 0 / 0.89) 80%,
-    rgb(0 0 0 / 1) 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    rgb(0 0 0 / 0) 0%,
-    rgb(0 0 0 / 0.11) 20%,
-    rgb(0 0 0 / 0.35) 40%,
-    rgb(0 0 0 / 0.65) 60%,
-    rgb(0 0 0 / 0.89) 80%,
-    rgb(0 0 0 / 1) 100%
-  );
-}
-
-/* ── DotsGameCard ── */
-/* DotsGameCard — card de juego comprado.
-   Dart: ancho kAlbumLargeCardSize (340), squircle52, alto según contenido. */
-.ds-game-card {
-  box-sizing: border-box;
-  width: 340px;
-  padding: 20px;                    /* _padding */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;                        /* _blockGap */
-  background: var(--bg-strong);
-  border-radius: var(--squircle-52);
-  overflow: hidden;                 /* clipBehavior: Clip.antiAlias */
-  font-family: var(--font-main);
-  /* defaultShadow de Figma — NO es theme.styles.defaultShadow (0 6 blur20 #0000001A):
-     el diseño manda 0 5 blur10 #00000014 y el Dart sigue al diseño. Sin token. */
-  box-shadow: 0 5px 10px #00000014;
-}
-
-/* Caja fija del artwork: 138×100, la imagen se ajusta sin recortar (BoxFit.contain) */
-.ds-game-card__art { flex: none; width: 138px; height: 100px; }
-.ds-game-card__img { display: block; width: 100%; height: 100%; object-fit: contain; }
-/* Placeholder cuando no llega imageSrc (degradado, sin token — como en las demás cards) */
-.ds-game-card__img--ph {
-  border-radius: var(--squircle-16);
-  background: linear-gradient(140deg, #96b4ce, #e0c3a4, #a08fb0);
-}
-
-.ds-game-card__content {
-  align-self: stretch;
-  padding: 0 16px;                  /* _contentPadding */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;                        /* _contentGap */
-}
-
-/* typo.secondary.title02H4 */
-.ds-game-card__title {
-  font-family: var(--font-secondary);
-  font-size: 23px;
-  font-weight: 500;
-  line-height: 1.26;
-  letter-spacing: -0.02px;
-  color: var(--text-primary);
-  text-align: center;
-}
-
-/* typo.main.bodyDefaultRegular */
-.ds-game-card__desc {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.29;
-  letter-spacing: -0.02px;
-  color: var(--text-tertiary);
-  text-align: center;
-}
-
-/* Variante processing: fila de alto fijo 44 (_actionHeight), gap 8 (_actionGap) */
-.ds-game-card__processing {
-  height: 44px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.ds-game-card__progress { display: inline-flex; align-items: center; }
-/* typo.main.bodyDefaultMedium */
-.ds-game-card__progress-text {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.29;
-  letter-spacing: -0.02px;
-  color: var(--text-primary);
-}
-
-/* Anillo por defecto (placeholder de diseño; en la app el host pasa el suyo,
-   como el CircularProgressIndicator strokeWidth 2 de la story) */
-.ds-game-card__spinner {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 2px solid var(--label-secondary);
-  border-top-color: var(--label-highlight);
-  animation: ds-game-card-spin 0.9s linear infinite;
-}
-@keyframes ds-game-card-spin { to { transform: rotate(360deg); } }
-
-/* Fallbacks si el bundle se compilara sin BadgeLabel / DotsMainButton */
-.ds-game-card__badge-fb {
-  display: inline-flex; align-items: center; height: 22px; padding: 0 10px;
-  border-radius: 22px; background: var(--bg-container-secondary);
-  font-size: 11px; font-weight: 600; color: var(--text-secondary);
-}
-.ds-game-card__action-fb {
-  height: 44px; padding: 0 24px; border: 0; border-radius: 44px;
-  background: var(--label-highlight); color: var(--label-always-white);
-  font-family: var(--font-main); font-size: 14px; font-weight: 500; cursor: pointer;
 }
 
