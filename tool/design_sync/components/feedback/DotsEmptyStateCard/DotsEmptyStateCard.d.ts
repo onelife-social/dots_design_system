@@ -1,33 +1,31 @@
 import * as React from 'react';
 
-/**
- * DotsEmptyStateCard — port web de DotsEmptyStateCard (Flutter). Estado vacío
- * centrado: imagen o icono, título editorial, descripción y botón opcional.
- */
+import type { ReactNode } from 'react';
+/** Dart enum DotsEmptyStateCardVariant */
+export type DotsEmptyStateCardVariant = 'image' | 'icon';
 export interface DotsEmptyStateCardProps {
-  /** Variante — enum Dart DotsEmptyStateCardVariant */
-  variant: 'image' | 'icon';
-  /** URL de la imagen (variante image). Dart: imageProvider */
-  image?: string;
-  /** Icono (variante icon): nombre DotsIcon (48px textQuarternary) o nodo React. Dart: icon (DotsIcon) */
-  icon?: string | React.ReactNode;
-  /** Título, title02H5 (P22 Mackinac 20/500). Dart: title */
-  title: string;
-  /** Descripción, bodyDefaultRegular textQuarternary. Dart: description */
-  description: string;
-  /** Color CSS del título. Dart: titleColor */
-  titleColor?: string;
-  /** Color CSS de la descripción. Dart: descriptionColor */
-  descriptionColor?: string;
-  /** Botón opcional (normalmente un DotsMainButton). Dart: button */
-  button?: React.ReactNode;
-  /** Espacio extra (px) tras la imagen. Dart: extraSpaceAfterImage */
-  extraSpaceAfterImage?: number;
-  /** Ancho (px) de la imagen. Dart: imageWidth */
-  imageWidth?: number;
-  /** Descripción rica renderizada en lugar de description (que queda como aria-label). Dart: descriptionSpans */
-  descriptionSpans?: React.ReactNode;
-  className?: string;
+    /** Variant — Dart enum DotsEmptyStateCardVariant */
+    variant: DotsEmptyStateCardVariant;
+    /** Image URL (variant image) — Dart `imageProvider` */
+    image?: string;
+    /** Variant icon: DotsIcon name (48px textQuarternary) or a prebuilt node — Dart `icon` (a DotsIcon) */
+    icon?: string | ReactNode;
+    /** Title, title02H5 (P22 Mackinac 20/500) — Dart `title` */
+    title: string;
+    /** Description, bodyDefaultRegular textQuarternary — Dart `description` */
+    description: string;
+    /** CSS color of the title — Dart `titleColor` */
+    titleColor?: string;
+    /** CSS color of the description — Dart `descriptionColor` */
+    descriptionColor?: string;
+    /** Optional button (usually a DotsMainButton) — Dart `button` */
+    button?: ReactNode;
+    /** Extra space (px) after the image — Dart `extraSpaceAfterImage` */
+    extraSpaceAfterImage?: number;
+    /** Image width (px) — Dart `imageWidth` */
+    imageWidth?: number;
+    /** Rich description rendered instead of `description` (kept as aria-label) — Dart `descriptionSpans` */
+    descriptionSpans?: ReactNode;
+    className?: string;
 }
-
-export declare const DotsEmptyStateCard: React.ComponentType<DotsEmptyStateCardProps>;
+export declare function DotsEmptyStateCard(props: DotsEmptyStateCardProps): import("react").JSX.Element;

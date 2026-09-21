@@ -1,0 +1,44 @@
+/* NotificationBanner — port de lib/src/components/notifications/notification_banner.dart (Dart = fuente de verdad) */
+
+.ds-notif-banner {
+  position: relative;
+  box-sizing: border-box;
+  background: var(--bg-container-secondary-on-bg); /* bgContainerSecondaryOnBackground */
+  border-radius: 24px;
+  padding: 20px 20px 16px; /* top 20 · sides 20 · bottom 16 */
+  text-align: center;
+  font-family: var(--font-main);
+}
+
+/* title — typo.main.bodyLargeBold (16/700, lh 1.31, ls -0.05) + pad horizontal 16 */
+.ds-notif-banner__title {
+  margin: 0 16px 8px; /* SizedBox(height: 8) tras el título */
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.31;
+  letter-spacing: -0.05px;
+  color: var(--text-primary);
+}
+
+/* body — typo.main.bodyDefaultRegular (14/400, lh 1.29, ls -0.02) */
+.ds-notif-banner__body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.29;
+  letter-spacing: -0.02px;
+  color: var(--text-secondary);
+}
+
+/* SizedBox(height: 16) antes del botón · Center */
+.ds-notif-banner__action {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Positioned(top: 12, right: 12) */
+.ds-notif-banner__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}

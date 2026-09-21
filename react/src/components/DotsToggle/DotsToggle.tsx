@@ -10,6 +10,10 @@ export interface DotsToggleProps {
   onChanged?: (isSelected: boolean) => void;
   /** Disabled (web extension; the Dart widget does not expose it) */
   disabled?: boolean;
+  /** Accessible name: the switch has no text of its own (web extension, localizable) */
+  ariaLabel?: string;
+  /** Id of the element that names the switch (alternative to `ariaLabel`) */
+  ariaLabelledBy?: string;
 }
 
 export function DotsToggle(props: DotsToggleProps) {
@@ -26,6 +30,8 @@ export function DotsToggle(props: DotsToggleProps) {
       type="button"
       role="switch"
       aria-checked={selected}
+      aria-label={props.ariaLabel}
+      aria-labelledby={props.ariaLabelledBy}
       disabled={!!props.disabled}
       className={`ds-toggle${selected ? ' is-on' : ''}${props.disabled ? ' is-disabled' : ''}`}
       onClick={handleClick}

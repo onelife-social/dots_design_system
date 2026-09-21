@@ -1,20 +1,16 @@
 import * as React from 'react';
 
-/**
- * MemoryCard — port web de MemoryCard (Flutter). Miniatura vertical de recuerdo pendiente
- * del home (68px de ancho) con borde degradado (verde = memory, sweep multicolor = recap)
- * y nombre del grupo debajo.
- */
+/** Dart enum MemoryCardVariant */
+export type MemoryCardVariant = 'memory' | 'recap';
 export interface MemoryCardProps {
-  /** URL de la foto (Dart image: Widget). Sin ella se pinta un placeholder degradado */
-  imageSrc?: string;
-  /** Nombre del grupo bajo la tarjeta */
-  groupName: string;
-  /** Variante del borde — enum Dart MemoryCardVariant */
-  variant?: 'memory' | 'recap';
-  /** Tap en la tarjeta (Dart onTap) */
-  onClick?: () => void;
-  className?: string;
+    /** Photo URL (Dart image: Widget). Without it a gradient placeholder is painted */
+    imageSrc?: string;
+    /** Group name under the card */
+    groupName: string;
+    /** Border variant — Dart enum MemoryCardVariant (default 'memory') */
+    variant?: MemoryCardVariant;
+    /** Tap on the card (Dart onTap) */
+    onClick?: () => void;
+    className?: string;
 }
-
-export declare const MemoryCard: React.ComponentType<MemoryCardProps>;
+export declare function MemoryCard(props: MemoryCardProps): import("react").JSX.Element;

@@ -86,10 +86,10 @@ cd react && npm install && npm run build
 
 - Ported components live in `react/src/components/<Name>/` (TSX + CSS). Their
   `.d.ts` card file is regenerated from the TSX by the build.
-- Components not yet ported still live in `_src/<Name>/` in the legacy
-  `impl.js` + CSS format (see `_src/CONVENTIONS.md`); the build concatenates
-  both sets into `_ds_bundle.js`. Porting a component = writing it in
-  `react/src/components/` and deleting its `_src/<Name>/` dir.
+- Every bundle component is now TSX; `_src/` only keeps `CONVENTIONS.md` for
+  history. A new Dart widget gets its port in `react/src/components/<Name>/`
+  (TSX + CSS + card in `components/<group>/<Name>/`) and `npm run build`
+  regenerates the bundle.
 - `foundations/tokens.css` and `assets/fonts/` are copied from `react/src/`
   (single source; edit them there).
 - Cards carry a first-line `<!-- @dsCard group="…" -->` marker.

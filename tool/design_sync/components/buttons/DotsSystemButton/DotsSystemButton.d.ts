@@ -1,35 +1,28 @@
 import * as React from 'react';
 
-/**
- * DotsSystemButton — port web de DotsSystemButton (Flutter). Botón de sistema
- * translúcido (fondo bgContainerSecondaryOnBackground + blur, radio 16) con
- * variantes active / disabled / destructive e icono opcional.
- */
-
-/** Enum Dart DotsSystemButtonVariant */
+import type { MouseEvent } from 'react';
+/** Dart enum DotsSystemButtonVariant */
 export type DotsSystemButtonVariant = 'active' | 'disabled' | 'destructive';
-
-/** Enum Dart DotsSystemButtonSize (único valor: medium, altura 44) */
+/** Dart enum DotsSystemButtonSize (single value: medium, height 44) */
 export type DotsSystemButtonSize = 'medium';
-
 export interface DotsSystemButtonProps {
-  /** Texto del botón — Dart `content` */
-  label: string;
-  /** Nombre de icono DotsIcon (p.ej. 'ic-add') — Dart `icon: DotsIconData` */
-  icon?: string;
-  /** Tamaño — enum Dart DotsSystemButtonSize (default y único: 'medium') */
-  size?: DotsSystemButtonSize;
-  /**
-   * Variante — enum Dart DotsSystemButtonVariant (default 'active').
-   * Ojo: 'disabled' es solo visual, el botón sigue emitiendo onClick (igual que en Dart).
-   */
-  variant?: DotsSystemButtonVariant;
-  /** Callback de tap — Dart `onTap` */
-  onClick?: (e?: unknown) => void;
-  /** Ocupa todo el ancho (equivale al Row mainAxisSize.max de Flutter llenando al padre) */
-  expand?: boolean;
-  /** Clase CSS extra */
-  className?: string;
+    /** Button text — Dart `content` */
+    label: string;
+    /** DotsIcon name (e.g. 'ic-add') — Dart `icon: DotsIconData` */
+    icon?: string;
+    /** Size — Dart enum DotsSystemButtonSize (default and only value: 'medium') */
+    size?: DotsSystemButtonSize;
+    /**
+     * Variant — Dart enum DotsSystemButtonVariant (default 'active').
+     * 'disabled' is visual-only, as in Dart (InkWell.onTap is wired regardless of the variant): the
+     * button stays enabled, exposes no `disabled`/`aria-disabled`, and still emits onClick.
+     */
+    variant?: DotsSystemButtonVariant;
+    /** Tap callback — Dart `onTap`. Receives the native click event (a `() => void` is also assignable) */
+    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+    /** Full width (the Flutter Row mainAxisSize.max filling the parent) */
+    expand?: boolean;
+    /** Extra CSS class */
+    className?: string;
 }
-
-export declare const DotsSystemButton: React.ComponentType<DotsSystemButtonProps>;
+export declare function DotsSystemButton(props: DotsSystemButtonProps): import("react").JSX.Element;
