@@ -58,6 +58,7 @@
 @import "./components/CreateCard/CreateCard.css";
 @import "./components/MemoryCard/MemoryCard.css";
 @import "./components/ProductCard/ProductCard.css";
+@import "./components/DotsGameCard/DotsGameCard.css";
 @import "./components/UserItem/UserItem.css";
 @import "./components/UsersList/UsersList.css";
 @import "./components/ActivityPreview/ActivityPreview.css";

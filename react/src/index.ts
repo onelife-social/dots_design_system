@@ -132,6 +132,8 @@ export { MemoryCard } from './components/MemoryCard/MemoryCard';
 export type { MemoryCardProps, MemoryCardVariant } from './components/MemoryCard/MemoryCard';
 export { ProductCard } from './components/ProductCard/ProductCard';
 export type { ProductCardProps } from './components/ProductCard/ProductCard';
+export { DotsGameCard } from './components/DotsGameCard/DotsGameCard';
+export type { DotsGameCardProps, DotsGameCardStatus } from './components/DotsGameCard/DotsGameCard';
 export { UserItem, UserInfo } from './components/UserItem/UserItem';
 export type { UserItemProps, UserInfoProps, UserInfoSize } from './components/UserItem/UserItem';
 export { UsersList, UsersListItem } from './components/UsersList/UsersList';
