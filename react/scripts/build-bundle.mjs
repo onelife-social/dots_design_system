@@ -116,9 +116,17 @@ execSync(`npx tsc -p tsconfig.json --noEmit false --emitDeclarationOnly --declar
 for (const n of ported) {
   const gen = join(typesDir, 'components', n, `${n}.d.ts`);
   if (!existsSync(gen)) continue;
-  const txt = readFileSync(gen, 'utf8');
-  if (/from '\.{1,2}\//.test(txt)) {
-    console.warn(`! ${n}.d.ts keeps the hand-written card copy (generated one has relative imports)`);
+  // A type re-exported from a sibling component (`from '../Dep/Dep'`) is rewritten to that
+  // component's own card (`components/<group>/Dep/Dep.d.ts`); any other relative import cannot be
+  // resolved in the card layout, so the hand-written copy is kept (with a warning).
+  const txt = readFileSync(gen, 'utf8').replace(/from '\.\.\/([A-Za-z0-9]+)\/\1'/g, (m, dep) =>
+    groupOf[dep] ? `from '../../${groupOf[dep]}/${dep}/${dep}'` : m,
+  );
+  const unresolved = [...txt.matchAll(/from '(\.{1,2}\/[^']*)'/g)]
+    .map((m) => m[1])
+    .filter((spec) => !/^\.\.\/\.\.\/[A-Za-z0-9]+\/([A-Za-z0-9]+)\/\1$/.test(spec));
+  if (unresolved.length) {
+    console.warn(`! ${n}.d.ts keeps the hand-written card copy (unresolvable relative imports: ${unresolved.join(', ')})`);
     continue;
   }
   writeFileSync(join(COMP_ROOT, groupOf[n], n, `${n}.d.ts`), `import * as React from 'react';\n\n${txt}`);
