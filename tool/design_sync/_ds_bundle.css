@@ -2863,6 +2863,9 @@
 .ds-toast__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
 /* Ghost button (progress, isAction false) above the hit target so it receives its own clicks */
 .ds-toast__btn { position: relative; z-index: 2; }
+/* consumer slot: above the __hit overlay so interactive content inside stays clickable */
+.ds-toast__custom { position: relative; z-index: 2; display: contents; }
+.ds-toast__custom > * { position: relative; z-index: 2; }
 
 /* isAction: false — DotsToastInfo, 358 row with gap 12 */
 .ds-toast--info {
@@ -2987,6 +2990,8 @@
 /* Tail — 21×13, fill bgBaseContrast, stroke 2 bgContainerSecondary */
 .ds-tooltip__tail { position: absolute; width: 21px; height: 13px; }
 .ds-tooltip__tail path { fill: var(--bg-base-contrast); stroke: var(--bg-container-secondary); }
+/* consumer icon slot: above the __hit overlay so interactive content inside stays clickable */
+.ds-tooltip__icon { position: relative; z-index: 2; display: inline-flex; }
 
 /* ── DotsTopBar ── */
 /* DotsTopBar — navigation/top_bar.dart · normal 50 (kTopBarNormalHeight) / big 106 (50 status + 56 content) */
@@ -4037,7 +4042,7 @@
     rgb(39 39 39 / var(--scrim-end-alpha))
   );
 }
-.ds-product-card__badge { position: absolute; top: 20px; right: 20px; }
+.ds-product-card__badge { position: absolute; top: 20px; right: 20px; z-index: 2; } /* above __hit: badge content stays clickable */
 /* PageControl: 20 por encima del título (bottom 20 + copy 62 + gap 20, ver Dart) */
 .ds-product-card__pagecontrol {
   position: absolute; left: 0; right: 0; bottom: 102px;
