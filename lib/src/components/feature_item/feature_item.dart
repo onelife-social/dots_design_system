@@ -11,6 +11,9 @@ class FeatureItem extends StatelessWidget {
   /// Icon used by the default constructor.
   final DotsIconData? icon;
 
+  /// Colour of the icon. Defaults to `textQuarternary`.
+  final Color? iconColor;
+
   /// Custom leading widget used by the variant `FeatureItem.image`.
   final Widget? image;
 
@@ -18,6 +21,7 @@ class FeatureItem extends StatelessWidget {
     super.key,
     required this.feature,
     this.value,
+    this.iconColor,
     required DotsIconData this.icon,
   }) : image = null;
 
@@ -26,7 +30,8 @@ class FeatureItem extends StatelessWidget {
     required this.feature,
     this.value,
     required Widget this.image,
-  }) : icon = null;
+  }) : icon = null,
+       iconColor = null;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,11 @@ class FeatureItem extends StatelessWidget {
     return Row(
       spacing: 8,
       children: [
-        _Leading(icon: icon, iconColor: theme.colors.textQuarternary, image: image),
+        _Leading(
+          icon: icon,
+          iconColor: iconColor ?? theme.colors.textQuarternary,
+          image: image,
+        ),
         Expanded(
           flex: value == null ? 1 : 6,
           child: Text(
