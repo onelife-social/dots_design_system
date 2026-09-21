@@ -127,10 +127,15 @@ for (const rel of files) {
       continue;
     }
     const port = aliases[cls] ?? cls;
-    const hasImpl = existsSync(join(SYNC_DIR, '_src', port, `${port}.impl.js`));
+    // The web port lives in the React package (react/src/components/<Name>/<Name>.tsx); the legacy
+    // _src/<Name>/<Name>.impl.js layout is still accepted while any of those remain.
+    const tsx = join(REPO, 'react', 'src', 'components', port, `${port}.tsx`);
+    const legacy = join(SYNC_DIR, '_src', port, `${port}.impl.js`);
+    const impl = existsSync(tsx) ? `react/src/components/${port}/` : existsSync(legacy) ? `tool/design_sync/_src/${port}/` : null;
+    const hasImpl = impl !== null;
     const card = findCard(port);
     if (hasImpl && card) {
-      console.log(`  ✓ ${cls} → tool/design_sync/_src/${port}/ + ${card}`);
+      console.log(`  ✓ ${cls} → ${impl} + ${card}`);
     } else {
       missing.push({ cls, port, rel, hasImpl, card });
     }
@@ -150,20 +155,21 @@ if (!missing.length) {
 
 for (const { cls, port, rel, hasImpl, card } of missing) {
   const falta = !hasImpl && !card
-    ? `Faltan tool/design_sync/_src/${port}/${port}.impl.js y su tarjeta tool/design_sync/components/<grupo>/${port}/${port}.html`
+    ? `Faltan react/src/components/${port}/${port}.tsx y su tarjeta tool/design_sync/components/<grupo>/${port}/${port}.html`
     : !hasImpl
-      ? `Falta tool/design_sync/_src/${port}/${port}.impl.js (la tarjeta ${card} sí está)`
-      : `Falta la tarjeta tool/design_sync/components/<grupo>/${port}/${port}.html (el tool/design_sync/_src/${port}/ sí está)`;
+      ? `Falta react/src/components/${port}/${port}.tsx (la tarjeta ${card} sí está)`
+      : `Falta la tarjeta tool/design_sync/components/<grupo>/${port}/${port}.html (el port react/src/components/${port}/ sí está)`;
   console.log(`::error file=${rel}::${cls} no tiene port web completo. ${falta}.`);
 }
 console.log(`
 Cómo resolverlo, según el caso:
 
   1. Es un componente con UI que los diseños deberían poder montar
-     → añade su port siguiendo tool/design_sync/_src/CONVENTIONS.md
-       (<Name>.impl.js + <Name>.css, y components/<grupo>/<Name>/ con
-       .html, .d.ts y .prompt.md), y regenera el bundle:
-       node tool/design_sync/_src/build.mjs
+     → añade su port en TSX siguiendo react/README.md
+       (react/src/components/<Name>/<Name>.tsx + .css, export en
+       react/src/index.ts, y components/<grupo>/<Name>/ con .html y
+       .prompt.md; el .d.ts lo genera el build), y regenera el bundle:
+       cd react && npm run build
 
   2. El widget no tiene sentido en el design system (helper interno, wrapper
      de layout, algo que solo existe dentro de otro componente)
