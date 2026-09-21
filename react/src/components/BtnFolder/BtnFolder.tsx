@@ -21,6 +21,8 @@ export interface BtnFolderProps {
   showEditIcon?: boolean;
   /** The folder is editable */
   isEditable?: boolean;
+  /** Accessible name of the edit badge (default 'Editar carpeta'; localize from the app) */
+  editLabel?: string;
   /** Accessible name for icon-only folders (isNonExpandable / no text), e.g. 'Nueva carpeta' */
   ariaLabel?: string;
 }
@@ -89,7 +91,7 @@ export function BtnFolder(props: BtnFolderProps) {
 
   const edit =
     props.showEditIcon && props.isEditable ? (
-      <button type="button" className="ds-btn-folder__edit" onClick={props.onLongPress} aria-label="Editar carpeta">
+      <button type="button" className="ds-btn-folder__edit" onClick={props.onLongPress} aria-label={props.editLabel ?? 'Editar carpeta'}>
         <DotsIcon name="ic-pencil" size={10} />
       </button>
     ) : null;
