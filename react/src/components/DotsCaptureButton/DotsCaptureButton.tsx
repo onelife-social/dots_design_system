@@ -7,6 +7,12 @@ export type DotsCaptureButtonType = 'photo' | 'video';
 export type DotsCaptureButtonState = 'active' | 'recording';
 
 export interface DotsCaptureButtonProps {
+  /** Accessible name when `type` is 'photo' (default 'Tomar foto'; localize from the app) */
+  photoLabel?: string;
+  /** Accessible name while recording (default 'Detener grabación'; localize from the app) */
+  stopLabel?: string;
+  /** Accessible name to start recording (default 'Grabar vídeo'; localize from the app) */
+  recordLabel?: string;
   /** Capture type — Dart enum DotsCaptureButtonType (default 'photo') */
   type: DotsCaptureButtonType;
   /**
@@ -107,7 +113,7 @@ export function DotsCaptureButton(props: DotsCaptureButtonProps) {
     <button
       type="button"
       className="ds-capture"
-      aria-label={type === 'photo' ? 'Tomar foto' : recording ? 'Detener grabación' : 'Grabar vídeo'}
+      aria-label={type === 'photo' ? (props.photoLabel ?? 'Tomar foto') : recording ? (props.stopLabel ?? 'Detener grabación') : (props.recordLabel ?? 'Grabar vídeo')}
       onClick={handleClick}
     >
       {children}
