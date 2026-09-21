@@ -3,6 +3,7 @@ import type { SyntheticEvent } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsRadioButton } from '../DotsRadioButton/DotsRadioButton';
 import { pressable } from '../../internal/pressable';
+import { inertProps } from '../../internal/inert';
 
 /** Dart enum DotsListsItemVariant */
 export type DotsListItemVariant = 'main' | 'selector' | 'icon' | 'check' | 'radioButton' | 'divider';
@@ -59,7 +60,7 @@ function isRadioLike(variant: DotsListItemVariant) {
 function renderTrailing(variant: DotsListItemVariant) {
   if (isRadioLike(variant)) {
     return (
-      <span aria-hidden inert style={{ display: 'contents', pointerEvents: 'none' }}>
+      <span aria-hidden {...inertProps(true)} style={{ display: 'contents', pointerEvents: 'none' }}>
         <DotsRadioButton isSelected={variant === 'radioButton'} size={22} />
       </span>
     );

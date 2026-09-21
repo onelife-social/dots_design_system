@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { pressable } from '../../internal/pressable';
+import { inertProps } from '../../internal/inert';
 
 /** Mirror of the Dart class DotsPlanningInfoItem */
 export interface DotsPlanningInfoItem {
@@ -77,7 +78,7 @@ export function DotsPlanningItem(props: DotsPlanningItemProps) {
         </span>
         {props.mainItem ? row(props.mainItem, 'main') : null}
         {/* _PlanningAnimatedSwitcher (200ms easeOut/easeIn, slide -0.1 + fade) */}
-        <span className={`ds-planning-item__sub${expanded ? ' is-expanded' : ''}`} aria-hidden={!expanded || undefined} {...(expanded ? {} : { inert: true })}>
+        <span className={`ds-planning-item__sub${expanded ? ' is-expanded' : ''}`} aria-hidden={!expanded || undefined} {...inertProps(!expanded)}>
           <span className="ds-planning-item__sub-inner">{subItems.map((it, i) => row(it, i))}</span>
         </span>
       </span>

@@ -2,6 +2,7 @@
 import { useState, type CSSProperties, type ReactNode } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { pressable } from '../../internal/pressable';
+import { inertProps } from '../../internal/inert';
 
 export interface DotsAccordionSection {
   /** Header title — bodyLargeMedium textPrimary */
@@ -79,7 +80,7 @@ export function DotsAccordion(props: DotsAccordionProps) {
             when collapsed it is also removed from the accessibility tree and made inert (no focusable
             descendants reachable); `inert` does not affect layout, the transition keeps working. Set
             only while collapsed so React 18 never renders inert="false". */}
-        <div className="ds-accordion__collapse" aria-hidden={!expanded[i] || undefined} {...(expanded[i] ? {} : { inert: true })}>
+        <div className="ds-accordion__collapse" aria-hidden={!expanded[i] || undefined} {...inertProps(!expanded[i])}>
           <div className="ds-accordion__collapse-inner">
             <div className="ds-accordion__content">{s.content}</div>
           </div>

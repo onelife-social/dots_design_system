@@ -3,6 +3,7 @@ import { BadgeLabel, type BadgeLabelVariant } from '../BadgeLabel/BadgeLabel';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsRadioButton } from '../DotsRadioButton/DotsRadioButton';
 import { pressable } from '../../internal/pressable';
+import { inertProps } from '../../internal/inert';
 
 export interface DotsSelectorRadioButtonProps {
   /** Selected (1.5px labelHighlight border) — Dart `isSelected` */
@@ -58,7 +59,7 @@ export interface DotsSettingItemRadioBtnProps {
 // one action). `display: contents` keeps the flex layout untouched.
 function visualRadio(selected: boolean, size: number) {
   return (
-    <span aria-hidden inert style={{ display: 'contents', pointerEvents: 'none' }}>
+    <span aria-hidden {...inertProps(true)} style={{ display: 'contents', pointerEvents: 'none' }}>
       <DotsRadioButton isSelected={selected} size={size} />
     </span>
   );
