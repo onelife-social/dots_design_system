@@ -38,8 +38,9 @@
 .ds-toast__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
 /* Ghost button (progress, isAction false) above the hit target so it receives its own clicks */
 .ds-toast__btn { position: relative; z-index: 2; }
-/* consumer slot: above the __hit overlay so interactive content inside stays clickable */
-.ds-toast__custom { position: relative; z-index: 2; display: contents; }
+/* consumer slot: the wrapper generates no box (display: contents, so the column layout is
+   untouched); it is its children that get lifted above the __hit overlay — keep the `> *` rule. */
+.ds-toast__custom { display: contents; }
 .ds-toast__custom > * { position: relative; z-index: 2; }
 
 /* isAction: false — DotsToastInfo, 358 row with gap 12 */
