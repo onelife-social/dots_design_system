@@ -1,6 +1,6 @@
 // DotsUploadItem — port of lib/src/components/upload_items/dots_upload_item.dart
 // (+ upload_item_variant.dart → prop `variant`). Dart = source of truth.
-import type { SyntheticEvent } from 'react';
+import type { CSSProperties, SyntheticEvent } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsMainButton } from '../DotsMainButton/DotsMainButton';
 import { DotsProgressBar } from '../DotsProgressBar/DotsProgressBar';
@@ -21,6 +21,12 @@ export interface DotsUploadItemProps {
   textDate?: string;
   /** Status text next to the icon (labelDefaultRegular). */
   processText?: string;
+  /**
+   * Max lines of `processText` — Dart `processTextMaxLines` (default 1): 1 = one line with ellipsis,
+   * n > 1 = clamped to n lines, `null` = free wrap (for messages that carry a file name). With more
+   * than one line the row top-aligns and the icon drops 2px onto the first line, as in Dart.
+   */
+  processTextMaxLines?: number | null;
   /** (success) Elapsed time under the status. */
   timeElapsed?: string;
   /** (success/error) Text of the right button (DotsMainButton medium). Without it no button is rendered. */
@@ -47,6 +53,14 @@ export function DotsUploadItem(props: DotsUploadItemProps) {
   const isError = variant === 'error';
   const percentage = props.percentage == null ? null : Math.min(1, Math.max(0, props.percentage));
 
+  // processTextMaxLines: Dart asserts null or > 0; here anything else falls back to one line
+  // instead of an invisible 0-line clamp.
+  const rawLines = props.processTextMaxLines === undefined ? 1 : props.processTextMaxLines;
+  const maxLines = rawLines === null ? null : Number.isFinite(rawLines) && rawLines > 1 ? Math.floor(rawLines) : 1;
+  const multiline = maxLines !== 1;
+  const textMod = maxLines === null ? ' ds-upload-item__process-text--wrap' : multiline ? ' ds-upload-item__process-text--clamp' : '';
+  const clampStyle: CSSProperties | undefined = maxLines !== null && multiline ? { WebkitLineClamp: String(maxLines) } : undefined;
+
   return (
     <div className={`ds-upload-item${props.className ? ` ${props.className}` : ''}`}>
       {/* Image — DotsSquircleImage(size: 64, squircle16, uploadError: variant.isError) */}
@@ -54,11 +68,13 @@ export function DotsUploadItem(props: DotsUploadItemProps) {
       <div className={`ds-upload-item__body${isProcessing ? ' ds-upload-item__body--processing' : ''}`}>
         <div className="ds-upload-item__date">{props.textDate ?? ''}</div>
         {/* Status row — icon 14 (spinning while processing) + processText */}
-        <span className="ds-upload-item__process">
+        <span className={`ds-upload-item__process${multiline ? ' ds-upload-item__process--multiline' : ''}`}>
           <span className={`ds-upload-item__process-icon${isProcessing ? ' ds-upload-item__process-icon--spin' : ''}`}>
             <DotsIcon name={v.icon} size={14} color={v.color} />
           </span>
-          <span className="ds-upload-item__process-text">{props.processText ?? ''}</span>
+          <span className={`ds-upload-item__process-text${textMod}`} style={clampStyle}>
+            {props.processText ?? ''}
+          </span>
         </span>
         {/* Progress — DotsProgressBar(percentage, parts: 1) + '64%' */}
         {isProcessing ? (

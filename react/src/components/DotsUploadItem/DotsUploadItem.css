@@ -57,6 +57,24 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* processTextMaxLines — Dart: 1 (default) one line with ellipsis; n > 1 clamps to n lines; null lets
+   the text wrap freely. Past one line the row top-aligns and the icon drops 2px onto the first line. */
+.ds-upload-item__process--multiline { align-items: flex-start; }
+.ds-upload-item__process--multiline .ds-upload-item__process-icon { padding-top: 2px; }
+.ds-upload-item__process-text--clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  overflow: hidden;
+  /* the prop exists for messages with a file name: a long token must break instead of overflowing */
+  overflow-wrap: anywhere;
+}
+.ds-upload-item__process-text--wrap {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
+}
 /* progreso — DotsProgressBar(parts: 1) + % textQuarternary */
 .ds-upload-item__progress {
   display: flex;
