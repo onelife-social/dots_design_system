@@ -15,6 +15,12 @@ export interface DotsUploadItemProps {
     textDate?: string;
     /** Status text next to the icon (labelDefaultRegular). */
     processText?: string;
+    /**
+     * Max lines of `processText` — Dart `processTextMaxLines` (default 1): 1 = one line with ellipsis,
+     * n > 1 = clamped to n lines, `null` = free wrap (for messages that carry a file name). With more
+     * than one line the row top-aligns and the icon drops 2px onto the first line, as in Dart.
+     */
+    processTextMaxLines?: number | null;
     /** (success) Elapsed time under the status. */
     timeElapsed?: string;
     /** (success/error) Text of the right button (DotsMainButton medium). Without it no button is rendered. */

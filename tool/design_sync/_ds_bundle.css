@@ -2863,8 +2863,9 @@
 .ds-toast__hit:focus-visible { outline: 2px solid var(--label-highlight); outline-offset: -2px; }
 /* Ghost button (progress, isAction false) above the hit target so it receives its own clicks */
 .ds-toast__btn { position: relative; z-index: 2; }
-/* consumer slot: above the __hit overlay so interactive content inside stays clickable */
-.ds-toast__custom { position: relative; z-index: 2; display: contents; }
+/* consumer slot: the wrapper generates no box (display: contents, so the column layout is
+   untouched); it is its children that get lifted above the __hit overlay — keep the `> *` rule. */
+.ds-toast__custom { display: contents; }
 .ds-toast__custom > * { position: relative; z-index: 2; }
 
 /* isAction: false — DotsToastInfo, 358 row with gap 12 */
@@ -3119,6 +3120,24 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+/* processTextMaxLines — Dart: 1 (default) one line with ellipsis; n > 1 clamps to n lines; null lets
+   the text wrap freely. Past one line the row top-aligns and the icon drops 2px onto the first line. */
+.ds-upload-item__process--multiline { align-items: flex-start; }
+.ds-upload-item__process--multiline .ds-upload-item__process-icon { padding-top: 2px; }
+.ds-upload-item__process-text--clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  overflow: hidden;
+  /* the prop exists for messages with a file name: a long token must break instead of overflowing */
+  overflow-wrap: anywhere;
+}
+.ds-upload-item__process-text--wrap {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
 }
 /* progreso — DotsProgressBar(parts: 1) + % textQuarternary */
 .ds-upload-item__progress {
