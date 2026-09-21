@@ -81,7 +81,9 @@ function Row(props: RowProps) {
   const style: CSSProperties | undefined = props.itemColor ? { color: props.itemColor } : undefined;
   const cls =
     'ds-dropdown__item' + (props.destructive ? ' ds-dropdown__item--destructive' : '') + (props.minSize ? ' ds-dropdown__item--min' : '');
-  const keys = props.nav ?? { tabIndex: 0, onKeyDown: props.onClick ? activateOnKey(props.onClick) : undefined };
+  // Standalone row: a tab stop only when it is actionable (a label-like item without onClick must not
+  // read as a broken menu entry).
+  const keys = props.nav ?? (props.onClick ? { tabIndex: 0, onKeyDown: activateOnKey(props.onClick) } : {});
   return (
     <div className={cls} style={style} role="menuitem" onClick={props.onClick} {...keys}>
       {props.leading ? <span className="ds-dropdown__item-leading">{props.leading}</span> : null}
