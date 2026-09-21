@@ -19,6 +19,12 @@ class FeatureItemDemoPage extends StatelessWidget {
               value: '128',
               icon: DotsIconData.family,
             ),
+            FeatureItem(
+              feature: 'Deadline',
+              value: '12 Dec',
+              icon: DotsIconData.calendar,
+              iconColor: context.dotsTheme.colors.textSecondary,
+            ),
             FeatureItem.image(
               feature: 'Cover',
               value: 'Ready',
