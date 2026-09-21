@@ -212,10 +212,15 @@ export function DotsMenuSettingsItem(p: DotsMenuSettingsItemProps) {
   // One focusable control per row: variant 'icon' → the row itself (pressable when it has a
   // handler); variant 'toggle' → the embedded DotsToggle is the control and the row only forwards
   // its click (not focusable, no role) so the toggle is not nested inside a second button.
-  const rowProps = isToggle ? { onClick: p.onClick ?? p.onToggleTap } : pressable(p.onClick);
+  // Toggle variant with a row action distinct from flipping the switch: the action gets its own
+  // transparent overlay button (sibling of the switch, never its ancestor); without one, a click on
+  // the row is only a mouse convenience that flips the switch.
+  const rowAction = isToggle ? p.onClick : undefined;
+  const rowProps = isToggle ? (rowAction ? {} : { onClick: p.onToggleTap }) : pressable(p.onClick);
   const labelId = useId(); // names the embedded switch (it has no text of its own)
   return (
     <div className={`ds-menu-settings__item${isToggle ? ' ds-menu-settings__item--toggle' : ''}`} {...rowProps}>
+      {rowAction ? <button type="button" className="ds-menu-settings__hit" aria-labelledby={labelId} onClick={rowAction} /> : null}
       {p.startIcon ? <DotsIcon name={p.startIcon} size={20} color="var(--text-tertiary)" className="ds-menu-settings__start" /> : null}
       <span className="ds-menu-settings__label" style={labelStyle} id={labelId}>
         {p.label}
