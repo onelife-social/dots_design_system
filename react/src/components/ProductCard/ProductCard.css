@@ -33,7 +33,7 @@
     rgb(39 39 39 / var(--scrim-end-alpha))
   );
 }
-.ds-product-card__badge { position: absolute; top: 20px; right: 20px; }
+.ds-product-card__badge { position: absolute; top: 20px; right: 20px; z-index: 2; } /* above __hit: badge content stays clickable */
 /* PageControl: 20 por encima del título (bottom 20 + copy 62 + gap 20, ver Dart) */
 .ds-product-card__pagecontrol {
   position: absolute; left: 0; right: 0; bottom: 102px;

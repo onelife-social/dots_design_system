@@ -86,7 +86,8 @@ export function DotsToast(props: DotsToastProps) {
   let children: ReactNode;
   if (isAction) {
     // 160 column: icon (or customWidget if variant widget) + title. Icon: progress 20, others 24.
-    const top = variant === 'widget' ? (props.customWidget ?? null) : iconEl(name, isProgress ? 20 : 24, color, false);
+    // customWidget may hold interactive content: keep it above the __hit overlay (see .ds-toast__custom)
+    const top = variant === 'widget' ? (props.customWidget != null ? <span className="ds-toast__custom">{props.customWidget}</span> : null) : iconEl(name, isProgress ? 20 : 24, color, false);
     children = (
       <>
         {top}

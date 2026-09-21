@@ -78,7 +78,7 @@ export function DotsTooltip(props: DotsTooltipProps) {
   return (
     <div className={cls} style={{ maxWidth: `${maxWidth}px` }}>
       {hitEl}
-      {iconNode}
+      {iconNode != null ? <span className="ds-tooltip__icon">{iconNode}</span> : null}
       <p className="ds-tooltip__text">{props.text}</p>
       {showCloseButton ? (
         <span className="ds-tooltip__close">

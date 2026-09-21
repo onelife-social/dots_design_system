@@ -57,3 +57,5 @@
 /* Tail — 21×13, fill bgBaseContrast, stroke 2 bgContainerSecondary */
 .ds-tooltip__tail { position: absolute; width: 21px; height: 13px; }
 .ds-tooltip__tail path { fill: var(--bg-base-contrast); stroke: var(--bg-container-secondary); }
+/* consumer icon slot: above the __hit overlay so interactive content inside stays clickable */
+.ds-tooltip__icon { position: relative; z-index: 2; display: inline-flex; }
