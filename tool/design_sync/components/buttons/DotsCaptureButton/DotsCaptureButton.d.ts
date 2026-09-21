@@ -5,6 +5,12 @@ export type DotsCaptureButtonType = 'photo' | 'video';
 /** Dart enum DotsCaptureButtonState */
 export type DotsCaptureButtonState = 'active' | 'recording';
 export interface DotsCaptureButtonProps {
+    /** Accessible name when `type` is 'photo' (default 'Tomar foto'; localize from the app) */
+    photoLabel?: string;
+    /** Accessible name while recording (default 'Detener grabación'; localize from the app) */
+    stopLabel?: string;
+    /** Accessible name to start recording (default 'Grabar vídeo'; localize from the app) */
+    recordLabel?: string;
     /** Capture type — Dart enum DotsCaptureButtonType (default 'photo') */
     type: DotsCaptureButtonType;
     /**
