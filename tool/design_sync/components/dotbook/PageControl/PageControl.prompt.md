@@ -13,6 +13,8 @@ PageControl from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Pag
 
 Ocupa el 100% del ancho con los puntos centrados (Row centrado en Flutter). Medidas por variante: main dot 8 / spacing 8 / padding 18px 12px; background dot 6 / spacing 12 / sin padding.
 
+⚠️ **Requiere ancho acotado en Flutter**: el widget Dart usa `SizedBox(width: double.infinity)` interno, así que en contextos sin límite de ancho (`Positioned` sin right/width, etc.) hay que envolverlo en un `SizedBox`. Su ancho natural es `count × (dot + spacing) + padding horizontal` — variante main: `count × 16 + 24` (p.ej. 72px con 3 puntos). En un diseño `.dc.html`, da ese valor en el `hint-size` para que la traducción a Flutter lo aplique.
+
 ## Examples
 
 ```jsx
