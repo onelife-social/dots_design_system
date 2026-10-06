@@ -2,6 +2,15 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:math' as math;
 
+/// Color set of a [SpinnerRound].
+enum SpinnerRoundTone {
+  /// White arc and label over a translucent track. For photos and overlays.
+  onPhoto,
+
+  /// Blue arc over a grey track, label in `textSecondary`. For light backgrounds.
+  accent,
+}
+
 /// A circular spinner widget that displays progress as an arc and optionally as a percentage.
 class SpinnerRound extends StatelessWidget {
   /// Progress value between 0 and 1.
@@ -16,12 +25,16 @@ class SpinnerRound extends StatelessWidget {
   /// Whether to show the percentage text in the center.
   final bool showPercentage;
 
+  /// Color set. Defaults to [SpinnerRoundTone.onPhoto].
+  final SpinnerRoundTone tone;
+
   const SpinnerRound({
     super.key,
     required this.progress,
     this.size = 43,
     this.strokeWidth = 4,
     this.showPercentage = true,
+    this.tone = SpinnerRoundTone.onPhoto,
   });
 
   @override
@@ -35,6 +48,7 @@ class SpinnerRound extends StatelessWidget {
           progress: progress,
           strokeWidth: strokeWidth,
           showPercentageProgress: showPercentage,
+          tone: tone,
         ),
       ),
     );
@@ -58,12 +72,16 @@ class CircularProgressPainter extends CustomPainter {
   /// Whether to show the percentage text in the center.
   final bool showPercentageProgress;
 
+  /// Color set.
+  final SpinnerRoundTone tone;
+
   CircularProgressPainter({
     required this.theme,
     required this.progress,
     required this.strokeWidth,
     this.startAngle = 270.0,
     this.showPercentageProgress = false,
+    this.tone = SpinnerRoundTone.onPhoto,
   });
 
   // Converts progress (0..1) to radians.
@@ -71,6 +89,21 @@ class CircularProgressPainter extends CustomPainter {
 
   // Converts degrees to radians.
   double _degToRad(double d) => d * math.pi / 180.0;
+
+  Color get _trackColor => switch (tone) {
+    SpinnerRoundTone.onPhoto => theme.colors.bgBtnImage,
+    SpinnerRoundTone.accent => theme.colors.bgContainerSecondaryOnBackground,
+  };
+
+  Color get _arcColor => switch (tone) {
+    SpinnerRoundTone.onPhoto => theme.colors.labelAlwaysWhite,
+    SpinnerRoundTone.accent => theme.colors.labelHighlight,
+  };
+
+  Color get _labelColor => switch (tone) {
+    SpinnerRoundTone.onPhoto => theme.colors.labelAlwaysWhite,
+    SpinnerRoundTone.accent => theme.colors.textSecondary,
+  };
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -83,7 +116,7 @@ class CircularProgressPainter extends CustomPainter {
 
     // Base circle
     final Paint trackPaint = Paint()
-      ..color = theme.colors.bgBtnImage
+      ..color = _trackColor
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
@@ -92,13 +125,16 @@ class CircularProgressPainter extends CustomPainter {
 
     // Progress arc
     final Paint progressPaint = Paint()
-      ..color = theme.colors.labelAlwaysWhite
+      ..color = _arcColor
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
 
     final double sweep = _progressToRad(progress.clamp(0, 1));
-    canvas.drawArc(rect, _degToRad(startAngle), sweep, false, progressPaint);
+    // A zero sweep with a round cap still paints a dot, so skip the arc at 0%.
+    if (sweep > 0) {
+      canvas.drawArc(rect, _degToRad(startAngle), sweep, false, progressPaint);
+    }
 
     // Text
     if (!showPercentageProgress) return;
@@ -108,7 +144,7 @@ class CircularProgressPainter extends CustomPainter {
       text: TextSpan(
         text: '${(progress * 100).clamp(0, 100).toInt()}%',
         style: theme.typo.main.labelSmallMedium.copyWith(
-          color: theme.colors.labelAlwaysWhite,
+          color: _labelColor,
         ),
       ),
       textDirection: TextDirection.ltr,
@@ -125,5 +161,7 @@ class CircularProgressPainter extends CustomPainter {
       oldDelegate.progress != progress ||
       oldDelegate.strokeWidth != strokeWidth ||
       oldDelegate.showPercentageProgress != showPercentageProgress ||
-      oldDelegate.startAngle != startAngle;
+      oldDelegate.startAngle != startAngle ||
+      oldDelegate.tone != tone ||
+      oldDelegate.theme != theme;
 }

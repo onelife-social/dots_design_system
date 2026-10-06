@@ -8,8 +8,10 @@
     .ds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
     .ds-cell{border:1px solid #e5e7eb;border-radius:8px;padding:12px;min-width:0;overflow:hidden;transform:translateZ(0)}
     .ds-cell>h4{margin:0 0 8px;font:600 12px system-ui;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
-    /* Fondo demo: el spinner vive sobre foto (arco/texto siempre blancos) */
+    /* Fondo demo: tone onPhoto vive sobre foto (arco/texto blancos) */
     .spin-demo{padding:14px;border-radius:16px;display:inline-flex;gap:20px;align-items:center;background:linear-gradient(135deg,#33415C,#5A4A42)}
+    /* tone accent vive sobre fondo claro */
+    .spin-demo--light{background:var(--bg-base)}
   </style>
 </head><body>
   <div class="ds-grid" id="g"></div>
@@ -19,6 +21,7 @@
   <script>
     var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsSpinner;
     function demo() { return h('div', { className: 'spin-demo' }, Array.prototype.slice.call(arguments)); }
+    function light() { return h('div', { className: 'spin-demo spin-demo--light' }, Array.prototype.slice.call(arguments)); }
     function Animated() {
       var st = React.useState(0.15);
       React.useEffect(function () {
@@ -35,7 +38,10 @@
       ['size 60 · stroke 6', demo(h(C, { progress: 0.4, size: 60, strokeWidth: 6 }))],
       ['indeterminate (girando)', demo(h(C, { indeterminate: true }))],
       ['progreso animado (transition)', h(Animated)],
-      ['dark · 65% / indeterminate', demo(h(C, { progress: 0.65 }), h(C, { indeterminate: true })), true]
+      ['dark · 65% / indeterminate', demo(h(C, { progress: 0.65 }), h(C, { indeterminate: true })), true],
+      ['tone accent · 65% / sin % 17px', light(h(C, { progress: 0.65, tone: 'accent' }), h(C, { progress: 0.25, tone: 'accent', size: 17, strokeWidth: 2.27, showPercentage: false }))],
+      ['tone accent · indeterminate 28px', light(h(C, { indeterminate: true, tone: 'accent', size: 28, strokeWidth: 3 }))],
+      ['dark · tone accent', light(h(C, { progress: 0.65, tone: 'accent' }), h(C, { indeterminate: true, tone: 'accent', size: 28, strokeWidth: 3 })), true]
     ];
     var g = document.getElementById('g');
     variants.forEach(function (v) {

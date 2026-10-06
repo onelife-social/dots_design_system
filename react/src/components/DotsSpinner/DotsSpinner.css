@@ -2,19 +2,29 @@
 .ds-spinner {
   position: relative;
   display: inline-flex;
+  /* tone onPhoto (default) — sobre foto */
+  --ds-spinner-track: var(--bg-btn-image);
+  --ds-spinner-arc: var(--label-always-white);
+  --ds-spinner-label: var(--label-always-white);
+}
+/* tone accent — fondos claros */
+.ds-spinner--accent {
+  --ds-spinner-track: var(--bg-container-secondary-on-bg);
+  --ds-spinner-arc: var(--label-highlight);
+  --ds-spinner-label: var(--text-secondary);
 }
 .ds-spinner__svg {
   display: block;
 }
 .ds-spinner__track {
-  stroke: var(--bg-btn-image);
+  stroke: var(--ds-spinner-track);
 }
 .ds-spinner__arc {
-  stroke: var(--label-always-white);
+  stroke: var(--ds-spinner-arc);
   transition: stroke-dasharray 0.3s ease;
 }
 
-/* labelSmallMedium 11/600 sobre foto — siempre blanco */
+/* labelSmallMedium 11/600 */
 .ds-spinner__pct {
   position: absolute;
   inset: 0;
@@ -25,13 +35,46 @@
   font-size: 11px;
   font-weight: 600;
   line-height: 1.27;
-  color: var(--label-always-white);
+  color: var(--ds-spinner-label);
 }
 
-/* Indeterminado (extensión web) — arco fijo al 25% girando */
-.ds-spinner--indeterminate .ds-spinner__svg {
+/* Indeterminado (extensión web) — arco fijo al 25% girando (en accent gira .ds-spinner__gradient) */
+.ds-spinner--indeterminate:not(.ds-spinner--accent) .ds-spinner__svg {
   animation: ds-spinner-rotate 1s linear infinite;
+}
+/* accent + indeterminado — arco de 270° con cola en degradado (Figma "Spinner Gradient" · Blue) */
+.ds-spinner__gradient {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0deg, var(--ds-spinner-arc) 270deg, transparent 270deg);
+  /* Corte suavizado ~1px para que el borde interior no salga dentado */
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--ds-spinner-stroke) - 0.5px), #000 calc(100% - var(--ds-spinner-stroke) + 0.5px));
+          mask: radial-gradient(farthest-side, transparent calc(100% - var(--ds-spinner-stroke) - 0.5px), #000 calc(100% - var(--ds-spinner-stroke) + 0.5px));
+  animation: ds-spinner-rotate 1s linear infinite;
+}
+/* Cabeza redondeada del arco (a 270°) */
+.ds-spinner__gradient::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: var(--ds-spinner-stroke);
+  height: var(--ds-spinner-stroke);
+  border-radius: 50%;
+  background: var(--ds-spinner-arc);
+  transform: translateY(-50%);
 }
 @keyframes ds-spinner-rotate {
   to { transform: rotate(360deg); }
+}
+/* Movimiento reducido: el giro se mantiene (indica que está cargando) pero mucho más lento */
+@media (prefers-reduced-motion: reduce) {
+  .ds-spinner--indeterminate .ds-spinner__svg,
+  .ds-spinner__gradient {
+    animation-duration: 3s;
+  }
+  .ds-spinner__arc {
+    transition: none;
+  }
 }
