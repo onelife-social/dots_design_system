@@ -60,7 +60,8 @@ export function DotsSpinner({
             r={r}
             fill="none"
             strokeWidth={strokeWidth}
-            strokeLinecap="round"
+            // A zero-length dash with a round cap still paints a dot, so use butt at 0%
+            strokeLinecap={arc === 0 ? 'butt' : 'round'}
             strokeDasharray={`${arc} ${c}`}
             transform={`rotate(-90 ${half} ${half})`}
           />

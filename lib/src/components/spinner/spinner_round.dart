@@ -131,7 +131,10 @@ class CircularProgressPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
 
     final double sweep = _progressToRad(progress.clamp(0, 1));
-    canvas.drawArc(rect, _degToRad(startAngle), sweep, false, progressPaint);
+    // A zero sweep with a round cap still paints a dot, so skip the arc at 0%.
+    if (sweep > 0) {
+      canvas.drawArc(rect, _degToRad(startAngle), sweep, false, progressPaint);
+    }
 
     // Text
     if (!showPercentageProgress) return;
@@ -159,5 +162,6 @@ class CircularProgressPainter extends CustomPainter {
       oldDelegate.strokeWidth != strokeWidth ||
       oldDelegate.showPercentageProgress != showPercentageProgress ||
       oldDelegate.startAngle != startAngle ||
-      oldDelegate.tone != tone;
+      oldDelegate.tone != tone ||
+      oldDelegate.theme != theme;
 }

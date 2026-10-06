@@ -452,7 +452,7 @@ const hooks = () => window.React;
           r,
           fill: "none",
           strokeWidth,
-          strokeLinecap: "round",
+          strokeLinecap: arc === 0 ? "butt" : "round",
           strokeDasharray: `${arc} ${c}`,
           transform: `rotate(-90 ${half} ${half})`
         }

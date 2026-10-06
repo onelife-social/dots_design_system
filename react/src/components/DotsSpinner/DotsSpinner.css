@@ -38,8 +38,8 @@
   color: var(--ds-spinner-label);
 }
 
-/* Indeterminado (extensión web) — arco fijo al 25% girando */
-.ds-spinner--indeterminate .ds-spinner__svg {
+/* Indeterminado (extensión web) — arco fijo al 25% girando (en accent gira .ds-spinner__gradient) */
+.ds-spinner--indeterminate:not(.ds-spinner--accent) .ds-spinner__svg {
   animation: ds-spinner-rotate 1s linear infinite;
 }
 /* accent + indeterminado — arco de 270° con cola en degradado (Figma "Spinner Gradient" · Blue) */
@@ -48,8 +48,9 @@
   inset: 0;
   border-radius: 50%;
   background: conic-gradient(from 0deg, transparent 0deg, var(--ds-spinner-arc) 270deg, transparent 270deg);
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--ds-spinner-stroke)), #000 calc(100% - var(--ds-spinner-stroke)));
-          mask: radial-gradient(farthest-side, transparent calc(100% - var(--ds-spinner-stroke)), #000 calc(100% - var(--ds-spinner-stroke)));
+  /* Corte suavizado ~1px para que el borde interior no salga dentado */
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--ds-spinner-stroke) - 0.5px), #000 calc(100% - var(--ds-spinner-stroke) + 0.5px));
+          mask: radial-gradient(farthest-side, transparent calc(100% - var(--ds-spinner-stroke) - 0.5px), #000 calc(100% - var(--ds-spinner-stroke) + 0.5px));
   animation: ds-spinner-rotate 1s linear infinite;
 }
 /* Cabeza redondeada del arco (a 270°) */
@@ -66,4 +67,14 @@
 }
 @keyframes ds-spinner-rotate {
   to { transform: rotate(360deg); }
+}
+/* Movimiento reducido: el giro se mantiene (indica que está cargando) pero mucho más lento */
+@media (prefers-reduced-motion: reduce) {
+  .ds-spinner--indeterminate .ds-spinner__svg,
+  .ds-spinner__gradient {
+    animation-duration: 3s;
+  }
+  .ds-spinner__arc {
+    transition: none;
+  }
 }
