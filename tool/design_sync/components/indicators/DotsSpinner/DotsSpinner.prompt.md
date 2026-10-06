@@ -1,4 +1,4 @@
-DotsSpinner from dots_design_system. Use via `window.DotsDesignSystem_9e41da.DotsSpinner` (bundle loaded from the root `_ds_bundle.js`). Circular progress spinner (track + white arc, optional centered percentage) with a web-only `indeterminate` spinning mode.
+DotsSpinner from dots_design_system. Use via `window.DotsDesignSystem_9e41da.DotsSpinner` (bundle loaded from the root `_ds_bundle.js`). Circular progress spinner (track + arc, optional centered percentage) with a web-only `indeterminate` spinning mode. Two color sets via `tone`: `onPhoto` (white, over photos) and `accent` (blue, over light backgrounds).
 
 ## Props
 
@@ -7,11 +7,20 @@ DotsSpinner from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Dot
 | `progress` | `number` | `0` | Progreso 0..1. El arco transiciona suavemente (`stroke-dasharray` 300ms). |
 | `size` | `number` | `43` | Lado en px. |
 | `strokeWidth` | `number` | `4` | Grosor del trazo. |
-| `showPercentage` | `boolean` | `true` | Muestra `NN%` centrado (11/600, siempre blanco). |
-| `indeterminate` | `boolean` | `false` | Extensión web: arco fijo (25%) girando en bucle; ignora `progress` y oculta el %. |
+| `showPercentage` | `boolean` | `true` | Muestra `NN%` centrado (11/600). |
+| `tone` | `'onPhoto' \| 'accent'` | `'onPhoto'` | Juego de colores. `onPhoto` sobre foto/overlay; `accent` sobre fondos claros. |
+| `indeterminate` | `boolean` | `false` | Extensión web: arco girando en bucle; ignora `progress` y oculta el %. Con `tone="accent"` el arco es de 270° con la cola en degradado. |
 | `className` | `string` | — | Clases extra sobre `.ds-spinner`. |
 
-Colores fijos por diseño: track `bgBtnImage`, arco y texto `labelAlwaysWhite` — pensado para vivir sobre foto/overlay (idéntico en light y dark salvo el track).
+Colores por `tone`:
+
+| `tone` | Track | Arco (sólido) | % |
+| --- | --- | --- | --- |
+| `onPhoto` | `bgBtnImage` | `labelAlwaysWhite` | `labelAlwaysWhite` |
+| `accent` | `bgContainerSecondaryOnBackground` | `labelHighlight` | `textSecondary` |
+
+Usa `accent` siempre que el spinner vaya sobre un fondo claro (`bgBase`): `onPhoto` es blanco y ahí no se ve.
+Para pantallas de espera sin progreso medible (p. ej. "creando tu boda") usa `indeterminate` + `tone="accent"` a 28px.
 
 ## Examples
 
@@ -26,6 +35,12 @@ const { DotsSpinner } = window.DotsDesignSystem_9e41da;
 
 // Carga sin progreso conocido
 <DotsSpinner indeterminate />
+
+// Pantalla de espera sobre fondo claro (Weddings · wedding_creating)
+<DotsSpinner indeterminate tone="accent" size={28} strokeWidth={3} />
+
+// Progreso sobre fondo claro, pequeño y sin %
+<DotsSpinner progress={0.25} tone="accent" size={17} strokeWidth={2.27} showPercentage={false} />
 ```
 
 ## Dart mapping
@@ -35,5 +50,6 @@ const { DotsSpinner } = window.DotsDesignSystem_9e41da;
 | `DotsSpinner` | `SpinnerRound` (+ `CircularProgressPainter`) |
 | `progress` / `size` / `strokeWidth` / `showPercentage` | mismos nombres |
 | Arco desde arriba | `startAngle = 270°` |
-| Track / arco / texto | `bgBtnImage` / `labelAlwaysWhite` / `labelSmallMedium` blanco |
-| `indeterminate` | — (extensión web, sin equivalente Dart) |
+| `tone` | `tone` (`SpinnerRoundTone.onPhoto` / `.accent`) |
+| Track / arco / texto | según `tone` (tabla de arriba) · texto `labelSmallMedium` |
+| `indeterminate` | — (extensión web, sin equivalente Dart; el degradado de `accent` tampoco existe en Dart) |

@@ -4,7 +4,7 @@
 export { DotsIcon, dotsIconNames } from './components/DotsIcon/DotsIcon';
 export type { DotsIconProps, DotsIconName } from './components/DotsIcon/DotsIcon';
 export { DotsSpinner } from './components/DotsSpinner/DotsSpinner';
-export type { DotsSpinnerProps } from './components/DotsSpinner/DotsSpinner';
+export type { DotsSpinnerProps, DotsSpinnerTone } from './components/DotsSpinner/DotsSpinner';
 export { DotsMainButton } from './components/DotsMainButton/DotsMainButton';
 export type {
   DotsMainButtonProps,

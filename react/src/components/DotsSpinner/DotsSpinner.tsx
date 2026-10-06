@@ -1,4 +1,6 @@
 // DotsSpinner — port of lib/src/components/spinner/spinner_round.dart (SpinnerRound).
+export type DotsSpinnerTone = 'onPhoto' | 'accent';
+
 export interface DotsSpinnerProps {
   /** Progress 0..1 — Dart `progress` */
   progress?: number;
@@ -8,6 +10,8 @@ export interface DotsSpinnerProps {
   strokeWidth?: number;
   /** Show the centered percentage — Dart `showPercentage`. Default: true */
   showPercentage?: boolean;
+  /** Color set — Dart `tone`. 'onPhoto' (white, over photos) or 'accent' (blue, light backgrounds). Default: 'onPhoto' */
+  tone?: DotsSpinnerTone;
   /** Web extension: spins forever (ignores `progress`, hides the %) */
   indeterminate?: boolean;
   className?: string;
@@ -18,6 +22,7 @@ export function DotsSpinner({
   size = 43,
   strokeWidth = 4,
   showPercentage = true,
+  tone = 'onPhoto',
   indeterminate = false,
   className,
 }: DotsSpinnerProps) {
@@ -26,32 +31,42 @@ export function DotsSpinner({
   const r = (size - strokeWidth) / 2;
   const c = 2 * Math.PI * r;
   const arc = indeterminate ? 0.25 * c : progress * c;
-  const cls = ['ds-spinner', indeterminate && 'ds-spinner--indeterminate', className].filter(Boolean).join(' ');
+  // accent + indeterminate: the arc is a conic gradient with a fading tail (Figma "Spinner Gradient")
+  const gradientArc = indeterminate && tone === 'accent';
+  const cls = [
+    'ds-spinner',
+    tone === 'accent' && 'ds-spinner--accent',
+    indeterminate && 'ds-spinner--indeterminate',
+    className,
+  ].filter(Boolean).join(' ');
   return (
     <span
       className={cls}
-      style={{ width: size, height: size }}
+      style={{ width: size, height: size, ['--ds-spinner-stroke' as string]: `${strokeWidth}px` }}
       role="progressbar"
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={indeterminate ? undefined : Math.floor(progress * 100)}
     >
       <svg className="ds-spinner__svg" viewBox={`0 0 ${size} ${size}`} width={size} height={size}>
-        {/* Track — bgBtnImage */}
+        {/* Track — onPhoto: bgBtnImage · accent: bgContainerSecondaryOnBackground */}
         <circle className="ds-spinner__track" cx={half} cy={half} r={r} fill="none" strokeWidth={strokeWidth} />
-        {/* Progress arc — labelAlwaysWhite, starts at the top (startAngle 270°) */}
-        <circle
-          className="ds-spinner__arc"
-          cx={half}
-          cy={half}
-          r={r}
-          fill="none"
-          strokeWidth={strokeWidth}
-          strokeLinecap="round"
-          strokeDasharray={`${arc} ${c}`}
-          transform={`rotate(-90 ${half} ${half})`}
-        />
+        {/* Progress arc — onPhoto: labelAlwaysWhite · accent: labelHighlight; starts at the top (startAngle 270°) */}
+        {gradientArc ? null : (
+          <circle
+            className="ds-spinner__arc"
+            cx={half}
+            cy={half}
+            r={r}
+            fill="none"
+            strokeWidth={strokeWidth}
+            strokeLinecap="round"
+            strokeDasharray={`${arc} ${c}`}
+            transform={`rotate(-90 ${half} ${half})`}
+          />
+        )}
       </svg>
+      {gradientArc ? <span className="ds-spinner__gradient" /> : null}
       {showPercentage && !indeterminate ? (
         <span className="ds-spinner__pct">{Math.floor(progress * 100)}%</span>
       ) : null}
