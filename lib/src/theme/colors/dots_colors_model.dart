@@ -13,6 +13,7 @@ class DotsColorsModel {
   final Color bgContainerTertiary;
   final Color bgAlert;
   final Color bgStrong;
+  final Color bgAlwaysBlack;
 
   // Prime Tag
   final Color bgToastLight;
@@ -304,6 +305,7 @@ class DotsColorsModel {
     required this.bgChip,
     required this.bgAlert,
     required this.bgStrong,
+    required this.bgAlwaysBlack,
     required this.textPrimary,
     required this.textSecondary,
     required this.textTertiary,
@@ -532,6 +534,7 @@ class DotsColorsModel {
       bgChip: Color.lerp(bgChip, other?.bgChip, t) ?? bgChip,
       bgAlert: Color.lerp(bgAlert, other?.bgAlert, t) ?? bgAlert,
       bgStrong: Color.lerp(bgStrong, other?.bgStrong, t) ?? bgStrong,
+      bgAlwaysBlack: Color.lerp(bgAlwaysBlack, other?.bgAlwaysBlack, t) ?? bgAlwaysBlack,
       textPrimary: Color.lerp(textPrimary, other?.textPrimary, t) ?? textPrimary,
       textSecondary: Color.lerp(textSecondary, other?.textSecondary, t) ?? textSecondary,
       textTertiary: Color.lerp(textTertiary, other?.textTertiary, t) ?? textTertiary,
