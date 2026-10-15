@@ -7,13 +7,17 @@
   width: 100%;
   background: var(--bg-container-primary);
   font-family: var(--font-main);
+  /* Dart reserves a fixed 50px for the status bar; on device the strip grows with the safe area (web extension).
+     The 50px floor stands in for the artboards' status bar where the inset is 0: a native app sets
+     --ds-status-bar-min to 0 so a web view that starts below the status bar gets no strip. */
+  --ds-top-bar-status: max(var(--ds-status-bar-min, 50px), env(safe-area-inset-top, 0px));
 }
 .ds-top-bar--normal { height: 50px; }
-/* Dart reserves a fixed 50px for the status bar; on device the strip grows with the safe area (web extension) */
-.ds-top-bar--big { height: calc(56px + max(50px, env(safe-area-inset-top, 0px))); }
+.ds-top-bar--big { height: calc(56px + var(--ds-top-bar-status)); }
+.ds-top-bar--status-only { height: var(--ds-top-bar-status); }
 /* showBottomBorder — Colors.black @0.2 (no token) */
 .ds-top-bar--bordered { box-shadow: 0 1px 0 #00000033; }
-.ds-top-bar__status { height: max(50px, env(safe-area-inset-top, 0px)); flex: none; }
+.ds-top-bar__status { height: var(--ds-top-bar-status); flex: none; }
 .ds-top-bar__content { flex: 1; position: relative; min-height: 0; }
 .ds-top-bar__center {
   position: absolute;

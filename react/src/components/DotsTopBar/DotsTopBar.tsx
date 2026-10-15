@@ -26,7 +26,7 @@ export interface DotsTopBarProps {
   onBack?: () => void;
   /** Transparent instead of bgContainerPrimary — Dart `hideBackground` */
   hideBackground?: boolean;
-  /** Reserve the 50px status-bar strip above the content (default true) — Dart `bigStatusBar` */
+  /** Reserve the status-bar strip above the content (default true): the larger of `--ds-status-bar-min` (50px) and the top safe-area inset — Dart `bigStatusBar` */
   bigStatusBar?: boolean;
   /** Back button `solid` instead of `noBackground` — Dart `showCircleBackButton` */
   showCircleBackButton?: boolean;
@@ -70,7 +70,7 @@ export function DotsTopBar(props: DotsTopBarProps) {
 
   return (
     <div
-      className={`ds-top-bar ds-top-bar--${bigStatusBar ? 'big' : 'normal'}${props.showBottomBorder ? ' ds-top-bar--bordered' : ''}${props.className ? ` ${props.className}` : ''}`}
+      className={`ds-top-bar ds-top-bar--${hideWidgets ? 'status-only' : bigStatusBar ? 'big' : 'normal'}${props.showBottomBorder ? ' ds-top-bar--bordered' : ''}${props.className ? ` ${props.className}` : ''}`}
       style={style}
     >
       {/* Dart: SizedBox(50) painted when _hideWidgets != bigStatusBar */}

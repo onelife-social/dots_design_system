@@ -16,11 +16,13 @@ DotsTopBar from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Dots
 | `ctaLabel` | `string` | — | CTA a la derecha (`DotsMainButton` main · small, `expand:false`). |
 | `onCtaClick` | `() => void` | — | Callback del CTA — Dart `onCtaTap`. |
 | `ctaEnabled` | `boolean` | `true` | Deshabilita el CTA. |
-| `bigStatusBar` | `boolean` | `true` | 106px (50 status + 56 contenido); `false` → 50px. onlyStatusBar siempre 50px. |
+| `bigStatusBar` | `boolean` | `true` | 106px (50 status + 56 contenido); `false` → 50px sin franja. onlyStatusBar es solo la franja (50px). |
 | `hideBackground` | `boolean` | `false` | Fondo transparente en vez de `bgContainerPrimary`. |
 | `color` | `string` (CSS) | — | Fuerza el color de fondo (ignora `hideBackground`). |
 | `showBottomBorder` | `boolean` | `false` | Línea inferior 1px negro @0.2. |
 | `className` | `string` | — | Clases extra sobre `.ds-top-bar`. |
+
+La franja de la barra de estado mide 50px en el diseño. En el dispositivo mide lo que sea mayor entre `--ds-status-bar-min` (50px si no se define) y `env(safe-area-inset-top)`. La app nativa pone `--ds-status-bar-min: 0px`: así, si el web view empieza debajo de la barra de estado (Android sin edge-to-edge), no queda un hueco vacío. En los diseños no se define.
 
 Colócala arriba de la pantalla a ancho completo (el fondo `bgContainerPrimary` es semitransparente; combina con blur/scroll por debajo si procede).
 
