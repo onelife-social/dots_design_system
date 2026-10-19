@@ -1,5 +1,6 @@
 // DotsRichButton — port of lib/src/components/buttons/dots_rich_button/dots_rich_button.dart (Dart = source of truth).
 import { DotsIcon } from '../DotsIcon/DotsIcon';
+import { DotsSpinner } from '../DotsSpinner/DotsSpinner';
 
 export interface DotsRichButtonProps {
   /** Size — Dart enum DotsRichButtonSize (large 358×75 r100 · medium 358×60 r32 · small 248×60 r32) */
@@ -20,22 +21,43 @@ export interface DotsRichButtonProps {
   trailingText?: string;
   /** Tap — Dart `onTap` */
   onClick?: () => void;
+  /** When false, DotsMainButton's disabled colors are painted and clicks are ignored (default true) — Dart `enabled` */
+  enabled?: boolean;
+  /** Replaces leading, content and trailing with a centered spinner and blocks clicks (default false) — Dart `isLoading` */
+  isLoading?: boolean;
 }
 
 export function DotsRichButton(props: DotsRichButtonProps) {
   const size = props.size === 'large' || props.size === 'small' ? props.size : 'medium';
   const textSize = props.textSize === 'large' ? 'large' : 'medium'; // DotsRichButtonTextSize
   const hasTrailing = props.trailingText != null && props.trailingText !== '';
+  const isLoading = !!props.isLoading;
+  const enabled = props.enabled !== false;
+  const disabled = !enabled && !isLoading;
 
   // Leading: image > icon > nothing (as in Dart)
   const lead = props.image ? (
     <img className="ds-rich-btn__img" src={props.image} alt="" />
   ) : props.icon ? (
-    <DotsIcon name={props.icon} size={24} color={props.iconColor ?? 'var(--text-secondary)'} /> // Dart: default textSecondary
+    // Dart: default textSecondary; textDisabled when disabled
+    <DotsIcon name={props.icon} size={24} color={disabled ? 'var(--text-disabled)' : (props.iconColor ?? 'var(--text-secondary)')} />
   ) : null;
 
+  const className = ['ds-rich-btn', `ds-rich-btn--${size}`, disabled && 'ds-rich-btn--disabled', isLoading && 'ds-rich-btn--loading']
+    .filter(Boolean)
+    .join(' ');
+
+  if (isLoading) {
+    // Dart: GradientProgressIndicator in labelHighlight, radius 12, stroke 3
+    return (
+      <button type="button" className={className} disabled aria-busy>
+        <DotsSpinner indeterminate tone="accent" size={24} strokeWidth={3} showPercentage={false} />
+      </button>
+    );
+  }
+
   return (
-    <button type="button" className={`ds-rich-btn ds-rich-btn--${size}`} onClick={props.onClick}>
+    <button type="button" className={className} disabled={disabled} onClick={disabled ? undefined : props.onClick}>
       {lead}
       <span className="ds-rich-btn__mid">
         <span className={`ds-rich-btn__content ds-rich-btn__content--${textSize}`}>
@@ -48,7 +70,7 @@ export function DotsRichButton(props: DotsRichButtonProps) {
       {hasTrailing ? (
         <span className="ds-rich-btn__trail">{props.trailingText}</span>
       ) : (
-        <DotsIcon name="ic-chevron-right" size={20} color="var(--text-tertiary)" />
+        <DotsIcon name="ic-chevron-right" size={20} color={disabled ? 'var(--text-disabled)' : 'var(--text-tertiary)'} />
       )}
     </button>
   );

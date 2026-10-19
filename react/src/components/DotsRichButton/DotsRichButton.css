@@ -44,3 +44,13 @@
 .ds-rich-btn__details { font: 400 11px/1.27 var(--font-main); letter-spacing: 0.01px; color: var(--text-secondary); }
 /* trailing text — labelDefaultBold 13/700, textTertiary */
 .ds-rich-btn__trail { font: 700 13px/1.31 var(--font-main); letter-spacing: -0.01px; color: var(--text-tertiary); }
+/* disabled — colores de DotsMainButton disabled (bgBtnDisabled, textDisabled) */
+.ds-rich-btn:disabled { cursor: default; }
+.ds-rich-btn--disabled { background: var(--bg-btn-disabled); }
+.ds-rich-btn--disabled .ds-rich-btn__content,
+.ds-rich-btn--disabled .ds-rich-btn__details,
+.ds-rich-btn--disabled .ds-rich-btn__trail { color: var(--text-disabled); }
+/* una imagen no se puede teñir: mismo alfa que textDisabled (#…33) */
+.ds-rich-btn--disabled .ds-rich-btn__img { opacity: 0.2; }
+/* loading — spinner centrado; el fondo no cambia (como DotsMainButton) */
+.ds-rich-btn--loading { justify-content: center; }

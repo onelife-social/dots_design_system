@@ -19,5 +19,9 @@ export interface DotsRichButtonProps {
     trailingText?: string;
     /** Tap — Dart `onTap` */
     onClick?: () => void;
+    /** When false, DotsMainButton's disabled colors are painted and clicks are ignored (default true) — Dart `enabled` */
+    enabled?: boolean;
+    /** Replaces leading, content and trailing with a centered spinner and blocks clicks (default false) — Dart `isLoading` */
+    isLoading?: boolean;
 }
 export declare function DotsRichButton(props: DotsRichButtonProps): import("react").JSX.Element;

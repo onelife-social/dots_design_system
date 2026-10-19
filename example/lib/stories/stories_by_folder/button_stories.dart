@@ -408,6 +408,8 @@ List<Story> get buttonStories => [
               details: context.knobs.nullable.text(label: 'Details', initial: 'Details'),
               trailingText: context.knobs.nullable
                   .text(label: 'Trailing Text', initial: '0/4', enabled: false),
+              enabled: context.knobs.boolean(label: 'Enabled', initial: true),
+              isLoading: context.knobs.boolean(label: 'Is loading', initial: false),
               onTap: () =>
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('On tap!'))),
             ),

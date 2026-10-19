@@ -26,6 +26,13 @@
         content: 'Recap del verano', details: '12 recuerdos' })],
       ['small · textSize medium · icon, sin details', h(C, {
         size: 'small', textSize: 'medium', icon: 'ic-clock-outline', content: 'Historial' })],
+      ['medium · isLoading', h(C, {
+        size: 'medium', textSize: 'medium', image: IMG, content: 'Continuar con Apple', isLoading: true })],
+      ['medium · enabled=false', h(C, {
+        size: 'medium', textSize: 'medium', image: IMG, content: 'Continuar con Google', enabled: false })],
+      ['dark — medium · isLoading + enabled=false', h('div', { style: { display: 'flex', flexDirection: 'column', gap: 10 } },
+        h(C, { size: 'medium', textSize: 'medium', image: IMG, content: 'Continuar con Apple', isLoading: true }),
+        h(C, { size: 'medium', textSize: 'medium', image: IMG, content: 'Continuar con Google', enabled: false })), 'dark'],
       ['dark — large', h(C, {
         size: 'large', textSize: 'large', icon: 'ic-pics',
         content: 'Crea tu DotBook', details: 'Desde 29,99 €', trailingText: 'Nuevo' }), 'dark']
