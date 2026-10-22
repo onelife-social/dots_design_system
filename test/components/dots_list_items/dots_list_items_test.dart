@@ -35,6 +35,15 @@ void main() {
     );
   });
 
+  testWidgets('an empty subtitle lays out like no subtitle', (tester) async {
+    await tester.pumpWidget(_host(const DotsListsItem(label: _label)));
+    final Offset labelOnly = tester.getTopLeft(find.text(_label));
+
+    await tester.pumpWidget(_host(const DotsListsItem(label: _label, subtitle: '')));
+
+    expect(tester.getTopLeft(find.text(_label)), labelOnly);
+  });
+
   testWidgets('a long subtitle stays on one line with an ellipsis', (tester) async {
     await tester.pumpWidget(_host(const DotsListsItem(label: _label, subtitle: _longSubtitle)));
 

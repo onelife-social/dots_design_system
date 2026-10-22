@@ -93,6 +93,7 @@ class DotsListsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    final hasSubtitle = subtitle?.isNotEmpty ?? false;
 
     if (variant.isDivider) {
       return Column(
@@ -161,7 +162,7 @@ class DotsListsItem extends StatelessWidget {
               iconSize: 20,
             ),
           const SizedBox(width: 12),
-          if (label != null || subtitle != null)
+          if (label != null || hasSubtitle)
             Expanded(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -175,7 +176,7 @@ class DotsListsItem extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                  if (subtitle != null)
+                  if (hasSubtitle)
                     Text(
                       subtitle!,
                       style: theme.typo.main.labelDefaultRegular.copyWith(

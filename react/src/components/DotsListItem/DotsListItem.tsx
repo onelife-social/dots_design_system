@@ -15,7 +15,7 @@ export interface DotsListItemProps {
   variant?: DotsListItemVariant;
   /** Row text (or section title in variant divider) */
   label?: string;
-  /** Second line under the label — Dart `subtitle`. Ignored in variant divider */
+  /** Second line under the label — Dart `subtitle`. Empty counts as absent; ignored in variant divider */
   subtitle?: string;
   /** Image URL/data URI — Dart `image` (ImageProvider) */
   imageSrc?: string;
@@ -86,7 +86,7 @@ function renderTrailing(variant: DotsListItemVariant) {
 }
 
 function renderText(props: DotsListItemProps) {
-  if (props.subtitle == null) {
+  if (!props.subtitle) {
     return props.label != null ? <span className="ds-list-item__label">{props.label}</span> : null;
   }
   return (

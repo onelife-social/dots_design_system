@@ -6,7 +6,7 @@ DotsListItem from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Do
 | --- | --- | --- | --- |
 | `variant` | `'main' \| 'selector' \| 'icon' \| 'check' \| 'radioButton' \| 'chevron' \| 'divider'` | `'main'` | Variante de la fila. `selector` muestra radio vacío, `radioButton` radio marcado, `check` pill azul con check, `chevron` chevron a la derecha (fila que navega), `divider` título de sección + línea. |
 | `label` | `string` | — | Texto de la fila (bodyDefaultMedium, ellipsis) o título de la sección en `divider`. |
-| `subtitle` | `string` | — | Segunda línea bajo `label` (labelDefaultRegular, `textSecondary`, ellipsis): fecha, nº de elementos, email… Cabe en la altura de la miniatura, así que la fila no crece. Se ignora en `divider`. |
+| `subtitle` | `string` | — | Segunda línea bajo `label` (labelDefaultRegular, `textSecondary`, ellipsis): fecha, nº de elementos, email… Cabe en la altura de la miniatura, así que la fila no crece. Vacío cuenta como ausente; se ignora en `divider`. |
 | `imageSrc` | `string` | — | URL/data URI de la miniatura. Ignorada en `variant='icon'`; sin ella se muestra el tile de icono. |
 | `picType` | `'album' \| 'user'` | `'album'` | `album` → cuadrado radius 12; `user` → círculo con fondo `bgBaseContrast`. |
 | `iconName` | `string` | `'ic-user'` | Icono del tile (asset real `ic-…`) cuando aplica la variante icon. |
@@ -33,7 +33,7 @@ DotsListItem from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Do
 ## Dart mapping
 
 - Widget: `DotsListsItem` (`lib/src/components/dots_list_items/dots_list_items.dart`) — nombre web sin la doble "s".
-- Enums: `DotsListsItemVariant` (main/selector/icon/check/radioButton/divider), `DotsListsItemPicType` (album/user).
+- Enums: `DotsListsItemVariant` (main/selector/icon/check/radioButton/chevron/divider), `DotsListsItemPicType` (album/user).
 - `image` (ImageProvider) → `imageSrc`; `iconData` (DotsIconData) → `iconName`; `onTap` → `onClick`; `subtitle` igual.
 - Trailing: selector/radioButton → `DotsRadioButton(size: 22)` del bundle; check → `DotsSelector.check` small (pill 22, `labelHighlight`, `ic-check` 14 blanco); chevron → `ic-chevron-right` 16 `textTertiary`.
 - Divider: label `labelSmallMedium` `textSecondary` + línea 1px `labelSecondary` al 50%.

@@ -10,7 +10,7 @@ export interface DotsListItemProps {
     variant?: DotsListItemVariant;
     /** Row text (or section title in variant divider) */
     label?: string;
-    /** Second line under the label — Dart `subtitle`. Ignored in variant divider */
+    /** Second line under the label — Dart `subtitle`. Empty counts as absent; ignored in variant divider */
     subtitle?: string;
     /** Image URL/data URI — Dart `image` (ImageProvider) */
     imageSrc?: string;
