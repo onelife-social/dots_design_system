@@ -19,13 +19,13 @@ export interface DotsTopBarProps {
     rightIcon?: ReactNode;
     /** Shows the back button (DotsIconButton chevronLeft medium) — Dart `onTapBack` */
     onBack?: () => void;
-    /** Transparent instead of bgContainerPrimary — Dart `hideBackground` */
+    /** Transparent instead of bgContainerPrimary, and no blur — Dart `hideBackground` */
     hideBackground?: boolean;
     /** Reserve the status-bar strip above the content (default true): the larger of `--ds-status-bar-min` (50px) and the top safe-area inset — Dart `bigStatusBar` */
     bigStatusBar?: boolean;
     /** Back button `solid` instead of `noBackground` — Dart `showCircleBackButton` */
     showCircleBackButton?: boolean;
-    /** Explicit background color — Dart `color` */
+    /** Explicit background color, and no blur — Dart `color` */
     color?: string;
     /** 1px black @20% bottom border — Dart `showBottomBorder` */
     showBottomBorder?: boolean;
