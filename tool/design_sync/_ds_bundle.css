@@ -1700,6 +1700,37 @@
   text-overflow: ellipsis;
 }
 
+/* ── two lines (label + subtitle) — Column(spacing 2) inside the Expanded ── */
+.ds-list-item__text {
+  flex: 1;
+  min-width: 0;
+  margin: 0 8px 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ds-list-item__text > .ds-list-item__label {
+  flex: none;
+  margin: 0;
+}
+/* typo.main.labelDefaultRegular (13/400, lh 1.31, ls -0.01) textSecondary */
+.ds-list-item__subtitle {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.31;
+  letter-spacing: -0.01px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── trailing chevron — DotsIcon chevronRight 16 textTertiary ── */
+.ds-list-item__chevron {
+  flex: none;
+  display: inline-flex;
+}
+
 /* ── trailing check — DotsSelector.check small (height 22, labelHighlight pill) ── */
 .ds-list-item__check {
   min-width: 22px;
