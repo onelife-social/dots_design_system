@@ -1078,6 +1078,31 @@
   background: var(--label-destructive);
 }
 
+/* ── DotsCheckCircle ── */
+.ds-check-circle {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  flex: none;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid var(--label-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+button.ds-check-circle {
+  cursor: pointer;
+}
+.ds-check-circle.is-on {
+  border: none;
+  background: var(--label-highlight);
+}
+.ds-check-circle.is-disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
 /* ── DotsCloseButton ── */
 /* DotsCloseButton — colores de dots_close_button_theme.dart, medidas de dots_close_button_enums.dart */
 .ds-close-btn {

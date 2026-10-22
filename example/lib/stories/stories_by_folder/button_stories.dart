@@ -267,6 +267,22 @@ List<Story> get buttonStories => [
         },
       ),
       Story(
+        name: 'Buttons/Check circle',
+        description: 'Demo page for Check Circle',
+        builder: (context) {
+          bool isSelected = false;
+          final size = context.knobs.slider(label: 'Size', initial: 24, min: 16, max: 40);
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return InkWell(
+                onTap: () => setState(() => isSelected = !isSelected),
+                child: DotsCheckCircle(isSelected: isSelected, size: size),
+              );
+            },
+          );
+        },
+      ),
+      Story(
         name: 'Buttons/Toggle',
         description: 'Demo page for Toggle',
         builder: (context) {
