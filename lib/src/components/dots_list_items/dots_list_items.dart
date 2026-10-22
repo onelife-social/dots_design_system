@@ -7,6 +7,7 @@ enum DotsListsItemVariant {
   icon,
   check,
   radioButton,
+  chevron,
   divider;
 
   bool get isMain => this == DotsListsItemVariant.main;
@@ -14,6 +15,7 @@ enum DotsListsItemVariant {
   bool get isIcon => this == DotsListsItemVariant.icon;
   bool get isCheck => this == DotsListsItemVariant.check;
   bool get isRadioButton => this == DotsListsItemVariant.radioButton;
+  bool get isChevron => this == DotsListsItemVariant.chevron;
   bool get isDivider => this == DotsListsItemVariant.divider;
 }
 
@@ -50,6 +52,9 @@ class DotsListsItem extends StatelessWidget {
   /// The label for the filter chip.
   final String? label;
 
+  /// Second line under [label]. Ignored by the divider variant.
+  final String? subtitle;
+
   /// Callback when the close button chip is tapped.
   final void Function()? onTap;
 
@@ -71,6 +76,7 @@ class DotsListsItem extends StatelessWidget {
     this.variant = DotsListsItemVariant.main,
     this.image,
     this.label,
+    this.subtitle,
     this.onTap,
     this.picType = DotsListsItemPicType.album,
     this.iconData = DotsIconData.user,
@@ -87,6 +93,7 @@ class DotsListsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    final hasSubtitle = subtitle?.isNotEmpty ?? false;
 
     if (variant.isDivider) {
       return Column(
@@ -155,12 +162,30 @@ class DotsListsItem extends StatelessWidget {
               iconSize: 20,
             ),
           const SizedBox(width: 12),
-          if (label != null)
+          if (label != null || hasSubtitle)
             Expanded(
-              child: Text(
-                label!,
-                style: theme.typo.main.bodyDefaultMedium,
-                overflow: TextOverflow.ellipsis,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 2,
+                children: [
+                  if (label != null)
+                    Text(
+                      label!,
+                      style: theme.typo.main.bodyDefaultMedium,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  if (hasSubtitle)
+                    Text(
+                      subtitle!,
+                      style: theme.typo.main.labelDefaultRegular.copyWith(
+                        color: theme.colors.textSecondary,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                ],
               ),
             ),
           const SizedBox(width: 8),
@@ -173,6 +198,12 @@ class DotsListsItem extends StatelessWidget {
             DotsSelector.check(
               size: DotsSelectorSize.small,
               isSelected: true,
+            )
+          else if (variant.isChevron)
+            DotsIcon(
+              iconData: DotsIconData.chevronRight,
+              size: 16,
+              color: theme.colors.textTertiary,
             ),
         ],
       ),

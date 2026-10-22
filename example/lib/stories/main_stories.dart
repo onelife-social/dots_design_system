@@ -531,6 +531,11 @@ List<Story> get allStories => [
               child: DotsListsItem(
                 image: NetworkImage('https://picsum.photos/250?image=9'),
                 label: context.knobs.text(label: 'Label', initial: 'Sample Label'),
+                subtitle: context.knobs.nullable.text(
+                  label: 'Subtitle',
+                  initial: '20 de junio de 2027 · 90 invitados',
+                  enabled: false,
+                ),
                 onTap: () {},
                 variant: variant,
                 iconData: iconData,

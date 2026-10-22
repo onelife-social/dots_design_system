@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import type { SyntheticEvent } from 'react';
 /** Dart enum DotsListsItemVariant */
-export type DotsListItemVariant = 'main' | 'selector' | 'icon' | 'check' | 'radioButton' | 'divider';
+export type DotsListItemVariant = 'main' | 'selector' | 'icon' | 'check' | 'radioButton' | 'chevron' | 'divider';
 /** Dart enum DotsListsItemPicType */
 export type DotsListItemPicType = 'album' | 'user';
 export interface DotsListItemProps {
@@ -10,6 +10,8 @@ export interface DotsListItemProps {
     variant?: DotsListItemVariant;
     /** Row text (or section title in variant divider) */
     label?: string;
+    /** Second line under the label — Dart `subtitle`. Empty counts as absent; ignored in variant divider */
+    subtitle?: string;
     /** Image URL/data URI — Dart `image` (ImageProvider) */
     imageSrc?: string;
     /** Thumbnail shape when there is an image — Dart enum DotsListsItemPicType (default 'album') */
