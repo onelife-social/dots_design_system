@@ -3248,6 +3248,12 @@ button.ds-check-circle {
 .ds-top-bar--normal { height: 50px; }
 .ds-top-bar--big { height: calc(56px + var(--ds-top-bar-status)); }
 .ds-top-bar--status-only { height: var(--ds-top-bar-status); }
+/* Web only: Dart paints bgContainerPrimary flat. The web bar sits in a sticky header with content scrolling under it,
+   so the 85% background needs the blur that the sticky bottom block already uses. */
+.ds-top-bar--frosted {
+  -webkit-backdrop-filter: blur(var(--blur-20));
+  backdrop-filter: blur(var(--blur-20));
+}
 /* showBottomBorder — Colors.black @0.2 (no token) */
 .ds-top-bar--bordered { box-shadow: 0 1px 0 #00000033; }
 .ds-top-bar__status { height: var(--ds-top-bar-status); flex: none; }

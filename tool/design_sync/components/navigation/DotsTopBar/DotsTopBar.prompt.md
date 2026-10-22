@@ -17,14 +17,14 @@ DotsTopBar from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Dots
 | `onCtaClick` | `() => void` | — | Callback del CTA — Dart `onCtaTap`. |
 | `ctaEnabled` | `boolean` | `true` | Deshabilita el CTA. |
 | `bigStatusBar` | `boolean` | `true` | 106px (50 status + 56 contenido); `false` → 50px sin franja. onlyStatusBar es solo la franja (50px). |
-| `hideBackground` | `boolean` | `false` | Fondo transparente en vez de `bgContainerPrimary`. |
-| `color` | `string` (CSS) | — | Fuerza el color de fondo (ignora `hideBackground`). |
+| `hideBackground` | `boolean` | `false` | Fondo transparente en vez de `bgContainerPrimary`, sin desenfoque. |
+| `color` | `string` (CSS) | — | Fuerza el color de fondo (ignora `hideBackground`), sin desenfoque. |
 | `showBottomBorder` | `boolean` | `false` | Línea inferior 1px negro @0.2. |
 | `className` | `string` | — | Clases extra sobre `.ds-top-bar`. |
 
 La franja de la barra de estado mide 50px en el diseño. En el dispositivo mide lo que sea mayor entre `--ds-status-bar-min` (50px si no se define) y `env(safe-area-inset-top)`. La app nativa pone `--ds-status-bar-min: 0px`: así, si el web view empieza debajo de la barra de estado (Android sin edge-to-edge), no queda un hueco vacío. En los diseños no se define.
 
-Colócala arriba de la pantalla a ancho completo (el fondo `bgContainerPrimary` es semitransparente; combina con blur/scroll por debajo si procede).
+Colócala arriba de la pantalla a ancho completo. Con el fondo por defecto pinta `bgContainerPrimary` (85 % de opacidad) con `backdrop-filter: blur(var(--blur-20))`, igual que el bloque fijo de abajo: si la cabecera va en un bloque `position: sticky; top: 0`, el contenido que pasa por detrás se ve desenfocado y no se lee, también en la franja de la barra de estado. No hace falta darle fondo al contenedor. Con `hideBackground` o `color` no desenfoca.
 
 ## Examples
 
@@ -58,4 +58,4 @@ const { DotsTopBar, DotsIconButton } = window.DotsDesignSystem_9e41da;
 | `imageTitle` | `imageTitle` (`ImageProvider` → URL; `DotsProfilePhoto` 20×20) |
 | `ctaLabel`/`onCtaClick`/`ctaEnabled` | `ctaLabel`/`onCtaTap`/`ctaEnabled` (`DotsMainButton` main·small). Nota: Dart exige ambos; aquí basta `ctaLabel` |
 | Alturas | `kTopBarNormalHeight = 50` / `kTopBarBigHeight = 106` |
-| Fondo | `color ?? (hideBackground ? transparent : bgContainerPrimary)` |
+| Fondo | `color ?? (hideBackground ? transparent : bgContainerPrimary)`. Solo en web, el fondo por defecto lleva además `blur(var(--blur-20))`; Dart lo pinta plano |
