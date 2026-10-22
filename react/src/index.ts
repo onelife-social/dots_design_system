@@ -29,6 +29,8 @@ export { EventGroupCard } from './components/EventGroupCard/EventGroupCard';
 export type { EventGroupCardProps, EventGroupCardAction, EventGroupCardVariant } from './components/EventGroupCard/EventGroupCard';
 export { DotsRadioButton } from './components/DotsRadioButton/DotsRadioButton';
 export type { DotsRadioButtonProps } from './components/DotsRadioButton/DotsRadioButton';
+export { DotsCheckCircle } from './components/DotsCheckCircle/DotsCheckCircle';
+export type { DotsCheckCircleProps } from './components/DotsCheckCircle/DotsCheckCircle';
 export { DotsToggle } from './components/DotsToggle/DotsToggle';
 export type { DotsToggleProps } from './components/DotsToggle/DotsToggle';
 export { DotsRichButton } from './components/DotsRichButton/DotsRichButton';
