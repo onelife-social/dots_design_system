@@ -5,7 +5,7 @@ DotsTimePicker from dots_design_system. Use via `window.DotsDesignSystem_9e41da.
 | Prop | Tipo | Default | Descripción |
 | --- | --- | --- | --- |
 | `value` | `string` (`HH:mm`) | `''` | Hora elegida (controlada). Vacía: la rueda enseña la hora del dispositivo sin avisar con `onChange`. |
-| `onChange` | `(time: string) => void` | — | Nueva hora `HH:mm` al soltar una columna, tocar una fila o usar las flechas. |
+| `onChange` | `(time: string) => void` | — | Nueva hora `HH:mm` en cuanto otra fila pasa por la banda (también mientras gira), al tocar una fila o con las flechas. |
 | `minuteInterval` | `number` | `1` | Paso de los minutos (divisor de 60). |
 | `hoursLabel` / `minutesLabel` | `string` | `'Hours'` / `'Minutes'` | Nombres accesibles de las columnas. |
 | `className` | `string` | — | Clases extra sobre `.ds-time-picker`. |

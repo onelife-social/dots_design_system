@@ -1,13 +1,13 @@
 // DotsTimePicker — inline hour/minute wheel, 24 h. New in the web DS (no Dart widget): the Flutter app picks
 // times with CupertinoDatePicker in time mode inside CupertinoDatePickerPopupStyle (onelife_app). Both
 // columns loop like that wheel; rows and band look like the DotsCalendar month/year picker.
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { WheelColumn } from '../../internal/WheelColumn';
 
 export interface DotsTimePickerProps {
   /** Selected time as HH:mm, 24 h (controlled); '' or undefined shows the device's current time without reporting it */
   value?: string;
-  /** Called with the new time as HH:mm when a column settles, a row is tapped or an arrow key moves it */
+  /** Called with the new time as HH:mm whenever another row passes under the band, a row is tapped or an arrow key moves it */
   onChange?: (time: string) => void;
   /** Step of the minutes column, a divisor of 60 (default 1); a value off the step shows the step below it */
   minuteInterval?: number;
@@ -36,15 +36,20 @@ export function DotsTimePicker(props: DotsTimePickerProps) {
   const step = props.minuteInterval && props.minuteInterval > 0 && 60 % props.minuteInterval === 0 ? props.minuteInterval : 1;
   const minutes = useMemo(() => Array.from({ length: 60 / step }, (_, i) => pad(i * step)), [step]);
 
-  // Mirrors `value`, so the wheel also holds a pick when the parent does not feed it back.
+  // Mirrors `value`, so the wheel also holds a pick when the parent does not feed it back. The ref is what the
+  // columns read: both can report before a render (two fingers), and each must keep the other's latest value.
   const [time, setTime] = useState<[number, number]>(() => parseTime(props.value) ?? now());
+  const timeRef = useRef(time);
   useEffect(() => {
     const parsed = parseTime(props.value);
-    if (parsed) setTime(parsed);
+    if (!parsed) return;
+    timeRef.current = parsed;
+    setTime(parsed);
   }, [props.value]);
 
   const [hour, minute] = time;
   const pick = (h: number, min: number) => {
+    timeRef.current = [h, min];
     setTime([h, min]);
     props.onChange?.(`${pad(h)}:${pad(min)}`);
   };
@@ -55,7 +60,7 @@ export function DotsTimePicker(props: DotsTimePickerProps) {
       <WheelColumn
         items={HOURS}
         index={hour}
-        onIndexChange={(h) => pick(h, minute - (minute % step))}
+        onIndexChange={(h) => pick(h, timeRef.current[1] - (timeRef.current[1] % step))}
         ariaLabel={props.hoursLabel ?? 'Hours'}
         loop
         {...wheelClasses}
@@ -63,7 +68,7 @@ export function DotsTimePicker(props: DotsTimePickerProps) {
       <WheelColumn
         items={minutes}
         index={Math.floor(minute / step)}
-        onIndexChange={(i) => pick(hour, i * step)}
+        onIndexChange={(i) => pick(timeRef.current[0], i * step)}
         ariaLabel={props.minutesLabel ?? 'Minutes'}
         loop
         {...wheelClasses}
