@@ -2,9 +2,10 @@
 // uses the cupertino_calendar_picker package themed by CupertinoCalendarPickerUtils (onelife_app),
 // whose styles this port mirrors: header "Month year ⌄" opening a month/year picker, prev/next
 // arrows, today ring, selected filled circle, disabled/outside days muted.
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsIconButton } from '../DotsIconButton/DotsIconButton';
+import { WheelColumn } from '../../internal/WheelColumn';
 
 export interface DotsCalendarProps {
   /** Selected day as ISO yyyy-mm-dd; '' or undefined = nothing selected (controlled) */
@@ -64,8 +65,7 @@ function monthGrid(y: number, m: number, firstDayOfWeek: 0 | 1): Day[] {
   return days;
 }
 
-const ITEM = 44; // px, picker row height (also the day cell height)
-const VISIBLE = 5; // picker rows visible
+const wheelClasses = { className: 'ds-calendar__col', itemClassName: 'ds-calendar__item', selectedItemClassName: 'ds-calendar__item--selected' };
 
 export function DotsCalendar(props: DotsCalendarProps) {
   const locale = props.locale ?? (typeof navigator !== 'undefined' ? navigator.language : 'es');
@@ -177,62 +177,10 @@ export function DotsCalendar(props: DotsCalendarProps) {
       ) : (
         <div className="ds-calendar__picker">
           <div className="ds-calendar__band" aria-hidden />
-          <WheelColumn items={monthNames} index={month} onIndexChange={setMonth} ariaLabel="month" />
-          <WheelColumn items={years.map(String)} index={Math.max(0, years.indexOf(year))} onIndexChange={(i) => setYear(years[i])} ariaLabel="year" />
+          <WheelColumn items={monthNames} index={month} onIndexChange={setMonth} ariaLabel="month" {...wheelClasses} />
+          <WheelColumn items={years.map(String)} index={Math.max(0, years.indexOf(year))} onIndexChange={(i) => setYear(years[i])} ariaLabel="year" {...wheelClasses} />
         </div>
       )}
-    </div>
-  );
-}
-
-// One scroll-snap column of the month/year picker: the item under the band is the current one.
-function WheelColumn(props: { items: string[]; index: number; onIndexChange: (i: number) => void; ariaLabel: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const settle = useRef<number | undefined>(undefined);
-  const lastReported = useRef(props.index);
-
-  // External index → scroll (instant on mount, smooth after a tap)
-  const mounted = useRef(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const top = props.index * ITEM;
-    if (Math.abs(el.scrollTop - top) > 1) el.scrollTo({ top, behavior: mounted.current ? 'smooth' : 'auto' });
-    mounted.current = true;
-    lastReported.current = props.index;
-  }, [props.index]);
-
-  // Scroll → index once the wheel settles (debounced: iOS 16 WebKit has no `scrollend`)
-  const onScroll = () => {
-    window.clearTimeout(settle.current);
-    settle.current = window.setTimeout(() => {
-      const el = ref.current;
-      if (!el) return;
-      const i = Math.max(0, Math.min(props.items.length - 1, Math.round(el.scrollTop / ITEM)));
-      if (i !== lastReported.current) {
-        lastReported.current = i;
-        props.onIndexChange(i);
-      }
-    }, 80);
-  };
-
-  const padRows = Math.floor(VISIBLE / 2);
-  return (
-    <div ref={ref} className="ds-calendar__col" role="listbox" aria-label={props.ariaLabel} onScroll={onScroll}>
-      <div style={{ height: padRows * ITEM, flex: 'none' }} />
-      {props.items.map((item, i) => (
-        <button
-          key={item}
-          type="button"
-          role="option"
-          aria-selected={i === props.index}
-          className={`ds-calendar__item${i === props.index ? ' ds-calendar__item--selected' : ''}`}
-          onClick={() => props.onIndexChange(i)}
-        >
-          {item}
-        </button>
-      ))}
-      <div style={{ height: padRows * ITEM, flex: 'none' }} />
     </div>
   );
 }

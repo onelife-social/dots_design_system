@@ -20,6 +20,7 @@
 @import "./components/DotsTopBar/DotsTopBar.css";
 @import "./components/DotsAlert/DotsAlert.css";
 @import "./components/DotsCalendar/DotsCalendar.css";
+@import "./components/DotsTimePicker/DotsTimePicker.css";
 @import "./components/DotsCloseButton/DotsCloseButton.css";
 @import "./components/DotsTextFieldButton/DotsTextFieldButton.css";
 @import "./components/DotsSelector/DotsSelector.css";
