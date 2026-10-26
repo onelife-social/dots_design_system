@@ -9,6 +9,8 @@ import { inertProps } from '../../internal/inert';
 export type DotsListItemVariant = 'main' | 'selector' | 'icon' | 'check' | 'radioButton' | 'chevron' | 'divider';
 /** Dart enum DotsListsItemPicType */
 export type DotsListItemPicType = 'album' | 'user';
+/** Dart enum DotsListsItemLabelStyle */
+export type DotsListItemLabelStyle = 'regular' | 'bold';
 
 export interface DotsListItemProps {
   /** Variant — Dart enum DotsListsItemVariant (default 'main') */
@@ -21,6 +23,8 @@ export interface DotsListItemProps {
   imageSrc?: string;
   /** Thumbnail shape when there is an image — Dart enum DotsListsItemPicType (default 'album') */
   picType?: DotsListItemPicType;
+  /** Label style — Dart enum DotsListsItemLabelStyle (default 'regular' = bodyDefaultMedium; 'bold' = bodyLargeBold). Ignored in variant divider */
+  labelStyle?: DotsListItemLabelStyle;
   /** Icon name (asset ic-…) for variant icon or when there is no image — Dart `iconData` (default 'ic-user') */
   iconName?: string;
   /** Tap on the whole row — Dart `onTap` */
@@ -86,12 +90,13 @@ function renderTrailing(variant: DotsListItemVariant) {
 }
 
 function renderText(props: DotsListItemProps) {
+  const labelClass = `ds-list-item__label${props.labelStyle === 'bold' ? ' ds-list-item__label--bold' : ''}`;
   if (!props.subtitle) {
-    return props.label != null ? <span className="ds-list-item__label">{props.label}</span> : null;
+    return props.label != null ? <span className={labelClass}>{props.label}</span> : null;
   }
   return (
     <span className="ds-list-item__text">
-      {props.label != null ? <span className="ds-list-item__label">{props.label}</span> : null}
+      {props.label != null ? <span className={labelClass}>{props.label}</span> : null}
       <span className="ds-list-item__subtitle">{props.subtitle}</span>
     </span>
   );
