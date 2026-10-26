@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"DotsDesignSystem_9e41da","components":[{"name":"DotsIcon","sourcePath":"components/icons/DotsIcon/DotsIcon.jsx"},{"name":"ActivityPreview","sourcePath":"components/social/ActivityPreview/ActivityPreview.jsx"},{"name":"AlbumGroupCard","sourcePath":"components/cards/AlbumGroupCard/AlbumGroupCard.jsx"},{"name":"BadgeIcon","sourcePath":"components/feedback/BadgeIcon/BadgeIcon.jsx"},{"name":"BadgeLabel","sourcePath":"components/feedback/BadgeLabel/BadgeLabel.jsx"},{"name":"BadgeMilestone","sourcePath":"components/feedback/BadgeMilestone/BadgeMilestone.jsx"},{"name":"BadgeProgress","sourcePath":"components/feedback/BadgeProgress/BadgeProgress.jsx"},{"name":"BadgeTag","sourcePath":"components/feedback/BadgeTag/BadgeTag.jsx"},{"name":"BlurContainer","sourcePath":"components/content/BlurContainer/BlurContainer.jsx"},{"name":"BtnFolder","sourcePath":"components/buttons/BtnFolder/BtnFolder.jsx"},{"name":"ColorSelector","sourcePath":"components/content/ColorSelector/ColorSelector.jsx"},{"name":"CreateCard","sourcePath":"components/cards/CreateCard/CreateCard.jsx"},{"name":"DotsAccordion","sourcePath":"components/content/DotsAccordion/DotsAccordion.jsx"},{"name":"DotsActionSheet","sourcePath":"components/overlays/DotsActionSheet/DotsActionSheet.jsx"},{"name":"DotsAlert","sourcePath":"components/feedback/DotsAlert/DotsAlert.jsx"},{"name":"DotsBottomEdgeBlur","sourcePath":"components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.jsx"},{"name":"DotsCalendar","sourcePath":"components/inputs/DotsCalendar/DotsCalendar.jsx"},{"name":"DotsCaptureButton","sourcePath":"components/buttons/DotsCaptureButton/DotsCaptureButton.jsx"},{"name":"DotsCheckCircle","sourcePath":"components/buttons/DotsCheckCircle/DotsCheckCircle.jsx"},{"name":"DotsCloseButton","sourcePath":"components/buttons/DotsCloseButton/DotsCloseButton.jsx"},{"name":"DotsCountdown","sourcePath":"components/indicators/DotsCountdown/DotsCountdown.jsx"},{"name":"DotsDivider","sourcePath":"components/content/DotsDivider/DotsDivider.jsx"},{"name":"DotsEmptyStateCard","sourcePath":"components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx"},{"name":"DotsFilterChip","sourcePath":"components/feedback/DotsFilterChip/DotsFilterChip.jsx"},{"name":"DotsFloatingButton","sourcePath":"components/buttons/DotsFloatingButton/DotsFloatingButton.jsx"},{"name":"DotsGameCard","sourcePath":"components/cards/DotsGameCard/DotsGameCard.jsx"},{"name":"DotsHomeTopBar","sourcePath":"components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx"},{"name":"DotsIconButton","sourcePath":"components/buttons/DotsIconButton/DotsIconButton.jsx"},{"name":"DotsInputStepper","sourcePath":"components/buttons/DotsInputStepper/DotsInputStepper.jsx"},{"name":"DotsItemInput","sourcePath":"components/inputs/DotsItemInput/DotsItemInput.jsx"},{"name":"DotsListItem","sourcePath":"components/content/DotsListItem/DotsListItem.jsx"},{"name":"DotsMainButton","sourcePath":"components/buttons/DotsMainButton/DotsMainButton.jsx"},{"name":"DotsMainContainer","sourcePath":"components/content/DotsMainContainer/DotsMainContainer.jsx"},{"name":"DotsMenu","sourcePath":"components/overlays/DotsMenu/DotsMenu.jsx"},{"name":"DotsNavBar","sourcePath":"components/navigation/DotsNavBar/DotsNavBar.jsx"},{"name":"DotsPlanningItem","sourcePath":"components/planning/DotsPlanningItem/DotsPlanningItem.jsx"},{"name":"DotsPlanSelector","sourcePath":"components/premium/DotsPlanSelector/DotsPlanSelector.jsx"},{"name":"DotsProfilePhoto","sourcePath":"components/media/DotsProfilePhoto/DotsProfilePhoto.jsx"},{"name":"DotsProgressBar","sourcePath":"components/indicators/DotsProgressBar/DotsProgressBar.jsx"},{"name":"DotsRadioButton","sourcePath":"components/buttons/DotsRadioButton/DotsRadioButton.jsx"},{"name":"DotsRichButton","sourcePath":"components/buttons/DotsRichButton/DotsRichButton.jsx"},{"name":"DotsSegmentedControl","sourcePath":"components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx"},{"name":"DotsSelector","sourcePath":"components/buttons/DotsSelector/DotsSelector.jsx"},{"name":"DotsSelectorRadioButton","sourcePath":"components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx"},{"name":"DotsSlider","sourcePath":"components/content/DotsSlider/DotsSlider.jsx"},{"name":"DotsSpinner","sourcePath":"components/indicators/DotsSpinner/DotsSpinner.jsx"},{"name":"DotsSquirclePhoto","sourcePath":"components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx"},{"name":"DotsSystemButton","sourcePath":"components/buttons/DotsSystemButton/DotsSystemButton.jsx"},{"name":"DotsTextArea","sourcePath":"components/inputs/DotsTextArea/DotsTextArea.jsx"},{"name":"DotsTextField","sourcePath":"components/inputs/DotsTextField/DotsTextField.jsx"},{"name":"DotsTextFieldButton","sourcePath":"components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx"},{"name":"DotsTextFieldDate","sourcePath":"components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx"},{"name":"DotsTextFieldPhone","sourcePath":"components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx"},{"name":"DotsToast","sourcePath":"components/feedback/DotsToast/DotsToast.jsx"},{"name":"DotsToggle","sourcePath":"components/buttons/DotsToggle/DotsToggle.jsx"},{"name":"DotsTooltip","sourcePath":"components/overlays/DotsTooltip/DotsTooltip.jsx"},{"name":"DotsTopBar","sourcePath":"components/navigation/DotsTopBar/DotsTopBar.jsx"},{"name":"DotsUploadItem","sourcePath":"components/media/DotsUploadItem/DotsUploadItem.jsx"},{"name":"DropdownMenu","sourcePath":"components/overlays/DropdownMenu/DropdownMenu.jsx"},{"name":"EventGroupCard","sourcePath":"components/cards/EventGroupCard/EventGroupCard.jsx"},{"name":"FeatureItem","sourcePath":"components/content/FeatureItem/FeatureItem.jsx"},{"name":"FolderCarrousel","sourcePath":"components/navigation/FolderCarrousel/FolderCarrousel.jsx"},{"name":"ImageThumbnail","sourcePath":"components/indicators/ImageThumbnail/ImageThumbnail.jsx"},{"name":"ImageWithIcon","sourcePath":"components/social/ImageWithIcon/ImageWithIcon.jsx"},{"name":"ImageWithProgressAround","sourcePath":"components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx"},{"name":"MemoryCard","sourcePath":"components/cards/MemoryCard/MemoryCard.jsx"},{"name":"MessagePreview","sourcePath":"components/social/MessagePreview/MessagePreview.jsx"},{"name":"MilestoneCard","sourcePath":"components/memories/MilestoneCard/MilestoneCard.jsx"},{"name":"MilestonesList","sourcePath":"components/memories/MilestonesList/MilestonesList.jsx"},{"name":"NotificationBanner","sourcePath":"components/social/NotificationBanner/NotificationBanner.jsx"},{"name":"NotificationBannerImage","sourcePath":"components/social/NotificationBannerImage/NotificationBannerImage.jsx"},{"name":"PageControl","sourcePath":"components/dotbook/PageControl/PageControl.jsx"},{"name":"ProductCard","sourcePath":"components/cards/ProductCard/ProductCard.jsx"},{"name":"RatingRow","sourcePath":"components/content/RatingRow/RatingRow.jsx"},{"name":"RecapCard","sourcePath":"components/cards/RecapCard/RecapCard.jsx"},{"name":"UserItem","sourcePath":"components/social/UserItem/UserItem.jsx"},{"name":"UsersList","sourcePath":"components/social/UsersList/UsersList.jsx"}],"sourceHashes":{"components/icons/DotsIcon/DotsIcon.jsx":"335df31c211a","components/icons/DotsIcon/DotsIcon.d.ts":"87b2028cfb22","components/icons/DotsIcon/DotsIcon.prompt.md":"fe2f27eb49fe","components/social/ActivityPreview/ActivityPreview.jsx":"b4b80f9e800f","components/social/ActivityPreview/ActivityPreview.d.ts":"9fa1929faede","components/social/ActivityPreview/ActivityPreview.prompt.md":"239a5fa193fe","components/cards/AlbumGroupCard/AlbumGroupCard.jsx":"19e3745d2c01","components/cards/AlbumGroupCard/AlbumGroupCard.d.ts":"69048571d7fa","components/cards/AlbumGroupCard/AlbumGroupCard.prompt.md":"6dd66b80e55e","components/feedback/BadgeIcon/BadgeIcon.jsx":"a75a6074ba60","components/feedback/BadgeIcon/BadgeIcon.d.ts":"34167d2a5ac9","components/feedback/BadgeIcon/BadgeIcon.prompt.md":"929b4a0e194c","components/feedback/BadgeLabel/BadgeLabel.jsx":"f330d80f7db6","components/feedback/BadgeLabel/BadgeLabel.d.ts":"2b2e6a1c6d4d","components/feedback/BadgeLabel/BadgeLabel.prompt.md":"ed1b903fbe5a","components/feedback/BadgeMilestone/BadgeMilestone.jsx":"4c02ad66c2be","components/feedback/BadgeMilestone/BadgeMilestone.d.ts":"68d56286ee8c","components/feedback/BadgeMilestone/BadgeMilestone.prompt.md":"48a757bc2910","components/feedback/BadgeProgress/BadgeProgress.jsx":"71554919d446","components/feedback/BadgeProgress/BadgeProgress.d.ts":"1a294876e6b4","components/feedback/BadgeProgress/BadgeProgress.prompt.md":"b147f3bbf27b","components/feedback/BadgeTag/BadgeTag.jsx":"07499192e79b","components/feedback/BadgeTag/BadgeTag.d.ts":"7df3c446a845","components/feedback/BadgeTag/BadgeTag.prompt.md":"0dc17ea4fe03","components/content/BlurContainer/BlurContainer.jsx":"4f3158bee2a7","components/content/BlurContainer/BlurContainer.d.ts":"eddb381c2032","components/content/BlurContainer/BlurContainer.prompt.md":"47fb1619efac","components/buttons/BtnFolder/BtnFolder.jsx":"5818c75ea3ef","components/buttons/BtnFolder/BtnFolder.d.ts":"6f8120b6186c","components/buttons/BtnFolder/BtnFolder.prompt.md":"409f1a511b12","components/content/ColorSelector/ColorSelector.jsx":"08ac3ae6676f","components/content/ColorSelector/ColorSelector.d.ts":"b7cd2cb1ca99","components/content/ColorSelector/ColorSelector.prompt.md":"b98eac18525b","components/cards/CreateCard/CreateCard.jsx":"9f5acf670673","components/cards/CreateCard/CreateCard.d.ts":"91d4448378d1","components/cards/CreateCard/CreateCard.prompt.md":"845e444d73f8","components/content/DotsAccordion/DotsAccordion.jsx":"84ac87f036d4","components/content/DotsAccordion/DotsAccordion.d.ts":"b321840ed28d","components/content/DotsAccordion/DotsAccordion.prompt.md":"1657898cd0de","components/overlays/DotsActionSheet/DotsActionSheet.jsx":"6aea0de1baad","components/overlays/DotsActionSheet/DotsActionSheet.d.ts":"c04efccc1150","components/overlays/DotsActionSheet/DotsActionSheet.prompt.md":"6c6162a444ea","components/feedback/DotsAlert/DotsAlert.jsx":"31e443a1a6c9","components/feedback/DotsAlert/DotsAlert.d.ts":"ae6723947810","components/feedback/DotsAlert/DotsAlert.prompt.md":"e6eb80571d37","components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.jsx":"89fb9f29d384","components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.d.ts":"d26f9a8437b4","components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.prompt.md":"7e953c84aba2","components/inputs/DotsCalendar/DotsCalendar.jsx":"a4bb0de5b1bf","components/inputs/DotsCalendar/DotsCalendar.d.ts":"4d7457cdfa80","components/inputs/DotsCalendar/DotsCalendar.prompt.md":"bc6385a3b1b1","components/buttons/DotsCaptureButton/DotsCaptureButton.jsx":"b327fc4eacd1","components/buttons/DotsCaptureButton/DotsCaptureButton.d.ts":"ebf0842b1cca","components/buttons/DotsCaptureButton/DotsCaptureButton.prompt.md":"04b427a10e12","components/buttons/DotsCheckCircle/DotsCheckCircle.jsx":"c96378bf5e54","components/buttons/DotsCheckCircle/DotsCheckCircle.d.ts":"f83f15853809","components/buttons/DotsCheckCircle/DotsCheckCircle.prompt.md":"74756abc8355","components/buttons/DotsCloseButton/DotsCloseButton.jsx":"f989f50ce37d","components/buttons/DotsCloseButton/DotsCloseButton.d.ts":"63e7ca18df69","components/buttons/DotsCloseButton/DotsCloseButton.prompt.md":"2202cc87900c","components/indicators/DotsCountdown/DotsCountdown.jsx":"e6a30324d478","components/indicators/DotsCountdown/DotsCountdown.d.ts":"95ae10f7bd3d","components/indicators/DotsCountdown/DotsCountdown.prompt.md":"698be70ac531","components/content/DotsDivider/DotsDivider.jsx":"614a3fa428a4","components/content/DotsDivider/DotsDivider.d.ts":"396c1505b9b8","components/content/DotsDivider/DotsDivider.prompt.md":"608e2d568e01","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx":"7be6c63ad360","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.d.ts":"b63e53cbdac6","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.prompt.md":"204299d95767","components/feedback/DotsFilterChip/DotsFilterChip.jsx":"f70922a222e4","components/feedback/DotsFilterChip/DotsFilterChip.d.ts":"d86eb7bc7f14","components/feedback/DotsFilterChip/DotsFilterChip.prompt.md":"4e2d4316b2c5","components/buttons/DotsFloatingButton/DotsFloatingButton.jsx":"07ef21cbcf69","components/buttons/DotsFloatingButton/DotsFloatingButton.d.ts":"3c11508674c1","components/buttons/DotsFloatingButton/DotsFloatingButton.prompt.md":"9385b6723151","components/cards/DotsGameCard/DotsGameCard.jsx":"232da8813908","components/cards/DotsGameCard/DotsGameCard.d.ts":"b48415be8661","components/cards/DotsGameCard/DotsGameCard.prompt.md":"d19e57998eb3","components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx":"3740529a645f","components/navigation/DotsHomeTopBar/DotsHomeTopBar.d.ts":"dd599e57fa1b","components/navigation/DotsHomeTopBar/DotsHomeTopBar.prompt.md":"36a11970a144","components/buttons/DotsIconButton/DotsIconButton.jsx":"ffcab2eedea4","components/buttons/DotsIconButton/DotsIconButton.d.ts":"54238dbe6046","components/buttons/DotsIconButton/DotsIconButton.prompt.md":"c4bb14d7759c","components/buttons/DotsInputStepper/DotsInputStepper.jsx":"fe711e75f2b8","components/buttons/DotsInputStepper/DotsInputStepper.d.ts":"fd74d5e5b429","components/buttons/DotsInputStepper/DotsInputStepper.prompt.md":"6d3798eb4e5e","components/inputs/DotsItemInput/DotsItemInput.jsx":"fdda4bc0b529","components/inputs/DotsItemInput/DotsItemInput.d.ts":"5b6dbb4a7f30","components/inputs/DotsItemInput/DotsItemInput.prompt.md":"f643916e19cd","components/content/DotsListItem/DotsListItem.jsx":"6157f22e738a","components/content/DotsListItem/DotsListItem.d.ts":"801bf84c9138","components/content/DotsListItem/DotsListItem.prompt.md":"b37fb220888b","components/buttons/DotsMainButton/DotsMainButton.jsx":"ae2cd12f68a1","components/buttons/DotsMainButton/DotsMainButton.d.ts":"cddb89971081","components/buttons/DotsMainButton/DotsMainButton.prompt.md":"a221cf629ffc","components/content/DotsMainContainer/DotsMainContainer.jsx":"4ddd06a6ad9e","components/content/DotsMainContainer/DotsMainContainer.d.ts":"dd9fc89aff3e","components/content/DotsMainContainer/DotsMainContainer.prompt.md":"9598eb0321bd","components/overlays/DotsMenu/DotsMenu.jsx":"250fcc9b1d35","components/overlays/DotsMenu/DotsMenu.d.ts":"35db23e7d5f8","components/overlays/DotsMenu/DotsMenu.prompt.md":"4f8bd72c1108","components/navigation/DotsNavBar/DotsNavBar.jsx":"16123dd053b7","components/navigation/DotsNavBar/DotsNavBar.d.ts":"76c418525df9","components/navigation/DotsNavBar/DotsNavBar.prompt.md":"759fd1365129","components/planning/DotsPlanningItem/DotsPlanningItem.jsx":"c17bedb8d20b","components/planning/DotsPlanningItem/DotsPlanningItem.d.ts":"b30aea250c2b","components/planning/DotsPlanningItem/DotsPlanningItem.prompt.md":"a8e792ac3dac","components/premium/DotsPlanSelector/DotsPlanSelector.jsx":"9e8354546c8e","components/premium/DotsPlanSelector/DotsPlanSelector.d.ts":"bf2a3e153369","components/premium/DotsPlanSelector/DotsPlanSelector.prompt.md":"31125956fd1c","components/media/DotsProfilePhoto/DotsProfilePhoto.jsx":"92e613449ad2","components/media/DotsProfilePhoto/DotsProfilePhoto.d.ts":"d95296f257ad","components/media/DotsProfilePhoto/DotsProfilePhoto.prompt.md":"636c54ee6feb","components/indicators/DotsProgressBar/DotsProgressBar.jsx":"d6f31abf3d70","components/indicators/DotsProgressBar/DotsProgressBar.d.ts":"aeaed55683ca","components/indicators/DotsProgressBar/DotsProgressBar.prompt.md":"2dad7693c604","components/buttons/DotsRadioButton/DotsRadioButton.jsx":"7a4e9fc06d16","components/buttons/DotsRadioButton/DotsRadioButton.d.ts":"4bc28714a5d9","components/buttons/DotsRadioButton/DotsRadioButton.prompt.md":"d6e35d04a2c5","components/buttons/DotsRichButton/DotsRichButton.jsx":"f445085fc5ca","components/buttons/DotsRichButton/DotsRichButton.d.ts":"fc67e5eadfa3","components/buttons/DotsRichButton/DotsRichButton.prompt.md":"9640e1a28f3f","components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx":"63c3134be5e4","components/inputs/DotsSegmentedControl/DotsSegmentedControl.d.ts":"620366a0a8a7","components/inputs/DotsSegmentedControl/DotsSegmentedControl.prompt.md":"780587c9cea5","components/buttons/DotsSelector/DotsSelector.jsx":"32a1fa2354c2","components/buttons/DotsSelector/DotsSelector.d.ts":"c979c19e538a","components/buttons/DotsSelector/DotsSelector.prompt.md":"3ca0254c3375","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx":"ca91ce72bf06","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.d.ts":"b4cc4df2c9e9","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.prompt.md":"0f43fa3291a0","components/content/DotsSlider/DotsSlider.jsx":"11ddb3b9d671","components/content/DotsSlider/DotsSlider.d.ts":"203e3463794d","components/content/DotsSlider/DotsSlider.prompt.md":"b91814ec96a9","components/indicators/DotsSpinner/DotsSpinner.jsx":"a12be39b5926","components/indicators/DotsSpinner/DotsSpinner.d.ts":"85a080bda003","components/indicators/DotsSpinner/DotsSpinner.prompt.md":"dd3fd61389db","components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx":"be4633716883","components/media/DotsSquirclePhoto/DotsSquirclePhoto.d.ts":"8aaf2b593f98","components/media/DotsSquirclePhoto/DotsSquirclePhoto.prompt.md":"7bf60628c1fe","components/buttons/DotsSystemButton/DotsSystemButton.jsx":"61ef368899c8","components/buttons/DotsSystemButton/DotsSystemButton.d.ts":"359705826306","components/buttons/DotsSystemButton/DotsSystemButton.prompt.md":"09363a30bf00","components/inputs/DotsTextArea/DotsTextArea.jsx":"f5e66264f111","components/inputs/DotsTextArea/DotsTextArea.d.ts":"1dc2847b22ea","components/inputs/DotsTextArea/DotsTextArea.prompt.md":"63170a772fb6","components/inputs/DotsTextField/DotsTextField.jsx":"f072f4f3eb62","components/inputs/DotsTextField/DotsTextField.d.ts":"e1cfbec7861c","components/inputs/DotsTextField/DotsTextField.prompt.md":"42536ffb516a","components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx":"163b6c3eb5a2","components/inputs/DotsTextFieldButton/DotsTextFieldButton.d.ts":"967bca8a42d0","components/inputs/DotsTextFieldButton/DotsTextFieldButton.prompt.md":"cd2a18ca1749","components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx":"bd28881afb3c","components/inputs/DotsTextFieldDate/DotsTextFieldDate.d.ts":"8d7f859c0a67","components/inputs/DotsTextFieldDate/DotsTextFieldDate.prompt.md":"2944cdc9159d","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx":"ee02df22e4b1","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.d.ts":"19f04ea85841","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.prompt.md":"32c5dd3fc02b","components/feedback/DotsToast/DotsToast.jsx":"9875719b818a","components/feedback/DotsToast/DotsToast.d.ts":"8df7532627c4","components/feedback/DotsToast/DotsToast.prompt.md":"e7dade8e5042","components/buttons/DotsToggle/DotsToggle.jsx":"d580e9128f26","components/buttons/DotsToggle/DotsToggle.d.ts":"3c940f80ab0d","components/buttons/DotsToggle/DotsToggle.prompt.md":"c8b4344a32ac","components/overlays/DotsTooltip/DotsTooltip.jsx":"690646cedff8","components/overlays/DotsTooltip/DotsTooltip.d.ts":"caf4c5e9e69e","components/overlays/DotsTooltip/DotsTooltip.prompt.md":"8e2e72fa4034","components/navigation/DotsTopBar/DotsTopBar.jsx":"bab2b068b924","components/navigation/DotsTopBar/DotsTopBar.d.ts":"c911ef753b68","components/navigation/DotsTopBar/DotsTopBar.prompt.md":"c04c6bfe8457","components/media/DotsUploadItem/DotsUploadItem.jsx":"b5b296dabbb0","components/media/DotsUploadItem/DotsUploadItem.d.ts":"3cfa2319a13c","components/media/DotsUploadItem/DotsUploadItem.prompt.md":"ef18d7f6f037","components/overlays/DropdownMenu/DropdownMenu.jsx":"e990079ce8af","components/overlays/DropdownMenu/DropdownMenu.d.ts":"6845aa0f863c","components/overlays/DropdownMenu/DropdownMenu.prompt.md":"b8ca4e74f03e","components/cards/EventGroupCard/EventGroupCard.jsx":"a156456590e1","components/cards/EventGroupCard/EventGroupCard.d.ts":"cf79b8f6b27b","components/cards/EventGroupCard/EventGroupCard.prompt.md":"456df0915b54","components/content/FeatureItem/FeatureItem.jsx":"bb22c6b112e0","components/content/FeatureItem/FeatureItem.d.ts":"fb28da894a55","components/content/FeatureItem/FeatureItem.prompt.md":"8eed7e79d9a6","components/navigation/FolderCarrousel/FolderCarrousel.jsx":"fe669a8466ea","components/navigation/FolderCarrousel/FolderCarrousel.d.ts":"70b0dfc57c63","components/navigation/FolderCarrousel/FolderCarrousel.prompt.md":"ed1bca9712aa","components/indicators/ImageThumbnail/ImageThumbnail.jsx":"eba358df1cbe","components/indicators/ImageThumbnail/ImageThumbnail.d.ts":"bec7b569e561","components/indicators/ImageThumbnail/ImageThumbnail.prompt.md":"f1d009a529a1","components/social/ImageWithIcon/ImageWithIcon.jsx":"c6c587c966d1","components/social/ImageWithIcon/ImageWithIcon.d.ts":"9c75d2ab8229","components/social/ImageWithIcon/ImageWithIcon.prompt.md":"0c2c7229692c","components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx":"806a6150545b","components/indicators/ImageWithProgressAround/ImageWithProgressAround.d.ts":"f57071d0494b","components/indicators/ImageWithProgressAround/ImageWithProgressAround.prompt.md":"dcf89fcfbb8a","components/cards/MemoryCard/MemoryCard.jsx":"3a0db91b5a78","components/cards/MemoryCard/MemoryCard.d.ts":"01aacc288262","components/cards/MemoryCard/MemoryCard.prompt.md":"429e9792f2cc","components/social/MessagePreview/MessagePreview.jsx":"215094a5eccd","components/social/MessagePreview/MessagePreview.d.ts":"b36b48649a80","components/social/MessagePreview/MessagePreview.prompt.md":"8429677865ce","components/memories/MilestoneCard/MilestoneCard.jsx":"f41829c3c1f0","components/memories/MilestoneCard/MilestoneCard.d.ts":"047c3783fa10","components/memories/MilestoneCard/MilestoneCard.prompt.md":"ed078065e85c","components/memories/MilestonesList/MilestonesList.jsx":"48f44b1ed490","components/memories/MilestonesList/MilestonesList.d.ts":"1e1ff1451913","components/memories/MilestonesList/MilestonesList.prompt.md":"739f1eedb6e7","components/social/NotificationBanner/NotificationBanner.jsx":"3047bcebf969","components/social/NotificationBanner/NotificationBanner.d.ts":"8312db4e4385","components/social/NotificationBanner/NotificationBanner.prompt.md":"57060dbd2686","components/social/NotificationBannerImage/NotificationBannerImage.jsx":"9d5214f16bde","components/social/NotificationBannerImage/NotificationBannerImage.d.ts":"4a3f335923fb","components/social/NotificationBannerImage/NotificationBannerImage.prompt.md":"01904774056d","components/dotbook/PageControl/PageControl.jsx":"7d3c2f0a4143","components/dotbook/PageControl/PageControl.d.ts":"58a5a9e129ae","components/dotbook/PageControl/PageControl.prompt.md":"2dcd422b32cb","components/cards/ProductCard/ProductCard.jsx":"60765da3d430","components/cards/ProductCard/ProductCard.d.ts":"4638ffe7e7f2","components/cards/ProductCard/ProductCard.prompt.md":"bddfb1317e70","components/content/RatingRow/RatingRow.jsx":"c648699f7d52","components/content/RatingRow/RatingRow.d.ts":"74d3ad5f5d2f","components/content/RatingRow/RatingRow.prompt.md":"d36b1b43f630","components/cards/RecapCard/RecapCard.jsx":"5b5a0051efa7","components/cards/RecapCard/RecapCard.d.ts":"83dd50f0a073","components/cards/RecapCard/RecapCard.prompt.md":"8fff796309ab","components/social/UserItem/UserItem.jsx":"8ca2155b51f1","components/social/UserItem/UserItem.d.ts":"2539d766d947","components/social/UserItem/UserItem.prompt.md":"ec0b0a01c16b","components/social/UsersList/UsersList.jsx":"263f90a7d807","components/social/UsersList/UsersList.d.ts":"c9e13db1a39b","components/social/UsersList/UsersList.prompt.md":"e19600d69967"},"inlinedExternals":[],"unexposedExports":[],"builtBy":"dots-design-system-react"} */
+/* @ds-bundle: {"format":4,"namespace":"DotsDesignSystem_9e41da","components":[{"name":"DotsIcon","sourcePath":"components/icons/DotsIcon/DotsIcon.jsx"},{"name":"ActivityPreview","sourcePath":"components/social/ActivityPreview/ActivityPreview.jsx"},{"name":"AlbumGroupCard","sourcePath":"components/cards/AlbumGroupCard/AlbumGroupCard.jsx"},{"name":"BadgeIcon","sourcePath":"components/feedback/BadgeIcon/BadgeIcon.jsx"},{"name":"BadgeLabel","sourcePath":"components/feedback/BadgeLabel/BadgeLabel.jsx"},{"name":"BadgeMilestone","sourcePath":"components/feedback/BadgeMilestone/BadgeMilestone.jsx"},{"name":"BadgeProgress","sourcePath":"components/feedback/BadgeProgress/BadgeProgress.jsx"},{"name":"BadgeTag","sourcePath":"components/feedback/BadgeTag/BadgeTag.jsx"},{"name":"BlurContainer","sourcePath":"components/content/BlurContainer/BlurContainer.jsx"},{"name":"BtnFolder","sourcePath":"components/buttons/BtnFolder/BtnFolder.jsx"},{"name":"ColorSelector","sourcePath":"components/content/ColorSelector/ColorSelector.jsx"},{"name":"CreateCard","sourcePath":"components/cards/CreateCard/CreateCard.jsx"},{"name":"DotsAccordion","sourcePath":"components/content/DotsAccordion/DotsAccordion.jsx"},{"name":"DotsActionSheet","sourcePath":"components/overlays/DotsActionSheet/DotsActionSheet.jsx"},{"name":"DotsAlert","sourcePath":"components/feedback/DotsAlert/DotsAlert.jsx"},{"name":"DotsBottomEdgeBlur","sourcePath":"components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.jsx"},{"name":"DotsCalendar","sourcePath":"components/inputs/DotsCalendar/DotsCalendar.jsx"},{"name":"DotsCaptureButton","sourcePath":"components/buttons/DotsCaptureButton/DotsCaptureButton.jsx"},{"name":"DotsCheckCircle","sourcePath":"components/buttons/DotsCheckCircle/DotsCheckCircle.jsx"},{"name":"DotsCloseButton","sourcePath":"components/buttons/DotsCloseButton/DotsCloseButton.jsx"},{"name":"DotsCountdown","sourcePath":"components/indicators/DotsCountdown/DotsCountdown.jsx"},{"name":"DotsDivider","sourcePath":"components/content/DotsDivider/DotsDivider.jsx"},{"name":"DotsEmptyStateCard","sourcePath":"components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx"},{"name":"DotsFilterChip","sourcePath":"components/feedback/DotsFilterChip/DotsFilterChip.jsx"},{"name":"DotsFloatingButton","sourcePath":"components/buttons/DotsFloatingButton/DotsFloatingButton.jsx"},{"name":"DotsGameCard","sourcePath":"components/cards/DotsGameCard/DotsGameCard.jsx"},{"name":"DotsHomeTopBar","sourcePath":"components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx"},{"name":"DotsIconButton","sourcePath":"components/buttons/DotsIconButton/DotsIconButton.jsx"},{"name":"DotsInputStepper","sourcePath":"components/buttons/DotsInputStepper/DotsInputStepper.jsx"},{"name":"DotsItemInput","sourcePath":"components/inputs/DotsItemInput/DotsItemInput.jsx"},{"name":"DotsListItem","sourcePath":"components/content/DotsListItem/DotsListItem.jsx"},{"name":"DotsMainButton","sourcePath":"components/buttons/DotsMainButton/DotsMainButton.jsx"},{"name":"DotsMainContainer","sourcePath":"components/content/DotsMainContainer/DotsMainContainer.jsx"},{"name":"DotsMenu","sourcePath":"components/overlays/DotsMenu/DotsMenu.jsx"},{"name":"DotsNavBar","sourcePath":"components/navigation/DotsNavBar/DotsNavBar.jsx"},{"name":"DotsPlanningItem","sourcePath":"components/planning/DotsPlanningItem/DotsPlanningItem.jsx"},{"name":"DotsPlanSelector","sourcePath":"components/premium/DotsPlanSelector/DotsPlanSelector.jsx"},{"name":"DotsProfilePhoto","sourcePath":"components/media/DotsProfilePhoto/DotsProfilePhoto.jsx"},{"name":"DotsProgressBar","sourcePath":"components/indicators/DotsProgressBar/DotsProgressBar.jsx"},{"name":"DotsRadioButton","sourcePath":"components/buttons/DotsRadioButton/DotsRadioButton.jsx"},{"name":"DotsRichButton","sourcePath":"components/buttons/DotsRichButton/DotsRichButton.jsx"},{"name":"DotsSegmentedControl","sourcePath":"components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx"},{"name":"DotsSelector","sourcePath":"components/buttons/DotsSelector/DotsSelector.jsx"},{"name":"DotsSelectorRadioButton","sourcePath":"components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx"},{"name":"DotsSlider","sourcePath":"components/content/DotsSlider/DotsSlider.jsx"},{"name":"DotsSpinner","sourcePath":"components/indicators/DotsSpinner/DotsSpinner.jsx"},{"name":"DotsSquirclePhoto","sourcePath":"components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx"},{"name":"DotsSystemButton","sourcePath":"components/buttons/DotsSystemButton/DotsSystemButton.jsx"},{"name":"DotsTextArea","sourcePath":"components/inputs/DotsTextArea/DotsTextArea.jsx"},{"name":"DotsTextField","sourcePath":"components/inputs/DotsTextField/DotsTextField.jsx"},{"name":"DotsTextFieldButton","sourcePath":"components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx"},{"name":"DotsTextFieldDate","sourcePath":"components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx"},{"name":"DotsTextFieldPhone","sourcePath":"components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx"},{"name":"DotsTimePicker","sourcePath":"components/inputs/DotsTimePicker/DotsTimePicker.jsx"},{"name":"DotsToast","sourcePath":"components/feedback/DotsToast/DotsToast.jsx"},{"name":"DotsToggle","sourcePath":"components/buttons/DotsToggle/DotsToggle.jsx"},{"name":"DotsTooltip","sourcePath":"components/overlays/DotsTooltip/DotsTooltip.jsx"},{"name":"DotsTopBar","sourcePath":"components/navigation/DotsTopBar/DotsTopBar.jsx"},{"name":"DotsUploadItem","sourcePath":"components/media/DotsUploadItem/DotsUploadItem.jsx"},{"name":"DropdownMenu","sourcePath":"components/overlays/DropdownMenu/DropdownMenu.jsx"},{"name":"EventGroupCard","sourcePath":"components/cards/EventGroupCard/EventGroupCard.jsx"},{"name":"FeatureItem","sourcePath":"components/content/FeatureItem/FeatureItem.jsx"},{"name":"FolderCarrousel","sourcePath":"components/navigation/FolderCarrousel/FolderCarrousel.jsx"},{"name":"ImageThumbnail","sourcePath":"components/indicators/ImageThumbnail/ImageThumbnail.jsx"},{"name":"ImageWithIcon","sourcePath":"components/social/ImageWithIcon/ImageWithIcon.jsx"},{"name":"ImageWithProgressAround","sourcePath":"components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx"},{"name":"MemoryCard","sourcePath":"components/cards/MemoryCard/MemoryCard.jsx"},{"name":"MessagePreview","sourcePath":"components/social/MessagePreview/MessagePreview.jsx"},{"name":"MilestoneCard","sourcePath":"components/memories/MilestoneCard/MilestoneCard.jsx"},{"name":"MilestonesList","sourcePath":"components/memories/MilestonesList/MilestonesList.jsx"},{"name":"NotificationBanner","sourcePath":"components/social/NotificationBanner/NotificationBanner.jsx"},{"name":"NotificationBannerImage","sourcePath":"components/social/NotificationBannerImage/NotificationBannerImage.jsx"},{"name":"PageControl","sourcePath":"components/dotbook/PageControl/PageControl.jsx"},{"name":"ProductCard","sourcePath":"components/cards/ProductCard/ProductCard.jsx"},{"name":"RatingRow","sourcePath":"components/content/RatingRow/RatingRow.jsx"},{"name":"RecapCard","sourcePath":"components/cards/RecapCard/RecapCard.jsx"},{"name":"UserItem","sourcePath":"components/social/UserItem/UserItem.jsx"},{"name":"UsersList","sourcePath":"components/social/UsersList/UsersList.jsx"}],"sourceHashes":{"components/icons/DotsIcon/DotsIcon.jsx":"335df31c211a","components/icons/DotsIcon/DotsIcon.d.ts":"87b2028cfb22","components/icons/DotsIcon/DotsIcon.prompt.md":"fe2f27eb49fe","components/social/ActivityPreview/ActivityPreview.jsx":"b4b80f9e800f","components/social/ActivityPreview/ActivityPreview.d.ts":"9fa1929faede","components/social/ActivityPreview/ActivityPreview.prompt.md":"239a5fa193fe","components/cards/AlbumGroupCard/AlbumGroupCard.jsx":"19e3745d2c01","components/cards/AlbumGroupCard/AlbumGroupCard.d.ts":"69048571d7fa","components/cards/AlbumGroupCard/AlbumGroupCard.prompt.md":"6dd66b80e55e","components/feedback/BadgeIcon/BadgeIcon.jsx":"a75a6074ba60","components/feedback/BadgeIcon/BadgeIcon.d.ts":"34167d2a5ac9","components/feedback/BadgeIcon/BadgeIcon.prompt.md":"929b4a0e194c","components/feedback/BadgeLabel/BadgeLabel.jsx":"f330d80f7db6","components/feedback/BadgeLabel/BadgeLabel.d.ts":"2b2e6a1c6d4d","components/feedback/BadgeLabel/BadgeLabel.prompt.md":"ed1b903fbe5a","components/feedback/BadgeMilestone/BadgeMilestone.jsx":"4c02ad66c2be","components/feedback/BadgeMilestone/BadgeMilestone.d.ts":"68d56286ee8c","components/feedback/BadgeMilestone/BadgeMilestone.prompt.md":"48a757bc2910","components/feedback/BadgeProgress/BadgeProgress.jsx":"71554919d446","components/feedback/BadgeProgress/BadgeProgress.d.ts":"1a294876e6b4","components/feedback/BadgeProgress/BadgeProgress.prompt.md":"b147f3bbf27b","components/feedback/BadgeTag/BadgeTag.jsx":"07499192e79b","components/feedback/BadgeTag/BadgeTag.d.ts":"7df3c446a845","components/feedback/BadgeTag/BadgeTag.prompt.md":"0dc17ea4fe03","components/content/BlurContainer/BlurContainer.jsx":"4f3158bee2a7","components/content/BlurContainer/BlurContainer.d.ts":"eddb381c2032","components/content/BlurContainer/BlurContainer.prompt.md":"47fb1619efac","components/buttons/BtnFolder/BtnFolder.jsx":"5818c75ea3ef","components/buttons/BtnFolder/BtnFolder.d.ts":"6f8120b6186c","components/buttons/BtnFolder/BtnFolder.prompt.md":"409f1a511b12","components/content/ColorSelector/ColorSelector.jsx":"08ac3ae6676f","components/content/ColorSelector/ColorSelector.d.ts":"b7cd2cb1ca99","components/content/ColorSelector/ColorSelector.prompt.md":"b98eac18525b","components/cards/CreateCard/CreateCard.jsx":"9f5acf670673","components/cards/CreateCard/CreateCard.d.ts":"91d4448378d1","components/cards/CreateCard/CreateCard.prompt.md":"845e444d73f8","components/content/DotsAccordion/DotsAccordion.jsx":"84ac87f036d4","components/content/DotsAccordion/DotsAccordion.d.ts":"b321840ed28d","components/content/DotsAccordion/DotsAccordion.prompt.md":"1657898cd0de","components/overlays/DotsActionSheet/DotsActionSheet.jsx":"6aea0de1baad","components/overlays/DotsActionSheet/DotsActionSheet.d.ts":"c04efccc1150","components/overlays/DotsActionSheet/DotsActionSheet.prompt.md":"6c6162a444ea","components/feedback/DotsAlert/DotsAlert.jsx":"31e443a1a6c9","components/feedback/DotsAlert/DotsAlert.d.ts":"ae6723947810","components/feedback/DotsAlert/DotsAlert.prompt.md":"e6eb80571d37","components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.jsx":"89fb9f29d384","components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.d.ts":"d26f9a8437b4","components/content/DotsBottomEdgeBlur/DotsBottomEdgeBlur.prompt.md":"7e953c84aba2","components/inputs/DotsCalendar/DotsCalendar.jsx":"a4bb0de5b1bf","components/inputs/DotsCalendar/DotsCalendar.d.ts":"4d7457cdfa80","components/inputs/DotsCalendar/DotsCalendar.prompt.md":"bc6385a3b1b1","components/buttons/DotsCaptureButton/DotsCaptureButton.jsx":"b327fc4eacd1","components/buttons/DotsCaptureButton/DotsCaptureButton.d.ts":"ebf0842b1cca","components/buttons/DotsCaptureButton/DotsCaptureButton.prompt.md":"04b427a10e12","components/buttons/DotsCheckCircle/DotsCheckCircle.jsx":"c96378bf5e54","components/buttons/DotsCheckCircle/DotsCheckCircle.d.ts":"f83f15853809","components/buttons/DotsCheckCircle/DotsCheckCircle.prompt.md":"74756abc8355","components/buttons/DotsCloseButton/DotsCloseButton.jsx":"f989f50ce37d","components/buttons/DotsCloseButton/DotsCloseButton.d.ts":"63e7ca18df69","components/buttons/DotsCloseButton/DotsCloseButton.prompt.md":"2202cc87900c","components/indicators/DotsCountdown/DotsCountdown.jsx":"e6a30324d478","components/indicators/DotsCountdown/DotsCountdown.d.ts":"95ae10f7bd3d","components/indicators/DotsCountdown/DotsCountdown.prompt.md":"698be70ac531","components/content/DotsDivider/DotsDivider.jsx":"614a3fa428a4","components/content/DotsDivider/DotsDivider.d.ts":"396c1505b9b8","components/content/DotsDivider/DotsDivider.prompt.md":"608e2d568e01","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.jsx":"7be6c63ad360","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.d.ts":"b63e53cbdac6","components/feedback/DotsEmptyStateCard/DotsEmptyStateCard.prompt.md":"204299d95767","components/feedback/DotsFilterChip/DotsFilterChip.jsx":"f70922a222e4","components/feedback/DotsFilterChip/DotsFilterChip.d.ts":"d86eb7bc7f14","components/feedback/DotsFilterChip/DotsFilterChip.prompt.md":"4e2d4316b2c5","components/buttons/DotsFloatingButton/DotsFloatingButton.jsx":"07ef21cbcf69","components/buttons/DotsFloatingButton/DotsFloatingButton.d.ts":"3c11508674c1","components/buttons/DotsFloatingButton/DotsFloatingButton.prompt.md":"9385b6723151","components/cards/DotsGameCard/DotsGameCard.jsx":"232da8813908","components/cards/DotsGameCard/DotsGameCard.d.ts":"b48415be8661","components/cards/DotsGameCard/DotsGameCard.prompt.md":"d19e57998eb3","components/navigation/DotsHomeTopBar/DotsHomeTopBar.jsx":"3740529a645f","components/navigation/DotsHomeTopBar/DotsHomeTopBar.d.ts":"dd599e57fa1b","components/navigation/DotsHomeTopBar/DotsHomeTopBar.prompt.md":"36a11970a144","components/buttons/DotsIconButton/DotsIconButton.jsx":"ffcab2eedea4","components/buttons/DotsIconButton/DotsIconButton.d.ts":"54238dbe6046","components/buttons/DotsIconButton/DotsIconButton.prompt.md":"c4bb14d7759c","components/buttons/DotsInputStepper/DotsInputStepper.jsx":"fe711e75f2b8","components/buttons/DotsInputStepper/DotsInputStepper.d.ts":"fd74d5e5b429","components/buttons/DotsInputStepper/DotsInputStepper.prompt.md":"6d3798eb4e5e","components/inputs/DotsItemInput/DotsItemInput.jsx":"fdda4bc0b529","components/inputs/DotsItemInput/DotsItemInput.d.ts":"5b6dbb4a7f30","components/inputs/DotsItemInput/DotsItemInput.prompt.md":"f643916e19cd","components/content/DotsListItem/DotsListItem.jsx":"6157f22e738a","components/content/DotsListItem/DotsListItem.d.ts":"801bf84c9138","components/content/DotsListItem/DotsListItem.prompt.md":"b37fb220888b","components/buttons/DotsMainButton/DotsMainButton.jsx":"ae2cd12f68a1","components/buttons/DotsMainButton/DotsMainButton.d.ts":"cddb89971081","components/buttons/DotsMainButton/DotsMainButton.prompt.md":"a221cf629ffc","components/content/DotsMainContainer/DotsMainContainer.jsx":"4ddd06a6ad9e","components/content/DotsMainContainer/DotsMainContainer.d.ts":"dd9fc89aff3e","components/content/DotsMainContainer/DotsMainContainer.prompt.md":"9598eb0321bd","components/overlays/DotsMenu/DotsMenu.jsx":"250fcc9b1d35","components/overlays/DotsMenu/DotsMenu.d.ts":"35db23e7d5f8","components/overlays/DotsMenu/DotsMenu.prompt.md":"4f8bd72c1108","components/navigation/DotsNavBar/DotsNavBar.jsx":"16123dd053b7","components/navigation/DotsNavBar/DotsNavBar.d.ts":"76c418525df9","components/navigation/DotsNavBar/DotsNavBar.prompt.md":"759fd1365129","components/planning/DotsPlanningItem/DotsPlanningItem.jsx":"c17bedb8d20b","components/planning/DotsPlanningItem/DotsPlanningItem.d.ts":"b30aea250c2b","components/planning/DotsPlanningItem/DotsPlanningItem.prompt.md":"a8e792ac3dac","components/premium/DotsPlanSelector/DotsPlanSelector.jsx":"9e8354546c8e","components/premium/DotsPlanSelector/DotsPlanSelector.d.ts":"bf2a3e153369","components/premium/DotsPlanSelector/DotsPlanSelector.prompt.md":"31125956fd1c","components/media/DotsProfilePhoto/DotsProfilePhoto.jsx":"92e613449ad2","components/media/DotsProfilePhoto/DotsProfilePhoto.d.ts":"d95296f257ad","components/media/DotsProfilePhoto/DotsProfilePhoto.prompt.md":"636c54ee6feb","components/indicators/DotsProgressBar/DotsProgressBar.jsx":"d6f31abf3d70","components/indicators/DotsProgressBar/DotsProgressBar.d.ts":"aeaed55683ca","components/indicators/DotsProgressBar/DotsProgressBar.prompt.md":"2dad7693c604","components/buttons/DotsRadioButton/DotsRadioButton.jsx":"7a4e9fc06d16","components/buttons/DotsRadioButton/DotsRadioButton.d.ts":"4bc28714a5d9","components/buttons/DotsRadioButton/DotsRadioButton.prompt.md":"d6e35d04a2c5","components/buttons/DotsRichButton/DotsRichButton.jsx":"f445085fc5ca","components/buttons/DotsRichButton/DotsRichButton.d.ts":"fc67e5eadfa3","components/buttons/DotsRichButton/DotsRichButton.prompt.md":"9640e1a28f3f","components/inputs/DotsSegmentedControl/DotsSegmentedControl.jsx":"63c3134be5e4","components/inputs/DotsSegmentedControl/DotsSegmentedControl.d.ts":"620366a0a8a7","components/inputs/DotsSegmentedControl/DotsSegmentedControl.prompt.md":"780587c9cea5","components/buttons/DotsSelector/DotsSelector.jsx":"32a1fa2354c2","components/buttons/DotsSelector/DotsSelector.d.ts":"c979c19e538a","components/buttons/DotsSelector/DotsSelector.prompt.md":"3ca0254c3375","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.jsx":"ca91ce72bf06","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.d.ts":"b4cc4df2c9e9","components/buttons/DotsSelectorRadioButton/DotsSelectorRadioButton.prompt.md":"0f43fa3291a0","components/content/DotsSlider/DotsSlider.jsx":"11ddb3b9d671","components/content/DotsSlider/DotsSlider.d.ts":"203e3463794d","components/content/DotsSlider/DotsSlider.prompt.md":"b91814ec96a9","components/indicators/DotsSpinner/DotsSpinner.jsx":"a12be39b5926","components/indicators/DotsSpinner/DotsSpinner.d.ts":"85a080bda003","components/indicators/DotsSpinner/DotsSpinner.prompt.md":"dd3fd61389db","components/media/DotsSquirclePhoto/DotsSquirclePhoto.jsx":"be4633716883","components/media/DotsSquirclePhoto/DotsSquirclePhoto.d.ts":"8aaf2b593f98","components/media/DotsSquirclePhoto/DotsSquirclePhoto.prompt.md":"7bf60628c1fe","components/buttons/DotsSystemButton/DotsSystemButton.jsx":"61ef368899c8","components/buttons/DotsSystemButton/DotsSystemButton.d.ts":"359705826306","components/buttons/DotsSystemButton/DotsSystemButton.prompt.md":"09363a30bf00","components/inputs/DotsTextArea/DotsTextArea.jsx":"f5e66264f111","components/inputs/DotsTextArea/DotsTextArea.d.ts":"1dc2847b22ea","components/inputs/DotsTextArea/DotsTextArea.prompt.md":"63170a772fb6","components/inputs/DotsTextField/DotsTextField.jsx":"f072f4f3eb62","components/inputs/DotsTextField/DotsTextField.d.ts":"e1cfbec7861c","components/inputs/DotsTextField/DotsTextField.prompt.md":"42536ffb516a","components/inputs/DotsTextFieldButton/DotsTextFieldButton.jsx":"163b6c3eb5a2","components/inputs/DotsTextFieldButton/DotsTextFieldButton.d.ts":"967bca8a42d0","components/inputs/DotsTextFieldButton/DotsTextFieldButton.prompt.md":"cd2a18ca1749","components/inputs/DotsTextFieldDate/DotsTextFieldDate.jsx":"bd28881afb3c","components/inputs/DotsTextFieldDate/DotsTextFieldDate.d.ts":"8d7f859c0a67","components/inputs/DotsTextFieldDate/DotsTextFieldDate.prompt.md":"2944cdc9159d","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.jsx":"ee02df22e4b1","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.d.ts":"19f04ea85841","components/inputs/DotsTextFieldPhone/DotsTextFieldPhone.prompt.md":"32c5dd3fc02b","components/inputs/DotsTimePicker/DotsTimePicker.jsx":"283cb74cb375","components/inputs/DotsTimePicker/DotsTimePicker.d.ts":"3b37206cd266","components/inputs/DotsTimePicker/DotsTimePicker.prompt.md":"455cef3ab20f","components/feedback/DotsToast/DotsToast.jsx":"9875719b818a","components/feedback/DotsToast/DotsToast.d.ts":"8df7532627c4","components/feedback/DotsToast/DotsToast.prompt.md":"e7dade8e5042","components/buttons/DotsToggle/DotsToggle.jsx":"d580e9128f26","components/buttons/DotsToggle/DotsToggle.d.ts":"3c940f80ab0d","components/buttons/DotsToggle/DotsToggle.prompt.md":"c8b4344a32ac","components/overlays/DotsTooltip/DotsTooltip.jsx":"690646cedff8","components/overlays/DotsTooltip/DotsTooltip.d.ts":"caf4c5e9e69e","components/overlays/DotsTooltip/DotsTooltip.prompt.md":"8e2e72fa4034","components/navigation/DotsTopBar/DotsTopBar.jsx":"bab2b068b924","components/navigation/DotsTopBar/DotsTopBar.d.ts":"c911ef753b68","components/navigation/DotsTopBar/DotsTopBar.prompt.md":"c04c6bfe8457","components/media/DotsUploadItem/DotsUploadItem.jsx":"b5b296dabbb0","components/media/DotsUploadItem/DotsUploadItem.d.ts":"3cfa2319a13c","components/media/DotsUploadItem/DotsUploadItem.prompt.md":"ef18d7f6f037","components/overlays/DropdownMenu/DropdownMenu.jsx":"e990079ce8af","components/overlays/DropdownMenu/DropdownMenu.d.ts":"6845aa0f863c","components/overlays/DropdownMenu/DropdownMenu.prompt.md":"b8ca4e74f03e","components/cards/EventGroupCard/EventGroupCard.jsx":"a156456590e1","components/cards/EventGroupCard/EventGroupCard.d.ts":"cf79b8f6b27b","components/cards/EventGroupCard/EventGroupCard.prompt.md":"456df0915b54","components/content/FeatureItem/FeatureItem.jsx":"bb22c6b112e0","components/content/FeatureItem/FeatureItem.d.ts":"fb28da894a55","components/content/FeatureItem/FeatureItem.prompt.md":"8eed7e79d9a6","components/navigation/FolderCarrousel/FolderCarrousel.jsx":"fe669a8466ea","components/navigation/FolderCarrousel/FolderCarrousel.d.ts":"70b0dfc57c63","components/navigation/FolderCarrousel/FolderCarrousel.prompt.md":"ed1bca9712aa","components/indicators/ImageThumbnail/ImageThumbnail.jsx":"eba358df1cbe","components/indicators/ImageThumbnail/ImageThumbnail.d.ts":"bec7b569e561","components/indicators/ImageThumbnail/ImageThumbnail.prompt.md":"f1d009a529a1","components/social/ImageWithIcon/ImageWithIcon.jsx":"c6c587c966d1","components/social/ImageWithIcon/ImageWithIcon.d.ts":"9c75d2ab8229","components/social/ImageWithIcon/ImageWithIcon.prompt.md":"0c2c7229692c","components/indicators/ImageWithProgressAround/ImageWithProgressAround.jsx":"806a6150545b","components/indicators/ImageWithProgressAround/ImageWithProgressAround.d.ts":"f57071d0494b","components/indicators/ImageWithProgressAround/ImageWithProgressAround.prompt.md":"dcf89fcfbb8a","components/cards/MemoryCard/MemoryCard.jsx":"3a0db91b5a78","components/cards/MemoryCard/MemoryCard.d.ts":"01aacc288262","components/cards/MemoryCard/MemoryCard.prompt.md":"429e9792f2cc","components/social/MessagePreview/MessagePreview.jsx":"215094a5eccd","components/social/MessagePreview/MessagePreview.d.ts":"b36b48649a80","components/social/MessagePreview/MessagePreview.prompt.md":"8429677865ce","components/memories/MilestoneCard/MilestoneCard.jsx":"f41829c3c1f0","components/memories/MilestoneCard/MilestoneCard.d.ts":"047c3783fa10","components/memories/MilestoneCard/MilestoneCard.prompt.md":"ed078065e85c","components/memories/MilestonesList/MilestonesList.jsx":"48f44b1ed490","components/memories/MilestonesList/MilestonesList.d.ts":"1e1ff1451913","components/memories/MilestonesList/MilestonesList.prompt.md":"739f1eedb6e7","components/social/NotificationBanner/NotificationBanner.jsx":"3047bcebf969","components/social/NotificationBanner/NotificationBanner.d.ts":"8312db4e4385","components/social/NotificationBanner/NotificationBanner.prompt.md":"57060dbd2686","components/social/NotificationBannerImage/NotificationBannerImage.jsx":"9d5214f16bde","components/social/NotificationBannerImage/NotificationBannerImage.d.ts":"4a3f335923fb","components/social/NotificationBannerImage/NotificationBannerImage.prompt.md":"01904774056d","components/dotbook/PageControl/PageControl.jsx":"7d3c2f0a4143","components/dotbook/PageControl/PageControl.d.ts":"58a5a9e129ae","components/dotbook/PageControl/PageControl.prompt.md":"2dcd422b32cb","components/cards/ProductCard/ProductCard.jsx":"60765da3d430","components/cards/ProductCard/ProductCard.d.ts":"4638ffe7e7f2","components/cards/ProductCard/ProductCard.prompt.md":"bddfb1317e70","components/content/RatingRow/RatingRow.jsx":"c648699f7d52","components/content/RatingRow/RatingRow.d.ts":"74d3ad5f5d2f","components/content/RatingRow/RatingRow.prompt.md":"d36b1b43f630","components/cards/RecapCard/RecapCard.jsx":"5b5a0051efa7","components/cards/RecapCard/RecapCard.d.ts":"83dd50f0a073","components/cards/RecapCard/RecapCard.prompt.md":"8fff796309ab","components/social/UserItem/UserItem.jsx":"8ca2155b51f1","components/social/UserItem/UserItem.d.ts":"2539d766d947","components/social/UserItem/UserItem.prompt.md":"ec0b0a01c16b","components/social/UsersList/UsersList.jsx":"263f90a7d807","components/social/UsersList/UsersList.d.ts":"c9e13db1a39b","components/social/UsersList/UsersList.prompt.md":"e19600d69967"},"inlinedExternals":[],"unexposedExports":[],"builtBy":"dots-design-system-react"} */
 (() => {
 
 const __ds_ns = (window.DotsDesignSystem_9e41da = window.DotsDesignSystem_9e41da || {});
@@ -124,6 +124,7 @@ const hooks = () => window.React;
     DotsTextFieldButton: () => DotsTextFieldButton,
     DotsTextFieldDate: () => DotsTextFieldDate,
     DotsTextFieldPhone: () => DotsTextFieldPhone,
+    DotsTimePicker: () => DotsTimePicker,
     DotsToast: () => DotsToast,
     DotsToggle: () => DotsToggle,
     DotsTooltip: () => DotsTooltip,
@@ -514,10 +515,10 @@ const hooks = () => window.React;
     function handleClick(e) {
       if (!props.onClick) return;
       if (props.useThrottle) {
-        const now = Date.now();
+        const now2 = Date.now();
         const win = props.throttleDuration ?? 400;
-        if (now - lastTapRef.current < win) return;
-        lastTapRef.current = now;
+        if (now2 - lastTapRef.current < win) return;
+        lastTapRef.current = now2;
       }
       props.onClick(e);
     }
@@ -1349,7 +1350,123 @@ const hooks = () => window.React;
 
   // src/components/DotsCalendar/DotsCalendar.tsx
   init_react_shim();
+  var import_react10 = __toESM(require_react(), 1);
+
+  // src/internal/WheelColumn.tsx
+  init_react_shim();
   var import_react9 = __toESM(require_react(), 1);
+  var WHEEL_ITEM = 44;
+  var WHEEL_VISIBLE = 5;
+  var LOOP_COPIES = 5;
+  function WheelColumn(props) {
+    const latest = (0, import_react9.useRef)(props);
+    latest.current = props;
+    const id = (0, import_react9.useId)();
+    const n = props.items.length;
+    const copies = props.loop ? LOOP_COPIES : 1;
+    const middleCopy = Math.floor(copies / 2);
+    const middle = middleCopy * n;
+    const ref = (0, import_react9.useRef)(null);
+    const settle = (0, import_react9.useRef)(void 0);
+    const lastReported = (0, import_react9.useRef)(props.index);
+    const tappedRow = (0, import_react9.useRef)(null);
+    const target = (0, import_react9.useRef)(null);
+    const rowAt = (el) => Math.max(0, Math.min(n * copies - 1, Math.round(el.scrollTop / WHEEL_ITEM)));
+    const nearestRow = (el, i) => {
+      if (!props.loop) return i;
+      const current = rowAt(el);
+      const base = current - current % n + i;
+      return [base - n, base, base + n].filter((r) => r >= 0 && r < n * copies).reduce((a, b) => Math.abs(b - current) < Math.abs(a - current) ? b : a);
+    };
+    const report = (i) => {
+      if (i === lastReported.current) return;
+      lastReported.current = i;
+      latest.current.onIndexChange(i);
+    };
+    const mounted = (0, import_react9.useRef)(false);
+    (0, import_react9.useEffect)(() => {
+      const el = ref.current;
+      if (!el) return;
+      const tapped = tappedRow.current;
+      tappedRow.current = null;
+      if (mounted.current && props.index === lastReported.current) return;
+      lastReported.current = props.index;
+      const row2 = !mounted.current ? middle + props.index : tapped !== null && tapped % n === props.index ? tapped : nearestRow(el, props.index);
+      const top = row2 * WHEEL_ITEM;
+      if (Math.abs(el.scrollTop - top) > 1) {
+        target.current = mounted.current ? row2 : null;
+        el.scrollTo({ top, behavior: mounted.current ? "smooth" : "auto" });
+      }
+      mounted.current = true;
+    }, [props.index]);
+    (0, import_react9.useEffect)(() => () => window.clearTimeout(settle.current), []);
+    const onScroll = () => {
+      const el = ref.current;
+      if (!el) return;
+      window.clearTimeout(settle.current);
+      settle.current = window.setTimeout(() => {
+        target.current = null;
+        const row3 = rowAt(el);
+        if (latest.current.loop && Math.floor(row3 / n) !== middleCopy) el.scrollTop = (middle + row3 % n) * WHEEL_ITEM;
+        report(row3 % n);
+      }, 80);
+      const row2 = rowAt(el);
+      if (target.current !== null) {
+        if (row2 !== target.current) return;
+        target.current = null;
+      }
+      report(row2 % n);
+    };
+    const onKeyDown = (e) => {
+      const i = props.index;
+      const next = { ArrowDown: i + 1, ArrowUp: i - 1, Home: 0, End: n - 1 }[e.key];
+      if (next === void 0) return;
+      e.preventDefault();
+      if (props.loop) props.onIndexChange((next + n) % n);
+      else if (next >= 0 && next < n && next !== i) props.onIndexChange(next);
+    };
+    const padRows = Math.floor(WHEEL_VISIBLE / 2);
+    const rows = Array.from({ length: n * copies }, (_, row2) => row2);
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        ref,
+        className: props.className,
+        role: "listbox",
+        "aria-label": props.ariaLabel,
+        "aria-activedescendant": `${id}-${middle + props.index}`,
+        tabIndex: 0,
+        onScroll,
+        onKeyDown
+      },
+      /* @__PURE__ */ React.createElement("div", { style: { height: padRows * WHEEL_ITEM, flex: "none" } }),
+      rows.map((row2) => {
+        const i = row2 % n;
+        const selected = i === props.index;
+        return /* @__PURE__ */ React.createElement(
+          "button",
+          {
+            key: row2,
+            id: `${id}-${row2}`,
+            type: "button",
+            role: "option",
+            tabIndex: -1,
+            "aria-selected": selected,
+            "aria-hidden": row2 - i !== middle ? true : void 0,
+            className: `${props.itemClassName}${selected ? ` ${props.selectedItemClassName}` : ""}`,
+            onClick: () => {
+              tappedRow.current = row2;
+              props.onIndexChange(i);
+            }
+          },
+          props.items[i]
+        );
+      }),
+      /* @__PURE__ */ React.createElement("div", { style: { height: padRows * WHEEL_ITEM, flex: "none" } })
+    );
+  }
+
+  // src/components/DotsCalendar/DotsCalendar.tsx
   var pad = (n) => String(n).padStart(2, "0");
   var toISO = (y, m, d) => `${y}-${pad(m + 1)}-${pad(d)}`;
   var parseISO = (iso) => {
@@ -1373,35 +1490,34 @@ const hooks = () => window.React;
     }
     return days;
   }
-  var ITEM = 44;
-  var VISIBLE = 5;
+  var wheelClasses = { className: "ds-calendar__col", itemClassName: "ds-calendar__item", selectedItemClassName: "ds-calendar__item--selected" };
   function DotsCalendar(props) {
     const locale = props.locale ?? (typeof navigator !== "undefined" ? navigator.language : "es");
     const firstDayOfWeek = props.firstDayOfWeek ?? 1;
     const pastDays = props.pastDays ?? "muted";
     const today = props.today ?? todayISO();
     const selected = parseISO(props.value);
-    const initial = (0, import_react9.useMemo)(() => {
+    const initial = (0, import_react10.useMemo)(() => {
       const m = /^(\d{4})-(\d{2})$/.exec(props.initialMonth ?? "");
       if (m) return [Number(m[1]), Number(m[2]) - 1];
       const src = selected ?? parseISO(today);
       return [src[0], src[1]];
     }, []);
-    const [year, setYear] = (0, import_react9.useState)(initial[0]);
-    const [month, setMonth] = (0, import_react9.useState)(initial[1]);
-    const [picking, setPicking] = (0, import_react9.useState)(!!props.initialPicking);
-    const monthFmt = (0, import_react9.useMemo)(() => new Intl.DateTimeFormat(locale, { month: "long" }), [locale]);
-    const weekdayFmt = (0, import_react9.useMemo)(() => new Intl.DateTimeFormat(locale, { weekday: "narrow" }), [locale]);
-    const monthNames = (0, import_react9.useMemo)(() => Array.from({ length: 12 }, (_, i) => capitalize(monthFmt.format(new Date(2024, i, 1)))), [monthFmt]);
-    const weekdays = (0, import_react9.useMemo)(
+    const [year, setYear] = (0, import_react10.useState)(initial[0]);
+    const [month, setMonth] = (0, import_react10.useState)(initial[1]);
+    const [picking, setPicking] = (0, import_react10.useState)(!!props.initialPicking);
+    const monthFmt = (0, import_react10.useMemo)(() => new Intl.DateTimeFormat(locale, { month: "long" }), [locale]);
+    const weekdayFmt = (0, import_react10.useMemo)(() => new Intl.DateTimeFormat(locale, { weekday: "narrow" }), [locale]);
+    const monthNames = (0, import_react10.useMemo)(() => Array.from({ length: 12 }, (_, i) => capitalize(monthFmt.format(new Date(2024, i, 1)))), [monthFmt]);
+    const weekdays = (0, import_react10.useMemo)(
       () => Array.from({ length: 7 }, (_, i) => weekdayFmt.format(new Date(2024, 0, 7 + firstDayOfWeek + i))),
       // 2024-01-07 is a Sunday
       [weekdayFmt, firstDayOfWeek]
     );
     const todayYear = parseISO(today)[0];
     const [yearFrom, yearTo] = props.yearRange ?? [todayYear - 5, todayYear + 10];
-    const years = (0, import_react9.useMemo)(() => Array.from({ length: Math.max(1, yearTo - yearFrom + 1) }, (_, i) => yearFrom + i), [yearFrom, yearTo]);
-    const days = (0, import_react9.useMemo)(() => monthGrid(year, month, firstDayOfWeek), [year, month, firstDayOfWeek]);
+    const years = (0, import_react10.useMemo)(() => Array.from({ length: Math.max(1, yearTo - yearFrom + 1) }, (_, i) => yearFrom + i), [yearFrom, yearTo]);
+    const days = (0, import_react10.useMemo)(() => monthGrid(year, month, firstDayOfWeek), [year, month, firstDayOfWeek]);
     const isDisabled = (iso) => pastDays === "disabled" && iso < today || props.minDate !== void 0 && iso < props.minDate || props.maxDate !== void 0 && iso > props.maxDate;
     const go = (delta) => {
       const date = new Date(year, month + delta, 1);
@@ -1444,57 +1560,75 @@ const hooks = () => window.React;
         },
         /* @__PURE__ */ React.createElement("span", { className: "ds-calendar__num" }, day.d)
       );
-    })) : /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__picker" }, /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__band", "aria-hidden": true }), /* @__PURE__ */ React.createElement(WheelColumn, { items: monthNames, index: month, onIndexChange: setMonth, ariaLabel: "month" }), /* @__PURE__ */ React.createElement(WheelColumn, { items: years.map(String), index: Math.max(0, years.indexOf(year)), onIndexChange: (i) => setYear(years[i]), ariaLabel: "year" })));
+    })) : /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__picker" }, /* @__PURE__ */ React.createElement("div", { className: "ds-calendar__band", "aria-hidden": true }), /* @__PURE__ */ React.createElement(WheelColumn, { items: monthNames, index: month, onIndexChange: setMonth, ariaLabel: "month", ...wheelClasses }), /* @__PURE__ */ React.createElement(WheelColumn, { items: years.map(String), index: Math.max(0, years.indexOf(year)), onIndexChange: (i) => setYear(years[i]), ariaLabel: "year", ...wheelClasses })));
   }
-  function WheelColumn(props) {
-    const ref = (0, import_react9.useRef)(null);
-    const settle = (0, import_react9.useRef)(void 0);
-    const lastReported = (0, import_react9.useRef)(props.index);
-    const mounted = (0, import_react9.useRef)(false);
-    (0, import_react9.useEffect)(() => {
-      const el = ref.current;
-      if (!el) return;
-      const top = props.index * ITEM;
-      if (Math.abs(el.scrollTop - top) > 1) el.scrollTo({ top, behavior: mounted.current ? "smooth" : "auto" });
-      mounted.current = true;
-      lastReported.current = props.index;
-    }, [props.index]);
-    const onScroll = () => {
-      window.clearTimeout(settle.current);
-      settle.current = window.setTimeout(() => {
-        const el = ref.current;
-        if (!el) return;
-        const i = Math.max(0, Math.min(props.items.length - 1, Math.round(el.scrollTop / ITEM)));
-        if (i !== lastReported.current) {
-          lastReported.current = i;
-          props.onIndexChange(i);
-        }
-      }, 80);
+
+  // src/components/DotsTimePicker/DotsTimePicker.tsx
+  init_react_shim();
+  var import_react11 = __toESM(require_react(), 1);
+  var pad2 = (n) => String(n).padStart(2, "0");
+  var parseTime = (time) => {
+    const m = /^(\d{2}):(\d{2})/.exec(time ?? "");
+    if (!m) return null;
+    const h = Number(m[1]);
+    const min = Number(m[2]);
+    return h < 24 && min < 60 ? [h, min] : null;
+  };
+  var now = () => {
+    const d = /* @__PURE__ */ new Date();
+    return [d.getHours(), d.getMinutes()];
+  };
+  var HOURS = Array.from({ length: 24 }, (_, h) => pad2(h));
+  function DotsTimePicker(props) {
+    const step = props.minuteInterval && props.minuteInterval > 0 && 60 % props.minuteInterval === 0 ? props.minuteInterval : 1;
+    const minutes = (0, import_react11.useMemo)(() => Array.from({ length: 60 / step }, (_, i) => pad2(i * step)), [step]);
+    const [time, setTime] = (0, import_react11.useState)(() => parseTime(props.value) ?? now());
+    const timeRef = (0, import_react11.useRef)(time);
+    (0, import_react11.useEffect)(() => {
+      const parsed = parseTime(props.value);
+      if (!parsed) return;
+      timeRef.current = parsed;
+      setTime(parsed);
+    }, [props.value]);
+    const [hour, minute] = time;
+    const pick = (h, min) => {
+      timeRef.current = [h, min];
+      setTime([h, min]);
+      props.onChange?.(`${pad2(h)}:${pad2(min)}`);
     };
-    const padRows = Math.floor(VISIBLE / 2);
-    return /* @__PURE__ */ React.createElement("div", { ref, className: "ds-calendar__col", role: "listbox", "aria-label": props.ariaLabel, onScroll }, /* @__PURE__ */ React.createElement("div", { style: { height: padRows * ITEM, flex: "none" } }), props.items.map((item, i) => /* @__PURE__ */ React.createElement(
-      "button",
+    return /* @__PURE__ */ React.createElement("div", { className: `ds-time-picker${props.className ? ` ${props.className}` : ""}` }, /* @__PURE__ */ React.createElement("div", { className: "ds-time-picker__band", "aria-hidden": true }), /* @__PURE__ */ React.createElement(
+      WheelColumn,
       {
-        key: item,
-        type: "button",
-        role: "option",
-        "aria-selected": i === props.index,
-        className: `ds-calendar__item${i === props.index ? " ds-calendar__item--selected" : ""}`,
-        onClick: () => props.onIndexChange(i)
-      },
-      item
-    )), /* @__PURE__ */ React.createElement("div", { style: { height: padRows * ITEM, flex: "none" } }));
+        items: HOURS,
+        index: hour,
+        onIndexChange: (h) => pick(h, timeRef.current[1] - timeRef.current[1] % step),
+        ariaLabel: props.hoursLabel ?? "Hours",
+        loop: true,
+        ...wheelClasses2
+      }
+    ), /* @__PURE__ */ React.createElement(
+      WheelColumn,
+      {
+        items: minutes,
+        index: Math.floor(minute / step),
+        onIndexChange: (i) => pick(timeRef.current[0], i * step),
+        ariaLabel: props.minutesLabel ?? "Minutes",
+        loop: true,
+        ...wheelClasses2
+      }
+    ));
   }
+  var wheelClasses2 = { className: "ds-time-picker__col", itemClassName: "ds-time-picker__item", selectedItemClassName: "ds-time-picker__item--selected" };
 
   // src/components/DotsSelector/DotsSelector.tsx
   init_react_shim();
-  var import_react10 = __toESM(require_react(), 1);
+  var import_react12 = __toESM(require_react(), 1);
   var SIZES3 = { small: 22, medium: 24 };
   function DotsSelector(props) {
     const sizeName = props.size && SIZES3[props.size] ? props.size : "medium";
     const variant = props.variant === "num" ? "num" : "check";
     const controlled = props.isSelected !== void 0 && props.isSelected !== null;
-    const [internal, setInternal] = (0, import_react10.useState)(!!props.defaultSelected);
+    const [internal, setInternal] = (0, import_react12.useState)(!!props.defaultSelected);
     const selected = controlled ? !!props.isSelected : internal;
     function handleClick() {
       const next = !selected;
@@ -1541,7 +1675,7 @@ const hooks = () => window.React;
 
   // src/components/DotsCaptureButton/DotsCaptureButton.tsx
   init_react_shim();
-  var import_react11 = __toESM(require_react(), 1);
+  var import_react13 = __toESM(require_react(), 1);
   var DIAMETER = 80;
   var INNER = 68;
   var INNER_RECORDING = 60;
@@ -1551,14 +1685,14 @@ const hooks = () => window.React;
   function DotsCaptureButton(props) {
     const type = props.type === "video" ? "video" : "photo";
     const controlled = props.state !== void 0 && props.state !== null;
-    const [internalRecording, setInternalRecording] = (0, import_react11.useState)(false);
+    const [internalRecording, setInternalRecording] = (0, import_react13.useState)(false);
     const recording = controlled ? props.state === "recording" : internalRecording;
-    const [progress, setProgress] = (0, import_react11.useState)(0);
+    const [progress, setProgress] = (0, import_react13.useState)(0);
     const maxTime = props.maxTimeRecording && props.maxTimeRecording > 0 ? props.maxTimeRecording : 60;
-    const stopCbRef = (0, import_react11.useRef)(void 0);
+    const stopCbRef = (0, import_react13.useRef)(void 0);
     stopCbRef.current = props.onStopRecording;
     const animating = type === "video" && recording;
-    (0, import_react11.useEffect)(() => {
+    (0, import_react13.useEffect)(() => {
       if (!animating) {
         setProgress(0);
         return void 0;
@@ -1623,12 +1757,12 @@ const hooks = () => window.React;
 
   // src/components/DotsInputStepper/DotsInputStepper.tsx
   init_react_shim();
-  var import_react12 = __toESM(require_react(), 1);
+  var import_react14 = __toESM(require_react(), 1);
   function DotsInputStepper(props) {
     const min = props.minValue ?? 0;
     const max = props.maxValue ?? 99;
     const controlled = props.value !== void 0 && props.value !== null;
-    const [internal, setInternal] = (0, import_react12.useState)(props.defaultValue ?? min);
+    const [internal, setInternal] = (0, import_react14.useState)(props.defaultValue ?? min);
     const clamp2 = (v) => Math.min(max, Math.max(min, v));
     const value = clamp2(controlled ? props.value : internal);
     const canDecrement = value > min;
@@ -1648,11 +1782,11 @@ const hooks = () => window.React;
 
   // src/components/BtnFolder/BtnFolder.tsx
   init_react_shim();
-  var import_react13 = __toESM(require_react(), 1);
+  var import_react15 = __toESM(require_react(), 1);
   var LONG_PRESS_MS = 500;
   function BtnFolder(props) {
-    const timer = (0, import_react13.useRef)(null);
-    const fired = (0, import_react13.useRef)(false);
+    const timer = (0, import_react15.useRef)(null);
+    const fired = (0, import_react15.useRef)(false);
     function startPress() {
       fired.current = false;
       if (!props.onLongPress) return;
@@ -1667,7 +1801,7 @@ const hooks = () => window.React;
         timer.current = null;
       }
     }
-    (0, import_react13.useEffect)(() => cancelPress, []);
+    (0, import_react15.useEffect)(() => cancelPress, []);
     function handleClick() {
       if (fired.current) {
         fired.current = false;
@@ -1732,8 +1866,8 @@ const hooks = () => window.React;
 
   // src/components/DotsCountdown/DotsCountdown.tsx
   init_react_shim();
-  var import_react14 = __toESM(require_react(), 1);
-  function pad2(v) {
+  var import_react16 = __toESM(require_react(), 1);
+  function pad22(v) {
     const s = String(v == null ? 0 : v);
     return s.length >= 2 ? s : `0${s}`;
   }
@@ -1760,8 +1894,8 @@ const hooks = () => window.React;
     const parsed = props.targetDate == null ? NaN : new Date(props.targetDate).getTime();
     const target = Number.isFinite(parsed) ? parsed : null;
     const live = target != null && variant === "recap";
-    const [, setTick] = (0, import_react14.useState)(0);
-    (0, import_react14.useEffect)(() => {
+    const [, setTick] = (0, import_react16.useState)(0);
+    (0, import_react16.useEffect)(() => {
       if (!live || target == null) return void 0;
       if (remainingOf(target).finished) return void 0;
       const id = setInterval(() => {
@@ -1792,7 +1926,7 @@ const hooks = () => window.React;
         seconds: props.seconds || 0
       };
     }
-    return /* @__PURE__ */ React.createElement("span", { className }, icon("ic-lock", 20), /* @__PURE__ */ React.createElement("span", { className: "ds-countdown__title" }, props.title || ""), r.finished ? /* @__PURE__ */ React.createElement("span", { className: "ds-countdown__desc" }, props.description || "") : /* @__PURE__ */ React.createElement("span", { className: "ds-countdown__times" }, timeItem("d", pad2(r.days), props.daysLabel || "", true), timeItem("h", pad2(r.hours), props.hoursLabel || "", true), timeItem("m", pad2(r.minutes), props.minutesLabel || "", true), timeItem("s", pad2(r.seconds), props.secondsLabel || "", true)));
+    return /* @__PURE__ */ React.createElement("span", { className }, icon("ic-lock", 20), /* @__PURE__ */ React.createElement("span", { className: "ds-countdown__title" }, props.title || ""), r.finished ? /* @__PURE__ */ React.createElement("span", { className: "ds-countdown__desc" }, props.description || "") : /* @__PURE__ */ React.createElement("span", { className: "ds-countdown__times" }, timeItem("d", pad22(r.days), props.daysLabel || "", true), timeItem("h", pad22(r.hours), props.hoursLabel || "", true), timeItem("m", pad22(r.minutes), props.minutesLabel || "", true), timeItem("s", pad22(r.seconds), props.secondsLabel || "", true)));
   }
 
   // src/components/ImageThumbnail/ImageThumbnail.tsx
@@ -1816,10 +1950,10 @@ const hooks = () => window.React;
 
   // src/components/ImageWithProgressAround/ImageWithProgressAround.tsx
   init_react_shim();
-  var import_react15 = __toESM(require_react(), 1);
+  var import_react17 = __toESM(require_react(), 1);
   var RECAP_GRADIENT = ["#EF5FC1", "#C982F7", "#15ABF3", "#B295B6", "#F5784D", "#EF9C5F", "#F44E69", "#EF5FC1"];
   function ImageWithProgressAround(props) {
-    const gradId = `ds-iwpa-grad-${(0, import_react15.useId)().replace(/:/g, "")}`;
+    const gradId = `ds-iwpa-grad-${(0, import_react17.useId)().replace(/:/g, "")}`;
     const width = props.width ?? 150;
     const ratio = props.aspectRatio === "small" ? 3 / 4 : 9 / 16;
     const height = Math.round(width / ratio);
@@ -1898,14 +2032,14 @@ const hooks = () => window.React;
 
   // src/components/DotsSegmentedControl/DotsSegmentedControl.tsx
   init_react_shim();
-  var import_react16 = __toESM(require_react(), 1);
+  var import_react18 = __toESM(require_react(), 1);
   function badgeTag(tag) {
     return tag ? /* @__PURE__ */ React.createElement("span", { className: "ds-seg__tag" }, tag) : null;
   }
   function DotsSegmentedControl(props) {
     const type = props.type || "text";
     const controlled = props.selectedOption !== void 0 && props.selectedOption !== null;
-    const [internal, setInternal] = (0, import_react16.useState)(props.defaultSelectedOption || "left");
+    const [internal, setInternal] = (0, import_react18.useState)(props.defaultSelectedOption || "left");
     const selected = controlled ? props.selectedOption : internal;
     function tap(option) {
       if (!controlled) setInternal(option);
@@ -1960,13 +2094,13 @@ const hooks = () => window.React;
 
   // src/components/DotsTextArea/DotsTextArea.tsx
   init_react_shim();
-  var import_react17 = __toESM(require_react(), 1);
+  var import_react19 = __toESM(require_react(), 1);
   function DotsTextArea(props) {
     const controlled = props.value !== void 0 && props.value !== null;
-    const [innerText, setText] = (0, import_react17.useState)(props.defaultValue != null ? String(props.defaultValue) : "");
-    const areaRef = (0, import_react17.useRef)(null);
-    const labelId = (0, import_react17.useId)();
-    const errorId = (0, import_react17.useId)();
+    const [innerText, setText] = (0, import_react19.useState)(props.defaultValue != null ? String(props.defaultValue) : "");
+    const areaRef = (0, import_react19.useRef)(null);
+    const labelId = (0, import_react19.useId)();
+    const errorId = (0, import_react19.useId)();
     const text = controlled ? String(props.value) : innerText;
     const hasLabel = !!props.label;
     const hasIcon = !!props.icon;
@@ -2078,7 +2212,7 @@ const hooks = () => window.React;
 
   // src/components/DotsAccordion/DotsAccordion.tsx
   init_react_shim();
-  var import_react19 = __toESM(require_react(), 1);
+  var import_react21 = __toESM(require_react(), 1);
 
   // src/internal/pressable.ts
   init_react_shim();
@@ -2098,8 +2232,8 @@ const hooks = () => window.React;
 
   // src/internal/inert.ts
   init_react_shim();
-  var import_react18 = __toESM(require_react(), 1);
-  var REACT_MAJOR = parseInt(import_react18.version, 10) || 0;
+  var import_react20 = __toESM(require_react(), 1);
+  var REACT_MAJOR = parseInt(import_react20.version, 10) || 0;
   function inertProps(on) {
     if (!on) return {};
     return REACT_MAJOR >= 19 ? { inert: true } : { inert: "" };
@@ -2115,7 +2249,7 @@ const hooks = () => window.React;
     const duration = props.animationDuration ?? 180;
     const addHPad = props.addHorizontalPadding !== false;
     const signature = sections.map((s) => `${s?.title ?? ""}\0${s?.expanded ? 1 : 0}`).join("");
-    const [state, setState] = (0, import_react19.useState)(null);
+    const [state, setState] = (0, import_react21.useState)(null);
     const expanded = state && state.signature === signature ? state.values : sections.map((s) => !!s?.expanded);
     function toggle(index) {
       const next = expanded.map((v, i) => {
@@ -2147,7 +2281,7 @@ const hooks = () => window.React;
 
   // src/components/DotsSlider/DotsSlider.tsx
   init_react_shim();
-  var import_react20 = __toESM(require_react(), 1);
+  var import_react22 = __toESM(require_react(), 1);
   function clamp(v, lo, hi) {
     return v < lo ? lo : v > hi ? hi : v;
   }
@@ -2155,11 +2289,11 @@ const hooks = () => window.React;
     const max = props.max ?? 1;
     const divisions = props.divisions ?? null;
     const controlled = props.value !== void 0 && props.value !== null;
-    const [internal, setInternal] = (0, import_react20.useState)(props.defaultValue ?? 0);
+    const [internal, setInternal] = (0, import_react22.useState)(props.defaultValue ?? 0);
     const value = clamp(controlled ? props.value : internal, 0, max);
     const interactive = typeof props.onChanged === "function" || !controlled;
-    const trackRef = (0, import_react20.useRef)(null);
-    const draggingRef = (0, import_react20.useRef)(false);
+    const trackRef = (0, import_react22.useRef)(null);
+    const draggingRef = (0, import_react22.useRef)(false);
     function valueFromPointer(e) {
       const rect = trackRef.current?.getBoundingClientRect();
       let ratio = rect && rect.width > 0 ? (e.clientX - rect.left) / rect.width : 0;
@@ -2245,7 +2379,7 @@ const hooks = () => window.React;
 
   // src/components/ColorSelector/ColorSelector.tsx
   init_react_shim();
-  var import_react21 = __toESM(require_react(), 1);
+  var import_react23 = __toESM(require_react(), 1);
   var OPTION_COLORS = {
     textQuarternary: "var(--text-quarternary)",
     couple005: "#B66678",
@@ -2299,7 +2433,7 @@ const hooks = () => window.React;
     const size = props.size == null ? 32 : +props.size;
     const spacing = props.spacing == null ? variant === "selector" ? 12 : 18 : +props.spacing;
     const colors = Array.isArray(props.colors) && props.colors.length ? props.colors : variant === "options" ? DEFAULT_OPTIONS : [];
-    const buttons = (0, import_react21.useRef)([]);
+    const buttons = (0, import_react23.useRef)([]);
     const selectedIndex = props.selected == null ? -1 : colors.indexOf(props.selected);
     const focusIndex = selectedIndex >= 0 ? selectedIndex : 0;
     function onKeyDown(e, i) {
@@ -2620,15 +2754,15 @@ const hooks = () => window.React;
 
   // src/components/DotsMenu/DotsMenu.tsx
   init_react_shim();
-  var import_react23 = __toESM(require_react(), 1);
+  var import_react25 = __toESM(require_react(), 1);
 
   // src/internal/useMenuKeyboard.ts
   init_react_shim();
-  var import_react22 = __toESM(require_react(), 1);
+  var import_react24 = __toESM(require_react(), 1);
   function useMenuKeyboard(options) {
     const { count, isDisabled, onActivate, onEscape } = options;
-    const items = (0, import_react22.useRef)([]);
-    const [active, setActive] = (0, import_react22.useState)(0);
+    const items = (0, import_react24.useRef)([]);
+    const [active, setActive] = (0, import_react24.useState)(0);
     const enabled = (i) => i >= 0 && i < count && !isDisabled?.(i);
     const seek = (from, dir) => {
       for (let n = 0, i = from; n < count; n++, i = (i + dir + count) % count) if (enabled(i)) return i;
@@ -2713,7 +2847,7 @@ const hooks = () => window.React;
     return /* @__PURE__ */ React.createElement("div", { className: `ds-menu__item${item.details != null ? " ds-menu__item--details" : ""}`, ...rowProps }, leftIcon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: leftIcon, size: 14, color: iconColor2 ?? "var(--text-primary)", className: "ds-menu__item-left" }) : null, /* @__PURE__ */ React.createElement("span", { className: "ds-menu__item-body" }, /* @__PURE__ */ React.createElement("span", { className: "ds-menu__item-label", style: textStyle }, item.label), item.details != null ? /* @__PURE__ */ React.createElement("span", { className: "ds-menu__item-details", style: textStyle }, item.details) : null), item.icon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: item.icon, size: 16, color: iconColor2 ?? "var(--label-primary)", className: "ds-menu__item-right" }) : null);
   }
   function DotsMenu(props) {
-    const [state, setState] = (0, import_react23.useState)(() => {
+    const [state, setState] = (0, import_react25.useState)(() => {
       const root = { ...props.mainItem, subItems: props.subitems ?? [] };
       let stack = [];
       let selected2 = root;
@@ -2731,7 +2865,7 @@ const hooks = () => window.React;
     const subs = selected.subItems ?? [];
     const scrollable = subs.length > 7;
     const headerTaps = !isInitialItem || !!selected.onClick;
-    const pendingFocus = (0, import_react23.useRef)(null);
+    const pendingFocus = (0, import_react25.useRef)(null);
     function tapHeader() {
       selected.onClick?.();
       if (!state.stack.length) return;
@@ -2752,7 +2886,7 @@ const hooks = () => window.React;
       onActivate: (i) => i === 0 ? tapHeader() : tapSub(subs[i - 1])
     });
     const { focusItem } = kb;
-    (0, import_react23.useLayoutEffect)(() => {
+    (0, import_react25.useLayoutEffect)(() => {
       if (pendingFocus.current == null) return;
       const index = pendingFocus.current;
       pendingFocus.current = null;
@@ -2774,7 +2908,7 @@ const hooks = () => window.React;
     if (p.textAlignment) labelStyle.textAlign = p.textAlignment;
     const rowAction = isToggle ? p.onClick : void 0;
     const rowProps = isToggle ? rowAction ? {} : { onClick: p.onToggleTap } : pressable(p.onClick);
-    const labelId = (0, import_react23.useId)();
+    const labelId = (0, import_react25.useId)();
     return /* @__PURE__ */ React.createElement("div", { className: `ds-menu-settings__item${isToggle ? " ds-menu-settings__item--toggle" : ""}`, ...rowProps }, rowAction ? /* @__PURE__ */ React.createElement("button", { type: "button", className: "ds-menu-settings__hit", "aria-labelledby": labelId, onClick: rowAction }) : null, p.startIcon ? /* @__PURE__ */ React.createElement(DotsIcon, { name: p.startIcon, size: 20, color: "var(--text-tertiary)", className: "ds-menu-settings__start" }) : null, /* @__PURE__ */ React.createElement("span", { className: "ds-menu-settings__label", style: labelStyle, id: labelId }, p.label), isToggle ? (
       // Dart: DotsToggle(isSelected: toggleValue, onChanged: onToggleTap); the tap does not reach the row
       /* @__PURE__ */ React.createElement("span", { className: "ds-menu-settings__toggle", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ React.createElement(DotsToggle, { isSelected: !!p.toggleValue, onChanged: () => p.onToggleTap?.(), ariaLabelledBy: labelId }))
@@ -2828,7 +2962,7 @@ const hooks = () => window.React;
 
   // src/components/DropdownMenu/DropdownMenu.tsx
   init_react_shim();
-  var import_react24 = __toESM(require_react(), 1);
+  var import_react26 = __toESM(require_react(), 1);
   function Row(props) {
     const style = props.itemColor ? { color: props.itemColor } : void 0;
     const cls = "ds-dropdown__item" + (props.destructive ? " ds-dropdown__item--destructive" : "") + (props.minSize ? " ds-dropdown__item--min" : "");
@@ -2840,7 +2974,7 @@ const hooks = () => window.React;
   }
   function MenuPanel(p) {
     const items = p.items ?? [];
-    const panelRef = (0, import_react24.useRef)(null);
+    const panelRef = (0, import_react26.useRef)(null);
     const kb = useMenuKeyboard({
       count: items.length,
       onActivate: (i) => items[i]?.onClick?.(),
@@ -2848,10 +2982,10 @@ const hooks = () => window.React;
     });
     const { focusItem } = kb;
     const { autoFocus, onFocusLost } = p;
-    (0, import_react24.useEffect)(() => {
+    (0, import_react26.useEffect)(() => {
       if (autoFocus) focusItem(0);
     }, []);
-    (0, import_react24.useLayoutEffect)(() => {
+    (0, import_react26.useLayoutEffect)(() => {
       return () => {
         const panel = panelRef.current;
         if (panel && panel.contains(document.activeElement)) onFocusLost?.();
@@ -2865,19 +2999,19 @@ const hooks = () => window.React;
     return /* @__PURE__ */ React.createElement("div", { ref: panelRef, className: "ds-dropdown__menu", style, role: "menu", "aria-orientation": "vertical" }, items.map((it, i) => /* @__PURE__ */ React.createElement(Row, { key: i, ...it, nav: kb.itemProps(i) })));
   }
   function DropdownMenu(props) {
-    const [inner, setInner] = (0, import_react24.useState)(!!props.defaultActive);
+    const [inner, setInner] = (0, import_react26.useState)(!!props.defaultActive);
     const controlled = props.isActive !== void 0 && props.isActive !== null;
     const active = controlled ? !!props.isActive : inner;
     const dropped = !!props.label && active;
-    const rootRef = (0, import_react24.useRef)(null);
-    const btnRef = (0, import_react24.useRef)(null);
-    const [triggerWidth, setTriggerWidth] = (0, import_react24.useState)(void 0);
+    const rootRef = (0, import_react26.useRef)(null);
+    const btnRef = (0, import_react26.useRef)(null);
+    const [triggerWidth, setTriggerWidth] = (0, import_react26.useState)(void 0);
     const { onToggle } = props;
-    const dismiss = (0, import_react24.useCallback)(() => {
+    const dismiss = (0, import_react26.useCallback)(() => {
       if (!controlled) setInner(false);
       onToggle?.(false);
     }, [controlled, onToggle]);
-    (0, import_react24.useEffect)(() => {
+    (0, import_react26.useEffect)(() => {
       if (!dropped) return;
       const inside = (target) => {
         const root = rootRef.current;
@@ -2896,11 +3030,11 @@ const hooks = () => window.React;
         document.removeEventListener("keydown", onKeyDown);
       };
     }, [dropped, dismiss]);
-    const openAtMount = (0, import_react24.useRef)(dropped);
-    (0, import_react24.useEffect)(() => {
+    const openAtMount = (0, import_react26.useRef)(dropped);
+    (0, import_react26.useEffect)(() => {
       if (!dropped) openAtMount.current = false;
     }, [dropped]);
-    (0, import_react24.useLayoutEffect)(() => {
+    (0, import_react26.useLayoutEffect)(() => {
       const el = btnRef.current;
       if (!dropped || !el) return;
       const measure = () => setTriggerWidth(el.getBoundingClientRect().width);
@@ -3039,7 +3173,7 @@ const hooks = () => window.React;
 
   // src/components/DotsNavBar/DotsNavBar.tsx
   init_react_shim();
-  var import_react25 = __toESM(require_react(), 1);
+  var import_react27 = __toESM(require_react(), 1);
   var MAX_PENDING = 99;
   var ITEM_PADDING_X = 16;
   var ICON_SIZE2 = 20;
@@ -3052,11 +3186,11 @@ const hooks = () => window.React;
     const items = props.items ?? DEFAULT_ITEMS;
     const selectedIndex = props.selectedIndex ?? 0;
     const onSelect = props.onSelect;
-    const navRef = (0, import_react25.useRef)(null);
-    const [pill, setPill] = (0, import_react25.useState)(null);
-    const [tight, setTight] = (0, import_react25.useState)(false);
+    const navRef = (0, import_react27.useRef)(null);
+    const [pill, setPill] = (0, import_react27.useState)(null);
+    const [tight, setTight] = (0, import_react27.useState)(false);
     const labelsKey = items.map((item) => item.label).join("\n");
-    (0, import_react25.useLayoutEffect)(() => {
+    (0, import_react27.useLayoutEffect)(() => {
       const nav = navRef.current;
       if (!nav) return;
       const buttons = Array.from(nav.querySelectorAll(".ds-nav-bar__item"));
@@ -3122,7 +3256,7 @@ const hooks = () => window.React;
 
   // src/components/DotsSquirclePhoto/DotsSquirclePhoto.tsx
   init_react_shim();
-  var import_react26 = __toESM(require_react(), 1);
+  var import_react28 = __toESM(require_react(), 1);
   function gradVariant2(seed) {
     const s = seed ?? "";
     let n = 0;
@@ -3134,7 +3268,7 @@ const hooks = () => window.React;
     return typeof borderRadius === "number" ? `${borderRadius}px` : borderRadius;
   }
   function DotsSquirclePhoto(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react26.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react28.useState)(null);
     const hasError = !!props.src && failedSrc === props.src;
     const size = props.size ?? 52;
     const br = radiusPx(props.borderRadius, 16);
@@ -3337,7 +3471,7 @@ const hooks = () => window.React;
 
   // src/components/DotsGameCard/DotsGameCard.tsx
   init_react_shim();
-  var import_react27 = __toESM(require_react(), 1);
+  var import_react29 = __toESM(require_react(), 1);
 
   // src/components/BadgeLabel/BadgeLabel.tsx
   init_react_shim();
@@ -3368,7 +3502,7 @@ const hooks = () => window.React;
   };
   function DotsGameCard(props) {
     const status = props.status && BADGE_VARIANT[props.status] ? props.status : "active";
-    const [failedSrc, setFailedSrc] = (0, import_react27.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react29.useState)(null);
     const imgError = !!props.imageSrc && failedSrc === props.imageSrc;
     let art;
     if (props.image) {
@@ -3398,7 +3532,7 @@ const hooks = () => window.React;
 
   // src/components/UserItem/UserItem.tsx
   init_react_shim();
-  var import_react28 = __toESM(require_react(), 1);
+  var import_react30 = __toESM(require_react(), 1);
   function gradVariant3(seed) {
     const s = seed ?? "";
     let n = 0;
@@ -3413,7 +3547,7 @@ const hooks = () => window.React;
     return out.toUpperCase();
   }
   function UserInfo(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react28.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react30.useState)(null);
     const hasError = !!props.src && failedSrc === props.src;
     const size = props.size === "large" ? "large" : "small";
     const showImg = !!props.src && !hasError;
@@ -3569,7 +3703,7 @@ const hooks = () => window.React;
 
   // src/components/ActivityPreview/ActivityPreview.tsx
   init_react_shim();
-  var import_react29 = __toESM(require_react(), 1);
+  var import_react31 = __toESM(require_react(), 1);
   var VARIANTS9 = { reactions: true, views: true, favs: true };
   var BADGE_COLORS = { reactions: "#FAA25E", views: "#9297EF", favs: "#F43C51" };
   function formatCount(count) {
@@ -3579,7 +3713,7 @@ const hooks = () => window.React;
     return String(count);
   }
   function ActivityPreview(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react29.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react31.useState)(null);
     const imgError = !!props.src && failedSrc === props.src;
     const variant = props.variant && VARIANTS9[props.variant] ? props.variant : "reactions";
     const isReactions = variant === "reactions";
@@ -3619,7 +3753,7 @@ const hooks = () => window.React;
     const userImages = props.userImages || [];
     const count = props.count ?? 0;
     const reactionsCount = props.reactionsCount ?? 0;
-    const [failed, setFailed] = (0, import_react29.useState)(() => /* @__PURE__ */ new Set());
+    const [failed, setFailed] = (0, import_react31.useState)(() => /* @__PURE__ */ new Set());
     function markFailed(src) {
       setFailed((prev) => prev.has(src) ? prev : new Set(prev).add(src));
     }
@@ -3653,9 +3787,9 @@ const hooks = () => window.React;
 
   // src/components/ImageWithIcon/ImageWithIcon.tsx
   init_react_shim();
-  var import_react30 = __toESM(require_react(), 1);
+  var import_react32 = __toESM(require_react(), 1);
   function ImageWithIcon(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react30.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react32.useState)(null);
     const imgError = !!props.src && failedSrc === props.src;
     const width = props.width ?? 53;
     const height = props.height ?? 68;
@@ -3702,7 +3836,7 @@ const hooks = () => window.React;
 
   // src/components/MessagePreview/MessagePreview.tsx
   init_react_shim();
-  var import_react31 = __toESM(require_react(), 1);
+  var import_react33 = __toESM(require_react(), 1);
   var ATTACHMENT_ICONS = {
     image: "ic-pic",
     video: "ic-video",
@@ -3716,7 +3850,7 @@ const hooks = () => window.React;
     return "abcd"[n % 4];
   }
   function MessagePreview(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react31.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react33.useState)(null);
     const hasError = !!props.src && failedSrc === props.src;
     const album = props.album || "";
     const newMessages = props.newMessages || 0;
@@ -3772,10 +3906,10 @@ const hooks = () => window.React;
 
   // src/components/NotificationBannerImage/NotificationBannerImage.tsx
   init_react_shim();
-  var import_react32 = __toESM(require_react(), 1);
+  var import_react34 = __toESM(require_react(), 1);
   var BTN_SIZES = { mainAction: true, large: true, medium: true, small: true };
   function NotificationBannerImage(props) {
-    const [failedSrc, setFailedSrc] = (0, import_react32.useState)(null);
+    const [failedSrc, setFailedSrc] = (0, import_react34.useState)(null);
     const imgError = !!props.src && failedSrc === props.src;
     const imagePadding = props.imagePadding ?? 20;
     const showClose = props.showCloseButton !== false;
@@ -3992,7 +4126,7 @@ const hooks = () => window.React;
 
   // src/components/MilestonesList/MilestonesList.tsx
   init_react_shim();
-  var import_react33 = __toESM(require_react(), 1);
+  var import_react35 = __toESM(require_react(), 1);
   var CARD_HEIGHT = 326;
   var BADGE_HEIGHT = 17;
   var TAIL_EXTENSION = 64;
@@ -4012,7 +4146,7 @@ const hooks = () => window.React;
   }
   function isCard(item) {
     if (typeof item === "string") return false;
-    if ((0, import_react33.isValidElement)(item)) return item.type !== BadgeMilestone;
+    if ((0, import_react35.isValidElement)(item)) return item.type !== BadgeMilestone;
     return true;
   }
   function itemHeight(item) {
@@ -4020,7 +4154,7 @@ const hooks = () => window.React;
   }
   function isSelectedCard(item) {
     if (typeof item === "string") return false;
-    if ((0, import_react33.isValidElement)(item)) return item.type === MilestoneCard && Boolean(item.props.isSelected);
+    if ((0, import_react35.isValidElement)(item)) return item.type === MilestoneCard && Boolean(item.props.isSelected);
     return Boolean(item.isSelected);
   }
   function verticalSpacing(curr, next, rand) {
@@ -4068,17 +4202,17 @@ const hooks = () => window.React;
   }
   function renderItem(item) {
     if (typeof item === "string") return /* @__PURE__ */ React.createElement(BadgeMilestone, { content: item, variant: "ghost" });
-    if ((0, import_react33.isValidElement)(item)) return item;
+    if ((0, import_react35.isValidElement)(item)) return item;
     return /* @__PURE__ */ React.createElement(MilestoneCard, { ...item, width: CARD_WIDTH });
   }
   function MilestonesList(props) {
     const list = props.list ?? [];
     const seed = props.seed ?? 1;
-    const ref = (0, import_react33.useRef)(null);
-    const itemRefs = (0, import_react33.useRef)([]);
-    const [measured, setMeasured] = (0, import_react33.useState)(props.width || 0);
+    const ref = (0, import_react35.useRef)(null);
+    const itemRefs = (0, import_react35.useRef)([]);
+    const [measured, setMeasured] = (0, import_react35.useState)(props.width || 0);
     const width = props.width || measured || 375;
-    (0, import_react33.useLayoutEffect)(() => {
+    (0, import_react35.useLayoutEffect)(() => {
       if (props.width) return;
       const el = ref.current;
       if (!el) return;
@@ -4089,9 +4223,9 @@ const hooks = () => window.React;
       observer.observe(el);
       return () => observer.disconnect();
     }, [props.width]);
-    const lay = (0, import_react33.useMemo)(() => layout(list, seed, width / 2), [list, seed, width]);
+    const lay = (0, import_react35.useMemo)(() => layout(list, seed, width / 2), [list, seed, width]);
     const selectedIndex = list.findIndex(isSelectedCard);
-    (0, import_react33.useEffect)(() => {
+    (0, import_react35.useEffect)(() => {
       if (selectedIndex < 0) return;
       const el = itemRefs.current[selectedIndex];
       if (el && typeof el.scrollIntoView === "function") el.scrollIntoView({ block: "center", behavior: "smooth" });
@@ -4112,10 +4246,10 @@ const hooks = () => window.React;
 
   // src/components/RecapCard/RecapCard.tsx
   init_react_shim();
-  var import_react34 = __toESM(require_react(), 1);
+  var import_react36 = __toESM(require_react(), 1);
   var VARIANTS11 = { active: true, blocked: true, generated: true, onlyTitle: true };
   var LOCKED_VARIANTS = { countdown: true, locked: true, soon: true };
-  function pad22(n) {
+  function pad23(n) {
     return (n < 10 ? "0" : "") + n;
   }
   function imageLayer(props, blurred) {
@@ -4134,8 +4268,8 @@ const hooks = () => window.React;
     const width = props.width ?? 220;
     const parsed = locked && lockedVariant === "countdown" && props.countdownDate ? new Date(props.countdownDate).getTime() : 0;
     const target = Number.isFinite(parsed) ? parsed : 0;
-    const [, setTick] = (0, import_react34.useState)(0);
-    (0, import_react34.useEffect)(() => {
+    const [, setTick] = (0, import_react36.useState)(0);
+    (0, import_react36.useEffect)(() => {
       if (!target || target - Date.now() <= 0) return void 0;
       const id = setInterval(() => {
         if (target - Date.now() <= 0) clearInterval(id);
@@ -4177,7 +4311,7 @@ const hooks = () => window.React;
       const hrs = Math.floor(remaining / 36e5) % 24;
       const min = Math.floor(remaining / 6e4) % 60;
       const sec = Math.floor(remaining / 1e3) % 60;
-      body2 = /* @__PURE__ */ React.createElement("div", { className: "ds-recap-card__times" }, timeItem2(pad22(d), props.daysLabel), timeItem2(pad22(hrs), props.hoursLabel), timeItem2(pad22(min), props.minutesLabel), timeItem2(pad22(sec), props.secondsLabel));
+      body2 = /* @__PURE__ */ React.createElement("div", { className: "ds-recap-card__times" }, timeItem2(pad23(d), props.daysLabel), timeItem2(pad23(hrs), props.hoursLabel), timeItem2(pad23(min), props.minutesLabel), timeItem2(pad23(sec), props.secondsLabel));
     } else {
       body2 = /* @__PURE__ */ React.createElement("div", { className: "ds-recap-card__cd-desc" }, props.description || "");
     }
@@ -4198,13 +4332,13 @@ const hooks = () => window.React;
 
   // src/components/DotsPlanningItem/DotsPlanningItem.tsx
   init_react_shim();
-  var import_react35 = __toESM(require_react(), 1);
+  var import_react37 = __toESM(require_react(), 1);
   function row(item, key) {
     if (!item || !item.icon || item.text == null || !String(item.text).trim()) return null;
     return /* @__PURE__ */ React.createElement("span", { className: "ds-planning-item__row", key }, /* @__PURE__ */ React.createElement("span", { className: "ds-planning-item__row-icon", "aria-hidden": true }, /* @__PURE__ */ React.createElement(DotsIcon, { name: item.icon, size: 16, color: "var(--label-primary)" })), /* @__PURE__ */ React.createElement("span", { className: `ds-planning-item__row-text${item.underline ? " is-underline" : ""}` }, item.text));
   }
   function DotsPlanningItem(props) {
-    const [internal, setInternal] = (0, import_react35.useState)(!!props.defaultExpanded);
+    const [internal, setInternal] = (0, import_react37.useState)(!!props.defaultExpanded);
     const controlled = props.expanded != null;
     const expanded = controlled ? !!props.expanded : internal;
     function toggle() {

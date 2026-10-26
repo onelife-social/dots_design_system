@@ -3081,6 +3081,44 @@ button.ds-check-circle {
   margin-right: 12px;
 }
 
+/* ── DotsTimePicker ── */
+/* DotsTimePicker — hour/minute wheel (rows, band and fade of the DotsCalendar month/year picker) */
+.ds-time-picker {
+  position: relative;
+  display: flex; justify-content: center; gap: 8px;
+  width: 100%;
+  height: 220px; /* 5 rows × 44 */
+  box-sizing: border-box;
+  font-family: var(--font-main);
+  color: var(--text-primary);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+}
+.ds-time-picker__band {
+  position: absolute; left: 0; right: 0; top: 88px; height: 44px;
+  border-radius: 12px; background: var(--bg-container-secondary-on-bg);
+}
+.ds-time-picker__col {
+  position: relative; flex: 0 0 72px;
+  display: flex; flex-direction: column;
+  overflow-y: auto; scroll-snap-type: y mandatory; overscroll-behavior: contain;
+  scrollbar-width: none;
+  outline: none;
+}
+.ds-time-picker__col::-webkit-scrollbar { display: none; }
+.ds-time-picker__col:focus-visible { box-shadow: inset 0 0 0 2px var(--label-highlight); border-radius: 12px; }
+.ds-time-picker__item {
+  flex: none; height: 44px; scroll-snap-align: center;
+  border: 0; background: none; padding: 0; margin: 0; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  font-family: inherit; font-size: 18px; font-weight: 400; line-height: 44px; text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-tertiary);
+}
+.ds-time-picker__item--selected { color: var(--text-primary); font-weight: 600; }
+
 /* ── DotsToast ── */
 /* DotsToast — toast/dots_toast.dart. Container: bgContainerPrimary, border 1.4
    borderAlert, squircle24, padding 16, toastShadow (blur 20 #00000033, BlurStyle.outer).

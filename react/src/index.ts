@@ -50,6 +50,8 @@ export { DotsAlert } from './components/DotsAlert/DotsAlert';
 export type { DotsAlertProps, DotsAlertVariant, DotsAlertSelectorItem } from './components/DotsAlert/DotsAlert';
 export { DotsCalendar } from './components/DotsCalendar/DotsCalendar';
 export type { DotsCalendarProps } from './components/DotsCalendar/DotsCalendar';
+export { DotsTimePicker } from './components/DotsTimePicker/DotsTimePicker';
+export type { DotsTimePickerProps } from './components/DotsTimePicker/DotsTimePicker';
 export { DotsCloseButton } from './components/DotsCloseButton/DotsCloseButton';
 export type { DotsCloseButtonProps, DotsCloseButtonSize, DotsCloseButtonVariant } from './components/DotsCloseButton/DotsCloseButton';
 export { DotsTextFieldButton } from './components/DotsTextFieldButton/DotsTextFieldButton';
