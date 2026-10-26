@@ -11,6 +11,8 @@
   backdrop-filter: blur(var(--blur-50));
   font-family: var(--font-main);
   text-align: center;
+  /* Flutter encoge el ancho fijo al máximo del padre; CSS no */
+  max-width: 100%;
 }
 .ds-rich-btn--large { width: 358px; height: 75px; border-radius: 100px; padding: 18px 24px; }
 .ds-rich-btn--medium { width: 358px; height: 60px; border-radius: 32px; padding: 8px 24px; }
