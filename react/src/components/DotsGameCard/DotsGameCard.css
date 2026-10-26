@@ -3,6 +3,7 @@
 .ds-game-card {
   box-sizing: border-box;
   width: 340px;
+  max-width: 100%;
   padding: 20px; /* _padding */
   display: flex;
   flex-direction: column;

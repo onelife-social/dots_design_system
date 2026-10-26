@@ -4,7 +4,7 @@ DotsRichButton from dots_design_system. Use via `window.DotsDesignSystem_9e41da.
 
 | Prop | Tipo | Default | Descripción |
 | --- | --- | --- | --- |
-| `size` | `'large' \| 'medium' \| 'small'` | `'medium'` | large 358×75 r100 · medium 358×60 r32 · small 248×60 r32. |
+| `size` | `'large' \| 'medium' \| 'small'` | `'medium'` | large 358×75 r100 · medium 358×60 r32 · small 248×60 r32. En un contenedor de ancho definido más estrecho, el ancho se ajusta a él (`max-width: 100%`); un padre que se ajusta al contenido (flex item centrado, `inline-flex`, `absolute` sin ancho) necesita `align-self: stretch` o `width: 100%`. |
 | `textSize` | `'large' \| 'medium'` | `'medium'` | bodyLargeMedium (16/500) o bodyDefaultMedium (14/500). |
 | `icon` | `string` | — | Nombre DotsIcon leading, 24 px (ej. `'ic-pics'`). |
 | `iconColor` | `string` | `var(--text-secondary)` | Color CSS del icono leading. |
@@ -35,7 +35,7 @@ DotsRichButton from dots_design_system. Use via `window.DotsDesignSystem_9e41da.
 ## Dart mapping
 
 - Widget: `DotsRichButton` (`lib/src/components/buttons/dots_rich_button/dots_rich_button.dart`).
-- `size` → `DotsRichButtonSize` (width×height y radio 100/32); `textSize` → `DotsRichButtonTextSize`; `onTap` → `onClick`; `image` (ImageProvider) → URL.
+- `size` → `DotsRichButtonSize` (width×height y radio 100/32; con `max-width: 100%` el ancho no pasa de un contenedor de ancho definido, como las restricciones de Flutter); `textSize` → `DotsRichButtonTextSize`; `onTap` → `onClick`; `image` (ImageProvider) → URL.
 - Fondo `bgContainerSecondary` + `BackdropFilter blur(50)` → `backdrop-filter: blur(var(--blur-50))`.
 - Leading: imagen 32 × 32 cover, o `DotsIcon(icon, 24, iconColor ?? textSecondary)`.
 - Trailing: `trailingText` en labelDefaultBold `textTertiary`, o `DotsIcon(DotsIconData.chevronRight, 20, textTertiary)` → `ic-chevron-right`.
