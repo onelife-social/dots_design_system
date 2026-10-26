@@ -54,6 +54,7 @@ const { DotsGameCard } = window.DotsDesignSystem_9e41da;
 
 `DotsGameCard` en `lib/src/components/cards/game_card/game_card.dart`.
 `onActionTap`→`onActionClick`, el slot `image` (Widget) → `imageSrc` (URL) o `image` (nodo).
-El ancho sale de `kAlbumLargeCardSize` (340). En Dart `progressIndicator` lo pasa
+El ancho sale de `kAlbumLargeCardSize` (340) y, como en Flutter, no pasa
+de un contenedor de ancho definido (`max-width: 100%`). En Dart `progressIndicator` lo pasa
 siempre el host porque el paquete no trae spinner indeterminado (`SpinnerRound` es
 determinado y pinta en blanco); en web se rellena con un anillo neutro si falta.
