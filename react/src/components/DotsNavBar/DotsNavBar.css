@@ -1,7 +1,10 @@
-/* DotsNavBar — nav_bar/nav_bar.dart · r36 · blur 10 · padding 5 · item 70×55 */
+/* DotsNavBar — nav_bar/nav_bar.dart · r36 · blur 10 · padding 5 · item 70×55, wider when its label needs it */
 .ds-nav-bar {
   position: relative;
-  display: inline-flex;
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(max-content, 70px);
+  max-width: 100%;
   box-sizing: border-box;
   padding: 5px;
   border-radius: 36px; /* DotsBorderRadius.r36 — no --squircle-36 token */
@@ -12,8 +15,18 @@
   -webkit-backdrop-filter: blur(var(--blur-10));
   font-family: var(--font-main);
 }
+/* The labels do not fit even at their own width: the bar takes its container's width (so it can measure
+   when there is room again), items keep a 44px tap target, padding drops to 4px and the longest labels
+   end in an ellipsis */
+.ds-nav-bar.is-tight {
+  width: 100%;
+  grid-auto-columns: minmax(44px, auto);
+}
+.ds-nav-bar.is-tight .ds-nav-bar__item {
+  padding: 0 4px;
+}
 
-/* Selected item pill — 70×55, r32, bgFloatingActive, 200ms ease */
+/* Selected item pill — item size, r32, bgFloatingActive, 200ms ease */
 .ds-nav-bar__pill {
   position: absolute;
   top: 5px;
@@ -22,22 +35,25 @@
   height: 55px;
   border-radius: var(--squircle-32);
   background: var(--bg-floating-active);
-  transition: left 0.2s ease;
+  transition:
+    left 0.2s ease,
+    width 0.2s ease;
 }
 
-/* Item — 70×55, icon 20 + label, color textSecondary → labelHighlight */
+/* Item — 70×55 or label + 8 each side, icon 20 + label, color textSecondary → labelHighlight */
 .ds-nav-bar__item {
   position: relative;
   z-index: 1;
-  width: 70px;
+  min-width: 0;
   height: 55px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2px;
   margin: 0;
-  padding: 0;
+  padding: 0 8px;
   border: 0;
   background: none;
   border-radius: var(--squircle-32);
@@ -53,9 +69,13 @@
 
 /* labelDefaultRegular — 13/400, lh 1.31 */
 .ds-nav-bar__label {
+  max-width: 100%;
+  overflow: hidden;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.31;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .ds-nav-bar__icon-wrap {

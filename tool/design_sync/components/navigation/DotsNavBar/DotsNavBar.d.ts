@@ -10,9 +10,9 @@ export interface DotsNavBarItem {
     badge?: number;
 }
 export interface DotsNavBarProps {
-    /** The 3 items. Default: Crear (ic-add) / Inicio (ic-home) / Galería (ic-gallery) */
+    /** The items (Dart: exactly 3). Default: Crear (ic-add) / Inicio (ic-home) / Galería (ic-gallery) */
     items?: DotsNavBarItem[];
-    /** Active item index (0..2). Default: 0 */
+    /** Active item index (0-based). Default: 0 */
     selectedIndex?: number;
     /** Tap on an item — Dart `DotsNavBarItem.onTap` */
     onSelect?: (index: number) => void;
