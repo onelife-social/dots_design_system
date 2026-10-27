@@ -40,5 +40,7 @@ export interface DotsSegmentedControlProps {
     selectedColor?: string;
     /** type 'text'/'single': CSS background color — Dart `backgroundColor` */
     backgroundColor?: string;
+    /** type 'text': fill the container width, the options share it equally — web extension (the Dart Row is `mainAxisSize.min`; default false) */
+    expand?: boolean;
 }
 export declare function DotsSegmentedControl(props: DotsSegmentedControlProps): import("react").JSX.Element;
