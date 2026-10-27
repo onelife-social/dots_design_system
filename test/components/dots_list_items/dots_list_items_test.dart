@@ -83,6 +83,50 @@ void main() {
     expect(_chevron, findsNothing);
   });
 
+  testWidgets('the label is bodyDefaultMedium by default', (tester) async {
+    await tester.pumpWidget(_host(const DotsListsItem(label: _label, subtitle: _subtitle)));
+
+    final DotsTheme theme = tester.element(find.text(_label)).dotsTheme;
+    expect(tester.widget<Text>(find.text(_label)).style, theme.typo.main.bodyDefaultMedium);
+  });
+
+  testWidgets('labelStyle bold sets the label in bodyLargeBold', (tester) async {
+    await tester.pumpWidget(
+      _host(
+        const DotsListsItem(
+          variant: DotsListsItemVariant.chevron,
+          labelStyle: DotsListsItemLabelStyle.bold,
+          label: _label,
+          subtitle: _subtitle,
+        ),
+      ),
+    );
+
+    final DotsTheme theme = tester.element(find.text(_label)).dotsTheme;
+    expect(tester.widget<Text>(find.text(_label)).style, theme.typo.main.bodyLargeBold);
+    expect(
+      tester.widget<Text>(find.text(_subtitle)).style,
+      theme.typo.main.labelDefaultRegular.copyWith(color: theme.colors.textSecondary),
+    );
+  });
+
+  testWidgets('labelStyle bold keeps the row height', (tester) async {
+    await tester.pumpWidget(_host(const DotsListsItem(label: _label, subtitle: _subtitle)));
+    final double regularHeight = tester.getSize(find.byType(DotsListsItem)).height;
+
+    await tester.pumpWidget(
+      _host(
+        const DotsListsItem(
+          labelStyle: DotsListsItemLabelStyle.bold,
+          label: _label,
+          subtitle: _subtitle,
+        ),
+      ),
+    );
+
+    expect(tester.getSize(find.byType(DotsListsItem)).height, regularHeight);
+  });
+
   testWidgets('the divider variant ignores the subtitle', (tester) async {
     await tester.pumpWidget(
       _host(

@@ -517,6 +517,13 @@ List<Story> get allStories => [
                 .map((item) => Option(label: item.name, value: item))
                 .toList(),
           );
+          final labelStyle = context.knobs.options<DotsListsItemLabelStyle>(
+            label: 'Label style',
+            initial: DotsListsItemLabelStyle.regular,
+            options: DotsListsItemLabelStyle.values
+                .map((item) => Option(label: item.name, value: item))
+                .toList(),
+          );
           final iconData = context.knobs.options<DotsIconData>(
             label: 'Icon',
             initial: DotsIconData.home,
@@ -538,6 +545,7 @@ List<Story> get allStories => [
                 ),
                 onTap: () {},
                 variant: variant,
+                labelStyle: labelStyle,
                 iconData: iconData,
               ),
             ),

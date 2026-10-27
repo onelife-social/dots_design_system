@@ -36,11 +36,14 @@
       ['chevron · icon (sin imagen)', h(C, { variant: 'chevron', label: 'Invitar amigos', subtitle: '3 pendientes', iconName: 'ic-user' })],
       ['main · user · subtitle', h(C, { variant: 'main', label: 'María González', subtitle: 'maria.gonzalez@icloud.com', imageSrc: avatar, picType: 'user' })],
       ['radioButton · subtitle', h(C, { variant: 'radioButton', label: 'Cumpleaños de Ana', subtitle: '128 recuerdos', imageSrc: photoC })],
+      ['chevron · subtitle · labelStyle bold', h(C, { variant: 'chevron', labelStyle: 'bold', label: 'Marta & Luis', subtitle: '20 de junio de 2027 · 90 invitados', imageSrc: photoA, onClick: function () {} })],
+      ['main · subtitle · labelStyle bold', h(C, { variant: 'main', labelStyle: 'bold', label: 'Ana & Diego', subtitle: '4 de octubre de 2026 · 108 invitados', imageSrc: photoB })],
       ['subtitle largo (ellipsis)', h(C, { variant: 'chevron', label: 'Un nombre de pareja larguísimo que no cabe en la fila de la lista', subtitle: 'Sábado, 20 de junio de 2027 · 90 invitados · Finca El Olivar, Toledo', imageSrc: photoB })],
       ['label largo (ellipsis)', h(C, { variant: 'main', label: 'Un nombre de álbum larguísimo que no cabe y se corta con puntos suspensivos', imageSrc: photoB })],
       ['dark — main / radioButton / chevron / divider', h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
         h(C, { variant: 'main', label: 'Álbum de verano', imageSrc: photoA }),
         h(C, { variant: 'chevron', label: 'Marta & Luis', subtitle: '20 de junio de 2027 · 90 invitados', imageSrc: photoB }),
+        h(C, { variant: 'chevron', labelStyle: 'bold', label: 'Ana & Diego', subtitle: '4 de octubre de 2026 · 108 invitados', imageSrc: photoC }),
         h(C, { variant: 'radioButton', label: 'Cumpleaños de Ana', imageSrc: photoC }),
         h(C, { variant: 'divider', label: 'Compartidos contigo' })), 'dark']
     ];
