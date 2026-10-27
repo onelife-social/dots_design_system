@@ -24,7 +24,7 @@ DotsTopBar from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Dots
 
 La franja de la barra de estado mide 50px en el diseño. En el dispositivo mide lo que sea mayor entre `--ds-status-bar-min` (50px si no se define) y `env(safe-area-inset-top)`. La app nativa pone `--ds-status-bar-min: 0px`: así, si el web view empieza debajo de la barra de estado (Android sin edge-to-edge), no queda un hueco vacío. En los diseños no se define.
 
-Colócala arriba de la pantalla a ancho completo. Con el fondo por defecto pinta `bgContainerPrimary` (85 % de opacidad) con `backdrop-filter: blur(var(--blur-20))`, igual que el bloque fijo de abajo: si la cabecera va en un bloque `position: sticky; top: 0`, el contenido que pasa por detrás se ve desenfocado y no se lee, también en la franja de la barra de estado. No hace falta darle fondo al contenedor. Con `hideBackground` o `color` no desenfoca.
+Colócala arriba de la pantalla a ancho completo. Con el fondo por defecto pinta `bgBase` al 95 % de opacidad con `backdrop-filter: blur(var(--blur-10))`: si la cabecera va en un bloque `position: sticky; top: 0`, el contenido que pasa por detrás se ve desenfocado y no se lee, también en la franja de la barra de estado. Un botón de color por detrás no mancha la barra. No hace falta darle fondo al contenedor. Con `hideBackground` o `color` no desenfoca.
 
 ## Examples
 
@@ -58,4 +58,4 @@ const { DotsTopBar, DotsIconButton } = window.DotsDesignSystem_9e41da;
 | `imageTitle` | `imageTitle` (`ImageProvider` → URL; `DotsProfilePhoto` 20×20) |
 | `ctaLabel`/`onCtaClick`/`ctaEnabled` | `ctaLabel`/`onCtaTap`/`ctaEnabled` (`DotsMainButton` main·small). Nota: Dart exige ambos; aquí basta `ctaLabel` |
 | Alturas | `kTopBarNormalHeight = 50` / `kTopBarBigHeight = 106` |
-| Fondo | `color ?? (hideBackground ? transparent : bgContainerPrimary)`. Solo en web, el fondo por defecto lleva además `blur(var(--blur-20))`; Dart lo pinta plano |
+| Fondo | `color ?? (hideBackground ? transparent : bgContainerPrimary)`. Solo en web, el fondo por defecto es `bgBase` al 95 % con `blur(var(--blur-10))`; Dart pinta `bgContainerPrimary` plano |

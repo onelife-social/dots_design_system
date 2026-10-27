@@ -3318,10 +3318,13 @@ button.ds-check-circle {
 .ds-top-bar--big { height: calc(56px + var(--ds-top-bar-status)); }
 .ds-top-bar--status-only { height: var(--ds-top-bar-status); }
 /* Web only: Dart paints bgContainerPrimary flat. The web bar sits in a sticky header with content scrolling under it,
-   so the 85% background needs the blur that the sticky bottom block already uses. */
+   so it blurs what passes behind. bgBase at 95% instead of bgContainerPrimary (85%): with 15% showing through, a
+   saturated button under the bar blurred into a colour cloud next to the title. At 5% the content stays unreadable
+   and the cloud is gone. */
 .ds-top-bar--frosted {
-  -webkit-backdrop-filter: blur(var(--blur-20));
-  backdrop-filter: blur(var(--blur-20));
+  background: color-mix(in srgb, var(--bg-base) 95%, transparent);
+  -webkit-backdrop-filter: blur(var(--blur-10));
+  backdrop-filter: blur(var(--blur-10));
 }
 /* showBottomBorder — Colors.black @0.2 (no token) */
 .ds-top-bar--bordered { box-shadow: 0 1px 0 #00000033; }
