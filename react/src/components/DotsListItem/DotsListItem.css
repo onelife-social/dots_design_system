@@ -58,6 +58,14 @@
   text-overflow: ellipsis;
 }
 
+/* labelStyle bold — typo.main.bodyLargeBold (16/700, lh 1.31, ls -0.05) */
+.ds-list-item__label--bold {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.31;
+  letter-spacing: -0.05px;
+}
+
 /* ── two lines (label + subtitle) — Column(spacing 2) inside the Expanded ── */
 .ds-list-item__text {
   flex: 1;

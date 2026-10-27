@@ -27,6 +27,14 @@ enum DotsListsItemPicType {
   bool get isUser => this == DotsListsItemPicType.user;
 }
 
+enum DotsListsItemLabelStyle {
+  regular,
+  bold;
+
+  bool get isRegular => this == DotsListsItemLabelStyle.regular;
+  bool get isBold => this == DotsListsItemLabelStyle.bold;
+}
+
 class DotsListItemModel {
   final String label;
   final DotsIconData iconData;
@@ -67,6 +75,10 @@ class DotsListsItem extends StatelessWidget {
   /// The type of the picture.
   final DotsListsItemPicType picType;
 
+  /// Style of [label]: regular (bodyDefaultMedium) or bold (bodyLargeBold), for rows where the
+  /// label is what the user scans for. Ignored by the divider variant.
+  final DotsListsItemLabelStyle labelStyle;
+
   /// Callback for image load error.
   /// Called when the image fails to load.
   final void Function(Object exception, StackTrace? stackTrace)? onError;
@@ -79,6 +91,7 @@ class DotsListsItem extends StatelessWidget {
     this.subtitle,
     this.onTap,
     this.picType = DotsListsItemPicType.album,
+    this.labelStyle = DotsListsItemLabelStyle.regular,
     this.iconData = DotsIconData.user,
     this.onError,
   });
@@ -172,7 +185,9 @@ class DotsListsItem extends StatelessWidget {
                   if (label != null)
                     Text(
                       label!,
-                      style: theme.typo.main.bodyDefaultMedium,
+                      style: labelStyle.isBold
+                          ? theme.typo.main.bodyLargeBold
+                          : theme.typo.main.bodyDefaultMedium,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

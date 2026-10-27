@@ -6,6 +6,7 @@ DotsListItem from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Do
 | --- | --- | --- | --- |
 | `variant` | `'main' \| 'selector' \| 'icon' \| 'check' \| 'radioButton' \| 'chevron' \| 'divider'` | `'main'` | Variante de la fila. `selector` muestra radio vacío, `radioButton` radio marcado, `check` pill azul con check, `chevron` chevron a la derecha (fila que navega), `divider` título de sección + línea. |
 | `label` | `string` | — | Texto de la fila (bodyDefaultMedium, ellipsis) o título de la sección en `divider`. |
+| `labelStyle` | `'regular' \| 'bold'` | `'regular'` | Estilo de `label`: `regular` bodyDefaultMedium (14/500); `bold` bodyLargeBold (16/700) para filas donde el nombre es lo que se busca (selector de bodas). Se ignora en `divider`. |
 | `subtitle` | `string` | — | Segunda línea bajo `label` (labelDefaultRegular, `textSecondary`, ellipsis): fecha, nº de elementos, email… Cabe en la altura de la miniatura, así que la fila no crece. Vacío cuenta como ausente; se ignora en `divider`. |
 | `imageSrc` | `string` | — | URL/data URI de la miniatura. Ignorada en `variant='icon'`; sin ella se muestra el tile de icono. |
 | `picType` | `'album' \| 'user'` | `'album'` | `album` → cuadrado radius 12; `user` → círculo con fondo `bgBaseContrast`. |
@@ -25,6 +26,9 @@ DotsListItem from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Do
 // Fila que navega, con línea secundaria
 <DotsListItem variant="chevron" label="Marta & Luis" subtitle="20 de junio de 2027 · 90 invitados" imageSrc={coverUrl} onClick={open} />
 
+// Nombre destacado (selector de bodas)
+<DotsListItem variant="chevron" labelStyle="bold" label="Marta & Luis" subtitle="20 de junio de 2027 · 90 invitados" imageSrc={coverUrl} onClick={open} />
+
 // Tile de icono + separador de sección
 <DotsListItem variant="icon" label="Invitar amigos" iconName="ic-user" />
 <DotsListItem variant="divider" label="Compartidos contigo" />
@@ -33,7 +37,7 @@ DotsListItem from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Do
 ## Dart mapping
 
 - Widget: `DotsListsItem` (`lib/src/components/dots_list_items/dots_list_items.dart`) — nombre web sin la doble "s".
-- Enums: `DotsListsItemVariant` (main/selector/icon/check/radioButton/chevron/divider), `DotsListsItemPicType` (album/user).
-- `image` (ImageProvider) → `imageSrc`; `iconData` (DotsIconData) → `iconName`; `onTap` → `onClick`; `subtitle` igual.
+- Enums: `DotsListsItemVariant` (main/selector/icon/check/radioButton/chevron/divider), `DotsListsItemPicType` (album/user), `DotsListsItemLabelStyle` (regular/bold).
+- `image` (ImageProvider) → `imageSrc`; `iconData` (DotsIconData) → `iconName`; `onTap` → `onClick`; `subtitle` y `labelStyle` igual.
 - Trailing: selector/radioButton → `DotsRadioButton(size: 22)` del bundle; check → `DotsSelector.check` small (pill 22, `labelHighlight`, `ic-check` 14 blanco); chevron → `ic-chevron-right` 16 `textTertiary`.
 - Divider: label `labelSmallMedium` `textSecondary` + línea 1px `labelSecondary` al 50%.
