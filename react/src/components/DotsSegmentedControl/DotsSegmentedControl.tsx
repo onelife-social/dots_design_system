@@ -45,6 +45,8 @@ export interface DotsSegmentedControlProps {
   selectedColor?: string;
   /** type 'text'/'single': CSS background color — Dart `backgroundColor` */
   backgroundColor?: string;
+  /** type 'text': fill the container width, the options share it equally — web extension (the Dart Row is `mainAxisSize.min`; default false) */
+  expand?: boolean;
 }
 
 function badgeTag(tag?: string) {
@@ -117,7 +119,7 @@ export function DotsSegmentedControl(props: DotsSegmentedControlProps) {
   };
   return (
     <div
-      className={`ds-seg${variant === 'camera' ? ' ds-seg--camera' : ''}`}
+      className={`ds-seg${variant === 'camera' ? ' ds-seg--camera' : ''}${props.expand ? ' ds-seg--expand' : ''}`}
       style={props.backgroundColor ? { background: props.backgroundColor } : undefined}
     >
       {opt('left', props.leftOptionName)}

@@ -33,6 +33,14 @@
   background: var(--bg-secondary-btn);
   color: var(--label-primary);
 }
+/* expand — web extension, not in Dart: the pill takes the container and the options share it, like two Expanded */
+.ds-seg--expand {
+  display: flex;
+  width: 100%;
+}
+.ds-seg--expand .ds-seg__opt {
+  flex: 1 1 0;
+}
 /* variant camera — bgChip (0x99303030) y class005 (#F4BD24): sin token en tokens.css */
 .ds-seg--camera { background: #30303099; }
 .ds-seg--camera .ds-seg__opt { color: var(--label-always-white); }
