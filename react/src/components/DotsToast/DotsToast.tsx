@@ -25,6 +25,8 @@ export interface DotsToastProps {
   customWidget?: ReactNode;
   /** Tap on the toast (and on the ghost button) — Dart `onTap` */
   onClick?: () => void;
+  /** Info layout only: fill the container width instead of 358px — web extension (Dart keeps 358; default false) */
+  expand?: boolean;
   className?: string;
 }
 
@@ -78,6 +80,7 @@ export function DotsToast(props: DotsToastProps) {
   const color = props.customIconColor || iconColor(variant);
 
   let className = `ds-toast ${isAction ? 'ds-toast--action' : 'ds-toast--info'}`;
+  if (props.expand && !isAction) className += ' ds-toast--expand';
   if (props.onClick) className += ' ds-toast--clickable';
   if (props.className) className += ` ${props.className}`;
 

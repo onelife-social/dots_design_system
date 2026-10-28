@@ -12,6 +12,7 @@ DotsToast from dots_design_system. Use via `window.DotsDesignSystem_9e41da.DotsT
 | `btnTitle` | `string` | — | Ghost DotsMainButton (medium) on the right — only rendered for `variant: 'progress'` with `isAction: false`. |
 | `customWidget` | `ReactNode` | — | Replaces the icon — only for `variant: 'widget'` with `isAction: true`. |
 | `onClick` | `() => void` | — | Fired on toast tap (and on the ghost button). |
+| `expand` | `boolean` | `false` | Solo layout info. Extensión web (no está en Dart): ocupa el ancho del contenedor (`width: 100%`) en vez de 358px. Úsalo cuando el aviso va a todo el ancho: sin él, en pantallas más anchas de 390 px queda más estrecho que el resto. |
 
 Variant → icon/tint: `success` `ic-check-circle` labelHighlight · `error` `ic-cross-circle` (action: `ic-trash`) labelDestructive · `info` `ic-alert-circle` textTertiary · `progress` `ic-slot` spinning untinted · `connectionResumed` `ic-connection-on` labelHighlight · `connectionLost` `ic-connection-off` labelDestructive.
 
