@@ -20,6 +20,8 @@ export interface DotsToastProps {
     customWidget?: ReactNode;
     /** Tap on the toast (and on the ghost button) — Dart `onTap` */
     onClick?: () => void;
+    /** Info layout only: fill the container width instead of 358px — web extension (Dart keeps 358; default false) */
+    expand?: boolean;
     className?: string;
 }
 export declare function DotsToast(props: DotsToastProps): import("react").JSX.Element;

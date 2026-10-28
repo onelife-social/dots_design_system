@@ -3186,6 +3186,8 @@ button.ds-check-circle {
   width: 358px; max-width: 100%;
   display: flex; align-items: center; gap: 12px;
 }
+/* expand — web extension, not in Dart: the info row takes the container width instead of 358 */
+.ds-toast--info.ds-toast--expand { width: 100%; }
 /* isAction: true — DotsToastAction, 160 column with gap 4 */
 .ds-toast--action {
   width: 160px;
