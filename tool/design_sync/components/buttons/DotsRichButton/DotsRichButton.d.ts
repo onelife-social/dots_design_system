@@ -23,5 +23,7 @@ export interface DotsRichButtonProps {
     enabled?: boolean;
     /** Replaces leading, content and trailing with a centered spinner and blocks clicks (default false) — Dart `isLoading` */
     isLoading?: boolean;
+    /** Fill the container width instead of the fixed size width — web extension (Dart keeps `size.width`; default false) */
+    expand?: boolean;
 }
 export declare function DotsRichButton(props: DotsRichButtonProps): import("react").JSX.Element;
