@@ -25,6 +25,8 @@ export interface DotsRichButtonProps {
   enabled?: boolean;
   /** Replaces leading, content and trailing with a centered spinner and blocks clicks (default false) — Dart `isLoading` */
   isLoading?: boolean;
+  /** Fill the container width instead of the fixed size width — web extension (Dart keeps `size.width`; default false) */
+  expand?: boolean;
 }
 
 export function DotsRichButton(props: DotsRichButtonProps) {
@@ -43,7 +45,7 @@ export function DotsRichButton(props: DotsRichButtonProps) {
     <DotsIcon name={props.icon} size={24} color={disabled ? 'var(--text-disabled)' : (props.iconColor ?? 'var(--text-secondary)')} />
   ) : null;
 
-  const className = ['ds-rich-btn', `ds-rich-btn--${size}`, disabled && 'ds-rich-btn--disabled', isLoading && 'ds-rich-btn--loading']
+  const className = ['ds-rich-btn', `ds-rich-btn--${size}`, disabled && 'ds-rich-btn--disabled', isLoading && 'ds-rich-btn--loading', props.expand && 'ds-rich-btn--expand']
     .filter(Boolean)
     .join(' ');
 
