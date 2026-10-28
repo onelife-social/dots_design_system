@@ -15,6 +15,7 @@ DotsRichButton from dots_design_system. Use via `window.DotsDesignSystem_9e41da.
 | `onClick` | `() => void` | — | Dart `onTap`. |
 | `enabled` | `boolean` | `true` | Con `false` se pinta con los colores de `DotsMainButton` disabled (fondo `bgBtnDisabled`; content, details, icono y trailing en `textDisabled`; imagen al 20 % de opacidad) y se ignoran clicks. |
 | `isLoading` | `boolean` | `false` | `DotsSpinner` indeterminado `tone="accent"` de 24 px centrado en lugar de leading, content y trailing; el fondo no cambia y se bloquea el click. |
+| `expand` | `boolean` | `false` | Extensión web (no está en Dart): ocupa el ancho del contenedor (`width: 100%`) en vez del ancho fijo del `size`. Úsalo cuando el botón va a todo el ancho de la columna: sin él, en pantallas más anchas de 390 px queda en 358 px pegado a la izquierda. |
 
 ## Examples
 
