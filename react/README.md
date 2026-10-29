@@ -11,6 +11,8 @@ same tokens (`src/foundations/tokens.css`, today generated from the Dart theme).
 - `npm run build` — typechecks and rebuilds `../tool/design_sync` (the bundle
   Claude Design consumes; every component is one of these TSX ones). Sync that
   directory with DesignSync afterwards.
+- `npm test` — runs `test/*.test.jsx` with node's test runner on server-rendered
+  markup (no DOM: behaviour that needs focus or layout is checked in a browser).
 
 Consumed by apps as a git dependency pointing at the package source
 (`exports` → `src/`), so the app's bundler compiles the TSX. Import the styles

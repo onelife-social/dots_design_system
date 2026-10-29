@@ -39,6 +39,9 @@ DotsIconButtonTheme getIconButtonThemeByVariant(
     case DotsIconButtonVariant.photoDisable:
       return getIconButtonThemeByStyleAndState(
           theme, DotsIconButtonStyle.onPhoto, DotsIconButtonState.disabled);
+    case DotsIconButtonVariant.floating:
+      return getIconButtonThemeByStyleAndState(
+          theme, DotsIconButtonStyle.floating, DotsIconButtonState.defaultState);
   }
 }
 

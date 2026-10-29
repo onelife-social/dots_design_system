@@ -18,7 +18,8 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "build:bundle": "node scripts/build-bundle.mjs",
-    "build": "npm run build:bundle && npm run typecheck"
+    "build": "npm run build:bundle && npm run typecheck",
+    "test": "node scripts/test.mjs"
   },
   "peerDependencies": {
     "react": ">=18",

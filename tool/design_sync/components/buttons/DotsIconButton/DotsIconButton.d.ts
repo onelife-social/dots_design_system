@@ -14,8 +14,12 @@ export interface DotsIconButtonProps {
     tag?: string;
     /** Dart enum DotsIconButtonSize (diameter 56/52/44/36/28/22) */
     size?: DotsIconButtonSize;
-    /** @deprecated use style + state — Dart enum DotsIconButtonVariant */
-    variant?: 'solid' | 'photo' | 'active' | 'noBackground' | 'photoDisable';
+    /**
+     * The look by name, for the Claude Design canvas: its runtime takes an x-import's `style` attribute as
+     * host CSS, so `style` never reaches this prop there. 'floating' = style floating. Applies only while
+     * style and state are the defaults. Dart enum DotsIconButtonVariant (deprecated in Dart).
+     */
+    variant?: 'solid' | 'photo' | 'active' | 'noBackground' | 'photoDisable' | 'floating';
     /** Dart enum DotsIconButtonStyle */
     style?: DotsIconButtonStyle;
     /** Dart enum DotsIconButtonState */

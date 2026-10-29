@@ -25,13 +25,15 @@ enum DotsIconButtonVariant {
   photo,
   active,
   noBackground,
-  photoDisable;
+  photoDisable,
+  floating;
 
   bool get isSolid => this == DotsIconButtonVariant.solid;
   bool get isPhoto => this == DotsIconButtonVariant.photo;
   bool get isActive => this == DotsIconButtonVariant.active;
   bool get isNoBackground => this == DotsIconButtonVariant.noBackground;
   bool get isPhotoDisable => this == DotsIconButtonVariant.photoDisable;
+  bool get isFloating => this == DotsIconButtonVariant.floating;
 }
 
 enum DotsIconButtonStyle {

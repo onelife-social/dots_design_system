@@ -1,4 +1,5 @@
 ## X.X.X Pending
+* DotsIconButtonVariant floating, so a Claude Design canvas can pick the floating look (`variant="floating"`); the web variant prop is no longer deprecated.
 * DotsColors borderSurface (Figma Styles/Floating/borderSurface), token only: paint it with overlay blend on its own layer.
 * DotsTextField container (defaultContainer 44 / big 52) and textSize (bodyDefault / bodyLarge / titleH6 / titleH5), as Figma's textField.
 * DotsListsItem labelStyle variant (regular / bold) for rows whose label is what the user scans for.
