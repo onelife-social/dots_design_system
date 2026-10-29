@@ -1,6 +1,10 @@
 import * as React from 'react';
 
 import { type ReactNode } from 'react';
+/** Dart enum DotsTextFieldContainer — 44 / 52 px (Figma textField Container) */
+export type DotsTextFieldContainer = 'defaultContainer' | 'big';
+/** Dart enum DotsTextFieldTextSize — input and hint type style (Figma textField text size) */
+export type DotsTextFieldTextSize = 'bodyDefault' | 'bodyLarge' | 'titleH6' | 'titleH5';
 export interface DotsTextFieldProps {
     /** Controlled value (React). When defined the component is controlled. */
     value?: string;
@@ -39,6 +43,10 @@ export interface DotsTextFieldProps {
     showUnderline?: boolean;
     /** Centered text. Dart: alignCenter (default false) */
     alignCenter?: boolean;
+    /** Height: 'defaultContainer' 44 px, 'big' 52 px. Dart: container (default defaultContainer) */
+    container?: DotsTextFieldContainer;
+    /** Input and hint type: bodyDefault 14, bodyLarge 16, titleH6 18, titleH5 20. Dart: textSize (default bodyDefault) */
+    textSize?: DotsTextFieldTextSize;
     /** Keyboard type. Dart: keyboardType (TextInputType) */
     keyboardType?: 'text' | 'number' | 'phone' | 'emailAddress' | 'url';
     /** Auto capitalization. Dart: textCapitalization (default 'none') */

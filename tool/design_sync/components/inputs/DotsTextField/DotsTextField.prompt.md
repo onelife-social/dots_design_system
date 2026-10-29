@@ -1,4 +1,4 @@
-DotsTextField from dots_design_system. Use via `window.DotsDesignSystem_9e41da.DotsTextField` (bundle loaded from the root `_ds_bundle.js`). 44px pill text input with optional icon, clear-on-focus button, error state, and a background-less underline mode; controlled (`value`) or uncontrolled (`defaultValue`).
+DotsTextField from dots_design_system. Use via `window.DotsDesignSystem_9e41da.DotsTextField` (bundle loaded from the root `_ds_bundle.js`). 44px pill text input (52px with `container="big"`, text from 14 to 20px with `textSize`) with optional icon, clear-on-focus button, error state, and a background-less underline mode; controlled (`value`) or uncontrolled (`defaultValue`).
 
 ## Props
 
@@ -20,6 +20,8 @@ DotsTextField from dots_design_system. Use via `window.DotsDesignSystem_9e41da.D
 | `background` | `boolean` | `true` | Pill background bgContainerSecondaryOnBackground. When `false`, input text turns red on error. |
 | `showUnderline` | `boolean` | `false` | 0.5px bottom border, only when `background` is `false`. |
 | `alignCenter` | `boolean` | `false` | Centers input text and error text. |
+| `container` | `'defaultContainer' \| 'big'` | `'defaultContainer'` | Height: 44px or 52px (Figma textField Container Default / Big). |
+| `textSize` | `'bodyDefault' \| 'bodyLarge' \| 'titleH6' \| 'titleH5'` | `'bodyDefault'` | Input and placeholder type: bodyDefaultMedium 14/500, bodyLargeMedium 16/500, titleH6 18/600, titleH5 20/700. |
 | `keyboardType` | `'text' \| 'number' \| 'phone' \| 'emailAddress' \| 'url'` | `'text'` | Maps to input type/inputMode. |
 | `textCapitalization` | `'none' \| 'words' \| 'sentences' \| 'characters'` | `'none'` | Maps to `autocapitalize`. |
 | `autoFocus` | `boolean` | `false` | Focus on mount. |
@@ -44,6 +46,12 @@ const { DotsTextField } = window.DotsDesignSystem_9e41da;
 
 // Background-less with underline (settings row style)
 <DotsTextField background={false} showUnderline hintText="Añade un título" />
+
+// 52px with 16px text (search a place)
+<DotsTextField container="big" textSize="bodyLarge" icon="ic-search" hintText="Escribe un lugar" maxTextLength={60} />
+
+// 52px with a centred title (the couple's names)
+<DotsTextField container="big" textSize="titleH6" alignCenter hintText="Mark & Anna" maxTextLength={30} />
 ```
 
 ## Dart mapping
@@ -52,3 +60,4 @@ const { DotsTextField } = window.DotsDesignSystem_9e41da;
 - `TextEditingController` → `value`/`defaultValue` + `onChanged`; `FocusNode` → internal focus state + `autoFocus`.
 - `iconData: DotsIconData` → `icon` (real asset name); `onTap` clear → built-in clear button (DotsCloseButton extraSmall inverted/softContrast).
 - `keyboardType: TextInputType` → `keyboardType` string; `textCapitalization` → `autocapitalize`; `inputFormatters` has no web equivalent (omitted).
+- `container: DotsTextFieldContainer` and `textSize: DotsTextFieldTextSize` → same names as strings; Dart `textStyle` (free style over `textSize`) is not ported.

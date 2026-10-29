@@ -24,6 +24,20 @@ List<Story> get textFieldStories => [
             background: context.knobs.boolean(label: 'Background?', initial: true),
             showUnderline: context.knobs.boolean(label: 'Show Underline?', initial: true),
             alignCenter: context.knobs.boolean(label: 'Align Center?', initial: false),
+            container: context.knobs.options<DotsTextFieldContainer>(
+              label: 'Container',
+              initial: DotsTextFieldContainer.defaultContainer,
+              options: DotsTextFieldContainer.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
+            textSize: context.knobs.options<DotsTextFieldTextSize>(
+              label: 'Text size',
+              initial: DotsTextFieldTextSize.bodyDefault,
+              options: DotsTextFieldTextSize.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
           ),
         ),
       ),

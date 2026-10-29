@@ -2,6 +2,11 @@
 import { useRef, useState, type ChangeEvent, type FocusEvent, type KeyboardEvent, type ReactNode } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 
+/** Dart enum DotsTextFieldContainer — 44 / 52 px (Figma textField Container) */
+export type DotsTextFieldContainer = 'defaultContainer' | 'big';
+/** Dart enum DotsTextFieldTextSize — input and hint type style (Figma textField text size) */
+export type DotsTextFieldTextSize = 'bodyDefault' | 'bodyLarge' | 'titleH6' | 'titleH5';
+
 export interface DotsTextFieldProps {
   /** Controlled value (React). When defined the component is controlled. */
   value?: string;
@@ -40,6 +45,10 @@ export interface DotsTextFieldProps {
   showUnderline?: boolean;
   /** Centered text. Dart: alignCenter (default false) */
   alignCenter?: boolean;
+  /** Height: 'defaultContainer' 44 px, 'big' 52 px. Dart: container (default defaultContainer) */
+  container?: DotsTextFieldContainer;
+  /** Input and hint type: bodyDefault 14, bodyLarge 16, titleH6 18, titleH5 20. Dart: textSize (default bodyDefault) */
+  textSize?: DotsTextFieldTextSize;
   /** Keyboard type. Dart: keyboardType (TextInputType) */
   keyboardType?: 'text' | 'number' | 'phone' | 'emailAddress' | 'url';
   /** Auto capitalization. Dart: textCapitalization (default 'none') */
@@ -100,7 +109,14 @@ export function DotsTextField(props: DotsTextFieldProps) {
     if (enabled) inputRef.current?.focus();
   }
 
-  const rootCls = `ds-textfield${alignCenter ? ' ds-textfield--center' : ''}`;
+  const big = props.container === 'big';
+  const textSize = props.textSize ?? 'bodyDefault';
+
+  const rootCls =
+    'ds-textfield' +
+    (alignCenter ? ' ds-textfield--center' : '') +
+    (big ? ' ds-textfield--big' : '') +
+    (textSize !== 'bodyDefault' ? ` ds-textfield--text-${textSize}` : '');
   const boxCls =
     'ds-textfield__box' + (background ? '' : ' ds-textfield__box--no-bg') + (!background && showUnderline ? ' ds-textfield__box--underline' : '');
   // Dart: text color = labelDestructive only if isError && !background && !focus
