@@ -15,6 +15,8 @@
   .sq { width: 72px; height: 72px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #BCBCBC7F; }
   .grad { width: 140px; height: 56px; border-radius: 14px; }
   .shadow-demo { width: 120px; height: 64px; border-radius: 16px; background: #FFF; }
+  .frame-demo { position: relative; width: 140px; height: 90px; border-radius: 16px; overflow: hidden; }
+  .frame-demo > div { position: absolute; inset: 0; border-radius: inherit; border: 2px solid #BCBCBC; mix-blend-mode: overlay; }
   .note { font-size: 10px; color: #00000059; margin-top: 22px; }
 </style>
 </head>
@@ -53,6 +55,12 @@
     <div class="cell"><div class="sq" style="border-radius:16px;background:#F3F3F399;backdrop-filter:blur(50px)"></div><div class="label">blur50</div></div>
   </div>
 
-  <div class="note">En Flutter los squircles usan figma_squircle (suavizado 0.5), aquí aproximados con border-radius. Los fondos glass combinan color translúcido + blur (DotsStyleBlur). Fuente: lib/src/theme/styles/dots_styles.dart.</div>
+  <div class="section">Bordes flotantes</div>
+  <div class="grid">
+    <div class="cell"><div class="frame-demo" style="background:linear-gradient(135deg,#D9E7D2,#A9C4DD 55%,#F0E3C4)"><div></div></div><div class="label">borderSurface · overlay</div></div>
+    <div class="cell"><div class="frame-demo" style="background:linear-gradient(135deg,#3C4A5C,#1F2A36)"><div></div></div><div class="label">borderSurface · overlay (oscuro)</div></div>
+  </div>
+
+  <div class="note">En Flutter los squircles usan figma_squircle (suavizado 0.5), aquí aproximados con border-radius. Los fondos glass combinan color translúcido + blur (DotsStyleBlur). borderSurface (--border-surface + --border-surface-blend) se pinta en su propia capa encima de lo que enmarca, con mix-blend-mode. Fuente: lib/src/theme/styles/dots_styles.dart y dots_colors.dart.</div>
 </body>
 </html>
