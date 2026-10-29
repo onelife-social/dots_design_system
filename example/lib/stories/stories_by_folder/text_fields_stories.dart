@@ -38,6 +38,18 @@ List<Story> get textFieldStories => [
                   .map((item) => Option(label: item.name, value: item))
                   .toList(),
             ),
+            semanticsLabel: context.knobs.nullable.text(label: 'Semantics label', initial: 'Name'),
+            clearSemanticsLabel:
+                context.knobs.nullable.text(label: 'Clear button label', initial: 'Clear text'),
+            autocorrect: context.knobs.boolean(label: 'Autocorrect?', initial: true),
+            enableSuggestions: context.knobs.boolean(label: 'Suggestions?', initial: true),
+            textInputAction: context.knobs.nullable.options<TextInputAction>(
+              label: 'Keyboard action',
+              initial: TextInputAction.done,
+              options: TextInputAction.values
+                  .map((item) => Option(label: item.name, value: item))
+                  .toList(),
+            ),
           ),
         ),
       ),
