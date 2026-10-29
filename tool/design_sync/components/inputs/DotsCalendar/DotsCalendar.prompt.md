@@ -1,4 +1,4 @@
-DotsCalendar from dots_design_system. Use via `window.DotsDesignSystem_9e41da.DotsCalendar` (bundle loaded from the root `_ds_bundle.js`). Inline month calendar: header "Month year ⌄" that opens a month/year picker (two snap columns), prev/next arrows, today with a ring, selected day as a filled circle, past days greyed but selectable by default, days of other months muted. Web-only component (the Flutter app uses cupertino_calendar_picker themed the same way).
+DotsCalendar from dots_design_system. Use via `window.DotsDesignSystem_9e41da.DotsCalendar` (bundle loaded from the root `_ds_bundle.js`). Inline month calendar: header "Month year ⌄" that opens a month/year picker (two snap columns), prev/next arrows, today's number in highlight blue (no ring), selected day on a highlight circle at 12 % (20 % when it is today) with its number in highlight blue, as the iOS picker (Figma `ActionSheet/CalendarPicker`), past days greyed but selectable by default, days of other months muted. Web-only component (the Flutter app uses cupertino_calendar_picker themed the same way).
 
 ## Props
 
@@ -7,7 +7,7 @@ DotsCalendar from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Do
 | `value` | `string` (ISO `yyyy-mm-dd`) | `''` | Día seleccionado (controlado). Vacío = nada seleccionado. |
 | `onChange` | `(iso: string) => void` | — | Día tocado. |
 | `initialMonth` | `string` (`yyyy-mm`) | mes de `value` o de hoy | Mes mostrado al montar. |
-| `today` | `string` (ISO) | fecha del dispositivo | Día con anillo; útil en previews. |
+| `today` | `string` (ISO) | fecha del dispositivo | Día con el número en azul; útil en previews. |
 | `locale` | `string` | `navigator.language` | Nombres de mes y día. |
 | `firstDayOfWeek` | `0 \| 1` | `1` | 1 = lunes, 0 = domingo. |
 | `pastDays` | `'normal' \| 'muted' \| 'disabled'` | `'muted'` | Días anteriores a hoy: en gris pero seleccionables, bloqueados, o normales. |
