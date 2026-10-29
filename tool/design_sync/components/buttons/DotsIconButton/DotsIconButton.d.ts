@@ -22,7 +22,7 @@ export interface DotsIconButtonProps {
     state?: DotsIconButtonState;
     /** Dart enum DotsIconButtonDirection — label placement */
     direction?: 'column' | 'row';
-    /** Dart onTap */
+    /** Dart onTap. Without it the circle is display-only (`<span aria-hidden>`): the clickable parent owns the tap */
     onClick?: () => void;
     /** CSS color forcing icon and label */
     color?: string;

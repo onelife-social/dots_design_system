@@ -53,6 +53,11 @@
   --border-button: #BCBCBC7F;
   --border-glass: #BCBCBC0E;
   --border-label: #EAECF0;
+  /* borderSurface (Figma Styles/Floating/borderSurface), the same in both themes. The blend only
+     reaches what is under it when the border is its own layer: an inset frame on top, never the
+     border of the framed box itself. */
+  --border-surface: #BCBCBC;
+  --border-surface-blend: overlay;
   --shadow-primary: #00000026;
   --shadow-default: 0 6px 20px #0000001A;
   --shadow-floating-btn: 0 4px 15px #00000026;

@@ -1,7 +1,7 @@
 // DotsCalendar — inline month calendar. New in the web DS (no Dart widget yet): the Flutter app
 // uses the cupertino_calendar_picker package themed by CupertinoCalendarPickerUtils (onelife_app),
 // whose styles this port mirrors: header "Month year ⌄" opening a month/year picker, prev/next
-// arrows, today ring, selected filled circle, disabled/outside days muted.
+// arrows, today in primary, selected day on a light primary circle, disabled/outside days muted.
 import { useMemo, useState } from 'react';
 import { DotsIcon } from '../DotsIcon/DotsIcon';
 import { DotsIconButton } from '../DotsIconButton/DotsIconButton';

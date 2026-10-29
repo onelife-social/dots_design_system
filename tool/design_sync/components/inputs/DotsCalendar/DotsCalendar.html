@@ -23,7 +23,8 @@
     }
     function phone(el) { return h('div', { className: 'phone' }, el); }
     var variants = [
-      ['selected · today ring · past muted (default)', phone(h(Controlled, { value: '2026-09-26', today: '2026-09-09', locale: 'es' }))],
+      ['selected · today in blue · past muted (default)', phone(h(Controlled, { value: '2026-09-26', today: '2026-09-09', locale: 'es' }))],
+      ['today selected (circle at 20 %)', phone(h(Controlled, { value: '2026-09-09', today: '2026-09-09', locale: 'es' }))],
       ['nothing selected · en · week starts Sunday', phone(h(Controlled, { today: '2026-09-09', locale: 'en', firstDayOfWeek: 0 }))],
       ['pastDays disabled · maxDate', phone(h(Controlled, { value: '2026-10-04', today: '2026-09-09', locale: 'es', pastDays: 'disabled', maxDate: '2026-10-20' }))],
       ['month/year picker open (initialPicking)', phone(h(Controlled, { value: '2026-09-26', today: '2026-09-09', locale: 'es', initialPicking: true }))],

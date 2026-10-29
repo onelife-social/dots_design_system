@@ -15,7 +15,8 @@
   <script src="../../../_vendor/react-dom.js"></script>
   <script src="../../../_ds_bundle.js"></script>
   <script>
-    var h = React.createElement, NS = window.DotsDesignSystem_9e41da, C = NS.DotsIconButton;
+    var h = React.createElement, NS = window.DotsDesignSystem_9e41da;
+    function C(props) { return h(NS.DotsIconButton, Object.assign({ onClick: function () {} }, props)); }
     function row() {
       var kids = Array.prototype.slice.call(arguments);
       return h.apply(null, ['div', { style: { display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' } }].concat(kids));
@@ -46,6 +47,12 @@
         h(C, { icon: 'ic-home', style: 'floating', state: 'disabled' }),
         h(C, { icon: 'ic-trash', style: 'floating', state: 'destructive' })
       )],
+      ['floating large sobre foto, solo visual (sin onClick) · iconSize 20', h('button', {
+        type: 'button', 'aria-label': 'Cambiar la portada', onClick: function () {},
+        style: { position: 'relative', display: 'block', width: 280, height: 224, padding: 0, border: 0, borderRadius: 32,
+          overflow: 'hidden', cursor: 'pointer', background: 'linear-gradient(135deg, #c9a27e, #6d8fb3)' }
+      }, h('span', { style: { position: 'absolute', right: 11, bottom: 11, display: 'flex' } },
+        h(NS.DotsIconButton, { icon: 'ic-pencil', size: 'large', style: 'floating', iconSize: 20 })))],
       ['style noBackground × state', row(
         h(C, { icon: 'ic-settings', style: 'noBackground' }),
         h(C, { icon: 'ic-settings', style: 'noBackground', state: 'active' }),

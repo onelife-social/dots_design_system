@@ -1,4 +1,4 @@
-/* DotsTextField — dots_textfield.dart. Contenedor h44, píldora r1000,
+/* DotsTextField — dots_textfield.dart. Contenedor h44 (h52 con container big), píldora r1000,
    bg bgContainerSecondaryOnBackground, padding 0 16. */
 .ds-textfield { display: block; width: 100%; font-family: var(--font-main); }
 
@@ -37,6 +37,13 @@
 }
 .ds-textfield--center .ds-textfield__input { text-align: center; }
 .ds-textfield--center .ds-textfield__error-text { text-align: center; }
+
+.ds-textfield--big .ds-textfield__box { height: 52px; }
+
+/* textSize: typo.main.bodyLargeMedium, titleH6 and titleH5 */
+.ds-textfield--text-bodyLarge .ds-textfield__input { font: 500 16px/1.31 var(--font-main); letter-spacing: -0.05px; }
+.ds-textfield--text-titleH6 .ds-textfield__input { font: 600 18px/1.28 var(--font-main); letter-spacing: -0.08px; }
+.ds-textfield--text-titleH5 .ds-textfield__input { font: 700 20px/1.25 var(--font-main); letter-spacing: -0.09px; }
 
 /* clear = DotsCloseButton extraSmall (16, icono 10) */
 .ds-textfield__clear {

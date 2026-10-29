@@ -1009,8 +1009,15 @@
 }
 .ds-calendar__day--muted .ds-calendar__num { color: var(--text-tertiary); }
 .ds-calendar__day--outside .ds-calendar__num { color: var(--text-disabled); }
-.ds-calendar__day--today .ds-calendar__num { border: 1.5px solid var(--label-highlight); color: var(--label-highlight); }
-.ds-calendar__day--selected .ds-calendar__num { background: var(--label-highlight); border: 0; color: var(--bg-base); font-weight: 600; }
+.ds-calendar__day--today .ds-calendar__num { color: var(--label-highlight); }
+.ds-calendar__day--selected .ds-calendar__num {
+  background: color-mix(in srgb, var(--label-highlight) 12%, transparent);
+  color: var(--label-highlight);
+  font-weight: 600;
+}
+.ds-calendar__day--today.ds-calendar__day--selected .ds-calendar__num {
+  background: color-mix(in srgb, var(--label-highlight) 20%, transparent);
+}
 .ds-calendar__day--disabled { cursor: default; }
 .ds-calendar__day--disabled .ds-calendar__num { color: var(--text-disabled); }
 
@@ -1497,15 +1504,17 @@ button.ds-check-circle {
 /* ── DotsIconButton ── */
 /* DotsIconButton — colores de dots_icon_button_theme.dart, medidas de dots_icon_button_enums.dart */
 .ds-icon-btn { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.ds-icon-btn--static { cursor: inherit; }
 .ds-icon-btn--column { flex-direction: column; }
 .ds-icon-btn--row { flex-direction: row; }
 
 .ds-icon-btn__circle {
   display: inline-flex; align-items: center; justify-content: center;
-  border: none; padding: 0; cursor: pointer; border-radius: 50%; flex: none;
+  box-sizing: border-box; border: none; padding: 0; border-radius: 50%; flex: none;
   position: relative; background: transparent; color: var(--text-primary);
   font-family: var(--font-main);
 }
+button.ds-icon-btn__circle { cursor: pointer; }
 /* DotsIconButtonSize: size (el iconSize lo pone DotsIcon) */
 .ds-icon-btn__circle--enormous { width: 56px; height: 56px; }
 .ds-icon-btn__circle--extraLarge { width: 52px; height: 52px; }
@@ -2895,7 +2904,7 @@ button.ds-check-circle {
 }
 
 /* ── DotsTextField ── */
-/* DotsTextField — dots_textfield.dart. Contenedor h44, píldora r1000,
+/* DotsTextField — dots_textfield.dart. Contenedor h44 (h52 con container big), píldora r1000,
    bg bgContainerSecondaryOnBackground, padding 0 16. */
 .ds-textfield { display: block; width: 100%; font-family: var(--font-main); }
 
@@ -2934,6 +2943,13 @@ button.ds-check-circle {
 }
 .ds-textfield--center .ds-textfield__input { text-align: center; }
 .ds-textfield--center .ds-textfield__error-text { text-align: center; }
+
+.ds-textfield--big .ds-textfield__box { height: 52px; }
+
+/* textSize: typo.main.bodyLargeMedium, titleH6 and titleH5 */
+.ds-textfield--text-bodyLarge .ds-textfield__input { font: 500 16px/1.31 var(--font-main); letter-spacing: -0.05px; }
+.ds-textfield--text-titleH6 .ds-textfield__input { font: 600 18px/1.28 var(--font-main); letter-spacing: -0.08px; }
+.ds-textfield--text-titleH5 .ds-textfield__input { font: 700 20px/1.25 var(--font-main); letter-spacing: -0.09px; }
 
 /* clear = DotsCloseButton extraSmall (16, icono 10) */
 .ds-textfield__clear {

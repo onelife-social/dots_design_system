@@ -2,6 +2,31 @@ import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+/// Height of [DotsTextField], as the `Container` property of Figma's textField.
+enum DotsTextFieldContainer {
+  defaultContainer(44),
+  big(52);
+
+  const DotsTextFieldContainer(this.height);
+
+  final double height;
+}
+
+/// Type style of the [DotsTextField] input and hint, as the text size of Figma's textField.
+enum DotsTextFieldTextSize {
+  bodyDefault,
+  bodyLarge,
+  titleH6,
+  titleH5;
+
+  TextStyle style(DotsTypoModel typo) => switch (this) {
+    DotsTextFieldTextSize.bodyDefault => typo.main.bodyDefaultMedium,
+    DotsTextFieldTextSize.bodyLarge => typo.main.bodyLargeMedium,
+    DotsTextFieldTextSize.titleH6 => typo.main.titleH6,
+    DotsTextFieldTextSize.titleH5 => typo.main.titleH5,
+  };
+}
+
 class DotsTextField extends StatefulWidget {
   /// The controller for the TextField.
   /// Used to manage the text input.
@@ -64,9 +89,19 @@ class DotsTextField extends StatefulWidget {
   /// Defaults to `false`.
   final bool alignCenter;
 
+  /// The height of the TextField.
+  ///
+  /// Defaults to [DotsTextFieldContainer.defaultContainer] (44 px).
+  final DotsTextFieldContainer container;
+
+  /// The type style of the input and hint text.
+  ///
+  /// Defaults to [DotsTextFieldTextSize.bodyDefault]. [textStyle], when set, replaces it.
+  final DotsTextFieldTextSize textSize;
+
   /// Custom text style for the input text.
   ///
-  /// Defaults to `theme.typo.main.bodyDefaultMedium`.
+  /// Defaults to the style of [textSize].
   final TextStyle? textStyle;
 
   /// The type of keyboard to show for the TextField.
@@ -97,6 +132,8 @@ class DotsTextField extends StatefulWidget {
     this.background = true,
     this.showUnderline = false,
     this.alignCenter = false,
+    this.container = DotsTextFieldContainer.defaultContainer,
+    this.textSize = DotsTextFieldTextSize.bodyDefault,
     this.textStyle,
     this.keyboardType,
     this.textCapitalization = TextCapitalization.none,
@@ -175,7 +212,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
     final textAlign = widget.alignCenter ? TextAlign.center : TextAlign.left;
-    final inputTextStyle = widget.textStyle ?? theme.typo.main.bodyDefaultMedium;
+    final inputTextStyle = widget.textStyle ?? widget.textSize.style(theme.typo);
 
     final decoration = widget.background
         ? ShapeDecoration(
@@ -235,7 +272,7 @@ class _DotsTextFieldState extends State<DotsTextField> {
           behavior: HitTestBehavior.opaque,
           onTap: widget.enabled ? () => _focusNode.requestFocus() : null,
           child: Container(
-            height: 44,
+            height: widget.container.height,
             clipBehavior: decoration != null ? Clip.antiAlias : Clip.none,
             decoration: decoration,
             padding: widget.background

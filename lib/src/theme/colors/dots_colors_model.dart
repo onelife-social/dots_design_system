@@ -260,6 +260,10 @@ class DotsColorsModel {
   final Color borderGlass;
   final Color borderButton;
 
+  /// Figma `Styles/Floating/borderSurface`: paint it with [BlendMode.overlay], on its own layer
+  /// above what it frames.
+  final Color borderSurface;
+
   // Fills
   final Color fillSecondary;
 
@@ -481,6 +485,7 @@ class DotsColorsModel {
     required this.borderLabel,
     required this.borderGlass,
     required this.borderButton,
+    required this.borderSurface,
     required this.fillSecondary,
     required this.textPremiumStart,
     required this.textPremiumEnd,
@@ -728,6 +733,7 @@ class DotsColorsModel {
       borderLabel: Color.lerp(borderLabel, other?.borderLabel, t) ?? borderLabel,
       borderGlass: Color.lerp(borderGlass, other?.borderGlass, t) ?? borderGlass,
       borderButton: Color.lerp(borderButton, other?.borderButton, t) ?? borderButton,
+      borderSurface: Color.lerp(borderSurface, other?.borderSurface, t) ?? borderSurface,
       fillSecondary: Color.lerp(fillSecondary, other?.fillSecondary, t) ?? fillSecondary,
       textPremiumStart:
           Color.lerp(textPremiumStart, other?.textPremiumStart, t) ?? textPremiumStart,
