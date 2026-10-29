@@ -25,8 +25,14 @@ DotsTextField from dots_design_system. Use via `window.DotsDesignSystem_9e41da.D
 | `keyboardType` | `'text' \| 'number' \| 'phone' \| 'emailAddress' \| 'url'` | `'text'` | Maps to input type/inputMode. |
 | `textCapitalization` | `'none' \| 'words' \| 'sentences' \| 'characters'` | `'none'` | Maps to `autocapitalize`. |
 | `autoFocus` | `boolean` | `false` | Focus on mount. |
+| `ariaLabel` | `string` | — | Accessible name of the input, read instead of the hint. Pass it translated. |
+| `autoCorrect` | `boolean` | browser default | `false` turns keyboard autocorrection off (e.g. names). |
+| `spellCheck` | `boolean` | browser default | `false` removes the red spell-check underline. |
+| `autoComplete` | `string` | browser default | Autofill token, e.g. `'off'` or `'street-address'`. |
+| `enterKeyHint` | `'enter' \| 'done' \| 'go' \| 'next' \| 'previous' \| 'search' \| 'send'` | — | Label of the keyboard's Enter key. |
+| `clearAriaLabel` | `string` | — | Accessible name of the clear button. No English fallback: pass it translated. |
 
-The clear button (DotsCloseButton extraSmall, `inverted` with background / `softContrast` without) appears automatically when the field is enabled, focused and non-empty.
+The clear button (DotsCloseButton extraSmall, `inverted` with background / `softContrast` without) appears automatically when the field is enabled, focused and non-empty. Its circle is 16px and it takes taps over 44 × 44px. With `alignCenter` the text keeps its place when it appears.
 
 ## Examples
 
@@ -47,11 +53,13 @@ const { DotsTextField } = window.DotsDesignSystem_9e41da;
 // Background-less with underline (settings row style)
 <DotsTextField background={false} showUnderline hintText="Añade un título" />
 
-// 52px with 16px text (search a place)
-<DotsTextField container="big" textSize="bodyLarge" icon="ic-search" hintText="Escribe un lugar" maxTextLength={60} />
+// 52px with 16px text (search a place): «Buscar» key, no autofill
+<DotsTextField container="big" textSize="bodyLarge" icon="ic-search" hintText="Escribe un lugar" maxTextLength={60}
+  ariaLabel="Lugar" enterKeyHint="search" autoComplete="off" clearAriaLabel="Borrar el texto" />
 
-// 52px with a centred title (the couple's names)
-<DotsTextField container="big" textSize="titleH6" alignCenter hintText="Mark & Anna" maxTextLength={30} />
+// 52px with a centred title (the couple's names): no autocorrect or spell-check underline
+<DotsTextField container="big" textSize="titleH6" alignCenter hintText="Mark & Anna" maxTextLength={30}
+  ariaLabel="Los novios" autoCorrect={false} spellCheck={false} clearAriaLabel="Borrar el texto" />
 ```
 
 ## Dart mapping
@@ -59,5 +67,7 @@ const { DotsTextField } = window.DotsDesignSystem_9e41da;
 - Widget: `DotsTextField` (`lib/src/components/text_fields/dots_textfield.dart`).
 - `TextEditingController` → `value`/`defaultValue` + `onChanged`; `FocusNode` → internal focus state + `autoFocus`.
 - `iconData: DotsIconData` → `icon` (real asset name); `onTap` clear → built-in clear button (DotsCloseButton extraSmall inverted/softContrast).
+- `semanticsLabel` → `ariaLabel`; `clearSemanticsLabel` → `clearAriaLabel`.
+- `autocorrect` → `autoCorrect`; `enableSuggestions` → `spellCheck` (Flutter draws no spell-check underline by default); `autofillHints` → `autoComplete` (`null` = `'off'`); `textInputAction` → `enterKeyHint`.
 - `keyboardType: TextInputType` → `keyboardType` string; `textCapitalization` → `autocapitalize`; `inputFormatters` has no web equivalent (omitted).
 - `container: DotsTextFieldContainer` and `textSize: DotsTextFieldTextSize` → same names as strings; Dart `textStyle` (free style over `textSize`) is not ported.

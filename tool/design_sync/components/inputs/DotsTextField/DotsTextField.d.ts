@@ -53,5 +53,17 @@ export interface DotsTextFieldProps {
     textCapitalization?: 'none' | 'words' | 'sentences' | 'characters';
     /** Focus on mount (web substitute of the initial FocusNode.requestFocus). */
     autoFocus?: boolean;
+    /** Accessible name of the input, read instead of the hint (localize from the app). Dart: semanticsLabel */
+    ariaLabel?: string;
+    /** Keyboard autocorrection; unset keeps the browser default. Dart: autocorrect */
+    autoCorrect?: boolean;
+    /** Spell-check underline; unset keeps the browser default. Dart: enableSuggestions */
+    spellCheck?: boolean;
+    /** Browser autofill token, e.g. 'off' or 'street-address'. Dart: autofillHints (null = off) */
+    autoComplete?: string;
+    /** Label of the keyboard's Enter key. Dart: textInputAction */
+    enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
+    /** Accessible name of the clear button, translated by the app (no English fallback). Dart: clearSemanticsLabel */
+    clearAriaLabel?: string;
 }
 export declare function DotsTextField(props: DotsTextFieldProps): import("react").JSX.Element;

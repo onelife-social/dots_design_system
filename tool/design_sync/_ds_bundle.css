@@ -2941,8 +2941,10 @@ button.ds-icon-btn__circle { cursor: pointer; }
   color: var(--text-disabled);
   -webkit-text-fill-color: var(--text-disabled);
 }
-.ds-textfield--center .ds-textfield__input { text-align: center; }
+.ds-textfield--center .ds-textfield__input { text-align: center; padding: 0 16px; }
 .ds-textfield--center .ds-textfield__error-text { text-align: center; }
+/* the clear button lies over the input's right padding, so the centred text keeps its place when it appears */
+.ds-textfield--center .ds-textfield__clear { margin-left: -16px; }
 
 .ds-textfield--big .ds-textfield__box { height: 52px; }
 
@@ -2951,12 +2953,16 @@ button.ds-icon-btn__circle { cursor: pointer; }
 .ds-textfield--text-titleH6 .ds-textfield__input { font: 600 18px/1.28 var(--font-main); letter-spacing: -0.08px; }
 .ds-textfield--text-titleH5 .ds-textfield__input { font: 700 20px/1.25 var(--font-main); letter-spacing: -0.09px; }
 
-/* clear = DotsCloseButton extraSmall (16, icono 10) */
+/* clear = DotsCloseButton extraSmall (16, icono 10); tappable over 44 × 44 */
 .ds-textfield__clear {
+  position: relative;
   flex: none; display: flex; align-items: center; justify-content: center;
   width: 16px; height: 16px; padding: 0; border: 0; border-radius: 50%;
   cursor: pointer;
 }
+.ds-textfield__clear::before { content: ''; position: absolute; inset: -14px; }
+/* without background the circle touches the field's right edge: the area grows leftwards only, as in Flutter */
+.ds-textfield__box--no-bg .ds-textfield__clear::before { inset: -14px 0 -14px -28px; }
 /* variant inverted: bg textQuarternary, fg bgContainerPrimary */
 .ds-textfield__clear--inverted { background: var(--text-quarternary); color: var(--bg-container-primary); }
 /* variant softContrast: bg bgBtnDisabled, fg labelPrimary */

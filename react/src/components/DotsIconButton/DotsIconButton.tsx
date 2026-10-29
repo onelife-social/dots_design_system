@@ -17,8 +17,12 @@ export interface DotsIconButtonProps {
   tag?: string;
   /** Dart enum DotsIconButtonSize (diameter 56/52/44/36/28/22) */
   size?: DotsIconButtonSize;
-  /** @deprecated use style + state — Dart enum DotsIconButtonVariant */
-  variant?: 'solid' | 'photo' | 'active' | 'noBackground' | 'photoDisable';
+  /**
+   * The look by name, for the Claude Design canvas: its runtime takes an x-import's `style` attribute as
+   * host CSS, so `style` never reaches this prop there. 'floating' = style floating. Applies only while
+   * style and state are the defaults. Dart enum DotsIconButtonVariant (deprecated in Dart).
+   */
+  variant?: 'solid' | 'photo' | 'active' | 'noBackground' | 'photoDisable' | 'floating';
   /** Dart enum DotsIconButtonStyle */
   style?: DotsIconButtonStyle;
   /** Dart enum DotsIconButtonState */
@@ -51,13 +55,14 @@ const SIZES: Record<DotsIconButtonSize, { size: number; iconSize: number; spacin
   extraSmall: { size: 22, iconSize: 14, spacing: 0 },
 };
 
-// @deprecated DotsIconButtonVariant → [style, state] (getIconButtonThemeByVariant)
+// DotsIconButtonVariant → [style, state] (getIconButtonThemeByVariant)
 const VARIANT_MAP: Record<NonNullable<DotsIconButtonProps['variant']>, [DotsIconButtonStyle, DotsIconButtonState]> = {
   solid: ['defaultStyle', 'defaultState'],
   photo: ['onPhoto', 'defaultState'],
   active: ['defaultStyle', 'active'],
   noBackground: ['noBackground', 'defaultState'],
   photoDisable: ['onPhoto', 'disabled'],
+  floating: ['floating', 'defaultState'],
 };
 
 const STYLE_CLASS: Record<DotsIconButtonStyle, string> = { defaultStyle: 'default', onPhoto: 'photo', floating: 'floating', noBackground: 'nobg' };
@@ -80,7 +85,6 @@ export function DotsIconButton(props: DotsIconButtonProps) {
   const sz = SIZES[sizeName];
   let style: DotsIconButtonStyle = props.style && STYLE_CLASS[props.style] ? props.style : 'defaultStyle';
   let state: DotsIconButtonState = props.state && STATE_CLASS[props.state] ? props.state : 'defaultState';
-  // Compat: deprecated variant only when style/state are the defaults
   if (style === 'defaultStyle' && state === 'defaultState' && props.variant && props.variant !== 'solid' && VARIANT_MAP[props.variant]) {
     [style, state] = VARIANT_MAP[props.variant];
   }

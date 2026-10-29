@@ -1,4 +1,4 @@
-DotsIconButton from dots_design_system. Use via `window.DotsDesignSystem_9e41da.DotsIconButton` (bundle loaded from the root `_ds_bundle.js`). Circular icon button with styles defaultStyle/onPhoto/floating/noBackground × states defaultState/active/disabled/destructive, sizes enormous–extraSmall, optional label (column/row) and notification tag badge. Without `onClick` the circle is display-only (a `<span aria-hidden>`): the clickable parent owns the tap, as with the pencil over a cover that is itself the button. Make that parent a `<button>` so it keeps a keyboard path. Figma's btnIcon Floating (the "surface" button over a photo, e.g. Weddings P6 «Editar») is `style="floating"`; at 44 px, `size="large"`.
+DotsIconButton from dots_design_system. Use via `window.DotsDesignSystem_9e41da.DotsIconButton` (bundle loaded from the root `_ds_bundle.js`). Circular icon button with styles defaultStyle/onPhoto/floating/noBackground × states defaultState/active/disabled/destructive, sizes enormous–extraSmall, optional label (column/row) and notification tag badge. Without `onClick` the circle is display-only (a `<span aria-hidden>`): the clickable parent owns the tap, as with the pencil over a cover that is itself the button. Make that parent a `<button>` so it keeps a keyboard path. Figma's btnIcon Floating (the "surface" button over a photo, e.g. Weddings P6 «Editar») is `variant="floating"`; at 44 px, `size="large"`. In a design, pick the look with `variant`: the canvas runtime takes an x-import's `style` attribute as the CSS of its box, so `style="floating"` never reaches the component there. The app accepts both.
 
 ## Props
 
@@ -9,9 +9,9 @@ DotsIconButton from dots_design_system. Use via `window.DotsDesignSystem_9e41da.
 | `label` | `string` | — | Label opcional (labelDefaultRegular 13/400, máx. 2 líneas) |
 | `tag` | `string` | — | Badge de notificación rojo (BadgeTag) arriba-derecha |
 | `size` | `'enormous' \| 'extraLarge' \| 'large' \| 'medium' \| 'small' \| 'extraSmall'` | `'large'` | Diámetro 56/52/44/36/28/22, icono 32/32/24/20/14/14 |
-| `style` | `'defaultStyle' \| 'onPhoto' \| 'floating' \| 'noBackground'` | `'defaultStyle'` | Estilo visual |
+| `style` | `'defaultStyle' \| 'onPhoto' \| 'floating' \| 'noBackground'` | `'defaultStyle'` | Estilo visual. En el lienzo no llega: usa `variant` |
 | `state` | `'defaultState' \| 'active' \| 'disabled' \| 'destructive'` | `'defaultState'` | Estado |
-| `variant` | `'solid' \| 'photo' \| 'active' \| 'noBackground' \| 'photoDisable'` | `'solid'` | Deprecado — solo aplica si style/state son los defaults |
+| `variant` | `'solid' \| 'photo' \| 'active' \| 'noBackground' \| 'photoDisable' \| 'floating'` | `'solid'` | El look por nombre, el que llega al lienzo. `floating` = `style="floating"`. Solo aplica si style/state son los defaults |
 | `direction` | `'column' \| 'row'` | `'column'` | Posición del label |
 | `onClick` | `() => void` | — | `onTap` de Dart. Sin él, el círculo es solo visual: no es un control ni recibe foco. |
 | `color` | `string` | color del tema | Fuerza color de icono y label |
@@ -40,7 +40,7 @@ const { DotsIconButton } = window.DotsDesignSystem_9e41da;
   style={{ position: 'relative', display: 'block', padding: 0, border: 0, background: 'none' }}>
   <img src={cover} alt="" />
   <span style={{ position: 'absolute', right: 11, bottom: 11, display: 'flex' }}>
-    <DotsIconButton icon="ic-pencil" size="large" style="floating" iconSize={20} />
+    <DotsIconButton icon="ic-pencil" size="large" variant="floating" iconSize={20} />
   </span>
 </button>
 ```
@@ -48,7 +48,7 @@ const { DotsIconButton } = window.DotsDesignSystem_9e41da;
 ## Dart mapping
 
 - Widget: `DotsIconButton` (`lib/src/components/buttons/dots_icon_button/dots_icon_button.dart`)
-- Enums: `DotsIconButtonSize`, `DotsIconButtonStyle`, `DotsIconButtonState`, `DotsIconButtonDirection`, `DotsIconButtonVariant` (deprecado)
+- Enums: `DotsIconButtonSize`, `DotsIconButtonStyle`, `DotsIconButtonState`, `DotsIconButtonDirection`, `DotsIconButtonVariant` (deprecado en Dart; `floating` está para que el lienzo pueda elegirlo)
 - Tema: `getIconButtonThemeByStyleAndState` (`dots_icon_button_theme.dart`)
 - Mapeo de props: `onTap` → `onClick`; `icon: DotsIconData` → `icon: string` (nombre del asset svg)
 - El modo solo visual (sin `onClick`, `<span aria-hidden>`) es una extensión web

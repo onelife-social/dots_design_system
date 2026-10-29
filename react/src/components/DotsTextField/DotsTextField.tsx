@@ -55,6 +55,18 @@ export interface DotsTextFieldProps {
   textCapitalization?: 'none' | 'words' | 'sentences' | 'characters';
   /** Focus on mount (web substitute of the initial FocusNode.requestFocus). */
   autoFocus?: boolean;
+  /** Accessible name of the input, read instead of the hint (localize from the app). Dart: semanticsLabel */
+  ariaLabel?: string;
+  /** Keyboard autocorrection; unset keeps the browser default. Dart: autocorrect */
+  autoCorrect?: boolean;
+  /** Spell-check underline; unset keeps the browser default. Dart: enableSuggestions */
+  spellCheck?: boolean;
+  /** Browser autofill token, e.g. 'off' or 'street-address'. Dart: autofillHints (null = off) */
+  autoComplete?: string;
+  /** Label of the keyboard's Enter key. Dart: textInputAction */
+  enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
+  /** Accessible name of the clear button, translated by the app (no English fallback). Dart: clearSemanticsLabel */
+  clearAriaLabel?: string;
 }
 
 // TextInputType (Dart) → <input> attributes
@@ -147,6 +159,11 @@ export function DotsTextField(props: DotsTextFieldProps) {
           disabled={!enabled}
           autoFocus={!!props.autoFocus}
           autoCapitalize={props.textCapitalization ?? 'none'} // Dart: TextCapitalization.none
+          aria-label={props.ariaLabel}
+          autoCorrect={props.autoCorrect === undefined ? undefined : props.autoCorrect ? 'on' : 'off'}
+          spellCheck={props.spellCheck}
+          autoComplete={props.autoComplete}
+          enterKeyHint={props.enterKeyHint}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           onFocus={() => setFocused(true)}
@@ -157,7 +174,7 @@ export function DotsTextField(props: DotsTextFieldProps) {
             type="button"
             // Dart: DotsCloseButton extraSmall — inverted (with background) / softContrast (without)
             className={`ds-textfield__clear ${background ? 'ds-textfield__clear--inverted' : 'ds-textfield__clear--soft'}`}
-            aria-label="Clear text"
+            aria-label={props.clearAriaLabel}
             onMouseDown={(e) => e.preventDefault()} // do not steal focus from the input
             onClick={handleClear}
           >

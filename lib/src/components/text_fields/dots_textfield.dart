@@ -115,6 +115,32 @@ class DotsTextField extends StatefulWidget {
   /// Optional list of input formatters (e.g. to restrict to digits only).
   final List<TextInputFormatter>? inputFormatters;
 
+  /// The accessible name of the TextField, read before the hint.
+  final String? semanticsLabel;
+
+  /// The accessible name of the clear button.
+  ///
+  /// There is no fallback: pass it translated, or the button is announced without a name.
+  final String? clearSemanticsLabel;
+
+  /// Whether the keyboard autocorrects the text.
+  ///
+  /// Defaults to `true`.
+  final bool autocorrect;
+
+  /// Whether the keyboard shows suggestions while typing.
+  ///
+  /// Defaults to `true`.
+  final bool enableSuggestions;
+
+  /// The autofill hints of the TextField. `null` turns autofill off.
+  ///
+  /// Defaults to an empty list, as [TextField].
+  final Iterable<String>? autofillHints;
+
+  /// The action of the keyboard's action key (e.g. [TextInputAction.search]).
+  final TextInputAction? textInputAction;
+
   const DotsTextField({
     super.key,
     required this.controller,
@@ -139,6 +165,12 @@ class DotsTextField extends StatefulWidget {
     this.textCapitalization = TextCapitalization.none,
     this.inputFormatters,
     this.addHintTextColorError,
+    this.semanticsLabel,
+    this.clearSemanticsLabel,
+    this.autocorrect = true,
+    this.enableSuggestions = true,
+    this.autofillHints = const <String>[],
+    this.textInputAction,
   });
 
   @override
@@ -146,6 +178,9 @@ class DotsTextField extends StatefulWidget {
 }
 
 class _DotsTextFieldState extends State<DotsTextField> {
+  static const _clearButtonSize = DotsCloseButtonSize.extraSmall;
+  static const double _clearTapTarget = 44;
+
   late TextEditingController _controller;
   late FocusNode _focusNode;
   late bool _hasFocus;
@@ -213,6 +248,8 @@ class _DotsTextFieldState extends State<DotsTextField> {
     final theme = context.dotsTheme;
     final textAlign = widget.alignCenter ? TextAlign.center : TextAlign.left;
     final inputTextStyle = widget.textStyle ?? widget.textSize.style(theme.typo);
+    final horizontalPadding = widget.background ? 16.0 : 0.0;
+    final clearSlot = SizedBox(width: _clearButtonSize.size);
 
     final decoration = widget.background
         ? ShapeDecoration(
@@ -241,6 +278,10 @@ class _DotsTextFieldState extends State<DotsTextField> {
         keyboardType: widget.keyboardType,
         textCapitalization: widget.textCapitalization,
         inputFormatters: widget.inputFormatters,
+        autocorrect: widget.autocorrect,
+        enableSuggestions: widget.enableSuggestions,
+        autofillHints: widget.autofillHints,
+        textInputAction: widget.textInputAction,
         style: inputTextStyle.copyWith(
           color: widget.isError && !widget.background && !_focusNode.hasFocus
               ? theme.colors.labelDestructive
@@ -264,6 +305,33 @@ class _DotsTextFieldState extends State<DotsTextField> {
       );
     }
 
+    Widget buildClearButton() {
+      return Semantics(
+        container: true,
+        button: true,
+        label: widget.clearSemanticsLabel,
+        onTap: _clearText,
+        excludeSemantics: true,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: _clearText,
+          child: SizedBox.square(
+            dimension: _clearTapTarget,
+            child: Align(
+              alignment: widget.background ? Alignment.center : Alignment.centerRight,
+              child: DotsCloseButton(
+                size: _clearButtonSize,
+                variant: widget.background
+                    ? DotsCloseButtonVariant.inverted
+                    : DotsCloseButtonVariant.softContrast,
+                onTap: _clearText,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -271,58 +339,44 @@ class _DotsTextFieldState extends State<DotsTextField> {
         GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: widget.enabled ? () => _focusNode.requestFocus() : null,
-          child: Container(
-            height: widget.container.height,
-            clipBehavior: decoration != null ? Clip.antiAlias : Clip.none,
-            decoration: decoration,
-            padding: widget.background
-                ? const EdgeInsets.symmetric(horizontal: 16)
-                : EdgeInsets.zero,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Align(
-                    alignment: widget.alignCenter ? Alignment.center : Alignment.centerLeft,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        if (widget.leading != null) widget.leading!,
-                        if (widget.iconData != null) ...[
-                          DotsIcon(
-                            iconData: widget.iconData!,
-                            color: !widget.background && widget.isError
-                                ? theme.colors.labelDestructive
-                                : theme.colors.textTertiary,
-                            size: 20,
-                          ),
-                          const SizedBox(width: 6),
-                        ],
-                        Expanded(child: buildTextField()),
-                      ],
+          child: Stack(
+            children: [
+              Container(
+                height: widget.container.height,
+                clipBehavior: decoration != null ? Clip.antiAlias : Clip.none,
+                decoration: decoration,
+                padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                child: Row(
+                  children: [
+                    if (widget.leading != null) widget.leading!,
+                    if (widget.iconData != null) ...[
+                      DotsIcon(
+                        iconData: widget.iconData!,
+                        color: !widget.background && widget.isError
+                            ? theme.colors.labelDestructive
+                            : theme.colors.textTertiary,
+                        size: 20,
+                      ),
+                      const SizedBox(width: 6),
+                    ],
+                    if (widget.alignCenter) clearSlot,
+                    Expanded(
+                      child: Semantics(label: widget.semanticsLabel, child: buildTextField()),
                     ),
-                  ),
+                    if (widget.alignCenter || _showClearButton) clearSlot,
+                  ],
                 ),
-                SizedBox(
-                  height: 36,
-                  child: _showClearButton
-                      ? GestureDetector(
-                          behavior: HitTestBehavior.opaque,
-                          onTap: _clearText,
-                          child: Center(
-                            child: DotsCloseButton(
-                              size: DotsCloseButtonSize.extraSmall,
-                              variant: widget.background
-                                  ? DotsCloseButtonVariant.inverted
-                                  : DotsCloseButtonVariant.softContrast,
-                              onTap: _clearText,
-                            ),
-                          ),
-                        )
-                      : null,
+              ),
+              if (_showClearButton)
+                Positioned(
+                  top: 0,
+                  bottom: 0,
+                  right: widget.background
+                      ? horizontalPadding - (_clearTapTarget - _clearButtonSize.size) / 2
+                      : 0,
+                  child: Center(child: TextFieldTapRegion(child: buildClearButton())),
                 ),
-              ],
-            ),
+            ],
           ),
         ),
         if (widget.background && widget.isError && widget.errorText?.isNotEmpty == true)
