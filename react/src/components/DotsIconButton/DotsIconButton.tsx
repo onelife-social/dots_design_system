@@ -25,7 +25,7 @@ export interface DotsIconButtonProps {
   state?: DotsIconButtonState;
   /** Dart enum DotsIconButtonDirection — label placement */
   direction?: 'column' | 'row';
-  /** Dart onTap */
+  /** Dart onTap. Without it the circle is display-only (`<span aria-hidden>`): the clickable parent owns the tap */
   onClick?: () => void;
   /** CSS color forcing icon and label */
   color?: string;
@@ -92,6 +92,7 @@ export function DotsIconButton(props: DotsIconButtonProps) {
   const gap = hasLabel ? sz.spacing + (showShadow ? 4 : 0) : 0;
   const iconSize = props.iconSize || sz.iconSize;
   const textTappable = !!props.textTappable && hasLabel;
+  const interactive = !!props.onClick;
 
   const circleCls =
     `ds-icon-btn__circle ds-icon-btn__circle--${sizeName} ds-icon-btn__circle--${STYLE_CLASS[style]}-${STATE_CLASS[state]}` +
@@ -119,10 +120,20 @@ export function DotsIconButton(props: DotsIconButtonProps) {
   if (direction === 'column' && !noBg) labelStyle.width = sz.size;
 
   return (
-    <span className={`ds-icon-btn ds-icon-btn--${direction}`} style={{ gap }} onClick={textTappable ? props.onClick : undefined}>
-      <button type="button" className={circleCls} style={circleStyle} onClick={textTappable ? undefined : props.onClick}>
-        {iconContent}
-      </button>
+    <span
+      className={`ds-icon-btn ds-icon-btn--${direction}${interactive ? '' : ' ds-icon-btn--static'}`}
+      style={{ gap }}
+      onClick={textTappable ? props.onClick : undefined}
+    >
+      {interactive ? (
+        <button type="button" className={circleCls} style={circleStyle} onClick={textTappable ? undefined : props.onClick}>
+          {iconContent}
+        </button>
+      ) : (
+        <span aria-hidden="true" className={circleCls} style={circleStyle}>
+          {iconContent}
+        </span>
+      )}
       {hasLabel ? (
         <span className={`ds-icon-btn__label${props.overflow ? ' ds-icon-btn__label--ellipsis' : ''}`} style={labelStyle}>
           {props.label}

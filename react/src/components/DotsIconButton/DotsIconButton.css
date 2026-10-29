@@ -1,14 +1,16 @@
 /* DotsIconButton — colores de dots_icon_button_theme.dart, medidas de dots_icon_button_enums.dart */
 .ds-icon-btn { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.ds-icon-btn--static { cursor: inherit; }
 .ds-icon-btn--column { flex-direction: column; }
 .ds-icon-btn--row { flex-direction: row; }
 
 .ds-icon-btn__circle {
   display: inline-flex; align-items: center; justify-content: center;
-  border: none; padding: 0; cursor: pointer; border-radius: 50%; flex: none;
+  box-sizing: border-box; border: none; padding: 0; border-radius: 50%; flex: none;
   position: relative; background: transparent; color: var(--text-primary);
   font-family: var(--font-main);
 }
+button.ds-icon-btn__circle { cursor: pointer; }
 /* DotsIconButtonSize: size (el iconSize lo pone DotsIcon) */
 .ds-icon-btn__circle--enormous { width: 56px; height: 56px; }
 .ds-icon-btn__circle--extraLarge { width: 52px; height: 52px; }
