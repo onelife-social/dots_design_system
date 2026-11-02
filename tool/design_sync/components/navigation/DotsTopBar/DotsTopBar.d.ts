@@ -23,6 +23,9 @@ export interface DotsTopBarProps {
     backAriaLabel?: string;
     /** Transparent instead of bgContainerPrimary, and no blur — Dart `hideBackground` */
     hideBackground?: boolean;
+    /** With `hideBackground`: Figma's top gradient behind the bar (bgBase → transparent, 18px taller than the bar, takes
+     *  no taps), so the content scrolling under it fades out. The screen decides when (e.g. once scrolled) — Dart `showGradient` */
+    showGradient?: boolean;
     /** Reserve the status-bar strip above the content (default true): the larger of `--ds-status-bar-min` (50px) and the top safe-area inset — Dart `bigStatusBar` */
     bigStatusBar?: boolean;
     /** Back button `solid` instead of `noBackground` — Dart `showCircleBackButton` */

@@ -29,6 +29,7 @@ class TopBarDemo extends StatelessWidget {
     this.imageTitle,
     this.onErrorImageTitle,
     this.showBottomBorder = false,
+    this.showGradient = false,
   });
 
   final TobBarVariant variant;
@@ -44,6 +45,7 @@ class TopBarDemo extends StatelessWidget {
   final void Function(Object exception, StackTrace? stackTrace)? onErrorImageTitle;
   final bool showCircleBackButton;
   final bool showBottomBorder;
+  final bool showGradient;
 
   DotsIconButton? get leftIcon => showLeftIcon
       ? DotsIconButton(
@@ -78,6 +80,7 @@ class TopBarDemo extends StatelessWidget {
           rightIcon: rightIcon,
           onTapBack: onTapBack,
           hideBackground: hideBackground,
+          showGradient: showGradient,
           showCircleBackButton: showCircleBackButton,
           imageTitle: imageTitle,
           onErrorImageTitle: onErrorImageTitle,
@@ -86,6 +89,7 @@ class TopBarDemo extends StatelessWidget {
       case TobBarVariant.segmentedControl:
         return DotsTopBar.widget(
           hideBackground: hideBackground,
+          showGradient: showGradient,
           leftIcon: leftIcon,
           rightIcon: rightIcon,
           onTapBack: onTapBack,
@@ -101,6 +105,7 @@ class TopBarDemo extends StatelessWidget {
       case TobBarVariant.cta:
         return DotsTopBar.cta(
           hideBackground: hideBackground,
+          showGradient: showGradient,
           onTapBack: () {},
           title: title,
           ctaLabel: ctaLabel ?? 'Call to Action',

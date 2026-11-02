@@ -28,6 +28,9 @@ export interface DotsTopBarProps {
   backAriaLabel?: string;
   /** Transparent instead of bgContainerPrimary, and no blur — Dart `hideBackground` */
   hideBackground?: boolean;
+  /** With `hideBackground`: Figma's top gradient behind the bar (bgBase → transparent, 18px taller than the bar, takes
+   *  no taps), so the content scrolling under it fades out. The screen decides when (e.g. once scrolled) — Dart `showGradient` */
+  showGradient?: boolean;
   /** Reserve the status-bar strip above the content (default true): the larger of `--ds-status-bar-min` (50px) and the top safe-area inset — Dart `bigStatusBar` */
   bigStatusBar?: boolean;
   /** Back button `solid` instead of `noBackground` — Dart `showCircleBackButton` */
@@ -57,6 +60,8 @@ export function DotsTopBar(props: DotsTopBarProps) {
   if (props.color) style.background = props.color;
   else if (props.hideBackground) style.background = 'transparent';
   const frosted = !props.color && !props.hideBackground;
+  // Dart: only the title / widget / cta constructors take showGradient, and only with hideBackground and no color
+  const gradient = !hideWidgets && !props.color && !!props.hideBackground && !!props.showGradient;
 
   const center =
     variant === 'widget' ? (
@@ -76,6 +81,7 @@ export function DotsTopBar(props: DotsTopBarProps) {
       className={`ds-top-bar ds-top-bar--${hideWidgets ? 'status-only' : bigStatusBar ? 'big' : 'normal'}${frosted ? ' ds-top-bar--frosted' : ''}${props.showBottomBorder ? ' ds-top-bar--bordered' : ''}${props.className ? ` ${props.className}` : ''}`}
       style={style}
     >
+      {gradient ? <span className="ds-top-bar__gradient" aria-hidden="true" /> : null}
       {/* Dart: SizedBox(50) painted when _hideWidgets != bigStatusBar */}
       {hideWidgets !== bigStatusBar ? <span className="ds-top-bar__status" aria-hidden="true" /> : null}
       {!hideWidgets ? (

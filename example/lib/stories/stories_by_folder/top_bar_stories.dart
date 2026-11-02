@@ -26,6 +26,7 @@ List<Story> get topBarStories => [
               showRightIcon: context.knobs.boolean(label: 'Show right icon', initial: false),
               showBackButton: context.knobs.boolean(label: 'Show back button', initial: false),
               hideBackground: context.knobs.boolean(label: 'Hide background', initial: false),
+              showGradient: context.knobs.boolean(label: 'Show gradient (with hide background)', initial: false),
               ctaLabel: context.knobs.nullable.text(label: 'CTA title', initial: 'Call to Action'),
               ctaEnabled: context.knobs.boolean(label: 'CTA enabled', initial: true),
               showBottomBorder: context.knobs.boolean(label: 'Show bottom border', initial: false),
