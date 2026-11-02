@@ -1,5 +1,5 @@
 /* FeatureItem — port de lib/src/components/feature_item/feature_item.dart
-   Row gap 8 · icono 16 textQuarternary (o imagen 24) · feature bodyDefaultRegular
+   Row gap 8 · icono 16 textQuarternary o iconColor (o imagen 24) · feature bodyDefaultRegular
    textTertiary flex 6 · value bodyDefaultMedium textSecondary flex 4 */
 
 .ds-feature-item {

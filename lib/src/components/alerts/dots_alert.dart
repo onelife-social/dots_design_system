@@ -587,7 +587,7 @@ class DotsAlert extends StatelessWidget {
       child: Container(
         width: 320,
         decoration: BoxDecoration(
-          color: theme.colors.bgContainerSecondary,
+          color: theme.colors.bgContainerPrimary,
           borderRadius: BorderRadius.circular(32),
           border: Border.all(
             color: theme.colors.borderAlert,
