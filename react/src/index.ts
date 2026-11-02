@@ -180,3 +180,5 @@ export { DotsPlanningItem } from './components/DotsPlanningItem/DotsPlanningItem
 export type { DotsPlanningItemProps, DotsPlanningInfoItem } from './components/DotsPlanningItem/DotsPlanningItem';
 export { DotsPlanSelector } from './components/DotsPlanSelector/DotsPlanSelector';
 export type { DotsPlanSelectorProps, DotsPlanSelectorVariant } from './components/DotsPlanSelector/DotsPlanSelector';
+export { DotsMapPin, dotsMapPinAnchor, dotsMapPinSize } from './components/DotsMapPin/DotsMapPin';
+export type { DotsMapPinProps } from './components/DotsMapPin/DotsMapPin';
