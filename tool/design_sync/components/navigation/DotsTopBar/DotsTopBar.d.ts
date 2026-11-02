@@ -19,6 +19,8 @@ export interface DotsTopBarProps {
     rightIcon?: ReactNode;
     /** Shows the back button (DotsIconButton chevronLeft medium) — Dart `onTapBack` */
     onBack?: () => void;
+    /** Accessible name of the back button, translated by the app (no default) */
+    backAriaLabel?: string;
     /** Transparent instead of bgContainerPrimary, and no blur — Dart `hideBackground` */
     hideBackground?: boolean;
     /** Reserve the status-bar strip above the content (default true): the larger of `--ds-status-bar-min` (50px) and the top safe-area inset — Dart `bigStatusBar` */

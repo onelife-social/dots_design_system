@@ -24,6 +24,8 @@ export interface DotsTopBarProps {
   rightIcon?: ReactNode;
   /** Shows the back button (DotsIconButton chevronLeft medium) — Dart `onTapBack` */
   onBack?: () => void;
+  /** Accessible name of the back button, translated by the app (no default) */
+  backAriaLabel?: string;
   /** Transparent instead of bgContainerPrimary, and no blur — Dart `hideBackground` */
   hideBackground?: boolean;
   /** Reserve the status-bar strip above the content (default true): the larger of `--ds-status-bar-min` (50px) and the top safe-area inset — Dart `bigStatusBar` */
@@ -82,7 +84,7 @@ export function DotsTopBar(props: DotsTopBarProps) {
           <div className="ds-top-bar__row">
             {props.onBack ? (
               <span className="ds-top-bar__slot ds-top-bar__slot--left">
-                <DotsIconButton icon="ic-chevron-left" size="medium" variant={props.showCircleBackButton ? 'solid' : 'noBackground'} onClick={props.onBack} />
+                <DotsIconButton icon="ic-chevron-left" size="medium" variant={props.showCircleBackButton ? 'solid' : 'noBackground'} ariaLabel={props.backAriaLabel} onClick={props.onBack} />
               </span>
             ) : null}
             {props.leftIcon && !props.onBack ? <span className="ds-top-bar__slot ds-top-bar__slot--left">{props.leftIcon}</span> : null}

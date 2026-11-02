@@ -17,3 +17,22 @@ test('style and state win over variant floating', () => {
   assert.match(markup, /ds-icon-btn__circle--photo-default/);
   assert.doesNotMatch(markup, /floating/);
 });
+
+test('ariaLabel names the button', () => {
+  const markup = renderToStaticMarkup(<DotsIconButton icon="ic-trash" ariaLabel="Quitar" onClick={() => {}} />);
+
+  assert.match(markup, /<button[^>]*aria-label="Quitar"/);
+});
+
+test('without ariaLabel the button has no made-up name', () => {
+  const markup = renderToStaticMarkup(<DotsIconButton icon="ic-trash" onClick={() => {}} />);
+
+  assert.doesNotMatch(markup, /<button[^>]*aria-label/);
+});
+
+test('without onClick the circle stays hidden from the screen reader, whatever ariaLabel says', () => {
+  const markup = renderToStaticMarkup(<DotsIconButton icon="ic-pencil" ariaLabel="Editar" />);
+
+  assert.doesNotMatch(markup, /aria-label="Editar"/);
+  assert.match(markup, /aria-hidden="true"/);
+});

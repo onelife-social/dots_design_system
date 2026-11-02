@@ -14,6 +14,7 @@ DotsIconButton from dots_design_system. Use via `window.DotsDesignSystem_9e41da.
 | `variant` | `'solid' \| 'photo' \| 'active' \| 'noBackground' \| 'photoDisable' \| 'floating'` | `'solid'` | El look por nombre, el que llega al lienzo. `floating` = `style="floating"`. Solo aplica si style/state son los defaults |
 | `direction` | `'column' \| 'row'` | `'column'` | Posición del label |
 | `onClick` | `() => void` | — | `onTap` de Dart. Sin él, el círculo es solo visual: no es un control ni recibe foco. |
+| `ariaLabel` | `string` | — | Nombre accesible del botón, traducido por la app. Todo botón con `onClick` lo necesita, porque solo es un icono. Sin `onClick` no se usa: nombra la acción el padre pulsable. |
 | `color` | `string` | color del tema | Fuerza color de icono y label |
 | `backgroundColor` | `string` | fondo del tema | Fuerza fondo del círculo |
 | `textTappable` | `boolean` | `false` | El label también dispara onClick |
