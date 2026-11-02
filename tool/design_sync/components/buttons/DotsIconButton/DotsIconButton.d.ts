@@ -28,6 +28,8 @@ export interface DotsIconButtonProps {
     direction?: 'column' | 'row';
     /** Dart onTap. Without it the circle is display-only (`<span aria-hidden>`): the clickable parent owns the tap */
     onClick?: () => void;
+    /** Accessible name of the button, translated by the app (no default). Ignored without `onClick`: the clickable parent names the action */
+    ariaLabel?: string;
     /** CSS color forcing icon and label */
     color?: string;
     /** CSS color forcing the circle background */

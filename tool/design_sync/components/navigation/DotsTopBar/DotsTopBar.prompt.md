@@ -12,6 +12,7 @@ DotsTopBar from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Dots
 | `leftIcon` | `ReactNode` | — | Nodo a la izquierda; no combinable con `onBack` (assert Dart). |
 | `rightIcon` | `ReactNode` | — | Nodo a la derecha, normalmente un `DotsIconButton`. |
 | `onBack` | `() => void` | — | Muestra el botón atrás (`DotsIconButton` `ic-chevron-left`, medium) — Dart `onTapBack`. |
+| `backAriaLabel` | `string` | — | Nombre accesible del botón atrás, traducido por la app. Acompaña siempre a `onBack`. |
 | `showCircleBackButton` | `boolean` | `false` | Botón atrás en círculo gris (`variant: 'solid'`). |
 | `ctaLabel` | `string` | — | CTA a la derecha (`DotsMainButton` main · small, `expand:false`). |
 | `onCtaClick` | `() => void` | — | Callback del CTA — Dart `onCtaTap`. |
