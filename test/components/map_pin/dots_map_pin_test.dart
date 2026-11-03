@@ -1,3 +1,5 @@
+import 'dart:ui' show SemanticsFlag;
+
 import 'package:dots_design_system/dots_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -15,15 +17,23 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('semanticsLabel names the marker; without it the marker is decorative', (tester) async {
+  testWidgets('semanticsLabel names the marker as an image', (tester) async {
     final semantics = tester.ensureSemantics();
 
     await tester.pumpWidget(_host(const DotsMapPin(semanticsLabel: 'Finca El Olivar')));
-    expect(find.bySemanticsLabel('Finca El Olivar'), findsOneWidget);
 
-    await tester.pumpWidget(_host(const DotsMapPin()));
-    expect(find.bySemanticsLabel('Finca El Olivar'), findsNothing);
+    expect(tester.getSemantics(find.byType(DotsMapPin)), matchesSemantics(label: 'Finca El Olivar', isImage: true));
+    semantics.dispose();
+  });
 
+  testWidgets('without a semanticsLabel, or with an empty one, the marker is decorative', (tester) async {
+    final semantics = tester.ensureSemantics();
+
+    for (final label in [null, '']) {
+      await tester.pumpWidget(_host(DotsMapPin(semanticsLabel: label)));
+
+      expect(find.semantics.byFlag(SemanticsFlag.isImage), findsNothing, reason: 'semanticsLabel: $label');
+    }
     semantics.dispose();
   });
 }

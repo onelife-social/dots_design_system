@@ -12,7 +12,7 @@ class DotsMapPin extends StatelessWidget {
   /// ground shadow is below it). A map that anchors the box's bottom centre has to move it that much down.
   static const Offset anchor = Offset(23, 51.5421);
 
-  /// Read by screen readers (e.g. the venue's name). Without it the marker is decorative.
+  /// Read by screen readers (e.g. the venue's name). Without it, or with an empty one, the marker is decorative.
   final String? semanticsLabel;
 
   const DotsMapPin({
@@ -36,8 +36,9 @@ class DotsMapPin extends StatelessWidget {
       ),
     );
 
-    if (semanticsLabel == null) return ExcludeSemantics(child: marker);
-    return Semantics(label: semanticsLabel, image: true, child: marker);
+    final label = semanticsLabel;
+    if (label == null || label.isEmpty) return ExcludeSemantics(child: marker);
+    return Semantics(label: label, image: true, child: marker);
   }
 }
 

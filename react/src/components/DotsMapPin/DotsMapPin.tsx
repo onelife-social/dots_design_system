@@ -5,7 +5,7 @@
 import { useId, type CSSProperties } from 'react';
 
 export interface DotsMapPinProps {
-  /** Accessible name (e.g. the venue's name) — Dart `semanticsLabel`. Without it the marker is decorative */
+  /** Accessible name (e.g. the venue's name) — Dart `semanticsLabel`. Without it, or with an empty one, the marker is decorative */
   ariaLabel?: string;
   /** Extra CSS class */
   className?: string;
@@ -22,7 +22,7 @@ export const dotsMapPinAnchor = { x: 23, y: 51.5421 } as const;
 export function DotsMapPin(props: DotsMapPinProps) {
   // Ids of the filters and the gradient, unique per marker so several can share a map
   const id = `ds-map-pin${useId().replace(/[^\w-]/g, '')}`;
-  const a11y = props.ariaLabel != null ? { role: 'img', 'aria-label': props.ariaLabel } : { 'aria-hidden': true };
+  const a11y = props.ariaLabel ? { role: 'img', 'aria-label': props.ariaLabel } : { 'aria-hidden': true };
 
   return (
     <svg

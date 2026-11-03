@@ -4,7 +4,7 @@ DotsMapPin from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Dots
 
 | Prop | Tipo | Default | Descripción |
 | --- | --- | --- | --- |
-| `ariaLabel` | `string` | — | Nombre accesible (p. ej. el del lugar). Sin él el marcador es decorativo (`aria-hidden`). |
+| `ariaLabel` | `string` | — | Nombre accesible (p. ej. el del lugar). Sin él, o vacío, el marcador es decorativo (`aria-hidden`). |
 | `className` | `string` | — | Clases extra sobre el `<svg class="ds-map-pin">`. |
 | `style` | `CSSProperties` | — | Estilo en línea (p. ej. el `translateY` del ancla). |
 

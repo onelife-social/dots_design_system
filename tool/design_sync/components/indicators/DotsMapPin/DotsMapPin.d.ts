@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { type CSSProperties } from 'react';
 export interface DotsMapPinProps {
-    /** Accessible name (e.g. the venue's name) — Dart `semanticsLabel`. Without it the marker is decorative */
+    /** Accessible name (e.g. the venue's name) — Dart `semanticsLabel`. Without it, or with an empty one, the marker is decorative */
     ariaLabel?: string;
     /** Extra CSS class */
     className?: string;

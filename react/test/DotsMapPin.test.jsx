@@ -27,9 +27,11 @@ test('ariaLabel names the marker', () => {
   assert.doesNotMatch(svg, / aria-hidden=/);
 });
 
-test('without ariaLabel the marker is decorative', () => {
-  const svg = svgOf(renderToStaticMarkup(<DotsMapPin />));
+test('without ariaLabel, or with an empty one, the marker is decorative', () => {
+  for (const ariaLabel of [undefined, '']) {
+    const svg = svgOf(renderToStaticMarkup(<DotsMapPin ariaLabel={ariaLabel} />));
 
-  assert.match(svg, / aria-hidden="true"/);
-  assert.doesNotMatch(svg, / role=/);
+    assert.match(svg, / aria-hidden="true"/, `ariaLabel: ${ariaLabel}`);
+    assert.doesNotMatch(svg, / role=/, `ariaLabel: ${ariaLabel}`);
+  }
 });
