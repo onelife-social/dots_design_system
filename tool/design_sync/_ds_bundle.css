@@ -3373,6 +3373,21 @@ button.ds-icon-btn__circle { cursor: pointer; }
   -webkit-backdrop-filter: blur(var(--blur-10));
   backdrop-filter: blur(var(--blur-10));
 }
+/* showGradient (with hideBackground) — Figma «HOME_gradiente superior»: bgBase down to 22%, then bgBaseGradientStart
+   (bgBase at 0%), at 95% opacity: bgBase faded by a mask, as DotsHomeTopBar does. 18px taller than the bar so the content fades
+   out before it reaches the bar's row; visual only. It comes first in the bar, so the positioned content paints over it. */
+.ds-top-bar__gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(100% + 18px);
+  opacity: 0.95;
+  background: var(--bg-base);
+  -webkit-mask-image: linear-gradient(to bottom, #000 22%, transparent);
+  mask-image: linear-gradient(to bottom, #000 22%, transparent);
+  pointer-events: none;
+}
 /* showBottomBorder — Colors.black @0.2 (no token) */
 .ds-top-bar--bordered { box-shadow: 0 1px 0 #00000033; }
 .ds-top-bar__status { height: var(--ds-top-bar-status); flex: none; }

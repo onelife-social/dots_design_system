@@ -69,6 +69,15 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// Whether to show a bottom border in the top bar.
   final bool showBottomBorder;
 
+  /// With [hideBackground], paints Figma's «HOME_gradiente superior» behind the bar so the content scrolling
+  /// under it fades out: `bgBase` down to 22 % of its height, then to `bgBaseGradientStart`, at 95 % opacity. It is
+  /// 18 px taller than the bar and only visual: it takes no taps. The screen decides when to show it (for
+  /// instance, once the content has scrolled).
+  final bool showGradient;
+
+  /// Height the gradient adds below the bar.
+  static const double gradientOverflow = 18;
+
   /// Only status bar, no title or segmented control.
   const DotsTopBar.onlyStatusBar({
     super.key,
@@ -88,7 +97,8 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
        imageTitle = null,
        onErrorImageTitle = null,
        showCircleBackButton = false,
-       color = null;
+       color = null,
+       showGradient = false;
 
   /// Bar with title and optional subtitle, left and right icons, back button and image.
   const DotsTopBar.title({
@@ -105,6 +115,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.showCircleBackButton = false,
     this.color,
     this.showBottomBorder = false,
+    this.showGradient = false,
   }) : assert(
          (leftIcon == null || onTapBack == null),
          'leftIcon cannot be used with onTapBack',
@@ -127,6 +138,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.showCircleBackButton = false,
     this.color,
     this.showBottomBorder = false,
+    this.showGradient = false,
   }) : assert(
          (leftIcon == null || onTapBack == null),
          'leftIcon cannot be used with onTapBack',
@@ -155,6 +167,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.showCircleBackButton = false,
     this.color,
     this.showBottomBorder = false,
+    this.showGradient = false,
   }) : assert(
          onCtaTap == null || ctaLabel != null,
          'ctaLabel is required when onCtaTap is provided',
@@ -181,6 +194,38 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
+    return Stack(
+      clipBehavior: Clip.none,
+      fit: StackFit.passthrough,
+      children: [
+        if (showGradient && hideBackground && color == null)
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            height: preferredSize.height + gradientOverflow,
+            child: IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: const [0.22, 1],
+                    colors: [
+                      theme.colors.bgBase.dotsWithOpacity(0.95),
+                      theme.colors.bgBaseGradientStart,
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        _bar(theme),
+      ],
+    );
+  }
+
+  Widget _bar(DotsTheme theme) {
     return Container(
       decoration: showBottomBorder
           ? BoxDecoration(

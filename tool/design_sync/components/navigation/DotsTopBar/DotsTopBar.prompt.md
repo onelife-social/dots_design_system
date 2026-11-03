@@ -19,13 +19,16 @@ DotsTopBar from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Dots
 | `ctaEnabled` | `boolean` | `true` | Deshabilita el CTA. |
 | `bigStatusBar` | `boolean` | `true` | 106px (50 status + 56 contenido); `false` → 50px sin franja. onlyStatusBar es solo la franja (50px). |
 | `hideBackground` | `boolean` | `false` | Fondo transparente en vez de `bgContainerPrimary`, sin desenfoque. |
+| `showGradient` | `boolean` | `false` | Solo con `hideBackground` (y sin `color`, y no en `onlyStatusBar`): degradado superior detrás de la barra, de `bgBase` a transparente, 18px más alto que la barra. Es solo visual y no recoge toques. |
 | `color` | `string` (CSS) | — | Fuerza el color de fondo (ignora `hideBackground`), sin desenfoque. |
 | `showBottomBorder` | `boolean` | `false` | Línea inferior 1px negro @0.2. |
 | `className` | `string` | — | Clases extra sobre `.ds-top-bar`. |
 
 La franja de la barra de estado mide 50px en el diseño. En el dispositivo mide lo que sea mayor entre `--ds-status-bar-min` (50px si no se define) y `env(safe-area-inset-top)`. La app nativa pone `--ds-status-bar-min: 0px`: así, si el web view empieza debajo de la barra de estado (Android sin edge-to-edge), no queda un hueco vacío. En los diseños no se define.
 
-Colócala arriba de la pantalla a ancho completo. Con el fondo por defecto pinta `bgBase` al 95 % de opacidad con `backdrop-filter: blur(var(--blur-10))`: si la cabecera va en un bloque `position: sticky; top: 0`, el contenido que pasa por detrás se ve desenfocado y no se lee, también en la franja de la barra de estado. Un botón de color por detrás no mancha la barra. No hace falta darle fondo al contenedor. Con `hideBackground` o `color` no desenfoca.
+Colócala arriba de la pantalla a ancho completo. Con el fondo por defecto pinta `bgBase` al 95 % de opacidad con `backdrop-filter: blur(var(--blur-10))`: si la cabecera va en un bloque `position: sticky; top: 0` (con `z-index`, para que el contenido posicionado que viene después no pinte encima), el contenido que pasa por detrás se ve desenfocado y no se lee, también en la franja de la barra de estado. Un botón de color por detrás no mancha la barra. No hace falta darle fondo al contenedor. Con `hideBackground` o `color` no desenfoca.
+
+Sin fondo, el contenido que hace scroll por debajo se monta sobre la hora y el botón atrás. Para eso está `showGradient` (Figma «HOME_gradiente superior»): `bgBase` hasta el 22 % de la altura y luego `bgBaseGradientStart` (`bgBase` al 0 %), al 95 % de opacidad. Mide 18px más que la barra para que el contenido se desvanezca antes de llegar a la fila de la barra. Decide la pantalla cuándo encenderlo; lo normal es en cuanto hay scroll y apagarlo arriba del todo, para no tapar un título grande en reposo.
 
 ## Examples
 
@@ -60,3 +63,4 @@ const { DotsTopBar, DotsIconButton } = window.DotsDesignSystem_9e41da;
 | `ctaLabel`/`onCtaClick`/`ctaEnabled` | `ctaLabel`/`onCtaTap`/`ctaEnabled` (`DotsMainButton` main·small). Nota: Dart exige ambos; aquí basta `ctaLabel` |
 | Alturas | `kTopBarNormalHeight = 50` / `kTopBarBigHeight = 106` |
 | Fondo | `color ?? (hideBackground ? transparent : bgContainerPrimary)`. Solo en web, el fondo por defecto es `bgBase` al 95 % con `blur(var(--blur-10))`; Dart pinta `bgContainerPrimary` plano |
+| `showGradient` | `showGradient` en `.title` / `.widget` / `.cta` (no en `.onlyStatusBar`): `IgnorePointer` + `LinearGradient` `bgBase` @0.95 → `bgBaseGradientStart`, stops `[0.22, 1]`, alto `preferredSize.height + DotsTopBar.gradientOverflow` (18) |

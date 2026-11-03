@@ -1,4 +1,5 @@
 ## X.X.X Pending
+* DotsTopBar showGradient (Figma TopBar Background=False · showGradient): with hideBackground, a bgBase → transparent gradient behind the bar, 18 px taller and visual only (web: showGradient).
 * DotsMapPin, the Dots map marker (Figma Chronicle MapPin), with DotsMapPin.size and DotsMapPin.anchor (web: dotsMapPinSize / dotsMapPinAnchor, ariaLabel, and --friends-008 in tokens.css).
 * DotsAlert card on bgContainerPrimary, as in Figma (was bgContainerSecondary): lighter in light theme, darker in dark.
 * Web: DotsAlert with showScrim declares aria-modal, and DotsActionSheet is a modal dialog named by its title.
