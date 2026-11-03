@@ -7,6 +7,7 @@ FeatureItem from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Fea
 | `feature` | `string` (requerido) | — | Etiqueta izquierda (bodyDefaultRegular, textTertiary) |
 | `value` | `string` | — | Valor derecho (bodyDefaultMedium, textSecondary, alineado a la derecha) |
 | `icon` | `string` | — | Nombre de icono DotsIcon (16px, textQuarternary), p.ej. `'ic-calendar'` |
+| `iconColor` | `string` | `var(--text-quarternary)` | Color del icono, un token (`'var(--text-secondary)'`…). Solo con `icon` |
 | `image` | `ReactNode` | — | Leading custom 24×24 (avatar, miniatura…); sustituye a `icon` |
 
 Notas:
@@ -26,6 +27,9 @@ const { FeatureItem } = window.DotsDesignSystem_9e41da;
 // Bullet de features (sin value)
 <FeatureItem feature="Recuerdos ilimitados" icon="ic-infinity" />
 
+// Icono en otro color
+<FeatureItem feature="Invitación enviada" icon="ic-envelope" iconColor="var(--text-secondary)" />
+
 // Leading custom (variante FeatureItem.image)
 <FeatureItem feature="Creado por" value="María" image={<img src={avatarUrl} style={{ width: 24, height: 24, borderRadius: '50%' }} />} />
 ```
@@ -33,5 +37,5 @@ const { FeatureItem } = window.DotsDesignSystem_9e41da;
 ## Dart mapping
 
 - Widget: `FeatureItem` (`lib/src/components/feature_item/feature_item.dart`).
-- Props: `feature`/`value` 1:1; `icon: DotsIconData`→`icon: string` (nombre del asset); constructor `FeatureItem.image(image: Widget)`→prop `image: ReactNode`.
+- Props: `feature`/`value` 1:1; `icon: DotsIconData`→`icon: string` (nombre del asset); `iconColor: Color`→`iconColor: string` (token CSS); constructor `FeatureItem.image(image: Widget)`→prop `image: ReactNode`.
 - Estilo: Row spacing 8 · DotsIcon 16 `textQuarternary` · feature `bodyDefaultRegular` `textTertiary` (flex 6 con value, 1 sin) · value `bodyDefaultMedium` `textSecondary` (flex 4, derecha).

@@ -19,7 +19,8 @@
     "typecheck": "tsc --noEmit",
     "build:bundle": "node scripts/build-bundle.mjs",
     "build": "npm run build:bundle && npm run typecheck",
-    "test": "node scripts/test.mjs"
+    "test": "node scripts/test.mjs",
+    "gen:icons": "node scripts/gen-icons.mjs"
   },
   "peerDependencies": {
     "react": ">=18",

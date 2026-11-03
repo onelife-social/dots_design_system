@@ -8,6 +8,8 @@ export interface FeatureItemProps {
     value?: string;
     /** DotsIcon name (e.g. 'ic-calendar') — Dart `icon: DotsIconData`. Ignored when `image` is set */
     icon?: string;
+    /** Icon colour, a token (e.g. 'var(--text-secondary)') — Dart `iconColor`. Default textQuarternary */
+    iconColor?: string;
     /** Custom 24×24 leading — Dart `FeatureItem.image` variant */
     image?: ReactNode;
     /** Extra CSS class */

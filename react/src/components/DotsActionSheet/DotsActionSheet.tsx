@@ -425,7 +425,13 @@ export function DotsActionSheet(props: DotsActionSheetProps) {
     default: variant = 'standard'; body = renderStandard(props);
   }
   return (
-    <div className={`ds-action-sheet ds-action-sheet--${variant}${props.className ? ` ${props.className}` : ''}`} style={props.style}>
+    <div
+      className={`ds-action-sheet ds-action-sheet--${variant}${props.className ? ` ${props.className}` : ''}`}
+      style={props.style}
+      role="dialog"
+      aria-modal
+      aria-label={props.title}
+    >
       {showGrabber ? <div className="ds-action-sheet__grabber" /> : null}
       {body}
       {props.showCloseButton ? <CloseButton onClose={props.onClose} top={closeTop} /> : null}

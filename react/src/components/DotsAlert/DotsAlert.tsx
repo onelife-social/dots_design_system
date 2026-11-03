@@ -193,6 +193,7 @@ export function DotsAlert(props: DotsAlertProps) {
     <div
       className={`ds-alert ds-alert--${variant}${showBlur ? ' ds-alert--blur' : ''}${props.className ? ` ${props.className}` : ''}`}
       role="alertdialog"
+      aria-modal={props.showScrim ? true : undefined}
       aria-label={props.title}
     >
       {header}

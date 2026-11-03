@@ -1,0 +1,11 @@
+/* DotsMapPin — port de lib/src/components/map_pin/dots_map_pin.dart
+   46 × 55 · gota bgStrong · círculo friends008 → labelDestructive · sombra de suelo shadowPrimary */
+
+.ds-map-pin {
+  display: block;
+  flex: none;
+}
+.ds-map-pin__surface { fill: var(--bg-strong); }
+.ds-map-pin__ground { fill: var(--shadow-primary); }
+.ds-map-pin__gradient-start { stop-color: var(--friends-008); }
+.ds-map-pin__gradient-end { stop-color: var(--label-destructive); }
