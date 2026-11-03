@@ -70,6 +70,9 @@
   --gradient-bg-premium: linear-gradient(135deg, #C88EFF, #8B84F7);
   --gradient-bg-premium-plus: linear-gradient(135deg, #E9C058, #B48D2D);
 
+  /* Friends — DotsColors.friends008, the same in both themes (top of the DotsMapPin circle) */
+  --friends-008: #F5866B;
+
   /* Squircle radii (figma_squircle, cornerSmoothing 0.5) */
   --squircle-8: 8px; --squircle-12: 12px; --squircle-15: 15px;
   --squircle-16: 16px; --squircle-20: 20px; --squircle-24: 24px;
