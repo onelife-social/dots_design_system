@@ -1,4 +1,4 @@
-/* DotsAlert — alerts/dots_alert.dart. 320px card, bgContainerSecondary, radius 32, border 1.4 borderAlert,
+/* DotsAlert — alerts/dots_alert.dart. 320px card, bgContainerPrimary, radius 32, border 1.4 borderAlert,
    padding 16. bgAlert (DotsStyleColorDodge, blur 50) approximated: translucent bg + backdrop-filter. */
 .ds-alert {
   /* borderAlert is not a token in tokens.css: #FFFFFF4D light / #6E6E6E4D dark (dots_colors.dart) */
@@ -7,7 +7,7 @@
   width: 320px; max-width: 100%;
   border-radius: var(--squircle-32);
   border: 1.4px solid var(--ds-border-alert);
-  background: var(--bg-container-secondary);
+  background: var(--bg-container-primary);
   padding: 16px;
   display: flex; flex-direction: column; align-items: center;
   font-family: var(--font-main);

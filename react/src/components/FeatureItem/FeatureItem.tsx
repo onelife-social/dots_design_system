@@ -9,6 +9,8 @@ export interface FeatureItemProps {
   value?: string;
   /** DotsIcon name (e.g. 'ic-calendar') — Dart `icon: DotsIconData`. Ignored when `image` is set */
   icon?: string;
+  /** Icon colour, a token (e.g. 'var(--text-secondary)') — Dart `iconColor`. Default textQuarternary */
+  iconColor?: string;
   /** Custom 24×24 leading — Dart `FeatureItem.image` variant */
   image?: ReactNode;
   /** Extra CSS class */
@@ -23,9 +25,9 @@ export function FeatureItem(props: FeatureItemProps) {
       // FeatureItem.image → SizedBox.square(24) with the custom widget
       <span className="ds-feature-item__image">{props.image}</span>
     ) : (
-      // Default → DotsIcon(size 16, textQuarternary via CSS currentColor)
+      // Default → DotsIcon(size 16, iconColor ?? textQuarternary via CSS currentColor)
       <span className="ds-feature-item__icon" aria-hidden>
-        <DotsIcon name={props.icon ?? ''} size={16} />
+        <DotsIcon name={props.icon ?? ''} size={16} color={props.iconColor} />
       </span>
     );
 
