@@ -70,7 +70,7 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showBottomBorder;
 
   /// With [hideBackground], paints Figma's «HOME_gradiente superior» behind the bar so the content scrolling
-  /// under it fades out: `bgBase` down to 22 % of its height, then to `bgBaseGradientStart`, at 95 %. It is
+  /// under it fades out: `bgBase` down to 22 % of its height, then to `bgBaseGradientStart`, at 95 % opacity. It is
   /// 18 px taller than the bar and only visual: it takes no taps. The screen decides when to show it (for
   /// instance, once the content has scrolled).
   final bool showGradient;
@@ -194,34 +194,33 @@ class DotsTopBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.dotsTheme;
-    final bar = _bar(theme);
-    if (color != null || !hideBackground || !showGradient) return bar;
-
     return Stack(
       clipBehavior: Clip.none,
+      fit: StackFit.passthrough,
       children: [
-        Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          height: preferredSize.height + gradientOverflow,
-          child: IgnorePointer(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: const [0.22, 1],
-                  colors: [
-                    theme.colors.bgBase.dotsWithOpacity(0.95),
-                    theme.colors.bgBaseGradientStart,
-                  ],
+        if (showGradient && hideBackground && color == null)
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            height: preferredSize.height + gradientOverflow,
+            child: IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: const [0.22, 1],
+                    colors: [
+                      theme.colors.bgBase.dotsWithOpacity(0.95),
+                      theme.colors.bgBaseGradientStart,
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        bar,
+        _bar(theme),
       ],
     );
   }

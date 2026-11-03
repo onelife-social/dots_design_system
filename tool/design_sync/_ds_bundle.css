@@ -3374,7 +3374,7 @@ button.ds-icon-btn__circle { cursor: pointer; }
   backdrop-filter: blur(var(--blur-10));
 }
 /* showGradient (with hideBackground) — Figma «HOME_gradiente superior»: bgBase down to 22%, then bgBaseGradientStart
-   (bgBase at 0%), at 95%: bgBase faded by a mask, as DotsHomeTopBar does. 18px taller than the bar so the content fades
+   (bgBase at 0%), at 95% opacity: bgBase faded by a mask, as DotsHomeTopBar does. 18px taller than the bar so the content fades
    out before it reaches the bar's row; visual only. It comes first in the bar, so the positioned content paints over it. */
 .ds-top-bar__gradient {
   position: absolute;
