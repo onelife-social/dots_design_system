@@ -25,7 +25,7 @@ export interface DotsCalendarProps {
     /** Accessible names of the previous / next month arrows; omitted = unnamed (pass the app's translation) */
     previousMonthLabel?: string;
     nextMonthLabel?: string;
-    /** Accessible names of the month / year wheels in the picker (default: 'month' / 'year') */
+    /** Accessible names of the month / year wheels in the picker (default: English 'month' / 'year'; always pass the app's translation) */
     monthWheelLabel?: string;
     yearWheelLabel?: string;
     className?: string;
