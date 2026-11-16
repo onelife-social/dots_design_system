@@ -14,7 +14,7 @@ export interface WheelColumnProps {
   index: number;
   /** Called as soon as another row passes under the band (while scrolling too), after a tap and on arrow keys */
   onIndexChange: (i: number) => void;
-  ariaLabel: string;
+  ariaLabel?: string;
   /** Wraps from the last item to the first, like the Cupertino time wheel */
   loop?: boolean;
   className: string;

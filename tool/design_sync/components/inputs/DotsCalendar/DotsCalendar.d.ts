@@ -22,6 +22,14 @@ export interface DotsCalendarProps {
     yearRange?: [number, number];
     /** Start with the month/year picker open (previews) */
     initialPicking?: boolean;
+    /** Accessible name of the previous-month arrow; no default, the app passes its translation */
+    previousMonthLabel?: string;
+    /** Accessible name of the next-month arrow; no default, the app passes its translation */
+    nextMonthLabel?: string;
+    /** Accessible name of the picker's month wheel; no default, the app passes its translation */
+    monthWheelLabel?: string;
+    /** Accessible name of the picker's year wheel; no default, the app passes its translation */
+    yearWheelLabel?: string;
     className?: string;
 }
 export declare function DotsCalendar(props: DotsCalendarProps): import("react").JSX.Element;
