@@ -27,9 +27,9 @@ test('the month and year wheels carry the names the app passes', () => {
   assert.match(markup, /role="listbox" aria-label="Año"/);
 });
 
-test('without labels the wheels keep their previous names', () => {
+test('without labels the wheels get no made-up name', () => {
   const markup = renderToStaticMarkup(<DotsCalendar {...base} initialPicking />);
 
-  assert.match(markup, /role="listbox" aria-label="month"/);
-  assert.match(markup, /role="listbox" aria-label="year"/);
+  assert.equal((markup.match(/role="listbox"/g) ?? []).length, 2);
+  assert.doesNotMatch(markup, /role="listbox" aria-label/);
 });

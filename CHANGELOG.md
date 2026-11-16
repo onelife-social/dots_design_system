@@ -1,5 +1,5 @@
 ## X.X.X Pending
-* Web: DotsCalendar previousMonthLabel / nextMonthLabel (accessible names of the month arrows, no default) and monthWheelLabel / yearWheelLabel (default 'month' / 'year'; the app should always pass its translation).
+* Web: DotsCalendar previousMonthLabel / nextMonthLabel (accessible names of the month arrows, no default) and monthWheelLabel / yearWheelLabel (the month/year wheels, which lose their fixed English 'month' / 'year'); no default: the app translates them.
 * DotsTopBar showGradient (Figma TopBar Background=False · showGradient): with hideBackground, a bgBase → transparent gradient behind the bar, 18 px taller and visual only (web: showGradient).
 * DotsMapPin, the Dots map marker (Figma Chronicle MapPin), with DotsMapPin.size and DotsMapPin.anchor (web: dotsMapPinSize / dotsMapPinAnchor, ariaLabel, and --friends-008 in tokens.css).
 * DotsAlert card on bgContainerPrimary, as in Figma (was bgContainerSecondary): lighter in light theme, darker in dark.

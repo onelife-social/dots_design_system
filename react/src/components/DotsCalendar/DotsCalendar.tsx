@@ -29,10 +29,9 @@ export interface DotsCalendarProps {
   yearRange?: [number, number];
   /** Start with the month/year picker open (previews) */
   initialPicking?: boolean;
-  /** Accessible names of the previous / next month arrows; omitted = unnamed (pass the app's translation) */
+  /** Accessible names of the month arrows and the month / year wheels; no default, so the app passes its translation */
   previousMonthLabel?: string;
   nextMonthLabel?: string;
-  /** Accessible names of the month / year wheels in the picker (default: English 'month' / 'year'; always pass the app's translation) */
   monthWheelLabel?: string;
   yearWheelLabel?: string;
   className?: string;
@@ -183,8 +182,8 @@ export function DotsCalendar(props: DotsCalendarProps) {
       ) : (
         <div className="ds-calendar__picker">
           <div className="ds-calendar__band" aria-hidden />
-          <WheelColumn items={monthNames} index={month} onIndexChange={setMonth} ariaLabel={props.monthWheelLabel ?? 'month'} {...wheelClasses} />
-          <WheelColumn items={years.map(String)} index={Math.max(0, years.indexOf(year))} onIndexChange={(i) => setYear(years[i])} ariaLabel={props.yearWheelLabel ?? 'year'} {...wheelClasses} />
+          <WheelColumn items={monthNames} index={month} onIndexChange={setMonth} ariaLabel={props.monthWheelLabel} {...wheelClasses} />
+          <WheelColumn items={years.map(String)} index={Math.max(0, years.indexOf(year))} onIndexChange={(i) => setYear(years[i])} ariaLabel={props.yearWheelLabel} {...wheelClasses} />
         </div>
       )}
     </div>

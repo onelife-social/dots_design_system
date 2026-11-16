@@ -15,7 +15,7 @@ DotsCalendar from dots_design_system. Use via `window.DotsDesignSystem_9e41da.Do
 | `yearRange` | `[number, number]` | hoy −5 … +10 | Años del selector. |
 | `initialPicking` | `boolean` | `false` | Arranca con el selector de mes y año abierto (previews). |
 | `previousMonthLabel` / `nextMonthLabel` | `string` | sin nombre | Nombre accesible de las flechas de mes anterior y siguiente. Sin valor, las flechas no tienen nombre: pasa siempre la traducción de la app. |
-| `monthWheelLabel` / `yearWheelLabel` | `string` | `'month'` / `'year'` | Nombre accesible de las ruedas de mes y año del selector. El valor por defecto está en inglés: pasa siempre la traducción de la app. |
+| `monthWheelLabel` / `yearWheelLabel` | `string` | sin nombre | Nombre accesible de las ruedas de mes y año del selector. Sin valor, las ruedas no tienen nombre: pasa siempre la traducción de la app. |
 | `className` | `string` | — | Clases extra sobre `.ds-calendar`. |
 
 Para vaciar la selección, hazlo fuera (una fila con el valor y una equis): el calendario no tiene acción de borrar.

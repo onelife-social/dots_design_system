@@ -22,10 +22,9 @@ export interface DotsCalendarProps {
     yearRange?: [number, number];
     /** Start with the month/year picker open (previews) */
     initialPicking?: boolean;
-    /** Accessible names of the previous / next month arrows; omitted = unnamed (pass the app's translation) */
+    /** Accessible names of the month arrows and the month / year wheels; no default, so the app passes its translation */
     previousMonthLabel?: string;
     nextMonthLabel?: string;
-    /** Accessible names of the month / year wheels in the picker (default: English 'month' / 'year'; always pass the app's translation) */
     monthWheelLabel?: string;
     yearWheelLabel?: string;
     className?: string;
