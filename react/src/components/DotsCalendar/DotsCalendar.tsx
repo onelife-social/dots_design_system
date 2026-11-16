@@ -29,6 +29,12 @@ export interface DotsCalendarProps {
   yearRange?: [number, number];
   /** Start with the month/year picker open (previews) */
   initialPicking?: boolean;
+  /** Accessible names of the previous / next month arrows; omitted = unnamed (pass the app's translation) */
+  previousMonthLabel?: string;
+  nextMonthLabel?: string;
+  /** Accessible names of the month / year wheels in the picker (default: 'month' / 'year') */
+  monthWheelLabel?: string;
+  yearWheelLabel?: string;
   className?: string;
 }
 
@@ -130,8 +136,8 @@ export function DotsCalendar(props: DotsCalendarProps) {
         <div className="ds-calendar__spacer" />
         {!picking ? (
           <div className="ds-calendar__nav">
-            <DotsIconButton icon="ic-chevron-left" size="small" style="noBackground" onClick={() => go(-1)} />
-            <DotsIconButton icon="ic-chevron-right" size="small" style="noBackground" onClick={() => go(1)} />
+            <DotsIconButton icon="ic-chevron-left" size="small" style="noBackground" ariaLabel={props.previousMonthLabel} onClick={() => go(-1)} />
+            <DotsIconButton icon="ic-chevron-right" size="small" style="noBackground" ariaLabel={props.nextMonthLabel} onClick={() => go(1)} />
           </div>
         ) : null}
       </div>
@@ -177,8 +183,8 @@ export function DotsCalendar(props: DotsCalendarProps) {
       ) : (
         <div className="ds-calendar__picker">
           <div className="ds-calendar__band" aria-hidden />
-          <WheelColumn items={monthNames} index={month} onIndexChange={setMonth} ariaLabel="month" {...wheelClasses} />
-          <WheelColumn items={years.map(String)} index={Math.max(0, years.indexOf(year))} onIndexChange={(i) => setYear(years[i])} ariaLabel="year" {...wheelClasses} />
+          <WheelColumn items={monthNames} index={month} onIndexChange={setMonth} ariaLabel={props.monthWheelLabel ?? 'month'} {...wheelClasses} />
+          <WheelColumn items={years.map(String)} index={Math.max(0, years.indexOf(year))} onIndexChange={(i) => setYear(years[i])} ariaLabel={props.yearWheelLabel ?? 'year'} {...wheelClasses} />
         </div>
       )}
     </div>
